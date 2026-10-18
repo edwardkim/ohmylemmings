@@ -17,7 +17,7 @@ Basher 할당/수량·방향별 굴착 마스크·32프레임 이동과 공백/�
 
 ## 게시 검증
 
-로컬 검증을 마쳤으며 구현 커밋 게시·정확한 push SHA의 실제 CI 세 작업/로그·원격 트리 일치·상위 #1 진행 갱신·#32 종료를 확인합니다. G07 전체 완료는 주장하지 않습니다.
+구현 `df1895f5a805f3c3069c0bf898d7b6ed8abe3bf2`와 [실제 push CI](https://github.com/edwardkim/ohmylemmings/actions/runs/39163774262)의 정확한 SHA·세 작업/실제 로그·331/27/41 테스트·기존/추가 SDL/모델·clean-input/SDL SDK/fetch를 확인했습니다. 원격223개 파일 모드/blob과 깨끗한 작업 트리,910개 증거 해시·문서111개/링크802개/앵커123개/이슈 문서명97개도 확인했습니다. G07-02를 완료했습니다. 최종 문서 게시·CI·상위 #1 갱신·#32 종료는 GitHub 이슈 기록에서 추적합니다. G07 전체는 진행 중입니다.
 
 [계약·재현·한계](../tech_insights/issue-32_basher.md), [진행 기록](../working/issue-32_basher.md).
 
