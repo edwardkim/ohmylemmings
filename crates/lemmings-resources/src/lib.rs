@@ -18,6 +18,7 @@ mod decompress;
 mod ground;
 mod level;
 mod masks;
+mod objects;
 mod odd;
 mod reader;
 mod sprites;
@@ -69,4 +70,9 @@ pub use ui::{
 pub use masks::{
     MAIN_MASK_KINDS, MAIN_MASK_RECORD_SIZE, MAIN_MASK_SECTION, MainMaskError, MainMaskKind,
     MainMasks, MaskBitmap, MaskFrames, MaskInfo,
+};
+
+pub use objects::{
+    LevelScene, ObjectComposeError, ObjectFrameSelection, ObjectGraphics, ScenePixel,
+    compose_objects,
 };
