@@ -16,4 +16,4 @@ mod terrain;
 
 pub use level::{Difficulty, InvalidLevelNumber, LevelId};
 
-pub use terrain::{TerrainMask, TerrainMaskError, TerrainMaskMut};
+pub use terrain::{TerrainChange, TerrainMask, TerrainMaskError, TerrainMaskMut, TerrainRect};

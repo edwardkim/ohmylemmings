@@ -1,5 +1,8 @@
 use core::fmt;
 
+mod bulk;
+pub use bulk::{TerrainChange, TerrainRect};
+
 /// Immutable row-major binary occupancy, independent of colors and resources.
 /// Dimensions are not fixed to a viewport. A view is valid only for an exact
 /// width*height byte slice, with every byte either 0 (air) or 1 (terrain).
