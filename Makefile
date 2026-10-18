@@ -1,6 +1,6 @@
-.PHONY: check check-rust check-python check-wasm
+.PHONY: check check-rust check-python check-wasm check-desktop
 
-check: check-rust check-python check-wasm
+check: check-rust check-python check-wasm check-desktop
 
 check-rust:
 	cargo fmt --all -- --check
@@ -15,3 +15,7 @@ check-python:
 
 check-wasm:
 	cargo build --workspace --lib --target wasm32-unknown-unknown --locked --offline
+
+check-desktop:
+	cargo build -p lemmings-desktop --locked --offline
+	python3 tools/check_desktop.py

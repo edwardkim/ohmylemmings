@@ -14,22 +14,31 @@ G03 리소스 해석을 완료했습니다. [기본 레벨 레코드](mydocs/tec
 
 ## Rust 개발
 
-Rustup을 설치한 뒤 저장소 루트에서 실행합니다. [rust-toolchain.toml](rust-toolchain.toml)이 Rust 1.93.1과 rustfmt·Clippy를 선택합니다. 도구 체인 설치 후 현재 패키지는 외부 의존성 없이 오프라인으로 빌드됩니다.
+Rustup을 설치한 뒤 저장소 루트에서 실행합니다. [rust-toolchain.toml](rust-toolchain.toml)이 Rust 1.93.1과 rustfmt·Clippy를 선택합니다. 두 no_std 라이브러리는 외부 패키지 의존이 없습니다. SDL2 데스크톱 앱의 고정 의존을 최초 fetch한 뒤 오프라인으로 빌드합니다.
 
-전체 개발 검증에는 GNU Make, Python 3.12와 WASM 타깃도 준비합니다.
+전체 개발 검증에는 GNU Make, Python 3.12, SDL2 개발 라이브러리와 WASM 타깃을 준비합니다. Linux SDK 설치는 [데스크톱 실행 안내](apps/desktop/README.md)를 따릅니다.
 
 ```sh
 rustup target add wasm32-unknown-unknown
+cargo fetch --locked
 make check
 ```
 
-`make check-rust`, `make check-python`, `make check-wasm`으로 각각 실행할 수도 있습니다. [CI·검증 안내](mydocs/plans/issue-7_continuous_integration.md)와 [Makefile](Makefile)에 세부 명령을 정리합니다. 같은 명령이 [GitHub Actions](.github/workflows/ci.yml)의 push·PR·수동 실행에서 사용됩니다.
+`make check-rust`, `make check-python`, `make check-wasm`, `make check-desktop`으로 각각 실행할 수도 있습니다. [CI·검증 안내](mydocs/plans/issue-7_continuous_integration.md)와 [Makefile](Makefile)에 세부 명령을 정리합니다. 같은 명령이 [GitHub Actions](.github/workflows/ci.yml)의 push·PR·수동 실행에서 사용됩니다.
 
 - [crates/lemmings-core](crates/lemmings-core/src/lib.rs): 레벨 식별 자료형·0/1 지형 읽기/변형·17Hz 경계 입력·시작/생성·기본 개체 이동/제거
 - [crates/lemmings-resources](crates/lemmings-resources/src/lib.rs): DAT·기본 레벨·ODDTABLE·120개 카탈로그·GROUND·VGAGR·VGASPEC·초기 지형·객체 합성·MAIN 레밍/UI/폰트·마스크·숫자와 팔레트, 코어 ID를 사용하는 로컬 의존
 - [개발 골격 설계](mydocs/plans/issue-6_rust_workspace.md): 모듈 경계·API·개별/WASM 빌드 명령
 
-현재 빌드 대상은 라이브러리 2개이며, 게임 실행 명령은 G06의 네이티브 어댑터에서 도입합니다.
+- [apps/desktop](apps/desktop/README.md): Linux SDL2 창·입력·원본 Fun01 지형/스프라이트·고정 틱 세션·캡처/재생
+
+원본을 준비한 뒤 저장소 루트에서 네이티브 화면을 실행합니다.
+
+```sh
+cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/local/dos-original
+```
+
+Space로 일시정지/재개, 위/아래 화살표로 생성 속도, 좌/우 화살표로 카메라를 조작하고 Esc로 종료합니다. 직업·출구 판정·승패·음향은 후속 구현입니다. [G06-01 검증 보고서](mydocs/reports/issue-27_native_view.md)에 X11 실행과 화면 근거를 기록합니다. G06 전체는 DOS 실행·동일 장면 대조를 남겨 진행 중입니다.
 
 ## 원본 데이터 준비
 

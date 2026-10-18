@@ -1,0 +1,16 @@
+[package]
+name = "lemmings-desktop"
+description = "SDL2 native adapter for the first DOS Lemmings level"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+lemmings-core = { path = "../../crates/lemmings-core" }
+lemmings-resources = { path = "../../crates/lemmings-resources" }
+sdl2 = "=0.38.0"
+
+[lints]
+workspace = true

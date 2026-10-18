@@ -10,3 +10,5 @@
 파일명: `issue-<번호>_<주제>.md`. 예: `issue-2_dos_baseline.md`.
 
 - [#26 G05-04 상태 추적·재생·기준 실행 대조](issue-26_state_replay.md)
+
+- [#27 G06-01 네이티브 화면·입력 연결](issue-27_native_view.md)

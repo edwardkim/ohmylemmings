@@ -10,7 +10,7 @@
 |---|---|---|
 | [crates/lemmings-core](../../crates/lemmings-core/Cargo.toml) | 검증된 도메인 자료형, 이후 지형·틱·개체·게임 규칙 | `LevelId`, `Difficulty`, 번호 오류 구현 |
 | [crates/lemmings-resources](../../crates/lemmings-resources/Cargo.toml) | 제공받은 바이트의 읽기·형식 해석·오류 위치 | 바이트·DAT·기본 레벨·ODD·120개 연결 구현 |
-| `apps/desktop/` (G06 예정) | 파일 읽기, 데이터 조립, SDL2 화면·입력·오디오 | 실행 어댑터 도입 시 생성 |
+| `apps/desktop/` (#27) | 파일 읽기·SDL2 화면/입력·세션 조립 | std 바이너리; 음향은 G10 |
 | `apps/web/` (G09 예정) | 브라우저 리소스 공급, WASM 경계, Canvas·입력·오디오 | 실행 어댑터 도입 시 생성 |
 
 G01-01 도입 당시 두 라이브러리에는 패키지 의존성이 없었습니다. [G03-02 / #11](../tech_insights/issue-11_level_catalog.md)에서 표시 레벨 ID 재사용을 위해 `lemmings-resources → lemmings-core` 로컬 의존 하나를 추가했습니다. 외부 패키지는 없으며 역방향 의존은 금지합니다. 플랫폼 조립부가 리소스 표현을 코어의 도메인 자료형으로 변환하고 코어에 데이터를 전달합니다. 코어는 파서·파일·SDL2·브라우저 API를 호출하지 않습니다. 리소스 라이브러리도 파일을 열지 않고 호출자가 준 바이트만 읽습니다.
@@ -63,3 +63,7 @@ WASM 표준 라이브러리 설치에는 최초 네트워크 접근이 필요할
 - [작업일지](../orders/20261018.md#issue-6)
 - [진행 기록](../working/issue-6_rust_workspace.md)
 - [검증 보고서](../reports/issue-6_rust_workspace.md)
+
+## G06-01 어댑터 도입 / #27
+
+[#27 네이티브 화면](../tech_insights/issue-27_native_view.md)에서 workspace에 apps/desktop 바이너리를 추가했습니다. 기존 두 라이브러리의 no_std/외부 의존 0개·resources→core 방향은 유지합니다. 앱만 두 로컬 라이브러리와 sdl2=0.38.0/7개 잠금 레지스트리 패키지를 사용합니다. SDL2 SDK와 최초 cargo fetch 후 오프라인 검사합니다. WASM --lib 빌드는 네이티브 바이너리를 제외합니다.

@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This repository ports DOS Lemmings to Rust. `crates/lemmings-resources` parses DOS data and uses `lemmings-core` IDs; keep core independent of resources. Both are `no_std`. Architecture is in `mydocs/plans/`; adapters follow in G06/G09.
+This repository ports DOS Lemmings to Rust. `crates/lemmings-resources` uses `lemmings-core`; both are `no_std`. `apps/desktop` owns SDL2/I/O. Keep core independent of resources and platforms.
 
 When implementing:
 
@@ -17,17 +17,18 @@ When implementing:
 Run at the repository root; `rust-toolchain.toml` pins Rust 1.93.1:
 
 - `make check`: run all CI checks locally.
-- `make check-rust`: build, test, format, and lint both libraries offline.
+- `make check-rust`: build, test, format, and lint the workspace offline.
 - `make check-python`: run tooling tests.
+- `make check-desktop`: verify synthetic SDL rendering and replay.
+- `cargo fetch --locked`: prepare pinned desktop dependencies before offline checks.
 - `make check-wasm`: compile WASM libraries; install the target first.
 
 Python 3 reference tooling:
 
 - `python3 tools/reference_assets.py fetch`: acquire and verify pinned reference files.
 - `python3 tools/reference_assets.py verify`: check local file sizes and SHA-256 hashes.
-- `python3 -m unittest discover -s tools/tests -v`: run offline tooling tests.
 
-See `mydocs/plans/issue-7_continuous_integration.md` for prerequisites and CI details. Document SDL2 prerequisites with platform adapters.
+See `mydocs/plans/issue-7_continuous_integration.md` for prerequisites and CI details. SDL2 prerequisites: `apps/desktop/README.md`.
 
 ## Coding Style & Naming Conventions
 

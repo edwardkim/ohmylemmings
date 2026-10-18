@@ -27,3 +27,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [MAIN.DAT 마스크·카운트다운·극성/숫자 차이와 전체 23프레임 대조](issue-18_main_masks.md)
 
 - [#26 G05-04 상태 추적·재생·기준 실행 대조](issue-26_state_replay.md)
+
+- [#27 G06-01 네이티브 화면·입력 연결](issue-27_native_view.md)

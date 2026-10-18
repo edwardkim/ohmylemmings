@@ -39,8 +39,13 @@ jobs:
           rustup show active-toolchain
           rustc --version
           cargo --version
+      - name: Prepare SDL2 and locked dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y libsdl2-dev
+          cargo fetch --locked
       - name: Check Rust
-        run: make check-rust
+        run: make check-rust check-desktop
 
   python:
     name: Python tooling
@@ -80,5 +85,7 @@ jobs:
         run: |
           rustup show active-toolchain
           rustup target add wasm32-unknown-unknown
+      - name: Fetch locked dependency metadata
+        run: cargo fetch --locked
       - name: Check WASM libraries
         run: make check-wasm

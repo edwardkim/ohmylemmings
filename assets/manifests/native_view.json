@@ -1,0 +1,1488 @@
+{
+  "format": "g06-native-view-evidence-v1",
+  "tracking_issue": 27,
+  "tracking_url": "https://github.com/edwardkim/ohmylemmings/issues/27",
+  "original_files": [
+    {
+      "name": "ADLIB.DAT",
+      "size": 12988,
+      "sha256": "43eceee3e88fde48c679c635ee208d2af9ade1ed789dc291d647e7d314ffdcfe"
+    },
+    {
+      "name": "AUTODET.EXE",
+      "size": 2188,
+      "sha256": "bc0ba12a10589299d9a8ce88112d6d7697ab8b45e9d55d14daf01ffd65bd4f16"
+    },
+    {
+      "name": "CGAGR0.DAT",
+      "size": 20901,
+      "sha256": "d0d1d08b117dbaa5a61bb7488b141d5d901ea084b8d4c859697139e4dc3be6d5"
+    },
+    {
+      "name": "CGAGR1.DAT",
+      "size": 25696,
+      "sha256": "1ad9cb595dfcf66ba6473776ccff6612f3ec6b4d9e6f534323caa0265b09f44f"
+    },
+    {
+      "name": "CGAGR2.DAT",
+      "size": 15113,
+      "sha256": "58268e1479fb8b3d2fbf2b6bf8a7c9a77a9614e5f190324db17d7d6ef1e37180"
+    },
+    {
+      "name": "CGAGR3.DAT",
+      "size": 15427,
+      "sha256": "a702f30bd44761b37d6498524e452044ed17cdc4a86a807981dde7bc688019ea"
+    },
+    {
+      "name": "CGAGR4.DAT",
+      "size": 20851,
+      "sha256": "ab2de1785c6afd8d46533cb28ac56afaa6ffe0f14e2962e22880719a31910c02"
+    },
+    {
+      "name": "CGALEMMI.EXE",
+      "size": 73164,
+      "sha256": "51b3561293f57ef2899b1f4160c40af8a834d0afb5bbc11d6f825bd6b786ccf6"
+    },
+    {
+      "name": "CGAMAIN.DAT",
+      "size": 22111,
+      "sha256": "1e4b08f606546938b1eede4a0587943a07c3777c8c95bf50a7a9c31623995094"
+    },
+    {
+      "name": "CGASPEC0.DAT",
+      "size": 17992,
+      "sha256": "aa2ad89a0c3edb7d8f110447815e917031b5921b8035a64d74ddc7fce79dc72f"
+    },
+    {
+      "name": "CGASPEC1.DAT",
+      "size": 11442,
+      "sha256": "11a2d0d2b797bb63ce142d9e3600c89ad542aac35398020e34eca8a60b0bbcad"
+    },
+    {
+      "name": "CGASPEC2.DAT",
+      "size": 13129,
+      "sha256": "667ca13f1ddee9dbb9a33e33154d02d1c950a5687bd6f49513c1712fb270fbb2"
+    },
+    {
+      "name": "CGASPEC3.DAT",
+      "size": 23838,
+      "sha256": "589875f7de9b5a41c1033f06fe82c9b628663c31ad9a4f31298b5d15110f09a1"
+    },
+    {
+      "name": "GROUND0O.DAT",
+      "size": 1056,
+      "sha256": "86ecce12dea563b97d07339028780a0a50fc2cc75a67f682bf4d9aff8cf4b24a"
+    },
+    {
+      "name": "GROUND1O.DAT",
+      "size": 1056,
+      "sha256": "baf7a2ea30b07d2dc7968a5fb590987b3775840c57e6268437d3dce969b64d65"
+    },
+    {
+      "name": "GROUND2O.DAT",
+      "size": 1056,
+      "sha256": "52e62aeefd6cd548690c02af6474936c5e16112e115ca7808c3748e500a9412d"
+    },
+    {
+      "name": "GROUND3O.DAT",
+      "size": 1056,
+      "sha256": "f4df8579a30cb55dae4a06f606e0453cb0931219efadf3e9465d681a43a2722c"
+    },
+    {
+      "name": "GROUND4O.DAT",
+      "size": 1056,
+      "sha256": "9669ee978e5adf5f8d5bfeb80ccc5d6c20e75e32f55e2a5c1c738f64af8faa91"
+    },
+    {
+      "name": "HELP.BAT",
+      "size": 114,
+      "sha256": "ce9c39912fedf5d4a425c78bc342cc9f3c2487d571c387527b0fe28a7a99d498"
+    },
+    {
+      "name": "INSTALL.EXE",
+      "size": 9145,
+      "sha256": "5837dced3fed64514b9a2b8b6f5564e9eb981c9d9c2842190c8683e451fffd18"
+    },
+    {
+      "name": "LEM1.DOC",
+      "size": 403,
+      "sha256": "66068ab8290ee4c65ef2aeb554f0c5a3da90edcae40817ed3c8fd58b12b4a0c7"
+    },
+    {
+      "name": "LEM2.DOC",
+      "size": 384,
+      "sha256": "3722478bbed7c05f0ff7e7d7811ba98ce356a3568d626e666ace426ec09f83b5"
+    },
+    {
+      "name": "LEM3.DOC",
+      "size": 530,
+      "sha256": "0f27deb33cb9ed35851c18bac0c4b792fe71e20e0bbf8f58f020996a7ab00190"
+    },
+    {
+      "name": "LEM4.DOC",
+      "size": 688,
+      "sha256": "c7ee193f65b8fdc19ff54ab1c9fe3b9de05c772dfa377c60bc8f0cdd15c720b0"
+    },
+    {
+      "name": "LEMMINGS.BAT",
+      "size": 569,
+      "sha256": "f6538723d41b20176e8adb5f70a1599c86328897ecec86ee23f28e4eb231a3f7"
+    },
+    {
+      "name": "LEVEL000.DAT",
+      "size": 3722,
+      "sha256": "2b9d4502ae1837faa3a6ff7a8b11eb75cbb6a555aa0e5c9f266f0e33a4cf444f"
+    },
+    {
+      "name": "LEVEL001.DAT",
+      "size": 4519,
+      "sha256": "52c60bf66d31514ba7f05970901cbde98e10e4020b8cc5d99c5bdf0eca43a2a9"
+    },
+    {
+      "name": "LEVEL002.DAT",
+      "size": 4819,
+      "sha256": "3216e70e91b5a1f8fc34d92e90167762df018f56dbd253b02e655e2beb1e0854"
+    },
+    {
+      "name": "LEVEL003.DAT",
+      "size": 6827,
+      "sha256": "6a4984e3ef13e8450c65dffe67baf9b7dee22f2f97af42072c60c8965d7ba94c"
+    },
+    {
+      "name": "LEVEL004.DAT",
+      "size": 3889,
+      "sha256": "c4c103ef26a275918586eed9e9fc63ba1f91125fe7bd70c0c1f97614367f50df"
+    },
+    {
+      "name": "LEVEL005.DAT",
+      "size": 7255,
+      "sha256": "ba7ae3d24331e1a0d87b46d1332b4cf74a09c9e584ad12ea672ee555da1a52cc"
+    },
+    {
+      "name": "LEVEL006.DAT",
+      "size": 7149,
+      "sha256": "34052d7c5ea66748c5a81fe69060bbf081d3be3232dce05945b51bf2cb4f0472"
+    },
+    {
+      "name": "LEVEL007.DAT",
+      "size": 5253,
+      "sha256": "f827359ac4a66e5e945d74f322982e8419d7c55f2e47044674fe10fd423a9cde"
+    },
+    {
+      "name": "LEVEL008.DAT",
+      "size": 7037,
+      "sha256": "b014f73c65aa57c7a014c896ac4f7dd58291946526db5ebb059ebbd3ea80d174"
+    },
+    {
+      "name": "LEVEL009.DAT",
+      "size": 4932,
+      "sha256": "0cb73f259510c25c29f21103ac1d04c0643756b6ea81b91b47d0c46259fe1a83"
+    },
+    {
+      "name": "MAIN.DAT",
+      "size": 56472,
+      "sha256": "2aec688c334e60322998811a8b6f9d5c13f8090b46ca6c2a6cb1c8db3b733545"
+    },
+    {
+      "name": "ODDTABLE.DAT",
+      "size": 4480,
+      "sha256": "e6d425592fe2cda43ec1169995cd8deeb0bdb74eb464728f4c05eb1ddefae8d0"
+    },
+    {
+      "name": "TANDYSND.DAT",
+      "size": 12399,
+      "sha256": "d044398aced30dae67cf8663d57f946faf28a29c357f9ea3857a28eea7cc10c1"
+    },
+    {
+      "name": "TGALEMMI.EXE",
+      "size": 76092,
+      "sha256": "8c6e8f068fd10bc1d7bab71094c710514d8c3a249c4f7e29d472f1a7d9d3c527"
+    },
+    {
+      "name": "TGAMAIN.DAT",
+      "size": 14733,
+      "sha256": "5a7776a66b858d5936f314a2105aa7ab83ad9e17a946c458f94d467548216896"
+    },
+    {
+      "name": "VGAGR0.DAT",
+      "size": 24464,
+      "sha256": "9bd5ae2e0aed013bd369a469ac14afeb1beb22524fc820920d6e38766ea48680"
+    },
+    {
+      "name": "VGAGR1.DAT",
+      "size": 32966,
+      "sha256": "bf49fc528b68d00c5738b6e7cd9244812bc74b0fc03ea9f862009a11009149e5"
+    },
+    {
+      "name": "VGAGR2.DAT",
+      "size": 22290,
+      "sha256": "f8305e71295c5909ee7692e4391aae65443298faef4d96e5fe17b24afa0eadcc"
+    },
+    {
+      "name": "VGAGR3.DAT",
+      "size": 22775,
+      "sha256": "19d3e2ba0db60bf855d8ce83459f53d83a2048763124932f533eb1c42f7809d9"
+    },
+    {
+      "name": "VGAGR4.DAT",
+      "size": 28692,
+      "sha256": "40a99d3d9540609da9d6a74c07a832786818aed361326e37c01a909a1615921d"
+    },
+    {
+      "name": "VGALEMMI.EXE",
+      "size": 83194,
+      "sha256": "4f21e94d53b7ea814ade802b4a37d42481da3876e31fb5a23090e19c9600f21c"
+    },
+    {
+      "name": "VGASPEC0.DAT",
+      "size": 28655,
+      "sha256": "a647110ca059fd18917e8a289668167a3a77975ca1096d7f7fdd9557fee95ce0"
+    },
+    {
+      "name": "VGASPEC1.DAT",
+      "size": 18567,
+      "sha256": "b0a8ce1a8888feda8720c7df1222911ae9241f3acbfd42adda243bd5ba5a2306"
+    },
+    {
+      "name": "VGASPEC2.DAT",
+      "size": 23284,
+      "sha256": "602fde697bb49df8d86fd800643cc3439a4f136223af0bf1ee46e2bff5e0e3cd"
+    },
+    {
+      "name": "VGASPEC3.DAT",
+      "size": 34827,
+      "sha256": "918f21db3a16741f1a58b06bcef2b4ff63dc16f0e8746d0393dc023ea57cb2d4"
+    }
+  ],
+  "binary_sha256": "d58d40e46e31a3eaaf0a7d134153ef1479eb36df49252599ca50fae0120889ad",
+  "cargo_lock_sha256": "86fe0c2dfc2471f74f7e44bda33dee7f69b21c90f72344dde07b99460600e666",
+  "app_sources": {
+    "apps/desktop/src/assets.rs": "0de4bb36bebb03fd8e9cf4986cba5426f231a6a59388457859246b45822ce200",
+    "apps/desktop/src/input.rs": "344eb5e38470930c1710fb5fccfaf7f9579d198e0ec19062a32bd05bc3539093",
+    "apps/desktop/src/main.rs": "860a6dd5ca28043848cbefd5f7ff3801ecc1f332a449499f3dfd7417dbec94c9",
+    "apps/desktop/src/render.rs": "3b8beceb7eaaee0a7c0451cf80f18ddcd701a7a3173bc020c987219de479f750",
+    "apps/desktop/src/session.rs": "2e716d8c6da85efff5b20306b4224959133edf4878bba153352febf42984a33f"
+  },
+  "reference_manifest_sha256": "7ea37db3b7f51569e32fe0e62e4ea31b16538aa2cabf1613f0fd6b0e779d6e26",
+  "runs": [
+    {
+      "run": "F00-realtime",
+      "runtime": {
+        "control_step": 340,
+        "iteration": 340,
+        "frames": 870,
+        "input_count": 0,
+        "events_seen": 5,
+        "camera": 624,
+        "video_driver": "x11",
+        "renderer": "software",
+        "sdl_version": "2.30.0",
+        "timing": "realtime",
+        "synthetic": false
+      },
+      "elapsed_ms": 20180,
+      "snapshots": 341,
+      "snapshots_sha256": "3e56870904094448fdeab59715ce9c7ad96ec25deb9ff34017cd24058d74d4fe",
+      "trace_file_sha256": "3025ed0bae62e0d9a978a8653e553909c134ec3833167c27f643cecfbc939465",
+      "inputs_file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pixel_exact_captures": 10,
+      "captures": [
+        {
+          "name": "frame-000000.png",
+          "size": 37370,
+          "sha256": "d7cd3cceece2febd25b7726b1db926c59182919a6e27e463b5ea75214678ffcb"
+        },
+        {
+          "name": "frame-000000.ppm",
+          "size": 1728015,
+          "sha256": "ac2e89cc63d6541f1b6ae232fc263d30673cb9ee63db693e5c8c7a752d2fe4d2"
+        },
+        {
+          "name": "frame-000000.rgb",
+          "size": 192000,
+          "sha256": "74f43299da559c07d3b3bc7b4b61282b4160de71a399f3ebdcb74f1379b48d0e"
+        },
+        {
+          "name": "frame-000016.png",
+          "size": 37371,
+          "sha256": "1b25a07e19c4eebdd202b0afb3ab54de2caa8f5152dba774b9d9f08de301ecd9"
+        },
+        {
+          "name": "frame-000016.ppm",
+          "size": 1728015,
+          "sha256": "6d98fbcf3345582a4878c9dfe87a1a88f372439c28eaa7732e233ef184d8021a"
+        },
+        {
+          "name": "frame-000016.rgb",
+          "size": 192000,
+          "sha256": "e8396d34c2e5d675f6e1d90d756c58583a32bf466dea5b4ecaeae80f671346a5"
+        },
+        {
+          "name": "frame-000017.png",
+          "size": 37354,
+          "sha256": "0f44c86aae7847cd6f728e3ef6931a92368e28cebfb4011693ab573760c8b5d2"
+        },
+        {
+          "name": "frame-000017.ppm",
+          "size": 1728015,
+          "sha256": "27f5282c77256ef93357298a6ebe29ca52928bbe1e6b601f28817800d2669ebc"
+        },
+        {
+          "name": "frame-000017.rgb",
+          "size": 192000,
+          "sha256": "5aefee54e40a3d457618965bcff411f4bbcde33e8617c06899dedfa29e0253f9"
+        },
+        {
+          "name": "frame-000034.png",
+          "size": 37380,
+          "sha256": "e5f6de27097f198e9bfc4ff5fd9939ea43bbaed21375b5fd66248a2d39c304b3"
+        },
+        {
+          "name": "frame-000034.ppm",
+          "size": 1728015,
+          "sha256": "a695486ba437c699942da1099ba64f6a7178e001198d5af4c3c93473e1d3c103"
+        },
+        {
+          "name": "frame-000034.rgb",
+          "size": 192000,
+          "sha256": "10728eec53d8bdc2ec126d23f823fb4623cf9ea5458027b46fda6fa8ed356739"
+        },
+        {
+          "name": "frame-000035.png",
+          "size": 37365,
+          "sha256": "92e67421304180b263a7c4c94a0cc656f52e12c45514df2c261782ad7332cda4"
+        },
+        {
+          "name": "frame-000035.ppm",
+          "size": 1728015,
+          "sha256": "559bbf90a79347a0286b2f3479fc89a779c57f1cc5fc607b53c4f40dd719bc8f"
+        },
+        {
+          "name": "frame-000035.rgb",
+          "size": 192000,
+          "sha256": "1ef53d10e7ab75aa425aa42bf1b38f3c0100f8eb7a948ae0d639ba02f7771b93"
+        },
+        {
+          "name": "frame-000054.png",
+          "size": 37762,
+          "sha256": "23754b0707058fa47ce279081908e24aafa3d1bb2acaeebdd776dbe7c7d017a1"
+        },
+        {
+          "name": "frame-000054.ppm",
+          "size": 1728015,
+          "sha256": "45c2f5b13474b3a1d70e190a6cb37e9e224d52189ebe496333bbcf273335cb8f"
+        },
+        {
+          "name": "frame-000054.rgb",
+          "size": 192000,
+          "sha256": "1556e987cb0873721d219f746db1603f1d370b1e339939772c56981d40903c8a"
+        },
+        {
+          "name": "frame-000060.png",
+          "size": 37816,
+          "sha256": "9dcedc5297e1bfd19e5c31c0d7ab11ee09f9b5f3b749e0af9f1350074d95279a"
+        },
+        {
+          "name": "frame-000060.ppm",
+          "size": 1728015,
+          "sha256": "de76391fb7c3eea5eb5649c59ebdf1ac7a4f8989945c7aca9f809d4255eb295b"
+        },
+        {
+          "name": "frame-000060.rgb",
+          "size": 192000,
+          "sha256": "4e9233427faf7dec49f3aa06bf56672675d3a445ae7d896949c198ef34259de9"
+        },
+        {
+          "name": "frame-000100.png",
+          "size": 37893,
+          "sha256": "5a7d0cd24b5b52409436d082ce9f186e2c597f5d658803588687062b98a479b8"
+        },
+        {
+          "name": "frame-000100.ppm",
+          "size": 1728015,
+          "sha256": "9f77211c5457611ae597dfb88882bf13208e50c4973d9d3993b7d5932026d850"
+        },
+        {
+          "name": "frame-000100.rgb",
+          "size": 192000,
+          "sha256": "3a9e1ac66dcf2660f6a6f677d9a7e15c410c54a8c18596cb4b5d19421d65e097"
+        },
+        {
+          "name": "frame-000170.png",
+          "size": 37962,
+          "sha256": "782be347e32b0b34afe46b2756c0d4ce24ba36e7234243e4ec7c5d4eb499a12b"
+        },
+        {
+          "name": "frame-000170.ppm",
+          "size": 1728015,
+          "sha256": "4289ba347bf7a1f0d9482702eaf35a6a12998c159e8a2d4be6cb9598fe856dc1"
+        },
+        {
+          "name": "frame-000170.rgb",
+          "size": 192000,
+          "sha256": "87065fce44404d3bb6a84bab309ffe9d14b9dc4e831a5e5b2fbf1accad1756e9"
+        },
+        {
+          "name": "frame-000340.png",
+          "size": 38196,
+          "sha256": "2033980410d4f12483b9ed2bb2796701cbbd4f3502038c3afbc360c725c30e36"
+        },
+        {
+          "name": "frame-000340.ppm",
+          "size": 1728015,
+          "sha256": "ef405a3a7997e18d5ddfc5b45813ab3e5ee390e60267a4475945c49474505c4d"
+        },
+        {
+          "name": "frame-000340.rgb",
+          "size": 192000,
+          "sha256": "ff41fa5043c8e113b21d818b0e61bc063585dac780681989431d2c8fdd56cb75"
+        }
+      ],
+      "reference_scenario": "F00",
+      "comparison": "MATCH_SUPPORTED with recorded Lemmix method execution"
+    },
+    {
+      "run": "F00-sparse",
+      "runtime": {
+        "control_step": 340,
+        "iteration": 340,
+        "frames": 57,
+        "input_count": 0,
+        "events_seen": 5,
+        "camera": 624,
+        "video_driver": "x11",
+        "renderer": "software",
+        "sdl_version": "2.30.0",
+        "timing": "fixed-step",
+        "synthetic": false
+      },
+      "elapsed_ms": 684,
+      "snapshots": 341,
+      "snapshots_sha256": "3e56870904094448fdeab59715ce9c7ad96ec25deb9ff34017cd24058d74d4fe",
+      "trace_file_sha256": "3025ed0bae62e0d9a978a8653e553909c134ec3833167c27f643cecfbc939465",
+      "inputs_file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pixel_exact_captures": 10,
+      "captures": [
+        {
+          "name": "frame-000000.png",
+          "size": 37370,
+          "sha256": "d7cd3cceece2febd25b7726b1db926c59182919a6e27e463b5ea75214678ffcb"
+        },
+        {
+          "name": "frame-000000.ppm",
+          "size": 1728015,
+          "sha256": "ac2e89cc63d6541f1b6ae232fc263d30673cb9ee63db693e5c8c7a752d2fe4d2"
+        },
+        {
+          "name": "frame-000000.rgb",
+          "size": 192000,
+          "sha256": "74f43299da559c07d3b3bc7b4b61282b4160de71a399f3ebdcb74f1379b48d0e"
+        },
+        {
+          "name": "frame-000016.png",
+          "size": 37371,
+          "sha256": "1b25a07e19c4eebdd202b0afb3ab54de2caa8f5152dba774b9d9f08de301ecd9"
+        },
+        {
+          "name": "frame-000016.ppm",
+          "size": 1728015,
+          "sha256": "6d98fbcf3345582a4878c9dfe87a1a88f372439c28eaa7732e233ef184d8021a"
+        },
+        {
+          "name": "frame-000016.rgb",
+          "size": 192000,
+          "sha256": "e8396d34c2e5d675f6e1d90d756c58583a32bf466dea5b4ecaeae80f671346a5"
+        },
+        {
+          "name": "frame-000017.png",
+          "size": 37354,
+          "sha256": "0f44c86aae7847cd6f728e3ef6931a92368e28cebfb4011693ab573760c8b5d2"
+        },
+        {
+          "name": "frame-000017.ppm",
+          "size": 1728015,
+          "sha256": "27f5282c77256ef93357298a6ebe29ca52928bbe1e6b601f28817800d2669ebc"
+        },
+        {
+          "name": "frame-000017.rgb",
+          "size": 192000,
+          "sha256": "5aefee54e40a3d457618965bcff411f4bbcde33e8617c06899dedfa29e0253f9"
+        },
+        {
+          "name": "frame-000034.png",
+          "size": 37380,
+          "sha256": "e5f6de27097f198e9bfc4ff5fd9939ea43bbaed21375b5fd66248a2d39c304b3"
+        },
+        {
+          "name": "frame-000034.ppm",
+          "size": 1728015,
+          "sha256": "a695486ba437c699942da1099ba64f6a7178e001198d5af4c3c93473e1d3c103"
+        },
+        {
+          "name": "frame-000034.rgb",
+          "size": 192000,
+          "sha256": "10728eec53d8bdc2ec126d23f823fb4623cf9ea5458027b46fda6fa8ed356739"
+        },
+        {
+          "name": "frame-000035.png",
+          "size": 37365,
+          "sha256": "92e67421304180b263a7c4c94a0cc656f52e12c45514df2c261782ad7332cda4"
+        },
+        {
+          "name": "frame-000035.ppm",
+          "size": 1728015,
+          "sha256": "559bbf90a79347a0286b2f3479fc89a779c57f1cc5fc607b53c4f40dd719bc8f"
+        },
+        {
+          "name": "frame-000035.rgb",
+          "size": 192000,
+          "sha256": "1ef53d10e7ab75aa425aa42bf1b38f3c0100f8eb7a948ae0d639ba02f7771b93"
+        },
+        {
+          "name": "frame-000054.png",
+          "size": 37762,
+          "sha256": "23754b0707058fa47ce279081908e24aafa3d1bb2acaeebdd776dbe7c7d017a1"
+        },
+        {
+          "name": "frame-000054.ppm",
+          "size": 1728015,
+          "sha256": "45c2f5b13474b3a1d70e190a6cb37e9e224d52189ebe496333bbcf273335cb8f"
+        },
+        {
+          "name": "frame-000054.rgb",
+          "size": 192000,
+          "sha256": "1556e987cb0873721d219f746db1603f1d370b1e339939772c56981d40903c8a"
+        },
+        {
+          "name": "frame-000060.png",
+          "size": 37816,
+          "sha256": "9dcedc5297e1bfd19e5c31c0d7ab11ee09f9b5f3b749e0af9f1350074d95279a"
+        },
+        {
+          "name": "frame-000060.ppm",
+          "size": 1728015,
+          "sha256": "de76391fb7c3eea5eb5649c59ebdf1ac7a4f8989945c7aca9f809d4255eb295b"
+        },
+        {
+          "name": "frame-000060.rgb",
+          "size": 192000,
+          "sha256": "4e9233427faf7dec49f3aa06bf56672675d3a445ae7d896949c198ef34259de9"
+        },
+        {
+          "name": "frame-000100.png",
+          "size": 37893,
+          "sha256": "5a7d0cd24b5b52409436d082ce9f186e2c597f5d658803588687062b98a479b8"
+        },
+        {
+          "name": "frame-000100.ppm",
+          "size": 1728015,
+          "sha256": "9f77211c5457611ae597dfb88882bf13208e50c4973d9d3993b7d5932026d850"
+        },
+        {
+          "name": "frame-000100.rgb",
+          "size": 192000,
+          "sha256": "3a9e1ac66dcf2660f6a6f677d9a7e15c410c54a8c18596cb4b5d19421d65e097"
+        },
+        {
+          "name": "frame-000170.png",
+          "size": 37962,
+          "sha256": "782be347e32b0b34afe46b2756c0d4ce24ba36e7234243e4ec7c5d4eb499a12b"
+        },
+        {
+          "name": "frame-000170.ppm",
+          "size": 1728015,
+          "sha256": "4289ba347bf7a1f0d9482702eaf35a6a12998c159e8a2d4be6cb9598fe856dc1"
+        },
+        {
+          "name": "frame-000170.rgb",
+          "size": 192000,
+          "sha256": "87065fce44404d3bb6a84bab309ffe9d14b9dc4e831a5e5b2fbf1accad1756e9"
+        },
+        {
+          "name": "frame-000340.png",
+          "size": 38196,
+          "sha256": "2033980410d4f12483b9ed2bb2796701cbbd4f3502038c3afbc360c725c30e36"
+        },
+        {
+          "name": "frame-000340.ppm",
+          "size": 1728015,
+          "sha256": "ef405a3a7997e18d5ddfc5b45813ab3e5ee390e60267a4475945c49474505c4d"
+        },
+        {
+          "name": "frame-000340.rgb",
+          "size": 192000,
+          "sha256": "ff41fa5043c8e113b21d818b0e61bc063585dac780681989431d2c8fdd56cb75"
+        }
+      ],
+      "reference_scenario": "F00",
+      "comparison": "MATCH_SUPPORTED with recorded Lemmix method execution"
+    },
+    {
+      "run": "F02-98",
+      "runtime": {
+        "control_step": 340,
+        "iteration": 340,
+        "frames": 58,
+        "input_count": 1,
+        "events_seen": 5,
+        "camera": 624,
+        "video_driver": "x11",
+        "renderer": "software",
+        "sdl_version": "2.30.0",
+        "timing": "fixed-step",
+        "synthetic": false
+      },
+      "elapsed_ms": 731,
+      "snapshots": 341,
+      "snapshots_sha256": "455d14d0e96e1e6a2cfc72d0912a61cf1efb9160ab2f5da1a584c9a554a14bfc",
+      "trace_file_sha256": "aa3d8b1eee13198bae9868a6b5f5a0a6e11e79de2b7222ef8a2956db933a0fc2",
+      "inputs_file_sha256": "368fa4f7a5a074f19eaf593e77f1647097844d6948d31467b5b9a1d24ad4eb61",
+      "pixel_exact_captures": 11,
+      "captures": [
+        {
+          "name": "frame-000000.png",
+          "size": 37296,
+          "sha256": "5f80a566470b359d0e677558177143b103b1b9bb7629b5c6755b94f037b6c899"
+        },
+        {
+          "name": "frame-000000.ppm",
+          "size": 1728015,
+          "sha256": "4249e8ef2257cc5b1a2e7a9f080c26635e858190224ca2e2d46a01be5441ac47"
+        },
+        {
+          "name": "frame-000000.rgb",
+          "size": 192000,
+          "sha256": "1a1a5d1a087269048df172f9a93f4a5ded4c75044b4df35e2979f5c69daa73f6"
+        },
+        {
+          "name": "frame-000016.png",
+          "size": 37297,
+          "sha256": "dd04d0bd46cd076e95d072fd0fca8cea75fe7934a590b7e2cf7b0a167734eeea"
+        },
+        {
+          "name": "frame-000016.ppm",
+          "size": 1728015,
+          "sha256": "8f8ea928622119c303cb1c7aeb1ec76801e25bb1b091c26676d59d38c859578b"
+        },
+        {
+          "name": "frame-000016.rgb",
+          "size": 192000,
+          "sha256": "428206e75f338f882962973aa9ba78c7c4cb913d5e728f4f2b5dde38a04aa66f"
+        },
+        {
+          "name": "frame-000017.png",
+          "size": 37280,
+          "sha256": "f5c02326df4455424f2424c1d63c749317fb2a174264f799bbcebc66cecd6a6c"
+        },
+        {
+          "name": "frame-000017.ppm",
+          "size": 1728015,
+          "sha256": "61ad9ee79a3a989cd62a090da11555efd788856f9437c5a4801fea9421c6f5b0"
+        },
+        {
+          "name": "frame-000017.rgb",
+          "size": 192000,
+          "sha256": "50b6dc06b88465190c7211ca0341bf644022cde4a10365eaa96a00babc0d12bc"
+        },
+        {
+          "name": "frame-000034.png",
+          "size": 37305,
+          "sha256": "6dc9d126b9f577ef616a9a091b193e6e6241b60ba44529fa3e58f9ba6847cdf8"
+        },
+        {
+          "name": "frame-000034.ppm",
+          "size": 1728015,
+          "sha256": "152827bb5fe25bc0b2a43a94472ef9112c8b7c866d16307964292fd204b90ce1"
+        },
+        {
+          "name": "frame-000034.rgb",
+          "size": 192000,
+          "sha256": "96ec428cc911d9fe4fc4d5bfe15571b1041fd1993e4f6dabff3b6a8d7b0b48e7"
+        },
+        {
+          "name": "frame-000035.png",
+          "size": 37290,
+          "sha256": "24ece2c3359e5fdb0318a1e6f16838c74647f29d0718aa15f283b26c2400bc26"
+        },
+        {
+          "name": "frame-000035.ppm",
+          "size": 1728015,
+          "sha256": "668f6d8c6efa1c4d86b4c4936d4ec46e99014b25bc30318196c1895262386ded"
+        },
+        {
+          "name": "frame-000035.rgb",
+          "size": 192000,
+          "sha256": "76869671aee32578a6101b3bd6bbd1a52b55c6c4d4b21aa0ef99b8e28fec6e02"
+        },
+        {
+          "name": "frame-000054.png",
+          "size": 37688,
+          "sha256": "56c6f8bf4726fc2798300856d46b1d54fa64b0f72d05cd4c6d8b96ec342e632f"
+        },
+        {
+          "name": "frame-000054.ppm",
+          "size": 1728015,
+          "sha256": "e1730691a340541a50938f0753dda10a4d646f72804da272b9cb208ea4707b95"
+        },
+        {
+          "name": "frame-000054.rgb",
+          "size": 192000,
+          "sha256": "b3a05b74e8ad24a7a0b580def39b8ca58b9c6c26a8ceb83de907bd23be4474ed"
+        },
+        {
+          "name": "frame-000055.png",
+          "size": 37728,
+          "sha256": "6ebe490cac6e23852fa9420de3dd3086beb55e088d70fee4b6c1d5a79834ee17"
+        },
+        {
+          "name": "frame-000055.ppm",
+          "size": 1728015,
+          "sha256": "1d3a95645816a698aa3b66434e69aa17f5f8b28ff195ead014a4e85c1b06ae4c"
+        },
+        {
+          "name": "frame-000055.rgb",
+          "size": 192000,
+          "sha256": "3b7cd6323e19094750d716205de959b7bca81db5608177e856e122a1093d8afb"
+        },
+        {
+          "name": "frame-000060.png",
+          "size": 37790,
+          "sha256": "3b90f68945223dd8bd50b3e9b72de60abe9f1c8da730320d1c8e749264d18d71"
+        },
+        {
+          "name": "frame-000060.ppm",
+          "size": 1728015,
+          "sha256": "e0107930427019e9d06702a19789f148e26dfe090cd2f15f91171640286c27cd"
+        },
+        {
+          "name": "frame-000060.rgb",
+          "size": 192000,
+          "sha256": "0f12130ee5270ee93f800a386cd2ece23bc80b5d06f43370ec375019e7accd78"
+        },
+        {
+          "name": "frame-000100.png",
+          "size": 37889,
+          "sha256": "eabe2860192bafb5c5a97e485384cb394181375a0176a6fdce2760de48688a3c"
+        },
+        {
+          "name": "frame-000100.ppm",
+          "size": 1728015,
+          "sha256": "11423c7e70600bba0ebaa4720c908285dd519a99388d587e10c239d943899f1a"
+        },
+        {
+          "name": "frame-000100.rgb",
+          "size": 192000,
+          "sha256": "2dc3be257c9747b120305027afa41b35192792da44316321927201943a5e68eb"
+        },
+        {
+          "name": "frame-000170.png",
+          "size": 38030,
+          "sha256": "cac8ef1b3e071113d12416ee24dc3f4b753ddd7796c499e84fa8a9e17457049d"
+        },
+        {
+          "name": "frame-000170.ppm",
+          "size": 1728015,
+          "sha256": "9ad252d69926ce7b75300dfde9a5f3476891d3d0e41f8ac5783c6175734228dc"
+        },
+        {
+          "name": "frame-000170.rgb",
+          "size": 192000,
+          "sha256": "2b0c43e23f5240985d689e8f45bafb85fa3268bf1ec4b2ebf7b559dd495eff1f"
+        },
+        {
+          "name": "frame-000340.png",
+          "size": 38058,
+          "sha256": "6595a4de2ffca6cc689e1ca4c045ebe1e3e7d1cfea4ec238ad59f0b07a34da7f"
+        },
+        {
+          "name": "frame-000340.ppm",
+          "size": 1728015,
+          "sha256": "b3739873c6585971e532f0e70f862b4fc3607979f9578a61b5d712bc2187eca8"
+        },
+        {
+          "name": "frame-000340.rgb",
+          "size": 192000,
+          "sha256": "eb911eabb39f58ffe66ffd96750e61429edd443d41c62b5d07bd60d0b40aff20"
+        }
+      ],
+      "reference_scenario": "F02-98",
+      "comparison": "MATCH_SUPPORTED with recorded Lemmix method execution"
+    },
+    {
+      "run": "F02-99",
+      "runtime": {
+        "control_step": 340,
+        "iteration": 340,
+        "frames": 58,
+        "input_count": 1,
+        "events_seen": 5,
+        "camera": 624,
+        "video_driver": "x11",
+        "renderer": "software",
+        "sdl_version": "2.30.0",
+        "timing": "fixed-step",
+        "synthetic": false
+      },
+      "elapsed_ms": 852,
+      "snapshots": 341,
+      "snapshots_sha256": "b39e482715f64eb717863f2aa4dbe7a4404689ef443e29a89cc1f0b94643db88",
+      "trace_file_sha256": "7351399d9f339258307849758d7b91ef83165ab5b5b1c477a74a9e125eef370e",
+      "inputs_file_sha256": "338d4e70724367ef5e8b964faa16f2516ada2420f740c951d32f3913f2b6d6cb",
+      "pixel_exact_captures": 11,
+      "captures": [
+        {
+          "name": "frame-000000.png",
+          "size": 37296,
+          "sha256": "5f80a566470b359d0e677558177143b103b1b9bb7629b5c6755b94f037b6c899"
+        },
+        {
+          "name": "frame-000000.ppm",
+          "size": 1728015,
+          "sha256": "4249e8ef2257cc5b1a2e7a9f080c26635e858190224ca2e2d46a01be5441ac47"
+        },
+        {
+          "name": "frame-000000.rgb",
+          "size": 192000,
+          "sha256": "1a1a5d1a087269048df172f9a93f4a5ded4c75044b4df35e2979f5c69daa73f6"
+        },
+        {
+          "name": "frame-000016.png",
+          "size": 37297,
+          "sha256": "dd04d0bd46cd076e95d072fd0fca8cea75fe7934a590b7e2cf7b0a167734eeea"
+        },
+        {
+          "name": "frame-000016.ppm",
+          "size": 1728015,
+          "sha256": "8f8ea928622119c303cb1c7aeb1ec76801e25bb1b091c26676d59d38c859578b"
+        },
+        {
+          "name": "frame-000016.rgb",
+          "size": 192000,
+          "sha256": "428206e75f338f882962973aa9ba78c7c4cb913d5e728f4f2b5dde38a04aa66f"
+        },
+        {
+          "name": "frame-000017.png",
+          "size": 37280,
+          "sha256": "f5c02326df4455424f2424c1d63c749317fb2a174264f799bbcebc66cecd6a6c"
+        },
+        {
+          "name": "frame-000017.ppm",
+          "size": 1728015,
+          "sha256": "61ad9ee79a3a989cd62a090da11555efd788856f9437c5a4801fea9421c6f5b0"
+        },
+        {
+          "name": "frame-000017.rgb",
+          "size": 192000,
+          "sha256": "50b6dc06b88465190c7211ca0341bf644022cde4a10365eaa96a00babc0d12bc"
+        },
+        {
+          "name": "frame-000034.png",
+          "size": 37305,
+          "sha256": "6dc9d126b9f577ef616a9a091b193e6e6241b60ba44529fa3e58f9ba6847cdf8"
+        },
+        {
+          "name": "frame-000034.ppm",
+          "size": 1728015,
+          "sha256": "152827bb5fe25bc0b2a43a94472ef9112c8b7c866d16307964292fd204b90ce1"
+        },
+        {
+          "name": "frame-000034.rgb",
+          "size": 192000,
+          "sha256": "96ec428cc911d9fe4fc4d5bfe15571b1041fd1993e4f6dabff3b6a8d7b0b48e7"
+        },
+        {
+          "name": "frame-000035.png",
+          "size": 37290,
+          "sha256": "24ece2c3359e5fdb0318a1e6f16838c74647f29d0718aa15f283b26c2400bc26"
+        },
+        {
+          "name": "frame-000035.ppm",
+          "size": 1728015,
+          "sha256": "668f6d8c6efa1c4d86b4c4936d4ec46e99014b25bc30318196c1895262386ded"
+        },
+        {
+          "name": "frame-000035.rgb",
+          "size": 192000,
+          "sha256": "76869671aee32578a6101b3bd6bbd1a52b55c6c4d4b21aa0ef99b8e28fec6e02"
+        },
+        {
+          "name": "frame-000054.png",
+          "size": 37688,
+          "sha256": "56c6f8bf4726fc2798300856d46b1d54fa64b0f72d05cd4c6d8b96ec342e632f"
+        },
+        {
+          "name": "frame-000054.ppm",
+          "size": 1728015,
+          "sha256": "e1730691a340541a50938f0753dda10a4d646f72804da272b9cb208ea4707b95"
+        },
+        {
+          "name": "frame-000054.rgb",
+          "size": 192000,
+          "sha256": "b3a05b74e8ad24a7a0b580def39b8ca58b9c6c26a8ceb83de907bd23be4474ed"
+        },
+        {
+          "name": "frame-000055.png",
+          "size": 37660,
+          "sha256": "41d3a6ebd9184b8607cb5ce0db334b2b569b7432127a9f0df3a1fb64e418f0e6"
+        },
+        {
+          "name": "frame-000055.ppm",
+          "size": 1728015,
+          "sha256": "3e295967f5d57665121972dccfe6d7997ff6a02a1f6eeecf5d20dca4fc140919"
+        },
+        {
+          "name": "frame-000055.rgb",
+          "size": 192000,
+          "sha256": "622a73d5edb6245360c44cb0eb4b727bf981db7f219361c31fbedb6493f759e8"
+        },
+        {
+          "name": "frame-000060.png",
+          "size": 37722,
+          "sha256": "eec40b76424c2ac8e33e006858a10352aa9fdb85ad70522a51ec5506704fb270"
+        },
+        {
+          "name": "frame-000060.ppm",
+          "size": 1728015,
+          "sha256": "166225672b6e30a0290bcfbed25d53946c6a18ac527297eee1c50d0c8957017d"
+        },
+        {
+          "name": "frame-000060.rgb",
+          "size": 192000,
+          "sha256": "2e04343557eae9aff4fb152baef2f8f9236e5bd635f0adfc4a9f510c1e5f3b00"
+        },
+        {
+          "name": "frame-000100.png",
+          "size": 37861,
+          "sha256": "abb00e4f5a5363b7eb1654b886e2cf75510b0bf976986a5a216edd872a90f250"
+        },
+        {
+          "name": "frame-000100.ppm",
+          "size": 1728015,
+          "sha256": "834b8f81b7dd4d012121051a59a234df97b1924bc91c3ca30cd9d20a27bcdb5e"
+        },
+        {
+          "name": "frame-000100.rgb",
+          "size": 192000,
+          "sha256": "976d251d92ba1f3fcf6b46780cf45b77aa5cf906c56b58c6c5622ca0d9fc03bd"
+        },
+        {
+          "name": "frame-000170.png",
+          "size": 38022,
+          "sha256": "7d513ac59fee6ee74212dec2e8ea5247143331f8b19ce3382afbf8c38d0c66ac"
+        },
+        {
+          "name": "frame-000170.ppm",
+          "size": 1728015,
+          "sha256": "1170e6b41e30ba60c542665d8a197ffd7d90156b3d05ab412abcfc8603911a8a"
+        },
+        {
+          "name": "frame-000170.rgb",
+          "size": 192000,
+          "sha256": "a89af1c7ee475067fbd9303c98c72f5f51e5fa2eff846590e26218af0e56aa3b"
+        },
+        {
+          "name": "frame-000340.png",
+          "size": 38048,
+          "sha256": "17223184fe65655657cc56d90b1b7d74e42e84ebe85b37de1ca798578ea21f9b"
+        },
+        {
+          "name": "frame-000340.ppm",
+          "size": 1728015,
+          "sha256": "c8a475538fba5e904fcf24163c426066e38c6cd46137a8bf7eef99234a3c57f0"
+        },
+        {
+          "name": "frame-000340.rgb",
+          "size": 192000,
+          "sha256": "cef8cc545166c248f54fd0c539dda82e2de0eb73cb769fe5b986f5ad586a8b41"
+        }
+      ],
+      "reference_scenario": "F02-99",
+      "comparison": "MATCH_SUPPORTED with recorded Lemmix method execution"
+    },
+    {
+      "run": "F03-glitch1",
+      "runtime": {
+        "control_step": 340,
+        "iteration": 322,
+        "frames": 57,
+        "input_count": 2,
+        "events_seen": 5,
+        "camera": 624,
+        "video_driver": "x11",
+        "renderer": "software",
+        "sdl_version": "2.30.0",
+        "timing": "fixed-step",
+        "synthetic": false
+      },
+      "elapsed_ms": 1119,
+      "snapshots": 341,
+      "snapshots_sha256": "42a0696fe8e164a8d17b35edacdf8ed5c793014a9e923a799cf38c1724295c45",
+      "trace_file_sha256": "615e8547bea96554dc3ecb25ad37f4e09f3a50bec0bd52683966f45a0df9f8f0",
+      "inputs_file_sha256": "368574b00c31c6286b56487324176b1c621d232355d7180da2dff9053b68f564",
+      "pixel_exact_captures": 10,
+      "captures": [
+        {
+          "name": "frame-000000.png",
+          "size": 37296,
+          "sha256": "5f80a566470b359d0e677558177143b103b1b9bb7629b5c6755b94f037b6c899"
+        },
+        {
+          "name": "frame-000000.ppm",
+          "size": 1728015,
+          "sha256": "4249e8ef2257cc5b1a2e7a9f080c26635e858190224ca2e2d46a01be5441ac47"
+        },
+        {
+          "name": "frame-000000.rgb",
+          "size": 192000,
+          "sha256": "1a1a5d1a087269048df172f9a93f4a5ded4c75044b4df35e2979f5c69daa73f6"
+        },
+        {
+          "name": "frame-000016.png",
+          "size": 37297,
+          "sha256": "dd04d0bd46cd076e95d072fd0fca8cea75fe7934a590b7e2cf7b0a167734eeea"
+        },
+        {
+          "name": "frame-000016.ppm",
+          "size": 1728015,
+          "sha256": "8f8ea928622119c303cb1c7aeb1ec76801e25bb1b091c26676d59d38c859578b"
+        },
+        {
+          "name": "frame-000016.rgb",
+          "size": 192000,
+          "sha256": "428206e75f338f882962973aa9ba78c7c4cb913d5e728f4f2b5dde38a04aa66f"
+        },
+        {
+          "name": "frame-000017.png",
+          "size": 37301,
+          "sha256": "3785b6306a0fea132388b0ca5893daa44b0b5005efe05366b21fbc9895aa1086"
+        },
+        {
+          "name": "frame-000017.ppm",
+          "size": 1728015,
+          "sha256": "b5df414eb306d5576a0437d9d1fa700b07cde59a53010f07d51ddaeadfda44ca"
+        },
+        {
+          "name": "frame-000017.rgb",
+          "size": 192000,
+          "sha256": "e13fe0c1da82953c0010acf3da559b9033a9765b5c68f62e40cbfceca7b8fec8"
+        },
+        {
+          "name": "frame-000034.png",
+          "size": 37301,
+          "sha256": "3785b6306a0fea132388b0ca5893daa44b0b5005efe05366b21fbc9895aa1086"
+        },
+        {
+          "name": "frame-000034.ppm",
+          "size": 1728015,
+          "sha256": "b5df414eb306d5576a0437d9d1fa700b07cde59a53010f07d51ddaeadfda44ca"
+        },
+        {
+          "name": "frame-000034.rgb",
+          "size": 192000,
+          "sha256": "e13fe0c1da82953c0010acf3da559b9033a9765b5c68f62e40cbfceca7b8fec8"
+        },
+        {
+          "name": "frame-000035.png",
+          "size": 37286,
+          "sha256": "db53c704c2980ac2f66937bf46f3511e9d44200f52072a8e19f12286f0b8f211"
+        },
+        {
+          "name": "frame-000035.ppm",
+          "size": 1728015,
+          "sha256": "4a8f53b5b2470ac1bef9b49b404bf08a96d34e51cd31988dc05236a36b642098"
+        },
+        {
+          "name": "frame-000035.rgb",
+          "size": 192000,
+          "sha256": "5bb01f37b1f5a1d4d94707db16a839349872379dde763ffb2b24ad735cbe2944"
+        },
+        {
+          "name": "frame-000054.png",
+          "size": 37316,
+          "sha256": "3471947c42b627b1056e42a130c39dfb76ca96ec88501726466a9f11084e491f"
+        },
+        {
+          "name": "frame-000054.ppm",
+          "size": 1728015,
+          "sha256": "c3a31c51db7e909ae8eca9edbafa2e72d1586e1cd5756047f8d24743f3709576"
+        },
+        {
+          "name": "frame-000054.rgb",
+          "size": 192000,
+          "sha256": "083035e6511a210f3629f3ad1e66b13c2b9c1943fceb2ee3b788855435feba75"
+        },
+        {
+          "name": "frame-000060.png",
+          "size": 37614,
+          "sha256": "9f62b247e11b07346024d93d3399c67e7a6c7036c22c1f068ed7d9444077782f"
+        },
+        {
+          "name": "frame-000060.ppm",
+          "size": 1728015,
+          "sha256": "c57029da8fb5e9744926ab0f019176b5aebe610ac60e6780dab56839cdc1130c"
+        },
+        {
+          "name": "frame-000060.rgb",
+          "size": 192000,
+          "sha256": "d27e90074086ab05d681af85537632f7b08e47dbc41bdfa1c5a6ec57be102aac"
+        },
+        {
+          "name": "frame-000100.png",
+          "size": 37784,
+          "sha256": "2aceb40f3e05e55dac78e8871c3dd9472a7437985343e9e8145accefe21c1c6e"
+        },
+        {
+          "name": "frame-000100.ppm",
+          "size": 1728015,
+          "sha256": "1159935a0f707d487a47a7dbcfb3d2d96580ce058c51f42e512038971483cc9a"
+        },
+        {
+          "name": "frame-000100.rgb",
+          "size": 192000,
+          "sha256": "527a877345fbdfbf0cfda612d40ae3d5d5580fd8d65934682e4226f9ff91ef5e"
+        },
+        {
+          "name": "frame-000170.png",
+          "size": 37903,
+          "sha256": "e64ad9c1a3fc3f00cbcd6d25e64e611213cfaee0c48ce7b89a06794c9887b2a0"
+        },
+        {
+          "name": "frame-000170.ppm",
+          "size": 1728015,
+          "sha256": "781668cd9fe789486405256b6d6cff9c2bf59f3ac204f2ffe5f2c2fb46c108e5"
+        },
+        {
+          "name": "frame-000170.rgb",
+          "size": 192000,
+          "sha256": "bf3ca7e8afc04f15a7945d3cb19e4e46bcc82f7629c2b7d5323f0369687471de"
+        },
+        {
+          "name": "frame-000340.png",
+          "size": 38278,
+          "sha256": "43f82565a755ff3d31b78060cd548f0fd45a2b3915f92cfd1739653cc5409945"
+        },
+        {
+          "name": "frame-000340.ppm",
+          "size": 1728015,
+          "sha256": "01daf78f69d598e9a5c2e5d357d56bc081160124ccf9a108560f1c0faa163567"
+        },
+        {
+          "name": "frame-000340.rgb",
+          "size": 192000,
+          "sha256": "028db677349d9802522d207f07735a85c6b01c63ffce09fb71bbc74827f6f6c4"
+        }
+      ],
+      "reference_scenario": "F03-glitch1",
+      "comparison": "MATCH_SUPPORTED with recorded Lemmix method execution"
+    },
+    {
+      "run": "X11-keyboard",
+      "runtime": {
+        "control_step": 80,
+        "iteration": 68,
+        "frames": 201,
+        "input_count": 5,
+        "events_seen": 22,
+        "camera": 624,
+        "video_driver": "x11",
+        "renderer": "software",
+        "sdl_version": "2.30.0",
+        "timing": "realtime",
+        "synthetic": false
+      },
+      "elapsed_ms": 4968,
+      "snapshots": 81,
+      "snapshots_sha256": "0d63ffe8ff989b589b6ad81055ce120f20a96c8d22c1d35d99230f97ace4da33",
+      "trace_file_sha256": "6f356b2f71caa5943e5786d6d15bfffe779111e79cc39108cc275ceaf6952b0b",
+      "inputs_file_sha256": "cda1f87e986a01ae93263ced4ef5de39e2318296607c0df27ced732be8eaec5b",
+      "pixel_exact_captures": 11,
+      "captures": [
+        {
+          "name": "frame-000000.png",
+          "size": 37370,
+          "sha256": "d7cd3cceece2febd25b7726b1db926c59182919a6e27e463b5ea75214678ffcb"
+        },
+        {
+          "name": "frame-000000.ppm",
+          "size": 1728015,
+          "sha256": "ac2e89cc63d6541f1b6ae232fc263d30673cb9ee63db693e5c8c7a752d2fe4d2"
+        },
+        {
+          "name": "frame-000000.rgb",
+          "size": 192000,
+          "sha256": "74f43299da559c07d3b3bc7b4b61282b4160de71a399f3ebdcb74f1379b48d0e"
+        },
+        {
+          "name": "frame-000016.png",
+          "size": 37371,
+          "sha256": "1b25a07e19c4eebdd202b0afb3ab54de2caa8f5152dba774b9d9f08de301ecd9"
+        },
+        {
+          "name": "frame-000016.ppm",
+          "size": 1728015,
+          "sha256": "6d98fbcf3345582a4878c9dfe87a1a88f372439c28eaa7732e233ef184d8021a"
+        },
+        {
+          "name": "frame-000016.rgb",
+          "size": 192000,
+          "sha256": "e8396d34c2e5d675f6e1d90d756c58583a32bf466dea5b4ecaeae80f671346a5"
+        },
+        {
+          "name": "frame-000017.png",
+          "size": 37354,
+          "sha256": "0f44c86aae7847cd6f728e3ef6931a92368e28cebfb4011693ab573760c8b5d2"
+        },
+        {
+          "name": "frame-000017.ppm",
+          "size": 1728015,
+          "sha256": "27f5282c77256ef93357298a6ebe29ca52928bbe1e6b601f28817800d2669ebc"
+        },
+        {
+          "name": "frame-000017.rgb",
+          "size": 192000,
+          "sha256": "5aefee54e40a3d457618965bcff411f4bbcde33e8617c06899dedfa29e0253f9"
+        },
+        {
+          "name": "frame-000034.png",
+          "size": 37380,
+          "sha256": "e5f6de27097f198e9bfc4ff5fd9939ea43bbaed21375b5fd66248a2d39c304b3"
+        },
+        {
+          "name": "frame-000034.ppm",
+          "size": 1728015,
+          "sha256": "a695486ba437c699942da1099ba64f6a7178e001198d5af4c3c93473e1d3c103"
+        },
+        {
+          "name": "frame-000034.rgb",
+          "size": 192000,
+          "sha256": "10728eec53d8bdc2ec126d23f823fb4623cf9ea5458027b46fda6fa8ed356739"
+        },
+        {
+          "name": "frame-000035.png",
+          "size": 37365,
+          "sha256": "92e67421304180b263a7c4c94a0cc656f52e12c45514df2c261782ad7332cda4"
+        },
+        {
+          "name": "frame-000035.ppm",
+          "size": 1728015,
+          "sha256": "559bbf90a79347a0286b2f3479fc89a779c57f1cc5fc607b53c4f40dd719bc8f"
+        },
+        {
+          "name": "frame-000035.rgb",
+          "size": 192000,
+          "sha256": "1ef53d10e7ab75aa425aa42bf1b38f3c0100f8eb7a948ae0d639ba02f7771b93"
+        },
+        {
+          "name": "frame-000054.png",
+          "size": 37762,
+          "sha256": "23754b0707058fa47ce279081908e24aafa3d1bb2acaeebdd776dbe7c7d017a1"
+        },
+        {
+          "name": "frame-000054.ppm",
+          "size": 1728015,
+          "sha256": "45c2f5b13474b3a1d70e190a6cb37e9e224d52189ebe496333bbcf273335cb8f"
+        },
+        {
+          "name": "frame-000054.rgb",
+          "size": 192000,
+          "sha256": "1556e987cb0873721d219f746db1603f1d370b1e339939772c56981d40903c8a"
+        },
+        {
+          "name": "frame-000060.png",
+          "size": 37816,
+          "sha256": "9dcedc5297e1bfd19e5c31c0d7ab11ee09f9b5f3b749e0af9f1350074d95279a"
+        },
+        {
+          "name": "frame-000060.ppm",
+          "size": 1728015,
+          "sha256": "de76391fb7c3eea5eb5649c59ebdf1ac7a4f8989945c7aca9f809d4255eb295b"
+        },
+        {
+          "name": "frame-000060.rgb",
+          "size": 192000,
+          "sha256": "4e9233427faf7dec49f3aa06bf56672675d3a445ae7d896949c198ef34259de9"
+        },
+        {
+          "name": "frame-000063.png",
+          "size": 37870,
+          "sha256": "ed1211ba1ec0b08d3cad65493c3b972072997817acdb3e36c3d425b40a06ea22"
+        },
+        {
+          "name": "frame-000063.ppm",
+          "size": 1728015,
+          "sha256": "6012f2bdae67a0892fcffb8826d54aa0f3816b9e429cffdde8cf24592859509a"
+        },
+        {
+          "name": "frame-000063.rgb",
+          "size": 192000,
+          "sha256": "131fb8b60f78fa67516465d3c59745c59c1ee029c96f1e2a6a95f5a222818bde"
+        },
+        {
+          "name": "frame-000069.png",
+          "size": 37827,
+          "sha256": "a7a4836f011afa3e023e46bd32b4992e3309b32a433a24a08243103908265849"
+        },
+        {
+          "name": "frame-000069.ppm",
+          "size": 1728015,
+          "sha256": "35c2620f4d9f0c451944dd4b1cfa307728950c515b0b3cd1e46794f099528eab"
+        },
+        {
+          "name": "frame-000069.rgb",
+          "size": 192000,
+          "sha256": "b352014587a5153bb8243da0a54720757eedf0e767a66cb1514532a0d5d29661"
+        },
+        {
+          "name": "frame-000070.png",
+          "size": 37827,
+          "sha256": "676a74ad95b775b6cba7cbeb3dc71942d7503a90b77351faf766ad84bc2190b8"
+        },
+        {
+          "name": "frame-000070.ppm",
+          "size": 1728015,
+          "sha256": "e0c62508e626416f92fe7c58e48861f14e416592582c5419bba411f45308dd1b"
+        },
+        {
+          "name": "frame-000070.rgb",
+          "size": 192000,
+          "sha256": "11dd17eb4144762818fe10c5bd8b8805749bfdf824c4ffd818d94f7cca10843a"
+        },
+        {
+          "name": "frame-000075.png",
+          "size": 37774,
+          "sha256": "3b8f9f409646ad2d6be5b914fdaf67db75afe30ef4e34b9a83fb97604ef5f8d6"
+        },
+        {
+          "name": "frame-000075.ppm",
+          "size": 1728015,
+          "sha256": "3b66905b4a20a78d1ed38eb96fd1ff3eddcf18d32d5df20d928b1e9ca1aeb60b"
+        },
+        {
+          "name": "frame-000075.rgb",
+          "size": 192000,
+          "sha256": "bd081955da7f75d772366a3a2d056d1dc7d32904ba88ea64c153601b1b548ce9"
+        }
+      ],
+      "observed_inputs": [
+        {
+          "control_step": 62,
+          "sequence": 0,
+          "command": "Pause"
+        },
+        {
+          "control_step": 68,
+          "sequence": 0,
+          "command": "SetReleaseRate",
+          "rate": 51
+        },
+        {
+          "control_step": 68,
+          "sequence": 1,
+          "command": "SetReleaseRate",
+          "rate": 52
+        },
+        {
+          "control_step": 69,
+          "sequence": 0,
+          "command": "SetReleaseRate",
+          "rate": 51
+        },
+        {
+          "control_step": 74,
+          "sequence": 0,
+          "command": "Resume"
+        }
+      ],
+      "comparison": "MATCH_SUPPORTED with exact recorded integer boundaries replayed in G05"
+    }
+  ],
+  "unverified": [
+    "DOS execution/screens",
+    "skills",
+    "object triggers/rescue/result",
+    "audio",
+    "Windows"
+  ],
+  "validation_tool_packages": [
+    {
+      "name": "libdecor-0-0_0.2.2-1build2_amd64.deb",
+      "size": 16508,
+      "sha256": "64bf085d16e504e9ed39b91d2a46748fb8881ad7f3603fbacef6c11c04aa7064"
+    },
+    {
+      "name": "libsamplerate0_0.2.2-4build1_amd64.deb",
+      "size": 1343954,
+      "sha256": "8a389d1cae81860c9fb7cd9641c3f9d38815e80c0379b3181b4317489126f738"
+    },
+    {
+      "name": "libsdl2-2.0-0_2.30.0+dfsg-1ubuntu3.1_amd64.deb",
+      "size": 685580,
+      "sha256": "a2e733f1339272f22cf7777d454b5d4f71e27335d89d4c99cf41e1ce1bb5c462"
+    },
+    {
+      "name": "libsdl2-dev_2.30.0+dfsg-1ubuntu3.1_amd64.deb",
+      "size": 1140554,
+      "sha256": "8d78c93699aafdb33205ef7712baeefc8d8aa806862fac4c2554f3f8db234da1"
+    },
+    {
+      "name": "libtalloc2_2.4.2-1build2_amd64.deb",
+      "size": 27260,
+      "sha256": "c9728388084bdccdbcfb3e97358535431855f4ce57992c2a775534dc1bd4935f"
+    },
+    {
+      "name": "libxdo3_1%3a3.20160805.1-5build1_amd64.deb",
+      "size": 22202,
+      "sha256": "3506c2824a74255439813f824a1629387452d52c6efd6d7916b8b54e458175e8"
+    },
+    {
+      "name": "libxfont2_1%3a2.0.6-1+deb13u1build0.24.04.2_amd64.deb",
+      "size": 93972,
+      "sha256": "e2ed49a20ccff6ffa52719a6cd118538e24c434d9035acd7fb736e7e4f8d6485"
+    },
+    {
+      "name": "libxmuu1_2%3a1.1.3-3build2_amd64.deb",
+      "size": 8958,
+      "sha256": "27428f8d7b63c38424177d5b3b8b2b89d519956ccfe969927cd0a20cdec977c0"
+    },
+    {
+      "name": "libxss1_1%3a1.2.3-1build3_amd64.deb",
+      "size": 7204,
+      "sha256": "0ac60a2cc034ccc4bf4e2f846f38110469d7ae43b47e808d67aafc538bc3695e"
+    },
+    {
+      "name": "proot_5.1.0-1.3_amd64.deb",
+      "size": 75316,
+      "sha256": "01a5d27c4ac16e184bdb356c9e69fa7d494325ac653c4cd64fae4c3fc63cdbbb"
+    },
+    {
+      "name": "x11-xkb-utils_7.7+8build2_amd64.deb",
+      "size": 170314,
+      "sha256": "69df4191e165f8b89d067f6234fcce89a4923d27d1e66dd92e6d63d6da93cdb0"
+    },
+    {
+      "name": "xauth_1%3a1.1.2-1build1_amd64.deb",
+      "size": 25594,
+      "sha256": "037e70571f39384e28c4ad0db07b44de11f0911ee6c02445560979b417012650"
+    },
+    {
+      "name": "xdotool_1%3a3.20160805.1-5build1_amd64.deb",
+      "size": 42556,
+      "sha256": "58a202c74bce31ca2d72d4d514942a5ab6191932696adc5d21d909c9216b13cb"
+    },
+    {
+      "name": "xkb-data_2.41-2ubuntu1.1_all.deb",
+      "size": 397328,
+      "sha256": "e99f2a0b4c56cdf35dec489e56b6a8418826cab8ce6306ec6d0bd98e2cd0014a"
+    },
+    {
+      "name": "xvfb_2%3a21.1.12-1ubuntu1.8_amd64.deb",
+      "size": 876860,
+      "sha256": "712429d9342c7d6cef63afb33ccfcd2bd477a69371b5c9941a9c6dde31a4cd3c"
+    }
+  ],
+  "sdl_shared_library": {
+    "name": "libSDL2-2.0.so.0.3000.0",
+    "size": 1926368,
+    "sha256": "2507acbbe40afe7d3e2e775dd8af00a1dba93579b9e837563032f3d751a9a45b"
+  }
+}

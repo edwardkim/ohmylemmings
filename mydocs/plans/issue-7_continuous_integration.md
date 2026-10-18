@@ -4,21 +4,23 @@
 
 ## 검증 진입점
 
-[Makefile](../../Makefile)을 로컬과 GitHub Actions가 함께 사용합니다. Rustup·고정 Rust 도구 체인, GNU Make, Python 3.12와 WASM 표준 라이브러리를 준비합니다.
+[Makefile](../../Makefile)을 로컬과 GitHub Actions가 함께 사용합니다. Rustup·고정 Rust 도구 체인, GNU Make, Python 3.12, SDL2 개발 라이브러리와 WASM 표준 라이브러리를 준비합니다.
 
 ```sh
 rustup show active-toolchain
 rustup target add wasm32-unknown-unknown
+cargo fetch --locked
 make check
 ```
 
-Rustup의 최초 도구 체인·타깃 설치에는 네트워크가 필요할 수 있습니다. 현재 Cargo 패키지의 검사 명령은 `--locked --offline`을 사용하고 Python 테스트는 표준 라이브러리와 합성 입력만 사용합니다. 원본 파일을 확보하는 `fetch`는 검증에 포함하지 않습니다.
+Rustup의 최초 도구 체인·타깃 설치에는 네트워크가 필요할 수 있습니다. 데스크톱의 고정 레지스트리 의존을 최초 fetch한 뒤 Cargo 검사 명령은 `--locked --offline`을 사용하고 Python 테스트는 표준 라이브러리와 합성 입력만 사용합니다. 원본 파일을 확보하는 `fetch`는 검증에 포함하지 않습니다.
 
 | 명령 | 검사 |
 |---|---|
 | `make check` | 아래 세 검사 전체 |
 | `make check-rust` | rustfmt, Clippy 경고 금지, workspace 빌드, 단위·예제·문서 테스트, 기록된 참조 상태와 재생 대조 |
 | `make check-python` | `tools/tests/`의 unittest와 개체 이동 독립 모델/golden 검사 |
+| `make check-desktop` | 빌드된 앱의 실제 SDL dummy/software 이벤트·재생·픽셀 readback 검사 |
 | `make check-wasm` | `wasm32-unknown-unknown`용 두 라이브러리 빌드 |
 
 개별 Cargo 명령과 API 경계는 [G01-01 설계](issue-6_rust_workspace.md)를 참고합니다. WASM 검사는 라이브러리 컴파일이며 게임·브라우저 실행은 후속 목표에서 도입합니다.
@@ -33,9 +35,10 @@ Rustup의 최초 도구 체인·타깃 설치에는 네트워크가 필요할 �
 
 | 작업 이름 | 실행 명령 | 환경 |
 |---|---|---|
-| Rust native | `make check-rust` | Ubuntu 24.04, rust-toolchain.toml의 Rust 1.93.1·rustfmt·Clippy·Python 3 |
+| Rust native | `make check-rust check-desktop` | Ubuntu 24.04, rust-toolchain.toml의 Rust 1.93.1·rustfmt·Clippy·Python 3 |
 | Python tooling | `make check-python` | Ubuntu 24.04, Python 3.12 계열 |
-| WASM libraries | `make check-wasm` | Ubuntu 24.04, Rust 1.93.1·WASM 타깃 |
+| WASM libraries | `make check-desktop` | 빌드된 앱의 실제 SDL dummy/software 이벤트·재생·픽셀 readback 검사 |
+| `make check-wasm` | Ubuntu 24.04, Rust 1.93.1·WASM 타깃 |
 
 세 작업 모두 체크아웃 직후 `assets/local/`과 `target/`이 없는지 확인합니다. Rust 작업은 `$RUNNER_TEMP/cargo-home`도 없는지 검사한 뒤 `GITHUB_ENV`로 CARGO_HOME을 지정해 패키지 캐시를 공유하지 않습니다. 도구 체인은 체크아웃의 설정 파일을 읽는 `rustup show active-toolchain`으로 설치·선택합니다. Ubuntu의 Rustup 제공은 [runner 이미지 목록](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md)에 명시되어 있습니다.
 
@@ -58,3 +61,7 @@ Rustup의 최초 도구 체인·타깃 설치에는 네트워크가 필요할 �
 
 - [작업일지](../orders/20261018.md#issue-7)
 - [진행 기록](../working/issue-7_continuous_integration.md)
+
+## G06-01 CI 갱신 / #27
+
+[#27 화면 검증](../reports/issue-27_native_view.md)을 추가했습니다. Rust native는 초기 빈 Cargo cache 확인 후 libsdl2-dev와 cargo fetch --locked를 준비하고 오프라인 workspace·SDL 합성 검사를 수행합니다. WASM도 잠금 의존 메타데이터를 fetch하고 두 no_std 라이브러리만 빌드합니다. Python 작업은 그대로 원본/SDL 없이 실행합니다. 실제 원본 X11/키·화면 검증은 로컬 실행 증거이며 CI는 원본 없는 SDL dummy/software를 확인합니다.
