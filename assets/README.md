@@ -22,6 +22,12 @@ python3 -m unittest discover -s tools/tests -v
 
 파일·함수의 역할과 후속 구현에서 읽을 순서는 [레퍼런스 코드 지도](../mydocs/tech_insights/issue-3_reference_code_map.md)를 참고합니다.
 
+## 호환성 비교 목록
+
+[호환성 매니페스트](manifests/dos_compatibility.json)는 120개 레벨의 DAT/ODD 연결·초기 조건, 해제 구간 81개의 크기·SHA-256, 음악 21개·효과음 18개의 주소를 기록합니다. `reference_assets.py`의 확보 매니페스트와는 용도가 다르므로 `fetch --manifest` 입력으로 사용하지 않습니다.
+
+[비교 기준](../mydocs/tech_insights/issue-5_compatibility_baseline.md)에 따라 G02~G11에서 기대값과 실제 동작을 대조합니다. 현재 목록은 바이트·정적 구조 검증 결과이며 실행 호환성 통과 표가 아닙니다.
+
 ## 기준판 식별
 
 기준 ID는 `dos-original-vga`입니다. 원본 매체의 세부 리비전은 아직 확인되지 않았으며 확보한 파일의 바이트 식별값으로 입력을 고정합니다. 확보 출처, 상호 대조 결과, 데모와의 차이는 [기준판 분석](../mydocs/tech_insights/issue-2_dos_original_baseline.md)에 기록합니다.

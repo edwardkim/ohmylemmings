@@ -6,7 +6,7 @@
 
 G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/issue-2_dos_original_baseline.md)를 완료했습니다. 로컬 데이터 준비는 [리소스 안내](../assets/README.md)를 참고합니다.
 
-[G00-02 레퍼런스 코드 지도](tech_insights/issue-3_reference_code_map.md)의 고정 소스·선언 위치 검증과 게시를 완료했습니다. 다음 작업은 G00-03 호환성 검증 기준 정의입니다.
+[G00-02 레퍼런스 코드 지도](tech_insights/issue-3_reference_code_map.md)와 [G00-03 호환성 검증 기준](tech_insights/issue-5_compatibility_baseline.md)을 완료했습니다. G00의 기준 정의를 마쳤으며 다음 작업은 G01-01 Rust 개발 골격입니다. 실제 실행 호환성은 후속 목표에서 검증합니다.
 
 ## 폴더 구조
 
@@ -25,7 +25,7 @@ G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/issue-2_dos_origin
 - `orders/`는 날짜별 일지이므로 `yyyymmdd.md`를 사용합니다. Asia/Seoul 작업일자를 기준으로 하루 한 파일에 이슈 번호·작업·결과·다음 행동을 목록으로 기록합니다.
 - 폴더 안내용 `README.md`는 공통 색인이므로 이름을 유지합니다. 문서를 이동하면 저장소와 GitHub 이슈 본문의 링크도 갱신합니다.
 
-[20261018 작업일지](orders/20261018.md)에서 #1~#4와 이슈 도입 전의 공개 기록을 확인할 수 있습니다. 문서 운영 규칙의 적용은 [#4](https://github.com/edwardkim/ohmylemmings/issues/4)에서 추적합니다.
+[20261018 작업일지](orders/20261018.md)에서 #1~#5와 이슈 도입 전의 공개 기록을 확인할 수 있습니다. 문서 운영 규칙의 적용은 [#4](https://github.com/edwardkim/ohmylemmings/issues/4)에서 추적합니다.
 
 ## 작업 흐름
 

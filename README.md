@@ -4,7 +4,7 @@
 
 ## 현재 상태
 
-현재 G00의 원작 기준과 레퍼런스를 정리하고 있습니다. 원작 검증 파일 50개와 레퍼런스 소스 46개를 고정했으며, Rust 소스와 `Cargo.toml`은 G01에서 도입합니다.
+G00의 원작 기준·지원 범위·비교 계약 정의를 완료했습니다. 원작 파일 50개와 레퍼런스 소스 46개를 고정했고, 120개 레벨·8직업·음악 21개·효과음 18개의 검증 범위를 정했습니다. 실제 DOS 실행 대조와 Rust 호환성 판정은 후속 목표에서 수행합니다. 다음 단계 G01에서 Rust 소스와 `Cargo.toml`을 도입합니다.
 
 ## 원본 데이터 준비
 
@@ -20,6 +20,8 @@ python3 -m unittest discover -s tools/tests -v
 
 후속 구현에서 참고할 파일·함수와 차이는 [레퍼런스 코드 지도](mydocs/tech_insights/issue-3_reference_code_map.md)에 정리합니다.
 
+[호환성 검증 기준](mydocs/tech_insights/issue-5_compatibility_baseline.md)과 [전체 레벨 목록](mydocs/tech_insights/issue-5_level_inventory.md)은 후속 구현의 비교 입력·판정 방법을 정의합니다.
+
 ## 구현 목표
 
 - 원본 DAT/VGASPEC 리소스 파싱
@@ -30,7 +32,7 @@ python3 -m unittest discover -s tools/tests -v
 
 전체 설계와 단계별 작업은 [프로젝트 기획서](mydocs/plans/issue-1_rusty_lemmings.md)를 참고하세요.
 
-구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. 첫 착수 목표는 원작 기준판과 호환성 검증 기준 확정(G00)입니다.
+구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. 다음 착수 목표는 Rust 개발 기반 구축(G01)입니다.
 
 진행 상황은 [GitHub 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1)에서 추적합니다.
 

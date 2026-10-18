@@ -2,7 +2,7 @@
 
 ## 현재 상태
 
-계획 수립과 [GitHub 상위 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1) 등록을 완료했습니다. 현재 G00 진행 중이며, [G00-01 / #2](https://github.com/edwardkim/ohmylemmings/issues/2)에서 원작 파일 50개를 확보했고, [G00-02 / #3](https://github.com/edwardkim/ohmylemmings/issues/3)에서 소스 46개와 선언 290곳을 고정·검증했습니다. 세부 상태는 [G00-02 진행 기록](issue-3_reference_code_map.md)에서 관리합니다. G01~G12는 대기 상태입니다.
+계획 수립과 [상위 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1) 등록을 완료했습니다. G00의 원작 50개 확보(#2), 소스 46개·선언 290곳 고정(#3), 지원 목록·비교 계약 정의(#5)를 마쳤습니다. 세부 상태는 [G00-03 진행 기록](issue-5_compatibility_baseline.md)에서 관리합니다. G01은 준비, G02~G12는 대기 상태입니다. 실제 실행 호환성 판정은 후속 목표에서 진행합니다.
 
 ## 관련 문서
 
@@ -22,5 +22,5 @@
 
 ## 다음 행동
 
-1. G00-03 이슈를 먼저 등록·확인하고 호환성 검증 기준을 정의합니다.
-2. G00 완료 기준을 충족하면 G01 개발 기반 구축으로 진행합니다.
+1. G01-01 이슈를 먼저 등록·확인하고 코어·리소스·플랫폼 경계와 최소 Cargo 구성을 도입합니다.
+2. G01-02에서 빌드·테스트·포맷·린트·CI를 연결합니다.

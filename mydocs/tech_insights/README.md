@@ -12,3 +12,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 
 - [DOS 기준판과 원본 리소스](issue-2_dos_original_baseline.md)
 - [레퍼런스 코드 버전·파일·함수 지도](issue-3_reference_code_map.md)
+- [호환성 범위·입력·상태 비교 기준](issue-5_compatibility_baseline.md)
+- [DOS 전체 레벨 지원 목록](issue-5_level_inventory.md)
