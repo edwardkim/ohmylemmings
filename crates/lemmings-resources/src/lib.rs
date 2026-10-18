@@ -19,6 +19,7 @@ mod ground;
 mod level;
 mod odd;
 mod reader;
+mod terrain;
 mod vgagr;
 mod vgaspec;
 
@@ -44,4 +45,9 @@ pub use vgagr::{
 pub use vgaspec::{
     VGASPEC_HEIGHT, VGASPEC_PLANAR_SIZE, VGASPEC_WIDTH, VgaSpecError, VgaSpecFile, VgaSpecImage,
     VgaSpecRecord,
+};
+
+pub use terrain::{
+    LEVEL_TERRAIN_HEIGHT, LEVEL_TERRAIN_PIXEL_COUNT, LEVEL_TERRAIN_WIDTH, LevelTerrain,
+    SpecialTerrain, TerrainComposeError, TerrainGraphics, TerrainSource, compose_terrain,
 };

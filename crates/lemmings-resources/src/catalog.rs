@@ -187,6 +187,11 @@ pub struct ResolvedLevel<'a> {
     title: &'a [u8],
 }
 impl<'a> ResolvedLevel<'a> {
+    /// Validated base geometry/header before ODD overrides; graphics selectors
+    /// and placements are identical to the effective level. Borrowed, without reparse.
+    pub const fn base_record(&self) -> LevelRecord<'a> {
+        self.base
+    }
     pub const fn entry(&self) -> CatalogEntry {
         self.entry
     }

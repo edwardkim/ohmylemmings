@@ -155,6 +155,9 @@ pub struct VgagrImages<'a> {
     objects: &'a [u8],
 }
 impl<'a> VgagrImages<'a> {
+    pub(crate) const fn ground_record(self) -> GroundRecord<'a> {
+        self.ground
+    }
     pub fn new(
         ground: GroundRecord<'a>,
         terrain: &'a [u8],
