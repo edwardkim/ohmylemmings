@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/13",
+  "profile": "dos-original-vga",
+  "scope": "Static VGAGR color indices and opacity; no RGB rendering or runtime compatibility certification.",
+  "pixel_encoding": "One byte per pixel, row-major. Bits 0..3 hold the local color index; bit 7 is 1 for transparent, 0 for opaque.",
+  "pixel_order": "For each set: nonempty terrain slots ascending; then nonempty object slots ascending, each with disk animation frames ascending followed by one preview.",
+  "inputs": [
+    {
+      "path": "assets/manifests/dos_original.json",
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "assets/manifests/reference_sources.json",
+      "sha256": "af084d89ba0b9c119b7afa4f886281cfeede4a3d25de98ecb8dbb8c159942d3b"
+    }
+  ],
+  "additional_references": [
+    {
+      "repository": "ericlangedijk/Lemmix",
+      "commit": "40e9bc34451f0e9127fd53b290a3877e700d143d",
+      "path": "src/Dos.Bitmaps.pas",
+      "size": 21999,
+      "git_blob_sha1": "cbe4901d074c6f25d89feea97d41287c1afa9081",
+      "sha256": "558d4e767527cdb16b779eb3efa63c3834c93bc606c08e03ffa1b875ce415b80"
+    },
+    {
+      "repository": "tomsoftware/Lemmings.ts",
+      "commit": "10c7c8b9167258503d02589cf048e2d83a43dd0a",
+      "path": "src/game/resources/lemmings/palette-image.ts",
+      "size": 3258,
+      "sha256": "90d4b33876b849dc6325428bd2c4dd9513ec7666b914bc06d319b2787401e2da"
+    }
+  ],
+  "verification": "All image bytes match Rust, independent Python plane strings/decompression, and pinned TypeScript PaletteImage/container/decompression. Section hashes also match the previously verified G02-02 outputs.",
+  "sets": [
+    {
+      "set": 0,
+      "sections": [
+        {
+          "part": 0,
+          "size": 30008,
+          "sha256": "e6f5eaa1781d6a7a3907e689a4e97602e6873e373d698ffa9106923dc507afe6"
+        },
+        {
+          "part": 1,
+          "size": 47700,
+          "sha256": "ccb34201d71bef6af5b21297cb62cfde59275273b45152632835036215d580f1"
+        }
+      ],
+      "terrain_count": 50,
+      "object_count": 11,
+      "frame_count": 111,
+      "preview_count": 11,
+      "pixel_count": 144608,
+      "pixel_sha256": "d66e02c77a758eea1e2660455b6e6e3c0ae3dae65a76f3cddb4a71b7cf5ffcdb"
+    },
+    {
+      "set": 1,
+      "sections": [
+        {
+          "part": 0,
+          "size": 42200,
+          "sha256": "7ccf951e7e8074869c79579e18b1811c588f486353e44b3e3b6cd99c1db0a2a2"
+        },
+        {
+          "part": 1,
+          "size": 53580,
+          "sha256": "06133c5beced2577623c1f0bd795604149eefa595fdc802bea08b98f6a85b413"
+        }
+      ],
+      "terrain_count": 64,
+      "object_count": 11,
+      "frame_count": 97,
+      "preview_count": 11,
+      "pixel_count": 179744,
+      "pixel_sha256": "d6c2fd97fd2643c7520a65443cacd3169102158de91d51cb7acc56d60a2d6c0a"
+    },
+    {
+      "set": 2,
+      "sections": [
+        {
+          "part": 0,
+          "size": 30400,
+          "sha256": "6c2eba81e233f0c1b12c7d7679f25095270b7b94ba0c1ea81a2b447aede46d04"
+        },
+        {
+          "part": 1,
+          "size": 47740,
+          "sha256": "33d8578351ed4db5cc676b0c2bf576b6d5b7c8dcceef9edf253d963ac9e5f18f"
+        }
+      ],
+      "terrain_count": 60,
+      "object_count": 10,
+      "frame_count": 98,
+      "preview_count": 10,
+      "pixel_count": 144432,
+      "pixel_sha256": "dc8726f4ba1eea762dc387a7ab2ce436e664ad1373e7d9ab26e7ae4f0d887d02"
+    },
+    {
+      "set": 3,
+      "sections": [
+        {
+          "part": 0,
+          "size": 27008,
+          "sha256": "b047ae911ef40e0cf66f0a9124137fabffede692cb73d1d6bf668283cc6a79e0"
+        },
+        {
+          "part": 1,
+          "size": 47420,
+          "sha256": "0aefb57434d0860833707811863bab556414734af8a42617faccf54276b1e3e8"
+        }
+      ],
+      "terrain_count": 62,
+      "object_count": 11,
+      "frame_count": 118,
+      "preview_count": 11,
+      "pixel_count": 136400,
+      "pixel_sha256": "7f22a69ead2a4f1a77a35a71f7c9acc3850d6947aba5586807a2575df2bd0493"
+    },
+    {
+      "set": 4,
+      "sections": [
+        {
+          "part": 0,
+          "size": 40840,
+          "sha256": "2b7c0d4c4082b31d0b1e1340ed58a41d663e0156a0c8ef61b8b85d7cbf21b431"
+        },
+        {
+          "part": 1,
+          "size": 48530,
+          "sha256": "2199ce879f9eacade25f46c77ade307295361f088d16cb4c482a5f111ea66aed"
+        }
+      ],
+      "terrain_count": 37,
+      "object_count": 11,
+      "frame_count": 116,
+      "preview_count": 11,
+      "pixel_count": 166480,
+      "pixel_sha256": "118baad938f0c5faabec47113afd957c91dd1b96090e2b9e9ebb6c1681c4c92f"
+    }
+  ]
+}

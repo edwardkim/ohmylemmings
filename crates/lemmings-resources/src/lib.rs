@@ -19,6 +19,7 @@ mod ground;
 mod level;
 mod odd;
 mod reader;
+mod vgagr;
 
 pub use catalog::{CatalogEntry, CatalogError, DosLevelFile, ResolvedLevel};
 pub use dat::{DatError, DatHeader, DatSection, DatSections};
@@ -33,4 +34,8 @@ pub use reader::{ByteReader, ReadError};
 pub use ground::{
     GROUND_OBJECT_COUNT, GROUND_RECORD_SIZE, GROUND_TERRAIN_COUNT, GroundError, GroundObject,
     GroundPalette, GroundRecord, GroundTerrain, ObjectTrigger, Rgb6,
+};
+
+pub use vgagr::{
+    ImageKind, IndexedPixel, ObjectFrames, PlanarImage, VgagrError, VgagrFile, VgagrImages,
 };

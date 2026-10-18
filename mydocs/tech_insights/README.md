@@ -19,3 +19,4 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [DOS 기본 레벨 헤더·배치·슬롯과 원본 80개 레코드 검증](issue-10_level_records.md)
 - [ODDTABLE·120개 표시 카탈로그와 변형·기본 배치 보존](issue-11_level_catalog.md)
 - [GROUND 메타데이터·팔레트와 원본 5개 파일 전체 필드 대조](issue-12_ground_metadata.md)
+- [VGAGR 비트플레인·마스크·프레임과 원본 전체 픽셀 대조](issue-13_vgagr_images.md)
