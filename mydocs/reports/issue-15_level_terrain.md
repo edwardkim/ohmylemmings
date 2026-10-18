@@ -28,8 +28,20 @@
 
 합성 검증은 플래그 전체 조합·순서·반전·마스크 구멍·불투명 색상 0·네 경계·음수 좌표·완전히 화면 밖 배치·늦은 슬롯의 누락 ID·일반/특수 선택자 불일치·출력 길이·큰 좌표·출력만 빌리는 수명을 포함합니다. 원본 대조와 로컬 미리보기는 원본 없는 CI와 별도로 수행했습니다.
 
-## 범위와 게시 상태
+## 게시
 
-초기 지형과 팔레트 재구성 범위의 로컬 검증을 마쳤습니다. 구현·문서를 게시한 뒤 실제 push CI와 원격 파일 해시를 확인하고 이 문서에 기록합니다.
+구현 커밋 `a859043227a76f5a538da378bf03415c0483fce1`을 `main`에 게시했습니다. [push CI 실행](https://github.com/edwardkim/ohmylemmings/actions/runs/39118315817)의 결론과 세 작업이 모두 success입니다.
+
+| 작업 | 실제 실행 근거 |
+|---|---|
+| [Rust native](https://github.com/edwardkim/ohmylemmings/actions/runs/39118315817/job/117648544428) | Rust 1.93.1, 포맷·Clippy·빌드, 단위 123개·문서 예제 10개 성공 |
+| [Python tooling](https://github.com/edwardkim/ohmylemmings/actions/runs/39118315817/job/117648544224) | Python 3.12.15, 테스트 8개 성공 |
+| [WASM libraries](https://github.com/edwardkim/ohmylemmings/actions/runs/39118315817/job/117648544405) | 고정 Rust·WASM 타깃, 두 라이브러리 컴파일 성공 |
+
+push 이벤트·대상 SHA·세 작업의 실제 로그·테스트 개수·clean-input 성공을 대조했습니다. CI는 원본·기존 target·Cargo 패키지 캐시 없는 러너에서 통과했습니다. 원격 tree API의 파일 97개 모드·blob 해시가 로컬과 모두 일치했으며 작업 트리는 깨끗합니다. 원본·PNG·바이너리·JSONL·참조 소스 사본·빌드 출력은 추적하지 않습니다.
+
+G03-06 초기 지형·팔레트 재구성 범위를 완료했습니다. 최종 문서 게시·CI와 #15 종료는 GitHub 이슈 기록에서 추적합니다. 상위 #1의 G00·G01·G02만 전체 목표 완료로 유지합니다.
+
+## 남은 범위
 
 이 결과는 객체 합성·강철/충돌·지형 변경·게임 화면·실제 DOS 실행 호환성을 판정하지 않습니다. G03 전체는 MAIN.DAT 레밍 스프라이트·UI와 객체 배치 합성이 남아 진행 중입니다. 다음은 별도 이슈의 G03-07 MAIN.DAT 레밍 스프라이트 해석이며 G04-01 픽셀 지형 읽기·경계 검증도 준비 상태입니다.
