@@ -6,7 +6,7 @@
 
 [프로젝트 기획서](issue-1_rusty_lemmings.md)의 원본 호환 Rust 엔진을 작고 검증 가능한 목표로 나눕니다. 데스크톱과 웹에서 기준판의 레벨·직업·게임 규칙·사운드를 재현하는 것이 최종 목표입니다.
 
-G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. [#2](https://github.com/edwardkim/ohmylemmings/issues/2)의 원작 확보, [#3](https://github.com/edwardkim/ohmylemmings/issues/3)의 소스 고정과 [#5](https://github.com/edwardkim/ohmylemmings/issues/5)의 비교 계약을 갖췄습니다. [#6](https://github.com/edwardkim/ohmylemmings/issues/6)의 Rust workspace와 [#7](https://github.com/edwardkim/ohmylemmings/issues/7)의 실제 CI 검증을 완료했습니다. [#8 구간 읽기](../tech_insights/issue-8_dat_sections.md)와 [#9 압축 해제](../tech_insights/issue-9_dat_decompression.md)의 합성 테스트·원본 대조·실제 CI로 G02의 완료 기준을 충족했습니다. [#10 기본 레벨 레코드](../tech_insights/issue-10_level_records.md)에 이어 [#11 ODDTABLE·카탈로그](../tech_insights/issue-11_level_catalog.md)도 마쳤습니다. [#12 GROUND 메타데이터·팔레트](../tech_insights/issue-12_ground_metadata.md)도 합성 테스트·원본 5개 전체 필드 대조·실제 CI를 통과해 완료했습니다. [#13 VGAGR 비트플레인·마스크](../tech_insights/issue-13_vgagr_images.md)는 로컬 검사·원본 전체 픽셀 대조를 마치고 게시·CI를 확인 중입니다. G03 전체는 VGASPEC·지형 재구성이 남아 진행 중이며 G04는 준비 상태입니다. 나머지 구현 목표는 선행 작업을 기다립니다.
+G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. [#2](https://github.com/edwardkim/ohmylemmings/issues/2)의 원작 확보, [#3](https://github.com/edwardkim/ohmylemmings/issues/3)의 소스 고정과 [#5](https://github.com/edwardkim/ohmylemmings/issues/5)의 비교 계약을 갖췄습니다. [#6](https://github.com/edwardkim/ohmylemmings/issues/6)의 Rust workspace와 [#7](https://github.com/edwardkim/ohmylemmings/issues/7)의 실제 CI 검증을 완료했습니다. [#8 구간 읽기](../tech_insights/issue-8_dat_sections.md)와 [#9 압축 해제](../tech_insights/issue-9_dat_decompression.md)의 합성 테스트·원본 대조·실제 CI로 G02의 완료 기준을 충족했습니다. [#10 기본 레벨 레코드](../tech_insights/issue-10_level_records.md)에 이어 [#11 ODDTABLE·카탈로그](../tech_insights/issue-11_level_catalog.md)도 마쳤습니다. [#12 GROUND 메타데이터·팔레트](../tech_insights/issue-12_ground_metadata.md)도 합성 테스트·원본 5개 전체 필드 대조·실제 CI를 통과해 완료했습니다. [#13 VGAGR 비트플레인·마스크](../tech_insights/issue-13_vgagr_images.md)도 합성 테스트·원본 전체 픽셀 대조·실제 CI를 통과해 완료했습니다. G03 전체는 VGASPEC·지형 재구성이 남아 진행 중이며 G04는 준비 상태입니다. 나머지 구현 목표는 선행 작업을 기다립니다.
 
 [호환성 기준](../tech_insights/issue-5_compatibility_baseline.md)의 전체 120개 진입점·직업 8종·음악 21개·효과음 18개와 COMP-01~18을 검증 범위로 사용합니다. DOS 실행 대조·기준 추적·음원 매핑은 G05~G11의 실행 증거로 확인합니다. 미검증 항목은 통과로 계산하지 않습니다.
 
@@ -40,7 +40,7 @@ G02~G03 리소스 처리와 G04~G05 코어 개발은 G01 이후 분리해 진행
 
 ## 초기 실행 순서
 
-G00·G01·G02와 **G03-01 / #10**, **G03-02 ODDTABLE·표시 카탈로그 / #11**을 마쳤습니다. **G03-03 GROUND 메타데이터·팔레트 / #12**도 완료했습니다. **G03-04 VGAGR 비트플레인·마스크 / #13**은 로컬 검증을 마치고 게시·CI를 확인 중입니다. 다음은 **G03-05 VGASPEC 특수 배경 해석**입니다. **G04-01 픽셀 지형 읽기·경계 검증**도 독립적으로 착수할 수 있습니다. 각각 별도 이슈로 진행합니다.
+G00·G01·G02와 **G03-01 / #10**, **G03-02 ODDTABLE·표시 카탈로그 / #11**을 마쳤습니다. **G03-03 GROUND 메타데이터·팔레트 / #12**도 완료했습니다. **G03-04 VGAGR 비트플레인·마스크 / #13**도 완료했습니다. 다음은 **G03-05 VGASPEC 특수 배경 해석**입니다. **G04-01 픽셀 지형 읽기·경계 검증**도 독립적으로 착수할 수 있습니다. 각각 별도 이슈로 진행합니다.
 
 1. **G00-01 기준판 식별 / #2 완료:** DOS 바이트 프로필·출처·해시로 입력을 고정했습니다. 소매판 리비전 이름은 부가 정보로 기록합니다.
 2. **G00-02 레퍼런스 고정 / #3 완료:** 참고 커밋·파일·함수·역할을 고정했습니다.
@@ -52,7 +52,7 @@ G00·G01·G02와 **G03-01 / #10**, **G03-02 ODDTABLE·표시 카탈로그 / #11*
 8. **G03-01 기본 레벨 레코드 / #10 완료:** 헤더·객체·지형·강철·제목과 오류를 구현하고 원본 80개 레코드의 전체 배치를 대조했습니다. [실제 CI·원격 게시](../reports/issue-10_level_records.md)도 확인했습니다.
 9. **G03-02 ODDTABLE·카탈로그 / #11 완료:** ODD 전체 검증·120개 연결·40개 변형과 기본 배치 보존을 구현하고 원본을 대조했습니다. [실제 CI·원격 게시](../reports/issue-11_level_catalog.md)도 확인했습니다.
 10. **G03-03 GROUND 메타데이터·팔레트 / #12 완료:** 원시 슬롯·세 팔레트 뱅크·두 RGB 확대 방식을 구현했습니다. 합성 TDD·원본 5개 전체 필드 대조·로컬 검사와 [실제 CI·원격 게시](../reports/issue-12_ground_metadata.md)를 확인했습니다.
-11. **G03-04 VGAGR 비트플레인·마스크 / #13:** 전체 슬롯·프레임·미리보기 검증과 무할당 픽셀 API를 구현했습니다. 합성 TDD·원본 867개 이미지/프레임의 Rust·Python·TS 전체 대조와 로컬 검사를 마치고 [게시·CI를 확인 중](../reports/issue-13_vgagr_images.md)입니다.
+11. **G03-04 VGAGR 비트플레인·마스크 / #13 완료:** 전체 슬롯·프레임·미리보기 검증과 무할당 픽셀 API를 구현했습니다. 합성 TDD·원본 867개 이미지/프레임의 Rust·Python·TS 전체 대조·로컬 검사와 [실제 CI·원격 게시](../reports/issue-13_vgagr_images.md)를 확인했습니다.
 12. **G03-05 / G04-01 독립 구현:** VGASPEC 특수 배경과 합성 픽셀 맵의 읽기·경계 검증을 각각 별도 이슈로 진행합니다. 전체 레벨 지형 재구성도 후속 G03 작업으로 남습니다. 리소스·코어 경로는 G06에서 통합합니다.
 
 ## 첫 번째 실행 결과와 확장 순서

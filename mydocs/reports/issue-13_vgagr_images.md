@@ -44,4 +44,14 @@
 
 ## 게시
 
-로컬 구현·원본 대조를 마쳤으며 `main` 게시·실제 CI·원격 tree를 확인한 뒤 갱신합니다. G03 전체는 VGASPEC·지형 재구성이 남아 진행 중이며 다음은 별도 이슈의 G03-05 VGASPEC 특수 배경 해석입니다.
+구현 커밋 `a7bac4691998aec6293ebcc6c529dd040be2bac9`을 `main`에 게시했습니다. [push CI 실행](https://github.com/edwardkim/ohmylemmings/actions/runs/39114985728)의 결론과 세 작업이 모두 success입니다.
+
+| 작업 | 실제 실행 근거 |
+|---|---|
+| [Rust native](https://github.com/edwardkim/ohmylemmings/actions/runs/39114985728/job/117638850294) | Rust 1.93.1, 포맷·Clippy·빌드, 단위 95개·문서 예제 8개 성공 |
+| [Python tooling](https://github.com/edwardkim/ohmylemmings/actions/runs/39114985728/job/117638850401) | Python 3.12.15, 테스트 8개 성공 |
+| [WASM libraries](https://github.com/edwardkim/ohmylemmings/actions/runs/39114985728/job/117638850428) | 고정 Rust·WASM 타깃, 두 라이브러리 컴파일 성공 |
+
+push 이벤트·대상 SHA·세 작업의 실제 로그·테스트 개수·clean-input 성공을 대조했습니다. CI는 원본·기존 target·Cargo 패키지 캐시 없는 러너에서 통과했습니다. 원격 tree API의 파일 85개 모드·blob 해시가 로컬과 모두 일치했으며 원본·참고 소스 추가 사본·JSONL·빌드 출력은 추적하지 않습니다.
+
+G03-04 이미지·마스크 범위를 완료했습니다. 최종 문서 게시·CI와 #13 종료는 GitHub 이슈 기록에서 추적합니다. 상위 #1의 G03 전체는 VGASPEC·지형 재구성이 남아 진행 중이며 G00·G01·G02만 전체 목표 완료로 유지합니다. 다음은 별도 이슈의 G03-05 VGASPEC 특수 배경 해석입니다.
