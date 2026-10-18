@@ -18,10 +18,12 @@
 - [x] GitHub 상위 이슈와 구현 목표 체크리스트
 - [x] 문서 연결, [진행 기록](../working/implementation_plan.md), [결과 보고서](../reports/implementation_plan.md) 갱신
 - [x] 로컬 링크·공백 검사
-- [ ] 원격 게시 확인
+- [x] 원격 게시 확인
 
 ## 결과 기록
 
 진행 상태와 검증 결과는 위 진행 기록과 결과 보고서에서 관리합니다. 구현 목표의 완료 여부는 상위 이슈에서 추적합니다.
 
 등록한 상위 이슈: [GitHub #1](https://github.com/edwardkim/ohmylemmings/issues/1).
+
+계획 수립과 게시를 완료했습니다. G00~G12의 구현은 상위 이슈와 후속 작업에서 계속 추적합니다.
