@@ -10,7 +10,7 @@ G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. `
 
 G03 리소스 해석을 진행 중입니다. [기본 레벨 레코드](mydocs/tech_insights/issue-10_level_records.md), [ODDTABLE·120개 카탈로그](mydocs/tech_insights/issue-11_level_catalog.md), [GROUND 메타데이터·팔레트](mydocs/tech_insights/issue-12_ground_metadata.md), [VGAGR 이미지·마스크](mydocs/tech_insights/issue-13_vgagr_images.md)의 원본 대조와 실제 CI를 통과했습니다.
 
-[G03-05 VGASPEC 특수 배경](mydocs/tech_insights/issue-14_vgaspec_backgrounds.md)은 원본 4개·614400픽셀 전체 대조와 로컬 검사를 마치고 게시·CI를 확인 중입니다. 다음은 G03-06 레벨 지형 재구성이며 G04 픽셀 지형 모델도 준비 상태입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
+[G03-05 VGASPEC 특수 배경](mydocs/tech_insights/issue-14_vgaspec_backgrounds.md)도 합성 테스트·원본 4개·614400픽셀의 Rust·Python·TS 전체 대조·실제 CI를 통과해 완료했습니다. 다음은 G03-06 레벨 지형 재구성이며 G04 픽셀 지형 모델도 준비 상태입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
 
 ## Rust 개발
 
