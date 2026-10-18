@@ -9,6 +9,7 @@ When implementing the plan:
 - Separate resource parsing, deterministic simulation, and platform adapters into modules or crates. Keep simulation independent of rendering and I/O; prefer `no_std` compatibility where practical.
 - Use `src/` for Rust code and `tests/` for integration tests within each crate.
 - Use `mydocs/plans/`, `mydocs/orders/`, `mydocs/feedbacks/`, `mydocs/tech_insights/`, and `mydocs/troubleshootings/` for plans, tasks, feedback, reference findings, and troubleshooting.
+- Track ongoing work in `mydocs/working/` and completed results in `mydocs/reports/`.
 - Document asset locations and setup when adding DAT/VGASPEC loading.
 
 ## Build, Test, and Development Commands

@@ -16,6 +16,10 @@
 
 전체 설계와 단계별 작업은 [프로젝트 기획서](mydocs/plans/rusty_lemmings.md)를 참고하세요.
 
+구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/implementation_plan.md)에 정리합니다. 첫 착수 목표는 원작 기준판과 호환성 검증 기준 확정(G00)입니다.
+
+진행 상황은 [GitHub 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1)에서 추적합니다.
+
 ## Hyper-Waterfall 개발 방법론
 
 이 프로젝트는 관리자가 정립한 Hyper-Waterfall을 채택합니다. 구현 전에 관련 문서로 컨텍스트를 맞추고, 작은 모듈부터 TDD로 구현하며, 피드백과 기술 지식·문제 해결 이력을 문서에 반영합니다.
@@ -24,6 +28,8 @@
 mydocs/
 ├── plans/             # 계획 및 아키텍처
 ├── orders/            # 작업 지시 및 요구사항
+├── working/           # 진행 중 작업 상태와 컨텍스트
+├── reports/           # 작업 결과와 검증 보고서
 ├── feedbacks/         # 피드백과 반영 결과
 ├── tech_insights/     # 기술 분석 및 도메인 지식
 └── troubleshootings/  # 문제 해결 이력
