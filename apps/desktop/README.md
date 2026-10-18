@@ -21,6 +21,8 @@ cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/lo
 
 | 키 | 동작 |
 |---|---|
+| B / D | Basher / Digger 선택 |
+| 왼쪽 클릭 | 선택한 직업을 가까운 레밍에 할당 |
 | Space | 일시정지/재개 |
 | Up / Down | 생성 속도 +1 / -1, 레벨 초기값~99 |
 | Left / Right | 카메라 16픽셀 이동 |
@@ -53,8 +55,14 @@ make check
 
 ## Digger
 
-왼쪽 클릭으로 레밍에게 Digger를 할당합니다. HUD의 DIG 수량은 성공 때만 줄어듭니다. 현재 Walking 개체가 대상이며 다른 직업·출구/승패는 후속 구현입니다.
+왼쪽 클릭으로 레밍에게 Digger를 할당합니다. HUD의 DIG 수량은 성공 때만 줄어듭니다. 현재 Walking/Bashing 개체가 대상이며 출구/승패와 나머지 직업은 후속 구현입니다.
 
 재생 입력 예: `60 0 AssignDigger 0`. 기존 Pause/Resume/SetReleaseRate와 같은 control_step/sequence 순서를 사용합니다. 일시정지 중 할당은 가능하고 굴착은 진행 때 갱신합니다.
 
 캡처의 `digger.jsonl`에는 수량·초기 Digger 플래그·매 경계 삭제 인덱스/지형 서명이 있습니다. `terrain-initial.bin`에서 삭제 이력을 재생하면 `terrain-final.bin`과 같아야 합니다. [계약과 검증](../../mydocs/tech_insights/issue-31_digger.md)을 참고합니다.
+
+## Basher와 레벨 선택
+
+`--level 5`는 Fun05 “You need bashers this time”을 엽니다. 현재 Fun1..30의 표준 그래픽 레벨을 선택할 수 있습니다. B 키로 Basher를 선택하고 왼쪽 클릭하면 Walking/Digging 개체에 할당하며 성공 때만 BASH 수량을 줄입니다. D 키로 Digger를 다시 선택합니다. 재생은 `166 0 AssignBasher 0` 형식입니다.
+
+`--synthetic-basher`는 원본 없는 양방향 굴착 검사 장면입니다. 캡처의 `basher.jsonl`과 공통 지형 삭제 기록, `config.json`·`objects.bin`·`bash-masks.bin`으로 기준 실행을 재현합니다. [Basher 계약·검증](../../mydocs/tech_insights/issue-32_basher.md)을 참고합니다.

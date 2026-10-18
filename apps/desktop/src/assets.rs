@@ -8,6 +8,11 @@ pub struct Assets {
     pub terrain: Vec<u8>,
     pub steel: Vec<u8>,
     pub diggers: u16,
+    pub bashers: u16,
+    pub bash_masks: [u8; 160],
+    pub one_way_left: Vec<u8>,
+    pub one_way_right: Vec<u8>,
+    pub title: String,
     pub entrances: Vec<EntrancePoint>,
     pub config: StartupConfig,
     pub screen_x: i32,
@@ -16,6 +21,7 @@ pub struct Assets {
     original: Option<Original>,
 }
 struct Original {
+    graphics: u8,
     level: [u8; LEVEL_RECORD_SIZE],
     ground: Vec<u8>,
     terrain_images: Vec<u8>,
@@ -55,18 +61,30 @@ pub fn object_frame(
 }
 impl Assets {
     pub fn load(root: &Path) -> Result<Self, Box<dyn Error>> {
-        let entry = CatalogEntry::for_level(LevelId::new(Difficulty::Fun, 1)?);
+        Self::load_level(root, 1)
+    }
+    pub fn load_level(root: &Path, number: u8) -> Result<Self, Box<dyn Error>> {
+        let entry = CatalogEntry::for_level(LevelId::new(Difficulty::Fun, number)?);
         let level_bytes = read(root, &format!("LEVEL{:03}.DAT", entry.file_index()))?;
         let file = DosLevelFile::parse(entry.file_index(), &level_bytes)?;
         let mut record = [0; LEVEL_RECORD_SIZE];
-        let resolved = entry.load(&file, None, &mut record)?;
+        let odd = if entry.odd_index().is_some() {
+            Some(read(root, "ODDTABLE.DAT")?)
+        } else {
+            None
+        };
+        let resolved = entry.load(
+            &file,
+            odd.as_deref().map(OddTable::parse).transpose()?,
+            &mut record,
+        )?;
         let header = resolved.header();
-        if header.special_graphic_set().is_some() || header.graphics != 0 {
-            return Err("Fun01 standard graphics set 0 required".into());
+        if header.special_graphic_set().is_some() {
+            return Err("desktop currently requires a standard graphics level".into());
         }
-        let ground_bytes = read(root, "GROUND0O.DAT")?;
+        let ground_bytes = read(root, &format!("GROUND{}O.DAT", header.graphics))?;
         let ground = GroundRecord::parse(&ground_bytes)?;
-        let dat = read(root, "VGAGR0.DAT")?;
+        let dat = read(root, &format!("VGAGR{}.DAT", header.graphics))?;
         let graphics = VgagrFile::parse(&dat)?;
         let [ts, os] = graphics.decoded_sizes();
         let mut terrain_images = vec![0; ts];
@@ -76,7 +94,10 @@ impl Assets {
         let mut canvas = vec![IndexedPixel::default(); LEVEL_TERRAIN_PIXEL_COUNT];
         let terrain = compose_terrain(
             resolved.base_record(),
-            TerrainSource::Standard(TerrainGraphics::new(0, images)?),
+            TerrainSource::Standard(TerrainGraphics::new(
+                u8::try_from(header.graphics)?,
+                images,
+            )?),
             &mut canvas,
         )?;
         let mask = terrain
@@ -97,10 +118,32 @@ impl Assets {
             }
         }
         let diggers = header.skills[7];
+        let bashers = header.skills[5];
+        let mut one_way_left = vec![0; LEVEL_TERRAIN_PIXEL_COUNT];
+        let mut one_way_right = vec![0; LEVEL_TERRAIN_PIXEL_COUNT];
+        // DOS rounds object origins down to the 4-pixel object-map grid;
+        // later object trigger rectangles overwrite earlier steel/objects.
+        for object in resolved.base_record().objects().filter(|o| o.slot < 16) {
+            let meta = ground
+                .object(usize::from(object.id))
+                .ok_or("object metadata missing")?;
+            let rect = meta.trigger_rect();
+            let left = (object.x & !3) + rect.left;
+            let top = (i32::from(object.y) & !3) + rect.top;
+            for y in top.max(0)..(top + i32::from(rect.height)).min(LEVEL_TERRAIN_HEIGHT as i32) {
+                for x in left.max(0)..(left + i32::from(rect.width)).min(LEVEL_TERRAIN_WIDTH as i32)
+                {
+                    let i = y as usize * LEVEL_TERRAIN_WIDTH + x as usize;
+                    steel[i] = u8::from(meta.trigger_effect == 9);
+                    one_way_left[i] = u8::from(meta.trigger_effect == 7);
+                    one_way_right[i] = u8::from(meta.trigger_effect == 8);
+                }
+            }
+        }
         let mut scene = vec![ScenePixel::default(); LEVEL_TERRAIN_PIXEL_COUNT];
         let scene = compose_objects(
             resolved.base_record(),
-            ObjectGraphics::new(0, images)?,
+            ObjectGraphics::new(u8::try_from(header.graphics)?, images)?,
             terrain,
             ObjectFrameSelection::Initial,
             &mut scene,
@@ -118,6 +161,8 @@ impl Assets {
         let main = read(root, "MAIN.DAT")?;
         let mut sprites = vec![0; LEMMING_SPRITE_DATA_SIZE];
         MainDatFile::parse(&main)?.decode_sprites_into(&mut sprites)?;
+        let mut masks = [0; MAIN_MASK_RECORD_SIZE];
+        MainDatFile::parse(&main)?.decode_masks_into(&mut masks)?;
         let config = StartupConfig {
             time_limit_minutes: header.minutes,
             total_lemmings: u32::from(header.total),
@@ -132,12 +177,18 @@ impl Assets {
             terrain: mask,
             steel,
             diggers,
+            bashers,
+            bash_masks: masks[..160].try_into()?,
+            one_way_left,
+            one_way_right,
+            title: resolved.title()?.trim().to_uppercase(),
             entrances,
             config,
             screen_x: i32::from(header.screen_x),
             sprites,
             palette,
             original: Some(Original {
+                graphics: u8::try_from(header.graphics)?,
                 level: record,
                 ground: ground_bytes,
                 terrain_images,
@@ -156,6 +207,12 @@ impl Assets {
             terrain,
             steel: vec![0; width * height],
             diggers: 10,
+            bashers: 10,
+            // Own synthetic masks (rectangular slices), never original bits.
+            bash_masks: synthetic_bash_masks(),
+            one_way_left: vec![0; width * height],
+            one_way_right: vec![0; width * height],
+            title: "JUST DIG!".into(),
             entrances: vec![EntrancePoint { x: 40, y: 40 }],
             config: StartupConfig {
                 time_limit_minutes: 5,
@@ -187,6 +244,14 @@ impl Assets {
             original: None,
         }
     }
+    pub fn synthetic_basher() -> Self {
+        let mut scene = Self::synthetic();
+        for y in 70..100 {
+            scene.terrain[y * scene.width + 80..y * scene.width + 150].fill(1);
+            scene.terrain[y * scene.width + 5..y * scene.width + 50].fill(1);
+        }
+        scene
+    }
     pub fn scene_with_terrain(
         &self,
         iteration: u64,
@@ -211,7 +276,7 @@ impl Assets {
         let mut terrain = vec![IndexedPixel::default(); self.width * self.height];
         let terrain = compose_terrain(
             level,
-            TerrainSource::Standard(TerrainGraphics::new(0, images)?),
+            TerrainSource::Standard(TerrainGraphics::new(original.graphics, images)?),
             &mut terrain,
         )?;
         let mut edited = terrain.pixels().to_vec();
@@ -239,7 +304,7 @@ impl Assets {
         let mut output = vec![ScenePixel::default(); self.width * self.height];
         let scene = compose_objects(
             level,
-            ObjectGraphics::new(0, images)?,
+            ObjectGraphics::new(original.graphics, images)?,
             terrain,
             ObjectFrameSelection::Explicit(&indices),
             &mut output,
@@ -248,6 +313,26 @@ impl Assets {
             .map(|i| scene.rgba(i % self.width, i / self.width).unwrap())
             .collect())
     }
+}
+fn synthetic_bash_masks() -> [u8; 160] {
+    let mut masks = [0; 160];
+    for direction in 0..2 {
+        for frame in 0..4 {
+            for y in 0..10 {
+                for x in 0..16 {
+                    let selected = if direction == 0 {
+                        x == 8 + frame * 2 || x == 9 + frame * 2
+                    } else {
+                        x == 6 - frame * 2 || x == 7 - frame * 2
+                    };
+                    if selected {
+                        masks[(direction * 4 + frame) * 20 + y * 2 + x / 8] |= 128 >> (x % 8);
+                    }
+                }
+            }
+        }
+    }
+    masks
 }
 #[cfg(test)]
 mod tests {

@@ -1,0 +1,169 @@
+{
+  "format": "g07-basher-v1",
+  "reference": {
+    "metadata_sha256": "2c68d83660cf0c2d141e7449d20b9d747fe5c3496d31d0551ff9c547656cf2a8",
+    "source_sha256": "c1ba9ffda9e8e277f5c9b171df2bb611210d3326b9623b28fcd35426f4d6a448",
+    "methods": {
+      "HasPixelAt": "e8c1c11b7b16795fb96f590a91bb01381f9fab87791213f00999cded06ce6243",
+      "HasPixelAt_ClipY": "dc9696798aeaa483df3899392505ba853577726f1774a931d1df91d00882523c",
+      "Transition": "2ac447b7289c2eead45d2bdf19a43c437ac6e3f1455d61fc32de95aa7c4f0aad",
+      "TurnAround": "6c85a8ec0e5da4a5cbd3f01dfa315260bb1409af418d149f396c93367e15e5df",
+      "AssignDigger": "c89b05ed99b389dde0a1f421e27f896967b42f6c15847ac464ec2c4458ddf4a7",
+      "DigOneRow": "fdf023c95fb66967aa4e133f36829a7db3e68308afb70665ffbffba2f26ba0a1",
+      "HandleLemming": "e00f1ffbafa322076f9cff9644dab1cbea83e29081ce04a126573d1f340fea91",
+      "HandleWalking": "41d1f6ededb993c451d58e773a60dbb6ff3135b7109c9709ffef40bafa5f33ce",
+      "HandleJumping": "f7c843e508a0d33c3e28fc8872e2427dfa7fbc890487c6392c4bb03e85d264a5",
+      "HandleDigging": "5aa69c62006b96b6c430c253899708189823aa531cf9db2277f49c1189ea783f",
+      "HandleFalling": "894411800603d79132d7533ef21bae8e52de61270849f0f50e2c4899f80b122a",
+      "HandleSplatting": "5e43a5f8f9c16937c55b9b5f710a809566d298066ca47cef89018cdc5fd6fe4a",
+      "CheckForLevelTopBoundary": "da00c889f8d1283fa5aad65083c5963fa8b1d56843bf06b8ab3a7eae75587933",
+      "RemoveLemming": "7307061c19354e8142270bd3a6a80900329c5c89982da2d4e1b149edbbbef1f7",
+      "IncrementIteration": "20f1800054465889d9fdad767d45a510dcbda8ae0b8d8bbee8ec597f8c030781",
+      "BtnPause": "579cdcbff69db1562f4bf5843ce41e1cef1c4dec2a53a865566bbfcf916f977c",
+      "BtnPauseStop": "217532706520d2f2aa8996a46c1136fbce9d547e8f433141bee75d3cb3cbf31a",
+      "CheckSpawnLemming": "5608a12f641eccd5dc009789311cc3e78ac4b803f8bfae5d45ce085b35bcc638",
+      "AssignBasher": "180a96371f798f64b0712da149138e4ff0bed6aedcdc71493b218b8547862793",
+      "ApplyBashingMask": "22d8a77f2920ceaa5ab5c3baeb4b6189e3908377225917fd13475b2f14bcc8d0",
+      "HandleBashing": "17a7a4540fa678e8468097ceb07d34e89f992a9c5211e0598e59c20a0a9f783f"
+    },
+    "scope": "21 original functions; Walking/Digging/Bashing assignment, caller masks/object map; not full DOS",
+    "host_sha256": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18",
+    "builder_sha256": "aa10744ce370a37e38d6c1a57a03d3a3311ca48f1241e69963bbe6eec788b622",
+    "generated_sha256": "e54309694cbf4eae1adf61142bd8acc50ac28e98a7404a5971bb7e6662d62a22",
+    "extracted_sha256": "cc8f33557bf02163996e01303d20895373d7826baa45335286dc4bbabab48c82",
+    "compiler_sha256": "93ddfaa92900749c81537d4ee39a9416d6d8c85cf545d411f0c170c15e33cdc1",
+    "executable_sha256": "3f16ba6e0d41ced855ce6b161df054ae1d9224039076ba7be7a3f71b269139d1",
+    "stubs": "toolbar/sound/minimap/recorder; binary caller-provided steel; stable ID target, no secondary cursor candidate",
+    "syntax_patches": "two G05 inline-variable changes only",
+    "mask_adapter": "MSB-first packed frames, clipped erase DrawTo; no graphics framework, toolbar/sound/recorder stubs"
+  },
+  "adapter_sha256": {
+    "build_basher_reference.py": "aa10744ce370a37e38d6c1a57a03d3a3311ca48f1241e69963bbe6eec788b622",
+    "build_digger_reference.py": "70e83e05310628c0be164398af3a02725f50b411458fe32b8b99c5beaf42d8bc",
+    "build_reference.py": "0448f50a3d4c5dd24918c12199000fa8a40e3ea0ac7ad164899dfdaa87c29ad1",
+    "harness.pas": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18"
+  },
+  "synthetic_masks_sha256": "19cb414cb760df2b27bc0c0316db82a35042929e268d6b41551779c8c85d4988",
+  "cases": {
+    "right": {
+      "snapshots_sha256": "5ff0c425008812fe69f7555b1dadc5b565845aa4b68025bbbccf38cd9bb6402f",
+      "steps": 221,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignBasher",
+          0
+        ]
+      ]
+    },
+    "left": {
+      "snapshots_sha256": "15b8a0f1f5fab4d5ac32ded9faf04a8dc732945d54d3856e7f5263974968a746",
+      "steps": 221,
+      "inputs": [
+        [
+          110,
+          0,
+          "AssignBasher",
+          0
+        ]
+      ]
+    },
+    "duplicate_and_absent": {
+      "snapshots_sha256": "e78cede72fa13148795f4893b7562e8405905ae1a7ae147fb57c8e162f3794a3",
+      "steps": 221,
+      "inputs": [
+        [
+          54,
+          0,
+          "AssignBasher",
+          0
+        ],
+        [
+          80,
+          0,
+          "AssignBasher",
+          0
+        ],
+        [
+          80,
+          1,
+          "AssignBasher",
+          0
+        ],
+        [
+          80,
+          2,
+          "AssignBasher",
+          999
+        ]
+      ]
+    },
+    "pause_assign_resume": {
+      "snapshots_sha256": "1d063aa1599e627830546699492447e5ecc425c035e8a8f41781ac9662d41666",
+      "steps": 221,
+      "inputs": [
+        [
+          80,
+          0,
+          "Pause",
+          0
+        ],
+        [
+          80,
+          1,
+          "AssignBasher",
+          0
+        ],
+        [
+          90,
+          0,
+          "Resume",
+          0
+        ]
+      ]
+    },
+    "replace_jobs": {
+      "snapshots_sha256": "3b15721de0d70c3de9ca058c7c3e8bbc5d4e8cb33c76eaa6ced7ecb4dfba547a",
+      "steps": 221,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignBasher",
+          0
+        ],
+        [
+          100,
+          0,
+          "AssignDigger",
+          0
+        ],
+        [
+          101,
+          0,
+          "AssignBasher",
+          0
+        ]
+      ]
+    },
+    "two_bashers": {
+      "snapshots_sha256": "3f4a5f4501750b334bc86231b9758a226923e17ccd0ff18c5ec849d2c1a98454",
+      "steps": 221,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignBasher",
+          0
+        ],
+        [
+          110,
+          0,
+          "AssignBasher",
+          1
+        ]
+      ]
+    }
+  }
+}

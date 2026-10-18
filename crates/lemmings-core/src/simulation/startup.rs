@@ -35,6 +35,7 @@ impl core::error::Error for StartupConfigError {}
 pub enum StartupCommand {
     SetReleaseRate(u8),
     AssignDigger(u32),
+    AssignBasher(u32),
 }
 
 /// Progress immediately before the next boundary. Read control/iteration/pause
@@ -164,6 +165,24 @@ impl StartupScheduler {
         &mut self,
         schedule: &InputSchedule<'_, StartupCommand>,
         mut assign: impl FnMut(u32) -> bool,
+        emit: impl FnMut(StartupEvent),
+    ) -> Result<StepOutcome, StepOverflow> {
+        self.step_with_skills(
+            schedule,
+            |command| match command {
+                StartupCommand::AssignDigger(id) => assign(id),
+                _ => false,
+            },
+            emit,
+        )
+    }
+
+    /// Delegate supported skill assignments in exact boundary/sequence order.
+    /// Rates, pause and resume remain scheduler-owned; unsupported jobs reject.
+    pub fn step_with_skills(
+        &mut self,
+        schedule: &InputSchedule<'_, StartupCommand>,
+        mut assign: impl FnMut(StartupCommand) -> bool,
         mut emit: impl FnMut(StartupEvent),
     ) -> Result<StepOutcome, StepOverflow> {
         let before = self.stepper.state();
@@ -188,7 +207,10 @@ impl StartupScheduler {
                         paused = false;
                         true
                     }
-                    InputCommand::Custom(StartupCommand::AssignDigger(id)) => assign(id),
+                    InputCommand::Custom(
+                        command @ (StartupCommand::AssignDigger(_)
+                        | StartupCommand::AssignBasher(_)),
+                    ) => assign(command),
                     InputCommand::Custom(StartupCommand::SetReleaseRate(rate)) => {
                         if (config.initial_release_rate..=99).contains(&rate) {
                             state.release_rate = rate;

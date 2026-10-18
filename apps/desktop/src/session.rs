@@ -8,6 +8,10 @@ pub struct Session {
     pub inputs: Vec<TimedInput<StartupCommand>>,
     pub events: Vec<String>,
     pub remaining_diggers: u16,
+    pub remaining_bashers: u16,
+    bash_masks: [u8; 160],
+    one_way_left: Vec<u8>,
+    one_way_right: Vec<u8>,
     steel: Vec<u8>,
     clock: PlaybackClock,
     entrances: Vec<EntrancePoint>,
@@ -37,6 +41,10 @@ impl Session {
             inputs: Vec::new(),
             events: Vec::new(),
             remaining_diggers: 0,
+            remaining_bashers: 0,
+            bash_masks: [0; 160],
+            one_way_left: vec![0; width * height],
+            one_way_right: vec![0; width * height],
             steel: vec![0; width * height],
             clock: PlaybackClock::new(Pacing::Reference),
             entrances,
@@ -57,6 +65,21 @@ impl Session {
     }
     pub fn terrain(&self) -> &[u8] {
         &self.terrain
+    }
+    pub fn configure_basher(
+        &mut self,
+        remaining: u16,
+        masks: [u8; 160],
+        left: Vec<u8>,
+        right: Vec<u8>,
+    ) -> Result<(), Box<dyn Error>> {
+        TerrainMask::new(self.width, self.height, &left)?;
+        TerrainMask::new(self.width, self.height, &right)?;
+        self.remaining_bashers = remaining;
+        self.bash_masks = masks;
+        self.one_way_left = left;
+        self.one_way_right = right;
+        Ok(())
     }
     pub fn digger_snapshot(&self) -> String {
         let hash = self.terrain.iter().fold(0xcbf29ce484222325u64, |h, &v| {
@@ -129,13 +152,36 @@ impl Session {
         let steel = TerrainMask::new(self.width, self.height, &self.steel)?;
         let actors = &mut self.actors;
         let remaining = &mut self.remaining_diggers;
-        let outcome = self.scheduler.step_with_digger(
+        let bashers = &mut self.remaining_bashers;
+        let context = BashingContext {
+            masks: &self.bash_masks,
+            steel,
+            one_way_left: Some(TerrainMask::new(
+                self.width,
+                self.height,
+                &self.one_way_left,
+            )?),
+            one_way_right: Some(TerrainMask::new(
+                self.width,
+                self.height,
+                &self.one_way_right,
+            )?),
+        };
+        let outcome = self.scheduler.step_with_skills(
             &schedule,
-            |id| {
+            |command| {
+                let id = match command {
+                    StartupCommand::AssignDigger(id) | StartupCommand::AssignBasher(id) => id,
+                    _ => return false,
+                };
                 actors
                     .iter_mut()
                     .find(|a| a.state().id == id)
-                    .is_some_and(|a| a.assign_digger(remaining, steel))
+                    .is_some_and(|a| match command {
+                        StartupCommand::AssignDigger(_) => a.assign_digger(remaining, steel),
+                        StartupCommand::AssignBasher(_) => a.assign_basher(bashers, context),
+                        _ => false,
+                    })
             },
             |event| match event {
                 StartupEvent::Input {
@@ -164,10 +210,10 @@ impl Session {
             )?);
         }
         if outcome.iteration.is_some() {
-            step_actors_mut(
+            step_actors_with_skills(
                 &mut self.actors,
                 &mut TerrainMaskMut::new(self.width, self.height, &mut self.terrain)?,
-                steel,
+                context,
                 |_, _| {},
             )?;
         }
@@ -254,6 +300,39 @@ mod tests {
             vec![0; 96 * 160],
         )
         .unwrap()
+    }
+    #[test]
+    fn paused_basher_assignment_replays_inventory_and_mutable_terrain() {
+        let assets = crate::assets::Assets::synthetic_basher();
+        let mut s = Session::new(
+            assets.config,
+            assets.entrances,
+            assets.width,
+            assets.height,
+            assets.terrain,
+        )
+        .unwrap();
+        s.configure_basher(2, assets.bash_masks, vec![0; 640 * 160], vec![0; 640 * 160])
+            .unwrap();
+        for _ in 0..80 {
+            s.tick().unwrap();
+        }
+        s.queue(InputCommand::Pause).unwrap();
+        s.queue(InputCommand::Custom(StartupCommand::AssignBasher(0)))
+            .unwrap();
+        s.queue(InputCommand::Custom(StartupCommand::AssignBasher(0)))
+            .unwrap();
+        let before = s.terrain().to_vec();
+        s.tick().unwrap();
+        assert_eq!(s.remaining_bashers, 1);
+        assert_eq!(s.actors[0].state().frame, 0);
+        assert_eq!(s.terrain(), before);
+        assert!(s.events.last().unwrap().ends_with("false"));
+        s.queue(InputCommand::Resume).unwrap();
+        for _ in 0..5 {
+            s.tick().unwrap();
+        }
+        assert!(s.terrain().iter().zip(before).any(|(&a, b)| a != b));
     }
     #[test]
     fn birth_updates_in_same_tick_and_removed_records_survive() {

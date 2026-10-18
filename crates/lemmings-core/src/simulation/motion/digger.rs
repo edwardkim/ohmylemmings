@@ -1,13 +1,16 @@
 use super::*;
 
 impl Actor {
-    /// Assign to a live walker, consuming one skill only on success. The caller
+    /// Assign to a live walker or basher, consuming one skill only on success. The caller
     /// selects a stable actor ID; cursor priority and other jobs are separate.
     /// Steel is a caller-provided object-map view, not per-pixel protection.
     pub fn assign_digger(&mut self, remaining: &mut u16, steel: TerrainMask<'_>) -> bool {
         if *remaining == 0
             || self.state.removed.is_some()
-            || self.state.action != MotionAction::Walking
+            || !matches!(
+                self.state.action,
+                MotionAction::Walking | MotionAction::Bashing
+            )
             || steel.is_solid(self.state.x, self.state.y)
         {
             return false;

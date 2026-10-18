@@ -21,10 +21,12 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR | --synthetic] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nLeft click: assign Digger; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay files contain CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate RATE|AssignDigger ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nB/D: select Basher/Digger; left click: assign selected skill; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     synthetic: bool,
+    basher_scene: bool,
+    level: u8,
     steps: Option<u64>,
     fast: bool,
     render_every: u64,
@@ -39,6 +41,8 @@ impl Options {
         let mut o = Self {
             assets: "assets/local/dos-original".into(),
             synthetic: false,
+            basher_scene: false,
+            level: 1,
             steps: None,
             fast: false,
             render_every: 1,
@@ -52,6 +56,16 @@ impl Options {
             match flag.as_str() {
                 "--help" | "-h" => return Ok(None),
                 "--synthetic" => o.synthetic = true,
+                "--synthetic-basher" => {
+                    o.synthetic = true;
+                    o.basher_scene = true;
+                }
+                "--level" => {
+                    o.level = args
+                        .next()
+                        .ok_or("--level requires Fun number 1..30")?
+                        .parse()?
+                }
                 "--fast" => o.fast = true,
                 "--demo-input" => o.demo_input = true,
                 "--pacing" => {
@@ -90,6 +104,9 @@ impl Options {
         if o.synthetic && specified_assets {
             return Err("choose --assets or --synthetic".into());
         }
+        if !(1..=30).contains(&o.level) || (o.synthetic && o.level != 1) {
+            return Err("--level: Fun 1..30 with original assets".into());
+        }
         if o.fast && o.steps.is_none() {
             return Err("--fast requires bounded --steps".into());
         }
@@ -112,6 +129,7 @@ struct Capture {
     root: PathBuf,
     trace: BufWriter<File>,
     digger_trace: BufWriter<File>,
+    basher_trace: BufWriter<File>,
     previous_terrain: Vec<u8>,
 }
 fn write_new(path: &Path, data: &[u8]) -> Result<(), Box<dyn Error>> {
@@ -140,6 +158,12 @@ impl Capture {
             root: root.to_path_buf(),
             trace,
             previous_terrain: Vec::new(),
+            basher_trace: BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(root.join("basher.jsonl"))?,
+            ),
             digger_trace: BufWriter::new(
                 OpenOptions::new()
                     .write(true)
@@ -151,6 +175,11 @@ impl Capture {
     fn snapshot(&mut self, s: &Session) -> Result<(), Box<dyn Error>> {
         writeln!(self.trace, "{}", s.snapshot())?;
         self.trace.flush()?;
+        writeln!(
+            self.basher_trace,
+            "{{\"remaining\":{}}}",
+            s.remaining_bashers
+        )?;
         let cleared: Vec<_> = self
             .previous_terrain
             .iter()
@@ -188,6 +217,7 @@ impl Capture {
     fn finish(&mut self, s: &Session, summary: &str) -> Result<(), Box<dyn Error>> {
         self.trace.flush()?;
         self.digger_trace.flush()?;
+        self.basher_trace.flush()?;
         write_new(&self.root.join("terrain-final.bin"), s.terrain())?;
         let mut inputs = String::new();
         for i in &s.inputs {
@@ -196,6 +226,9 @@ impl Capture {
                 InputCommand::Resume => "Resume".to_owned(),
                 InputCommand::Custom(StartupCommand::AssignDigger(id)) => {
                     format!("AssignDigger {id}")
+                }
+                InputCommand::Custom(StartupCommand::AssignBasher(id)) => {
+                    format!("AssignBasher {id}")
                 }
                 InputCommand::Custom(StartupCommand::SetReleaseRate(rate)) => {
                     format!("SetReleaseRate {rate}")
@@ -217,11 +250,24 @@ fn key_event(keycode: Keycode) -> Event {
         repeat: false,
     }
 }
+fn basher_capture(s: &Session) -> bool {
+    matches!(s.scheduler.step_state().control_step, 220 | 260 | 300)
+        && s.inputs.iter().any(|i| {
+            matches!(
+                i.command,
+                InputCommand::Custom(StartupCommand::AssignBasher(_))
+            )
+        })
+}
 fn run(options: Options) -> Result<(), Box<dyn Error>> {
-    let assets = if options.synthetic {
+    let assets = if options.basher_scene {
+        Assets::synthetic_basher()
+    } else if options.synthetic {
         Assets::synthetic()
-    } else {
+    } else if options.level == 1 {
         Assets::load(&options.assets)?
+    } else {
+        Assets::load_level(&options.assets, options.level)?
     };
     let replay = if let Some(path) = &options.replay {
         input::parse_replay(&fs::read_to_string(path)?, options.steps)?
@@ -243,6 +289,12 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
     });
     session.set_pacing(pacing);
     session.configure_digger(assets.diggers, assets.steel.clone())?;
+    session.configure_basher(
+        assets.bashers,
+        assets.bash_masks,
+        assets.one_way_left.clone(),
+        assets.one_way_right.clone(),
+    )?;
     let mut view = View::new(assets.screen_x);
     view.replaying = options.replay.is_some();
     let mut capture = options
@@ -252,13 +304,51 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         .transpose()?;
     if let Some(c) = &mut capture {
         c.snapshot(&session)?;
+        write_new(&c.root.join("bash-masks.bin"), &assets.bash_masks)?;
+        let objects: Vec<_> = assets
+            .steel
+            .iter()
+            .zip(&assets.one_way_left)
+            .zip(&assets.one_way_right)
+            .map(|((&steel, &left), &right)| {
+                if steel != 0 {
+                    137
+                } else if left != 0 {
+                    135
+                } else if right != 0 {
+                    136
+                } else {
+                    0
+                }
+            })
+            .collect();
+        write_new(&c.root.join("objects.bin"), &objects)?;
+        let config = &assets.config;
+        let entrances = assets
+            .entrances
+            .iter()
+            .map(|p| format!("[{},{}]", p.x, p.y))
+            .collect::<Vec<_>>()
+            .join(",");
+        let description = format!(
+            "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"level\":{}}}",
+            assets.width,
+            assets.height,
+            config.time_limit_minutes,
+            config.total_lemmings,
+            config.initial_release_rate,
+            assets.diggers,
+            assets.bashers,
+            options.level
+        );
+        write_new(&c.root.join("config.json"), description.as_bytes())?;
     }
     let sdl = sdl2::init()?;
     let video = sdl.video()?;
     sdl2::hint::set("SDL_RENDER_SCALE_QUALITY", "0");
     let window = video
         .window(
-            "Oh My Lemmings - Just dig!",
+            &format!("Oh My Lemmings - {}", assets.title),
             WIDTH as u32 * 3,
             HEIGHT as u32 * 3,
         )
@@ -347,6 +437,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
                     .events
                     .iter()
                     .any(|event| event.starts_with("Input:"))
+                    || basher_capture(&session)
                 {
                     break;
                 }
@@ -355,6 +446,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         let step = session.scheduler.step_state().control_step;
         let finished = options.steps.is_some_and(|end| step >= end);
         let milestone = matches!(step, 0 | 16 | 17 | 34 | 35 | 54 | 60 | 100 | 170 | 340)
+            || basher_capture(&session)
             || finished
             || session.actors.iter().any(|a| {
                 a.state().action == lemmings_core::MotionAction::Digging

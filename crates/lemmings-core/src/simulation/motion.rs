@@ -1,6 +1,8 @@
 use super::SpawnRequest;
 use crate::{TerrainMask, TerrainMaskMut};
+mod basher;
 mod digger;
+pub use basher::{BashingContext, step_actors_with_skills};
 use core::fmt;
 pub use digger::step_actors_mut;
 
@@ -27,7 +29,7 @@ impl MotionDirection {
     }
 }
 
-/// Basic unskilled actions, independent of sprite/resource enums.
+/// Implemented actions, independent of sprite/resource enums.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum MotionAction {
     Walking,
@@ -35,6 +37,7 @@ pub enum MotionAction {
     Falling,
     Splatting,
     Digging,
+    Bashing,
 }
 impl MotionAction {
     pub const fn frame_count(self) -> u8 {
@@ -43,6 +46,7 @@ impl MotionAction {
             Self::Jumping => 1,
             Self::Falling => 4,
             Self::Splatting | Self::Digging => 16,
+            Self::Bashing => 32,
         }
     }
     fn loops(self) -> bool {
@@ -105,7 +109,9 @@ pub enum MotionError {
 impl fmt::Display for MotionError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Self::MutableTerrainRequired => f.write_str("digging requires mutable terrain"),
+            Self::MutableTerrainRequired => {
+                f.write_str("terrain-changing jobs require mutable terrain")
+            }
             Self::InvalidNewDigger => f.write_str("new digger must be digging at frame zero"),
             Self::Frame { action, frame } => write!(f, "frame {frame} is outside {action:?}"),
             Self::Direction => f.write_str("stopped direction must match splatting"),
@@ -133,7 +139,8 @@ pub struct MotionOutcome {
     pub splat_started: bool,
 }
 
-/// Caller-owned basic actor. No allocation, rendering, I/O, skills or triggers.
+/// Caller-owned actor. No allocation, rendering or I/O. Trigger execution is
+/// separate; supported skills accept caller-provided terrain/object views.
 ///
 /// ```
 /// use lemmings_core::{Actor, EntrancePoint, MotionRules, SpawnRequest, TerrainMask};
@@ -331,7 +338,9 @@ impl Actor {
                     transition(&mut s, MotionAction::Walking, self.rules);
                 }
             }
-            MotionAction::Digging => return Err(MotionError::MutableTerrainRequired),
+            MotionAction::Digging | MotionAction::Bashing => {
+                return Err(MotionError::MutableTerrainRequired);
+            }
             MotionAction::Splatting => {
                 result.check_objects = false;
                 if s.end_of_animation {

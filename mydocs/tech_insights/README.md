@@ -35,3 +35,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#30 DOS 화면·속도 차이 추적](issue-30_dos_differences.md)
 
 - [#31 G07-01 Digger 계약·원본/기준 실행](issue-31_digger.md)
+
+- [#32 G07-02 Basher](issue-32_basher.md)

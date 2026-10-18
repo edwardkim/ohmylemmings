@@ -4,9 +4,15 @@ use lemmings_resources::{LemmingSpriteKind, LemmingSprites, SpriteDirection};
 use std::error::Error;
 pub const WIDTH: usize = 320;
 pub const HEIGHT: usize = 200;
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum SelectedSkill {
+    Digger,
+    Basher,
+}
 pub struct View {
     pub camera: i32,
     pub replaying: bool,
+    pub selected_skill: SelectedSkill,
     world: Vec<[u8; 4]>,
     iteration: Option<u64>,
 }
@@ -15,6 +21,7 @@ impl View {
         Self {
             camera,
             replaying: false,
+            selected_skill: SelectedSkill::Digger,
             world: Vec::new(),
             iteration: None,
         }
@@ -54,6 +61,7 @@ impl View {
                 MotionAction::Falling => LemmingSpriteKind::Falling,
                 MotionAction::Splatting => LemmingSpriteKind::Splatting,
                 MotionAction::Digging => LemmingSpriteKind::Digging,
+                MotionAction::Bashing => LemmingSpriteKind::Bashing,
             };
             let direction = if a.direction == MotionDirection::Left {
                 SpriteDirection::Left
@@ -90,7 +98,8 @@ impl View {
             .filter(|a| a.state().removed.is_none())
             .count();
         let title = format!(
-            "JUST DIG!  OUT {alive}/{} RR {} TIME {}:{:02}",
+            "{}  OUT {alive}/{} RR {} TIME {}:{:02}",
+            assets.title,
             session.scheduler.config().total_lemmings,
             state.release_rate,
             state.seconds_remaining / 60,
@@ -122,10 +131,15 @@ impl View {
             &mut output,
             4,
             188,
-            &format!(
-                "DIG {} | CLICK LEMMING | ESC QUIT",
-                session.remaining_diggers
-            ),
+            &match self.selected_skill {
+                SelectedSkill::Digger => format!(
+                    "DIG {} | CLICK LEMMING | ESC QUIT",
+                    session.remaining_diggers
+                ),
+                SelectedSkill::Basher => {
+                    format!("BASH {} | B/D SELECT | CLICK", session.remaining_bashers)
+                }
+            },
             [140, 190, 170],
         );
         Ok(output)

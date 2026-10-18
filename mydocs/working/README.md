@@ -18,3 +18,5 @@
 - [#30 G06-03 DOS 화면·속도 보정](issue-30_dos_differences.md)
 
 - [#31 G07-01 Digger](issue-31_digger.md)
+
+- [#32 G07-02 Basher](issue-32_basher.md)

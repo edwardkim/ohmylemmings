@@ -20,3 +20,4 @@ check-desktop:
 	cargo build -p lemmings-desktop --locked --offline
 	python3 tools/check_desktop.py
 	python3 tools/check_digger.py
+	python3 tools/check_basher.py

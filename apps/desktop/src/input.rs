@@ -1,4 +1,7 @@
-use crate::{render::View, session::Session};
+use crate::{
+    render::{SelectedSkill, View},
+    session::Session,
+};
 use lemmings_core::{InputCommand, InputSchedule, StartupCommand, TimedInput};
 use sdl2::{
     event::{Event, WindowEvent},
@@ -40,7 +43,10 @@ pub fn handle(
                 .min_by_key(|a| (i64::from(a.state().x) - wx).abs())
                 .map(|a| a.state().id);
             if let Some(id) = target {
-                session.queue(InputCommand::Custom(StartupCommand::AssignDigger(id)))?;
+                session.queue(InputCommand::Custom(match view.selected_skill {
+                    SelectedSkill::Digger => StartupCommand::AssignDigger(id),
+                    SelectedSkill::Basher => StartupCommand::AssignBasher(id),
+                }))?;
             }
         }
         Event::KeyDown {
@@ -49,6 +55,8 @@ pub fn handle(
             ..
         } => match key {
             Keycode::Escape => return Ok(false),
+            Keycode::B => view.selected_skill = SelectedSkill::Basher,
+            Keycode::D => view.selected_skill = SelectedSkill::Digger,
             Keycode::Left => view.scroll(-16, width),
             Keycode::Right => view.scroll(16, width),
             Keycode::Home => view.scroll(i32::MIN, width),
@@ -95,6 +103,7 @@ pub fn parse_replay(
             ["Pause"] => InputCommand::Pause,
             ["Resume"] => InputCommand::Resume,
             ["AssignDigger", id] => InputCommand::Custom(StartupCommand::AssignDigger(id.parse()?)),
+            ["AssignBasher", id] => InputCommand::Custom(StartupCommand::AssignBasher(id.parse()?)),
             ["SetReleaseRate", rate] => {
                 InputCommand::Custom(StartupCommand::SetReleaseRate(rate.parse()?))
             }
@@ -133,6 +142,31 @@ mod tests {
             Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap(),
             View::new(0),
         )
+    }
+    #[test]
+    fn basher_selection_records_id_and_digger_selection_restores_default() {
+        let (mut s, mut v) = setup();
+        for _ in 0..80 {
+            s.tick().unwrap();
+        }
+        let a = s.actors[0].state();
+        let click = Event::MouseButtonDown {
+            timestamp: 0,
+            window_id: 0,
+            which: 0,
+            mouse_btn: MouseButton::Left,
+            clicks: 1,
+            x: a.x,
+            y: a.y - 5,
+        };
+        handle(key(Keycode::B, false), &mut s, &mut v, 640, false).unwrap();
+        handle(click.clone(), &mut s, &mut v, 640, false).unwrap();
+        handle(key(Keycode::D, false), &mut s, &mut v, 640, false).unwrap();
+        handle(click, &mut s, &mut v, 640, false).unwrap();
+        assert_eq!(
+            parse_replay("80 0 AssignBasher 0\n80 1 AssignDigger 0", Some(340)).unwrap(),
+            s.inputs
+        );
     }
     #[test]
     fn rapid_toggles_and_rates_preserve_event_order_and_clamp() {
