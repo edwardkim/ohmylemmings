@@ -43,4 +43,14 @@
 
 ## 게시
 
-로컬 구현·원본 대조를 마쳤으며 `main` 게시·실제 GitHub Actions·원격 tree를 확인한 뒤 이 절을 갱신합니다. 다음은 별도 이슈로 진행할 G03-04 VGAGR 비트플레인·마스크 해석입니다.
+구현 커밋 `799a4b00d4d4d3c547388613814f2a8fd34e4b49`을 `main`에 게시했습니다. [push CI 실행](https://github.com/edwardkim/ohmylemmings/actions/runs/39113258808)의 결론과 세 작업이 모두 success입니다.
+
+| 작업 | 실제 실행 근거 |
+|---|---|
+| [Rust native](https://github.com/edwardkim/ohmylemmings/actions/runs/39113258808/job/117633680603) | Rust 1.93.1, 포맷·Clippy·빌드, 단위 81개·문서 예제 7개 성공 |
+| [Python tooling](https://github.com/edwardkim/ohmylemmings/actions/runs/39113258808/job/117633680679) | Python 3.12.15, 테스트 8개 성공 |
+| [WASM libraries](https://github.com/edwardkim/ohmylemmings/actions/runs/39113258808/job/117633680504) | 고정 Rust·WASM 타깃, 두 라이브러리 컴파일 성공 |
+
+push 이벤트·대상 SHA·세 작업·실제 로그의 테스트 개수와 clean-input 성공을 확인했습니다. CI는 원본·기존 target·Cargo 패키지 캐시 없는 러너에서 통과했습니다. 원격 tree API의 파일 79개 모드·blob 해시가 로컬과 모두 일치했으며 원본·JSONL·손상 샘플·빌드 출력은 추적하지 않습니다.
+
+G03-03 메타데이터·팔레트 범위를 완료했습니다. 상위 #1의 전체 G03는 이미지 해석·지형 재구성이 남아 진행 중이며 G00·G01·G02만 완료 상태를 유지합니다. 최종 문서 게시·CI와 #12 종료는 GitHub 이슈 기록에서 추적합니다. 다음은 별도 이슈로 진행할 G03-04 VGAGR 비트플레인·마스크 해석입니다.
