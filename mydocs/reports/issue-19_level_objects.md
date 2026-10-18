@@ -30,10 +30,20 @@
 
 ## 게시 상태
 
-로컬 구현·검증을 완료했습니다. main 게시·실제 CI·원격 tree를 확인한 뒤 이 절과 상위 #1을 갱신하고 #19를 종료합니다. 원본·PNG·바이너리·JSONL·소스 사본·빌드 출력은 추적하지 않습니다.
+구현 커밋 `62d46ba343df18e890b1a68ba356a509ebf492e4`를 main에 게시했습니다. [push CI 실행](https://github.com/edwardkim/ohmylemmings/actions/runs/39125061400)의 결론과 세 작업이 모두 success입니다.
+
+| 작업 | 실제 실행 근거 |
+|---|---|
+| [Python tooling](https://github.com/edwardkim/ohmylemmings/actions/runs/39125061400/job/117668325861) | Python 3.12.15, 테스트 8개 성공 |
+| [Rust native](https://github.com/edwardkim/ohmylemmings/actions/runs/39125061400/job/117668325909) | Rust 1.93.1, 포맷·Clippy·빌드·단위 183개·문서 예제 14개 성공 |
+| [WASM libraries](https://github.com/edwardkim/ohmylemmings/actions/runs/39125061400/job/117668325716) | 고정 Rust·WASM 타깃, 두 라이브러리 컴파일 성공 |
+
+push 이벤트·대상 SHA·실제 로그·테스트 개수·clean-input 성공을 대조했습니다. 원본·기존 target·Cargo 패키지 캐시 없는 러너에서 통과했습니다. 원격 tree API의 파일 121개 모드·blob 해시가 로컬과 일치했고 작업 트리는 깨끗합니다. 원본·PNG·바이너리·JSONL·소스 사본·빌드 출력은 추적하지 않습니다.
+
+최종 문서 게시·CI·상위 #1 갱신·#19 종료는 GitHub 이슈 기록에서 추적합니다.
 
 ## G03 완료 판단과 다음 범위
 
-G03-01~09의 형식 fixture·전체 원본 이미지 대조에 객체 합성 증거를 더했습니다. G03의 완료 기준인 확인된 리소스 형식 검증과 기준 레벨 지형·객체·이미지 재구성을 충족했으며 게시·실제 CI 확인 후 전체 완료로 반영합니다. 미해석 UI 범위·MAIN 구간 5는 원문을 유지하고 사운드는 G10에서 다룹니다.
+G03-01~09의 형식 fixture·전체 원본 이미지 대조에 객체 합성 증거를 더했습니다. G03의 완료 기준인 확인된 리소스 형식 검증과 기준 레벨 지형·객체·이미지 재구성을 충족했으며 실제 CI·원격 게시까지 확인해 G03 전체를 완료했습니다. 미해석 UI 범위·MAIN 구간 5는 원문을 유지하고 사운드는 G10에서 다룹니다.
 
 트리거·강철/충돌·행동 틱·애니메이션 스케줄·사운드·플랫폼 화면·실제 DOS 실행은 후속 범위입니다. 다음 구현은 새 이슈의 **G04-01 픽셀 지형 읽기·경계 검증**입니다.
