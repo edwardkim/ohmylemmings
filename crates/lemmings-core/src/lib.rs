@@ -28,3 +28,8 @@ pub use simulation::{
     SpawnRequest, StartupCommand, StartupConfig, StartupConfigError, StartupEvent,
     StartupScheduler, StartupState,
 };
+
+pub use simulation::{
+    Actor, ActorState, ActorTick, EntrancePoint, MotionAction, MotionDirection, MotionError,
+    MotionOutcome, MotionRules, RemovalReason, step_actors,
+};

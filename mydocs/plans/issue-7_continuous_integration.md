@@ -18,10 +18,12 @@ Rustup의 최초 도구 체인·타깃 설치에는 네트워크가 필요할 �
 |---|---|
 | `make check` | 아래 세 검사 전체 |
 | `make check-rust` | rustfmt, Clippy 경고 금지, workspace 빌드, 단위·문서 테스트 |
-| `make check-python` | `tools/tests/`의 unittest |
+| `make check-python` | `tools/tests/`의 unittest와 개체 이동 독립 모델/golden 검사 |
 | `make check-wasm` | `wasm32-unknown-unknown`용 두 라이브러리 빌드 |
 
 개별 Cargo 명령과 API 경계는 [G01-01 설계](issue-6_rust_workspace.md)를 참고합니다. WASM 검사는 라이브러리 컴파일이며 게임·브라우저 실행은 후속 목표에서 도입합니다.
+
+[#25 이동 검증](../tech_insights/issue-25_actor_motion.md)의 독립 Python 모델은 원본 없이 전체 합성 golden을 다시 계산합니다. Rust 테스트는 저장된 기대값과 구현을, Python 검사는 그 기대값과 독립 모델을 대조합니다.
 
 ## GitHub Actions
 

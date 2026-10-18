@@ -6,7 +6,7 @@
 
 [프로젝트 기획서](issue-1_rusty_lemmings.md)의 원본 호환 Rust 엔진을 작고 검증 가능한 목표로 나눕니다. 데스크톱과 웹에서 기준판의 레벨·직업·게임 규칙·사운드를 재현하는 것이 최종 목표입니다.
 
-G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. [#2](https://github.com/edwardkim/ohmylemmings/issues/2)의 원작 확보, [#3](https://github.com/edwardkim/ohmylemmings/issues/3)의 소스 고정과 [#5](https://github.com/edwardkim/ohmylemmings/issues/5)의 비교 계약을 갖췄습니다. [#6](https://github.com/edwardkim/ohmylemmings/issues/6)의 Rust workspace와 [#7](https://github.com/edwardkim/ohmylemmings/issues/7)의 실제 CI 검증을 완료했습니다. [#8 구간 읽기](../tech_insights/issue-8_dat_sections.md)와 [#9 압축 해제](../tech_insights/issue-9_dat_decompression.md)의 합성 테스트·원본 대조·실제 CI로 G02의 완료 기준을 충족했습니다. [#10 기본 레벨 레코드](../tech_insights/issue-10_level_records.md)에 이어 [#11 ODDTABLE·카탈로그](../tech_insights/issue-11_level_catalog.md)도 마쳤습니다. [#12 GROUND 메타데이터·팔레트](../tech_insights/issue-12_ground_metadata.md)도 합성 테스트·원본 5개 전체 필드 대조·실제 CI를 통과해 완료했습니다. [#13 VGAGR 비트플레인·마스크](../tech_insights/issue-13_vgagr_images.md)도 합성 테스트·원본 전체 픽셀 대조·실제 CI를 통과해 완료했습니다. [#14 VGASPEC 특수 배경](../tech_insights/issue-14_vgaspec_backgrounds.md)도 합성 테스트·원본 전체 픽셀 대조·실제 CI를 통과해 완료했습니다. [#15 초기 지형 합성](../tech_insights/issue-15_level_terrain.md)도 전체 120개 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [#16 MAIN.DAT 레밍 스프라이트](../tech_insights/issue-16_lemming_sprites.md)도 전체 프레임 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [#17 MAIN.DAT UI·폰트](../tech_insights/issue-17_main_ui.md)도 지원 이미지/글리프 전체 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [#18 MAIN.DAT 마스크·카운트다운](../tech_insights/issue-18_main_masks.md)도 전체 비트 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [G03-10 / #19](../tech_insights/issue-19_level_objects.md)의 객체 합성·전체 대조·게시·실제 CI까지 확인해 G03 전체를 완료했습니다. [G04-01 / #20](../tech_insights/issue-20_terrain_mask.md)의 읽기 전용 마스크·경계·전수 대조·게시·실제 CI까지 확인했습니다. [G04-02 / #21](../tech_insights/issue-21_terrain_edits.md)의 셀 쓰기·전수 대조·게시·실제 CI까지 확인했습니다. [G04-03 / #22](../tech_insights/issue-22_terrain_bulk.md)의 영역/마스크 변형·전수 대조·게시·실제 CI까지 확인해 G04 전체를 완료했습니다. [G05-01 / #23](../tech_insights/issue-23_fixed_ticks.md)의 17Hz 시간·경계 입력·카운터 골격과 전수 재생·게시·실제 CI까지 확인했습니다. [G05-02 / #24](../tech_insights/issue-24_startup_schedule.md)의 시작 시계·PauseGlitch·입구/생성 스케줄과 전수 재생·게시·실제 CI까지 확인했습니다. G05 전체는 진행 중이고 나머지 구현 목표는 선행 작업을 기다립니다.
+G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. [#2](https://github.com/edwardkim/ohmylemmings/issues/2)의 원작 확보, [#3](https://github.com/edwardkim/ohmylemmings/issues/3)의 소스 고정과 [#5](https://github.com/edwardkim/ohmylemmings/issues/5)의 비교 계약을 갖췄습니다. [#6](https://github.com/edwardkim/ohmylemmings/issues/6)의 Rust workspace와 [#7](https://github.com/edwardkim/ohmylemmings/issues/7)의 실제 CI 검증을 완료했습니다. [#8 구간 읽기](../tech_insights/issue-8_dat_sections.md)와 [#9 압축 해제](../tech_insights/issue-9_dat_decompression.md)의 합성 테스트·원본 대조·실제 CI로 G02의 완료 기준을 충족했습니다. [#10 기본 레벨 레코드](../tech_insights/issue-10_level_records.md)에 이어 [#11 ODDTABLE·카탈로그](../tech_insights/issue-11_level_catalog.md)도 마쳤습니다. [#12 GROUND 메타데이터·팔레트](../tech_insights/issue-12_ground_metadata.md)도 합성 테스트·원본 5개 전체 필드 대조·실제 CI를 통과해 완료했습니다. [#13 VGAGR 비트플레인·마스크](../tech_insights/issue-13_vgagr_images.md)도 합성 테스트·원본 전체 픽셀 대조·실제 CI를 통과해 완료했습니다. [#14 VGASPEC 특수 배경](../tech_insights/issue-14_vgaspec_backgrounds.md)도 합성 테스트·원본 전체 픽셀 대조·실제 CI를 통과해 완료했습니다. [#15 초기 지형 합성](../tech_insights/issue-15_level_terrain.md)도 전체 120개 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [#16 MAIN.DAT 레밍 스프라이트](../tech_insights/issue-16_lemming_sprites.md)도 전체 프레임 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [#17 MAIN.DAT UI·폰트](../tech_insights/issue-17_main_ui.md)도 지원 이미지/글리프 전체 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [#18 MAIN.DAT 마스크·카운트다운](../tech_insights/issue-18_main_masks.md)도 전체 비트 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [G03-10 / #19](../tech_insights/issue-19_level_objects.md)의 객체 합성·전체 대조·게시·실제 CI까지 확인해 G03 전체를 완료했습니다. [G04-01 / #20](../tech_insights/issue-20_terrain_mask.md)의 읽기 전용 마스크·경계·전수 대조·게시·실제 CI까지 확인했습니다. [G04-02 / #21](../tech_insights/issue-21_terrain_edits.md)의 셀 쓰기·전수 대조·게시·실제 CI까지 확인했습니다. [G04-03 / #22](../tech_insights/issue-22_terrain_bulk.md)의 영역/마스크 변형·전수 대조·게시·실제 CI까지 확인해 G04 전체를 완료했습니다. [G05-01 / #23](../tech_insights/issue-23_fixed_ticks.md)의 17Hz 시간·경계 입력·카운터 골격과 전수 재생·게시·실제 CI까지 확인했습니다. [G05-02 / #24](../tech_insights/issue-24_startup_schedule.md)의 시작 시계·PauseGlitch·입구/생성 스케줄과 전수 재생·게시·실제 CI까지 확인했습니다. [G05-03 / #25](../tech_insights/issue-25_actor_motion.md)의 기본 개체 이동/제거·전수/통합 재생을 로컬 검증했으며 게시·실제 CI를 확인 중입니다. G05 전체는 진행 중이고 나머지 구현 목표는 선행 작업을 기다립니다.
 
 [호환성 기준](../tech_insights/issue-5_compatibility_baseline.md)의 전체 120개 진입점·직업 8종·음악 21개·효과음 18개와 COMP-01~18을 검증 범위로 사용합니다. DOS 실행 대조·기준 추적·음원 매핑은 G05~G11의 실행 증거로 확인합니다. 미검증 항목은 통과로 계산하지 않습니다.
 
@@ -40,7 +40,7 @@ G02~G03 리소스 처리와 G04~G05 코어 개발은 G01 이후 분리해 진행
 
 ## 초기 실행 순서
 
-G00·G01·G02와 **G03-01 / #10**, **G03-02 ODDTABLE·표시 카탈로그 / #11**을 마쳤습니다. **G03-03 GROUND 메타데이터·팔레트 / #12**도 완료했습니다. **G03-04 VGAGR 비트플레인·마스크 / #13**도 완료했습니다. **G03-05 VGASPEC 특수 배경 / #14**도 완료했습니다. **G03-06 레벨 지형 재구성 / #15**도 완료했습니다. **G03-07 MAIN.DAT 레밍 스프라이트 / #16**도 완료했습니다. **G03-08 MAIN.DAT UI·폰트 / #17**도 완료했습니다. **G03-09 MAIN.DAT 마스크·카운트다운 / #18**도 완료했습니다. **G03-10 / #19**의 객체 합성·전체 대조·게시·실제 CI를 확인해 G03 전체를 완료했습니다. **G04-01 / #20**의 읽기·경계 검증·게시·실제 CI를 완료했습니다. **G04-02 / #21**도 전수 대조·게시·실제 CI를 통과해 완료했습니다. **G04-03 / #22**의 전수 대조·게시·실제 CI로 G04 전체 완료 기준을 충족했습니다. **G05-01 / #23**도 합성 분할/재생·게시·실제 CI를 통과해 완료했습니다. **G05-02 / #24**도 합성 경계/재생·게시·실제 CI를 통과해 완료했습니다. 다음 후보는 별도 이슈의 **G05-03 걷기·낙하·방향 전환·제거**입니다.
+G00·G01·G02와 **G03-01 / #10**, **G03-02 ODDTABLE·표시 카탈로그 / #11**을 마쳤습니다. **G03-03 GROUND 메타데이터·팔레트 / #12**도 완료했습니다. **G03-04 VGAGR 비트플레인·마스크 / #13**도 완료했습니다. **G03-05 VGASPEC 특수 배경 / #14**도 완료했습니다. **G03-06 레벨 지형 재구성 / #15**도 완료했습니다. **G03-07 MAIN.DAT 레밍 스프라이트 / #16**도 완료했습니다. **G03-08 MAIN.DAT UI·폰트 / #17**도 완료했습니다. **G03-09 MAIN.DAT 마스크·카운트다운 / #18**도 완료했습니다. **G03-10 / #19**의 객체 합성·전체 대조·게시·실제 CI를 확인해 G03 전체를 완료했습니다. **G04-01 / #20**의 읽기·경계 검증·게시·실제 CI를 완료했습니다. **G04-02 / #21**도 전수 대조·게시·실제 CI를 통과해 완료했습니다. **G04-03 / #22**의 전수 대조·게시·실제 CI로 G04 전체 완료 기준을 충족했습니다. **G05-01 / #23**도 합성 분할/재생·게시·실제 CI를 통과해 완료했습니다. **G05-02 / #24**도 합성 경계/재생·게시·실제 CI를 통과해 완료했습니다. **G05-03 / #25**는 로컬 구현·전수/통합 재생을 마쳤으며 게시·실제 CI를 확인 중입니다. 다음 후보는 별도 이슈의 **G05-04 상태 추적·재생·기준 실행 대조**입니다.
 
 1. **G00-01 기준판 식별 / #2 완료:** DOS 바이트 프로필·출처·해시로 입력을 고정했습니다. 소매판 리비전 이름은 부가 정보로 기록합니다.
 2. **G00-02 레퍼런스 고정 / #3 완료:** 참고 커밋·파일·함수·역할을 고정했습니다.
@@ -70,14 +70,16 @@ G00·G01·G02와 **G03-01 / #10**, **G03-02 ODDTABLE·표시 카탈로그 / #11*
 
 22. **G05-02 / #24 완료:** 시작 시계·PauseGlitch·입구/RR·생성 요청과 4000개 설정의 세 패턴 전수 재생·[실제 CI·원격 게시](../reports/issue-24_startup_schedule.md)를 확인했습니다. G05 전체는 진행 중입니다.
 
+23. **G05-03 / #25:** Walking/Jumping/Falling/Splatting·프레임·경계·ID 순 배치·생성 틱 연결과 독립 전수/통합 재생을 로컬 검증했으며 게시·실제 CI를 확인 중입니다.
+
 ## G05 분할 순서
 
 - **G05-01 / #23 완료:** 고정 틱·순서 있는 입력·제어/진행 카운터 골격. 게임 단계와 렌더링에서 분리합니다.
 - **G05-02 / #24 완료:** 시작 시계·PauseGlitch·입구 개방·RR/생성 카운트다운·안정된 생성 ID의 합성 경계·독립 모델·게시·실제 CI를 확인했습니다.
-- **G05-03 후보:** 생성 개체의 걷기·낙하·방향 전환·제거와 순서 있는 지형 조회. 경계/낙하 fixture를 검증합니다.
+- **G05-03 / #25:** 개체 이동·프레임·경계/제거·ID 순 갱신과 독립 모델 검증을 마쳤으며 게시·실제 CI를 확인 중입니다.
 - **G05-04 후보:** 세션/개체 상태 추적·입력 재생과 기준 실행 대조. 같은 상태/입력·다른 렌더링 빈도의 논리 결과를 확인합니다.
 
-후보는 각각 이슈를 먼저 등록·확인하고 착수합니다. G05-01~02만으로 G05 전체나 COMP-04~06을 완료 처리하지 않습니다. 원본 리소스 연결과 플랫폼 화면은 G06에서 통합합니다.
+후보는 각각 이슈를 먼저 등록·확인하고 착수합니다. G05-01~03만으로 G05 전체나 COMP-04~06을 완료 처리하지 않습니다. 원본 리소스 연결과 플랫폼 화면은 G06에서 통합합니다.
 
 ## 첫 번째 실행 결과와 확장 순서
 

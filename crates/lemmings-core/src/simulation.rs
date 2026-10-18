@@ -1,6 +1,7 @@
 //! Deterministic timing, immutable boundary inputs and startup scheduling.
 mod clock;
 mod input;
+mod motion;
 mod startup;
 mod stepper;
 
@@ -11,4 +12,9 @@ pub use stepper::{InvalidStepState, StepEvent, StepOutcome, StepOverflow, StepSt
 pub use startup::{
     SpawnRequest, StartupCommand, StartupConfig, StartupConfigError, StartupEvent,
     StartupScheduler, StartupState,
+};
+
+pub use motion::{
+    Actor, ActorState, ActorTick, EntrancePoint, MotionAction, MotionDirection, MotionError,
+    MotionOutcome, MotionRules, RemovalReason, step_actors,
 };

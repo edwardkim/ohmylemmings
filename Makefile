@@ -10,6 +10,7 @@ check-rust:
 
 check-python:
 	python3 -m unittest discover -s tools/tests -v
+	python3 crates/lemmings-core/tests/fixtures/motion_reference.py
 
 check-wasm:
 	cargo build --workspace --lib --target wasm32-unknown-unknown --locked --offline
