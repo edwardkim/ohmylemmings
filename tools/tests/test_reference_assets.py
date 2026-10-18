@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from zipfile import ZipFile
 
-from tools.reference_assets import fetch_assets, verify_assets
+from tools.reference_assets import checked_bytes, fetch_assets, verify_assets
 
 
 class ReferenceAssetsTests(unittest.TestCase):
@@ -76,3 +76,23 @@ class ReferenceAssetsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Invalid flat asset filename"):
             self.fetch()
         self.assertFalse((self.destination.parent / "escape.dat").exists())
+
+    def test_source_symbol_location_accepts_original_text_encoding(self):
+        data = b"// caf\xe9\r\nfunction HandleTick;\r\n"
+        entry = {
+            **self.identity(data),
+            "text_encoding": "cp1252",
+            "symbols": [{"name": "HandleTick", "line": 2, "needle": "function HandleTick;"}],
+        }
+        self.assertEqual(checked_bytes(data, entry, "source.pas"), data)
+
+    def test_correct_source_hash_does_not_accept_incorrect_symbol_location(self):
+        data = b"// comment\nfunction HandleTick;\n"
+        for line in (0, 1, 99):
+            with self.subTest(line=line):
+                entry = {
+                    **self.identity(data),
+                    "symbols": [{"name": "HandleTick", "line": line, "needle": "function HandleTick;"}],
+                }
+                with self.assertRaisesRegex(ValueError, "source symbol location mismatch"):
+                    checked_bytes(data, entry, "source.pas")

@@ -1,0 +1,2178 @@
+{
+  "schema_version": 1,
+  "profile": "reference-sources",
+  "local_directory": "assets/local/reference-sources",
+  "projects": [
+    {
+      "id": "lemmix",
+      "repository": "ericlangedijk/Lemmix",
+      "commit": "40e9bc34451f0e9127fd53b290a3877e700d143d",
+      "role": "DOSORIG physics, tick order, and resource cross-checks",
+      "license_notice_path": "Licence.txt",
+      "license_label": "Project-specific notice (see locked Licence.txt)"
+    },
+    {
+      "id": "lemmings-ts",
+      "repository": "tomsoftware/Lemmings.ts",
+      "commit": "10c7c8b9167258503d02589cf048e2d83a43dd0a",
+      "role": "Binary parsing, resource assembly, and browser platform structure",
+      "license_notice_path": "LICENSE",
+      "license_label": "MIT"
+    }
+  ],
+  "sources": [
+    {
+      "id": "lemmix--root",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/ericlangedijk/Lemmix/40e9bc34451f0e9127fd53b290a3877e700d143d/"
+    },
+    {
+      "id": "lemmix--src",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/ericlangedijk/Lemmix/40e9bc34451f0e9127fd53b290a3877e700d143d/src/"
+    },
+    {
+      "id": "lemmings-ts--root",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/tomsoftware/Lemmings.ts/10c7c8b9167258503d02589cf048e2d83a43dd0a/"
+    },
+    {
+      "id": "lemmings-ts--public-data",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/tomsoftware/Lemmings.ts/10c7c8b9167258503d02589cf048e2d83a43dd0a/public/data/"
+    },
+    {
+      "id": "lemmings-ts--src-game-resources-file",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/tomsoftware/Lemmings.ts/10c7c8b9167258503d02589cf048e2d83a43dd0a/src/game/resources/file/"
+    },
+    {
+      "id": "lemmings-ts--src-game-resources-lemmings",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/tomsoftware/Lemmings.ts/10c7c8b9167258503d02589cf048e2d83a43dd0a/src/game/resources/lemmings/"
+    },
+    {
+      "id": "lemmings-ts--src-game-resources",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/tomsoftware/Lemmings.ts/10c7c8b9167258503d02589cf048e2d83a43dd0a/src/game/resources/"
+    },
+    {
+      "id": "lemmings-ts--src-game-game-play",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/tomsoftware/Lemmings.ts/10c7c8b9167258503d02589cf048e2d83a43dd0a/src/game/game-play/"
+    },
+    {
+      "id": "lemmings-ts--src-game",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/tomsoftware/Lemmings.ts/10c7c8b9167258503d02589cf048e2d83a43dd0a/src/game/"
+    },
+    {
+      "id": "lemmings-ts--src-game-view",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/tomsoftware/Lemmings.ts/10c7c8b9167258503d02589cf048e2d83a43dd0a/src/game/view/"
+    },
+    {
+      "id": "lemmings-ts--src-game-resources-sound",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/tomsoftware/Lemmings.ts/10c7c8b9167258503d02589cf048e2d83a43dd0a/src/game/resources/sound/"
+    },
+    {
+      "id": "lemmings-ts--src-game-game-play-actions",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/tomsoftware/Lemmings.ts/10c7c8b9167258503d02589cf048e2d83a43dd0a/src/game/game-play/actions/"
+    }
+  ],
+  "files": [
+    {
+      "name": "lemmix__Licence.txt",
+      "path": "Licence.txt",
+      "source": "lemmix--root",
+      "project": "lemmix",
+      "origin_path": "Licence.txt",
+      "size": 1163,
+      "sha256": "3895343e2786d1d4611b7897322175306c24de4d5021cf6a68603bfa3f0f71e7",
+      "git_blob_sha1": "a71a9156ee96651f555e17c1d974921b688fcbcf",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": []
+    },
+    {
+      "name": "lemmix__src__Dos.Consts.pas",
+      "path": "Dos.Consts.pas",
+      "source": "lemmix--src",
+      "project": "lemmix",
+      "origin_path": "src/Dos.Consts.pas",
+      "size": 16284,
+      "sha256": "8f66f615eb80858d50a794554e2a8be4db48ca45ec6309d96af5126c88a1c466",
+      "git_blob_sha1": "86c27941207e076569ac3d3463f71f5890421df6",
+      "text_encoding": "cp1252",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "DOS_FRAMES_PER_SECOND",
+          "line": 39,
+          "needle": "DOS_FRAMES_PER_SECOND ="
+        },
+        {
+          "name": "DOSORIG_MECHANICS",
+          "line": 241,
+          "needle": "DOSORIG_MECHANICS ="
+        }
+      ]
+    },
+    {
+      "name": "lemmix__src__Dos.Compression.pas",
+      "path": "Dos.Compression.pas",
+      "source": "lemmix--src",
+      "project": "lemmix",
+      "origin_path": "src/Dos.Compression.pas",
+      "size": 22933,
+      "sha256": "a3201f7d9fa4452b3679c8eb865a4315bbf362507997804651dc4b964b8ade4d",
+      "git_blob_sha1": "16036d7cec80866922e7075b98d73fe0ac99f23d",
+      "text_encoding": "cp1252",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "TCompressionHeaderRec",
+          "line": 28,
+          "needle": "TCompressionHeaderRec ="
+        },
+        {
+          "name": "TDosDatDecompressor.GetNextBits",
+          "line": 174,
+          "needle": "function TDosDatDecompressor.GetNextBits("
+        },
+        {
+          "name": "TDosDatDecompressor.CopyPrevData",
+          "line": 193,
+          "needle": "procedure TDosDatDecompressor.CopyPrevData("
+        },
+        {
+          "name": "TDosDatDecompressor.DumpData",
+          "line": 206,
+          "needle": "procedure TDosDatDecompressor.DumpData("
+        },
+        {
+          "name": "TDosDatDecompressor.Decompress",
+          "line": 219,
+          "needle": "function TDosDatDecompressor.Decompress("
+        },
+        {
+          "name": "TDosDatDecompressor.DecompressSection",
+          "line": 255,
+          "needle": "function TDosDatDecompressor.DecompressSection("
+        },
+        {
+          "name": "TDosDatDecompressor.LoadSectionList",
+          "line": 324,
+          "needle": "procedure TDosDatDecompressor.LoadSectionList("
+        }
+      ]
+    },
+    {
+      "name": "lemmix__src__Dos.Structures.pas",
+      "path": "Dos.Structures.pas",
+      "source": "lemmix--src",
+      "project": "lemmix",
+      "origin_path": "src/Dos.Structures.pas",
+      "size": 12221,
+      "sha256": "7b719ac19f9ec3de8fa470528dc487d264b7f3d4188200a411b3c2d4e5d7c5c5",
+      "git_blob_sha1": "6d1445d5aab292ae03e1939f0790d75fd6d98d37",
+      "text_encoding": "cp1252",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "TLVLRec",
+          "line": 79,
+          "needle": "TLVLRec ="
+        },
+        {
+          "name": "TDosGroundRec",
+          "line": 163,
+          "needle": "TDosGroundRec ="
+        },
+        {
+          "name": "TDosOddTable",
+          "line": 202,
+          "needle": "TDosOddTable ="
+        },
+        {
+          "name": "TDosOddTable.LoadFromStream",
+          "line": 386,
+          "needle": "procedure TDosOddTable.LoadFromStream("
+        }
+      ]
+    },
+    {
+      "name": "lemmix__src__Dos.MainDat.pas",
+      "path": "Dos.MainDat.pas",
+      "source": "lemmix--src",
+      "project": "lemmix",
+      "origin_path": "src/Dos.MainDat.pas",
+      "size": 3041,
+      "sha256": "ad6ef05c749b8d65c081de376ffe8877abb566016fec8d486099a262a0099e3f",
+      "git_blob_sha1": "39321638122dfd60250618313271ef43b8b15999",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "TMainDatExtractor.EnsureLoaded",
+          "line": 62,
+          "needle": "procedure TMainDatExtractor.EnsureLoaded;"
+        },
+        {
+          "name": "TMainDatExtractor.ExtractAnimation",
+          "line": 77,
+          "needle": "procedure TMainDatExtractor.ExtractAnimation("
+        },
+        {
+          "name": "TMainDatExtractor.ExtractBitmap",
+          "line": 83,
+          "needle": "procedure TMainDatExtractor.ExtractBitmap("
+        }
+      ]
+    },
+    {
+      "name": "lemmix__src__Styles.Dos.pas",
+      "path": "Styles.Dos.pas",
+      "source": "lemmix--src",
+      "project": "lemmix",
+      "origin_path": "src/Styles.Dos.pas",
+      "size": 16326,
+      "sha256": "d9890fb5a736658637da2db35c6e74f92f7837636b38eec4ded13d4e2ffed2b2",
+      "git_blob_sha1": "e04180756c8b25ff05bbcacfbc3f986765a6f75e",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "TDosOrigStyle.GetMechanics",
+          "line": 176,
+          "needle": "function TDosOrigStyle.GetMechanics:"
+        },
+        {
+          "name": "TDosOrigLevelSystem.GetEntry",
+          "line": 183,
+          "needle": "procedure TDosOrigLevelSystem.GetEntry("
+        },
+        {
+          "name": "TDosOrigLevelSystem.DoInitializeLevelSystem",
+          "line": 214,
+          "needle": "procedure TDosOrigLevelSystem.DoInitializeLevelSystem;"
+        }
+      ]
+    },
+    {
+      "name": "lemmix__src__Game.pas",
+      "path": "Game.pas",
+      "source": "lemmix--src",
+      "project": "lemmix",
+      "origin_path": "src/Game.pas",
+      "size": 182303,
+      "sha256": "c1ba9ffda9e8e277f5c9b171df2bb611210d3326b9623b28fcd35426f4d6a448",
+      "git_blob_sha1": "f4dec15713bd17aca1cd142dab9cec2d36ac5f4d",
+      "text_encoding": "cp1252",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "TLemmingGame.InternalUpdate",
+          "line": 3408,
+          "needle": "procedure TLemmingGame.InternalUpdate("
+        },
+        {
+          "name": "TLemmingGame.IncrementIteration",
+          "line": 3498,
+          "needle": "procedure TLemmingGame.IncrementIteration;"
+        },
+        {
+          "name": "TLemmingGame.CheckSpawnLemming",
+          "line": 4001,
+          "needle": "procedure TLemmingGame.CheckSpawnLemming;"
+        },
+        {
+          "name": "TLemmingGame.CheckLemmings",
+          "line": 4440,
+          "needle": "procedure TLemmingGame.CheckLemmings;"
+        },
+        {
+          "name": "TLemmingGame.Transition",
+          "line": 1927,
+          "needle": "procedure TLemmingGame.Transition("
+        },
+        {
+          "name": "TLemmingGame.RemovePixelAt",
+          "line": 1838,
+          "needle": "procedure TLemmingGame.RemovePixelAt("
+        },
+        {
+          "name": "TLemmingGame.CheckForGameFinished",
+          "line": 2232,
+          "needle": "procedure TLemmingGame.CheckForGameFinished;"
+        },
+        {
+          "name": "TLemmingGame.CheckForInteractiveObjects",
+          "line": 2342,
+          "needle": "procedure TLemmingGame.CheckForInteractiveObjects("
+        },
+        {
+          "name": "TLemmingGame.ApplyExplosionMask",
+          "line": 2397,
+          "needle": "procedure TLemmingGame.ApplyExplosionMask("
+        },
+        {
+          "name": "TLemmingGame.ApplyBashingMask",
+          "line": 2412,
+          "needle": "procedure TLemmingGame.ApplyBashingMask("
+        },
+        {
+          "name": "TLemmingGame.ApplyMinerMask",
+          "line": 2439,
+          "needle": "procedure TLemmingGame.ApplyMinerMask("
+        },
+        {
+          "name": "TLemmingGame.LayBrick",
+          "line": 2737,
+          "needle": "procedure TLemmingGame.LayBrick("
+        },
+        {
+          "name": "TLemmingGame.CheckForPlaySoundEffect",
+          "line": 4127,
+          "needle": "procedure TLemmingGame.CheckForPlaySoundEffect;"
+        },
+        {
+          "name": "TLemmingGame.HandleLemming",
+          "line": 2795,
+          "needle": "function TLemmingGame.HandleLemming("
+        },
+        {
+          "name": "TLemmingGame.HasPixelAt",
+          "line": 1824,
+          "needle": "function TLemmingGame.HasPixelAt("
+        },
+        {
+          "name": "TLemmingGame.HandleWalking",
+          "line": 2826,
+          "needle": "function TLemmingGame.HandleWalking("
+        },
+        {
+          "name": "TLemmingGame.HandleFalling",
+          "line": 3210,
+          "needle": "function TLemmingGame.HandleFalling("
+        },
+        {
+          "name": "TLemmingGame.AssignSkill",
+          "line": 2021,
+          "needle": "function TLemmingGame.AssignSkill("
+        },
+        {
+          "name": "TLemmingGame.AssignClimber",
+          "line": 2039,
+          "needle": "function TLemmingGame.AssignClimber("
+        },
+        {
+          "name": "TLemmingGame.AssignFloater",
+          "line": 2059,
+          "needle": "function TLemmingGame.AssignFloater("
+        },
+        {
+          "name": "TLemmingGame.AssignBomber",
+          "line": 2075,
+          "needle": "function TLemmingGame.AssignBomber("
+        },
+        {
+          "name": "TLemmingGame.AssignBlocker",
+          "line": 2089,
+          "needle": "function TLemmingGame.AssignBlocker("
+        },
+        {
+          "name": "TLemmingGame.AssignBuilder",
+          "line": 2103,
+          "needle": "function TLemmingGame.AssignBuilder("
+        },
+        {
+          "name": "TLemmingGame.AssignBasher",
+          "line": 2129,
+          "needle": "function TLemmingGame.AssignBasher("
+        },
+        {
+          "name": "TLemmingGame.AssignMiner",
+          "line": 2162,
+          "needle": "function TLemmingGame.AssignMiner("
+        },
+        {
+          "name": "TLemmingGame.AssignDigger",
+          "line": 2195,
+          "needle": "function TLemmingGame.AssignDigger("
+        },
+        {
+          "name": "TLemmingGame.HandleClimbing",
+          "line": 2947,
+          "needle": "function TLemmingGame.HandleClimbing("
+        },
+        {
+          "name": "TLemmingGame.HandleFloating",
+          "line": 3255,
+          "needle": "function TLemmingGame.HandleFloating("
+        },
+        {
+          "name": "TLemmingGame.HandleBlocking",
+          "line": 3319,
+          "needle": "function TLemmingGame.HandleBlocking("
+        },
+        {
+          "name": "TLemmingGame.HandleBuilding",
+          "line": 2996,
+          "needle": "function TLemmingGame.HandleBuilding("
+        },
+        {
+          "name": "TLemmingGame.HandleBashing",
+          "line": 3056,
+          "needle": "function TLemmingGame.HandleBashing("
+        },
+        {
+          "name": "TLemmingGame.HandleMining",
+          "line": 3125,
+          "needle": "function TLemmingGame.HandleMining("
+        },
+        {
+          "name": "TLemmingGame.HandleDigging",
+          "line": 2907,
+          "needle": "function TLemmingGame.HandleDigging("
+        },
+        {
+          "name": "TLemmingGame.UpdateExplosionTimer",
+          "line": 2218,
+          "needle": "function TLemmingGame.UpdateExplosionTimer("
+        },
+        {
+          "name": "TLemmingGame.HandleExploding",
+          "line": 3363,
+          "needle": "function TLemmingGame.HandleExploding("
+        },
+        {
+          "name": "TLemmingGame.HandleOhNoing",
+          "line": 3338,
+          "needle": "function TLemmingGame.HandleOhNoing("
+        },
+        {
+          "name": "TLemmingGame.DigOneRow",
+          "line": 2767,
+          "needle": "function TLemmingGame.DigOneRow("
+        }
+      ]
+    },
+    {
+      "name": "lemmix__src__Game.Rendering.pas",
+      "path": "Game.Rendering.pas",
+      "source": "lemmix--src",
+      "project": "lemmix",
+      "origin_path": "src/Game.Rendering.pas",
+      "size": 18896,
+      "sha256": "1548af9273705b48b4d8641e25a54021288fdfcb5e166cfd7158380bd6085f10",
+      "git_blob_sha1": "69cea7096d2ca0147d92b9cb0f98240e2294757e",
+      "text_encoding": "cp1252",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "TRenderer.CombineTerrainErase",
+          "line": 407,
+          "needle": "class procedure TRenderer.CombineTerrainErase("
+        },
+        {
+          "name": "TRenderer.DrawTerrain",
+          "line": 473,
+          "needle": "procedure TRenderer.DrawTerrain("
+        },
+        {
+          "name": "TRenderer.RenderWorld",
+          "line": 571,
+          "needle": "procedure TRenderer.RenderWorld("
+        },
+        {
+          "name": "TRenderer.HasPixelAt",
+          "line": 654,
+          "needle": "function TRenderer.HasPixelAt("
+        }
+      ]
+    },
+    {
+      "name": "lemmix__src__Game.Sound.pas",
+      "path": "Game.Sound.pas",
+      "source": "lemmix--src",
+      "project": "lemmix",
+      "origin_path": "src/Game.Sound.pas",
+      "size": 17584,
+      "sha256": "93b5c76ff24a6ad7768f4f87b973e965ff682fce47475fea5280e0550600e2e3",
+      "git_blob_sha1": "690c768566587761bd648df465bf47b33e665420",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "SoundLibrary.PlayMusic",
+          "line": 233,
+          "needle": "class procedure SoundLibrary.PlayMusic("
+        },
+        {
+          "name": "TSoundMgr.AddMusicFromFileName",
+          "line": 413,
+          "needle": "function TSoundMgr.AddMusicFromFileName("
+        },
+        {
+          "name": "SoundData.Init",
+          "line": 461,
+          "needle": "class procedure SoundData.Init("
+        }
+      ]
+    },
+    {
+      "name": "lemmix__src__Level.Loader.pas",
+      "path": "Level.Loader.pas",
+      "source": "lemmix--src",
+      "project": "lemmix",
+      "origin_path": "src/Level.Loader.pas",
+      "size": 23199,
+      "sha256": "0fecf839ad86f253021c97d5a92c1c262cc06bfb149ae11ec81434578344ef24",
+      "git_blob_sha1": "ba1574a0b0694400b44f08f28582308708fe2f6d",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "TLevelLoader.LoadLVLFromStream",
+          "line": 53,
+          "needle": "class procedure TLevelLoader.LoadLVLFromStream("
+        },
+        {
+          "name": "TLevelLoader.TranslateLevel",
+          "line": 74,
+          "needle": "class procedure TLevelLoader.TranslateLevel(const LVL:"
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__LICENSE",
+      "path": "LICENSE",
+      "source": "lemmings-ts--root",
+      "project": "lemmings-ts",
+      "origin_path": "LICENSE",
+      "size": 1954,
+      "sha256": "e14e3d7b0b381729791cf13a54feb3148938732288df791458ff89fffdaeb949",
+      "git_blob_sha1": "2fa081c43499131d9082c5013a72bed4ff5f4827",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": []
+    },
+    {
+      "name": "lemmings-ts__public__data__config.json",
+      "path": "config.json",
+      "source": "lemmings-ts--public-data",
+      "project": "lemmings-ts",
+      "origin_path": "public/data/config.json",
+      "size": 5212,
+      "sha256": "9ae8aca2369b0ae097a4d278384ba9d51ed5e9621024dd3fb6c2149a4da0a653",
+      "git_blob_sha1": "e0d91c697df3316c4974ea3da70765477d5f9ed6",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": []
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__file__file-container.ts",
+      "path": "file-container.ts",
+      "source": "lemmings-ts--src-game-resources-file",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/file/file-container.ts",
+      "size": 2125,
+      "sha256": "b80c4b3d5a66c3f9bc56d2eb2a23c09261d14d0e49c3fa756d096aa1e7b625fe",
+      "git_blob_sha1": "44cef52d3e53abca6a30e4bb0ad94a2902eb1a5a",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "FileContainer",
+          "line": 6,
+          "needle": "export class FileContainer"
+        },
+        {
+          "name": "FileContainer.getPart",
+          "line": 17,
+          "needle": "public getPart("
+        },
+        {
+          "name": "FileContainer.count",
+          "line": 26,
+          "needle": "public count("
+        },
+        {
+          "name": "FileContainer.read",
+          "line": 31,
+          "needle": "private read("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__file__unpack-file-part.ts",
+      "path": "unpack-file-part.ts",
+      "source": "lemmings-ts--src-game-resources-file",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/file/unpack-file-part.ts",
+      "size": 2665,
+      "sha256": "6af4731f271f16bf2c4a1537719b366f4d610d641dea038671785c24a0384a3e",
+      "git_blob_sha1": "14bf5b3ef003f995db0012bdf5796234e72d3501",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "UnpackFilePart",
+          "line": 7,
+          "needle": "export class UnpackFilePart"
+        },
+        {
+          "name": "UnpackFilePart.unpack",
+          "line": 39,
+          "needle": "public unpack("
+        },
+        {
+          "name": "UnpackFilePart.doUnpacking",
+          "line": 55,
+          "needle": "private doUnpacking("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__file__binary-reader.ts",
+      "path": "binary-reader.ts",
+      "source": "lemmings-ts--src-game-resources-file",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/file/binary-reader.ts",
+      "size": 4703,
+      "sha256": "e9aa57961af72dea86d720906be77c74c5433a4c86aa5b6170674f8faabfa39e",
+      "git_blob_sha1": "8099a4169354a2fbd73058e0d3e5b125bdffa838",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "BinaryReader",
+          "line": 4,
+          "needle": "export class BinaryReader"
+        },
+        {
+          "name": "BinaryReader.readByte",
+          "line": 67,
+          "needle": "public readByte("
+        },
+        {
+          "name": "BinaryReader.readInt",
+          "line": 83,
+          "needle": "public readInt("
+        },
+        {
+          "name": "BinaryReader.readIntBE",
+          "line": 107,
+          "needle": "public readIntBE("
+        },
+        {
+          "name": "BinaryReader.readWord",
+          "line": 121,
+          "needle": "public readWord("
+        },
+        {
+          "name": "BinaryReader.readWordBE",
+          "line": 133,
+          "needle": "public readWordBE("
+        },
+        {
+          "name": "BinaryReader.readString",
+          "line": 146,
+          "needle": "public readString("
+        },
+        {
+          "name": "BinaryReader.getOffset",
+          "line": 165,
+          "needle": "public getOffset("
+        },
+        {
+          "name": "BinaryReader.setOffset",
+          "line": 170,
+          "needle": "public setOffset("
+        },
+        {
+          "name": "BinaryReader.eof",
+          "line": 175,
+          "needle": "public eof("
+        },
+        {
+          "name": "BinaryReader.readAll",
+          "line": 181,
+          "needle": "public readAll("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__file__bit-reader.ts",
+      "path": "bit-reader.ts",
+      "source": "lemmings-ts--src-game-resources-file",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/file/bit-reader.ts",
+      "size": 1376,
+      "sha256": "b99486420c6d1665963740bf5ee0edc56dc1260fbf4d0316890a5276a0816a11",
+      "git_blob_sha1": "406f69c8eda0fb223b3383624d4069f91639fd3a",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "BitReader",
+          "line": 4,
+          "needle": "export class BitReader"
+        },
+        {
+          "name": "BitReader.getCurrentChecksum",
+          "line": 27,
+          "needle": "public getCurrentChecksum("
+        },
+        {
+          "name": "BitReader.read",
+          "line": 33,
+          "needle": "public read("
+        },
+        {
+          "name": "BitReader.eof",
+          "line": 59,
+          "needle": "public eof("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__lemmings__level-reader.ts",
+      "path": "level-reader.ts",
+      "source": "lemmings-ts--src-game-resources-lemmings",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/lemmings/level-reader.ts",
+      "size": 4773,
+      "sha256": "bf17abb8e0c727469ef03af0b5a80e99f50fab6b43c81a3dd6f1b1cbf773d7b2",
+      "git_blob_sha1": "bd3625ba651753b7e2dc202a37e86fcd3e14549c",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "LevelReader",
+          "line": 10,
+          "needle": "export class LevelReader"
+        },
+        {
+          "name": "LevelReader.readLevelInfo",
+          "line": 46,
+          "needle": "private readLevelInfo("
+        },
+        {
+          "name": "LevelReader.readLevelObjects",
+          "line": 75,
+          "needle": "private readLevelObjects("
+        },
+        {
+          "name": "LevelReader.readLevelTerrain",
+          "line": 106,
+          "needle": "private readLevelTerrain("
+        },
+        {
+          "name": "LevelReader.readSteelArea",
+          "line": 140,
+          "needle": "private readSteelArea("
+        },
+        {
+          "name": "LevelReader.readLevelName",
+          "line": 175,
+          "needle": "private readLevelName("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__lemmings__ground-reader.ts",
+      "path": "ground-reader.ts",
+      "source": "lemmings-ts--src-game-resources-lemmings",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/lemmings/ground-reader.ts",
+      "size": 6013,
+      "sha256": "bb496017604d4287bfdd20f6432f957fb690843df64e7c0d2646bb77c7a785ef",
+      "git_blob_sha1": "937222729597efccee812c5977a34a61c4d1770c",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "GroundReader",
+          "line": 20,
+          "needle": "export class GroundReader"
+        },
+        {
+          "name": "GroundReader.getTerraImages",
+          "line": 61,
+          "needle": "public getTerraImages("
+        },
+        {
+          "name": "GroundReader.getObjectImages",
+          "line": 66,
+          "needle": "public getObjectImages("
+        },
+        {
+          "name": "GroundReader.readImages",
+          "line": 73,
+          "needle": "private readImages("
+        },
+        {
+          "name": "GroundReader.readObjectImages",
+          "line": 101,
+          "needle": "private readObjectImages("
+        },
+        {
+          "name": "GroundReader.readTerrainImages",
+          "line": 141,
+          "needle": "private readTerrainImages("
+        },
+        {
+          "name": "GroundReader.readPalettes",
+          "line": 169,
+          "needle": "private readPalettes("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__lemmings__vga-spec-reader.ts",
+      "path": "vga-spec-reader.ts",
+      "source": "lemmings-ts--src-game-resources-lemmings",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/lemmings/vga-spec-reader.ts",
+      "size": 4147,
+      "sha256": "71684e5c4d0f5019330e522be0f86f7b3c96973d3686b794fa82309d283ad088",
+      "git_blob_sha1": "c9f298acb66fc5f3926aa08f4e76afbc50424c28",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "VgaSpecReader",
+          "line": 9,
+          "needle": "export class VgaSpecReader"
+        },
+        {
+          "name": "VgaSpecReader.read",
+          "line": 28,
+          "needle": "private read("
+        },
+        {
+          "name": "VgaSpecReader.readImage",
+          "line": 48,
+          "needle": "private readImage("
+        },
+        {
+          "name": "VgaSpecReader.readPalettes",
+          "line": 125,
+          "needle": "private readPalettes("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__lemmings__odd-table-reader.ts",
+      "path": "odd-table-reader.ts",
+      "source": "lemmings-ts--src-game-resources-lemmings",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/lemmings/odd-table-reader.ts",
+      "size": 2281,
+      "sha256": "8bc490a9683188802383dcae1451c11f70ae59a7fa1f0e2d62f9c835315bca2f",
+      "git_blob_sha1": "d12ce83470f69cf5bb0be3a6015cb9d03f4b6979",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "OddTableReader",
+          "line": 8,
+          "needle": "export class OddTableReader"
+        },
+        {
+          "name": "OddTableReader.getLevelProperties",
+          "line": 16,
+          "needle": "public getLevelProperties("
+        },
+        {
+          "name": "OddTableReader.read",
+          "line": 30,
+          "needle": "private read("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__level-loader.ts",
+      "path": "level-loader.ts",
+      "source": "lemmings-ts--src-game-resources",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/level-loader.ts",
+      "size": 4900,
+      "sha256": "3479af97fa8a18e30416b4b691e919665900f2b9b4c7d31611acb4cbdba3900c",
+      "git_blob_sha1": "ac93478be4d5f3c8a60307736093c32a330d7264",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "LevelLoader",
+          "line": 16,
+          "needle": "export class LevelLoader"
+        },
+        {
+          "name": "LevelLoader.getLevel",
+          "line": 26,
+          "needle": "public async getLevel("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__level-index-resolve.ts",
+      "path": "level-index-resolve.ts",
+      "source": "lemmings-ts--src-game-resources",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/level-index-resolve.ts",
+      "size": 1521,
+      "sha256": "d18f6c2fa96a800d4383caa49f04d89fde3d40c7c62d2d94d66d5ce4ec8c8d16",
+      "git_blob_sha1": "9a41b5813576a88f216aa2f61556f2db6940d9d5",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "LevelIndexType",
+          "line": 4,
+          "needle": "export class LevelIndexType"
+        },
+        {
+          "name": "LevelIndexResolve",
+          "line": 20,
+          "needle": "export class LevelIndexResolve"
+        },
+        {
+          "name": "LevelIndexResolve.resolve",
+          "line": 27,
+          "needle": "public resolve("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__ground-renderer.ts",
+      "path": "ground-renderer.ts",
+      "source": "lemmings-ts--src-game-resources",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/ground-renderer.ts",
+      "size": 2489,
+      "sha256": "06253d44f191056877ccd5278dda172dd931770ebe440030668be9ed09938b3d",
+      "git_blob_sha1": "27c8d9b3f4f7296de60a69cdc999fa1f4b5d7b46",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "GroundRenderer",
+          "line": 9,
+          "needle": "export class GroundRenderer"
+        },
+        {
+          "name": "GroundRenderer.fromVgaSpecMap",
+          "line": 17,
+          "needle": "public static fromVgaSpecMap("
+        },
+        {
+          "name": "GroundRenderer.fromGroundMap",
+          "line": 23,
+          "needle": "public static fromGroundMap("
+        },
+        {
+          "name": "GroundRenderer.copyImageTo",
+          "line": 41,
+          "needle": "private static copyImageTo("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__solid-layer.ts",
+      "path": "solid-layer.ts",
+      "source": "lemmings-ts--src-game-resources",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/solid-layer.ts",
+      "size": 1290,
+      "sha256": "cf1cd1a45d2bb6fd7fb266ad69bfb0e7787ecde397b9990ecc830660c8c655e5",
+      "git_blob_sha1": "ed2f4ea51f2dff3f5b39249ac84c71992f031af9",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "SolidLayer",
+          "line": 4,
+          "needle": "export class SolidLayer"
+        },
+        {
+          "name": "SolidLayer.hasGroundAt",
+          "line": 14,
+          "needle": "public hasGroundAt("
+        },
+        {
+          "name": "SolidLayer.clearGroundAt",
+          "line": 31,
+          "needle": "public clearGroundAt("
+        },
+        {
+          "name": "SolidLayer.setGroundAt",
+          "line": 42,
+          "needle": "public setGroundAt("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__game-timer.ts",
+      "path": "game-timer.ts",
+      "source": "lemmings-ts--src-game-game-play",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/game-timer.ts",
+      "size": 3738,
+      "sha256": "72850cd8b87c670cb3d0d3ded3d9fbd5de5bfddb80d7d71b058fbfa450180846",
+      "git_blob_sha1": "bd5f9a716adae8eaa344befaf0b024af66e075e1",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "GameTimer",
+          "line": 4,
+          "needle": "export class GameTimer"
+        },
+        {
+          "name": "GameTimer.isRunning",
+          "line": 20,
+          "needle": "public isRunning("
+        },
+        {
+          "name": "GameTimer.suspend",
+          "line": 48,
+          "needle": "public suspend("
+        },
+        {
+          "name": "GameTimer.stop",
+          "line": 56,
+          "needle": "public stop("
+        },
+        {
+          "name": "GameTimer.toggle",
+          "line": 63,
+          "needle": "public toggle("
+        },
+        {
+          "name": "GameTimer.continue",
+          "line": 72,
+          "needle": "public continue("
+        },
+        {
+          "name": "GameTimer.tick",
+          "line": 84,
+          "needle": "public tick("
+        },
+        {
+          "name": "GameTimer.getGameTime",
+          "line": 91,
+          "needle": "public getGameTime("
+        },
+        {
+          "name": "GameTimer.getGameTicks",
+          "line": 96,
+          "needle": "public getGameTicks("
+        },
+        {
+          "name": "GameTimer.getGameLeftTime",
+          "line": 101,
+          "needle": "public getGameLeftTime("
+        },
+        {
+          "name": "GameTimer.getGameLeftTimeString",
+          "line": 109,
+          "needle": "public getGameLeftTimeString("
+        },
+        {
+          "name": "GameTimer.ticksToSeconds",
+          "line": 117,
+          "needle": "public ticksToSeconds("
+        },
+        {
+          "name": "GameTimer.secondsToTicks",
+          "line": 122,
+          "needle": "public secondsToTicks("
+        },
+        {
+          "name": "GameTimer.getGameTimeLimit",
+          "line": 127,
+          "needle": "public getGameTimeLimit("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__lemming-manager.ts",
+      "path": "lemming-manager.ts",
+      "source": "lemmings-ts--src-game-game-play",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/lemming-manager.ts",
+      "size": 11476,
+      "sha256": "2f1deb975023cb46b93368be784cd27d89b2252832dc72fc7283597a4acb928b",
+      "git_blob_sha1": "2060b30bfa897a590eb1f53101b5a9c8ba74e77f",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "LemmingManager",
+          "line": 33,
+          "needle": "export class LemmingManager"
+        },
+        {
+          "name": "LemmingManager.processNewAction",
+          "line": 89,
+          "needle": "private processNewAction("
+        },
+        {
+          "name": "LemmingManager.tick",
+          "line": 102,
+          "needle": "public tick("
+        },
+        {
+          "name": "LemmingManager.addLemming",
+          "line": 128,
+          "needle": "private addLemming("
+        },
+        {
+          "name": "LemmingManager.addNewLemmings",
+          "line": 139,
+          "needle": "private addNewLemmings("
+        },
+        {
+          "name": "LemmingManager.runTrigger",
+          "line": 159,
+          "needle": "private runTrigger("
+        },
+        {
+          "name": "LemmingManager.render",
+          "line": 192,
+          "needle": "public render("
+        },
+        {
+          "name": "LemmingManager.renderDebug",
+          "line": 201,
+          "needle": "public renderDebug("
+        },
+        {
+          "name": "LemmingManager.getLemming",
+          "line": 210,
+          "needle": "public getLemming("
+        },
+        {
+          "name": "LemmingManager.getLemmingAt",
+          "line": 215,
+          "needle": "public getLemmingAt("
+        },
+        {
+          "name": "LemmingManager.setLemmingState",
+          "line": 239,
+          "needle": "private setLemmingState("
+        },
+        {
+          "name": "LemmingManager.doLemmingAction",
+          "line": 264,
+          "needle": "public doLemmingAction("
+        },
+        {
+          "name": "LemmingManager.isNuking",
+          "line": 280,
+          "needle": "public isNuking("
+        },
+        {
+          "name": "LemmingManager.doNukeAllLemmings",
+          "line": 286,
+          "needle": "public doNukeAllLemmings("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__skill-types.ts",
+      "path": "skill-types.ts",
+      "source": "lemmings-ts--src-game-game-play",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/skill-types.ts",
+      "size": 692,
+      "sha256": "8867daa36dfb42aebbd6ada50e1d6e0dbf74263193e50e626f0175060129a42d",
+      "git_blob_sha1": "a1c7cd9245a760366a2851656df6b215706d0001",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "SkillTypes",
+          "line": 3,
+          "needle": "export enum SkillTypes"
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game.ts",
+      "path": "game.ts",
+      "source": "lemmings-ts--src-game",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game.ts",
+      "size": 8523,
+      "sha256": "061decb1ce88a38e322324360c9926a5ebc0b17a5576ac17293041a3ece00f6a",
+      "git_blob_sha1": "7d47280f24884aab7673a6d5077c9de1a6796a42",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "Game",
+          "line": 24,
+          "needle": "export class Game"
+        },
+        {
+          "name": "Game.constructor",
+          "line": 50,
+          "needle": "public constructor("
+        },
+        {
+          "name": "Game.setGameDisplay",
+          "line": 97,
+          "needle": "public setGameDisplay("
+        },
+        {
+          "name": "Game.setGuiDisplay",
+          "line": 113,
+          "needle": "public setGuiDisplay("
+        },
+        {
+          "name": "Game.loadLevel",
+          "line": 123,
+          "needle": "public static async loadLevel("
+        },
+        {
+          "name": "Game.start",
+          "line": 148,
+          "needle": "public start("
+        },
+        {
+          "name": "Game.stop",
+          "line": 153,
+          "needle": "public stop("
+        },
+        {
+          "name": "Game.getGameTimer",
+          "line": 163,
+          "needle": "public getGameTimer("
+        },
+        {
+          "name": "Game.cheat",
+          "line": 168,
+          "needle": "public cheat("
+        },
+        {
+          "name": "Game.getGameSkills",
+          "line": 176,
+          "needle": "public getGameSkills("
+        },
+        {
+          "name": "Game.getLemmingManager",
+          "line": 180,
+          "needle": "public getLemmingManager("
+        },
+        {
+          "name": "Game.getVictoryCondition",
+          "line": 184,
+          "needle": "public getVictoryCondition("
+        },
+        {
+          "name": "Game.getCommandManager",
+          "line": 188,
+          "needle": "public getCommandManager("
+        },
+        {
+          "name": "Game.queueCommand",
+          "line": 192,
+          "needle": "public queueCommand("
+        },
+        {
+          "name": "Game.setDebugMode",
+          "line": 201,
+          "needle": "public setDebugMode("
+        },
+        {
+          "name": "Game.onGameTimerTick",
+          "line": 206,
+          "needle": "private onGameTimerTick("
+        },
+        {
+          "name": "Game.getGameState",
+          "line": 215,
+          "needle": "public getGameState("
+        },
+        {
+          "name": "Game.checkForGameOver",
+          "line": 254,
+          "needle": "private checkForGameOver("
+        },
+        {
+          "name": "Game.runGameLogic",
+          "line": 274,
+          "needle": "private runGameLogic("
+        },
+        {
+          "name": "Game.render",
+          "line": 285,
+          "needle": "private render("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__view__stage.ts",
+      "path": "stage.ts",
+      "source": "lemmings-ts--src-game-view",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/view/stage.ts",
+      "size": 10299,
+      "sha256": "2dd72ccd24046909a4cbafd451b81b877090e21fced04bbfccaaa9c53b0eb306",
+      "git_blob_sha1": "dc2b78c8d3388299f5886332dbe792088c0b1f40",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "Stage",
+          "line": 7,
+          "needle": "export class Stage"
+        },
+        {
+          "name": "Stage.calcPosition2D",
+          "line": 36,
+          "needle": "private calcPosition2D("
+        },
+        {
+          "name": "Stage.handleOnDoubleClick",
+          "line": 44,
+          "needle": "private handleOnDoubleClick("
+        },
+        {
+          "name": "Stage.handleOnMouseDown",
+          "line": 59,
+          "needle": "private handleOnMouseDown("
+        },
+        {
+          "name": "Stage.handleOnMouseUp",
+          "line": 76,
+          "needle": "private handleOnMouseUp("
+        },
+        {
+          "name": "Stage.handleOnMouseMove",
+          "line": 96,
+          "needle": "private handleOnMouseMove("
+        },
+        {
+          "name": "Stage.handelOnZoom",
+          "line": 127,
+          "needle": "private handelOnZoom("
+        },
+        {
+          "name": "Stage.updateViewPoint",
+          "line": 142,
+          "needle": "private updateViewPoint("
+        },
+        {
+          "name": "Stage.limitValue",
+          "line": 169,
+          "needle": "private limitValue("
+        },
+        {
+          "name": "Stage.updateStageSize",
+          "line": 176,
+          "needle": "public updateStageSize("
+        },
+        {
+          "name": "Stage.getStageImageAt",
+          "line": 196,
+          "needle": "public getStageImageAt("
+        },
+        {
+          "name": "Stage.isPositionInStageImage",
+          "line": 208,
+          "needle": "private isPositionInStageImage("
+        },
+        {
+          "name": "Stage.getGameDisplay",
+          "line": 213,
+          "needle": "public getGameDisplay("
+        },
+        {
+          "name": "Stage.getGuiDisplay",
+          "line": 223,
+          "needle": "public getGuiDisplay("
+        },
+        {
+          "name": "Stage.setGameViewPointPosition",
+          "line": 234,
+          "needle": "public setGameViewPointPosition("
+        },
+        {
+          "name": "Stage.redraw",
+          "line": 242,
+          "needle": "public redraw("
+        },
+        {
+          "name": "Stage.createImage",
+          "line": 261,
+          "needle": "public createImage("
+        },
+        {
+          "name": "Stage.clear",
+          "line": 271,
+          "needle": "public clear("
+        },
+        {
+          "name": "Stage.resetFade",
+          "line": 290,
+          "needle": "public resetFade("
+        },
+        {
+          "name": "Stage.startFadeOut",
+          "line": 299,
+          "needle": "public startFadeOut("
+        },
+        {
+          "name": "Stage.draw",
+          "line": 314,
+          "needle": "private draw("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__sound__sound-image-manager.ts",
+      "path": "sound-image-manager.ts",
+      "source": "lemmings-ts--src-game-resources-sound",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/sound/sound-image-manager.ts",
+      "size": 970,
+      "sha256": "588ed1fc761bdf5ca7b94fbcc831d5d845d606197660ec1b5bd07d21975bee52",
+      "git_blob_sha1": "5b7d4859480a383e1431aa0e1b5b5424552b0364",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "SoundImageManager",
+          "line": 6,
+          "needle": "export class SoundImageManager"
+        },
+        {
+          "name": "SoundImageManager.getMusicTrack",
+          "line": 19,
+          "needle": "public getMusicTrack("
+        },
+        {
+          "name": "SoundImageManager.getSoundTrack",
+          "line": 31,
+          "needle": "public getSoundTrack("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__actions__action-climb-system.ts",
+      "path": "action-climb-system.ts",
+      "source": "lemmings-ts--src-game-game-play-actions",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/actions/action-climb-system.ts",
+      "size": 2136,
+      "sha256": "9871db96adc71115ac3d3c80b93c622bb6cd0e59bd6c919ce3812021370bd574",
+      "git_blob_sha1": "82e90749b6973fbfff5f7e68bc08cf3457e6cf83",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "ActionClimbSystem",
+          "line": 11,
+          "needle": "export class ActionClimbSystem"
+        },
+        {
+          "name": "ActionClimbSystem.getActionName",
+          "line": 23,
+          "needle": "public getActionName("
+        },
+        {
+          "name": "ActionClimbSystem.triggerLemAction",
+          "line": 27,
+          "needle": "public triggerLemAction("
+        },
+        {
+          "name": "ActionClimbSystem.draw",
+          "line": 38,
+          "needle": "public draw("
+        },
+        {
+          "name": "ActionClimbSystem.process",
+          "line": 47,
+          "needle": "public process("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__actions__action-floating-system.ts",
+      "path": "action-floating-system.ts",
+      "source": "lemmings-ts--src-game-game-play-actions",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/actions/action-floating-system.ts",
+      "size": 2219,
+      "sha256": "9a86636c1672f0bb73b694735daff30e2c5cd0df59a452f85743b23c9137deeb",
+      "git_blob_sha1": "b6cd9214863ba8ac972984a5a63f0d6393bdfa14",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "ActionFloatingSystem",
+          "line": 11,
+          "needle": "export class ActionFloatingSystem"
+        },
+        {
+          "name": "ActionFloatingSystem.getActionName",
+          "line": 25,
+          "needle": "public getActionName("
+        },
+        {
+          "name": "ActionFloatingSystem.triggerLemAction",
+          "line": 30,
+          "needle": "public triggerLemAction("
+        },
+        {
+          "name": "ActionFloatingSystem.draw",
+          "line": 41,
+          "needle": "public draw("
+        },
+        {
+          "name": "ActionFloatingSystem.process",
+          "line": 50,
+          "needle": "public process("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__actions__action-countdown-system.ts",
+      "path": "action-countdown-system.ts",
+      "source": "lemmings-ts--src-game-game-play-actions",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/actions/action-countdown-system.ts",
+      "size": 1595,
+      "sha256": "7298836390372a4d4cbc05ce668e9b3f15f1f4dadb40a157ba7a1f4ec9006784",
+      "git_blob_sha1": "2639a1369d9187e160de6ae6e5b3886b52ff82ea",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "ActionCountdownSystem",
+          "line": 11,
+          "needle": "export class ActionCountdownSystem"
+        },
+        {
+          "name": "ActionCountdownSystem.getActionName",
+          "line": 21,
+          "needle": "public getActionName("
+        },
+        {
+          "name": "ActionCountdownSystem.triggerLemAction",
+          "line": 25,
+          "needle": "public triggerLemAction("
+        },
+        {
+          "name": "ActionCountdownSystem.draw",
+          "line": 30,
+          "needle": "public draw("
+        },
+        {
+          "name": "ActionCountdownSystem.process",
+          "line": 44,
+          "needle": "public process("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__actions__action-blocker-system.ts",
+      "path": "action-blocker-system.ts",
+      "source": "lemmings-ts--src-game-game-play-actions",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/actions/action-blocker-system.ts",
+      "size": 2081,
+      "sha256": "de2f42d73e3533dac5f84127cfa5d16dbdffe8296334ffeda57569d7a925d060",
+      "git_blob_sha1": "d8fae045f7e1c159a4e2f861c570ddc3e4c3a579",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "ActionBlockerSystem",
+          "line": 14,
+          "needle": "export class ActionBlockerSystem"
+        },
+        {
+          "name": "ActionBlockerSystem.getActionName",
+          "line": 24,
+          "needle": "public getActionName("
+        },
+        {
+          "name": "ActionBlockerSystem.triggerLemAction",
+          "line": 28,
+          "needle": "public triggerLemAction("
+        },
+        {
+          "name": "ActionBlockerSystem.draw",
+          "line": 35,
+          "needle": "public draw("
+        },
+        {
+          "name": "ActionBlockerSystem.process",
+          "line": 43,
+          "needle": "public process("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__actions__action-build-system.ts",
+      "path": "action-build-system.ts",
+      "source": "lemmings-ts--src-game-game-play-actions",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/actions/action-build-system.ts",
+      "size": 2457,
+      "sha256": "052b403820ca30688f9745b5015dcffa9d08762d9e68c944ccaa0b3b789c84f6",
+      "git_blob_sha1": "5047d5151913025d43d1b0be615e0eb9c80e8209",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "ActionBuildSystem",
+          "line": 11,
+          "needle": "export class ActionBuildSystem"
+        },
+        {
+          "name": "ActionBuildSystem.getActionName",
+          "line": 23,
+          "needle": "public getActionName("
+        },
+        {
+          "name": "ActionBuildSystem.triggerLemAction",
+          "line": 28,
+          "needle": "public triggerLemAction("
+        },
+        {
+          "name": "ActionBuildSystem.draw",
+          "line": 35,
+          "needle": "public draw("
+        },
+        {
+          "name": "ActionBuildSystem.process",
+          "line": 45,
+          "needle": "public process("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__actions__action-bash-system.ts",
+      "path": "action-bash-system.ts",
+      "source": "lemmings-ts--src-game-game-play-actions",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/actions/action-bash-system.ts",
+      "size": 3355,
+      "sha256": "e216752e80f6903117ea8065462e58264d8c5af34f960e50273ba93fffaff1a6",
+      "git_blob_sha1": "1819a5766e75721edcf51a60d8e3b0decd7e8908",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "ActionBashSystem",
+          "line": 15,
+          "needle": "export class ActionBashSystem"
+        },
+        {
+          "name": "ActionBashSystem.getActionName",
+          "line": 31,
+          "needle": "public getActionName("
+        },
+        {
+          "name": "ActionBashSystem.triggerLemAction",
+          "line": 36,
+          "needle": "public triggerLemAction("
+        },
+        {
+          "name": "ActionBashSystem.draw",
+          "line": 43,
+          "needle": "public draw("
+        },
+        {
+          "name": "ActionBashSystem.process",
+          "line": 53,
+          "needle": "public process("
+        },
+        {
+          "name": "ActionBashSystem.findGapDelta",
+          "line": 95,
+          "needle": "private findGapDelta("
+        },
+        {
+          "name": "ActionBashSystem.findHorizontalSpace",
+          "line": 105,
+          "needle": "private findHorizontalSpace("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__actions__action-mine-system.ts",
+      "path": "action-mine-system.ts",
+      "source": "lemmings-ts--src-game-game-play-actions",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/actions/action-mine-system.ts",
+      "size": 2345,
+      "sha256": "749a45628fa5dc7afb14046991168fd3029b94ee4322e2312e902601ae253e40",
+      "git_blob_sha1": "4f322f2163e4315549268765604dcc0b1a4f4acb",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "ActionMineSystem",
+          "line": 14,
+          "needle": "export class ActionMineSystem"
+        },
+        {
+          "name": "ActionMineSystem.draw",
+          "line": 30,
+          "needle": "public draw("
+        },
+        {
+          "name": "ActionMineSystem.getActionName",
+          "line": 39,
+          "needle": "public getActionName("
+        },
+        {
+          "name": "ActionMineSystem.triggerLemAction",
+          "line": 44,
+          "needle": "public triggerLemAction("
+        },
+        {
+          "name": "ActionMineSystem.process",
+          "line": 51,
+          "needle": "public process("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__actions__action-digg-system.ts",
+      "path": "action-digg-system.ts",
+      "source": "lemmings-ts--src-game-game-play-actions",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/actions/action-digg-system.ts",
+      "size": 2284,
+      "sha256": "187d72191eebd2b67e7c15db6601a4508118d8743afeb877ecb919ce5a1558eb",
+      "git_blob_sha1": "0449b763f74b2ea44de3639d4a99dacf68345165",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "ActionDiggSystem",
+          "line": 11,
+          "needle": "export class ActionDiggSystem"
+        },
+        {
+          "name": "ActionDiggSystem.draw",
+          "line": 23,
+          "needle": "public draw("
+        },
+        {
+          "name": "ActionDiggSystem.getActionName",
+          "line": 32,
+          "needle": "public getActionName("
+        },
+        {
+          "name": "ActionDiggSystem.triggerLemAction",
+          "line": 36,
+          "needle": "public triggerLemAction("
+        },
+        {
+          "name": "ActionDiggSystem.process",
+          "line": 43,
+          "needle": "public process("
+        },
+        {
+          "name": "ActionDiggSystem.digRow",
+          "line": 69,
+          "needle": "private digRow("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__actions__action-walk-system.ts",
+      "path": "action-walk-system.ts",
+      "source": "lemmings-ts--src-game-game-play-actions",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/actions/action-walk-system.ts",
+      "size": 3163,
+      "sha256": "c2990794cabf90aa900e4e1861295836548a1899ed828d2d5df6970e0f1da57a",
+      "git_blob_sha1": "829706458a413cd5eb6160bc56145570c886ebe5",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "ActionWalkSystem",
+          "line": 12,
+          "needle": "export class ActionWalkSystem"
+        },
+        {
+          "name": "ActionWalkSystem.draw",
+          "line": 24,
+          "needle": "public draw("
+        },
+        {
+          "name": "ActionWalkSystem.getActionName",
+          "line": 33,
+          "needle": "public getActionName("
+        },
+        {
+          "name": "ActionWalkSystem.triggerLemAction",
+          "line": 38,
+          "needle": "public triggerLemAction("
+        },
+        {
+          "name": "ActionWalkSystem.getGroundStepDelta",
+          "line": 43,
+          "needle": "private getGroundStepDelta("
+        },
+        {
+          "name": "ActionWalkSystem.getGroudGapDelta",
+          "line": 52,
+          "needle": "private getGroudGapDelta("
+        },
+        {
+          "name": "ActionWalkSystem.process",
+          "line": 61,
+          "needle": "public process("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__actions__action-fall-system.ts",
+      "path": "action-fall-system.ts",
+      "source": "lemmings-ts--src-game-game-play-actions",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/actions/action-fall-system.ts",
+      "size": 1982,
+      "sha256": "4afa7c672bd12f429f2d1516e1adbe26273fe7d474e2fc30afb7e84ecaa91652",
+      "git_blob_sha1": "005465b72cfd89f62310048534f81d7f75d67a3b",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "ActionFallSystem",
+          "line": 11,
+          "needle": "export class ActionFallSystem"
+        },
+        {
+          "name": "ActionFallSystem.getActionName",
+          "line": 22,
+          "needle": "public getActionName("
+        },
+        {
+          "name": "ActionFallSystem.triggerLemAction",
+          "line": 26,
+          "needle": "public triggerLemAction("
+        },
+        {
+          "name": "ActionFallSystem.draw",
+          "line": 32,
+          "needle": "public draw("
+        },
+        {
+          "name": "ActionFallSystem.process",
+          "line": 41,
+          "needle": "public process("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__file__bit-writer.ts",
+      "path": "bit-writer.ts",
+      "source": "lemmings-ts--src-game-resources-file",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/file/bit-writer.ts",
+      "size": 1771,
+      "sha256": "9dca24b936b82de959e5c22763e88a4aeec39a811f30f72c7f7f7f70097fdd61",
+      "git_blob_sha1": "c8b3c62203a6def3df2217bb994021aac75b2c1b",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "BitWriter",
+          "line": 6,
+          "needle": "export class BitWriter"
+        },
+        {
+          "name": "BitWriter.copyRawData",
+          "line": 20,
+          "needle": "public copyRawData("
+        },
+        {
+          "name": "BitWriter.copyReferencedData",
+          "line": 34,
+          "needle": "public copyReferencedData("
+        },
+        {
+          "name": "BitWriter.getFileReader",
+          "line": 60,
+          "needle": "public getFileReader("
+        },
+        {
+          "name": "BitWriter.eof",
+          "line": 64,
+          "needle": "public eof("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__actions__action-exploding-system.ts",
+      "path": "action-exploding-system.ts",
+      "source": "lemmings-ts--src-game-game-play-actions",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/actions/action-exploding-system.ts",
+      "size": 2204,
+      "sha256": "19b4603893a15703208e0a0655da707f094ff2586f9d4b97fe91c036e295a954",
+      "git_blob_sha1": "cdf59c9a27a01227df33b3ec050a90273d3c38d3",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "ActionExplodingSystem",
+          "line": 16,
+          "needle": "export class ActionExplodingSystem"
+        },
+        {
+          "name": "ActionExplodingSystem.getActionName",
+          "line": 28,
+          "needle": "public getActionName("
+        },
+        {
+          "name": "ActionExplodingSystem.triggerLemAction",
+          "line": 32,
+          "needle": "public triggerLemAction("
+        },
+        {
+          "name": "ActionExplodingSystem.draw",
+          "line": 37,
+          "needle": "public draw("
+        },
+        {
+          "name": "ActionExplodingSystem.process",
+          "line": 51,
+          "needle": "public process("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__game-play__actions__action-ohno-system.ts",
+      "path": "action-ohno-system.ts",
+      "source": "lemmings-ts--src-game-game-play-actions",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/game-play/actions/action-ohno-system.ts",
+      "size": 1582,
+      "sha256": "90a34a7f25775ba5bdbedf69422359e868941061417bd8c7ab4ec770dd51397f",
+      "git_blob_sha1": "77a1f4778425f48e8e11443f8e5c1bfe8e0ca5df",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "ActionOhNoSystem",
+          "line": 11,
+          "needle": "export class ActionOhNoSystem"
+        },
+        {
+          "name": "ActionOhNoSystem.getActionName",
+          "line": 21,
+          "needle": "public getActionName("
+        },
+        {
+          "name": "ActionOhNoSystem.triggerLemAction",
+          "line": 25,
+          "needle": "public triggerLemAction("
+        },
+        {
+          "name": "ActionOhNoSystem.draw",
+          "line": 30,
+          "needle": "public draw("
+        },
+        {
+          "name": "ActionOhNoSystem.process",
+          "line": 37,
+          "needle": "public process("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__sound__sound-image-player.ts",
+      "path": "sound-image-player.ts",
+      "source": "lemmings-ts--src-game-resources-sound",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/sound/sound-image-player.ts",
+      "size": 6306,
+      "sha256": "232525b1b651f9eb17f454076f5f54f015fca021c05980c88bedee1a6ce599d9",
+      "git_blob_sha1": "3604517d86b889c7e787b8bf1adb403ff1ce24fb",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "SoundImagePlayer",
+          "line": 14,
+          "needle": "export class SoundImagePlayer"
+        },
+        {
+          "name": "SoundImagePlayer.getSamplingInterval",
+          "line": 47,
+          "needle": "public getSamplingInterval("
+        },
+        {
+          "name": "SoundImagePlayer.initSound",
+          "line": 53,
+          "needle": "public initSound("
+        },
+        {
+          "name": "SoundImagePlayer.initMusic",
+          "line": 81,
+          "needle": "public initMusic("
+        },
+        {
+          "name": "SoundImagePlayer.createChannel",
+          "line": 122,
+          "needle": "private createChannel("
+        },
+        {
+          "name": "SoundImagePlayer.read",
+          "line": 140,
+          "needle": "public read("
+        },
+        {
+          "name": "SoundImagePlayer.doInitTimer",
+          "line": 166,
+          "needle": "private doInitTimer("
+        },
+        {
+          "name": "SoundImagePlayer.doInitCommands",
+          "line": 190,
+          "needle": "private doInitCommands("
+        },
+        {
+          "name": "SoundImagePlayer.debug",
+          "line": 215,
+          "needle": "public debug("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__sound__sound-image-channel.ts",
+      "path": "sound-image-channel.ts",
+      "source": "lemmings-ts--src-game-resources-sound",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/sound/sound-image-channel.ts",
+      "size": 10554,
+      "sha256": "d3e4ab268ce9eeaea638592fae0c105185b98bf7cad7e0f017c901d3050001cb",
+      "git_blob_sha1": "23e9d25fca11f8597ae0e20ddb645e1732315a57",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "SoundImageChannels",
+          "line": 17,
+          "needle": "export class SoundImageChannels"
+        },
+        {
+          "name": "SoundImageChannels.read",
+          "line": 63,
+          "needle": "public read("
+        },
+        {
+          "name": "SoundImageChannels.readBarVersion1",
+          "line": 98,
+          "needle": "private readBarVersion1("
+        },
+        {
+          "name": "SoundImageChannels.readBarVersion2",
+          "line": 135,
+          "needle": "private readBarVersion2("
+        },
+        {
+          "name": "SoundImageChannels.setFrequencyHigh",
+          "line": 168,
+          "needle": "private setFrequencyHigh("
+        },
+        {
+          "name": "SoundImageChannels.setFrequency",
+          "line": 181,
+          "needle": "private setFrequency("
+        },
+        {
+          "name": "SoundImageChannels.setEnvelope",
+          "line": 211,
+          "needle": "private setEnvelope("
+        },
+        {
+          "name": "SoundImageChannels.part3",
+          "line": 267,
+          "needle": "private part3("
+        },
+        {
+          "name": "SoundImageChannels.setLevel",
+          "line": 361,
+          "needle": "private setLevel("
+        },
+        {
+          "name": "SoundImageChannels.initMusic",
+          "line": 389,
+          "needle": "public initMusic("
+        },
+        {
+          "name": "SoundImageChannels.initSound",
+          "line": 400,
+          "needle": "public initSound("
+        },
+        {
+          "name": "SoundImageChannels.initChannel",
+          "line": 407,
+          "needle": "public initChannel("
+        },
+        {
+          "name": "SoundImageChannels.intToPlayingState",
+          "line": 435,
+          "needle": "private intToPlayingState("
+        }
+      ]
+    },
+    {
+      "name": "lemmings-ts__src__game__resources__sound__audio-player.ts",
+      "path": "audio-player.ts",
+      "source": "lemmings-ts--src-game-resources-sound",
+      "project": "lemmings-ts",
+      "origin_path": "src/game/resources/sound/audio-player.ts",
+      "size": 4918,
+      "sha256": "c125dd9b68ebb7f950d9bdb9444db2fcea0ed602da767ff00f71708e19f1e44b",
+      "git_blob_sha1": "1841c6496a2a89b8bd87afa4fcc7ef8350d85c0c",
+      "text_encoding": "utf-8-sig",
+      "role": "reference-source",
+      "symbols": [
+        {
+          "name": "AudioPlayer",
+          "line": 6,
+          "needle": "export class AudioPlayer"
+        },
+        {
+          "name": "AudioPlayer.play",
+          "line": 72,
+          "needle": "public play("
+        },
+        {
+          "name": "AudioPlayer.audioScriptProcessor",
+          "line": 85,
+          "needle": "public audioScriptProcessor("
+        },
+        {
+          "name": "AudioPlayer.suspend",
+          "line": 137,
+          "needle": "public suspend("
+        },
+        {
+          "name": "AudioPlayer.stop",
+          "line": 146,
+          "needle": "public stop("
+        }
+      ]
+    }
+  ]
+}

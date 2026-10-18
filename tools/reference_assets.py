@@ -19,6 +19,12 @@ def checked_bytes(data, expected, label):
         raise ValueError(f"{label}: size mismatch")
     if hashlib.sha256(data).hexdigest() != expected["sha256"]:
         raise ValueError(f"{label}: SHA-256 mismatch")
+    if expected.get("symbols"):
+        lines = data.decode(expected.get("text_encoding", "utf-8")).splitlines()
+        for symbol in expected["symbols"]:
+            line = symbol["line"]
+            if not 1 <= line <= len(lines) or not lines[line - 1].strip().startswith(symbol["needle"]):
+                raise ValueError(f"{label}: source symbol location mismatch ({symbol['name']})")
     return data
 
 

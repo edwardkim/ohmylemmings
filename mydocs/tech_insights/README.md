@@ -7,3 +7,8 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - 재현 방법이나 테스트 근거와 관련 계획·작업 지시를 연결합니다.
 
 파일명 예: `dat_section_layout.md`.
+
+## 현재 자료
+
+- [DOS 기준판과 원본 리소스](dos_original_baseline.md)
+- [레퍼런스 코드 버전·파일·함수 지도](reference_code_map.md)

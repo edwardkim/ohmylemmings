@@ -24,20 +24,20 @@ After G01 introduces `Cargo.toml`, use `cargo build`, `cargo test`, `cargo fmt -
 
 ## Coding Style & Naming Conventions
 
-Use four-space indentation in Rust and Python; format Rust with `rustfmt`. Use `snake_case` for modules, files, and functions; `PascalCase` for types; and `SCREAMING_SNAKE_CASE` for constants. Record reference sources for simulation constants and behavior. Keep logical ticks independent of rendering frequency.
+Use four-space indentation; format Rust with `rustfmt`. Use `snake_case` for modules, files, and functions; `PascalCase` for types; and `SCREAMING_SNAKE_CASE` for constants. Record reference sources for simulation constants and behavior. Decouple logical ticks from rendering.
 
 ## Testing Guidelines
 
 Use Python's `unittest` for tooling and Rust's built-in framework for future parser and simulation changes. Follow TDD for those Rust modules; keep unit tests nearby in `#[cfg(test)]` modules. Name tests by behavior, such as `truncated_dat_returns_error`.
 
-Cover damaged or missing assets, malformed input, state transitions, collision boundaries, terrain changes, and repeatable ticks. Prefer synthetic fixtures; offline tests must work without original binaries. No numeric coverage threshold is defined.
+Cover damaged or missing assets, malformed input, state transitions, collision boundaries, terrain changes, and repeatable ticks. Prefer synthetic fixtures; offline tests must work without original binaries. No coverage threshold is defined.
 
 ## Commit & Pull Request Guidelines
 
-Use concise imperative commit subjects, for example `Add DAT section decoder`, and keep changes focused.
+Use imperative commit subjects, for example `Add DAT section decoder`, and keep changes focused.
 
 PRs should describe behavior, reference the relevant milestone or issue, and report checks run or unavailable. Include screenshots for rendering/UI changes and reproducible fixtures for compatibility fixes.
 
 ## Hyper-Waterfall Development Workflow
 
-Follow the maintainer's Hyper-Waterfall methodology in `mydocs/plans/rusty_lemmings.md`: read relevant `mydocs/` documents before coding, implement small modules with TDD, and record findings, decisions, and troubleshooting results. Keep documentation synchronized with implementation and distinguish planned from completed work.
+Register a GitHub issue and verify its number/URL before creating task documents, editing files, or running experiments. Link it in task records. Follow `mydocs/plans/rusty_lemmings.md`: read relevant documents, implement with TDD, record progress and validation, and close the issue after completion. Keep documentation synchronized with implementation.

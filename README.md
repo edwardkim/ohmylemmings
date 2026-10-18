@@ -4,7 +4,7 @@
 
 ## 현재 상태
 
-현재는 G00의 기준판·리소스 확보를 진행하고 있습니다. 원작 검증 파일 50개와 확보·검증 도구를 준비했으며, Rust 소스와 `Cargo.toml`은 G01에서 도입합니다.
+현재 G00의 원작 기준과 레퍼런스를 정리하고 있습니다. 원작 검증 파일 50개와 레퍼런스 소스 46개를 고정했으며, Rust 소스와 `Cargo.toml`은 G01에서 도입합니다.
 
 ## 원본 데이터 준비
 
@@ -17,6 +17,8 @@ python3 -m unittest discover -s tools/tests -v
 ```
 
 원본 파일은 `assets/local/dos-original/`에 저장됩니다. [확보 안내](assets/README.md)와 [기준판 분석](mydocs/tech_insights/dos_original_baseline.md)에서 출처와 파일 식별 기준을 확인할 수 있습니다.
+
+후속 구현에서 참고할 파일·함수와 차이는 [레퍼런스 코드 지도](mydocs/tech_insights/reference_code_map.md)에 정리합니다.
 
 ## 구현 목표
 
@@ -35,6 +37,8 @@ python3 -m unittest discover -s tools/tests -v
 ## Hyper-Waterfall 개발 방법론
 
 이 프로젝트는 관리자가 정립한 Hyper-Waterfall을 채택합니다. 구현 전에 관련 문서로 컨텍스트를 맞추고, 작은 모듈부터 TDD로 구현하며, 피드백과 기술 지식·문제 해결 이력을 문서에 반영합니다.
+
+모든 작업은 GitHub 이슈를 먼저 등록하고 번호·URL을 확인한 뒤 진행합니다. 작업 지시·진행 기록·결과 보고서에 이슈를 연결하고, 검증·보고 후 완료 처리합니다.
 
 ```text
 mydocs/
