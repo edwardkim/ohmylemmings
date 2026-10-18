@@ -30,6 +30,8 @@ python3 -m unittest discover -s tools/tests -v
 
 Rust 해제 예제와 기존 81개 구간의 해시 대조는 [G02-02 재현 명령](../mydocs/tech_insights/issue-9_dat_decompression.md#개발용-해제와-고정-해시-재현)을 따릅니다. 해제 결과도 `assets/local/` 안에 저장하며 기존 결과는 덮어쓰지 않습니다.
 
+DAT에서 기본 레벨을 직접 해제·검사하는 `inspect_levels` 예제와 메타데이터 비교는 [G03-01 안내](../mydocs/tech_insights/issue-10_level_records.md#원본-검사-재현)를 따릅니다. ODDTABLE 변형은 후속 작업입니다.
+
 ## 기준판 식별
 
 기준 ID는 `dos-original-vga`입니다. 원본 매체의 세부 리비전은 아직 확인되지 않았으며 확보한 파일의 바이트 식별값으로 입력을 고정합니다. 확보 출처, 상호 대조 결과, 데모와의 차이는 [기준판 분석](../mydocs/tech_insights/issue-2_dos_original_baseline.md)에 기록합니다.

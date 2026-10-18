@@ -1,5 +1,5 @@
 #![no_std]
-//! Checked DAT framing and allocation-free decompression for DOS Lemmings.
+//! Checked DOS DAT and base-level parsing with allocation-free decompression.
 //!
 //! ```
 //! use lemmings_resources::ByteReader;
@@ -14,8 +14,13 @@
 
 mod dat;
 mod decompress;
+mod level;
 mod reader;
 
 pub use dat::{DatError, DatHeader, DatSection, DatSections};
 pub use decompress::DecompressError;
+pub use level::{
+    LEVEL_RECORD_SIZE, LevelError, LevelField, LevelHeader, LevelRecord, ObjectFlags,
+    ObjectPlacement, SteelArea, TerrainFlags, TerrainPlacement,
+};
 pub use reader::{ByteReader, ReadError};
