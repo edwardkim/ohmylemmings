@@ -32,6 +32,8 @@ Rust 해제 예제와 기존 81개 구간의 해시 대조는 [G02-02 재현 명
 
 DAT에서 기본 레벨을 직접 해제·검사하는 `inspect_levels` 예제와 메타데이터 비교는 [G03-01 안내](../mydocs/tech_insights/issue-10_level_records.md#원본-검사-재현)를 따릅니다. ODDTABLE을 적용한 120개 진입점은 [G03-02 검사](../mydocs/tech_insights/issue-11_level_catalog.md#원본-검사-재현)의 `inspect_catalog`로 확인합니다. 기본 바이트를 포함하는 출력도 `assets/local/`에 둡니다.
 
+원시 GROUND 파일의 모든 슬롯·EGA/VGA 뱅크·두 RGB 확대 결과는 [G03-03 검사](../mydocs/tech_insights/issue-12_ground_metadata.md#원본-검사-재현)의 `inspect_ground`로 확인합니다. GROUND는 압축 DAT 구간으로 읽지 않습니다.
+
 ## 기준판 식별
 
 기준 ID는 `dos-original-vga`입니다. 원본 매체의 세부 리비전은 아직 확인되지 않았으며 확보한 파일의 바이트 식별값으로 입력을 고정합니다. 확보 출처, 상호 대조 결과, 데모와의 차이는 [기준판 분석](../mydocs/tech_insights/issue-2_dos_original_baseline.md)에 기록합니다.

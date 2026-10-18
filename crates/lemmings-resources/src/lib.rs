@@ -15,6 +15,7 @@
 mod catalog;
 mod dat;
 mod decompress;
+mod ground;
 mod level;
 mod odd;
 mod reader;
@@ -28,3 +29,8 @@ pub use level::{
 };
 pub use odd::{ODD_RECORD_SIZE, OddError, OddRecord, OddTable};
 pub use reader::{ByteReader, ReadError};
+
+pub use ground::{
+    GROUND_OBJECT_COUNT, GROUND_RECORD_SIZE, GROUND_TERRAIN_COUNT, GroundError, GroundObject,
+    GroundPalette, GroundRecord, GroundTerrain, ObjectTrigger, Rgb6,
+};
