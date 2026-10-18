@@ -30,8 +30,20 @@ Lemmix가 표시용으로 읽는 5→1 부분 목록과 TS가 읽는 전체 10�
 
 전체 카운트다운 글리프는 9→0이며 Lemmix의 5프레임 부분 목록은 5→1입니다. 지원 비트 데이터는 전수 일치하지만 두 레퍼런스의 조회 의미·숫자 인덱싱·위치·타이밍이 같다고 판정하지 않습니다.
 
-## 게시 상태와 다음 범위
+## 게시
 
-로컬 검증을 마쳤으며 문서 재현·추적 검사와 실제 push CI·원격 파일 대조를 확인해 완료합니다.
+구현 커밋 `ec57209d124785f406b5759f8a7063cd397e395a`를 `main`에 게시했습니다. [push CI 실행](https://github.com/edwardkim/ohmylemmings/actions/runs/39123578292)의 결론과 세 작업이 모두 success입니다.
+
+| 작업 | 실제 실행 근거 |
+|---|---|
+| [Rust native](https://github.com/edwardkim/ohmylemmings/actions/runs/39123578292/job/117663981222) | Rust 1.93.1, 포맷·Clippy·빌드, 단위 167개·문서 예제 13개 성공 |
+| [Python tooling](https://github.com/edwardkim/ohmylemmings/actions/runs/39123578292/job/117663981290) | Python 3.12.15, 테스트 8개 성공 |
+| [WASM libraries](https://github.com/edwardkim/ohmylemmings/actions/runs/39123578292/job/117663981316) | 고정 Rust·WASM 타깃, 두 라이브러리 컴파일 성공 |
+
+push 이벤트·대상 SHA·세 작업의 실제 로그·테스트 개수·clean-input 성공을 대조했습니다. 원본·기존 target·Cargo 패키지 캐시 없는 러너에서 통과했습니다. 원격 tree API의 파일 115개 모드·blob 해시가 로컬과 모두 일치했으며 작업 트리는 깨끗합니다. 원본·PNG·바이너리·JSONL·참조 소스 사본·빌드 출력은 추적하지 않습니다.
+
+G03-09 마스크·카운트다운 해석 범위를 완료했습니다. 최종 문서 게시·CI와 #18 종료는 GitHub 이슈 기록에서 추적합니다. 상위 #1의 G00·G01·G02만 전체 목표 완료로 유지합니다.
+
+## 남은 범위
 
 지형 적용·강철/충돌·행동 틱·표시 위치·게임 화면·실제 DOS 실행은 후속 범위입니다. G03 전체는 객체 이미지 배치·합성이 남아 진행 중이며 다음은 별도 이슈의 G03-10 레벨 객체 이미지 배치·합성입니다. G04-01도 준비 상태입니다.
