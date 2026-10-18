@@ -17,7 +17,7 @@ Rustup의 최초 도구 체인·타깃 설치에는 네트워크가 필요할 �
 | 명령 | 검사 |
 |---|---|
 | `make check` | 아래 세 검사 전체 |
-| `make check-rust` | rustfmt, Clippy 경고 금지, workspace 빌드, 단위·문서 테스트 |
+| `make check-rust` | rustfmt, Clippy 경고 금지, workspace 빌드, 단위·예제·문서 테스트, 기록된 참조 상태와 재생 대조 |
 | `make check-python` | `tools/tests/`의 unittest와 개체 이동 독립 모델/golden 검사 |
 | `make check-wasm` | `wasm32-unknown-unknown`용 두 라이브러리 빌드 |
 
@@ -25,13 +25,15 @@ Rustup의 최초 도구 체인·타깃 설치에는 네트워크가 필요할 �
 
 [#25 이동 검증](../tech_insights/issue-25_actor_motion.md)의 독립 Python 모델은 원본 없이 전체 합성 golden을 다시 계산합니다. Rust 테스트는 저장된 기대값과 구현을, Python 검사는 그 기대값과 독립 모델을 대조합니다.
 
+[#26 상태 재생](../tech_insights/issue-26_state_replay.md)은 make check-rust에서 Python 표준 라이브러리로 Rust 예제를 실행하고, 실제 Pascal 함수 하네스에서 기록한 합성 상태 해시와 세 렌더 주기를 대조합니다. CI에 원문·FPC·원본은 필요하지 않습니다.
+
 ## GitHub Actions
 
 [ci.yml](../../.github/workflows/ci.yml)은 push·pull_request·workflow_dispatch에서 실행합니다. 경로 필터 없이 문서 변경에도 같은 검사 이름을 유지합니다. 실행 구성은 [GitHub workflow 문법](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)을 따릅니다.
 
 | 작업 이름 | 실행 명령 | 환경 |
 |---|---|---|
-| Rust native | `make check-rust` | Ubuntu 24.04, rust-toolchain.toml의 Rust 1.93.1·rustfmt·Clippy |
+| Rust native | `make check-rust` | Ubuntu 24.04, rust-toolchain.toml의 Rust 1.93.1·rustfmt·Clippy·Python 3 |
 | Python tooling | `make check-python` | Ubuntu 24.04, Python 3.12 계열 |
 | WASM libraries | `make check-wasm` | Ubuntu 24.04, Rust 1.93.1·WASM 타깃 |
 

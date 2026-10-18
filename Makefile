@@ -7,6 +7,7 @@ check-rust:
 	cargo clippy --workspace --all-targets --locked --offline -- -D warnings
 	cargo build --workspace --locked --offline
 	cargo test --workspace --locked --offline
+	python3 tools/check_state_replay.py
 
 check-python:
 	python3 -m unittest discover -s tools/tests -v

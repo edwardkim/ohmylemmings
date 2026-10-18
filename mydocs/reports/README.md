@@ -8,3 +8,5 @@
 - 남은 문제와 후속 작업을 기록하고 필요한 기술 분석·문제 해결 문서를 연결합니다.
 
 파일명: `issue-<번호>_<주제>.md`. 예: `issue-3_reference_code_map.md`.
+
+- [#26 G05-04 상태 추적·재생·기준 실행 대조](issue-26_state_replay.md)

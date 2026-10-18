@@ -8,3 +8,5 @@
 - 작업 완료 시 결과를 `reports/`에 정리하고 해당 보고서를 연결합니다.
 
 파일명: `issue-<번호>_<주제>.md`. 예: `issue-2_dos_baseline.md`.
+
+- [#26 G05-04 상태 추적·재생·기준 실행 대조](issue-26_state_replay.md)

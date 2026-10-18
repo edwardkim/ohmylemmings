@@ -1,0 +1,417 @@
+{
+  "f01_calibration": {
+    "actor_id": 0,
+    "control_step": 60,
+    "sequence": 0,
+    "skill": "digger",
+    "status": "measured next boundary only; AssignSkill not implemented/run"
+  },
+  "format": "g05-original-replay-evidence-v1",
+  "mask_sha256": "a5311ef0436ca29a5fe4f6feee89baa0b82afce87baaf799f59c813deb5686d7",
+  "observation": "extracted Lemmix methods with G05 adapter; full engine/DOS not run",
+  "original_files": [
+    {
+      "name": "ADLIB.DAT",
+      "sha256": "43eceee3e88fde48c679c635ee208d2af9ade1ed789dc291d647e7d314ffdcfe",
+      "size": 12988
+    },
+    {
+      "name": "AUTODET.EXE",
+      "sha256": "bc0ba12a10589299d9a8ce88112d6d7697ab8b45e9d55d14daf01ffd65bd4f16",
+      "size": 2188
+    },
+    {
+      "name": "CGAGR0.DAT",
+      "sha256": "d0d1d08b117dbaa5a61bb7488b141d5d901ea084b8d4c859697139e4dc3be6d5",
+      "size": 20901
+    },
+    {
+      "name": "CGAGR1.DAT",
+      "sha256": "1ad9cb595dfcf66ba6473776ccff6612f3ec6b4d9e6f534323caa0265b09f44f",
+      "size": 25696
+    },
+    {
+      "name": "CGAGR2.DAT",
+      "sha256": "58268e1479fb8b3d2fbf2b6bf8a7c9a77a9614e5f190324db17d7d6ef1e37180",
+      "size": 15113
+    },
+    {
+      "name": "CGAGR3.DAT",
+      "sha256": "a702f30bd44761b37d6498524e452044ed17cdc4a86a807981dde7bc688019ea",
+      "size": 15427
+    },
+    {
+      "name": "CGAGR4.DAT",
+      "sha256": "ab2de1785c6afd8d46533cb28ac56afaa6ffe0f14e2962e22880719a31910c02",
+      "size": 20851
+    },
+    {
+      "name": "CGALEMMI.EXE",
+      "sha256": "51b3561293f57ef2899b1f4160c40af8a834d0afb5bbc11d6f825bd6b786ccf6",
+      "size": 73164
+    },
+    {
+      "name": "CGAMAIN.DAT",
+      "sha256": "1e4b08f606546938b1eede4a0587943a07c3777c8c95bf50a7a9c31623995094",
+      "size": 22111
+    },
+    {
+      "name": "CGASPEC0.DAT",
+      "sha256": "aa2ad89a0c3edb7d8f110447815e917031b5921b8035a64d74ddc7fce79dc72f",
+      "size": 17992
+    },
+    {
+      "name": "CGASPEC1.DAT",
+      "sha256": "11a2d0d2b797bb63ce142d9e3600c89ad542aac35398020e34eca8a60b0bbcad",
+      "size": 11442
+    },
+    {
+      "name": "CGASPEC2.DAT",
+      "sha256": "667ca13f1ddee9dbb9a33e33154d02d1c950a5687bd6f49513c1712fb270fbb2",
+      "size": 13129
+    },
+    {
+      "name": "CGASPEC3.DAT",
+      "sha256": "589875f7de9b5a41c1033f06fe82c9b628663c31ad9a4f31298b5d15110f09a1",
+      "size": 23838
+    },
+    {
+      "name": "GROUND0O.DAT",
+      "sha256": "86ecce12dea563b97d07339028780a0a50fc2cc75a67f682bf4d9aff8cf4b24a",
+      "size": 1056
+    },
+    {
+      "name": "GROUND1O.DAT",
+      "sha256": "baf7a2ea30b07d2dc7968a5fb590987b3775840c57e6268437d3dce969b64d65",
+      "size": 1056
+    },
+    {
+      "name": "GROUND2O.DAT",
+      "sha256": "52e62aeefd6cd548690c02af6474936c5e16112e115ca7808c3748e500a9412d",
+      "size": 1056
+    },
+    {
+      "name": "GROUND3O.DAT",
+      "sha256": "f4df8579a30cb55dae4a06f606e0453cb0931219efadf3e9465d681a43a2722c",
+      "size": 1056
+    },
+    {
+      "name": "GROUND4O.DAT",
+      "sha256": "9669ee978e5adf5f8d5bfeb80ccc5d6c20e75e32f55e2a5c1c738f64af8faa91",
+      "size": 1056
+    },
+    {
+      "name": "HELP.BAT",
+      "sha256": "ce9c39912fedf5d4a425c78bc342cc9f3c2487d571c387527b0fe28a7a99d498",
+      "size": 114
+    },
+    {
+      "name": "INSTALL.EXE",
+      "sha256": "5837dced3fed64514b9a2b8b6f5564e9eb981c9d9c2842190c8683e451fffd18",
+      "size": 9145
+    },
+    {
+      "name": "LEM1.DOC",
+      "sha256": "66068ab8290ee4c65ef2aeb554f0c5a3da90edcae40817ed3c8fd58b12b4a0c7",
+      "size": 403
+    },
+    {
+      "name": "LEM2.DOC",
+      "sha256": "3722478bbed7c05f0ff7e7d7811ba98ce356a3568d626e666ace426ec09f83b5",
+      "size": 384
+    },
+    {
+      "name": "LEM3.DOC",
+      "sha256": "0f27deb33cb9ed35851c18bac0c4b792fe71e20e0bbf8f58f020996a7ab00190",
+      "size": 530
+    },
+    {
+      "name": "LEM4.DOC",
+      "sha256": "c7ee193f65b8fdc19ff54ab1c9fe3b9de05c772dfa377c60bc8f0cdd15c720b0",
+      "size": 688
+    },
+    {
+      "name": "LEMMINGS.BAT",
+      "sha256": "f6538723d41b20176e8adb5f70a1599c86328897ecec86ee23f28e4eb231a3f7",
+      "size": 569
+    },
+    {
+      "name": "LEVEL000.DAT",
+      "sha256": "2b9d4502ae1837faa3a6ff7a8b11eb75cbb6a555aa0e5c9f266f0e33a4cf444f",
+      "size": 3722
+    },
+    {
+      "name": "LEVEL001.DAT",
+      "sha256": "52c60bf66d31514ba7f05970901cbde98e10e4020b8cc5d99c5bdf0eca43a2a9",
+      "size": 4519
+    },
+    {
+      "name": "LEVEL002.DAT",
+      "sha256": "3216e70e91b5a1f8fc34d92e90167762df018f56dbd253b02e655e2beb1e0854",
+      "size": 4819
+    },
+    {
+      "name": "LEVEL003.DAT",
+      "sha256": "6a4984e3ef13e8450c65dffe67baf9b7dee22f2f97af42072c60c8965d7ba94c",
+      "size": 6827
+    },
+    {
+      "name": "LEVEL004.DAT",
+      "sha256": "c4c103ef26a275918586eed9e9fc63ba1f91125fe7bd70c0c1f97614367f50df",
+      "size": 3889
+    },
+    {
+      "name": "LEVEL005.DAT",
+      "sha256": "ba7ae3d24331e1a0d87b46d1332b4cf74a09c9e584ad12ea672ee555da1a52cc",
+      "size": 7255
+    },
+    {
+      "name": "LEVEL006.DAT",
+      "sha256": "34052d7c5ea66748c5a81fe69060bbf081d3be3232dce05945b51bf2cb4f0472",
+      "size": 7149
+    },
+    {
+      "name": "LEVEL007.DAT",
+      "sha256": "f827359ac4a66e5e945d74f322982e8419d7c55f2e47044674fe10fd423a9cde",
+      "size": 5253
+    },
+    {
+      "name": "LEVEL008.DAT",
+      "sha256": "b014f73c65aa57c7a014c896ac4f7dd58291946526db5ebb059ebbd3ea80d174",
+      "size": 7037
+    },
+    {
+      "name": "LEVEL009.DAT",
+      "sha256": "0cb73f259510c25c29f21103ac1d04c0643756b6ea81b91b47d0c46259fe1a83",
+      "size": 4932
+    },
+    {
+      "name": "MAIN.DAT",
+      "sha256": "2aec688c334e60322998811a8b6f9d5c13f8090b46ca6c2a6cb1c8db3b733545",
+      "size": 56472
+    },
+    {
+      "name": "ODDTABLE.DAT",
+      "sha256": "e6d425592fe2cda43ec1169995cd8deeb0bdb74eb464728f4c05eb1ddefae8d0",
+      "size": 4480
+    },
+    {
+      "name": "TANDYSND.DAT",
+      "sha256": "d044398aced30dae67cf8663d57f946faf28a29c357f9ea3857a28eea7cc10c1",
+      "size": 12399
+    },
+    {
+      "name": "TGALEMMI.EXE",
+      "sha256": "8c6e8f068fd10bc1d7bab71094c710514d8c3a249c4f7e29d472f1a7d9d3c527",
+      "size": 76092
+    },
+    {
+      "name": "TGAMAIN.DAT",
+      "sha256": "5a7776a66b858d5936f314a2105aa7ab83ad9e17a946c458f94d467548216896",
+      "size": 14733
+    },
+    {
+      "name": "VGAGR0.DAT",
+      "sha256": "9bd5ae2e0aed013bd369a469ac14afeb1beb22524fc820920d6e38766ea48680",
+      "size": 24464
+    },
+    {
+      "name": "VGAGR1.DAT",
+      "sha256": "bf49fc528b68d00c5738b6e7cd9244812bc74b0fc03ea9f862009a11009149e5",
+      "size": 32966
+    },
+    {
+      "name": "VGAGR2.DAT",
+      "sha256": "f8305e71295c5909ee7692e4391aae65443298faef4d96e5fe17b24afa0eadcc",
+      "size": 22290
+    },
+    {
+      "name": "VGAGR3.DAT",
+      "sha256": "19d3e2ba0db60bf855d8ce83459f53d83a2048763124932f533eb1c42f7809d9",
+      "size": 22775
+    },
+    {
+      "name": "VGAGR4.DAT",
+      "sha256": "40a99d3d9540609da9d6a74c07a832786818aed361326e37c01a909a1615921d",
+      "size": 28692
+    },
+    {
+      "name": "VGALEMMI.EXE",
+      "sha256": "4f21e94d53b7ea814ade802b4a37d42481da3876e31fb5a23090e19c9600f21c",
+      "size": 83194
+    },
+    {
+      "name": "VGASPEC0.DAT",
+      "sha256": "a647110ca059fd18917e8a289668167a3a77975ca1096d7f7fdd9557fee95ce0",
+      "size": 28655
+    },
+    {
+      "name": "VGASPEC1.DAT",
+      "sha256": "b0a8ce1a8888feda8720c7df1222911ae9241f3acbfd42adda243bd5ba5a2306",
+      "size": 18567
+    },
+    {
+      "name": "VGASPEC2.DAT",
+      "sha256": "602fde697bb49df8d86fd800643cc3439a4f136223af0bf1ee46e2bff5e0e3cd",
+      "size": 23284
+    },
+    {
+      "name": "VGASPEC3.DAT",
+      "sha256": "918f21db3a16741f1a58b06bcef2b4ff63dc16f0e8746d0393dc023ea57cb2d4",
+      "size": 34827
+    }
+  ],
+  "reference": {
+    "adapter_sha256": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18",
+    "builder_sha256": "0448f50a3d4c5dd24918c12199000fa8a40e3ea0ac7ad164899dfdaa87c29ad1",
+    "commit": "40e9bc34451f0e9127fd53b290a3877e700d143d",
+    "compiler": "3.2.2",
+    "compiler_flags": [
+      "-Mdelphi",
+      "-O1"
+    ],
+    "compiler_sha256": "93ddfaa92900749c81537d4ee39a9416d6d8c85cf545d411f0c170c15e33cdc1",
+    "driver": "normalized boundary input; IncrementIteration -> CheckSpawnLemming -> HandleLemming in ID order",
+    "engine": "lemmix-extracted-methods",
+    "executable_sha256": "401a23c126e5de6164dc61e91921b03e3b3cc5d3555ee446c76e4073b793c49d",
+    "extracted_sha256": "cd5fa974e61608ce760fb8d1bb2aace51383c9b89b4f0aa54cb4ac92d6926114",
+    "metadata_sha256": "2c68d83660cf0c2d141e7449d20b9d747fe5c3496d31d0551ff9c547656cf2a8",
+    "methods": {
+      "BtnPause": "579cdcbff69db1562f4bf5843ce41e1cef1c4dec2a53a865566bbfcf916f977c",
+      "BtnPauseStop": "217532706520d2f2aa8996a46c1136fbce9d547e8f433141bee75d3cb3cbf31a",
+      "CheckForLevelTopBoundary": "da00c889f8d1283fa5aad65083c5963fa8b1d56843bf06b8ab3a7eae75587933",
+      "CheckSpawnLemming": "5608a12f641eccd5dc009789311cc3e78ac4b803f8bfae5d45ce085b35bcc638",
+      "HandleFalling": "894411800603d79132d7533ef21bae8e52de61270849f0f50e2c4899f80b122a",
+      "HandleJumping": "f7c843e508a0d33c3e28fc8872e2427dfa7fbc890487c6392c4bb03e85d264a5",
+      "HandleLemming": "e00f1ffbafa322076f9cff9644dab1cbea83e29081ce04a126573d1f340fea91",
+      "HandleSplatting": "5e43a5f8f9c16937c55b9b5f710a809566d298066ca47cef89018cdc5fd6fe4a",
+      "HandleWalking": "41d1f6ededb993c451d58e773a60dbb6ff3135b7109c9709ffef40bafa5f33ce",
+      "HasPixelAt": "e8c1c11b7b16795fb96f590a91bb01381f9fab87791213f00999cded06ce6243",
+      "HasPixelAt_ClipY": "dc9696798aeaa483df3899392505ba853577726f1774a931d1df91d00882523c",
+      "IncrementIteration": "20f1800054465889d9fdad767d45a510dcbda8ae0b8d8bbee8ec597f8c030781",
+      "RemoveLemming": "7307061c19354e8142270bd3a6a80900329c5c89982da2d4e1b149edbbbef1f7",
+      "Transition": "2ac447b7289c2eead45d2bdf19a43c437ac6e3f1455d61fc32de95aa7c4f0aad",
+      "TurnAround": "6c85a8ec0e5da4a5cbd3f01dfa315260bb1409af418d149f396c93367e15e5df"
+    },
+    "scope": "G05 startup and four unskilled motion actions; not full Lemmix/DOS",
+    "source_sha256": "c1ba9ffda9e8e277f5c9b171df2bb611210d3326b9623b28fcd35426f4d6a448",
+    "stubs": "graphics, toolbar, recorder and sound; objects/game finish/skills not executed",
+    "syntax_patches": {
+      "BtnPause": [
+        [
+          "procedure TLemmingGame.BtnPause(mode: TPauseCommandMode = TPauseCommandMode.None);\nbegin",
+          "procedure TLemmingGame.BtnPause(mode: TPauseCommandMode = TPauseCommandMode.None);\nvar iteration: Integer;\nbegin"
+        ],
+        [
+          "var iteration: Integer := 34 - fRecorder.fRecordedGlitchPauseIterations;",
+          "iteration := 34 - fRecorder.fRecordedGlitchPauseIterations;"
+        ]
+      ],
+      "IncrementIteration": [
+        [
+          "procedure TLemmingGame.IncrementIteration;\nbegin",
+          "procedure TLemmingGame.IncrementIteration;\nvar entrance: TInteractiveObjectInfo;\nbegin"
+        ],
+        [
+          "for var entrance: TInteractiveObjectInfo in Entrances do",
+          "for entrance in Entrances do"
+        ]
+      ]
+    }
+  },
+  "scenarios": [
+    {
+      "config_sha256": "171b75d8fa36e4f60fa3665c4c7bcd57b67392aa6f0dd9d918f82220496f2229",
+      "input_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "reference_trace_sha256": "a941cc47a839fbc44cf01bada1d02e69106a144c76c2fa5a12ba35c9a0175af1",
+      "render_patterns": [
+        "single",
+        "burst",
+        "jitter"
+      ],
+      "scenario": "F00",
+      "snapshots": 341,
+      "snapshots_sha256": "3e56870904094448fdeab59715ce9c7ad96ec25deb9ff34017cd24058d74d4fe"
+    },
+    {
+      "config_sha256": "0360c2a67f059d0fcaa8d58bb10a059b80d5db8918f994ce243f7cfe452c9931",
+      "input_sha256": "6fca2a9ea49cd0ea4990185ffc8fb8e8c108cc7c6c987981a5bbd8356310e94b",
+      "reference_trace_sha256": "9983b5c45d4fe0d655b8fea5cb73963deba9bb99ceb7cdd18090f78a803182ff",
+      "render_patterns": [
+        "single",
+        "burst",
+        "jitter"
+      ],
+      "scenario": "F02-98",
+      "snapshots": 341,
+      "snapshots_sha256": "455d14d0e96e1e6a2cfc72d0912a61cf1efb9160ab2f5da1a584c9a554a14bfc"
+    },
+    {
+      "config_sha256": "96cb529f284d76103bb5b7134867a5ce16e04b8d47744d085f55c30c525ce53c",
+      "input_sha256": "ff87beac076050cb330ea8d92c203e1ae73327bfc4859721a7a6caefef96fc8a",
+      "reference_trace_sha256": "afe584a7ca4decfa9af0e4da29f407f16877cfa934fa5ade61f5412be7b8f49d",
+      "render_patterns": [
+        "single",
+        "burst",
+        "jitter"
+      ],
+      "scenario": "F02-99",
+      "snapshots": 341,
+      "snapshots_sha256": "b39e482715f64eb717863f2aa4dbe7a4404689ef443e29a89cc1f0b94643db88"
+    },
+    {
+      "config_sha256": "883b0493c264d34fcdd7bb9f09e614ae8acf5ea59faa8fbb0274e59caa36d62b",
+      "input_sha256": "d0719b3ffac7bf9e76f2cd3d80edd36cf290e0c4f8c87810c900b99976d27592",
+      "reference_trace_sha256": "39c11c64dbae828986188d92a089a602fe32d1f5cdc960a3920e12b04674fa04",
+      "render_patterns": [
+        "single",
+        "burst",
+        "jitter"
+      ],
+      "scenario": "F03-glitch0",
+      "snapshots": 341,
+      "snapshots_sha256": "3f36b51156851910c10a0d380c49e914b67b3fd2ec63d1c742d59fa3e1c9c84c"
+    },
+    {
+      "config_sha256": "b6a7a7c47a17027537b511bc635b5313df08b1d282a5488e7b0269459fb5ff58",
+      "input_sha256": "d0719b3ffac7bf9e76f2cd3d80edd36cf290e0c4f8c87810c900b99976d27592",
+      "reference_trace_sha256": "ed7c6b07e7b7daa2e61406adeb15a5f74eca2b63812d4c048ffc2ab548efd0bc",
+      "render_patterns": [
+        "single",
+        "burst",
+        "jitter"
+      ],
+      "scenario": "F03-glitch1",
+      "snapshots": 341,
+      "snapshots_sha256": "42a0696fe8e164a8d17b35edacdf8ed5c793014a9e923a799cf38c1724295c45"
+    }
+  ],
+  "signature": "ad132ab4d7e4bb24694fe39e6f52ecf2cf1880023142902f0ac1ecf1f3c606af",
+  "status": "MATCH_SUPPORTED",
+  "tracking_issue": 26,
+  "unverified": [
+    "skills",
+    "abilities",
+    "objects",
+    "rescued",
+    "result",
+    "nuke",
+    "audio",
+    "music",
+    "DOS execution"
+  ],
+  "compiler_packages": [
+    {
+      "name": "fp-compiler-3.2.2_3.2.2+dfsg-32_amd64.deb",
+      "size": 2151692,
+      "sha256": "f94c07185e92d07b4e4e6826e836e789b726167b32ff09a0a3e24080dd5d2101"
+    },
+    {
+      "name": "fp-units-rtl-3.2.2_3.2.2+dfsg-32_amd64.deb",
+      "size": 8181676,
+      "sha256": "812611d610283cb51c1b7f25b0cfe48dd22e1f6feb948f7752e36cb86d0f63d5"
+    }
+  ],
+  "documentation": "mydocs/tech_insights/issue-26_state_replay.md",
+  "tracking_url": "https://github.com/edwardkim/ohmylemmings/issues/26"
+}

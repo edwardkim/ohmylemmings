@@ -25,3 +25,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [MAIN.DAT 레밍 스프라이트·방향/기준점과 전체 337프레임 대조](issue-16_lemming_sprites.md)
 - [MAIN.DAT UI·폰트·투명도 정책과 200개 이미지/글리프 전체 대조](issue-17_main_ui.md)
 - [MAIN.DAT 마스크·카운트다운·극성/숫자 차이와 전체 23프레임 대조](issue-18_main_masks.md)
+
+- [#26 G05-04 상태 추적·재생·기준 실행 대조](issue-26_state_replay.md)

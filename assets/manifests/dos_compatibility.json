@@ -16,7 +16,8 @@
   "evidence": {
     "level_mapping": "Lemmix SectionTable and Lemmings.ts level.order agree for all 120 entries",
     "decoded_parts": "Independent Python analysis and pinned TypeScript decoder produce identical bytes for 81 parts",
-    "runtime_comparison": "pending at G05-G11"
+    "runtime_comparison": "G05 basic supported fields match executed pinned Lemmix method harness (#26); full engine/DOS and unsupported fields remain unverified",
+    "g05_manifest": "assets/manifests/state_replay.json"
   },
   "skill_order": [
     "climber",
@@ -4311,7 +4312,7 @@
         "level": "fun-01",
         "control_steps": 340,
         "commands": [],
-        "evidence": "specified; runtime trace pending G05"
+        "evidence": "G05 basic supported fields match extracted Lemmix method execution (#26); see state_replay.json; full DOS unverified"
       },
       {
         "id": "F01",
@@ -4324,7 +4325,9 @@
             "skill": "digger"
           }
         },
-        "evidence": "reference input tick and completion transcript pending G05/G08"
+        "evidence": "Reference boundary calibrated in #26; skill application and completion pending G07/G08",
+        "calibrated_control_step": 60,
+        "calibration_evidence": "Measured next boundary after first Walking in extracted Lemmix F00 (#26); AssignSkill and completion not executed"
       },
       {
         "id": "F02-99",
@@ -4340,7 +4343,7 @@
             }
           }
         ],
-        "evidence": "specified; runtime trace pending G05"
+        "evidence": "G05 basic supported fields match extracted Lemmix method execution (#26); see state_replay.json; full DOS unverified"
       },
       {
         "id": "F02-98",
@@ -4356,7 +4359,7 @@
             }
           }
         ],
-        "evidence": "specified; runtime trace pending G05"
+        "evidence": "G05 basic supported fields match extracted Lemmix method execution (#26); see state_replay.json; full DOS unverified"
       },
       {
         "id": "F03",
@@ -4376,7 +4379,7 @@
             "arguments": {}
           }
         ],
-        "evidence": "specified; runtime trace pending G08"
+        "evidence": "G05 basic supported fields match extracted Lemmix method execution (#26); see state_replay.json; full DOS unverified"
       }
     ]
   }
