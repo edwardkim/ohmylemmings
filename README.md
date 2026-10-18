@@ -10,7 +10,7 @@ G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. `
 
 G03 리소스 해석을 완료했습니다. [기본 레벨 레코드](mydocs/tech_insights/issue-10_level_records.md), [ODDTABLE·120개 카탈로그](mydocs/tech_insights/issue-11_level_catalog.md), [GROUND 메타데이터·팔레트](mydocs/tech_insights/issue-12_ground_metadata.md), [VGAGR 이미지·마스크](mydocs/tech_insights/issue-13_vgagr_images.md)의 원본 대조와 실제 CI를 통과했습니다.
 
-[G03-05 VGASPEC 특수 배경](mydocs/tech_insights/issue-14_vgaspec_backgrounds.md)을 완료했으며 [G03-06 초기 레벨 지형](mydocs/tech_insights/issue-15_level_terrain.md)도 전체 맵 대조·로컬 검사·실제 CI를 통과해 완료했습니다. 120개 진입점·30412800픽셀·팔레트를 독립 Python과 대조했고 실제 TS 렌더링 코드와의 규칙 차이도 기록했습니다. [G03-07 MAIN.DAT 레밍 스프라이트](mydocs/tech_insights/issue-16_lemming_sprites.md)도 337프레임·63488픽셀의 Rust·Python·TS 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [G03-08 MAIN.DAT UI·폰트](mydocs/tech_insights/issue-17_main_ui.md)도 식별된 19개 묶음·200개 이미지/글리프 전체 픽셀 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [G03-09 MAIN.DAT 마스크·카운트다운](mydocs/tech_insights/issue-18_main_masks.md)도 전체 23프레임·3104비트 대조·로컬 검사·실제 CI를 통과해 완료했습니다. G03-01~10의 검증·게시·실제 CI로 G03 전체 완료 기준을 충족했습니다. [G03-10 객체 이미지 배치·합성](mydocs/tech_insights/issue-19_level_objects.md)도 160개 기본 결과·240개 표시 결과의 독립 대조·게시·실제 CI를 통과했습니다. [G04-01 픽셀 지형 읽기·경계](mydocs/tech_insights/issue-20_terrain_mask.md)도 합성 전수 대조·게시·실제 CI를 통과해 완료했습니다. G04의 읽기·셀 쓰기·영역 변형을 모두 검증했으며 [G04-02 지형 쓰기·셀 변경](mydocs/tech_insights/issue-21_terrain_edits.md)도 전수 대조·게시·실제 CI를 통과해 완료했습니다. [G04-03 영역·마스크 기반 지형 추가/삭제](mydocs/tech_insights/issue-22_terrain_bulk.md)도 전수 대조·게시·실제 CI를 통과했습니다. G04 전체 완료 기준을 충족했습니다. 다음은 G05-01 결정론적 고정 틱·입력 순서 골격입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
+[G03-05 VGASPEC 특수 배경](mydocs/tech_insights/issue-14_vgaspec_backgrounds.md)을 완료했으며 [G03-06 초기 레벨 지형](mydocs/tech_insights/issue-15_level_terrain.md)도 전체 맵 대조·로컬 검사·실제 CI를 통과해 완료했습니다. 120개 진입점·30412800픽셀·팔레트를 독립 Python과 대조했고 실제 TS 렌더링 코드와의 규칙 차이도 기록했습니다. [G03-07 MAIN.DAT 레밍 스프라이트](mydocs/tech_insights/issue-16_lemming_sprites.md)도 337프레임·63488픽셀의 Rust·Python·TS 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [G03-08 MAIN.DAT UI·폰트](mydocs/tech_insights/issue-17_main_ui.md)도 식별된 19개 묶음·200개 이미지/글리프 전체 픽셀 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [G03-09 MAIN.DAT 마스크·카운트다운](mydocs/tech_insights/issue-18_main_masks.md)도 전체 23프레임·3104비트 대조·로컬 검사·실제 CI를 통과해 완료했습니다. G03-01~10의 검증·게시·실제 CI로 G03 전체 완료 기준을 충족했습니다. [G03-10 객체 이미지 배치·합성](mydocs/tech_insights/issue-19_level_objects.md)도 160개 기본 결과·240개 표시 결과의 독립 대조·게시·실제 CI를 통과했습니다. [G04-01 픽셀 지형 읽기·경계](mydocs/tech_insights/issue-20_terrain_mask.md)도 합성 전수 대조·게시·실제 CI를 통과해 완료했습니다. G04의 읽기·셀 쓰기·영역 변형을 모두 검증했으며 [G04-02 지형 쓰기·셀 변경](mydocs/tech_insights/issue-21_terrain_edits.md)도 전수 대조·게시·실제 CI를 통과해 완료했습니다. [G04-03 영역·마스크 기반 지형 추가/삭제](mydocs/tech_insights/issue-22_terrain_bulk.md)도 전수 대조·게시·실제 CI를 통과했습니다. G04 전체 완료 기준을 충족했습니다. [G05-01 고정 틱·입력 순서 골격](mydocs/tech_insights/issue-23_fixed_ticks.md)의 로컬 구현·전수 재생을 마쳤으며 게시·실제 CI를 확인 중입니다. G05 전체는 진행 중이고 다음 후보는 G05-02 시작 시계·입구·생성 스케줄입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
 
 ## Rust 개발
 
@@ -25,7 +25,7 @@ make check
 
 `make check-rust`, `make check-python`, `make check-wasm`으로 각각 실행할 수도 있습니다. [CI·검증 안내](mydocs/plans/issue-7_continuous_integration.md)와 [Makefile](Makefile)에 세부 명령을 정리합니다. 같은 명령이 [GitHub Actions](.github/workflows/ci.yml)의 push·PR·수동 실행에서 사용됩니다.
 
-- [crates/lemmings-core](crates/lemmings-core/src/lib.rs): 레벨 식별 자료형·0/1 지형 마스크 읽기·셀/영역/선택 마스크 변경과 향후 시뮬레이션
+- [crates/lemmings-core](crates/lemmings-core/src/lib.rs): 레벨 식별 자료형·0/1 지형 읽기/변형·17Hz 정수 누적·경계 입력/논리 진행 골격
 - [crates/lemmings-resources](crates/lemmings-resources/src/lib.rs): DAT·기본 레벨·ODDTABLE·120개 카탈로그·GROUND·VGAGR·VGASPEC·초기 지형·객체 합성·MAIN 레밍/UI/폰트·마스크·숫자와 팔레트, 코어 ID를 사용하는 로컬 의존
 - [개발 골격 설계](mydocs/plans/issue-6_rust_workspace.md): 모듈 경계·API·개별/WASM 빌드 명령
 
@@ -57,7 +57,7 @@ python3 -m unittest discover -s tools/tests -v
 
 전체 설계와 단계별 작업은 [프로젝트 기획서](mydocs/plans/issue-1_rusty_lemmings.md)를 참고하세요.
 
-구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. DAT 처리 이후 G03 리소스 해석과 G04 지형 기반을 각각 작은 이슈로 나눠 진행합니다.
+구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. G00~G04를 완료했으며 G05 시뮬레이션을 작은 이슈로 나눠 진행합니다.
 
 진행 상황은 [GitHub 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1)에서 추적합니다.
 

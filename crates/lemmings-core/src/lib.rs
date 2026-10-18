@@ -12,8 +12,14 @@
 //! ```
 
 mod level;
+mod simulation;
 mod terrain;
 
 pub use level::{Difficulty, InvalidLevelNumber, LevelId};
 
 pub use terrain::{TerrainChange, TerrainMask, TerrainMaskError, TerrainMaskMut, TerrainRect};
+
+pub use simulation::{
+    FixedTickClock, InputCommand, InputOrderError, InputSchedule, InvalidStepState, StepEvent,
+    StepOutcome, StepOverflow, StepState, TICKS_PER_SECOND, TickOverflow, TickStepper, TimedInput,
+};
