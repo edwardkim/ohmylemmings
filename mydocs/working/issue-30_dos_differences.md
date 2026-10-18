@@ -16,11 +16,11 @@
 
 원인·계약을 확정하고 구현/재현 증거·보고서·일지·상위 상태·실제 CI를 동기화합니다. 미지원 내부 DOS 상태는 미검증으로 유지합니다.
 
-## 검증 완료·게시 준비
+## 검증·게시 완료
 
 - 원본 코드 초기 객체 증가·counter 순서를 읽기 전용 폴링과 대조해 연속 객체 +2 위상을 보정했습니다. 기존 세 영상의 일곱 전체 320×160 장면이 0픽셀 차이입니다.
 - GUI PC2(DS200e=0)와 -x(255)의 VGA/PIT 경로를 분리했습니다. CPU/선택을 바꾼 8실행과 RAM 4관측을 검증했고 GUI/5000의 마지막 1영상 프레임 지연은 DIFFERENT로 보존했습니다.
 - 어댑터 기본 dos-vga-5와 참조 17Hz를 분리했습니다. 두 방식의 모든 341상태/10그림·기존 F00 서명은 같습니다. 코어 시계/규칙은 유지했습니다.
 - 네이티브 6실행/1780상태/63캡처·reference 추가 341상태/10캡처와 실제 키 재생을 통과했습니다. 기본 340호출 24.433초, reference 20.228초입니다.
 - Rust 행동 5 Red→데스크톱 22 Green, Python 34 Green. make check의 전체 Rust 304/문서 27·모델/참조·SDL·WASM도 성공했습니다.
-- [기술 계약](../tech_insights/issue-30_dos_differences.md)·[보고서](../reports/issue-30_dos_differences.md)·hash-only 증거를 작성했습니다. 다음은 실제 게시/CI·상위 G06 완료 갱신·#30 종료입니다.
+- [기술 계약](../tech_insights/issue-30_dos_differences.md)·[보고서](../reports/issue-30_dos_differences.md)·hash-only 증거를 작성했습니다. 구현 `becbbddd9f178a33c5e2792ee3aee77e7baaa4e6`와 [실제 CI](https://github.com/edwardkim/ohmylemmings/actions/runs/39158078764)의 정확한 push SHA·세 작업/실제 로그·304/27/34 테스트·모델/SDL 서명·clean-input/SDK/fetch를 확인했습니다. 원격 197개 모드/blob도 일치합니다. G06 전체 완료 근거를 반영했으며 최종 문서/CI·상위 체크·#30 종료는 GitHub 기록에서 추적합니다.
