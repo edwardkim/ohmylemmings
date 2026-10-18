@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "profile": "dos-original-vga",
+  "local_directory": "assets/local/dos-original",
+  "release_revision": null,
+  "sources": [
+    {
+      "id": "lemmix-orig",
+      "kind": "zip",
+      "url": "https://raw.githubusercontent.com/ericlangedijk/Lemmix/40e9bc34451f0e9127fd53b290a3877e700d143d/src/Data/Styles/Orig/orig.zip",
+      "size": 336839,
+      "sha256": "bf1f2dbd11cd20df9f748047f8c4a32e7033d3ac7bb4b77058c3ecf27c0a9d6d"
+    },
+    {
+      "id": "dos-pack",
+      "kind": "directory",
+      "base_url": "https://raw.githubusercontent.com/VorticonCmdr/lemmings/1f9258d198e85da4815d90c9cd0b55b70b4f5098/gamedata/lemmings/"
+    }
+  ],
+  "files": [
+    {
+      "name": "ADLIB.DAT",
+      "size": 12988,
+      "sha256": "43eceee3e88fde48c679c635ee208d2af9ade1ed789dc291d647e7d314ffdcfe",
+      "source": "dos-pack",
+      "path": "adlib.dat",
+      "role": "engine-resource"
+    },
+    {
+      "name": "AUTODET.EXE",
+      "size": 2188,
+      "sha256": "bc0ba12a10589299d9a8ce88112d6d7697ab8b45e9d55d14daf01ffd65bd4f16",
+      "source": "dos-pack",
+      "path": "autodet.exe",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "CGAGR0.DAT",
+      "size": 20901,
+      "sha256": "d0d1d08b117dbaa5a61bb7488b141d5d901ea084b8d4c859697139e4dc3be6d5",
+      "source": "dos-pack",
+      "path": "cgagr0.dat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "CGAGR1.DAT",
+      "size": 25696,
+      "sha256": "1ad9cb595dfcf66ba6473776ccff6612f3ec6b4d9e6f534323caa0265b09f44f",
+      "source": "dos-pack",
+      "path": "cgagr1.dat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "CGAGR2.DAT",
+      "size": 15113,
+      "sha256": "58268e1479fb8b3d2fbf2b6bf8a7c9a77a9614e5f190324db17d7d6ef1e37180",
+      "source": "dos-pack",
+      "path": "cgagr2.dat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "CGAGR3.DAT",
+      "size": 15427,
+      "sha256": "a702f30bd44761b37d6498524e452044ed17cdc4a86a807981dde7bc688019ea",
+      "source": "dos-pack",
+      "path": "cgagr3.dat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "CGAGR4.DAT",
+      "size": 20851,
+      "sha256": "ab2de1785c6afd8d46533cb28ac56afaa6ffe0f14e2962e22880719a31910c02",
+      "source": "dos-pack",
+      "path": "cgagr4.dat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "CGALEMMI.EXE",
+      "size": 73164,
+      "sha256": "51b3561293f57ef2899b1f4160c40af8a834d0afb5bbc11d6f825bd6b786ccf6",
+      "source": "dos-pack",
+      "path": "cgalemmi.exe",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "CGAMAIN.DAT",
+      "size": 22111,
+      "sha256": "1e4b08f606546938b1eede4a0587943a07c3777c8c95bf50a7a9c31623995094",
+      "source": "dos-pack",
+      "path": "cgamain.dat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "CGASPEC0.DAT",
+      "size": 17992,
+      "sha256": "aa2ad89a0c3edb7d8f110447815e917031b5921b8035a64d74ddc7fce79dc72f",
+      "source": "dos-pack",
+      "path": "cgaspec0.dat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "CGASPEC1.DAT",
+      "size": 11442,
+      "sha256": "11a2d0d2b797bb63ce142d9e3600c89ad542aac35398020e34eca8a60b0bbcad",
+      "source": "dos-pack",
+      "path": "cgaspec1.dat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "CGASPEC2.DAT",
+      "size": 13129,
+      "sha256": "667ca13f1ddee9dbb9a33e33154d02d1c950a5687bd6f49513c1712fb270fbb2",
+      "source": "dos-pack",
+      "path": "cgaspec2.dat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "CGASPEC3.DAT",
+      "size": 23838,
+      "sha256": "589875f7de9b5a41c1033f06fe82c9b628663c31ad9a4f31298b5d15110f09a1",
+      "source": "dos-pack",
+      "path": "cgaspec3.dat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "GROUND0O.DAT",
+      "size": 1056,
+      "sha256": "86ecce12dea563b97d07339028780a0a50fc2cc75a67f682bf4d9aff8cf4b24a",
+      "source": "lemmix-orig",
+      "path": "GROUND0O.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "GROUND1O.DAT",
+      "size": 1056,
+      "sha256": "baf7a2ea30b07d2dc7968a5fb590987b3775840c57e6268437d3dce969b64d65",
+      "source": "lemmix-orig",
+      "path": "GROUND1O.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "GROUND2O.DAT",
+      "size": 1056,
+      "sha256": "52e62aeefd6cd548690c02af6474936c5e16112e115ca7808c3748e500a9412d",
+      "source": "lemmix-orig",
+      "path": "GROUND2O.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "GROUND3O.DAT",
+      "size": 1056,
+      "sha256": "f4df8579a30cb55dae4a06f606e0453cb0931219efadf3e9465d681a43a2722c",
+      "source": "lemmix-orig",
+      "path": "GROUND3O.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "GROUND4O.DAT",
+      "size": 1056,
+      "sha256": "9669ee978e5adf5f8d5bfeb80ccc5d6c20e75e32f55e2a5c1c738f64af8faa91",
+      "source": "lemmix-orig",
+      "path": "GROUND4O.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "HELP.BAT",
+      "size": 114,
+      "sha256": "ce9c39912fedf5d4a425c78bc342cc9f3c2487d571c387527b0fe28a7a99d498",
+      "source": "dos-pack",
+      "path": "help.bat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "INSTALL.EXE",
+      "size": 9145,
+      "sha256": "5837dced3fed64514b9a2b8b6f5564e9eb981c9d9c2842190c8683e451fffd18",
+      "source": "dos-pack",
+      "path": "install.exe",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "LEM1.DOC",
+      "size": 403,
+      "sha256": "66068ab8290ee4c65ef2aeb554f0c5a3da90edcae40817ed3c8fd58b12b4a0c7",
+      "source": "dos-pack",
+      "path": "lem1.doc",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "LEM2.DOC",
+      "size": 384,
+      "sha256": "3722478bbed7c05f0ff7e7d7811ba98ce356a3568d626e666ace426ec09f83b5",
+      "source": "dos-pack",
+      "path": "lem2.doc",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "LEM3.DOC",
+      "size": 530,
+      "sha256": "0f27deb33cb9ed35851c18bac0c4b792fe71e20e0bbf8f58f020996a7ab00190",
+      "source": "dos-pack",
+      "path": "lem3.doc",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "LEM4.DOC",
+      "size": 688,
+      "sha256": "c7ee193f65b8fdc19ff54ab1c9fe3b9de05c772dfa377c60bc8f0cdd15c720b0",
+      "source": "dos-pack",
+      "path": "lem4.doc",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "LEMMINGS.BAT",
+      "size": 569,
+      "sha256": "f6538723d41b20176e8adb5f70a1599c86328897ecec86ee23f28e4eb231a3f7",
+      "source": "dos-pack",
+      "path": "lemmings.bat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "LEVEL000.DAT",
+      "size": 3722,
+      "sha256": "2b9d4502ae1837faa3a6ff7a8b11eb75cbb6a555aa0e5c9f266f0e33a4cf444f",
+      "source": "lemmix-orig",
+      "path": "LEVEL000.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "LEVEL001.DAT",
+      "size": 4519,
+      "sha256": "52c60bf66d31514ba7f05970901cbde98e10e4020b8cc5d99c5bdf0eca43a2a9",
+      "source": "lemmix-orig",
+      "path": "LEVEL001.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "LEVEL002.DAT",
+      "size": 4819,
+      "sha256": "3216e70e91b5a1f8fc34d92e90167762df018f56dbd253b02e655e2beb1e0854",
+      "source": "lemmix-orig",
+      "path": "LEVEL002.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "LEVEL003.DAT",
+      "size": 6827,
+      "sha256": "6a4984e3ef13e8450c65dffe67baf9b7dee22f2f97af42072c60c8965d7ba94c",
+      "source": "lemmix-orig",
+      "path": "LEVEL003.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "LEVEL004.DAT",
+      "size": 3889,
+      "sha256": "c4c103ef26a275918586eed9e9fc63ba1f91125fe7bd70c0c1f97614367f50df",
+      "source": "lemmix-orig",
+      "path": "LEVEL004.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "LEVEL005.DAT",
+      "size": 7255,
+      "sha256": "ba7ae3d24331e1a0d87b46d1332b4cf74a09c9e584ad12ea672ee555da1a52cc",
+      "source": "lemmix-orig",
+      "path": "LEVEL005.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "LEVEL006.DAT",
+      "size": 7149,
+      "sha256": "34052d7c5ea66748c5a81fe69060bbf081d3be3232dce05945b51bf2cb4f0472",
+      "source": "lemmix-orig",
+      "path": "LEVEL006.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "LEVEL007.DAT",
+      "size": 5253,
+      "sha256": "f827359ac4a66e5e945d74f322982e8419d7c55f2e47044674fe10fd423a9cde",
+      "source": "lemmix-orig",
+      "path": "LEVEL007.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "LEVEL008.DAT",
+      "size": 7037,
+      "sha256": "b014f73c65aa57c7a014c896ac4f7dd58291946526db5ebb059ebbd3ea80d174",
+      "source": "lemmix-orig",
+      "path": "LEVEL008.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "LEVEL009.DAT",
+      "size": 4932,
+      "sha256": "0cb73f259510c25c29f21103ac1d04c0643756b6ea81b91b47d0c46259fe1a83",
+      "source": "lemmix-orig",
+      "path": "LEVEL009.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "MAIN.DAT",
+      "size": 56472,
+      "sha256": "2aec688c334e60322998811a8b6f9d5c13f8090b46ca6c2a6cb1c8db3b733545",
+      "source": "lemmix-orig",
+      "path": "MAIN.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "ODDTABLE.DAT",
+      "size": 4480,
+      "sha256": "e6d425592fe2cda43ec1169995cd8deeb0bdb74eb464728f4c05eb1ddefae8d0",
+      "source": "lemmix-orig",
+      "path": "ODDTABLE.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "TANDYSND.DAT",
+      "size": 12399,
+      "sha256": "d044398aced30dae67cf8663d57f946faf28a29c357f9ea3857a28eea7cc10c1",
+      "source": "dos-pack",
+      "path": "tandysnd.dat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "TGALEMMI.EXE",
+      "size": 76092,
+      "sha256": "8c6e8f068fd10bc1d7bab71094c710514d8c3a249c4f7e29d472f1a7d9d3c527",
+      "source": "dos-pack",
+      "path": "tgalemmi.exe",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "TGAMAIN.DAT",
+      "size": 14733,
+      "sha256": "5a7776a66b858d5936f314a2105aa7ab83ad9e17a946c458f94d467548216896",
+      "source": "dos-pack",
+      "path": "tgamain.dat",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "VGAGR0.DAT",
+      "size": 24464,
+      "sha256": "9bd5ae2e0aed013bd369a469ac14afeb1beb22524fc820920d6e38766ea48680",
+      "source": "lemmix-orig",
+      "path": "VGAGR0.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "VGAGR1.DAT",
+      "size": 32966,
+      "sha256": "bf49fc528b68d00c5738b6e7cd9244812bc74b0fc03ea9f862009a11009149e5",
+      "source": "lemmix-orig",
+      "path": "VGAGR1.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "VGAGR2.DAT",
+      "size": 22290,
+      "sha256": "f8305e71295c5909ee7692e4391aae65443298faef4d96e5fe17b24afa0eadcc",
+      "source": "lemmix-orig",
+      "path": "VGAGR2.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "VGAGR3.DAT",
+      "size": 22775,
+      "sha256": "19d3e2ba0db60bf855d8ce83459f53d83a2048763124932f533eb1c42f7809d9",
+      "source": "lemmix-orig",
+      "path": "VGAGR3.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "VGAGR4.DAT",
+      "size": 28692,
+      "sha256": "40a99d3d9540609da9d6a74c07a832786818aed361326e37c01a909a1615921d",
+      "source": "lemmix-orig",
+      "path": "VGAGR4.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "VGALEMMI.EXE",
+      "size": 83194,
+      "sha256": "4f21e94d53b7ea814ade802b4a37d42481da3876e31fb5a23090e19c9600f21c",
+      "source": "dos-pack",
+      "path": "vgalemmi.exe",
+      "role": "reference-runtime"
+    },
+    {
+      "name": "VGASPEC0.DAT",
+      "size": 28655,
+      "sha256": "a647110ca059fd18917e8a289668167a3a77975ca1096d7f7fdd9557fee95ce0",
+      "source": "lemmix-orig",
+      "path": "VGASPEC0.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "VGASPEC1.DAT",
+      "size": 18567,
+      "sha256": "b0a8ce1a8888feda8720c7df1222911ae9241f3acbfd42adda243bd5ba5a2306",
+      "source": "lemmix-orig",
+      "path": "VGASPEC1.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "VGASPEC2.DAT",
+      "size": 23284,
+      "sha256": "602fde697bb49df8d86fd800643cc3439a4f136223af0bf1ee46e2bff5e0e3cd",
+      "source": "lemmix-orig",
+      "path": "VGASPEC2.DAT",
+      "role": "engine-resource"
+    },
+    {
+      "name": "VGASPEC3.DAT",
+      "size": 34827,
+      "sha256": "918f21db3a16741f1a58b06bcef2b4ff63dc16f0e8746d0393dc023ea57cb2d4",
+      "source": "lemmix-orig",
+      "path": "VGASPEC3.DAT",
+      "role": "engine-resource"
+    }
+  ]
+}

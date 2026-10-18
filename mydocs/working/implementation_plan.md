@@ -2,7 +2,7 @@
 
 ## 현재 상태
 
-계획 수립과 [GitHub 상위 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1) 등록, 문서 게시 확인을 완료했습니다. 구현 목표 G00~G12는 모두 대기 상태이며, 다음 착수 대상은 G00-01입니다.
+계획 수립과 [GitHub 상위 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1) 등록을 완료했습니다. 현재 G00 진행 중이며, [G00-01 / #2](https://github.com/edwardkim/ohmylemmings/issues/2)에서 원작 파일 50개와 검증 도구를 확보했습니다. 세부 상태는 [G00-01 진행 기록](dos_baseline.md)에서 관리합니다. G01~G12는 대기 상태입니다.
 
 ## 관련 문서
 
@@ -22,6 +22,6 @@
 
 ## 다음 행동
 
-1. G00-01 기준판 식별을 후속 이슈로 분리하고 대상 DOS 버전과 리소스 확보 상태를 기록합니다.
+1. G00-01 결과 게시를 확인합니다.
 2. G00-02 레퍼런스 고정과 G00-03 호환성 검증 기준 정의를 처리합니다.
 3. G00 완료 기준을 충족하면 G01 개발 기반 구축으로 진행합니다.

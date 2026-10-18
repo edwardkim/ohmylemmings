@@ -4,6 +4,8 @@
 
 단계별 구현 목표와 작업 순서는 [전체 구현 계획](plans/implementation_plan.md)을 참고합니다.
 
+현재 G00의 [DOS 기준판 식별·원본 확보](tech_insights/dos_original_baseline.md)를 진행 중입니다. 로컬 데이터 준비는 [리소스 안내](../assets/README.md)를 참고합니다.
+
 ## 폴더 구조
 
 - [plans/](plans/README.md): 마일스톤 및 아키텍처 계획

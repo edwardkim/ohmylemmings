@@ -1,6 +1,13 @@
 # Rust build output
 **/target/
 
+# Downloaded original binaries and reference caches
+/assets/local/
+
+# Python tooling caches
+__pycache__/
+*.py[cod]
+
 # Local configuration
 .env
 .env.*

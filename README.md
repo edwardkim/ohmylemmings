@@ -4,7 +4,19 @@
 
 ## 현재 상태
 
-현재는 기획과 문서 구조를 정리한 단계입니다. Rust 소스와 `Cargo.toml`은 아직 없으며, 빌드·실행·테스트 명령은 구현 단계에서 추가합니다.
+현재는 G00의 기준판·리소스 확보를 진행하고 있습니다. 원작 검증 파일 50개와 확보·검증 도구를 준비했으며, Rust 소스와 `Cargo.toml`은 G01에서 도입합니다.
+
+## 원본 데이터 준비
+
+저장소 루트에서 Python 3으로 실행합니다.
+
+```sh
+python3 tools/reference_assets.py fetch
+python3 tools/reference_assets.py verify
+python3 -m unittest discover -s tools/tests -v
+```
+
+원본 파일은 `assets/local/dos-original/`에 저장됩니다. [확보 안내](assets/README.md)와 [기준판 분석](mydocs/tech_insights/dos_original_baseline.md)에서 출처와 파일 식별 기준을 확인할 수 있습니다.
 
 ## 구현 목표
 
