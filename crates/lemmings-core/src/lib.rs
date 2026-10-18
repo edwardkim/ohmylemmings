@@ -1,5 +1,5 @@
 #![no_std]
-//! Domain types shared by the future simulation and its platform adapters.
+//! Domain types and checked terrain views shared by simulation and adapters.
 //!
 //! ```
 //! use lemmings_core::{Difficulty, LevelId};
@@ -12,5 +12,8 @@
 //! ```
 
 mod level;
+mod terrain;
 
 pub use level::{Difficulty, InvalidLevelNumber, LevelId};
+
+pub use terrain::{TerrainMask, TerrainMaskError};
