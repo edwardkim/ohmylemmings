@@ -6,7 +6,7 @@
 
 G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/issue-2_dos_original_baseline.md)를 완료했습니다. 로컬 데이터 준비는 [리소스 안내](../assets/README.md)를 참고합니다.
 
-[G00-02 레퍼런스 코드 지도](tech_insights/issue-3_reference_code_map.md)와 [G00-03 호환성 검증 기준](tech_insights/issue-5_compatibility_baseline.md)을 완료했습니다. [G01-01 Rust 개발 골격](plans/issue-6_rust_workspace.md)과 [G01-02 CI·개발 검증](plans/issue-7_continuous_integration.md)을 마쳐 G01을 완료했습니다. G02는 [G02-01 DAT 구간 읽기](tech_insights/issue-8_dat_sections.md)를 진행 중이고 G04는 준비 상태입니다. 실제 게임 호환성은 후속 목표에서 검증합니다.
+[G00-02 레퍼런스 코드 지도](tech_insights/issue-3_reference_code_map.md)와 [G00-03 호환성 검증 기준](tech_insights/issue-5_compatibility_baseline.md)을 완료했습니다. [G01-01 Rust 개발 골격](plans/issue-6_rust_workspace.md)과 [G01-02 CI·개발 검증](plans/issue-7_continuous_integration.md)을 마쳐 G01을 완료했습니다. [G02-01 DAT 구간 읽기](tech_insights/issue-8_dat_sections.md)도 마쳤습니다. G02는 압축 해제가 남아 진행 중이고 G04는 준비 상태입니다. 실제 게임 호환성은 후속 목표에서 검증합니다.
 
 ## 폴더 구조
 

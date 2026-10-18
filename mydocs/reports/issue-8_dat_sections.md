@@ -21,7 +21,7 @@
 | 원본·소스 매니페스트 `verify` | 50개 원본·46개 소스의 크기·SHA-256 검증 통과 |
 | Rust `inspect_dat` 출력과 독립 Python `struct.unpack_from('>BB4H')`/XOR 분석 대조 | 원본 21개 파일·102개 구간의 메타데이터 전부 일치 |
 | 호스트 예제의 인자 누락·정상 구간 뒤 손상 헤더 | 실패 종료·파일/구간 위치 오류 확인 |
-| 문서 링크·앵커·파일명 검사 | Markdown 39개, 로컬 링크 202개·앵커 32개, 이슈 문서명 27개 통과 |
+| 문서 링크·앵커·파일명 검사 | Markdown 39개, 로컬 링크 203개·앵커 32개, 이슈 문서명 27개 통과 |
 | Cargo 메타데이터·공백 검사 | 로컬 라이브러리 2개·외부 의존성 0개, `git diff --check` 통과 |
 
 새 테스트는 다중 구간·빌린 주소·big-endian 해석, 빈 입력·반복 종료, 모든 부분 헤더/본문, 크기 0~10과 최대 u16, 출력 0, 모든 u8 비트 값, 예약 워드, XOR 오류·0 체크섬, 뒤쪽 1~10바이트, 후속 구간의 파일 위치·오류 뒤 종료를 검증합니다. 합성 fixture는 압축 명령 스트림이 아닌 구간 구조용 데이터입니다.
@@ -30,7 +30,17 @@
 
 ## 게시 검증
 
-문서 검사·원격 파일 대조·실제 GitHub Actions는 게시 단계에서 결과를 추가합니다. 이슈 #8은 해당 확인이 끝난 뒤 완료 처리합니다.
+구현 커밋 `84e682995b02d30bac750f7579cdb985ce0ac518`을 `main`에 게시했습니다. [push CI 실행](https://github.com/edwardkim/ohmylemmings/actions/runs/39106709100)의 전체 결론과 세 작업이 모두 success입니다.
+
+| 작업 | 확인한 실행 근거 |
+|---|---|
+| [Rust native](https://github.com/edwardkim/ohmylemmings/actions/runs/39106709100/job/117614010477) | Rust 1.93.1, 포맷·Clippy·빌드, 단위 19개·문서 예제 3개 성공 |
+| [Python tooling](https://github.com/edwardkim/ohmylemmings/actions/runs/39106709100/job/117614010676) | Python 3.12.15, 오프라인 테스트 8개 성공 |
+| [WASM libraries](https://github.com/edwardkim/ohmylemmings/actions/runs/39106709100/job/117614010626) | 고정 Rust와 타깃 설치 후 두 라이브러리 컴파일 성공 |
+
+대상 SHA·push 이벤트·실제 실행 로그의 개수와 clean-input 검사를 대조했습니다. 원본·기존 target·Cargo 캐시 없는 러너에서 통과했습니다. 구현 커밋의 `git ls-tree -r HEAD`와 GitHub Git tree API의 파일 58개 blob 해시가 모두 일치했습니다. 원본과 빌드 결과물은 추적하지 않습니다.
+
+G02-01의 구현·검증 범위를 완료했습니다. 상위 #1에서 G00·G01만 전체 목표 완료로 체크하며 G02는 진행 중입니다. 최종 문서 게시·CI 확인과 #8 종료 기록은 GitHub 이슈에서 추적합니다.
 
 ## 다음 작업과 한계
 
