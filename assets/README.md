@@ -61,3 +61,5 @@ MAIN.DAT 지형 마스크·카운트다운은 [G03-09 재현 명령](../mydocs/t
 - [Digger 원본/기준/네이티브 증거](manifests/digger.json): #31의18개 기준 함수·합성/원본 상태·전체 삭제 목록·실제 마우스·DOS 두 실행·전체 세 장면 비교의 hash-only 기록입니다. 원본 파생 영상·화면·메모리 숫자 관측·전체 추적/바이너리는 ignored assets/local에만 둡니다.
 
 - [Basher 원본/기준/네이티브 증거](manifests/basher.json): #32의21개 기준 함수·합성/원본 상태·전체 삭제·실제 B키/마우스·DOS 두 실행/전체 세 장면 비교의 hash-only 기록입니다. 원본 파생물은 ignored assets/local에만 둡니다.
+
+- [Miner 원본/기준/네이티브 증거](manifests/miner.json): #33의24개 기준 함수·합성/원본 상태·전체 삭제·실제 M키/마우스·DOS 두 실행과 전체 세 장면 비교의 hash-only 기록입니다. 원본 파생물은 ignored assets/local에만 둡니다.

@@ -21,7 +21,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nB/D: select Basher/Digger; left click: assign selected skill; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nM/B/D: select Miner/Basher/Digger; left click: assign selected skill; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     synthetic: bool,
@@ -130,6 +130,7 @@ struct Capture {
     trace: BufWriter<File>,
     digger_trace: BufWriter<File>,
     basher_trace: BufWriter<File>,
+    miner_trace: BufWriter<File>,
     previous_terrain: Vec<u8>,
 }
 fn write_new(path: &Path, data: &[u8]) -> Result<(), Box<dyn Error>> {
@@ -158,6 +159,12 @@ impl Capture {
             root: root.to_path_buf(),
             trace,
             previous_terrain: Vec::new(),
+            miner_trace: BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(root.join("miner.jsonl"))?,
+            ),
             basher_trace: BufWriter::new(
                 OpenOptions::new()
                     .write(true)
@@ -174,6 +181,7 @@ impl Capture {
     }
     fn snapshot(&mut self, s: &Session) -> Result<(), Box<dyn Error>> {
         writeln!(self.trace, "{}", s.snapshot())?;
+        writeln!(self.miner_trace, "{{\"remaining\":{}}}", s.remaining_miners)?;
         self.trace.flush()?;
         writeln!(
             self.basher_trace,
@@ -218,6 +226,7 @@ impl Capture {
         self.trace.flush()?;
         self.digger_trace.flush()?;
         self.basher_trace.flush()?;
+        self.miner_trace.flush()?;
         write_new(&self.root.join("terrain-final.bin"), s.terrain())?;
         let mut inputs = String::new();
         for i in &s.inputs {
@@ -229,6 +238,9 @@ impl Capture {
                 }
                 InputCommand::Custom(StartupCommand::AssignBasher(id)) => {
                     format!("AssignBasher {id}")
+                }
+                InputCommand::Custom(StartupCommand::AssignMiner(id)) => {
+                    format!("AssignMiner {id}")
                 }
                 InputCommand::Custom(StartupCommand::SetReleaseRate(rate)) => {
                     format!("SetReleaseRate {rate}")
@@ -255,7 +267,9 @@ fn basher_capture(s: &Session) -> bool {
         && s.inputs.iter().any(|i| {
             matches!(
                 i.command,
-                InputCommand::Custom(StartupCommand::AssignBasher(_))
+                InputCommand::Custom(
+                    StartupCommand::AssignBasher(_) | StartupCommand::AssignMiner(_)
+                )
             )
         })
 }
@@ -295,6 +309,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         assets.one_way_left.clone(),
         assets.one_way_right.clone(),
     )?;
+    session.configure_miner(assets.miners, assets.mine_masks);
     let mut view = View::new(assets.screen_x);
     view.replaying = options.replay.is_some();
     let mut capture = options
@@ -305,6 +320,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
     if let Some(c) = &mut capture {
         c.snapshot(&session)?;
         write_new(&c.root.join("bash-masks.bin"), &assets.bash_masks)?;
+        write_new(&c.root.join("mine-masks.bin"), &assets.mine_masks)?;
         let objects: Vec<_> = assets
             .steel
             .iter()
@@ -331,7 +347,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             .collect::<Vec<_>>()
             .join(",");
         let description = format!(
-            "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"level\":{}}}",
+            "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"miners\":{},\"level\":{}}}",
             assets.width,
             assets.height,
             config.time_limit_minutes,
@@ -339,6 +355,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             config.initial_release_rate,
             assets.diggers,
             assets.bashers,
+            assets.miners,
             options.level
         );
         write_new(&c.root.join("config.json"), description.as_bytes())?;

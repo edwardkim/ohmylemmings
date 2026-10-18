@@ -15,7 +15,7 @@ pub use startup::{
 };
 
 pub use motion::{
-    Actor, ActorState, ActorTick, BashingContext, EntrancePoint, MotionAction, MotionDirection,
-    MotionError, MotionOutcome, MotionRules, RemovalReason, step_actors, step_actors_mut,
-    step_actors_with_skills,
+    Actor, ActorState, ActorTick, BashingContext, EntrancePoint, MiningContext, MotionAction,
+    MotionDirection, MotionError, MotionOutcome, MotionRules, RemovalReason, step_actors,
+    step_actors_mut, step_actors_with_jobs, step_actors_with_skills,
 };

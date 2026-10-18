@@ -1,7 +1,7 @@
 use super::*;
 
 impl Actor {
-    /// Assign to a live walker or basher, consuming one skill only on success. The caller
+    /// Assign to a live walker, basher or miner, consuming one skill only on success. The caller
     /// selects a stable actor ID; cursor priority and other jobs are separate.
     /// Steel is a caller-provided object-map view, not per-pixel protection.
     pub fn assign_digger(&mut self, remaining: &mut u16, steel: TerrainMask<'_>) -> bool {
@@ -9,7 +9,7 @@ impl Actor {
             || self.state.removed.is_some()
             || !matches!(
                 self.state.action,
-                MotionAction::Walking | MotionAction::Bashing
+                MotionAction::Walking | MotionAction::Bashing | MotionAction::Mining
             )
             || steel.is_solid(self.state.x, self.state.y)
         {
@@ -20,7 +20,8 @@ impl Actor {
         true
     }
 
-    /// One tick with mutable terrain. Each actor's arithmetic is checked before
+    /// One tick for basic motion/Digging; use `advance_with_jobs` for all jobs.
+    /// Each actor's arithmetic is checked before
     /// committing its state or pixels. Earlier actors in a batch see/leave their
     /// edits in ID order. Steel is checked at the new foot after a supported row
     /// is removed; holes take precedence over steel. See #31's reference contract.

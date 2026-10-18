@@ -9,6 +9,8 @@ pub struct Assets {
     pub steel: Vec<u8>,
     pub diggers: u16,
     pub bashers: u16,
+    pub miners: u16,
+    pub mine_masks: [u8; 104],
     pub bash_masks: [u8; 160],
     pub one_way_left: Vec<u8>,
     pub one_way_right: Vec<u8>,
@@ -178,6 +180,8 @@ impl Assets {
             steel,
             diggers,
             bashers,
+            miners: header.skills[6],
+            mine_masks: masks[160..264].try_into()?,
             bash_masks: masks[..160].try_into()?,
             one_way_left,
             one_way_right,
@@ -208,6 +212,8 @@ impl Assets {
             steel: vec![0; width * height],
             diggers: 10,
             bashers: 10,
+            miners: 10,
+            mine_masks: [255; 104], // own full rectangular synthetic erase masks
             // Own synthetic masks (rectangular slices), never original bits.
             bash_masks: synthetic_bash_masks(),
             one_way_left: vec![0; width * height],

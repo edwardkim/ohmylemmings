@@ -37,3 +37,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#31 G07-01 Digger 계약·원본/기준 실행](issue-31_digger.md)
 
 - [#32 G07-02 Basher](issue-32_basher.md)
+
+- [#33 G07-03 Miner](issue-33_miner.md)

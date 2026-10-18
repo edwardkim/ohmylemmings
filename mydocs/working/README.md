@@ -20,3 +20,5 @@
 - [#31 G07-01 Digger](issue-31_digger.md)
 
 - [#32 G07-02 Basher](issue-32_basher.md)
+
+- [#33 G07-03 Miner](issue-33_miner.md)

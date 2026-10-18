@@ -44,3 +44,5 @@ G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/issue-2_dos_origin
 [#31 Digger](reports/issue-31_digger.md)의 구현·기준/원본 검증·게시/실제 CI를 완료했습니다. Basher도 완료했으며 다음 후보는 G07-03 Miner입니다. G07 전체는 진행 중입니다.
 
 [#32 Basher](reports/issue-32_basher.md)의 구현·기준/원본/네이티브·전체 회귀·게시/실제 CI를 완료했습니다. G07 전체는 진행 중입니다.
+
+[#33 Miner](reports/issue-33_miner.md)의 구현·기준/원본/네이티브·전체 회귀를 통과했으며 게시/실제 CI를 확인합니다.

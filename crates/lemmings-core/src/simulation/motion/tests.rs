@@ -668,6 +668,7 @@ fn action_code(action: MotionAction) -> u8 {
         MotionAction::Splatting => 3,
         MotionAction::Digging => 4,
         MotionAction::Bashing => 5,
+        MotionAction::Mining => 6,
     }
 }
 fn removal_code(reason: Option<RemovalReason>) -> u8 {
@@ -742,7 +743,9 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                             MotionAction::Jumping => &[0],
                             MotionAction::Falling => &[0, 3],
                             MotionAction::Splatting => &[0, 14, 15],
-                            MotionAction::Digging | MotionAction::Bashing => unreachable!(),
+                            MotionAction::Digging
+                            | MotionAction::Bashing
+                            | MotionAction::Mining => unreachable!(),
                         };
                         let fallen_values: &[_] = if action == MotionAction::Falling {
                             &[0, 60, 61]

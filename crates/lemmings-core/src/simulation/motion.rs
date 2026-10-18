@@ -2,9 +2,11 @@ use super::SpawnRequest;
 use crate::{TerrainMask, TerrainMaskMut};
 mod basher;
 mod digger;
+mod miner;
 pub use basher::{BashingContext, step_actors_with_skills};
 use core::fmt;
 pub use digger::step_actors_mut;
+pub use miner::{MiningContext, step_actors_with_jobs};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum MotionDirection {
@@ -38,6 +40,7 @@ pub enum MotionAction {
     Splatting,
     Digging,
     Bashing,
+    Mining,
 }
 impl MotionAction {
     pub const fn frame_count(self) -> u8 {
@@ -47,6 +50,7 @@ impl MotionAction {
             Self::Falling => 4,
             Self::Splatting | Self::Digging => 16,
             Self::Bashing => 32,
+            Self::Mining => 24,
         }
     }
     fn loops(self) -> bool {
@@ -215,7 +219,10 @@ impl Actor {
                 state.y > 163
                     && matches!(
                         state.action,
-                        MotionAction::Walking | MotionAction::Falling | MotionAction::Digging
+                        MotionAction::Walking
+                            | MotionAction::Falling
+                            | MotionAction::Digging
+                            | MotionAction::Mining
                     )
             }
             Some(RemovalReason::SplattingFinished) => {
@@ -338,7 +345,7 @@ impl Actor {
                     transition(&mut s, MotionAction::Walking, self.rules);
                 }
             }
-            MotionAction::Digging | MotionAction::Bashing => {
+            MotionAction::Digging | MotionAction::Bashing | MotionAction::Mining => {
                 return Err(MotionError::MutableTerrainRequired);
             }
             MotionAction::Splatting => {

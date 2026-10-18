@@ -19,7 +19,7 @@ impl<'a> BashingContext<'a> {
             one_way_right: None,
         }
     }
-    fn blocked(self, x: i64, y: i64, direction: MotionDirection) -> bool {
+    pub(super) fn blocked(self, x: i64, y: i64, direction: MotionDirection) -> bool {
         let (Ok(x), Ok(y)) = (i32::try_from(x), i32::try_from(y)) else {
             return false;
         };
@@ -33,12 +33,15 @@ impl<'a> BashingContext<'a> {
 
 impl Actor {
     /// Assign by stable ID after caller selection. Supported replaceable jobs
-    /// are Walking and Digging; rejected requests preserve inventory and state.
+    /// are Walking, Digging and Mining; rejected requests preserve inventory and state.
     pub fn assign_basher(&mut self, remaining: &mut u16, context: BashingContext<'_>) -> bool {
         let s = self.state;
         if *remaining == 0
             || s.removed.is_some()
-            || !matches!(s.action, MotionAction::Walking | MotionAction::Digging)
+            || !matches!(
+                s.action,
+                MotionAction::Walking | MotionAction::Digging | MotionAction::Mining
+            )
             || context.blocked(
                 i64::from(s.x) + i64::from(s.direction.delta()) * 8,
                 i64::from(s.y) - 8,
@@ -148,11 +151,18 @@ fn mask_bit(bytes: &[u8], x: usize, y: usize) -> bool {
 }
 
 /// Strict ID order over shared mutable terrain, including both implemented
-/// jobs. Order errors precede all changes; later failures keep earlier commits.
+/// jobs through Bashing. Order errors precede all changes; later failures keep earlier commits.
 pub fn step_actors_with_skills(
     actors: &mut [Actor],
     terrain: &mut TerrainMaskMut<'_>,
     context: BashingContext<'_>,
+    emit: impl FnMut(ActorState, MotionOutcome),
+) -> Result<ActorTick, MotionError> {
+    step_mutating(actors, |a| a.advance_with_skills(terrain, context), emit)
+}
+pub(super) fn step_mutating(
+    actors: &mut [Actor],
+    mut advance: impl FnMut(&mut Actor) -> Result<MotionOutcome, MotionError>,
     mut emit: impl FnMut(ActorState, MotionOutcome),
 ) -> Result<ActorTick, MotionError> {
     for (index, pair) in actors.windows(2).enumerate() {
@@ -165,7 +175,7 @@ pub fn step_actors_with_skills(
         if actor.state.removed.is_some() {
             continue;
         }
-        let out = actor.advance_with_skills(terrain, context)?;
+        let out = advance(actor)?;
         tick.active_before += 1;
         tick.removed += usize::from(out.removal.is_some());
         tick.checking_objects += usize::from(out.check_objects);

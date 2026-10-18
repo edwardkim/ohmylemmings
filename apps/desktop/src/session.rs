@@ -9,6 +9,8 @@ pub struct Session {
     pub events: Vec<String>,
     pub remaining_diggers: u16,
     pub remaining_bashers: u16,
+    pub remaining_miners: u16,
+    mine_masks: [u8; 104],
     bash_masks: [u8; 160],
     one_way_left: Vec<u8>,
     one_way_right: Vec<u8>,
@@ -42,6 +44,8 @@ impl Session {
             events: Vec::new(),
             remaining_diggers: 0,
             remaining_bashers: 0,
+            remaining_miners: 0,
+            mine_masks: [0; 104],
             bash_masks: [0; 160],
             one_way_left: vec![0; width * height],
             one_way_right: vec![0; width * height],
@@ -96,6 +100,10 @@ impl Session {
             self.remaining_diggers,
             flags.join(",")
         )
+    }
+    pub fn configure_miner(&mut self, remaining: u16, masks: [u8; 104]) {
+        self.remaining_miners = remaining;
+        self.mine_masks = masks;
     }
     pub fn desired_paused(&self) -> bool {
         self.inputs
@@ -153,6 +161,7 @@ impl Session {
         let actors = &mut self.actors;
         let remaining = &mut self.remaining_diggers;
         let bashers = &mut self.remaining_bashers;
+        let miners = &mut self.remaining_miners;
         let context = BashingContext {
             masks: &self.bash_masks,
             steel,
@@ -167,11 +176,14 @@ impl Session {
                 &self.one_way_right,
             )?),
         };
+        let mining = MiningContext::new(&self.mine_masks, context);
         let outcome = self.scheduler.step_with_skills(
             &schedule,
             |command| {
                 let id = match command {
-                    StartupCommand::AssignDigger(id) | StartupCommand::AssignBasher(id) => id,
+                    StartupCommand::AssignDigger(id)
+                    | StartupCommand::AssignBasher(id)
+                    | StartupCommand::AssignMiner(id) => id,
                     _ => return false,
                 };
                 actors
@@ -180,6 +192,7 @@ impl Session {
                     .is_some_and(|a| match command {
                         StartupCommand::AssignDigger(_) => a.assign_digger(remaining, steel),
                         StartupCommand::AssignBasher(_) => a.assign_basher(bashers, context),
+                        StartupCommand::AssignMiner(_) => a.assign_miner(miners, mining),
                         _ => false,
                     })
             },
@@ -210,10 +223,10 @@ impl Session {
             )?);
         }
         if outcome.iteration.is_some() {
-            step_actors_with_skills(
+            step_actors_with_jobs(
                 &mut self.actors,
                 &mut TerrainMaskMut::new(self.width, self.height, &mut self.terrain)?,
-                context,
+                mining,
                 |_, _| {},
             )?;
         }
@@ -300,6 +313,40 @@ mod tests {
             vec![0; 96 * 160],
         )
         .unwrap()
+    }
+    #[test]
+    fn paused_miner_assignment_keeps_motion_still_and_replays_inventory_and_excavation() {
+        let assets = crate::assets::Assets::synthetic();
+        let mut s = Session::new(
+            assets.config,
+            assets.entrances,
+            assets.width,
+            assets.height,
+            assets.terrain,
+        )
+        .unwrap();
+        s.configure_miner(2, assets.mine_masks);
+        for _ in 0..80 {
+            s.tick().unwrap();
+        }
+        s.queue(InputCommand::Pause).unwrap();
+        s.queue(InputCommand::Custom(StartupCommand::AssignMiner(0)))
+            .unwrap();
+        s.queue(InputCommand::Custom(StartupCommand::AssignMiner(0)))
+            .unwrap();
+        let before = s.terrain().to_vec();
+        s.tick().unwrap();
+        assert_eq!(s.remaining_miners, 1);
+        assert_eq!(
+            (s.actors[0].state().action, s.actors[0].state().frame),
+            (MotionAction::Mining, 0)
+        );
+        assert_eq!(s.terrain(), before);
+        assert!(s.events.last().unwrap().ends_with("false"));
+        s.queue(InputCommand::Resume).unwrap();
+        s.tick().unwrap();
+        s.tick().unwrap();
+        assert!(s.terrain().iter().zip(before).any(|(&a, b)| a != b));
     }
     #[test]
     fn paused_basher_assignment_replays_inventory_and_mutable_terrain() {

@@ -8,6 +8,7 @@ pub const HEIGHT: usize = 200;
 pub enum SelectedSkill {
     Digger,
     Basher,
+    Miner,
 }
 pub struct View {
     pub camera: i32,
@@ -62,6 +63,7 @@ impl View {
                 MotionAction::Splatting => LemmingSpriteKind::Splatting,
                 MotionAction::Digging => LemmingSpriteKind::Digging,
                 MotionAction::Bashing => LemmingSpriteKind::Bashing,
+                MotionAction::Mining => LemmingSpriteKind::Mining,
             };
             let direction = if a.direction == MotionDirection::Left {
                 SpriteDirection::Left
@@ -138,6 +140,9 @@ impl View {
                 ),
                 SelectedSkill::Basher => {
                     format!("BASH {} | B/D SELECT | CLICK", session.remaining_bashers)
+                }
+                SelectedSkill::Miner => {
+                    format!("MINE {} | M/B/D SELECT | CLICK", session.remaining_miners)
                 }
             },
             [140, 190, 170],

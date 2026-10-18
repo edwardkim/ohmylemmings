@@ -1,0 +1,185 @@
+{
+  "format": "g07-miner-v1",
+  "reference": {
+    "metadata_sha256": "2c68d83660cf0c2d141e7449d20b9d747fe5c3496d31d0551ff9c547656cf2a8",
+    "source_sha256": "c1ba9ffda9e8e277f5c9b171df2bb611210d3326b9623b28fcd35426f4d6a448",
+    "methods": {
+      "HasPixelAt": "e8c1c11b7b16795fb96f590a91bb01381f9fab87791213f00999cded06ce6243",
+      "HasPixelAt_ClipY": "dc9696798aeaa483df3899392505ba853577726f1774a931d1df91d00882523c",
+      "Transition": "2ac447b7289c2eead45d2bdf19a43c437ac6e3f1455d61fc32de95aa7c4f0aad",
+      "TurnAround": "6c85a8ec0e5da4a5cbd3f01dfa315260bb1409af418d149f396c93367e15e5df",
+      "AssignDigger": "c89b05ed99b389dde0a1f421e27f896967b42f6c15847ac464ec2c4458ddf4a7",
+      "DigOneRow": "fdf023c95fb66967aa4e133f36829a7db3e68308afb70665ffbffba2f26ba0a1",
+      "HandleLemming": "e00f1ffbafa322076f9cff9644dab1cbea83e29081ce04a126573d1f340fea91",
+      "HandleWalking": "41d1f6ededb993c451d58e773a60dbb6ff3135b7109c9709ffef40bafa5f33ce",
+      "HandleJumping": "f7c843e508a0d33c3e28fc8872e2427dfa7fbc890487c6392c4bb03e85d264a5",
+      "HandleDigging": "5aa69c62006b96b6c430c253899708189823aa531cf9db2277f49c1189ea783f",
+      "HandleFalling": "894411800603d79132d7533ef21bae8e52de61270849f0f50e2c4899f80b122a",
+      "HandleSplatting": "5e43a5f8f9c16937c55b9b5f710a809566d298066ca47cef89018cdc5fd6fe4a",
+      "CheckForLevelTopBoundary": "da00c889f8d1283fa5aad65083c5963fa8b1d56843bf06b8ab3a7eae75587933",
+      "RemoveLemming": "7307061c19354e8142270bd3a6a80900329c5c89982da2d4e1b149edbbbef1f7",
+      "IncrementIteration": "20f1800054465889d9fdad767d45a510dcbda8ae0b8d8bbee8ec597f8c030781",
+      "BtnPause": "579cdcbff69db1562f4bf5843ce41e1cef1c4dec2a53a865566bbfcf916f977c",
+      "BtnPauseStop": "217532706520d2f2aa8996a46c1136fbce9d547e8f433141bee75d3cb3cbf31a",
+      "CheckSpawnLemming": "5608a12f641eccd5dc009789311cc3e78ac4b803f8bfae5d45ce085b35bcc638",
+      "AssignBasher": "180a96371f798f64b0712da149138e4ff0bed6aedcdc71493b218b8547862793",
+      "ApplyBashingMask": "22d8a77f2920ceaa5ab5c3baeb4b6189e3908377225917fd13475b2f14bcc8d0",
+      "HandleBashing": "17a7a4540fa678e8468097ceb07d34e89f992a9c5211e0598e59c20a0a9f783f",
+      "AssignMiner": "9840ba985eb3b388a20b6611e6922ea1102cab7095b634b0fb0b45116310b392",
+      "ApplyMinerMask": "373e38da1886780b5f139dc5b4ca7ba40f1ada736cd598dff8307abc0dcb9ed3",
+      "HandleMining": "14caf0b17d8552294413733c25ae9a20b38241c51c1e9cb1fcc55fcbc6bf9a44"
+    },
+    "scope": "24 original functions; Walking/Digging/Bashing/Mining assignment and mutable terrain; not full DOS",
+    "host_sha256": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18",
+    "builder_sha256": "115e344bb9e9f9202ea8998b1a6c7a76be06b7adc6654fd011d17d9e4938fd91",
+    "generated_sha256": "373aaef458b52d5634b5c0f3f5a2b79b28a6ddad1b338f6c30ef374b48a9f4f6",
+    "extracted_sha256": "cfbe2da84b8fdf1504f172232f4668506ccfd912c50a539c694f058a597a7189",
+    "compiler_sha256": "93ddfaa92900749c81537d4ee39a9416d6d8c85cf545d411f0c170c15e33cdc1",
+    "executable_sha256": "4509431788899e2d1ae42cdd9b2ee8809d2c0fe714ecde5c0f2ca2fb1ed70d3e",
+    "stubs": "toolbar/sound/minimap/recorder; caller object codes; distinct host action flags; stable ID without secondary selection",
+    "syntax_patches": "two G05 inline-variable changes only",
+    "mask_adapter": "MSB-first caller masks, clipped erase DrawTo, rectangle geometry helpers; no graphics framework"
+  },
+  "adapter_sha256": {
+    "build_miner_reference.py": "115e344bb9e9f9202ea8998b1a6c7a76be06b7adc6654fd011d17d9e4938fd91",
+    "build_basher_reference.py": "aa10744ce370a37e38d6c1a57a03d3a3311ca48f1241e69963bbe6eec788b622",
+    "build_digger_reference.py": "70e83e05310628c0be164398af3a02725f50b411458fe32b8b99c5beaf42d8bc",
+    "build_reference.py": "0448f50a3d4c5dd24918c12199000fa8a40e3ea0ac7ad164899dfdaa87c29ad1",
+    "harness.pas": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18"
+  },
+  "synthetic_masks_sha256": "f71c209c8df8eeb07005a11966d0300bd86d153006ba2e05302caf822246d90f",
+  "cases": {
+    "right": {
+      "snapshots_sha256": "df5344c5d05d413370536d092ce297d97dc4a19cecbaafce5a280333ff6325df",
+      "steps": 221,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignMiner",
+          0
+        ]
+      ]
+    },
+    "left": {
+      "snapshots_sha256": "19a6930826623f6e97491f86c8452eb9136ca7be59eedaad0f89ad96b3e7b1a4",
+      "steps": 221,
+      "inputs": [
+        [
+          110,
+          0,
+          "AssignMiner",
+          0
+        ]
+      ]
+    },
+    "duplicate_and_absent": {
+      "snapshots_sha256": "1fa51aa4ee620a3eceaff15b5ca5b113834d8a2bd9841537284e2fd3cde04f78",
+      "steps": 221,
+      "inputs": [
+        [
+          54,
+          0,
+          "AssignMiner",
+          0
+        ],
+        [
+          80,
+          0,
+          "AssignMiner",
+          0
+        ],
+        [
+          80,
+          1,
+          "AssignMiner",
+          0
+        ],
+        [
+          80,
+          2,
+          "AssignMiner",
+          999
+        ]
+      ]
+    },
+    "pause_assign_resume": {
+      "snapshots_sha256": "2a530580caad2f22b3a7278b2e64ff346190636b944900c726f8d18636c383ab",
+      "steps": 221,
+      "inputs": [
+        [
+          80,
+          0,
+          "Pause",
+          0
+        ],
+        [
+          80,
+          1,
+          "AssignMiner",
+          0
+        ],
+        [
+          90,
+          0,
+          "Resume",
+          0
+        ]
+      ]
+    },
+    "replace_jobs": {
+      "snapshots_sha256": "40a943f0e7b6fef7d846f8c5560dcb059bc44e22732965eff799562877e71760",
+      "steps": 221,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignMiner",
+          0
+        ],
+        [
+          90,
+          0,
+          "AssignDigger",
+          0
+        ],
+        [
+          91,
+          0,
+          "AssignMiner",
+          0
+        ],
+        [
+          100,
+          0,
+          "AssignBasher",
+          0
+        ],
+        [
+          101,
+          0,
+          "AssignMiner",
+          0
+        ]
+      ]
+    },
+    "two_miners": {
+      "snapshots_sha256": "dd2b5d84e1107c69044393ec32b22288b84a996ec0092e05e18c85dbafe680ea",
+      "steps": 221,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignMiner",
+          0
+        ],
+        [
+          110,
+          0,
+          "AssignMiner",
+          1
+        ]
+      ]
+    }
+  }
+}

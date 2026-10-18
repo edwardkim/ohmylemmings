@@ -36,6 +36,7 @@ pub enum StartupCommand {
     SetReleaseRate(u8),
     AssignDigger(u32),
     AssignBasher(u32),
+    AssignMiner(u32),
 }
 
 /// Progress immediately before the next boundary. Read control/iteration/pause
@@ -209,7 +210,8 @@ impl StartupScheduler {
                     }
                     InputCommand::Custom(
                         command @ (StartupCommand::AssignDigger(_)
-                        | StartupCommand::AssignBasher(_)),
+                        | StartupCommand::AssignBasher(_)
+                        | StartupCommand::AssignMiner(_)),
                     ) => assign(command),
                     InputCommand::Custom(StartupCommand::SetReleaseRate(rate)) => {
                         if (config.initial_release_rate..=99).contains(&rate) {

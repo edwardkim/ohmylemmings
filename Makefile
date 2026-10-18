@@ -21,3 +21,4 @@ check-desktop:
 	python3 tools/check_desktop.py
 	python3 tools/check_digger.py
 	python3 tools/check_basher.py
+	python3 tools/check_miner.py
