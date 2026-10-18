@@ -43,7 +43,10 @@ pub fn object_frame(
             }
         }
     } else if continuous {
-        (first + (iteration % count as u64) as usize) % count
+        // #30: DOS performs one initial object update. At matching F00 actor/
+        // entrance images its startup counter is native iteration + 1. Thus the
+        // visible continuous frame is first + iteration + 2 (entrances differ).
+        (first + (iteration % count as u64) as usize + 2) % count
     } else {
         first
     }
@@ -224,8 +227,24 @@ mod tests {
         assert_eq!(object_frame(true, false, 1, 10, 42), 9);
         assert_eq!(object_frame(true, false, 1, 10, 43), 0);
         assert_eq!(object_frame(true, false, 1, 10, 999), 0);
-        assert_eq!(object_frame(false, true, 2, 8, 9), 3);
+        assert_eq!(object_frame(false, true, 2, 8, 9), 5);
         assert_eq!(object_frame(false, false, 2, 8, 9), 2);
+    }
+    #[test]
+    fn dos_continuous_frames_match_the_observed_fun01_flag_phase() {
+        for (iteration, frame) in [
+            (0, 2),
+            (35, 1),
+            (54, 2),
+            (60, 2),
+            (100, 0),
+            (170, 4),
+            (340, 0),
+        ] {
+            assert_eq!(object_frame(false, true, 0, 6, iteration), frame);
+        }
+        assert_eq!(object_frame(false, true, 0, 6, u64::MAX), 5);
+        assert_eq!(object_frame(false, true, 0, 1, u64::MAX), 0);
     }
     #[test]
     fn missing_or_truncated_original_files_report_the_path() {

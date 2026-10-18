@@ -152,3 +152,7 @@ F01의 첫 Walking 뒤 입력 경계는 실제 하네스의 control_step=60·seq
 ## G06-02 DOS 영상 관측 / #28
 
 [#28](issue-28_dos_comparison.md)에서 고정 DOSBox·원본 EXE/50개 파일로 Fun01을 세 번 실행했습니다. #29의 별도 RUSSELL 런타임 seed 조건이며 키 디스크 매체/무설정 기동은 미검증입니다. 상부 320×100의 생성·낙하·걷기 일곱 장면이 정확히 같지만 전체 영역 객체 위상과 고정 CPU 조건의 관측 속도는 다릅니다. [#30](issue-30_dos_differences.md)에서 원본 우선 보정합니다. 영상 인덱스는 DOS control_step이 아니며 기존 17Hz 및 구조화 상태를 DOS가 인증한 것으로 취급하지 않습니다. 전체 COMP 판정은 미검증을 유지합니다.
+
+## G06-03 보정 / #30
+
+[#30](issue-30_dos_differences.md)에서 F00 전체 플레이 영역의 일곱 장면을 원본 세 영상과 정확히 대조했습니다. 연속 객체 위상 +2를 보정하고 데스크톱의 물리 실행 간격을 GUI/VGA 5 IRQ 기준으로 분리했습니다. 코어의 게임 시계 17호출/초는 논리 단위와 참조 pacing이며 원작 벽시계 실행률을 인증하는 값이 아닙니다. -x는 다른 타이머 경로입니다. 제한된 읽기 전용 메모리 관측은 전체 atomic 상태 추적/입력 틱 인증이 아닙니다. F01의 native boundary 60과 DOS counter를 동일시하지 않습니다. 상세 범위는 [교정 manifest](../../assets/manifests/dos_calibration.json)에 기록합니다.

@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 
 from capture_dos import ANCHORS, identity, rgb_bytes, save_json, save_ppm, sha
-from dos_observation import game_frame, match_anchors, pixel_difference, repeat_verdict, scene_signatures
+from dos_observation import game_frame, match_anchors, pixel_difference, scope_verdicts, scene_signatures
 from reference_assets import ROOT, verify_assets
 from verify_native_view import png_from_ppm
 from check_desktop import verify_pixels
@@ -75,7 +75,7 @@ def compare(recording, native, output):
             raise ValueError('DOS-generated runtime state changed')
         observed = {scope: [] for scope in expected}
         wanted = {signature: step for step, signature in expected['upper_320x100']}
-        samples, index = {}, 0
+        samples, sample_frames, index = {}, {}, 0
         for video in recorded['videos']:
             path = source/'capture'/video['name']
             if any(identity(path)[key] != video[key] for key in ['name', 'size', 'sha256']):
@@ -91,23 +91,30 @@ def compare(recording, native, output):
                     for scope in expected:
                         observed[scope].append((index, signatures[scope]))
                     signature = signatures['upper_320x100']
-                    if signature in wanted and wanted[signature] not in samples:
+                    if signature in wanted:
                         step = wanted[signature]
+                        full_match = signatures['full_320x160'] == scene_signatures(frames[step])['full_320x160']
+                        if step in samples and (samples[step]['full_scene_match'] or not full_match):
+                            index += 1
+                            continue
                         difference = pixel_difference(frames[step], normalized)
                         samples[step] = dict(native_control_step=step, game_video_frame=index,
                                              video=video['name'], local_video_frame=local_index,
                                              pts=frame.pts, time_base=str(frame.time_base),
+                                             full_scene_match=full_match,
                                              full_playfield_difference=difference)
-                        dos_rgb, native_rgb = display_rgb(normalized), display_rgb(frames[step])
-                        paired = b''.join(dos_rgb[y*960:(y+1)*960]+native_rgb[y*960:(y+1)*960] for y in range(160))
-                        ppm = dest/f'pair-{step:06}.ppm'
-                        save_ppm(ppm, 640, 160, paired)
-                        png_from_ppm(ppm)
+                        sample_frames[step] = normalized
                     index += 1
                 if count != video['decoded_frames']:
                     raise ValueError('decoded video frame count changed')
         if index != recorded['game_video_frames']:
             raise ValueError('game recording frame count changed')
+        for step, normalized in sample_frames.items():
+            dos_rgb, native_rgb = display_rgb(normalized), display_rgb(frames[step])
+            paired = b''.join(dos_rgb[y*960:(y+1)*960]+native_rgb[y*960:(y+1)*960] for y in range(160))
+            ppm = dest/f'pair-{step:06}.ppm'
+            save_ppm(ppm, 640, 160, paired)
+            png_from_ppm(ppm)
         full, upper = (match_anchors(expected[s], observed[s]) for s in ['full_320x160', 'upper_320x100'])
         row = dict(run=number, settings_sha256=settings_hash,
                    status=upper['status'], scene_sha256=[s for _, s in expected['upper_320x100']],
@@ -116,11 +123,12 @@ def compare(recording, native, output):
                    artifacts=[identity(p) for p in sorted(dest.glob('*.png'))])
         save_json(dest/'comparison.json', row)
         rows.append(row)
-    result = dict(upper_view_status=repeat_verdict(rows), full_playfield_status=summary['status'],
+    result = dict(**scope_verdicts(rows),
                   observation_kind='video', settings_sha256=settings_hash,
                   normalization='verified exact 2x playfield duplicates; R5/G6/B5 codes on both sides',
                   upper_scope=[0, 0, 320, 100], full_scope=[0, 0, 320, 160],
                   side_by_side='left DOS, right native; normalized capture colors; playfield only',
+                  sample_selection='first exact full scene if available, otherwise first upper scene; all match ranges retained',
                   native_trace=identity(native/'trace.jsonl'),
                   native_run=identity(native/'run.json'),
                   native_pixel_exact_captures=native_captures,

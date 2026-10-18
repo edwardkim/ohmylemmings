@@ -16,8 +16,9 @@
   "evidence": {
     "level_mapping": "Lemmix SectionTable and Lemmings.ts level.order agree for all 120 entries",
     "decoded_parts": "Independent Python analysis and pinned TypeScript decoder produce identical bytes for 81 parts",
-    "runtime_comparison": "G05 basic supported fields match executed pinned Lemmix method harness (#26); full engine/DOS and unsupported fields remain unverified",
-    "g05_manifest": "assets/manifests/state_replay.json"
+    "runtime_comparison": "G05 basic fields match executed Lemmix method harness (#26). #30 matches seven full 320x160 F00 image anchors in three real DOS recordings and observes limited counters read-only. Complete DOS state and unsupported mechanics remain unverified.",
+    "g05_manifest": "assets/manifests/state_replay.json",
+    "g06_manifest": "assets/manifests/dos_calibration.json"
   },
   "skill_order": [
     "climber",
@@ -54,7 +55,18 @@
       "Max4EnabledEntrances",
       "AssignClimberShruggerActionBug",
       "TriggeredTrapLemmixBugSolved"
-    ]
+    ],
+    "ticks_per_second_scope": "17 logical calls per game second and reference pacing utility; physical desktop delivery is a separate adapter profile.",
+    "desktop_pacing": {
+      "tracking_issue": 30,
+      "default_original_profile": "dos-vga-5",
+      "rate_numerator": 2190197,
+      "rate_denominator": 156250,
+      "reference_profile": "reference-17",
+      "scope": "Pinned DOSBox VGA GUI PC2, 10000 cycles; -x uses a distinct PIT path. Other hardware/revisions unverified.",
+      "continuous_object_phase_offset": 2,
+      "dos_startup_counter_mapping": "Moving F00 image label i corresponds to DOS startup counter i+1; initial static image is ambiguous; not input tick alignment."
+    }
   },
   "levels": [
     {
@@ -4312,7 +4324,7 @@
         "level": "fun-01",
         "control_steps": 340,
         "commands": [],
-        "evidence": "G05 basic supported fields match extracted Lemmix method execution (#26); see state_replay.json; full DOS unverified"
+        "evidence": "G05 basic supported fields match extracted Lemmix method execution (#26); see state_replay.json; full DOS unverified; #30 seven full playfield image anchors match three DOS recordings; complete DOS state unverified"
       },
       {
         "id": "F01",

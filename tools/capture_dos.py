@@ -115,7 +115,8 @@ def save_ppm(path, width, height, rgb):
         f.write(f'P6\n{width} {height}\n255\n'.encode()+rgb)
 
 
-def record(args, directory, manifest, runtime=None):
+def record(args, directory, manifest, runtime=None, *, settings=SETTINGS,
+           procedure=PROCEDURE, observer=None):
     directory.mkdir()
     (directory/'drive').mkdir()
     (directory/'capture').mkdir()
@@ -124,7 +125,7 @@ def record(args, directory, manifest, runtime=None):
     if runtime is not None:
         (directory/'drive/RUSSELL.DAT').write_bytes(runtime)
     (directory/'mapper.map').write_text(MAPPER)
-    (directory/'dosbox.conf').write_text(SETTINGS.format(directory=directory))
+    (directory/'dosbox.conf').write_text(settings.format(directory=directory))
     env = dict(os.environ, SDL_VIDEODRIVER='x11', SDL_AUDIODRIVER='dummy')
     inputs, start = [], time.monotonic()
 
@@ -143,7 +144,10 @@ def record(args, directory, manifest, runtime=None):
     with (directory/'dosbox.log').open('w') as log:
         process = subprocess.Popen([str(args.dosbox), '-conf', str(directory/'dosbox.conf')],
                                    env=env, stdout=log, stderr=log)
+        observation = None
         try:
+            if observer is not None:
+                observation = observer(process)
             time.sleep(2)
             if runtime is None:
                 key('s')  # machine selection screen
@@ -152,7 +156,7 @@ def record(args, directory, manifest, runtime=None):
                 key('s')  # key disk error
                 key('x')
             else:
-                for name, wait_ms in PROCEDURE:
+                for name, wait_ms in procedure:
                     if name == 'cursor_down_right':
                         inputs.append(dict(host_elapsed_ms=round((time.monotonic()-start)*1000),
                                            key='keydown a p'))
@@ -172,6 +176,8 @@ def record(args, directory, manifest, runtime=None):
             if process.poll() is None:
                 process.terminate()
                 process.wait(timeout=10)
+            if observation is not None:
+                observation.close()
             save_json(directory/'host-inputs.json', inputs)
     verify_assets(manifest, directory/'drive')
     extra = sorted(p.name for p in (directory/'drive').iterdir())

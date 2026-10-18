@@ -14,3 +14,5 @@
 - [#27 G06-01 네이티브 화면·입력 연결](issue-27_native_view.md)
 
 - [#28 G06-02 DOS 실행·네이티브 장면 대조](issue-28_dos_comparison.md)
+
+- [#30 G06-03 DOS 화면·속도 보정](issue-30_dos_differences.md)

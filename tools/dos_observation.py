@@ -89,3 +89,9 @@ def repeat_verdict(runs):
            (runs[0]['settings_sha256'], runs[0]['scene_sha256']) for r in runs):
         return 'UNVERIFIED'
     return 'MATCH_THREE_RUNS'
+
+
+def scope_verdicts(runs):
+    full = [dict(settings_sha256=r['settings_sha256'], status=r['full_playfield']['status'],
+                 scene_sha256=[a['scene_sha256'] for a in r['full_playfield']['anchors']]) for r in runs]
+    return dict(upper_view_status=repeat_verdict(runs), full_playfield_status=repeat_verdict(full))

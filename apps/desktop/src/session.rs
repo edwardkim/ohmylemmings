@@ -1,3 +1,4 @@
+use crate::pacing::{Pacing, PlaybackClock};
 use lemmings_core::*;
 use std::{error::Error, fmt::Write as _, time::Duration};
 
@@ -6,7 +7,7 @@ pub struct Session {
     pub actors: Vec<Actor>,
     pub inputs: Vec<TimedInput<StartupCommand>>,
     pub events: Vec<String>,
-    clock: FixedTickClock,
+    clock: PlaybackClock,
     entrances: Vec<EntrancePoint>,
     terrain: Vec<u8>,
     width: usize,
@@ -33,7 +34,7 @@ impl Session {
             actors: Vec::new(),
             inputs: Vec::new(),
             events: Vec::new(),
-            clock: FixedTickClock::new(),
+            clock: PlaybackClock::new(Pacing::Reference),
             entrances,
             terrain,
             width,
@@ -129,6 +130,9 @@ impl Session {
     }
     pub fn due(&mut self, elapsed: Duration) -> Result<u64, Box<dyn Error>> {
         Ok(self.clock.advance(elapsed)?)
+    }
+    pub fn set_pacing(&mut self, pacing: Pacing) {
+        self.clock = PlaybackClock::new(pacing);
     }
     #[cfg(test)]
     pub fn advance(&mut self, elapsed: Duration) -> Result<u64, Box<dyn Error>> {
@@ -273,6 +277,35 @@ mod tests {
         }
         assert_eq!(a.snapshot(), b.snapshot());
         assert_eq!(a.scheduler.step_state().iteration, 340);
+    }
+    #[test]
+    fn pacing_changes_delivery_without_changing_control_step_replay() {
+        let mut runs = Vec::new();
+        for pacing in [Pacing::Dos, Pacing::Reference] {
+            let mut s = session();
+            s.set_pacing(pacing);
+            let mut snapshots = vec![s.snapshot()];
+            let mut milliseconds = 0;
+            while s.scheduler.step_state().control_step < 340 {
+                milliseconds += 1;
+                for _ in 0..s.due(Duration::from_millis(1)).unwrap() {
+                    match s.scheduler.step_state().control_step {
+                        16 => s.queue(InputCommand::Pause).unwrap(),
+                        34 => s.queue(InputCommand::Resume).unwrap(),
+                        54 => s
+                            .queue(InputCommand::Custom(StartupCommand::SetReleaseRate(99)))
+                            .unwrap(),
+                        _ => (),
+                    }
+                    s.tick().unwrap();
+                    snapshots.push(s.snapshot());
+                }
+            }
+            runs.push((milliseconds, snapshots));
+        }
+        assert!(runs[0].0 > runs[1].0);
+        assert_eq!(runs[0].1, runs[1].1);
+        assert_eq!(runs[0].1.len(), 341);
     }
     #[test]
     fn missing_nonbinary_terrain_and_entrance_mismatch_fail_at_load() {

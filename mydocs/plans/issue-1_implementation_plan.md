@@ -87,7 +87,7 @@ G05-01~04의 완료로 같은 초기 상태·입력 및 렌더 주기 독립 상
 
 - **G06-01 / #27 완료:** [SDL2 네이티브 화면·입력 연결](../reports/issue-27_native_view.md). Fun01 원본 조립·고정 틱/렌더 분리·키/재생·실제 X11 화면/상태·게시·CI를 확인했습니다.
 - **G06-02 / #28 완료:** [원본 DOS 세 실행·장면 대조](../reports/issue-28_dos_comparison.md). 상부 일곱 장면 일치와 전체 영역/속도 차이를 기록했습니다. #29의 별도 런타임 seed 전제를 명시했습니다.
-- **G06-03 / #30 다음:** [객체 위상·관측 속도 보정](../tech_insights/issue-30_dos_differences.md). 원본 DOS 관측을 우선하여 원인 분리·보정·회귀를 진행합니다.
+- **G06-03 / #30 검증:** [객체 위상·관측 속도 보정](../tech_insights/issue-30_dos_differences.md). 원본 DOS 코드/관측을 우선해 객체 위상·pacing을 보정하고 전체 장면/회귀를 통과했습니다. [결과](../reports/issue-30_dos_differences.md)의 게시·실제 CI를 확인합니다.
 
 G06 전체는 #30 보정·회귀가 남아 진행 중입니다. 직업·객체 트리거·승패·음향은 G07/G08/G10에서 구현합니다.
 
@@ -127,3 +127,7 @@ G06 전체는 #30 보정·회귀가 남아 진행 중입니다. 직업·객체 �
 - [계획 수립 작업일지](../orders/20261018.md#issue-1)
 - [진행 기록](../working/issue-1_implementation_plan.md)
 - [결과 보고서](../reports/issue-1_implementation_plan.md)
+
+## G07 첫 착수 후보
+
+G06의 게시·CI 확인 후 **G07-01 Digger**를 새 이슈로 등록합니다. Fun01/F01에 필요한 할당 조건·남은 수량·Digger 상태/지형 삭제·중단/실패/경계를 작은 TDD 단위로 구현합니다. native 입력 경계 60과 DOS counter/입력 주입을 별도로 보정하며 전체 직업·완주는 후속 작업으로 유지합니다.

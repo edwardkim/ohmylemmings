@@ -75,3 +75,13 @@ class DosObservationTests(unittest.TestCase):
         self.assertNotEqual(a['full_320x160'], b['full_320x160'])
         with self.assertRaises(ValueError):
             dos.scene_signatures(b'')
+
+    def test_scope_verdicts_are_recomputed_from_current_anchor_comparisons(self):
+        full = dict(status='MATCH_VISUAL_ANCHORS', anchors=[dict(scene_sha256='full')])
+        rows = [dict(settings_sha256='settings', status='MATCH_VISUAL_ANCHORS',
+                     scene_sha256=['upper'], full_playfield=full) for _ in range(3)]
+        self.assertEqual(dos.scope_verdicts(rows), dict(upper_view_status='MATCH_THREE_RUNS',
+                                                      full_playfield_status='MATCH_THREE_RUNS'))
+        rows[2] = rows[2] | dict(full_playfield=full | dict(status='UNVERIFIED_VISUAL_ANCHORS'))
+        self.assertEqual(dos.scope_verdicts(rows), dict(upper_view_status='MATCH_THREE_RUNS',
+                                                      full_playfield_status='UNVERIFIED'))

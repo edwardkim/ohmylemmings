@@ -1,9 +1,11 @@
 mod assets;
 mod input;
+mod pacing;
 mod render;
 mod session;
 use assets::Assets;
 use lemmings_core::{InputCommand, StartupCommand};
+use pacing::Pacing;
 use render::{HEIGHT, View, WIDTH};
 use sdl2::{
     event::Event,
@@ -19,7 +21,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR | --synthetic] [--steps N] [--fast] [--render-every N] [--capture NEW_DIR] [--replay FILE | --demo-input]\nSpace: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay files contain CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate [RATE].";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR | --synthetic] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nSpace: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay files contain CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate [RATE].";
 struct Options {
     assets: PathBuf,
     synthetic: bool,
@@ -29,6 +31,7 @@ struct Options {
     capture: Option<PathBuf>,
     replay: Option<PathBuf>,
     demo_input: bool,
+    pacing: Option<Pacing>,
 }
 impl Options {
     fn parse(args: impl Iterator<Item = String>) -> Result<Option<Self>, Box<dyn Error>> {
@@ -42,6 +45,7 @@ impl Options {
             capture: None,
             replay: None,
             demo_input: false,
+            pacing: None,
         };
         let mut specified_assets = false;
         while let Some(flag) = args.next() {
@@ -50,6 +54,13 @@ impl Options {
                 "--synthetic" => o.synthetic = true,
                 "--fast" => o.fast = true,
                 "--demo-input" => o.demo_input = true,
+                "--pacing" => {
+                    o.pacing = Some(match args.next().as_deref() {
+                        Some("dos") => Pacing::Dos,
+                        Some("reference") => Pacing::Reference,
+                        _ => return Err("--pacing requires dos or reference".into()),
+                    });
+                }
                 "--assets" => {
                     o.assets = args.next().ok_or("--assets requires a directory")?.into();
                     specified_assets = true;
@@ -190,6 +201,12 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         assets.height,
         assets.terrain.clone(),
     )?;
+    let pacing = options.pacing.unwrap_or(if options.synthetic {
+        Pacing::Reference
+    } else {
+        Pacing::Dos
+    });
+    session.set_pacing(pacing);
     let mut view = View::new(assets.screen_x);
     view.replaying = options.replay.is_some();
     let mut capture = options
@@ -348,7 +365,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
     let state = session.scheduler.step_state();
     let runtime = sdl2::version::version();
     let summary = format!(
-        "{{\"control_step\":{},\"iteration\":{},\"frames\":{rendered},\"input_count\":{},\"events_seen\":{observed_events},\"camera\":{},\"video_driver\":{:?},\"renderer\":{:?},\"sdl_version\":\"{}.{}.{}\",\"timing\":\"{}\",\"synthetic\":{}}}",
+        "{{\"control_step\":{},\"iteration\":{},\"frames\":{rendered},\"input_count\":{},\"events_seen\":{observed_events},\"camera\":{},\"video_driver\":{:?},\"renderer\":{:?},\"sdl_version\":\"{}.{}.{}\",\"timing\":\"{}\",\"synthetic\":{},\"pacing\":{:?},\"rate_numerator\":{},\"rate_denominator\":{}}}",
         state.control_step,
         state.iteration,
         session.inputs.len(),
@@ -363,7 +380,10 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         } else {
             "realtime"
         },
-        options.synthetic
+        options.synthetic,
+        pacing.label(),
+        pacing.rate().0,
+        pacing.rate().1
     );
     if let Some(c) = &mut capture {
         c.finish(&session, &summary)?;
@@ -391,6 +411,8 @@ mod tests {
             vec!["--steps", "0"],
             vec!["--render-every", "0"],
             vec!["--capture"],
+            vec!["--pacing"],
+            vec!["--pacing", "unknown"],
             vec!["--replay", "a", "--demo-input"],
             vec!["--assets", "a", "--synthetic"],
         ] {

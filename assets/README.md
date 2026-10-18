@@ -55,3 +55,5 @@ MAIN.DAT 지형 마스크·카운트다운은 [G03-09 재현 명령](../mydocs/t
 ## 실제 DOS 영상 증거
 
 [#28 재현 절차](../mydocs/tech_insights/issue-28_dos_comparison.md)와 [영상 관측 manifest](manifests/dos_observation.json)에 DOSBox·원본 EXE·설정/입력·세 실행·비교 그림 해시를 기록합니다. 별도 생성 런타임 seed 조건이며 키 디스크 원본 매체를 확보한 것은 아닙니다. 원본 50개와 EXE는 변경하지 않습니다. 상부 일곱 장면 일치와 전체 영역/속도 차이를 구분하며 전체 호환성 인증이 아닙니다. 영상·실행 복사본·파생 이미지는 assets/local/에만 보관합니다.
+
+[#30 교정 manifest](manifests/dos_calibration.json)는 연속 객체 위상·타이머 경로·정수 pacing 보정, 기존 DOS 세 영상의 전체 장면 일치와 8개 추가 실행을 기록합니다. GUI 5000 cycles의 1영상 프레임 지연은 차이로 보존합니다. 제한된 읽기 전용 카운터 폴링·정적 코드 범위 해시는 전체 DOS 상태 인증이 아니며 파생 데이터는 계속 assets/local/에만 둡니다.
