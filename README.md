@@ -38,7 +38,7 @@ make check
 cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/local/dos-original
 ```
 
-Space로 일시정지/재개, 위/아래 화살표로 생성 속도, 좌/우 화살표로 카메라를 조작하고 Esc로 종료합니다. 직업·출구 판정·승패·음향은 후속 구현입니다. [G06-01 검증 보고서](mydocs/reports/issue-27_native_view.md)에 X11 실행과 화면 근거를 기록합니다. [#28 DOS 세 실행·동일 장면 대조](mydocs/reports/issue-28_dos_comparison.md)를 완료했습니다. [#30 보정](mydocs/reports/issue-30_dos_differences.md)으로 일곱 기준 장면의 전체 320×160 영역이 원본 세 실행과 같고 기본 실행 간격도 DOS 관측에 맞췄습니다. 게시·실제 CI를 확인해 G06 전체를 완료했습니다. 다음은 G07-01 Digger입니다.
+Space로 일시정지/재개, 위/아래 화살표로 생성 속도, 좌/우 화살표로 카메라를 조작하고 Esc로 종료합니다. 나머지 직업·출구 판정·승패·음향은 후속 구현입니다. [G06-01 검증 보고서](mydocs/reports/issue-27_native_view.md)에 X11 실행과 화면 근거를 기록합니다. [#28 DOS 세 실행·동일 장면 대조](mydocs/reports/issue-28_dos_comparison.md)를 완료했습니다. [#30 보정](mydocs/reports/issue-30_dos_differences.md)으로 일곱 기준 장면의 전체 320×160 영역이 원본 세 실행과 같고 기본 실행 간격도 DOS 관측에 맞췄습니다. 게시·실제 CI를 확인해 G06 전체를 완료했습니다. G07-01 Digger도 완료했으며 다음은 G07-02 Basher입니다.
 
 ## 원본 데이터 준비
 
@@ -66,7 +66,7 @@ python3 -m unittest discover -s tools/tests -v
 
 전체 설계와 단계별 작업은 [프로젝트 기획서](mydocs/plans/issue-1_rusty_lemmings.md)를 참고하세요.
 
-구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. G00~G06을 완료했으며 다음은 G07-01 Digger입니다.
+구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. G00~G06을 완료했으며 G07-01 Digger도 완료했으며 다음은 G07-02 Basher입니다.
 
 진행 상황은 [GitHub 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1)에서 추적합니다.
 
@@ -93,4 +93,4 @@ mydocs/
 
 작업을 시작하기 전에 [기여 지침](AGENTS.md)과 [문서 안내](mydocs/README.md)를 읽어주세요. PR에는 변경 목적, 관련 작업, 검증 결과를 기록하고 계획된 기능과 구현된 동작을 구분합니다.
 
-[G07-01 Digger](mydocs/reports/issue-31_digger.md)를 구현했습니다. 레밍을 왼쪽 클릭하면 수량을 소비하고 아래 지형을 파며, 정수 ID 입력으로 재생할 수 있습니다. 다른 직업·구출/승패/완주는 후속입니다. G07 전체는 진행 중입니다.
+[G07-01 Digger](mydocs/reports/issue-31_digger.md)의 구현·검증·게시/실제 CI를 완료했습니다. 레밍을 왼쪽 클릭하면 수량을 소비하고 아래 지형을 파며, 정수 ID 입력으로 재생할 수 있습니다. 다른 직업·구출/승패/완주는 후속입니다. G07 전체는 진행 중입니다.
