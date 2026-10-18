@@ -29,3 +29,7 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#26 G05-04 상태 추적·재생·기준 실행 대조](issue-26_state_replay.md)
 
 - [#27 G06-01 네이티브 화면·입력 연결](issue-27_native_view.md)
+
+- [#28 실제 DOS 반복 실행·장면 대조](issue-28_dos_comparison.md)
+- [#29 DOS 런타임 진입 전제](issue-29_dos_runtime.md)
+- [#30 DOS 화면·속도 차이 추적](issue-30_dos_differences.md)

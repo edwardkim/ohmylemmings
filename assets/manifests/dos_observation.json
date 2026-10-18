@@ -1,0 +1,3067 @@
+{
+  "format": "dos-video-observation-v1",
+  "tracking_issue": 28,
+  "tracking_url": "https://github.com/edwardkim/ohmylemmings/issues/28",
+  "runtime_issue": 29,
+  "difference_issue": 30,
+  "recording_directory": "assets/local/issue-28-dos-proof-2",
+  "comparison_directory": "assets/local/issue-28-dos-comparison-verified",
+  "dosbox_version": "0.74-3 (Ubuntu 0.74-3-5build2)",
+  "dosbox": {
+    "path": "assets/local/issue-28-tools/sdk/usr/bin/dosbox",
+    "size": 2621536,
+    "sha256": "9213fb131e11cb195bdff40c24513740ce497c5caf1cef1900ad1faad5c5026b"
+  },
+  "original_executable": {
+    "path": "assets/local/dos-original/VGALEMMI.EXE",
+    "size": 83194,
+    "sha256": "4f21e94d53b7ea814ade802b4a37d42481da3876e31fb5a23090e19c9600f21c"
+  },
+  "original_manifest": {
+    "path": "assets/manifests/dos_original.json",
+    "size": 12573,
+    "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+  },
+  "settings": {
+    "config_template": "[sdl]\nfullscreen=false\noutput=surface\nwindowresolution=original\nwaitonerror=false\npriority=normal,normal\nusescancodes=false\nmapperfile={directory}/mapper.map\n[dosbox]\nmachine=vgaonly\nmemsize=16\ncaptures={directory}/capture\n[render]\nframeskip=0\naspect=false\nscaler=none\n[cpu]\ncore=normal\ncputype=386\ncycles=fixed 10000\n[mixer]\nnosound=false\nrate=44100\nblocksize=1024\nprebuffer=25\n[midi]\nmpu401=none\nmididevice=none\n[sblaster]\nsbtype=sbpro2\nsbbase=220\nirq=7\ndma=1\noplmode=opl2\noplemu=default\noplrate=44100\n[gus]\ngus=false\n[speaker]\npcspeaker=false\ntandy=off\ndisney=false\n[joystick]\njoysticktype=none\n[dos]\nxms=true\nems=true\numb=true\nkeyboardlayout=none\n[autoexec]\nmount c \"{directory}/drive\"\nc:\nVGALEMMI /v\n",
+    "mapper": "key_enter \"key 13\"\nkey_1 \"key 49\"\nkey_2 \"key 50\"\nkey_f1 \"key 282\"\nkey_f4 \"key 285\"\nkey_3 \"key 51\"\nkey_space \"key 32\"\nkey_a \"key 97\"\nkey_p \"key 112\"\nhand_scrshot \"key 115\"\nhand_video \"key 118\"\nhand_shutdown \"key 120\"\n",
+    "procedure": [
+      [
+        "2",
+        500
+      ],
+      [
+        "Return",
+        7000
+      ],
+      [
+        "s",
+        200
+      ],
+      [
+        "F4",
+        5000
+      ],
+      [
+        "s",
+        200
+      ],
+      [
+        "3",
+        5000
+      ],
+      [
+        "s",
+        200
+      ],
+      [
+        "F1",
+        5000
+      ],
+      [
+        "s",
+        200
+      ],
+      [
+        "v",
+        300
+      ],
+      [
+        "space",
+        2000
+      ],
+      [
+        "cursor_down_right",
+        2000
+      ],
+      [
+        "wait",
+        22000
+      ],
+      [
+        "s",
+        200
+      ],
+      [
+        "v",
+        200
+      ],
+      [
+        "x",
+        0
+      ]
+    ],
+    "dosbox": {
+      "name": "dosbox",
+      "size": 2621536,
+      "sha256": "9213fb131e11cb195bdff40c24513740ce497c5caf1cef1900ad1faad5c5026b"
+    },
+    "decoder_version": "14.2.0",
+    "decoder_libraries": {
+      "libavutil": [
+        59,
+        39,
+        100
+      ],
+      "libavcodec": [
+        61,
+        19,
+        100
+      ],
+      "libavformat": [
+        61,
+        7,
+        100
+      ],
+      "libavdevice": [
+        61,
+        3,
+        100
+      ],
+      "libavfilter": [
+        10,
+        4,
+        100
+      ],
+      "libswscale": [
+        8,
+        3,
+        100
+      ],
+      "libswresample": [
+        5,
+        3,
+        100
+      ]
+    },
+    "observation_kind": "video",
+    "original_profile": "dos-original-vga",
+    "original_files": [
+      {
+        "name": "ADLIB.DAT",
+        "size": 12988,
+        "sha256": "43eceee3e88fde48c679c635ee208d2af9ade1ed789dc291d647e7d314ffdcfe",
+        "source": "dos-pack",
+        "path": "adlib.dat",
+        "role": "engine-resource"
+      },
+      {
+        "name": "AUTODET.EXE",
+        "size": 2188,
+        "sha256": "bc0ba12a10589299d9a8ce88112d6d7697ab8b45e9d55d14daf01ffd65bd4f16",
+        "source": "dos-pack",
+        "path": "autodet.exe",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "CGAGR0.DAT",
+        "size": 20901,
+        "sha256": "d0d1d08b117dbaa5a61bb7488b141d5d901ea084b8d4c859697139e4dc3be6d5",
+        "source": "dos-pack",
+        "path": "cgagr0.dat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "CGAGR1.DAT",
+        "size": 25696,
+        "sha256": "1ad9cb595dfcf66ba6473776ccff6612f3ec6b4d9e6f534323caa0265b09f44f",
+        "source": "dos-pack",
+        "path": "cgagr1.dat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "CGAGR2.DAT",
+        "size": 15113,
+        "sha256": "58268e1479fb8b3d2fbf2b6bf8a7c9a77a9614e5f190324db17d7d6ef1e37180",
+        "source": "dos-pack",
+        "path": "cgagr2.dat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "CGAGR3.DAT",
+        "size": 15427,
+        "sha256": "a702f30bd44761b37d6498524e452044ed17cdc4a86a807981dde7bc688019ea",
+        "source": "dos-pack",
+        "path": "cgagr3.dat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "CGAGR4.DAT",
+        "size": 20851,
+        "sha256": "ab2de1785c6afd8d46533cb28ac56afaa6ffe0f14e2962e22880719a31910c02",
+        "source": "dos-pack",
+        "path": "cgagr4.dat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "CGALEMMI.EXE",
+        "size": 73164,
+        "sha256": "51b3561293f57ef2899b1f4160c40af8a834d0afb5bbc11d6f825bd6b786ccf6",
+        "source": "dos-pack",
+        "path": "cgalemmi.exe",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "CGAMAIN.DAT",
+        "size": 22111,
+        "sha256": "1e4b08f606546938b1eede4a0587943a07c3777c8c95bf50a7a9c31623995094",
+        "source": "dos-pack",
+        "path": "cgamain.dat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "CGASPEC0.DAT",
+        "size": 17992,
+        "sha256": "aa2ad89a0c3edb7d8f110447815e917031b5921b8035a64d74ddc7fce79dc72f",
+        "source": "dos-pack",
+        "path": "cgaspec0.dat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "CGASPEC1.DAT",
+        "size": 11442,
+        "sha256": "11a2d0d2b797bb63ce142d9e3600c89ad542aac35398020e34eca8a60b0bbcad",
+        "source": "dos-pack",
+        "path": "cgaspec1.dat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "CGASPEC2.DAT",
+        "size": 13129,
+        "sha256": "667ca13f1ddee9dbb9a33e33154d02d1c950a5687bd6f49513c1712fb270fbb2",
+        "source": "dos-pack",
+        "path": "cgaspec2.dat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "CGASPEC3.DAT",
+        "size": 23838,
+        "sha256": "589875f7de9b5a41c1033f06fe82c9b628663c31ad9a4f31298b5d15110f09a1",
+        "source": "dos-pack",
+        "path": "cgaspec3.dat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "GROUND0O.DAT",
+        "size": 1056,
+        "sha256": "86ecce12dea563b97d07339028780a0a50fc2cc75a67f682bf4d9aff8cf4b24a",
+        "source": "lemmix-orig",
+        "path": "GROUND0O.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "GROUND1O.DAT",
+        "size": 1056,
+        "sha256": "baf7a2ea30b07d2dc7968a5fb590987b3775840c57e6268437d3dce969b64d65",
+        "source": "lemmix-orig",
+        "path": "GROUND1O.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "GROUND2O.DAT",
+        "size": 1056,
+        "sha256": "52e62aeefd6cd548690c02af6474936c5e16112e115ca7808c3748e500a9412d",
+        "source": "lemmix-orig",
+        "path": "GROUND2O.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "GROUND3O.DAT",
+        "size": 1056,
+        "sha256": "f4df8579a30cb55dae4a06f606e0453cb0931219efadf3e9465d681a43a2722c",
+        "source": "lemmix-orig",
+        "path": "GROUND3O.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "GROUND4O.DAT",
+        "size": 1056,
+        "sha256": "9669ee978e5adf5f8d5bfeb80ccc5d6c20e75e32f55e2a5c1c738f64af8faa91",
+        "source": "lemmix-orig",
+        "path": "GROUND4O.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "HELP.BAT",
+        "size": 114,
+        "sha256": "ce9c39912fedf5d4a425c78bc342cc9f3c2487d571c387527b0fe28a7a99d498",
+        "source": "dos-pack",
+        "path": "help.bat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "INSTALL.EXE",
+        "size": 9145,
+        "sha256": "5837dced3fed64514b9a2b8b6f5564e9eb981c9d9c2842190c8683e451fffd18",
+        "source": "dos-pack",
+        "path": "install.exe",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "LEM1.DOC",
+        "size": 403,
+        "sha256": "66068ab8290ee4c65ef2aeb554f0c5a3da90edcae40817ed3c8fd58b12b4a0c7",
+        "source": "dos-pack",
+        "path": "lem1.doc",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "LEM2.DOC",
+        "size": 384,
+        "sha256": "3722478bbed7c05f0ff7e7d7811ba98ce356a3568d626e666ace426ec09f83b5",
+        "source": "dos-pack",
+        "path": "lem2.doc",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "LEM3.DOC",
+        "size": 530,
+        "sha256": "0f27deb33cb9ed35851c18bac0c4b792fe71e20e0bbf8f58f020996a7ab00190",
+        "source": "dos-pack",
+        "path": "lem3.doc",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "LEM4.DOC",
+        "size": 688,
+        "sha256": "c7ee193f65b8fdc19ff54ab1c9fe3b9de05c772dfa377c60bc8f0cdd15c720b0",
+        "source": "dos-pack",
+        "path": "lem4.doc",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "LEMMINGS.BAT",
+        "size": 569,
+        "sha256": "f6538723d41b20176e8adb5f70a1599c86328897ecec86ee23f28e4eb231a3f7",
+        "source": "dos-pack",
+        "path": "lemmings.bat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "LEVEL000.DAT",
+        "size": 3722,
+        "sha256": "2b9d4502ae1837faa3a6ff7a8b11eb75cbb6a555aa0e5c9f266f0e33a4cf444f",
+        "source": "lemmix-orig",
+        "path": "LEVEL000.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "LEVEL001.DAT",
+        "size": 4519,
+        "sha256": "52c60bf66d31514ba7f05970901cbde98e10e4020b8cc5d99c5bdf0eca43a2a9",
+        "source": "lemmix-orig",
+        "path": "LEVEL001.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "LEVEL002.DAT",
+        "size": 4819,
+        "sha256": "3216e70e91b5a1f8fc34d92e90167762df018f56dbd253b02e655e2beb1e0854",
+        "source": "lemmix-orig",
+        "path": "LEVEL002.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "LEVEL003.DAT",
+        "size": 6827,
+        "sha256": "6a4984e3ef13e8450c65dffe67baf9b7dee22f2f97af42072c60c8965d7ba94c",
+        "source": "lemmix-orig",
+        "path": "LEVEL003.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "LEVEL004.DAT",
+        "size": 3889,
+        "sha256": "c4c103ef26a275918586eed9e9fc63ba1f91125fe7bd70c0c1f97614367f50df",
+        "source": "lemmix-orig",
+        "path": "LEVEL004.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "LEVEL005.DAT",
+        "size": 7255,
+        "sha256": "ba7ae3d24331e1a0d87b46d1332b4cf74a09c9e584ad12ea672ee555da1a52cc",
+        "source": "lemmix-orig",
+        "path": "LEVEL005.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "LEVEL006.DAT",
+        "size": 7149,
+        "sha256": "34052d7c5ea66748c5a81fe69060bbf081d3be3232dce05945b51bf2cb4f0472",
+        "source": "lemmix-orig",
+        "path": "LEVEL006.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "LEVEL007.DAT",
+        "size": 5253,
+        "sha256": "f827359ac4a66e5e945d74f322982e8419d7c55f2e47044674fe10fd423a9cde",
+        "source": "lemmix-orig",
+        "path": "LEVEL007.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "LEVEL008.DAT",
+        "size": 7037,
+        "sha256": "b014f73c65aa57c7a014c896ac4f7dd58291946526db5ebb059ebbd3ea80d174",
+        "source": "lemmix-orig",
+        "path": "LEVEL008.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "LEVEL009.DAT",
+        "size": 4932,
+        "sha256": "0cb73f259510c25c29f21103ac1d04c0643756b6ea81b91b47d0c46259fe1a83",
+        "source": "lemmix-orig",
+        "path": "LEVEL009.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "MAIN.DAT",
+        "size": 56472,
+        "sha256": "2aec688c334e60322998811a8b6f9d5c13f8090b46ca6c2a6cb1c8db3b733545",
+        "source": "lemmix-orig",
+        "path": "MAIN.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "ODDTABLE.DAT",
+        "size": 4480,
+        "sha256": "e6d425592fe2cda43ec1169995cd8deeb0bdb74eb464728f4c05eb1ddefae8d0",
+        "source": "lemmix-orig",
+        "path": "ODDTABLE.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "TANDYSND.DAT",
+        "size": 12399,
+        "sha256": "d044398aced30dae67cf8663d57f946faf28a29c357f9ea3857a28eea7cc10c1",
+        "source": "dos-pack",
+        "path": "tandysnd.dat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "TGALEMMI.EXE",
+        "size": 76092,
+        "sha256": "8c6e8f068fd10bc1d7bab71094c710514d8c3a249c4f7e29d472f1a7d9d3c527",
+        "source": "dos-pack",
+        "path": "tgalemmi.exe",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "TGAMAIN.DAT",
+        "size": 14733,
+        "sha256": "5a7776a66b858d5936f314a2105aa7ab83ad9e17a946c458f94d467548216896",
+        "source": "dos-pack",
+        "path": "tgamain.dat",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "VGAGR0.DAT",
+        "size": 24464,
+        "sha256": "9bd5ae2e0aed013bd369a469ac14afeb1beb22524fc820920d6e38766ea48680",
+        "source": "lemmix-orig",
+        "path": "VGAGR0.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "VGAGR1.DAT",
+        "size": 32966,
+        "sha256": "bf49fc528b68d00c5738b6e7cd9244812bc74b0fc03ea9f862009a11009149e5",
+        "source": "lemmix-orig",
+        "path": "VGAGR1.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "VGAGR2.DAT",
+        "size": 22290,
+        "sha256": "f8305e71295c5909ee7692e4391aae65443298faef4d96e5fe17b24afa0eadcc",
+        "source": "lemmix-orig",
+        "path": "VGAGR2.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "VGAGR3.DAT",
+        "size": 22775,
+        "sha256": "19d3e2ba0db60bf855d8ce83459f53d83a2048763124932f533eb1c42f7809d9",
+        "source": "lemmix-orig",
+        "path": "VGAGR3.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "VGAGR4.DAT",
+        "size": 28692,
+        "sha256": "40a99d3d9540609da9d6a74c07a832786818aed361326e37c01a909a1615921d",
+        "source": "lemmix-orig",
+        "path": "VGAGR4.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "VGALEMMI.EXE",
+        "size": 83194,
+        "sha256": "4f21e94d53b7ea814ade802b4a37d42481da3876e31fb5a23090e19c9600f21c",
+        "source": "dos-pack",
+        "path": "vgalemmi.exe",
+        "role": "reference-runtime"
+      },
+      {
+        "name": "VGASPEC0.DAT",
+        "size": 28655,
+        "sha256": "a647110ca059fd18917e8a289668167a3a77975ca1096d7f7fdd9557fee95ce0",
+        "source": "lemmix-orig",
+        "path": "VGASPEC0.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "VGASPEC1.DAT",
+        "size": 18567,
+        "sha256": "b0a8ce1a8888feda8720c7df1222911ae9241f3acbfd42adda243bd5ba5a2306",
+        "source": "lemmix-orig",
+        "path": "VGASPEC1.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "VGASPEC2.DAT",
+        "size": 23284,
+        "sha256": "602fde697bb49df8d86fd800643cc3439a4f136223af0bf1ee46e2bff5e0e3cd",
+        "source": "lemmix-orig",
+        "path": "VGASPEC2.DAT",
+        "role": "engine-resource"
+      },
+      {
+        "name": "VGASPEC3.DAT",
+        "size": 34827,
+        "sha256": "918f21db3a16741f1a58b06bcef2b4ff63dc16f0e8746d0393dc023ea57cb2d4",
+        "source": "lemmix-orig",
+        "path": "VGASPEC3.DAT",
+        "role": "engine-resource"
+      }
+    ],
+    "pc_mode": "2 high performance",
+    "host_audio": "SDL dummy; AdLib emulation enabled; audio not compared",
+    "gameplay_inputs": [],
+    "coordinate_crop": [
+      0,
+      0,
+      320,
+      160
+    ],
+    "normalization": "exact 2x duplicates verified; R5/G6/B5 codes for both sources"
+  },
+  "settings_sha256": "055a326fddccde1cbe1afea7984e8445bb3811a0f22c2e65d1a0eef116651fb4",
+  "runtime_seed": {
+    "generated_sha256": "82abd5f27dfa78c0329f7f0ff67755725f28a92e5d8c96f642a3e7df77e333bf",
+    "seeded_sha256": "1bedf588c463140458c4bbb39337858e3ed33f857b2d576f5ef1c7c1e12ee2d1",
+    "length": 256,
+    "changed_offsets": [
+      0
+    ],
+    "before": [
+      9
+    ],
+    "after": [
+      0
+    ],
+    "exe_or_original_dat_modified": false,
+    "limitation": "seeded runtime disk-check counter; original key disk not acquired/emulated"
+  },
+  "capture_summary": {
+    "status": "UNVERIFIED",
+    "settings_sha256": "055a326fddccde1cbe1afea7984e8445bb3811a0f22c2e65d1a0eef116651fb4",
+    "runtime_seed": {
+      "name": "runtime-seed.json",
+      "size": 415,
+      "sha256": "2206d984647bb340769aab4680700b1c50c7a689bb0b4ac2f43eeab2e0e29b70"
+    },
+    "runs": [
+      {
+        "status": "UNVERIFIED_VISUAL_ANCHORS",
+        "anchors": [
+          {
+            "native_control_step": 0,
+            "scene_sha256": "df13552a116c50d69c5d87696390a4032c1c9f699423ac07823a4c26d5856f1e",
+            "dos_frames": [
+              219,
+              220,
+              221,
+              222,
+              223
+            ]
+          },
+          {
+            "native_control_step": 35,
+            "scene_sha256": "b997540d4372a5e5e09141f534a3f89b6f922110155b71f6c94a8a6e66fd945a",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 54,
+            "scene_sha256": "3884c1190c4f98f63853420eb4606888923cf58011861f56192a236ef4346f9d",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 60,
+            "scene_sha256": "d25595f5d0254df6be388b2c908c3674501dff452ea3f06efa8509d83626c14a",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 100,
+            "scene_sha256": "d00e88582002bdefb2bb2b8a5b83afa83544a88137115a81be7418a781d8ec21",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 170,
+            "scene_sha256": "ac927f5d882c3e10d1573e198e7cfd2495efe8aaf2a9dd6688d0860c3f8015bf",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 340,
+            "scene_sha256": "05b983a6eaf02df93da2ed893a7f1c264674d8ade98efa947e0c9c46e7309f04",
+            "dos_frames": []
+          }
+        ],
+        "unverified": [
+          "internal_state",
+          "tick_rate",
+          "input_tick_alignment",
+          "skills",
+          "triggers",
+          "rescue",
+          "result",
+          "audio",
+          "full_screen_hud"
+        ],
+        "videos": [
+          {
+            "name": "vgalemmi_000.avi",
+            "size": 728074,
+            "sha256": "9f615f331bff804cef4874da65dfecd7299df160966eebb3f09e8a4bb916bcfd",
+            "width": 640,
+            "height": 350,
+            "rate": "2190197/31250",
+            "decoded_frames": 73,
+            "format": "rgb565le"
+          },
+          {
+            "name": "vgalemmi_001.avi",
+            "size": 5523964,
+            "sha256": "7c6bac9cf2af5a2048cff225dec18287d698a942c88c1c09a4656b1af02a151d",
+            "width": 640,
+            "height": 400,
+            "rate": "2190197/31250",
+            "decoded_frames": 1811,
+            "format": "rgb565le"
+          }
+        ],
+        "game_video_frames": 1811,
+        "scene_sha256": [
+          "df13552a116c50d69c5d87696390a4032c1c9f699423ac07823a4c26d5856f1e",
+          "b997540d4372a5e5e09141f534a3f89b6f922110155b71f6c94a8a6e66fd945a",
+          "3884c1190c4f98f63853420eb4606888923cf58011861f56192a236ef4346f9d",
+          "d25595f5d0254df6be388b2c908c3674501dff452ea3f06efa8509d83626c14a",
+          "d00e88582002bdefb2bb2b8a5b83afa83544a88137115a81be7418a781d8ec21",
+          "ac927f5d882c3e10d1573e198e7cfd2495efe8aaf2a9dd6688d0860c3f8015bf",
+          "05b983a6eaf02df93da2ed893a7f1c264674d8ade98efa947e0c9c46e7309f04"
+        ],
+        "host_inputs": {
+          "name": "host-inputs.json",
+          "size": 893,
+          "sha256": "68bc91c875b3f15d96ac82da16d5b792c0a12fa2e0321a6a7c7bc76b4e8704a4"
+        },
+        "runtime_after": {
+          "name": "RUSSELL.DAT",
+          "size": 256,
+          "sha256": "d7719da257a66460b0ee132013c1cc7eba5c4e67cbdaf2f64263f3274445a7d9"
+        },
+        "run": 1,
+        "settings_sha256": "055a326fddccde1cbe1afea7984e8445bb3811a0f22c2e65d1a0eef116651fb4"
+      },
+      {
+        "status": "UNVERIFIED_VISUAL_ANCHORS",
+        "anchors": [
+          {
+            "native_control_step": 0,
+            "scene_sha256": "df13552a116c50d69c5d87696390a4032c1c9f699423ac07823a4c26d5856f1e",
+            "dos_frames": [
+              219,
+              220,
+              221,
+              222,
+              223
+            ]
+          },
+          {
+            "native_control_step": 35,
+            "scene_sha256": "b997540d4372a5e5e09141f534a3f89b6f922110155b71f6c94a8a6e66fd945a",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 54,
+            "scene_sha256": "3884c1190c4f98f63853420eb4606888923cf58011861f56192a236ef4346f9d",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 60,
+            "scene_sha256": "d25595f5d0254df6be388b2c908c3674501dff452ea3f06efa8509d83626c14a",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 100,
+            "scene_sha256": "d00e88582002bdefb2bb2b8a5b83afa83544a88137115a81be7418a781d8ec21",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 170,
+            "scene_sha256": "ac927f5d882c3e10d1573e198e7cfd2495efe8aaf2a9dd6688d0860c3f8015bf",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 340,
+            "scene_sha256": "05b983a6eaf02df93da2ed893a7f1c264674d8ade98efa947e0c9c46e7309f04",
+            "dos_frames": []
+          }
+        ],
+        "unverified": [
+          "internal_state",
+          "tick_rate",
+          "input_tick_alignment",
+          "skills",
+          "triggers",
+          "rescue",
+          "result",
+          "audio",
+          "full_screen_hud"
+        ],
+        "videos": [
+          {
+            "name": "vgalemmi_000.avi",
+            "size": 728078,
+            "sha256": "d6265f1db06ce8e3dfd964413f494d10db1b396e8e9e28e0ec18028ad147415a",
+            "width": 640,
+            "height": 350,
+            "rate": "2190197/31250",
+            "decoded_frames": 73,
+            "format": "rgb565le"
+          },
+          {
+            "name": "vgalemmi_001.avi",
+            "size": 5510380,
+            "sha256": "6e2372faced0a5a34cea4a8fc2444b913cf54687d8292f6c7f98acdd70fe4eb4",
+            "width": 640,
+            "height": 400,
+            "rate": "2190197/31250",
+            "decoded_frames": 1806,
+            "format": "rgb565le"
+          }
+        ],
+        "game_video_frames": 1806,
+        "scene_sha256": [
+          "df13552a116c50d69c5d87696390a4032c1c9f699423ac07823a4c26d5856f1e",
+          "b997540d4372a5e5e09141f534a3f89b6f922110155b71f6c94a8a6e66fd945a",
+          "3884c1190c4f98f63853420eb4606888923cf58011861f56192a236ef4346f9d",
+          "d25595f5d0254df6be388b2c908c3674501dff452ea3f06efa8509d83626c14a",
+          "d00e88582002bdefb2bb2b8a5b83afa83544a88137115a81be7418a781d8ec21",
+          "ac927f5d882c3e10d1573e198e7cfd2495efe8aaf2a9dd6688d0860c3f8015bf",
+          "05b983a6eaf02df93da2ed893a7f1c264674d8ade98efa947e0c9c46e7309f04"
+        ],
+        "host_inputs": {
+          "name": "host-inputs.json",
+          "size": 894,
+          "sha256": "8a75f7738643a2255f13f7fc695d85ac787eb735d7dd05856517f6e3ab67b6dc"
+        },
+        "runtime_after": {
+          "name": "RUSSELL.DAT",
+          "size": 256,
+          "sha256": "1478bde805386c046933ca9f1772ea800803425cc8206f62632e82bef0a96bdc"
+        },
+        "run": 2,
+        "settings_sha256": "055a326fddccde1cbe1afea7984e8445bb3811a0f22c2e65d1a0eef116651fb4"
+      },
+      {
+        "status": "UNVERIFIED_VISUAL_ANCHORS",
+        "anchors": [
+          {
+            "native_control_step": 0,
+            "scene_sha256": "df13552a116c50d69c5d87696390a4032c1c9f699423ac07823a4c26d5856f1e",
+            "dos_frames": [
+              219,
+              220,
+              221,
+              222,
+              223
+            ]
+          },
+          {
+            "native_control_step": 35,
+            "scene_sha256": "b997540d4372a5e5e09141f534a3f89b6f922110155b71f6c94a8a6e66fd945a",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 54,
+            "scene_sha256": "3884c1190c4f98f63853420eb4606888923cf58011861f56192a236ef4346f9d",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 60,
+            "scene_sha256": "d25595f5d0254df6be388b2c908c3674501dff452ea3f06efa8509d83626c14a",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 100,
+            "scene_sha256": "d00e88582002bdefb2bb2b8a5b83afa83544a88137115a81be7418a781d8ec21",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 170,
+            "scene_sha256": "ac927f5d882c3e10d1573e198e7cfd2495efe8aaf2a9dd6688d0860c3f8015bf",
+            "dos_frames": []
+          },
+          {
+            "native_control_step": 340,
+            "scene_sha256": "05b983a6eaf02df93da2ed893a7f1c264674d8ade98efa947e0c9c46e7309f04",
+            "dos_frames": []
+          }
+        ],
+        "unverified": [
+          "internal_state",
+          "tick_rate",
+          "input_tick_alignment",
+          "skills",
+          "triggers",
+          "rescue",
+          "result",
+          "audio",
+          "full_screen_hud"
+        ],
+        "videos": [
+          {
+            "name": "vgalemmi_000.avi",
+            "size": 725542,
+            "sha256": "27a8b13c47e9a94938ab193b672a70606048f3d8bb523a9a7ec54d5e07787fab",
+            "width": 640,
+            "height": 350,
+            "rate": "2190197/31250",
+            "decoded_frames": 72,
+            "format": "rgb565le"
+          },
+          {
+            "name": "vgalemmi_001.avi",
+            "size": 5524024,
+            "sha256": "407dcae3018d0a89fe8f9a5d89c67a13e4b14effd70d514484dd785d8e467c82",
+            "width": 640,
+            "height": 400,
+            "rate": "2190197/31250",
+            "decoded_frames": 1811,
+            "format": "rgb565le"
+          }
+        ],
+        "game_video_frames": 1811,
+        "scene_sha256": [
+          "df13552a116c50d69c5d87696390a4032c1c9f699423ac07823a4c26d5856f1e",
+          "b997540d4372a5e5e09141f534a3f89b6f922110155b71f6c94a8a6e66fd945a",
+          "3884c1190c4f98f63853420eb4606888923cf58011861f56192a236ef4346f9d",
+          "d25595f5d0254df6be388b2c908c3674501dff452ea3f06efa8509d83626c14a",
+          "d00e88582002bdefb2bb2b8a5b83afa83544a88137115a81be7418a781d8ec21",
+          "ac927f5d882c3e10d1573e198e7cfd2495efe8aaf2a9dd6688d0860c3f8015bf",
+          "05b983a6eaf02df93da2ed893a7f1c264674d8ade98efa947e0c9c46e7309f04"
+        ],
+        "host_inputs": {
+          "name": "host-inputs.json",
+          "size": 894,
+          "sha256": "cf4d03c86138f28a2a5fa541983fa27279ea0713d781cbca6e397b6dadf563f2"
+        },
+        "runtime_after": {
+          "name": "RUSSELL.DAT",
+          "size": 256,
+          "sha256": "75b522d48ddac8180904ec69abd866b824b5f0aad536caabbd08d92dfdc3eb05"
+        },
+        "run": 3,
+        "settings_sha256": "055a326fddccde1cbe1afea7984e8445bb3811a0f22c2e65d1a0eef116651fb4"
+      }
+    ]
+  },
+  "comparison": {
+    "upper_view_status": "MATCH_THREE_RUNS",
+    "full_playfield_status": "UNVERIFIED",
+    "observation_kind": "video",
+    "settings_sha256": "055a326fddccde1cbe1afea7984e8445bb3811a0f22c2e65d1a0eef116651fb4",
+    "normalization": "verified exact 2x playfield duplicates; R5/G6/B5 codes on both sides",
+    "upper_scope": [
+      0,
+      0,
+      320,
+      100
+    ],
+    "full_scope": [
+      0,
+      0,
+      320,
+      160
+    ],
+    "side_by_side": "left DOS, right native; normalized capture colors; playfield only",
+    "native_trace": {
+      "name": "trace.jsonl",
+      "size": 305345,
+      "sha256": "3025ed0bae62e0d9a978a8653e553909c134ec3833167c27f643cecfbc939465"
+    },
+    "native_run": {
+      "name": "run.json",
+      "size": 200,
+      "sha256": "cb2d9e0b440ab5c0909f0ef45d5f3d0090e0b04a6f5c02ceacf24c092e9510ac"
+    },
+    "native_pixel_exact_captures": 10,
+    "runtime_seed": {
+      "generated_sha256": "82abd5f27dfa78c0329f7f0ff67755725f28a92e5d8c96f642a3e7df77e333bf",
+      "seeded_sha256": "1bedf588c463140458c4bbb39337858e3ed33f857b2d576f5ef1c7c1e12ee2d1",
+      "length": 256,
+      "changed_offsets": [
+        0
+      ],
+      "before": [
+        9
+      ],
+      "after": [
+        0
+      ],
+      "exe_or_original_dat_modified": false,
+      "limitation": "seeded runtime disk-check counter; original key disk not acquired/emulated"
+    },
+    "runs": [
+      {
+        "run": 1,
+        "settings_sha256": "055a326fddccde1cbe1afea7984e8445bb3811a0f22c2e65d1a0eef116651fb4",
+        "status": "MATCH_VISUAL_ANCHORS",
+        "scene_sha256": [
+          "2ceae31837fe6ffe34981c82b57cb41219cdd4b95ec1872ac03ad60cde9ba3cb",
+          "9c8d5e807f5f4954ff93e6d5f8ec64eaf569dff5deae9e7156613e3baa4e4c8b",
+          "7e6268da9cc0c0af776ef3ac32bee4be8991ad0f469d0ccf0449490cd136ee71",
+          "0afa35f27ccaae20af985f94594d7826d723cc3e3eae613bab2c6db4d4ca52a1",
+          "3c40b45667dbcbbbc3752a31a0d406387b24e69085bd0832590781dfd6ea1e5a",
+          "f9c1a707367649c2bfa3fcfd3b7a292ddf7b862d54792c209d73be25ce6f96a8",
+          "4b79072bfc5914d9e3857dba05654f6cfcbba6a7eb4b97b74edadb7d9dd4c778"
+        ],
+        "full_playfield": {
+          "status": "UNVERIFIED_VISUAL_ANCHORS",
+          "anchors": [
+            {
+              "native_control_step": 0,
+              "scene_sha256": "df13552a116c50d69c5d87696390a4032c1c9f699423ac07823a4c26d5856f1e",
+              "dos_frames": [
+                219,
+                220,
+                221,
+                222,
+                223
+              ]
+            },
+            {
+              "native_control_step": 35,
+              "scene_sha256": "b997540d4372a5e5e09141f534a3f89b6f922110155b71f6c94a8a6e66fd945a",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 54,
+              "scene_sha256": "3884c1190c4f98f63853420eb4606888923cf58011861f56192a236ef4346f9d",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 60,
+              "scene_sha256": "d25595f5d0254df6be388b2c908c3674501dff452ea3f06efa8509d83626c14a",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 100,
+              "scene_sha256": "d00e88582002bdefb2bb2b8a5b83afa83544a88137115a81be7418a781d8ec21",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 170,
+              "scene_sha256": "ac927f5d882c3e10d1573e198e7cfd2495efe8aaf2a9dd6688d0860c3f8015bf",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 340,
+              "scene_sha256": "05b983a6eaf02df93da2ed893a7f1c264674d8ade98efa947e0c9c46e7309f04",
+              "dos_frames": []
+            }
+          ],
+          "unverified": [
+            "internal_state",
+            "tick_rate",
+            "input_tick_alignment",
+            "skills",
+            "triggers",
+            "rescue",
+            "result",
+            "audio",
+            "full_screen_hud"
+          ]
+        },
+        "upper_view": {
+          "status": "MATCH_VISUAL_ANCHORS",
+          "anchors": [
+            {
+              "native_control_step": 0,
+              "scene_sha256": "2ceae31837fe6ffe34981c82b57cb41219cdd4b95ec1872ac03ad60cde9ba3cb",
+              "dos_frames": [
+                174,
+                175,
+                176,
+                177,
+                178,
+                179,
+                180,
+                181,
+                182,
+                183,
+                184,
+                185,
+                186,
+                187,
+                188,
+                189,
+                190,
+                191,
+                192,
+                193,
+                194,
+                195,
+                196,
+                197,
+                198,
+                199,
+                200,
+                201,
+                202,
+                203,
+                204,
+                205,
+                206,
+                207,
+                208,
+                209,
+                210,
+                211,
+                212,
+                213,
+                214,
+                215,
+                216,
+                217,
+                218,
+                219,
+                220,
+                221,
+                222,
+                223
+              ]
+            },
+            {
+              "native_control_step": 35,
+              "scene_sha256": "9c8d5e807f5f4954ff93e6d5f8ec64eaf569dff5deae9e7156613e3baa4e4c8b",
+              "dos_frames": [
+                224,
+                225,
+                226,
+                227,
+                228
+              ]
+            },
+            {
+              "native_control_step": 54,
+              "scene_sha256": "7e6268da9cc0c0af776ef3ac32bee4be8991ad0f469d0ccf0449490cd136ee71",
+              "dos_frames": [
+                319,
+                320,
+                321,
+                322,
+                323
+              ]
+            },
+            {
+              "native_control_step": 60,
+              "scene_sha256": "0afa35f27ccaae20af985f94594d7826d723cc3e3eae613bab2c6db4d4ca52a1",
+              "dos_frames": [
+                349,
+                350,
+                351,
+                352,
+                353
+              ]
+            },
+            {
+              "native_control_step": 100,
+              "scene_sha256": "3c40b45667dbcbbbc3752a31a0d406387b24e69085bd0832590781dfd6ea1e5a",
+              "dos_frames": [
+                549,
+                550,
+                551,
+                552,
+                553
+              ]
+            },
+            {
+              "native_control_step": 170,
+              "scene_sha256": "f9c1a707367649c2bfa3fcfd3b7a292ddf7b862d54792c209d73be25ce6f96a8",
+              "dos_frames": [
+                899,
+                900,
+                901,
+                902,
+                903
+              ]
+            },
+            {
+              "native_control_step": 340,
+              "scene_sha256": "4b79072bfc5914d9e3857dba05654f6cfcbba6a7eb4b97b74edadb7d9dd4c778",
+              "dos_frames": [
+                1749,
+                1750,
+                1751,
+                1752,
+                1753
+              ]
+            }
+          ],
+          "unverified": [
+            "internal_state",
+            "tick_rate",
+            "input_tick_alignment",
+            "skills",
+            "triggers",
+            "rescue",
+            "result",
+            "audio",
+            "full_screen_hud"
+          ]
+        },
+        "game_video_frames": 1811,
+        "samples": [
+          {
+            "native_control_step": 0,
+            "game_video_frame": 174,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 174,
+            "pts": 174,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 53,
+              "first": [
+                236,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                265,
+                123
+              ]
+            }
+          },
+          {
+            "native_control_step": 35,
+            "game_video_frame": 224,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 224,
+            "pts": 224,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 19,
+              "first": [
+                235,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                264,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 54,
+            "game_video_frame": 319,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 319,
+            "pts": 319,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 21,
+              "first": [
+                235,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                265,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 60,
+            "game_video_frame": 349,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 349,
+            "pts": 349,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 21,
+              "first": [
+                235,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                265,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 100,
+            "game_video_frame": 549,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 549,
+            "pts": 549,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 26,
+              "first": [
+                234,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                266,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 170,
+            "game_video_frame": 899,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 899,
+            "pts": 899,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 21,
+              "first": [
+                234,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                266,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 340,
+            "game_video_frame": 1749,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 1749,
+            "pts": 1749,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 26,
+              "first": [
+                234,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                266,
+                113
+              ]
+            }
+          }
+        ],
+        "artifacts": [
+          {
+            "name": "pair-000000.png",
+            "size": 14811,
+            "sha256": "6a72c30d8b5495c5b316ac722cac4bf53ae60b7fac5b826cdac17c358e32c6cb"
+          },
+          {
+            "name": "pair-000035.png",
+            "size": 14790,
+            "sha256": "49997b5f74e95528d5d8eff661bd02be18596ddc9793e4bd832e4d395b26e55c"
+          },
+          {
+            "name": "pair-000054.png",
+            "size": 14893,
+            "sha256": "b30e7373b91ca0da97820a582fdaa5480645c0788f37d5b61555cd4ffa381b98"
+          },
+          {
+            "name": "pair-000060.png",
+            "size": 14920,
+            "sha256": "725f2a4b99e5764a2285301d75c14be089742b8e7151abefaea519218a79558f"
+          },
+          {
+            "name": "pair-000100.png",
+            "size": 14945,
+            "sha256": "f6df2e14e1a7fc396110d7cb8f854b8528dca54865f78bfad22ac89b3d84b19e"
+          },
+          {
+            "name": "pair-000170.png",
+            "size": 15034,
+            "sha256": "607d0ddbf52b2ddd988779f91f64898501a70e6300af642bbc593401837bda8a"
+          },
+          {
+            "name": "pair-000340.png",
+            "size": 15079,
+            "sha256": "e94211d25d38875eeaa75985787445a36b6824efbfab18af4d116a6695c09015"
+          }
+        ]
+      },
+      {
+        "run": 2,
+        "settings_sha256": "055a326fddccde1cbe1afea7984e8445bb3811a0f22c2e65d1a0eef116651fb4",
+        "status": "MATCH_VISUAL_ANCHORS",
+        "scene_sha256": [
+          "2ceae31837fe6ffe34981c82b57cb41219cdd4b95ec1872ac03ad60cde9ba3cb",
+          "9c8d5e807f5f4954ff93e6d5f8ec64eaf569dff5deae9e7156613e3baa4e4c8b",
+          "7e6268da9cc0c0af776ef3ac32bee4be8991ad0f469d0ccf0449490cd136ee71",
+          "0afa35f27ccaae20af985f94594d7826d723cc3e3eae613bab2c6db4d4ca52a1",
+          "3c40b45667dbcbbbc3752a31a0d406387b24e69085bd0832590781dfd6ea1e5a",
+          "f9c1a707367649c2bfa3fcfd3b7a292ddf7b862d54792c209d73be25ce6f96a8",
+          "4b79072bfc5914d9e3857dba05654f6cfcbba6a7eb4b97b74edadb7d9dd4c778"
+        ],
+        "full_playfield": {
+          "status": "UNVERIFIED_VISUAL_ANCHORS",
+          "anchors": [
+            {
+              "native_control_step": 0,
+              "scene_sha256": "df13552a116c50d69c5d87696390a4032c1c9f699423ac07823a4c26d5856f1e",
+              "dos_frames": [
+                219,
+                220,
+                221,
+                222,
+                223
+              ]
+            },
+            {
+              "native_control_step": 35,
+              "scene_sha256": "b997540d4372a5e5e09141f534a3f89b6f922110155b71f6c94a8a6e66fd945a",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 54,
+              "scene_sha256": "3884c1190c4f98f63853420eb4606888923cf58011861f56192a236ef4346f9d",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 60,
+              "scene_sha256": "d25595f5d0254df6be388b2c908c3674501dff452ea3f06efa8509d83626c14a",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 100,
+              "scene_sha256": "d00e88582002bdefb2bb2b8a5b83afa83544a88137115a81be7418a781d8ec21",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 170,
+              "scene_sha256": "ac927f5d882c3e10d1573e198e7cfd2495efe8aaf2a9dd6688d0860c3f8015bf",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 340,
+              "scene_sha256": "05b983a6eaf02df93da2ed893a7f1c264674d8ade98efa947e0c9c46e7309f04",
+              "dos_frames": []
+            }
+          ],
+          "unverified": [
+            "internal_state",
+            "tick_rate",
+            "input_tick_alignment",
+            "skills",
+            "triggers",
+            "rescue",
+            "result",
+            "audio",
+            "full_screen_hud"
+          ]
+        },
+        "upper_view": {
+          "status": "MATCH_VISUAL_ANCHORS",
+          "anchors": [
+            {
+              "native_control_step": 0,
+              "scene_sha256": "2ceae31837fe6ffe34981c82b57cb41219cdd4b95ec1872ac03ad60cde9ba3cb",
+              "dos_frames": [
+                174,
+                175,
+                176,
+                177,
+                178,
+                179,
+                180,
+                181,
+                182,
+                183,
+                184,
+                185,
+                186,
+                187,
+                188,
+                189,
+                190,
+                191,
+                192,
+                193,
+                194,
+                195,
+                196,
+                197,
+                198,
+                199,
+                200,
+                201,
+                202,
+                203,
+                204,
+                205,
+                206,
+                207,
+                208,
+                209,
+                210,
+                211,
+                212,
+                213,
+                214,
+                215,
+                216,
+                217,
+                218,
+                219,
+                220,
+                221,
+                222,
+                223
+              ]
+            },
+            {
+              "native_control_step": 35,
+              "scene_sha256": "9c8d5e807f5f4954ff93e6d5f8ec64eaf569dff5deae9e7156613e3baa4e4c8b",
+              "dos_frames": [
+                224,
+                225,
+                226,
+                227,
+                228
+              ]
+            },
+            {
+              "native_control_step": 54,
+              "scene_sha256": "7e6268da9cc0c0af776ef3ac32bee4be8991ad0f469d0ccf0449490cd136ee71",
+              "dos_frames": [
+                319,
+                320,
+                321,
+                322,
+                323
+              ]
+            },
+            {
+              "native_control_step": 60,
+              "scene_sha256": "0afa35f27ccaae20af985f94594d7826d723cc3e3eae613bab2c6db4d4ca52a1",
+              "dos_frames": [
+                349,
+                350,
+                351,
+                352,
+                353
+              ]
+            },
+            {
+              "native_control_step": 100,
+              "scene_sha256": "3c40b45667dbcbbbc3752a31a0d406387b24e69085bd0832590781dfd6ea1e5a",
+              "dos_frames": [
+                549,
+                550,
+                551,
+                552,
+                553
+              ]
+            },
+            {
+              "native_control_step": 170,
+              "scene_sha256": "f9c1a707367649c2bfa3fcfd3b7a292ddf7b862d54792c209d73be25ce6f96a8",
+              "dos_frames": [
+                899,
+                900,
+                901,
+                902,
+                903
+              ]
+            },
+            {
+              "native_control_step": 340,
+              "scene_sha256": "4b79072bfc5914d9e3857dba05654f6cfcbba6a7eb4b97b74edadb7d9dd4c778",
+              "dos_frames": [
+                1749,
+                1750,
+                1751,
+                1752,
+                1753
+              ]
+            }
+          ],
+          "unverified": [
+            "internal_state",
+            "tick_rate",
+            "input_tick_alignment",
+            "skills",
+            "triggers",
+            "rescue",
+            "result",
+            "audio",
+            "full_screen_hud"
+          ]
+        },
+        "game_video_frames": 1806,
+        "samples": [
+          {
+            "native_control_step": 0,
+            "game_video_frame": 174,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 174,
+            "pts": 174,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 53,
+              "first": [
+                236,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                265,
+                123
+              ]
+            }
+          },
+          {
+            "native_control_step": 35,
+            "game_video_frame": 224,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 224,
+            "pts": 224,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 19,
+              "first": [
+                235,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                264,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 54,
+            "game_video_frame": 319,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 319,
+            "pts": 319,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 21,
+              "first": [
+                235,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                265,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 60,
+            "game_video_frame": 349,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 349,
+            "pts": 349,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 21,
+              "first": [
+                235,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                265,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 100,
+            "game_video_frame": 549,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 549,
+            "pts": 549,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 26,
+              "first": [
+                234,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                266,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 170,
+            "game_video_frame": 899,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 899,
+            "pts": 899,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 21,
+              "first": [
+                234,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                266,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 340,
+            "game_video_frame": 1749,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 1749,
+            "pts": 1749,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 26,
+              "first": [
+                234,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                266,
+                113
+              ]
+            }
+          }
+        ],
+        "artifacts": [
+          {
+            "name": "pair-000000.png",
+            "size": 14811,
+            "sha256": "6a72c30d8b5495c5b316ac722cac4bf53ae60b7fac5b826cdac17c358e32c6cb"
+          },
+          {
+            "name": "pair-000035.png",
+            "size": 14790,
+            "sha256": "49997b5f74e95528d5d8eff661bd02be18596ddc9793e4bd832e4d395b26e55c"
+          },
+          {
+            "name": "pair-000054.png",
+            "size": 14893,
+            "sha256": "b30e7373b91ca0da97820a582fdaa5480645c0788f37d5b61555cd4ffa381b98"
+          },
+          {
+            "name": "pair-000060.png",
+            "size": 14920,
+            "sha256": "725f2a4b99e5764a2285301d75c14be089742b8e7151abefaea519218a79558f"
+          },
+          {
+            "name": "pair-000100.png",
+            "size": 14945,
+            "sha256": "f6df2e14e1a7fc396110d7cb8f854b8528dca54865f78bfad22ac89b3d84b19e"
+          },
+          {
+            "name": "pair-000170.png",
+            "size": 15034,
+            "sha256": "607d0ddbf52b2ddd988779f91f64898501a70e6300af642bbc593401837bda8a"
+          },
+          {
+            "name": "pair-000340.png",
+            "size": 15079,
+            "sha256": "e94211d25d38875eeaa75985787445a36b6824efbfab18af4d116a6695c09015"
+          }
+        ]
+      },
+      {
+        "run": 3,
+        "settings_sha256": "055a326fddccde1cbe1afea7984e8445bb3811a0f22c2e65d1a0eef116651fb4",
+        "status": "MATCH_VISUAL_ANCHORS",
+        "scene_sha256": [
+          "2ceae31837fe6ffe34981c82b57cb41219cdd4b95ec1872ac03ad60cde9ba3cb",
+          "9c8d5e807f5f4954ff93e6d5f8ec64eaf569dff5deae9e7156613e3baa4e4c8b",
+          "7e6268da9cc0c0af776ef3ac32bee4be8991ad0f469d0ccf0449490cd136ee71",
+          "0afa35f27ccaae20af985f94594d7826d723cc3e3eae613bab2c6db4d4ca52a1",
+          "3c40b45667dbcbbbc3752a31a0d406387b24e69085bd0832590781dfd6ea1e5a",
+          "f9c1a707367649c2bfa3fcfd3b7a292ddf7b862d54792c209d73be25ce6f96a8",
+          "4b79072bfc5914d9e3857dba05654f6cfcbba6a7eb4b97b74edadb7d9dd4c778"
+        ],
+        "full_playfield": {
+          "status": "UNVERIFIED_VISUAL_ANCHORS",
+          "anchors": [
+            {
+              "native_control_step": 0,
+              "scene_sha256": "df13552a116c50d69c5d87696390a4032c1c9f699423ac07823a4c26d5856f1e",
+              "dos_frames": [
+                219,
+                220,
+                221,
+                222,
+                223
+              ]
+            },
+            {
+              "native_control_step": 35,
+              "scene_sha256": "b997540d4372a5e5e09141f534a3f89b6f922110155b71f6c94a8a6e66fd945a",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 54,
+              "scene_sha256": "3884c1190c4f98f63853420eb4606888923cf58011861f56192a236ef4346f9d",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 60,
+              "scene_sha256": "d25595f5d0254df6be388b2c908c3674501dff452ea3f06efa8509d83626c14a",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 100,
+              "scene_sha256": "d00e88582002bdefb2bb2b8a5b83afa83544a88137115a81be7418a781d8ec21",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 170,
+              "scene_sha256": "ac927f5d882c3e10d1573e198e7cfd2495efe8aaf2a9dd6688d0860c3f8015bf",
+              "dos_frames": []
+            },
+            {
+              "native_control_step": 340,
+              "scene_sha256": "05b983a6eaf02df93da2ed893a7f1c264674d8ade98efa947e0c9c46e7309f04",
+              "dos_frames": []
+            }
+          ],
+          "unverified": [
+            "internal_state",
+            "tick_rate",
+            "input_tick_alignment",
+            "skills",
+            "triggers",
+            "rescue",
+            "result",
+            "audio",
+            "full_screen_hud"
+          ]
+        },
+        "upper_view": {
+          "status": "MATCH_VISUAL_ANCHORS",
+          "anchors": [
+            {
+              "native_control_step": 0,
+              "scene_sha256": "2ceae31837fe6ffe34981c82b57cb41219cdd4b95ec1872ac03ad60cde9ba3cb",
+              "dos_frames": [
+                174,
+                175,
+                176,
+                177,
+                178,
+                179,
+                180,
+                181,
+                182,
+                183,
+                184,
+                185,
+                186,
+                187,
+                188,
+                189,
+                190,
+                191,
+                192,
+                193,
+                194,
+                195,
+                196,
+                197,
+                198,
+                199,
+                200,
+                201,
+                202,
+                203,
+                204,
+                205,
+                206,
+                207,
+                208,
+                209,
+                210,
+                211,
+                212,
+                213,
+                214,
+                215,
+                216,
+                217,
+                218,
+                219,
+                220,
+                221,
+                222,
+                223
+              ]
+            },
+            {
+              "native_control_step": 35,
+              "scene_sha256": "9c8d5e807f5f4954ff93e6d5f8ec64eaf569dff5deae9e7156613e3baa4e4c8b",
+              "dos_frames": [
+                224,
+                225,
+                226,
+                227,
+                228
+              ]
+            },
+            {
+              "native_control_step": 54,
+              "scene_sha256": "7e6268da9cc0c0af776ef3ac32bee4be8991ad0f469d0ccf0449490cd136ee71",
+              "dos_frames": [
+                319,
+                320,
+                321,
+                322,
+                323
+              ]
+            },
+            {
+              "native_control_step": 60,
+              "scene_sha256": "0afa35f27ccaae20af985f94594d7826d723cc3e3eae613bab2c6db4d4ca52a1",
+              "dos_frames": [
+                349,
+                350,
+                351,
+                352,
+                353
+              ]
+            },
+            {
+              "native_control_step": 100,
+              "scene_sha256": "3c40b45667dbcbbbc3752a31a0d406387b24e69085bd0832590781dfd6ea1e5a",
+              "dos_frames": [
+                549,
+                550,
+                551,
+                552,
+                553
+              ]
+            },
+            {
+              "native_control_step": 170,
+              "scene_sha256": "f9c1a707367649c2bfa3fcfd3b7a292ddf7b862d54792c209d73be25ce6f96a8",
+              "dos_frames": [
+                899,
+                900,
+                901,
+                902,
+                903
+              ]
+            },
+            {
+              "native_control_step": 340,
+              "scene_sha256": "4b79072bfc5914d9e3857dba05654f6cfcbba6a7eb4b97b74edadb7d9dd4c778",
+              "dos_frames": [
+                1749,
+                1750,
+                1751,
+                1752,
+                1753
+              ]
+            }
+          ],
+          "unverified": [
+            "internal_state",
+            "tick_rate",
+            "input_tick_alignment",
+            "skills",
+            "triggers",
+            "rescue",
+            "result",
+            "audio",
+            "full_screen_hud"
+          ]
+        },
+        "game_video_frames": 1811,
+        "samples": [
+          {
+            "native_control_step": 0,
+            "game_video_frame": 174,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 174,
+            "pts": 174,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 53,
+              "first": [
+                236,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                265,
+                123
+              ]
+            }
+          },
+          {
+            "native_control_step": 35,
+            "game_video_frame": 224,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 224,
+            "pts": 224,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 19,
+              "first": [
+                235,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                264,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 54,
+            "game_video_frame": 319,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 319,
+            "pts": 319,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 21,
+              "first": [
+                235,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                265,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 60,
+            "game_video_frame": 349,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 349,
+            "pts": 349,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 21,
+              "first": [
+                235,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                265,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 100,
+            "game_video_frame": 549,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 549,
+            "pts": 549,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 26,
+              "first": [
+                234,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                266,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 170,
+            "game_video_frame": 899,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 899,
+            "pts": 899,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 21,
+              "first": [
+                234,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                266,
+                113
+              ]
+            }
+          },
+          {
+            "native_control_step": 340,
+            "game_video_frame": 1749,
+            "video": "vgalemmi_001.avi",
+            "local_video_frame": 1749,
+            "pts": 1749,
+            "time_base": "31250/2190197",
+            "full_playfield_difference": {
+              "pixels": 26,
+              "first": [
+                234,
+                108
+              ],
+              "bounds": [
+                234,
+                108,
+                266,
+                113
+              ]
+            }
+          }
+        ],
+        "artifacts": [
+          {
+            "name": "pair-000000.png",
+            "size": 14811,
+            "sha256": "6a72c30d8b5495c5b316ac722cac4bf53ae60b7fac5b826cdac17c358e32c6cb"
+          },
+          {
+            "name": "pair-000035.png",
+            "size": 14790,
+            "sha256": "49997b5f74e95528d5d8eff661bd02be18596ddc9793e4bd832e4d395b26e55c"
+          },
+          {
+            "name": "pair-000054.png",
+            "size": 14893,
+            "sha256": "b30e7373b91ca0da97820a582fdaa5480645c0788f37d5b61555cd4ffa381b98"
+          },
+          {
+            "name": "pair-000060.png",
+            "size": 14920,
+            "sha256": "725f2a4b99e5764a2285301d75c14be089742b8e7151abefaea519218a79558f"
+          },
+          {
+            "name": "pair-000100.png",
+            "size": 14945,
+            "sha256": "f6df2e14e1a7fc396110d7cb8f854b8528dca54865f78bfad22ac89b3d84b19e"
+          },
+          {
+            "name": "pair-000170.png",
+            "size": 15034,
+            "sha256": "607d0ddbf52b2ddd988779f91f64898501a70e6300af642bbc593401837bda8a"
+          },
+          {
+            "name": "pair-000340.png",
+            "size": 15079,
+            "sha256": "e94211d25d38875eeaa75985787445a36b6824efbfab18af4d116a6695c09015"
+          }
+        ]
+      }
+    ]
+  },
+  "native_binary": {
+    "path": "target/release/lemmings-desktop",
+    "size": 771680,
+    "sha256": "d58d40e46e31a3eaaf0a7d134153ef1479eb36df49252599ca50fae0120889ad"
+  },
+  "native_run": {
+    "control_step": 340,
+    "iteration": 340,
+    "frames": 341,
+    "input_count": 0,
+    "events_seen": 5,
+    "camera": 624,
+    "video_driver": "x11",
+    "renderer": "software",
+    "sdl_version": "2.30.0",
+    "timing": "fixed-step",
+    "synthetic": false
+  },
+  "native_sources_git_commit": "941bba682543d2d5f8e318bebd82641ffbcf4ea0",
+  "verification_sources": [
+    {
+      "path": "tools/capture_dos.py",
+      "size": 10892,
+      "sha256": "9899cc7a8f7daa6f04231485743bff6c005d1408f68ec84fdfbabbb4a2e78989"
+    },
+    {
+      "path": "tools/compare_dos.py",
+      "size": 8607,
+      "sha256": "e8fda0ae348e3b1a88cd55b22f5dbe3b9694bf05d1ba2d240580541e30a780de"
+    },
+    {
+      "path": "tools/dos_observation.py",
+      "size": 4037,
+      "sha256": "517f3c4ad0b28f6e0b56d8f13de2fca4470680ce3ef6a6d0d9631ba42e05cbf7"
+    },
+    {
+      "path": "tools/tests/test_dos_observation.py",
+      "size": 4136,
+      "sha256": "11b876a2e0a6f8504c72e6c523cb45ccb105674a50f8da1b22dce4f5494edb54"
+    }
+  ],
+  "tool_archives": [
+    {
+      "name": "av-14.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "size": 40040294,
+      "sha256": "14c5f00b0b60d127ac0cde46a5bce9b67e905ba93033fdd48ae550c0c05d51b8"
+    },
+    {
+      "name": "dosbox_0.74-3-5build2_amd64.deb",
+      "size": 976622,
+      "sha256": "f7fabe8e4923ec503349f8c7466ab132395e83ba03aa1e382955c09f434c4433",
+      "metadata": "Package: dosbox\nVersion: 0.74-3-5build2\nArchitecture: amd64"
+    },
+    {
+      "name": "dosbox_0.74-3.orig.tar.gz",
+      "size": 1326339,
+      "sha256": "c0d13dd7ed2ed363b68de615475781e891cd582e8162b5c3669137502222260a"
+    },
+    {
+      "name": "libflac12t64_1.4.3+ds-2.1ubuntu2_amd64.deb",
+      "size": 197320,
+      "sha256": "f2396692573407b2fbc92cd83148342d4aec717d42d5e24ac64c471204a0b7a9",
+      "metadata": "Package: libflac12t64\nVersion: 1.4.3+ds-2.1ubuntu2\nArchitecture: amd64"
+    },
+    {
+      "name": "libfluidsynth3_2.3.4-1build3_amd64.deb",
+      "size": 248694,
+      "sha256": "645b2c03798b6e02d289cc27f4b2b25a040db705cf527017e3a6cdbe568b3438",
+      "metadata": "Package: libfluidsynth3\nVersion: 2.3.4-1build3\nArchitecture: amd64"
+    },
+    {
+      "name": "libmad0_0.15.1b-10.2ubuntu1_amd64.deb",
+      "size": 65510,
+      "sha256": "b482b33dc7c3490bb47c6e92351630b678f3d16c2d9c72236f8ab8ec63b1fcb3",
+      "metadata": "Package: libmad0\nVersion: 0.15.1b-10.2ubuntu1\nArchitecture: amd64"
+    },
+    {
+      "name": "libmikmod3_3.3.11.1-7build1_amd64.deb",
+      "size": 133166,
+      "sha256": "5f4e2bf188f4fa8d2a5c29f08ece8295007364b3b42b65768e40bb0337e01e1c",
+      "metadata": "Package: libmikmod3\nVersion: 3.3.11.1-7build1\nArchitecture: amd64"
+    },
+    {
+      "name": "libmpg123-0t64_1.32.5-1ubuntu1.1_amd64.deb",
+      "size": 169494,
+      "sha256": "bbe32128e3358f141f9f58ef6e76a7bef3e07d09165203665d30fdc27372b418",
+      "metadata": "Package: libmpg123-0t64\nVersion: 1.32.5-1ubuntu1.1\nArchitecture: amd64"
+    },
+    {
+      "name": "libopenal1_1%3a1.23.1-4build1_amd64.deb",
+      "size": 540202,
+      "sha256": "1781774a540ab7c9baccc41b49592e3b427c5820c64e390af4868d6a861ef8c7",
+      "metadata": "Package: libopenal1\nVersion: 1:1.23.1-4build1\nArchitecture: amd64"
+    },
+    {
+      "name": "libopusfile0_0.12-4build3_amd64.deb",
+      "size": 44722,
+      "sha256": "2ca8553af6de825847f9cfe9f6535512471b27eab68dfc20776ad3ec2f5398b1",
+      "metadata": "Package: libopusfile0\nVersion: 0.12-4build3\nArchitecture: amd64"
+    },
+    {
+      "name": "libsdl-net1.2_1.2.8-6build1_amd64.deb",
+      "size": 11006,
+      "sha256": "3a060ffbfb07f8046ee78c7211fe67932717bc6a4f52daca9860cd60c3396dd2",
+      "metadata": "Package: libsdl-net1.2\nVersion: 1.2.8-6build1\nArchitecture: amd64"
+    },
+    {
+      "name": "libsdl-sound1.2_1.0.3-9build3_amd64.deb",
+      "size": 79866,
+      "sha256": "3f9bd25454e6642f808247260d0258802586a089ac90b1404fa828a816c47397",
+      "metadata": "Package: libsdl-sound1.2\nVersion: 1.0.3-9build3\nArchitecture: amd64"
+    },
+    {
+      "name": "libsdl1.2debian_1.2.68-2_amd64.deb",
+      "size": 100572,
+      "sha256": "ab96fe60369fe364b00668d811e1a55d4b85ea483be7bbecb31ca18a73216540",
+      "metadata": "Package: libsdl1.2debian\nVersion: 1.2.68-2\nArchitecture: amd64"
+    },
+    {
+      "name": "libsndfile1_1.2.2-1ubuntu5.24.04.1_amd64.deb",
+      "size": 208508,
+      "sha256": "fe2461b27e747fa88ede157ea39c6379e2101c280a730cda9c825f566a3808e5",
+      "metadata": "Package: libsndfile1\nVersion: 1.2.2-1ubuntu5.24.04.1\nArchitecture: amd64"
+    },
+    {
+      "name": "libsndio7.0_1.9.0-0.3build3_amd64.deb",
+      "size": 29562,
+      "sha256": "b3944745ee48ea2c7a851fb78a617d34bb731a2f956a2c213cc9dffcaba35382",
+      "metadata": "Package: libsndio7.0\nVersion: 1.9.0-0.3build3\nArchitecture: amd64"
+    },
+    {
+      "name": "libspeex1_1.2.1-2ubuntu2.24.04.1_amd64.deb",
+      "size": 59578,
+      "sha256": "12d57caab1e3fa847cd385a21c1044f7d38209e97b0f87372fe41e346c2c17f7",
+      "metadata": "Package: libspeex1\nVersion: 1.2.1-2ubuntu2.24.04.1\nArchitecture: amd64"
+    },
+    {
+      "name": "libvorbisfile3_1.3.7-1build3_amd64.deb",
+      "size": 17092,
+      "sha256": "fa12c52814bbfddff78186e7300b535bed30db02e4532fafae969aa9e5a79316",
+      "metadata": "Package: libvorbisfile3\nVersion: 1.3.7-1build3\nArchitecture: amd64"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "assets/local/issue-28-dos-proof-2/bootstrap/capture/dosbox_000.png",
+      "size": 2297,
+      "sha256": "4fcd21e67dbd1fc5055d1a8b888ef95133ab509cbf767c377d0eb90e9de31006"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/bootstrap/capture/vgalemmi_000.png",
+      "size": 4472,
+      "sha256": "71f920f268cdebf3d1785be39709246f4196614324b9d73029baf901b7f70ebd"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/bootstrap/dosbox.conf",
+      "size": 897,
+      "sha256": "cc0f8c7f8aa445f7f0f41a84e6f861c716861f1b7859a298136107c22e845084"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/bootstrap/dosbox.log",
+      "size": 617,
+      "sha256": "23f0e5de7b140de46f26b28abd4cfc6f6535dd954fc8e45d478f90d02412a682"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/bootstrap/host-inputs.json",
+      "size": 220,
+      "sha256": "23f861ed4101a15a8833a995f97fa98591aff0f33efba28bfaa6cd0d6a383dfe"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/bootstrap/mapper.map",
+      "size": 216,
+      "sha256": "e7f24b61ca7a7bd735fc80d8fcba495693e187c0e3dd8938319126acea0ba8be"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/capture/vgalemmi_000.avi",
+      "size": 728074,
+      "sha256": "9f615f331bff804cef4874da65dfecd7299df160966eebb3f09e8a4bb916bcfd"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/capture/vgalemmi_000.png",
+      "size": 58460,
+      "sha256": "eafc547740df9a87125d77b7a7b701ecf1120537d6bf45bd618faa1fb5764ab7"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/capture/vgalemmi_001.avi",
+      "size": 5523964,
+      "sha256": "7c6bac9cf2af5a2048cff225dec18287d698a942c88c1c09a4656b1af02a151d"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/capture/vgalemmi_001.png",
+      "size": 47274,
+      "sha256": "a6615d60a4df73ab465a3a12e073af3b1764e9c9a34852c3e5d4841fd25fb4ec"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/capture/vgalemmi_002.png",
+      "size": 58326,
+      "sha256": "e44ea649aaca4f6e13300fbe28e58951a80bace16374102eeaa5f8127a38a22f"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/capture/vgalemmi_003.png",
+      "size": 49390,
+      "sha256": "060de045d2f77239151b32ab96d1a629451433924c2db239dead93ba8c00eaf8"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/capture/vgalemmi_004.png",
+      "size": 25542,
+      "sha256": "ed493f8bd8bdfc85fcebd1df13421f7bf3cbb118e6a931efc0f2f12e81e6b9b4"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/comparison.json",
+      "size": 2976,
+      "sha256": "786de036495dd2b48716ba43108763f5ed0b3601ce477dc483e0d21c2e2de6bc"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-anchor-000000.ppm",
+      "size": 768015,
+      "sha256": "09b078d757d1635e780b0d0b104f3b186e97f15963ee9996f289bc226ecd6996"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-000000.ppm",
+      "size": 768015,
+      "sha256": "f3ee47648d6ba080ffab59f9c5cc84d66a44ee6de07c5fa3edbe222e95021062"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-000140.ppm",
+      "size": 768015,
+      "sha256": "c36d18817ee479b524ad2c5dbb5a25db8cac1a10ecbc8b7d9b7b2e956b9375b6"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-000280.ppm",
+      "size": 768015,
+      "sha256": "4db07a6f1320d0aa6a894476b252c22f5359ff816fdb46050c8b4ce06aa26444"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-000420.ppm",
+      "size": 768015,
+      "sha256": "518c66f6533911827e3c6627a2fe1c0d559971f4dfa992910f8f6d0e523c317f"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-000560.ppm",
+      "size": 768015,
+      "sha256": "0977f2cea920752cb82edb47d5c6a448270dfcaa7935265f90bb434e62f84e01"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-000700.ppm",
+      "size": 768015,
+      "sha256": "60d59773a5b1f25099fdb43cce7d4b6f67f84c09aadc988af7f686411d433c43"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-000840.ppm",
+      "size": 768015,
+      "sha256": "5f600fb089726fc55cd299ac5c6adddd426a0bfcd09c0aed1ca6e8eb4b974395"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-000980.ppm",
+      "size": 768015,
+      "sha256": "974d155985bd043c0035978c8df8a5e84d5f0d2af0d35ce43eff8c9d72394ac9"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-001120.ppm",
+      "size": 768015,
+      "sha256": "72879d60d62540440027a8b9f259ac4137aabe139bb910f5e3aea207d08e7956"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-001260.ppm",
+      "size": 768015,
+      "sha256": "ee63604f432b25f8b7f5ca550c7c5df883ea2538c490aac251d1d5329b5cef3d"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-001400.ppm",
+      "size": 768015,
+      "sha256": "ae415d6dba3c9cfbff3d916f5d8098640db0671e42b1a40086b5414fb8bb1738"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-001540.ppm",
+      "size": 768015,
+      "sha256": "c18e918570206fa69cc0b5486919dabdc3bcac0ff91ffe0602d0e1f7efb67044"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dos-video-001680.ppm",
+      "size": 768015,
+      "sha256": "aecc1d21432fe380d307c16f3e035f18e3d1778616ef4cd268bd77090b298c9b"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dosbox.conf",
+      "size": 885,
+      "sha256": "fd0061fc43f5e4f511936eb1cb95d9cc3a84d98bf32a602dcc02bcd97113758a"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/dosbox.log",
+      "size": 1248,
+      "sha256": "5bb2636c6a7239c427cbfeddf00f135ca59bb16faeefb0018b664df74785cfed"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/host-inputs.json",
+      "size": 893,
+      "sha256": "68bc91c875b3f15d96ac82da16d5b792c0a12fa2e0321a6a7c7bc76b4e8704a4"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/mapper.map",
+      "size": 216,
+      "sha256": "e7f24b61ca7a7bd735fc80d8fcba495693e187c0e3dd8938319126acea0ba8be"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-1/video-frames.json",
+      "size": 161883,
+      "sha256": "35aaad60298608136b70a16668fbfac7864cf5b151ef80a7eb3a3c4d483f358e"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/capture/vgalemmi_000.avi",
+      "size": 728078,
+      "sha256": "d6265f1db06ce8e3dfd964413f494d10db1b396e8e9e28e0ec18028ad147415a"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/capture/vgalemmi_000.png",
+      "size": 58479,
+      "sha256": "43252024436574890f0854d05bd1341dc22efbde8d9fce2abb05072b2b15bcb1"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/capture/vgalemmi_001.avi",
+      "size": 5510380,
+      "sha256": "6e2372faced0a5a34cea4a8fc2444b913cf54687d8292f6c7f98acdd70fe4eb4"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/capture/vgalemmi_001.png",
+      "size": 47274,
+      "sha256": "a6615d60a4df73ab465a3a12e073af3b1764e9c9a34852c3e5d4841fd25fb4ec"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/capture/vgalemmi_002.png",
+      "size": 58314,
+      "sha256": "4beb850d3abd8bcc01f53a55f558012fb7a2082f2e754be50b88dffd254c175f"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/capture/vgalemmi_003.png",
+      "size": 49390,
+      "sha256": "060de045d2f77239151b32ab96d1a629451433924c2db239dead93ba8c00eaf8"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/capture/vgalemmi_004.png",
+      "size": 25545,
+      "sha256": "833abab5f0828c97a83e8e6840fe9203880f406413d5c016192a3d309197be95"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/comparison.json",
+      "size": 2976,
+      "sha256": "4f34718fc358853c9d90eea91ae8c3b23ab08171958133a04a76729ac8bc1018"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-anchor-000000.ppm",
+      "size": 768015,
+      "sha256": "09b078d757d1635e780b0d0b104f3b186e97f15963ee9996f289bc226ecd6996"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-000000.ppm",
+      "size": 768015,
+      "sha256": "f3ee47648d6ba080ffab59f9c5cc84d66a44ee6de07c5fa3edbe222e95021062"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-000140.ppm",
+      "size": 768015,
+      "sha256": "875e1b13534c4ebe7f6c52905cb87263892f84c5e195412abe66ff0b80d9af4f"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-000280.ppm",
+      "size": 768015,
+      "sha256": "4db07a6f1320d0aa6a894476b252c22f5359ff816fdb46050c8b4ce06aa26444"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-000420.ppm",
+      "size": 768015,
+      "sha256": "518c66f6533911827e3c6627a2fe1c0d559971f4dfa992910f8f6d0e523c317f"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-000560.ppm",
+      "size": 768015,
+      "sha256": "0977f2cea920752cb82edb47d5c6a448270dfcaa7935265f90bb434e62f84e01"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-000700.ppm",
+      "size": 768015,
+      "sha256": "60d59773a5b1f25099fdb43cce7d4b6f67f84c09aadc988af7f686411d433c43"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-000840.ppm",
+      "size": 768015,
+      "sha256": "5f600fb089726fc55cd299ac5c6adddd426a0bfcd09c0aed1ca6e8eb4b974395"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-000980.ppm",
+      "size": 768015,
+      "sha256": "974d155985bd043c0035978c8df8a5e84d5f0d2af0d35ce43eff8c9d72394ac9"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-001120.ppm",
+      "size": 768015,
+      "sha256": "72879d60d62540440027a8b9f259ac4137aabe139bb910f5e3aea207d08e7956"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-001260.ppm",
+      "size": 768015,
+      "sha256": "ee63604f432b25f8b7f5ca550c7c5df883ea2538c490aac251d1d5329b5cef3d"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-001400.ppm",
+      "size": 768015,
+      "sha256": "ae415d6dba3c9cfbff3d916f5d8098640db0671e42b1a40086b5414fb8bb1738"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-001540.ppm",
+      "size": 768015,
+      "sha256": "c18e918570206fa69cc0b5486919dabdc3bcac0ff91ffe0602d0e1f7efb67044"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dos-video-001680.ppm",
+      "size": 768015,
+      "sha256": "aecc1d21432fe380d307c16f3e035f18e3d1778616ef4cd268bd77090b298c9b"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dosbox.conf",
+      "size": 885,
+      "sha256": "ea0506fb02db32be3438f2460ca17b0e6b52285ebcaba2da276b273bb0013015"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/dosbox.log",
+      "size": 1248,
+      "sha256": "d2bfe33072a268f3a12b382c0b744df622888163dc0432bcefff570c4fe45488"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/host-inputs.json",
+      "size": 894,
+      "sha256": "8a75f7738643a2255f13f7fc695d85ac787eb735d7dd05856517f6e3ab67b6dc"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/mapper.map",
+      "size": 216,
+      "sha256": "e7f24b61ca7a7bd735fc80d8fcba495693e187c0e3dd8938319126acea0ba8be"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-2/video-frames.json",
+      "size": 161433,
+      "sha256": "f5289243b57398827708cd15c939f0f03bb850ccd934f4bc4a921ed59c42e35d"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/capture/vgalemmi_000.avi",
+      "size": 725542,
+      "sha256": "27a8b13c47e9a94938ab193b672a70606048f3d8bb523a9a7ec54d5e07787fab"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/capture/vgalemmi_000.png",
+      "size": 58460,
+      "sha256": "eafc547740df9a87125d77b7a7b701ecf1120537d6bf45bd618faa1fb5764ab7"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/capture/vgalemmi_001.avi",
+      "size": 5524024,
+      "sha256": "407dcae3018d0a89fe8f9a5d89c67a13e4b14effd70d514484dd785d8e467c82"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/capture/vgalemmi_001.png",
+      "size": 47274,
+      "sha256": "a6615d60a4df73ab465a3a12e073af3b1764e9c9a34852c3e5d4841fd25fb4ec"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/capture/vgalemmi_002.png",
+      "size": 58343,
+      "sha256": "9539c2bf1d9567683af649684537741ed144094f540ec0e6d838566e3b4ab0b2"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/capture/vgalemmi_003.png",
+      "size": 49390,
+      "sha256": "060de045d2f77239151b32ab96d1a629451433924c2db239dead93ba8c00eaf8"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/capture/vgalemmi_004.png",
+      "size": 25542,
+      "sha256": "ed493f8bd8bdfc85fcebd1df13421f7bf3cbb118e6a931efc0f2f12e81e6b9b4"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/comparison.json",
+      "size": 2976,
+      "sha256": "112d52098aef42866f610c87af8db6ec34f82d48ad37ecb854a9c1783e41094a"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-anchor-000000.ppm",
+      "size": 768015,
+      "sha256": "09b078d757d1635e780b0d0b104f3b186e97f15963ee9996f289bc226ecd6996"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-000000.ppm",
+      "size": 768015,
+      "sha256": "f3ee47648d6ba080ffab59f9c5cc84d66a44ee6de07c5fa3edbe222e95021062"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-000140.ppm",
+      "size": 768015,
+      "sha256": "749f97b3c5c7b38b9bc7eb82209e53bfbcc02d38c922d5d742de976f49fe13ae"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-000280.ppm",
+      "size": 768015,
+      "sha256": "4db07a6f1320d0aa6a894476b252c22f5359ff816fdb46050c8b4ce06aa26444"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-000420.ppm",
+      "size": 768015,
+      "sha256": "518c66f6533911827e3c6627a2fe1c0d559971f4dfa992910f8f6d0e523c317f"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-000560.ppm",
+      "size": 768015,
+      "sha256": "0977f2cea920752cb82edb47d5c6a448270dfcaa7935265f90bb434e62f84e01"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-000700.ppm",
+      "size": 768015,
+      "sha256": "60d59773a5b1f25099fdb43cce7d4b6f67f84c09aadc988af7f686411d433c43"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-000840.ppm",
+      "size": 768015,
+      "sha256": "5f600fb089726fc55cd299ac5c6adddd426a0bfcd09c0aed1ca6e8eb4b974395"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-000980.ppm",
+      "size": 768015,
+      "sha256": "974d155985bd043c0035978c8df8a5e84d5f0d2af0d35ce43eff8c9d72394ac9"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-001120.ppm",
+      "size": 768015,
+      "sha256": "72879d60d62540440027a8b9f259ac4137aabe139bb910f5e3aea207d08e7956"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-001260.ppm",
+      "size": 768015,
+      "sha256": "ee63604f432b25f8b7f5ca550c7c5df883ea2538c490aac251d1d5329b5cef3d"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-001400.ppm",
+      "size": 768015,
+      "sha256": "ae415d6dba3c9cfbff3d916f5d8098640db0671e42b1a40086b5414fb8bb1738"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-001540.ppm",
+      "size": 768015,
+      "sha256": "c18e918570206fa69cc0b5486919dabdc3bcac0ff91ffe0602d0e1f7efb67044"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dos-video-001680.ppm",
+      "size": 768015,
+      "sha256": "aecc1d21432fe380d307c16f3e035f18e3d1778616ef4cd268bd77090b298c9b"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dosbox.conf",
+      "size": 885,
+      "sha256": "1a2b17ee8a321b3ccc66f77b10b13612bb2d65fc7f2f8801f2d52d0ce948c9fd"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/dosbox.log",
+      "size": 1248,
+      "sha256": "cad9e82ee8addfd198e86ba0572e41e83d78b183d07fab95509137c0a3655718"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/host-inputs.json",
+      "size": 894,
+      "sha256": "cf4d03c86138f28a2a5fa541983fa27279ea0713d781cbca6e397b6dadf563f2"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/mapper.map",
+      "size": 216,
+      "sha256": "e7f24b61ca7a7bd735fc80d8fcba495693e187c0e3dd8938319126acea0ba8be"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/run-3/video-frames.json",
+      "size": 161883,
+      "sha256": "4ac29d6bb18ef1065c2f694b474caec33085bdc739dcc35e625815ea63a723af"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/runtime-seed.json",
+      "size": 415,
+      "sha256": "2206d984647bb340769aab4680700b1c50c7a689bb0b4ac2f43eeab2e0e29b70"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/settings.json",
+      "size": 14525,
+      "sha256": "648657e9e590f365ebe52ba4e59f5cde71ba13924269dd34f779fb25450dcfcd"
+    },
+    {
+      "path": "assets/local/issue-28-dos-proof-2/summary.json",
+      "size": 10433,
+      "sha256": "0a51abf1d767af2157f6ead20787e77c7edcfe7be0ea2f795343f945f4601e18"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/comparison.json",
+      "size": 8982,
+      "sha256": "9990623093b3304bcd80275babb53e3a40071e1d9f274971c2e3e38103a77e40"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000000.png",
+      "size": 14811,
+      "sha256": "6a72c30d8b5495c5b316ac722cac4bf53ae60b7fac5b826cdac17c358e32c6cb"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000000.ppm",
+      "size": 307215,
+      "sha256": "23e971ef2549793a27bf3196c2d89180d6e65c456af1ede80159f597e8ebccb3"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000035.png",
+      "size": 14790,
+      "sha256": "49997b5f74e95528d5d8eff661bd02be18596ddc9793e4bd832e4d395b26e55c"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000035.ppm",
+      "size": 307215,
+      "sha256": "1b42318b4f8e821db76857c0fffa255d4dcc099ac9aed4acc1e6ddb4cd98b74c"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000054.png",
+      "size": 14893,
+      "sha256": "b30e7373b91ca0da97820a582fdaa5480645c0788f37d5b61555cd4ffa381b98"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000054.ppm",
+      "size": 307215,
+      "sha256": "e035c9735945c4d99e383bf5e195758a898c6110ba7f1ffb3bcf4d02ce6ea2e6"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000060.png",
+      "size": 14920,
+      "sha256": "725f2a4b99e5764a2285301d75c14be089742b8e7151abefaea519218a79558f"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000060.ppm",
+      "size": 307215,
+      "sha256": "b44ef344f4a60333009e1d70b3771a50b60d39a4da239f44b6c248555a6b2d74"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000100.png",
+      "size": 14945,
+      "sha256": "f6df2e14e1a7fc396110d7cb8f854b8528dca54865f78bfad22ac89b3d84b19e"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000100.ppm",
+      "size": 307215,
+      "sha256": "d40a39fb9a0e5a6da5ff74d65d18d58a9844bfe87b39bf14ffab14b8bdabda38"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000170.png",
+      "size": 15034,
+      "sha256": "607d0ddbf52b2ddd988779f91f64898501a70e6300af642bbc593401837bda8a"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000170.ppm",
+      "size": 307215,
+      "sha256": "2f165b99ff201eafa5a611027e7dfb9b7d4b06b700692084ab5e8dc16570c1a7"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000340.png",
+      "size": 15079,
+      "sha256": "e94211d25d38875eeaa75985787445a36b6824efbfab18af4d116a6695c09015"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-1/pair-000340.ppm",
+      "size": 307215,
+      "sha256": "9aafcd6887c3a52909cadffea061c45a0a76f489f79e94d08153ef20543aec14"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/comparison.json",
+      "size": 8982,
+      "sha256": "f6bf93bb7b4e51f7d9244842c686d0c54f2dfaa5111218f98b27069d365386a4"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000000.png",
+      "size": 14811,
+      "sha256": "6a72c30d8b5495c5b316ac722cac4bf53ae60b7fac5b826cdac17c358e32c6cb"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000000.ppm",
+      "size": 307215,
+      "sha256": "23e971ef2549793a27bf3196c2d89180d6e65c456af1ede80159f597e8ebccb3"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000035.png",
+      "size": 14790,
+      "sha256": "49997b5f74e95528d5d8eff661bd02be18596ddc9793e4bd832e4d395b26e55c"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000035.ppm",
+      "size": 307215,
+      "sha256": "1b42318b4f8e821db76857c0fffa255d4dcc099ac9aed4acc1e6ddb4cd98b74c"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000054.png",
+      "size": 14893,
+      "sha256": "b30e7373b91ca0da97820a582fdaa5480645c0788f37d5b61555cd4ffa381b98"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000054.ppm",
+      "size": 307215,
+      "sha256": "e035c9735945c4d99e383bf5e195758a898c6110ba7f1ffb3bcf4d02ce6ea2e6"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000060.png",
+      "size": 14920,
+      "sha256": "725f2a4b99e5764a2285301d75c14be089742b8e7151abefaea519218a79558f"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000060.ppm",
+      "size": 307215,
+      "sha256": "b44ef344f4a60333009e1d70b3771a50b60d39a4da239f44b6c248555a6b2d74"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000100.png",
+      "size": 14945,
+      "sha256": "f6df2e14e1a7fc396110d7cb8f854b8528dca54865f78bfad22ac89b3d84b19e"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000100.ppm",
+      "size": 307215,
+      "sha256": "d40a39fb9a0e5a6da5ff74d65d18d58a9844bfe87b39bf14ffab14b8bdabda38"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000170.png",
+      "size": 15034,
+      "sha256": "607d0ddbf52b2ddd988779f91f64898501a70e6300af642bbc593401837bda8a"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000170.ppm",
+      "size": 307215,
+      "sha256": "2f165b99ff201eafa5a611027e7dfb9b7d4b06b700692084ab5e8dc16570c1a7"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000340.png",
+      "size": 15079,
+      "sha256": "e94211d25d38875eeaa75985787445a36b6824efbfab18af4d116a6695c09015"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-2/pair-000340.ppm",
+      "size": 307215,
+      "sha256": "9aafcd6887c3a52909cadffea061c45a0a76f489f79e94d08153ef20543aec14"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/comparison.json",
+      "size": 8982,
+      "sha256": "5a25b0ac75058a42f4a9bc9f730b79fe647c122c799da538e80c22907bc252c2"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000000.png",
+      "size": 14811,
+      "sha256": "6a72c30d8b5495c5b316ac722cac4bf53ae60b7fac5b826cdac17c358e32c6cb"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000000.ppm",
+      "size": 307215,
+      "sha256": "23e971ef2549793a27bf3196c2d89180d6e65c456af1ede80159f597e8ebccb3"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000035.png",
+      "size": 14790,
+      "sha256": "49997b5f74e95528d5d8eff661bd02be18596ddc9793e4bd832e4d395b26e55c"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000035.ppm",
+      "size": 307215,
+      "sha256": "1b42318b4f8e821db76857c0fffa255d4dcc099ac9aed4acc1e6ddb4cd98b74c"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000054.png",
+      "size": 14893,
+      "sha256": "b30e7373b91ca0da97820a582fdaa5480645c0788f37d5b61555cd4ffa381b98"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000054.ppm",
+      "size": 307215,
+      "sha256": "e035c9735945c4d99e383bf5e195758a898c6110ba7f1ffb3bcf4d02ce6ea2e6"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000060.png",
+      "size": 14920,
+      "sha256": "725f2a4b99e5764a2285301d75c14be089742b8e7151abefaea519218a79558f"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000060.ppm",
+      "size": 307215,
+      "sha256": "b44ef344f4a60333009e1d70b3771a50b60d39a4da239f44b6c248555a6b2d74"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000100.png",
+      "size": 14945,
+      "sha256": "f6df2e14e1a7fc396110d7cb8f854b8528dca54865f78bfad22ac89b3d84b19e"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000100.ppm",
+      "size": 307215,
+      "sha256": "d40a39fb9a0e5a6da5ff74d65d18d58a9844bfe87b39bf14ffab14b8bdabda38"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000170.png",
+      "size": 15034,
+      "sha256": "607d0ddbf52b2ddd988779f91f64898501a70e6300af642bbc593401837bda8a"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000170.ppm",
+      "size": 307215,
+      "sha256": "2f165b99ff201eafa5a611027e7dfb9b7d4b06b700692084ab5e8dc16570c1a7"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000340.png",
+      "size": 15079,
+      "sha256": "e94211d25d38875eeaa75985787445a36b6824efbfab18af4d116a6695c09015"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/run-3/pair-000340.ppm",
+      "size": 307215,
+      "sha256": "9aafcd6887c3a52909cadffea061c45a0a76f489f79e94d08153ef20543aec14"
+    },
+    {
+      "path": "assets/local/issue-28-dos-comparison-verified/summary.json",
+      "size": 33010,
+      "sha256": "63b2eaaeec8669f20a7a06552e7f63fa1f69ebb4d92c52d81222fc0280d76757"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000000.ppm",
+      "size": 1728015,
+      "sha256": "ac2e89cc63d6541f1b6ae232fc263d30673cb9ee63db693e5c8c7a752d2fe4d2"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000000.rgb",
+      "size": 192000,
+      "sha256": "74f43299da559c07d3b3bc7b4b61282b4160de71a399f3ebdcb74f1379b48d0e"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000016.ppm",
+      "size": 1728015,
+      "sha256": "6d98fbcf3345582a4878c9dfe87a1a88f372439c28eaa7732e233ef184d8021a"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000016.rgb",
+      "size": 192000,
+      "sha256": "e8396d34c2e5d675f6e1d90d756c58583a32bf466dea5b4ecaeae80f671346a5"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000017.ppm",
+      "size": 1728015,
+      "sha256": "27f5282c77256ef93357298a6ebe29ca52928bbe1e6b601f28817800d2669ebc"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000017.rgb",
+      "size": 192000,
+      "sha256": "5aefee54e40a3d457618965bcff411f4bbcde33e8617c06899dedfa29e0253f9"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000034.ppm",
+      "size": 1728015,
+      "sha256": "a695486ba437c699942da1099ba64f6a7178e001198d5af4c3c93473e1d3c103"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000034.rgb",
+      "size": 192000,
+      "sha256": "10728eec53d8bdc2ec126d23f823fb4623cf9ea5458027b46fda6fa8ed356739"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000035.ppm",
+      "size": 1728015,
+      "sha256": "559bbf90a79347a0286b2f3479fc89a779c57f1cc5fc607b53c4f40dd719bc8f"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000035.rgb",
+      "size": 192000,
+      "sha256": "1ef53d10e7ab75aa425aa42bf1b38f3c0100f8eb7a948ae0d639ba02f7771b93"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000054.ppm",
+      "size": 1728015,
+      "sha256": "45c2f5b13474b3a1d70e190a6cb37e9e224d52189ebe496333bbcf273335cb8f"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000054.rgb",
+      "size": 192000,
+      "sha256": "1556e987cb0873721d219f746db1603f1d370b1e339939772c56981d40903c8a"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000060.ppm",
+      "size": 1728015,
+      "sha256": "de76391fb7c3eea5eb5649c59ebdf1ac7a4f8989945c7aca9f809d4255eb295b"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000060.rgb",
+      "size": 192000,
+      "sha256": "4e9233427faf7dec49f3aa06bf56672675d3a445ae7d896949c198ef34259de9"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000100.ppm",
+      "size": 1728015,
+      "sha256": "9f77211c5457611ae597dfb88882bf13208e50c4973d9d3993b7d5932026d850"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000100.rgb",
+      "size": 192000,
+      "sha256": "3a9e1ac66dcf2660f6a6f677d9a7e15c410c54a8c18596cb4b5d19421d65e097"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000170.ppm",
+      "size": 1728015,
+      "sha256": "4289ba347bf7a1f0d9482702eaf35a6a12998c159e8a2d4be6cb9598fe856dc1"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000170.rgb",
+      "size": 192000,
+      "sha256": "87065fce44404d3bb6a84bab309ffe9d14b9dc4e831a5e5b2fbf1accad1756e9"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000340.ppm",
+      "size": 1728015,
+      "sha256": "ef405a3a7997e18d5ddfc5b45813ab3e5ee390e60267a4475945c49474505c4d"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/frame-000340.rgb",
+      "size": 192000,
+      "sha256": "ff41fa5043c8e113b21d818b0e61bc063585dac780681989431d2c8fdd56cb75"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/inputs.txt",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/run.json",
+      "size": 200,
+      "sha256": "cb2d9e0b440ab5c0909f0ef45d5f3d0090e0b04a6f5c02ceacf24c092e9510ac"
+    },
+    {
+      "path": "assets/local/issue-28-exploration/native/trace.jsonl",
+      "size": 305345,
+      "sha256": "3025ed0bae62e0d9a978a8653e553909c134ec3833167c27f643cecfbc939465"
+    }
+  ],
+  "unverified": [
+    "original key disk and unseeded retail startup",
+    "DOS internal state and absolute logical ticks",
+    "whole playfield animation phase",
+    "native/DOS wall-clock cadence",
+    "skills, triggers, rescue, result, audio, Windows"
+  ]
+}

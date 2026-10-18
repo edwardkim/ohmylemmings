@@ -38,7 +38,7 @@ make check
 cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/local/dos-original
 ```
 
-Space로 일시정지/재개, 위/아래 화살표로 생성 속도, 좌/우 화살표로 카메라를 조작하고 Esc로 종료합니다. 직업·출구 판정·승패·음향은 후속 구현입니다. [G06-01 검증 보고서](mydocs/reports/issue-27_native_view.md)에 X11 실행과 화면 근거를 기록합니다. G06 전체는 DOS 실행·동일 장면 대조를 남겨 진행 중입니다.
+Space로 일시정지/재개, 위/아래 화살표로 생성 속도, 좌/우 화살표로 카메라를 조작하고 Esc로 종료합니다. 직업·출구 판정·승패·음향은 후속 구현입니다. [G06-01 검증 보고서](mydocs/reports/issue-27_native_view.md)에 X11 실행과 화면 근거를 기록합니다. [#28 DOS 세 실행·동일 장면 대조](mydocs/reports/issue-28_dos_comparison.md)를 완료했습니다. 상부 일곱 장면은 일치하며 전체 영역·관측 속도 차이는 [#30](https://github.com/edwardkim/ohmylemmings/issues/30)에서 보정합니다. G06 전체는 진행 중입니다.
 
 ## 원본 데이터 준비
 

@@ -51,3 +51,7 @@ MAIN.DAT 지형 마스크·카운트다운은 [G03-09 재현 명령](../mydocs/t
 ## 기준판 식별
 
 기준 ID는 `dos-original-vga`입니다. 원본 매체의 세부 리비전은 아직 확인되지 않았으며 확보한 파일의 바이트 식별값으로 입력을 고정합니다. 확보 출처, 상호 대조 결과, 데모와의 차이는 [기준판 분석](../mydocs/tech_insights/issue-2_dos_original_baseline.md)에 기록합니다.
+
+## 실제 DOS 영상 증거
+
+[#28 재현 절차](../mydocs/tech_insights/issue-28_dos_comparison.md)와 [영상 관측 manifest](manifests/dos_observation.json)에 DOSBox·원본 EXE·설정/입력·세 실행·비교 그림 해시를 기록합니다. 별도 생성 런타임 seed 조건이며 키 디스크 원본 매체를 확보한 것은 아닙니다. 원본 50개와 EXE는 변경하지 않습니다. 상부 일곱 장면 일치와 전체 영역/속도 차이를 구분하며 전체 호환성 인증이 아닙니다. 영상·실행 복사본·파생 이미지는 assets/local/에만 보관합니다.

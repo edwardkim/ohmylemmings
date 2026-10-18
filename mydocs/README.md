@@ -38,3 +38,5 @@ G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/issue-2_dos_origin
 5. 발견한 지식, 피드백 반영 결과, 문제 해결 이력을 기록하고 계획의 진행 상태를 갱신한 뒤 이슈를 완료 처리합니다.
 
 문서에서는 예정된 작업과 구현·검증이 완료된 내용을 구분합니다.
+
+[#28 G06-02 실제 DOS 세 실행·장면 대조](reports/issue-28_dos_comparison.md)를 완료했습니다. 상부 장면은 일치하며 전체 화면·속도 차이는 [#30 보정](tech_insights/issue-30_dos_differences.md)으로 추적합니다. G06 전체는 진행 중입니다.

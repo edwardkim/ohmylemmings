@@ -12,3 +12,5 @@
 - [#26 G05-04 상태 추적·재생·기준 실행 대조](issue-26_state_replay.md)
 
 - [#27 G06-01 네이티브 화면·입력 연결](issue-27_native_view.md)
+
+- [#28 DOS 실행·동일 장면 대조](issue-28_dos_comparison.md)
