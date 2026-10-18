@@ -24,11 +24,14 @@ Rust 1.93.1·Edition 2024의 Cargo workspace를 도입했습니다. `lemmings-co
 | `cargo build --workspace --lib --target wasm32-unknown-unknown --locked --offline` | 라이브러리 2개 WASM 컴파일 성공 |
 | `cargo metadata --locked --offline --format-version 1` 검사 | 라이브러리 멤버 2개, 의존성 0개, 실행 바이너리 없음, 도구 체인·Edition 일치 |
 | 문서 링크·앵커·파일명 검사 | Markdown 33개, 로컬 링크 151개, 앵커 24개, 이슈 문서명 21개 통과 |
-| `git diff --check` | 통과 |
+| `git diff --check`, `git diff --cached --check` | 통과 |
+| `git ls-tree -r HEAD`와 GitHub Git tree API 대조 | 구현 커밋 `575c400`의 파일 48개 blob 해시 일치 |
+| 로컬 HEAD와 GitHub main 참조 비교 | 일치 |
+| 상위 #1 조회 | #6 완료, G01 진행·다음 G01-02, G00만 체크, 상위 이슈 열림 |
 
 번호 검증은 4개 그룹의 모든 u8 입력과 정상 120개 인덱스를 대조합니다. 바이트 입력은 절단·빈 입력·`usize::MAX` 요청에 대해 오류 문맥·위치 보존·후속 읽기를 검증합니다. 모든 테스트가 합성 입력을 사용합니다.
 
-원격 게시와 상위 이슈 상태는 확인 후 추가 기록합니다.
+구현 커밋 `575c400`을 `main`에 게시하고 확인했습니다. 빌드 산출물과 원본 바이너리는 Git 추적 대상에서 제외됩니다.
 
 ## 현재 한계와 다음 작업
 
