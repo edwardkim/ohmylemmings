@@ -1,5 +1,5 @@
 #![no_std]
-//! Borrowed, checked input primitives for future DOS resource parsers.
+//! Borrowed, checked input for DOS Lemmings resources.
 //!
 //! ```
 //! use lemmings_resources::ByteReader;
@@ -12,6 +12,8 @@
 //! # Ok::<(), lemmings_resources::ReadError>(())
 //! ```
 
+mod dat;
 mod reader;
 
+pub use dat::{DatError, DatHeader, DatSection, DatSections};
 pub use reader::{ByteReader, ReadError};
