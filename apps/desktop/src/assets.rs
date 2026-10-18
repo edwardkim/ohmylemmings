@@ -6,6 +6,8 @@ pub struct Assets {
     pub width: usize,
     pub height: usize,
     pub terrain: Vec<u8>,
+    pub steel: Vec<u8>,
+    pub diggers: u16,
     pub entrances: Vec<EntrancePoint>,
     pub config: StartupConfig,
     pub screen_x: i32,
@@ -82,6 +84,19 @@ impl Assets {
             .iter()
             .map(|p| u8::from(p.opaque))
             .collect();
+        let mut steel = vec![0; LEVEL_TERRAIN_PIXEL_COUNT];
+        for area in resolved.base_record().steel() {
+            for y in
+                usize::from(area.y)..usize::from(area.y + area.height).min(LEVEL_TERRAIN_HEIGHT)
+            {
+                for x in i32::from(area.x).max(0)
+                    ..(i32::from(area.x) + i32::from(area.width)).min(LEVEL_TERRAIN_WIDTH as i32)
+                {
+                    steel[y * LEVEL_TERRAIN_WIDTH + x as usize] = 1;
+                }
+            }
+        }
+        let diggers = header.skills[7];
         let mut scene = vec![ScenePixel::default(); LEVEL_TERRAIN_PIXEL_COUNT];
         let scene = compose_objects(
             resolved.base_record(),
@@ -115,6 +130,8 @@ impl Assets {
             width: LEVEL_TERRAIN_WIDTH,
             height: LEVEL_TERRAIN_HEIGHT,
             terrain: mask,
+            steel,
+            diggers,
             entrances,
             config,
             screen_x: i32::from(header.screen_x),
@@ -137,6 +154,8 @@ impl Assets {
             width,
             height,
             terrain,
+            steel: vec![0; width * height],
+            diggers: 10,
             entrances: vec![EntrancePoint { x: 40, y: 40 }],
             config: StartupConfig {
                 time_limit_minutes: 5,
@@ -168,10 +187,14 @@ impl Assets {
             original: None,
         }
     }
-    pub fn scene(&self, iteration: u64) -> Result<Vec<[u8; 4]>, Box<dyn Error>> {
+    pub fn scene_with_terrain(
+        &self,
+        iteration: u64,
+        mask: &[u8],
+    ) -> Result<Vec<[u8; 4]>, Box<dyn Error>> {
+        lemmings_core::TerrainMask::new(self.width, self.height, mask)?;
         let Some(original) = &self.original else {
-            return Ok(self
-                .terrain
+            return Ok(mask
                 .iter()
                 .map(|&v| {
                     if v == 1 {
@@ -191,6 +214,15 @@ impl Assets {
             TerrainSource::Standard(TerrainGraphics::new(0, images)?),
             &mut terrain,
         )?;
+        let mut edited = terrain.pixels().to_vec();
+        for (pixel, &solid) in edited.iter_mut().zip(mask) {
+            if solid == 0 {
+                *pixel = IndexedPixel::default();
+            }
+        }
+        let terrain = terrain
+            .with_pixels(&edited)
+            .ok_or("invalid edited terrain")?;
         let mut indices = [0; 32];
         for object in level.objects() {
             let meta = ground

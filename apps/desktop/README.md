@@ -50,3 +50,11 @@ make check
 `make check-desktop`은 앱을 오프라인 빌드한 뒤 `target/debug/lemmings-desktop`으로 실제 SDL dummy/software 창·입력 루프·화면 readback을 원본 없이 검사합니다. WASM 검사는 기존 두 라이브러리만 빌드합니다.
 
 [구현 계약·참조·X11 재현](../../mydocs/tech_insights/issue-27_native_view.md), [검증 보고서](../../mydocs/reports/issue-27_native_view.md).
+
+## Digger
+
+왼쪽 클릭으로 레밍에게 Digger를 할당합니다. HUD의 DIG 수량은 성공 때만 줄어듭니다. 현재 Walking 개체가 대상이며 다른 직업·출구/승패는 후속 구현입니다.
+
+재생 입력 예: `60 0 AssignDigger 0`. 기존 Pause/Resume/SetReleaseRate와 같은 control_step/sequence 순서를 사용합니다. 일시정지 중 할당은 가능하고 굴착은 진행 때 갱신합니다.
+
+캡처의 `digger.jsonl`에는 수량·초기 Digger 플래그·매 경계 삭제 인덱스/지형 서명이 있습니다. `terrain-initial.bin`에서 삭제 이력을 재생하면 `terrain-final.bin`과 같아야 합니다. [계약과 검증](../../mydocs/tech_insights/issue-31_digger.md)을 참고합니다.

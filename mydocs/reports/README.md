@@ -16,3 +16,5 @@
 - [#28 DOS 실행·동일 장면 대조](issue-28_dos_comparison.md)
 
 - [#30 DOS 객체 위상·실행 간격 보정](issue-30_dos_differences.md)
+
+- [#31 G07-01 Digger 검증 결과](issue-31_digger.md)

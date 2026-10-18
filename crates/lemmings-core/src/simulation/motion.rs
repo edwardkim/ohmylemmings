@@ -1,6 +1,8 @@
 use super::SpawnRequest;
-use crate::TerrainMask;
+use crate::{TerrainMask, TerrainMaskMut};
+mod digger;
 use core::fmt;
+pub use digger::step_actors_mut;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum MotionDirection {
@@ -32,6 +34,7 @@ pub enum MotionAction {
     Jumping,
     Falling,
     Splatting,
+    Digging,
 }
 impl MotionAction {
     pub const fn frame_count(self) -> u8 {
@@ -39,7 +42,7 @@ impl MotionAction {
             Self::Walking => 8,
             Self::Jumping => 1,
             Self::Falling => 4,
-            Self::Splatting => 16,
+            Self::Splatting | Self::Digging => 16,
         }
     }
     fn loops(self) -> bool {
@@ -65,6 +68,7 @@ pub struct ActorState {
     pub frame: u8,
     pub end_of_animation: bool,
     pub fallen: u32,
+    pub new_digger: bool,
     pub removed: Option<RemovalReason>,
 }
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -95,10 +99,14 @@ pub enum MotionError {
     CoordinateOverflow,
     FallCounterOverflow,
     ActorOrder { index: usize },
+    MutableTerrainRequired,
+    InvalidNewDigger,
 }
 impl fmt::Display for MotionError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
+            Self::MutableTerrainRequired => f.write_str("digging requires mutable terrain"),
+            Self::InvalidNewDigger => f.write_str("new digger must be digging at frame zero"),
             Self::Frame { action, frame } => write!(f, "frame {frame} is outside {action:?}"),
             Self::Direction => f.write_str("stopped direction must match splatting"),
             Self::InvalidFallen => f.write_str("only falling may retain a fall counter"),
@@ -167,6 +175,7 @@ impl Actor {
                 frame: 0,
                 end_of_animation: false,
                 fallen: if rules.faller_starts_with_three { 3 } else { 0 },
+                new_digger: false,
                 removed: None,
             },
             rules,
@@ -176,6 +185,9 @@ impl Actor {
     /// Arbitrary i32 coordinates are accepted; later arithmetic errors are
     /// explicit and leave the complete record unchanged.
     pub fn from_state(state: ActorState, rules: MotionRules) -> Result<Self, MotionError> {
+        if state.new_digger && (state.action != MotionAction::Digging || state.frame != 0) {
+            return Err(MotionError::InvalidNewDigger);
+        }
         if state.frame >= state.action.frame_count() {
             return Err(MotionError::Frame {
                 action: state.action,
@@ -194,7 +206,10 @@ impl Actor {
             None => true,
             Some(RemovalReason::BottomBoundary) => {
                 state.y > 163
-                    && matches!(state.action, MotionAction::Walking | MotionAction::Falling)
+                    && matches!(
+                        state.action,
+                        MotionAction::Walking | MotionAction::Falling | MotionAction::Digging
+                    )
             }
             Some(RemovalReason::SplattingFinished) => {
                 state.action == MotionAction::Splatting
@@ -316,6 +331,7 @@ impl Actor {
                     transition(&mut s, MotionAction::Walking, self.rules);
                 }
             }
+            MotionAction::Digging => return Err(MotionError::MutableTerrainRequired),
             MotionAction::Splatting => {
                 result.check_objects = false;
                 if s.end_of_animation {
@@ -337,6 +353,7 @@ fn transition(s: &mut ActorState, action: MotionAction, rules: MotionRules) {
         return;
     }
     s.action = action;
+    s.new_digger = action == MotionAction::Digging;
     s.frame = 0;
     s.end_of_animation = false;
     s.fallen = if action == MotionAction::Falling && rules.faller_starts_with_three {

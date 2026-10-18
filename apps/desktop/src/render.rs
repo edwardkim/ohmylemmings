@@ -27,7 +27,9 @@ impl View {
         self.scroll(0, assets.width);
         let iteration = session.scheduler.step_state().iteration;
         if self.iteration != Some(iteration) {
-            self.world = assets.scene(iteration)?;
+            // Erase deleted terrain before object composition so objects behind
+            // a freshly dug hole become visible with their original draw flags.
+            self.world = assets.scene_with_terrain(iteration, session.terrain())?;
             self.iteration = Some(iteration);
         }
         let mut output = vec![0; WIDTH * HEIGHT * 3];
@@ -51,6 +53,7 @@ impl View {
                 MotionAction::Jumping => LemmingSpriteKind::Jumping,
                 MotionAction::Falling => LemmingSpriteKind::Falling,
                 MotionAction::Splatting => LemmingSpriteKind::Splatting,
+                MotionAction::Digging => LemmingSpriteKind::Digging,
             };
             let direction = if a.direction == MotionDirection::Left {
                 SpriteDirection::Left
@@ -119,7 +122,10 @@ impl View {
             &mut output,
             4,
             188,
-            "LEFT/RIGHT SCROLL | ESC QUIT",
+            &format!(
+                "DIG {} | CLICK LEMMING | ESC QUIT",
+                session.remaining_diggers
+            ),
             [140, 190, 170],
         );
         Ok(output)
@@ -282,6 +288,7 @@ mod tests {
                 frame: 0,
                 end_of_animation: false,
                 fallen: 0,
+                new_digger: false,
                 removed: None,
             },
             MotionRules::default(),
@@ -309,6 +316,7 @@ mod tests {
                 frame: 0,
                 end_of_animation: false,
                 fallen: 0,
+                new_digger: false,
                 removed: Some(RemovalReason::BottomBoundary),
             },
             MotionRules::default(),

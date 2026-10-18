@@ -33,3 +33,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#28 실제 DOS 반복 실행·장면 대조](issue-28_dos_comparison.md)
 - [#29 DOS 런타임 진입 전제](issue-29_dos_runtime.md)
 - [#30 DOS 화면·속도 차이 추적](issue-30_dos_differences.md)
+
+- [#31 G07-01 Digger 계약·원본/기준 실행](issue-31_digger.md)

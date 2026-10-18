@@ -20,6 +20,7 @@ fn state() -> ActorState {
         frame: 0,
         end_of_animation: false,
         fallen: 0,
+        new_digger: false,
         removed: None,
     }
 }
@@ -62,6 +63,7 @@ fn birth_uses_selected_original_entrance_and_preserves_stable_identity_and_rules
                 frame: 0,
                 end_of_animation: false,
                 fallen: if enabled { 3 } else { 0 },
+                new_digger: false,
                 removed: None
             }
         );
@@ -664,6 +666,7 @@ fn action_code(action: MotionAction) -> u8 {
         MotionAction::Jumping => 1,
         MotionAction::Falling => 2,
         MotionAction::Splatting => 3,
+        MotionAction::Digging => 4,
     }
 }
 fn removal_code(reason: Option<RemovalReason>) -> u8 {
@@ -738,6 +741,7 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                             MotionAction::Jumping => &[0],
                             MotionAction::Falling => &[0, 3],
                             MotionAction::Splatting => &[0, 14, 15],
+                            MotionAction::Digging => unreachable!(),
                         };
                         let fallen_values: &[_] = if action == MotionAction::Falling {
                             &[0, 60, 61]
@@ -757,6 +761,7 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                                         frame,
                                         end_of_animation: false,
                                         fallen,
+                                        new_digger: false,
                                         removed: None,
                                     };
                                     let mut a = Actor::from_state(

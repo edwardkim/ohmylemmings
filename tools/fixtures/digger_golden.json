@@ -1,0 +1,156 @@
+{
+  "format": "g07-digger-v1",
+  "reference": {
+    "metadata_sha256": "2c68d83660cf0c2d141e7449d20b9d747fe5c3496d31d0551ff9c547656cf2a8",
+    "source_sha256": "c1ba9ffda9e8e277f5c9b171df2bb611210d3326b9623b28fcd35426f4d6a448",
+    "methods": {
+      "HasPixelAt": "e8c1c11b7b16795fb96f590a91bb01381f9fab87791213f00999cded06ce6243",
+      "HasPixelAt_ClipY": "dc9696798aeaa483df3899392505ba853577726f1774a931d1df91d00882523c",
+      "Transition": "2ac447b7289c2eead45d2bdf19a43c437ac6e3f1455d61fc32de95aa7c4f0aad",
+      "TurnAround": "6c85a8ec0e5da4a5cbd3f01dfa315260bb1409af418d149f396c93367e15e5df",
+      "AssignDigger": "c89b05ed99b389dde0a1f421e27f896967b42f6c15847ac464ec2c4458ddf4a7",
+      "DigOneRow": "fdf023c95fb66967aa4e133f36829a7db3e68308afb70665ffbffba2f26ba0a1",
+      "HandleLemming": "e00f1ffbafa322076f9cff9644dab1cbea83e29081ce04a126573d1f340fea91",
+      "HandleWalking": "41d1f6ededb993c451d58e773a60dbb6ff3135b7109c9709ffef40bafa5f33ce",
+      "HandleJumping": "f7c843e508a0d33c3e28fc8872e2427dfa7fbc890487c6392c4bb03e85d264a5",
+      "HandleDigging": "5aa69c62006b96b6c430c253899708189823aa531cf9db2277f49c1189ea783f",
+      "HandleFalling": "894411800603d79132d7533ef21bae8e52de61270849f0f50e2c4899f80b122a",
+      "HandleSplatting": "5e43a5f8f9c16937c55b9b5f710a809566d298066ca47cef89018cdc5fd6fe4a",
+      "CheckForLevelTopBoundary": "da00c889f8d1283fa5aad65083c5963fa8b1d56843bf06b8ab3a7eae75587933",
+      "RemoveLemming": "7307061c19354e8142270bd3a6a80900329c5c89982da2d4e1b149edbbbef1f7",
+      "IncrementIteration": "20f1800054465889d9fdad767d45a510dcbda8ae0b8d8bbee8ec597f8c030781",
+      "BtnPause": "579cdcbff69db1562f4bf5843ce41e1cef1c4dec2a53a865566bbfcf916f977c",
+      "BtnPauseStop": "217532706520d2f2aa8996a46c1136fbce9d547e8f433141bee75d3cb3cbf31a",
+      "CheckSpawnLemming": "5608a12f641eccd5dc009789311cc3e78ac4b803f8bfae5d45ce085b35bcc638"
+    },
+    "scope": "walking-only Digger assignment, mutable terrain and existing G05; not full DOS/Lemmix",
+    "host_sha256": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18",
+    "builder_sha256": "70e83e05310628c0be164398af3a02725f50b411458fe32b8b99c5beaf42d8bc",
+    "generated_sha256": "468dd9b3ada66afef4b6ded192d82c69c3fb524eb4ac48b025bdbc3c8a1904ea",
+    "extracted_sha256": "3867bb1289292d552d9ba1eeca6bb6c0376297474464fd1d9289c80a55eec21a",
+    "compiler_sha256": "93ddfaa92900749c81537d4ee39a9416d6d8c85cf545d411f0c170c15e33cdc1",
+    "executable_sha256": "357c99a0ecf42470bb8e76db8440adffcc048ed0465975548ab2f53d88a59749",
+    "stubs": "toolbar/sound/minimap/recorder; binary caller-provided steel; stable ID target, no secondary cursor candidate",
+    "syntax_patches": "two G05 inline-variable changes only"
+  },
+  "adapter_sha256": {
+    "build_digger_reference.py": "70e83e05310628c0be164398af3a02725f50b411458fe32b8b99c5beaf42d8bc",
+    "harness.pas": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18"
+  },
+  "cases": {
+    "first": {
+      "snapshots_sha256": "a7d098a423e2629d723b16af482c808b42b0f1085b34551a06be1002bb3cc9b9",
+      "steps": 341,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignDigger",
+          0
+        ]
+      ]
+    },
+    "duplicate": {
+      "snapshots_sha256": "f094ede61599c64798e2e14aa9a0153e0e708983f332846a8be2449edd0e22a5",
+      "steps": 341,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignDigger",
+          0
+        ],
+        [
+          80,
+          1,
+          "AssignDigger",
+          0
+        ]
+      ]
+    },
+    "falling_and_absent": {
+      "snapshots_sha256": "a0f90aa0c4f744602c972ebbc88d1bc721b92de28f2f34a1f2495832519e3c1c",
+      "steps": 341,
+      "inputs": [
+        [
+          54,
+          0,
+          "AssignDigger",
+          0
+        ],
+        [
+          60,
+          0,
+          "AssignDigger",
+          999
+        ]
+      ]
+    },
+    "pause_assign_resume": {
+      "snapshots_sha256": "a12351a8be3c6c103943cc1212feb365fd0e032a823248d351ee9e47e3f59127",
+      "steps": 341,
+      "inputs": [
+        [
+          80,
+          0,
+          "Pause",
+          0
+        ],
+        [
+          80,
+          1,
+          "AssignDigger",
+          0
+        ],
+        [
+          90,
+          0,
+          "Resume",
+          0
+        ]
+      ]
+    },
+    "two_diggers": {
+      "snapshots_sha256": "9521da9a3b09f9b68c66991c9d66f51b820944f52d700a5166092108a753bec6",
+      "steps": 341,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignDigger",
+          0
+        ],
+        [
+          110,
+          0,
+          "AssignDigger",
+          1
+        ]
+      ]
+    },
+    "rate_and_dig": {
+      "snapshots_sha256": "4d0237084d337ece7592446537f6c713e3bea213b6866926934e3e5f084c3f65",
+      "steps": 341,
+      "inputs": [
+        [
+          54,
+          0,
+          "SetReleaseRate",
+          99
+        ],
+        [
+          80,
+          0,
+          "AssignDigger",
+          0
+        ],
+        [
+          90,
+          0,
+          "AssignDigger",
+          1
+        ]
+      ]
+    }
+  }
+}

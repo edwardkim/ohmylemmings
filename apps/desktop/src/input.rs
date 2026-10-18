@@ -3,6 +3,7 @@ use lemmings_core::{InputCommand, InputSchedule, StartupCommand, TimedInput};
 use sdl2::{
     event::{Event, WindowEvent},
     keyboard::Keycode,
+    mouse::MouseButton,
 };
 use std::error::Error;
 
@@ -20,6 +21,28 @@ pub fn handle(
             win_event: WindowEvent::Close,
             ..
         } => return Ok(false),
+        Event::MouseButtonDown {
+            mouse_btn: MouseButton::Left,
+            x,
+            y,
+            ..
+        } if !replaying && (0..320).contains(&x) && (0..160).contains(&y) => {
+            let wx = i64::from(x) + i64::from(view.camera);
+            let target = session
+                .actors
+                .iter()
+                .filter(|a| {
+                    let a = a.state();
+                    a.removed.is_none()
+                        && (i64::from(a.x) - wx).abs() <= 6
+                        && (i64::from(a.y) - i64::from(y) - 5).abs() <= 7
+                })
+                .min_by_key(|a| (i64::from(a.state().x) - wx).abs())
+                .map(|a| a.state().id);
+            if let Some(id) = target {
+                session.queue(InputCommand::Custom(StartupCommand::AssignDigger(id)))?;
+            }
+        }
         Event::KeyDown {
             keycode: Some(key),
             repeat,
@@ -71,6 +94,7 @@ pub fn parse_replay(
         let command = match words[2..] {
             ["Pause"] => InputCommand::Pause,
             ["Resume"] => InputCommand::Resume,
+            ["AssignDigger", id] => InputCommand::Custom(StartupCommand::AssignDigger(id.parse()?)),
             ["SetReleaseRate", rate] => {
                 InputCommand::Custom(StartupCommand::SetReleaseRate(rate.parse()?))
             }
@@ -141,6 +165,66 @@ mod tests {
         assert_eq!(v.camera, 16);
         assert!(!handle(key(Keycode::Escape, false), &mut s, &mut v, 640, true).unwrap());
         assert!(!handle(Event::Quit { timestamp: 0 }, &mut s, &mut v, 640, false).unwrap());
+    }
+    #[test]
+    fn left_click_records_stable_id_and_replay_blocks_live_assignments() {
+        let (mut s, mut v) = setup();
+        for _ in 0..80 {
+            s.tick().unwrap();
+        }
+        let a = s.actors[0].state();
+        let click = Event::MouseButtonDown {
+            timestamp: 0,
+            window_id: 0,
+            which: 0,
+            mouse_btn: MouseButton::Left,
+            clicks: 1,
+            x: a.x - v.camera,
+            y: a.y - 5,
+        };
+        handle(click.clone(), &mut s, &mut v, 640, true).unwrap();
+        assert!(s.inputs.is_empty());
+        handle(click, &mut s, &mut v, 640, false).unwrap();
+        assert_eq!(
+            s.inputs[0].command,
+            InputCommand::Custom(StartupCommand::AssignDigger(0))
+        );
+        assert_eq!(
+            parse_replay("80 0 AssignDigger 0", Some(340)).unwrap(),
+            s.inputs
+        );
+    }
+    #[test]
+    fn clicks_in_the_letterbox_or_above_the_playfield_cannot_assign() {
+        for above in [false, true] {
+            let (mut s, mut v) = setup();
+            for _ in 0..80 {
+                s.tick().unwrap();
+            }
+            let a = s.actors[0].state();
+            let (x, y) = if above {
+                s.actors[0] = lemmings_core::Actor::from_state(
+                    lemmings_core::ActorState { x: 1, y: 0, ..a },
+                    lemmings_core::MotionRules::default(),
+                )
+                .unwrap();
+                (1, -5)
+            } else {
+                v.camera = a.x + 1;
+                (-1, a.y - 5)
+            };
+            let click = Event::MouseButtonDown {
+                timestamp: 0,
+                window_id: 0,
+                which: 0,
+                mouse_btn: MouseButton::Left,
+                clicks: 1,
+                x,
+                y,
+            };
+            handle(click, &mut s, &mut v, 640, false).unwrap();
+            assert!(s.inputs.is_empty());
+        }
     }
     #[test]
     fn malformed_duplicate_and_outside_replays_are_rejected() {

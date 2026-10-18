@@ -18,8 +18,9 @@ from reference_assets import ROOT, verify_assets
 
 
 class Observer:
-    def __init__(self, process, exe, output):
+    def __init__(self, process, exe, output, decoder=decode_sample):
         self.process, self.exe, self.output = process, exe, output
+        self.decoder, self.latest = decoder, None
         self.stop = threading.Event()
         self.error = None
         self.thread = threading.Thread(target=self.observe, daemon=True)
@@ -42,8 +43,16 @@ class Observer:
                                 continue
                             if len(fields) == 6 and fields[5] != '[heap]':
                                 continue
-                            memory.seek(lo)
-                            found = locate_ram(memory.read(hi-lo), lo, self.exe)
+                            try:
+                                memory.seek(lo)
+                                region = memory.read(hi-lo)
+                            except OSError as error:
+                                # A candidate map can disappear between maps and
+                                # read during startup. No located RAM was lost.
+                                if error.errno == errno.EIO:
+                                    continue
+                                raise
+                            found = locate_ram(region, lo, self.exe)
                             if found:
                                 matches.append(found)
                         if len(matches) > 1:
@@ -63,7 +72,8 @@ class Observer:
                         # SDL teardown can unmap RAM before waitpid reports exit.
                         termination = 'ram_unmapped'
                         break
-                    sample = decode_sample(raw)
+                    sample = self.decoder(raw)
+                    self.latest = sample
                     key = tuple((k, json.dumps(v)) for k, v in sample.items() if k != 'irq_counter_u8')
                     if key != previous:
                         samples.append(dict(host_elapsed_ns=time.monotonic_ns()-start, **sample))

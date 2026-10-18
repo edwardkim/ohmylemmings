@@ -16,5 +16,5 @@ pub use startup::{
 
 pub use motion::{
     Actor, ActorState, ActorTick, EntrancePoint, MotionAction, MotionDirection, MotionError,
-    MotionOutcome, MotionRules, RemovalReason, step_actors,
+    MotionOutcome, MotionRules, RemovalReason, step_actors, step_actors_mut,
 };

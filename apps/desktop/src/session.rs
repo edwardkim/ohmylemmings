@@ -7,6 +7,8 @@ pub struct Session {
     pub actors: Vec<Actor>,
     pub inputs: Vec<TimedInput<StartupCommand>>,
     pub events: Vec<String>,
+    pub remaining_diggers: u16,
+    steel: Vec<u8>,
     clock: PlaybackClock,
     entrances: Vec<EntrancePoint>,
     terrain: Vec<u8>,
@@ -34,12 +36,43 @@ impl Session {
             actors: Vec::new(),
             inputs: Vec::new(),
             events: Vec::new(),
+            remaining_diggers: 0,
+            steel: vec![0; width * height],
             clock: PlaybackClock::new(Pacing::Reference),
             entrances,
             terrain,
             width,
             height,
         })
+    }
+    pub fn configure_digger(
+        &mut self,
+        remaining: u16,
+        steel: Vec<u8>,
+    ) -> Result<(), Box<dyn Error>> {
+        TerrainMask::new(self.width, self.height, &steel)?;
+        self.remaining_diggers = remaining;
+        self.steel = steel;
+        Ok(())
+    }
+    pub fn terrain(&self) -> &[u8] {
+        &self.terrain
+    }
+    pub fn digger_snapshot(&self) -> String {
+        let hash = self.terrain.iter().fold(0xcbf29ce484222325u64, |h, &v| {
+            (h ^ u64::from(v)).wrapping_mul(0x100000001b3)
+        });
+        let flags: Vec<_> = self
+            .actors
+            .iter()
+            .filter(|a| a.state().new_digger)
+            .map(|a| a.state().id.to_string())
+            .collect();
+        format!(
+            "{{\"remaining\":{},\"new_diggers\":[{}],\"terrain_fnv1a64\":\"{hash:016x}\"}}",
+            self.remaining_diggers,
+            flags.join(",")
+        )
     }
     pub fn desired_paused(&self) -> bool {
         self.inputs
@@ -93,24 +126,36 @@ impl Session {
         let mut events = Vec::new();
         let mut spawn = None;
         let schedule = InputSchedule::new(&self.inputs)?;
-        let outcome = self.scheduler.step(&schedule, |event| match event {
-            StartupEvent::Input {
-                control_step,
-                sequence,
-                accepted,
-            } => events.push(format!("Input:{control_step}:{sequence}:{accepted}")),
-            StartupEvent::Spawn(request) => {
-                events.push(format!(
-                    "Spawn:{}:{}:{}",
-                    request.actor_id, request.entrance_index, request.iteration
-                ));
-                spawn = Some(request);
-            }
-            StartupEvent::LetsGo => events.push("LetsGo".into()),
-            StartupEvent::EntranceSound => events.push("EntranceSound".into()),
-            StartupEvent::EntrancesOpened => events.push("EntrancesOpened".into()),
-            StartupEvent::Tick(_) => {}
-        })?;
+        let steel = TerrainMask::new(self.width, self.height, &self.steel)?;
+        let actors = &mut self.actors;
+        let remaining = &mut self.remaining_diggers;
+        let outcome = self.scheduler.step_with_digger(
+            &schedule,
+            |id| {
+                actors
+                    .iter_mut()
+                    .find(|a| a.state().id == id)
+                    .is_some_and(|a| a.assign_digger(remaining, steel))
+            },
+            |event| match event {
+                StartupEvent::Input {
+                    control_step,
+                    sequence,
+                    accepted,
+                } => events.push(format!("Input:{control_step}:{sequence}:{accepted}")),
+                StartupEvent::Spawn(request) => {
+                    events.push(format!(
+                        "Spawn:{}:{}:{}",
+                        request.actor_id, request.entrance_index, request.iteration
+                    ));
+                    spawn = Some(request);
+                }
+                StartupEvent::LetsGo => events.push("LetsGo".into()),
+                StartupEvent::EntranceSound => events.push("EntranceSound".into()),
+                StartupEvent::EntrancesOpened => events.push("EntrancesOpened".into()),
+                StartupEvent::Tick(_) => {}
+            },
+        )?;
         if let Some(request) = spawn {
             self.actors.push(Actor::from_spawn(
                 request,
@@ -119,9 +164,10 @@ impl Session {
             )?);
         }
         if outcome.iteration.is_some() {
-            step_actors(
+            step_actors_mut(
                 &mut self.actors,
-                TerrainMask::new(self.width, self.height, &self.terrain)?,
+                &mut TerrainMaskMut::new(self.width, self.height, &mut self.terrain)?,
+                steel,
                 |_, _| {},
             )?;
         }
@@ -306,6 +352,36 @@ mod tests {
         assert!(runs[0].0 > runs[1].0);
         assert_eq!(runs[0].1, runs[1].1);
         assert_eq!(runs[0].1.len(), 341);
+    }
+    #[test]
+    fn digging_replays_keep_every_actor_and_terrain_byte_across_render_patterns() {
+        let mut runs = Vec::new();
+        for pacing in [Pacing::Dos, Pacing::Reference] {
+            let mut s = session();
+            s.terrain[30 * 96..].fill(1);
+            s.configure_digger(2, vec![0; 96 * 160]).unwrap();
+            s.set_pacing(pacing);
+            let mut states = Vec::new();
+            while s.scheduler.step_state().control_step < 180 {
+                for _ in 0..s.due(Duration::from_millis(1)).unwrap() {
+                    if s.scheduler.step_state().control_step >= 180 {
+                        break;
+                    }
+                    if s.scheduler.step_state().control_step == 60 {
+                        s.queue(InputCommand::Custom(StartupCommand::AssignDigger(0)))
+                            .unwrap();
+                        s.queue(InputCommand::Custom(StartupCommand::AssignDigger(0)))
+                            .unwrap();
+                    }
+                    s.tick().unwrap();
+                    states.push((s.snapshot(), s.digger_snapshot(), s.terrain.clone()));
+                }
+            }
+            assert_eq!(s.remaining_diggers, 1);
+            assert!(s.terrain.iter().filter(|&&v| v == 1).count() < 96 * 130);
+            runs.push(states);
+        }
+        assert_eq!(runs[0], runs[1]);
     }
     #[test]
     fn missing_nonbinary_terrain_and_entrance_mismatch_fail_at_load() {

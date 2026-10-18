@@ -21,7 +21,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR | --synthetic] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nSpace: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay files contain CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate [RATE].";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR | --synthetic] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nLeft click: assign Digger; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay files contain CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate RATE|AssignDigger ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     synthetic: bool,
@@ -111,6 +111,8 @@ impl Options {
 struct Capture {
     root: PathBuf,
     trace: BufWriter<File>,
+    digger_trace: BufWriter<File>,
+    previous_terrain: Vec<u8>,
 }
 fn write_new(path: &Path, data: &[u8]) -> Result<(), Box<dyn Error>> {
     let mut f = OpenOptions::new().write(true).create_new(true).open(path)?;
@@ -137,10 +139,38 @@ impl Capture {
         Ok(Self {
             root: root.to_path_buf(),
             trace,
+            previous_terrain: Vec::new(),
+            digger_trace: BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(root.join("digger.jsonl"))?,
+            ),
         })
     }
     fn snapshot(&mut self, s: &Session) -> Result<(), Box<dyn Error>> {
         writeln!(self.trace, "{}", s.snapshot())?;
+        self.trace.flush()?;
+        let cleared: Vec<_> = self
+            .previous_terrain
+            .iter()
+            .zip(s.terrain())
+            .enumerate()
+            .filter(|(_, (before, after))| before != after)
+            .map(|(i, _)| i.to_string())
+            .collect();
+        if self.previous_terrain.is_empty() {
+            write_new(&self.root.join("terrain-initial.bin"), s.terrain())?;
+        }
+        let mut details = s.digger_snapshot();
+        details.pop();
+        writeln!(
+            self.digger_trace,
+            "{details},\"cleared\":[{}]}}",
+            cleared.join(",")
+        )?;
+        self.previous_terrain.clear();
+        self.previous_terrain.extend_from_slice(s.terrain());
         Ok(())
     }
     fn frame(
@@ -157,11 +187,16 @@ impl Capture {
     }
     fn finish(&mut self, s: &Session, summary: &str) -> Result<(), Box<dyn Error>> {
         self.trace.flush()?;
+        self.digger_trace.flush()?;
+        write_new(&self.root.join("terrain-final.bin"), s.terrain())?;
         let mut inputs = String::new();
         for i in &s.inputs {
             let command = match i.command {
                 InputCommand::Pause => "Pause".to_owned(),
                 InputCommand::Resume => "Resume".to_owned(),
+                InputCommand::Custom(StartupCommand::AssignDigger(id)) => {
+                    format!("AssignDigger {id}")
+                }
                 InputCommand::Custom(StartupCommand::SetReleaseRate(rate)) => {
                     format!("SetReleaseRate {rate}")
                 }
@@ -207,6 +242,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         Pacing::Dos
     });
     session.set_pacing(pacing);
+    session.configure_digger(assets.diggers, assets.steel.clone())?;
     let mut view = View::new(assets.screen_x);
     view.replaying = options.replay.is_some();
     let mut capture = options
@@ -320,6 +356,10 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         let finished = options.steps.is_some_and(|end| step >= end);
         let milestone = matches!(step, 0 | 16 | 17 | 34 | 35 | 54 | 60 | 100 | 170 | 340)
             || finished
+            || session.actors.iter().any(|a| {
+                a.state().action == lemmings_core::MotionAction::Digging
+                    && matches!(a.state().frame, 0 | 8)
+            })
             || session
                 .events
                 .iter()

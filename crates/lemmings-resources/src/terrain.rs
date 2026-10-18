@@ -91,6 +91,19 @@ pub struct LevelTerrain<'a> {
     palette: [Rgb6; 8],
 }
 impl<'a> LevelTerrain<'a> {
+    /// Rebind indexed terrain after gameplay edits, preserving this palette.
+    /// Reject wrong canvas length, colors outside 0..7 or noncanonical empty cells.
+    pub fn with_pixels(self, pixels: &'a [IndexedPixel]) -> Option<Self> {
+        (pixels.len() == LEVEL_TERRAIN_PIXEL_COUNT
+            && pixels
+                .iter()
+                .all(|p| p.color < 8 && (p.opaque || p.color == 0)))
+        .then_some(Self {
+            pixels,
+            palette: self.palette,
+        })
+    }
+
     pub const fn pixels(self) -> &'a [IndexedPixel] {
         self.pixels
     }
@@ -754,5 +767,45 @@ mod tests {
         };
         assert_eq!(map.palette()[7].components(), [7, 14, 21]);
         assert!(!map.pixel(0, 0).unwrap().opaque);
+    }
+}
+
+#[cfg(test)]
+mod edited_canvas_tests {
+    use super::*;
+    #[test]
+    fn edited_canvas_retains_palette_and_rejects_bad_length_colors_or_transparency() {
+        extern crate std;
+        let palette = [Rgb6::from_components([1, 2, 3]).unwrap(); 8];
+        let mut pixels = std::vec![IndexedPixel::default(); LEVEL_TERRAIN_PIXEL_COUNT];
+        let original = LevelTerrain {
+            pixels: &pixels,
+            palette,
+        };
+        assert_eq!(original.with_pixels(&pixels).unwrap().palette(), palette);
+        assert!(original.with_pixels(&pixels[..1]).is_none());
+        let source = pixels.clone();
+        let original = LevelTerrain {
+            pixels: &source,
+            palette,
+        };
+        pixels[0] = IndexedPixel {
+            color: 8,
+            opaque: true,
+        };
+        assert!(original.with_pixels(&pixels).is_none());
+        pixels[0] = IndexedPixel {
+            color: 1,
+            opaque: false,
+        };
+        assert!(original.with_pixels(&pixels).is_none());
+        pixels[0] = IndexedPixel {
+            color: 7,
+            opaque: true,
+        };
+        assert_eq!(
+            original.with_pixels(&pixels).unwrap().pixel(0, 0),
+            Some(pixels[0])
+        );
     }
 }

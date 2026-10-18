@@ -34,6 +34,7 @@ impl core::error::Error for StartupConfigError {}
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum StartupCommand {
     SetReleaseRate(u8),
+    AssignDigger(u32),
 }
 
 /// Progress immediately before the next boundary. Read control/iteration/pause
@@ -152,6 +153,17 @@ impl StartupScheduler {
     pub fn step(
         &mut self,
         schedule: &InputSchedule<'_, StartupCommand>,
+        emit: impl FnMut(StartupEvent),
+    ) -> Result<StepOutcome, StepOverflow> {
+        self.step_with_digger(schedule, |_| false, emit)
+    }
+
+    /// Process Digger requests in boundary input order, before spawning/motion.
+    /// The caller owns actors, inventory and steel; plain `step` rejects skills.
+    pub fn step_with_digger(
+        &mut self,
+        schedule: &InputSchedule<'_, StartupCommand>,
+        mut assign: impl FnMut(u32) -> bool,
         mut emit: impl FnMut(StartupEvent),
     ) -> Result<StepOutcome, StepOverflow> {
         let before = self.stepper.state();
@@ -176,6 +188,7 @@ impl StartupScheduler {
                         paused = false;
                         true
                     }
+                    InputCommand::Custom(StartupCommand::AssignDigger(id)) => assign(id),
                     InputCommand::Custom(StartupCommand::SetReleaseRate(rate)) => {
                         if (config.initial_release_rate..=99).contains(&rate) {
                             state.release_rate = rate;
