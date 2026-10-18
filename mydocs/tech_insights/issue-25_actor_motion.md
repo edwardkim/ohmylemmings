@@ -94,7 +94,7 @@ PY
 
 ## 완료 범위와 다음 단계
 
-로컬 make check는 Rust 단위 279개·문서 테스트 27개(기존 compile-fail 2개 포함)·Python 8개·포맷·Clippy·빌드·WASM 컴파일을 통과했습니다. 세 sh 블록을 그대로 재현했고 CI와 같은 make check-python의 독립 golden 검사도 통과했습니다. 게시·실제 CI·원격 tree를 확인합니다.
+로컬 make check는 Rust 단위 279개·문서 테스트 27개(기존 compile-fail 2개 포함)·Python 8개·포맷·Clippy·빌드·WASM 컴파일을 통과했습니다. 세 sh 블록을 그대로 재현했고 CI와 같은 make check-python의 독립 golden 검사도 통과했습니다. 구현 게시·실제 CI·원격 tree까지 확인했습니다. 최종 문서 게시·CI·#25 종료는 GitHub 이슈 기록에서 추적합니다.
 
 직업/영구 능력·객체/출구·Blocker/강철·지형 변형·성패/전체 시계 종료·실제 음원/화면·리소스 연결·전체 trace/실제 DOS 실행은 후속입니다. G05 전체·COMP-06은 완료 처리하지 않습니다. 다음 후보는 별도 이슈의 **G05-04 상태 추적·재생·기준 실행 대조**입니다.
 
