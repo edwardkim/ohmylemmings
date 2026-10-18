@@ -1,0 +1,15 @@
+.PHONY: check check-rust check-python check-wasm
+
+check: check-rust check-python check-wasm
+
+check-rust:
+	cargo fmt --all -- --check
+	cargo clippy --workspace --all-targets --locked --offline -- -D warnings
+	cargo build --workspace --locked --offline
+	cargo test --workspace --locked --offline
+
+check-python:
+	python3 -m unittest discover -s tools/tests -v
+
+check-wasm:
+	cargo build --workspace --lib --target wasm32-unknown-unknown --locked --offline

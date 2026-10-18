@@ -10,12 +10,14 @@ G00의 기준 정의를 마치고 G01의 Rust workspace를 도입했습니다. �
 
 Rustup을 설치한 뒤 저장소 루트에서 실행합니다. [rust-toolchain.toml](rust-toolchain.toml)이 Rust 1.93.1과 rustfmt·Clippy를 선택합니다. 도구 체인 설치 후 현재 패키지는 외부 의존성 없이 오프라인으로 빌드됩니다.
 
+전체 개발 검증에는 GNU Make, Python 3.12와 WASM 타깃도 준비합니다.
+
 ```sh
-cargo build --workspace --locked --offline
-cargo test --workspace --locked --offline
-cargo fmt --all -- --check
-cargo clippy --workspace --all-targets --locked --offline -- -D warnings
+rustup target add wasm32-unknown-unknown
+make check
 ```
+
+`make check-rust`, `make check-python`, `make check-wasm`으로 각각 실행할 수도 있습니다. [CI·검증 안내](mydocs/plans/issue-7_continuous_integration.md)와 [Makefile](Makefile)에 세부 명령을 정리합니다. 같은 명령이 [GitHub Actions](.github/workflows/ci.yml)의 push·PR·수동 실행에서 사용됩니다.
 
 - [crates/lemmings-core](crates/lemmings-core/src/lib.rs): 레벨 식별 자료형과 향후 시뮬레이션
 - [crates/lemmings-resources](crates/lemmings-resources/src/lib.rs): 바이트 입력과 향후 리소스 파서

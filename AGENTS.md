@@ -16,10 +16,10 @@ When implementing:
 
 Run at the repository root; `rust-toolchain.toml` pins Rust 1.93.1:
 
-- `cargo build --workspace --locked --offline`: build both libraries.
-- `cargo test --workspace --locked --offline`: run unit tests and documentation examples.
-- `cargo fmt --all -- --check`: check formatting.
-- `cargo clippy --workspace --all-targets --locked --offline -- -D warnings`: check warnings.
+- `make check`: run all CI checks locally.
+- `make check-rust`: build, test, format, and lint both libraries offline.
+- `make check-python`: run tooling tests.
+- `make check-wasm`: compile WASM libraries; install the target first.
 
 Python 3 reference tooling:
 
@@ -27,7 +27,7 @@ Python 3 reference tooling:
 - `python3 tools/reference_assets.py verify`: check local file sizes and SHA-256 hashes.
 - `python3 -m unittest discover -s tools/tests -v`: run offline tooling tests.
 
-See `mydocs/plans/issue-6_rust_workspace.md` for WASM commands. Document SDL2 prerequisites with platform adapters.
+See `mydocs/plans/issue-7_continuous_integration.md` for prerequisites and CI details. Document SDL2 prerequisites with platform adapters.
 
 ## Coding Style & Naming Conventions
 

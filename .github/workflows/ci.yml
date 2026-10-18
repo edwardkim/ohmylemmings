@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  rust:
+    name: Rust native
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check clean inputs
+        run: |
+          test ! -e assets/local
+          test ! -e target
+          test ! -e "$RUNNER_TEMP/cargo-home"
+          echo "CARGO_HOME=$RUNNER_TEMP/cargo-home" >> "$GITHUB_ENV"
+      - name: Install pinned Rust toolchain
+        run: |
+          rustup show active-toolchain
+          rustc --version
+          cargo --version
+      - name: Check Rust
+        run: make check-rust
+
+  python:
+    name: Python tooling
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Check clean inputs
+        run: |
+          test ! -e assets/local
+          test ! -e target
+      - name: Check Python tooling
+        run: |
+          python3 --version
+          make check-python
+
+  wasm:
+    name: WASM libraries
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check clean inputs
+        run: |
+          test ! -e assets/local
+          test ! -e target
+          test ! -e "$RUNNER_TEMP/cargo-home"
+          echo "CARGO_HOME=$RUNNER_TEMP/cargo-home" >> "$GITHUB_ENV"
+      - name: Install pinned Rust toolchain and WASM target
+        run: |
+          rustup show active-toolchain
+          rustup target add wasm32-unknown-unknown
+      - name: Check WASM libraries
+        run: make check-wasm
