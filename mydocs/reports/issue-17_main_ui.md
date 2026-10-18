@@ -30,8 +30,20 @@ MAIN.DAT 구간 2·3·4·6의 UI·폰트 리소스를 해석했습니다. 메뉴
 
 패널/글꼴의 색상 0·로고 632폭·플레인/행/프레임 경계·좌우 숫자 교차 stride·전체 문자 범위·큰 인덱스·출력만 빌리는 수명을 합성 입력으로 확인했습니다. TS에서 제공하지 않는 메뉴 글꼴·평가판·스크롤 후속 프레임은 Lemmix에 근거합니다. 미리보기의 패널 팔레트는 진단용이며 실제 화면 색상 인증은 아닙니다.
 
-## 게시 상태와 다음 범위
+## 게시
 
-로컬 검증을 마쳤으며 문서 재현·추적 검사와 실제 push CI·원격 파일 대조를 확인해 완료합니다.
+구현 커밋 `f797d7d61e72f3fbc406e6ea2171f66db4c7d09c`를 `main`에 게시했습니다. [push CI 실행](https://github.com/edwardkim/ohmylemmings/actions/runs/39122198641)의 결론과 세 작업이 모두 success입니다.
+
+| 작업 | 실제 실행 근거 |
+|---|---|
+| [Rust native](https://github.com/edwardkim/ohmylemmings/actions/runs/39122198641/job/117659882467) | Rust 1.93.1, 포맷·Clippy·빌드, 단위 153개·문서 예제 12개 성공 |
+| [Python tooling](https://github.com/edwardkim/ohmylemmings/actions/runs/39122198641/job/117659882564) | Python 3.12.15, 테스트 8개 성공 |
+| [WASM libraries](https://github.com/edwardkim/ohmylemmings/actions/runs/39122198641/job/117659882385) | 고정 Rust·WASM 타깃, 두 라이브러리 컴파일 성공 |
+
+push 이벤트·대상 SHA·세 작업의 실제 로그·테스트 개수·clean-input 성공을 대조했습니다. 원본·기존 target·Cargo 패키지 캐시 없는 러너에서 통과했습니다. 원격 tree API의 파일 109개 모드·blob 해시가 로컬과 모두 일치했으며 작업 트리는 깨끗합니다. 원본·PNG·바이너리·JSONL·참조 소스 사본·빌드 출력은 추적하지 않습니다.
+
+G03-08의 식별된 UI·폰트 해석 범위를 완료했습니다. 최종 문서 게시·CI와 #17 종료는 GitHub 이슈 기록에서 추적합니다. 상위 #1의 G00·G01·G02만 전체 목표 완료로 유지합니다.
+
+## 남은 범위
 
 이번 완료 범위는 식별된 19개 UI 묶음입니다. 미사용 범위·전체 MAIN 구간 1·5의 의미를 인증하지 않습니다. 화면 조립·입력·문자열 배치·HUD·실제 DOS 실행은 후속 범위입니다. G03 전체는 변형 마스크·카운트다운과 객체 합성이 남아 진행 중이며 다음은 별도 이슈의 G03-09 MAIN.DAT 마스크·카운트다운 해석입니다. G04-01도 준비 상태입니다.
