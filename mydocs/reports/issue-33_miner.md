@@ -17,7 +17,7 @@ Miner 할당/수량·양방향16×13 마스크·24프레임 대각 이동·강�
 
 ## 게시 검증
 
-로컬 검증을 마쳤으며 구현 커밋 게시·정확한 push SHA의 실제 CI 세 작업/로그·원격 트리 일치·상위 #1 진행 갱신·#33 종료를 확인합니다. G07 전체는 진행 중입니다.
+구현 `246d79921695f3c67139c92e85e19ddcfdebdfe8`와 [실제 push CI](https://github.com/edwardkim/ohmylemmings/actions/runs/39165783921)의 정확한 SHA·세 작업/실제 로그·342/27/47 테스트·기존/추가 SDL/모델·clean-input/SDL SDK/fetch를 확인했습니다. 원격236개 파일 모드/blob·깨끗한 작업 트리,1125개 증거 해시·문서114개/817링크/124앵커/이슈명100개도 확인했습니다. G07-03을 완료했습니다. 최종 문서 게시/CI·상위 #1 갱신·#33 종료는 GitHub 이슈 기록에서 추적합니다. G07 전체는 진행 중입니다.
 
 [계약·재현·한계](../tech_insights/issue-33_miner.md), [진행 기록](../working/issue-33_miner.md).
 

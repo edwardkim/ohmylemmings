@@ -39,10 +39,10 @@ G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/issue-2_dos_origin
 
 문서에서는 예정된 작업과 구현·검증이 완료된 내용을 구분합니다.
 
-[#28 G06-02 실제 DOS 세 실행·장면 대조](reports/issue-28_dos_comparison.md)를 완료했습니다. 상부 일치에서 발견한 전체 화면·속도 차이는 [#30 보정](tech_insights/issue-30_dos_differences.md)과 [게시·CI](reports/issue-30_dos_differences.md)로 마무리했습니다. G06 전체를 완료했으며 G07-01 Digger와 G07-02 Basher도 완료했으며 다음 후보는 G07-03 Miner입니다.
+[#28 G06-02 실제 DOS 세 실행·장면 대조](reports/issue-28_dos_comparison.md)를 완료했습니다. 상부 일치에서 발견한 전체 화면·속도 차이는 [#30 보정](tech_insights/issue-30_dos_differences.md)과 [게시·CI](reports/issue-30_dos_differences.md)로 마무리했습니다. G06 전체를 완료했으며 G07-01 Digger와 G07-02 Basher도 완료했으며 Miner도 완료했으며 다음 후보는 G07-04 Builder입니다.
 
-[#31 Digger](reports/issue-31_digger.md)의 구현·기준/원본 검증·게시/실제 CI를 완료했습니다. Basher도 완료했으며 다음 후보는 G07-03 Miner입니다. G07 전체는 진행 중입니다.
+[#31 Digger](reports/issue-31_digger.md)의 구현·기준/원본 검증·게시/실제 CI를 완료했습니다. Basher도 완료했으며 Miner도 완료했으며 다음 후보는 G07-04 Builder입니다. G07 전체는 진행 중입니다.
 
 [#32 Basher](reports/issue-32_basher.md)의 구현·기준/원본/네이티브·전체 회귀·게시/실제 CI를 완료했습니다. G07 전체는 진행 중입니다.
 
-[#33 Miner](reports/issue-33_miner.md)의 구현·기준/원본/네이티브·전체 회귀를 통과했으며 게시/실제 CI를 확인합니다.
+[#33 Miner](reports/issue-33_miner.md)의 구현·기준/원본/네이티브·전체 회귀·게시/실제 CI를 완료했습니다. G07 전체는 진행 중입니다.
