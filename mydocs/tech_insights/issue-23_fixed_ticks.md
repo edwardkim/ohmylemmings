@@ -102,7 +102,7 @@ PYREF
 
 ## 완료 범위와 다음 단계
 
-로컬 `make check`는 Rust 단위 243개·문서 테스트 23개(기존 compile-fail 2개 포함)·Python 8개·포맷·Clippy·빌드·WASM 컴파일을 통과했습니다. 위 세 sh 블록을 그대로 실행해 같은 결과를 재현했습니다. 게시·실제 CI·원격 tree를 확인합니다.
+로컬 `make check`는 Rust 단위 243개·문서 테스트 23개(기존 compile-fail 2개 포함)·Python 8개·포맷·Clippy·빌드·WASM 컴파일을 통과했습니다. 위 세 sh 블록을 그대로 실행해 같은 결과를 재현했습니다. 구현 게시·실제 CI·원격 tree까지 확인했습니다. 최종 문서 게시·CI·#23 종료는 GitHub 이슈 기록에서 추적합니다.
 
 Pause/Resume은 골격의 Tick 통지만 제어합니다. 원작 PauseGlitch 시계/입구 처리·종료/RR·생성·actor/직업·전체 trace 직렬화·실제 DOS/WASM 실행은 후속 범위입니다. G05 전체·COMP-04~06은 진행 중/미검증으로 유지합니다. 다음 후보는 별도 이슈의 **G05-02 시작 시계·입구·생성 스케줄**입니다.
 
