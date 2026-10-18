@@ -6,7 +6,7 @@
 
 G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/dos_original_baseline.md)를 완료했습니다. 로컬 데이터 준비는 [리소스 안내](../assets/README.md)를 참고합니다.
 
-[G00-02 레퍼런스 코드 지도](tech_insights/reference_code_map.md)의 고정 소스와 선언 위치를 검증했고 결과 게시를 진행 중입니다.
+[G00-02 레퍼런스 코드 지도](tech_insights/reference_code_map.md)의 고정 소스·선언 위치 검증과 게시를 완료했습니다. 다음 작업은 G00-03 호환성 검증 기준 정의입니다.
 
 ## 폴더 구조
 
