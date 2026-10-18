@@ -36,6 +36,8 @@ DAT에서 기본 레벨을 직접 해제·검사하는 `inspect_levels` 예제�
 
 VGAGR 지형·객체·미리보기 전체 픽셀은 [G03-04 재현 명령](../mydocs/tech_insights/issue-13_vgagr_images.md#원본-대조와-재현)의 `inspect_vgagr`로 검사합니다. [이미지 검증 매니페스트](manifests/vgagr_images.json)는 5세트의 픽셀 연결 해시·10개 해제 구간 해시·추가 고정 소스 식별값을 기록합니다. 확보용 `fetch --manifest` 입력이 아니며 RGB 렌더링·실행 호환성 결과도 아닙니다.
 
+VGASPEC 특수 배경 4개는 [G03-05 재현 명령](../mydocs/tech_insights/issue-14_vgaspec_backgrounds.md#원본-검사-재현)의 `inspect_vgaspec`로 검사합니다. [특수 배경 검증 매니페스트](manifests/vgaspec_backgrounds.json)에 팔레트·내부/RLE 해제/픽셀 해시를 고정합니다. 이것도 확보용 `fetch --manifest` 입력이 아니며 전체 레벨 합성·RGB/알파 렌더링 결과를 뜻하지 않습니다.
+
 ## 기준판 식별
 
 기준 ID는 `dos-original-vga`입니다. 원본 매체의 세부 리비전은 아직 확인되지 않았으며 확보한 파일의 바이트 식별값으로 입력을 고정합니다. 확보 출처, 상호 대조 결과, 데모와의 차이는 [기준판 분석](../mydocs/tech_insights/issue-2_dos_original_baseline.md)에 기록합니다.

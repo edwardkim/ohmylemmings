@@ -13,6 +13,7 @@ pub enum ImageKind {
 
 /// Local palette index plus the independent mask bit. An opaque zero is valid.
 /// Terrain colors address Custom 0..7; object colors address Standard/Preview 0..15.
+/// VGASPEC uses its own eight-color palette, with index zero transparent.
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct IndexedPixel {
     pub color: u8,

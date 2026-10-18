@@ -20,3 +20,4 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [ODDTABLE·120개 표시 카탈로그와 변형·기본 배치 보존](issue-11_level_catalog.md)
 - [GROUND 메타데이터·팔레트와 원본 5개 파일 전체 필드 대조](issue-12_ground_metadata.md)
 - [VGAGR 비트플레인·마스크·프레임과 원본 전체 픽셀 대조](issue-13_vgagr_images.md)
+- [VGASPEC 특수 배경·팔레트·RLE와 원본 4개 전체 픽셀 대조](issue-14_vgaspec_backgrounds.md)

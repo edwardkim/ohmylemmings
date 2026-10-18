@@ -20,6 +20,7 @@ mod level;
 mod odd;
 mod reader;
 mod vgagr;
+mod vgaspec;
 
 pub use catalog::{CatalogEntry, CatalogError, DosLevelFile, ResolvedLevel};
 pub use dat::{DatError, DatHeader, DatSection, DatSections};
@@ -38,4 +39,9 @@ pub use ground::{
 
 pub use vgagr::{
     ImageKind, IndexedPixel, ObjectFrames, PlanarImage, VgagrError, VgagrFile, VgagrImages,
+};
+
+pub use vgaspec::{
+    VGASPEC_HEIGHT, VGASPEC_PLANAR_SIZE, VGASPEC_WIDTH, VgaSpecError, VgaSpecFile, VgaSpecImage,
+    VgaSpecRecord,
 };

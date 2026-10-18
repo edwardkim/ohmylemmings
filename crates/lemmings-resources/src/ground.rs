@@ -29,6 +29,12 @@ pub struct Rgb6 {
     components: [u8; 3],
 }
 impl Rgb6 {
+    pub(crate) fn from_components(components: [u8; 3]) -> Option<Self> {
+        components
+            .iter()
+            .all(|&v| v <= 63)
+            .then_some(Self { components })
+    }
     pub const fn components(self) -> [u8; 3] {
         self.components
     }

@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/14",
+  "profile": "dos-original-vga",
+  "scope": "Static 960x160 VGASPEC indexed backgrounds and palettes; no level composition, RGB/alpha rendering or runtime compatibility certification.",
+  "pixel_encoding": "One byte per pixel, row-major. Colors 1..7 are opaque; transparent index 0 is encoded as 0x80.",
+  "planar_order": "Four top-to-bottom strips of 960x40; each strip holds three 4800-byte planes, lowest color bit first, MSB left.",
+  "inputs": [
+    {
+      "path": "assets/manifests/dos_original.json",
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "assets/manifests/reference_sources.json",
+      "sha256": "af084d89ba0b9c119b7afa4f886281cfeede4a3d25de98ecb8dbb8c159942d3b"
+    }
+  ],
+  "additional_references": [
+    {
+      "repository": "ericlangedijk/Lemmix",
+      "commit": "40e9bc34451f0e9127fd53b290a3877e700d143d",
+      "path": "src/Dos.Bitmaps.pas",
+      "size": 21999,
+      "git_blob_sha1": "cbe4901d074c6f25d89feea97d41287c1afa9081",
+      "sha256": "558d4e767527cdb16b779eb3efa63c3834c93bc606c08e03ffa1b875ce415b80"
+    },
+    {
+      "repository": "tomsoftware/Lemmings.ts",
+      "commit": "10c7c8b9167258503d02589cf048e2d83a43dd0a",
+      "path": "src/game/resources/lemmings/palette-image.ts",
+      "size": 3258,
+      "sha256": "90d4b33876b849dc6325428bd2c4dd9513ec7666b914bc06d319b2787401e2da"
+    }
+  ],
+  "verification": "Every inner/planar/pixel byte and header palette matches Rust and independent Python. Pinned TypeScript VgaSpecReader/PaletteImage/container code matches all bytes and VGA palette scaling with Frame/ColorPalette capture adapters; original rendering is not exercised. Inner bytes also match G02-02.",
+  "backgrounds": [
+    {
+      "set": 0,
+      "inner_size": 34366,
+      "inner_sha256": "8ad0aa273781def6c34ce45f254b20d95135e2eef41eca199846483aff2ead5c",
+      "planar_size": 57600,
+      "planar_sha256": "097391af66c1742e96ade8823e9421d56dabbfb4ab03c2e373d32fa898975bab",
+      "pixel_count": 153600,
+      "pixel_sha256": "bc88b465b5c2954505f169ad34d1bc16878ba3c9b2e39cb397d4716e0b51aec7",
+      "transparent_pixels": 84021,
+      "vga": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          8,
+          36,
+          48
+        ],
+        [
+          8,
+          20,
+          32
+        ],
+        [
+          8,
+          12,
+          24
+        ],
+        [
+          40,
+          28,
+          24
+        ],
+        [
+          28,
+          16,
+          12
+        ],
+        [
+          20,
+          8,
+          8
+        ],
+        [
+          8,
+          8,
+          8
+        ]
+      ],
+      "ega": [
+        0,
+        3,
+        57,
+        1,
+        62,
+        20,
+        4,
+        56
+      ],
+      "unknown": [
+        0,
+        3,
+        17,
+        1,
+        22,
+        6,
+        4,
+        16
+      ],
+      "commands": {
+        "repeat": 3412,
+        "literal": 3253
+      }
+    },
+    {
+      "set": 1,
+      "inner_size": 24368,
+      "inner_sha256": "9d9dfc32eef63a02e9f615bffb3916ab81bc80026974478b4e0f76cedc1d5bdf",
+      "planar_size": 57600,
+      "planar_sha256": "13f4f7e35c73f16dfaaff3d0a605d717952a8cb96a726c810c9e0447d8655383",
+      "pixel_count": 153600,
+      "pixel_sha256": "60bd9b9a5b4f3c48b3e8c6c7e48b5697e3525552a03e70e65103bd931343630c",
+      "transparent_pixels": 111194,
+      "vga": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          48,
+          16,
+          24
+        ],
+        [
+          40,
+          0,
+          0
+        ],
+        [
+          24,
+          0,
+          0
+        ],
+        [
+          36,
+          32,
+          20
+        ],
+        [
+          28,
+          24,
+          8
+        ],
+        [
+          20,
+          16,
+          0
+        ],
+        [
+          12,
+          8,
+          0
+        ]
+      ],
+      "ega": [
+        0,
+        60,
+        61,
+        5,
+        62,
+        4,
+        20,
+        56
+      ],
+      "unknown": [
+        0,
+        20,
+        21,
+        5,
+        22,
+        4,
+        6,
+        16
+      ],
+      "commands": {
+        "literal": 1751,
+        "repeat": 1820
+      }
+    },
+    {
+      "set": 2,
+      "inner_size": 27599,
+      "inner_sha256": "eb90271a087cbf305abf30fe3cffe20847e7b2a8649199234dfac7305e60b403",
+      "planar_size": 57600,
+      "planar_sha256": "577e439839a8bea13ccab81df6dc8e7e081fc35f5234a4b305c7be4695361f79",
+      "pixel_count": 153600,
+      "pixel_sha256": "5cfab7a8a6af79c0fbd60aa07cef3777e2227251205056b059d7cecb24aa5759",
+      "transparent_pixels": 108147,
+      "vga": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          16,
+          20,
+          8
+        ],
+        [
+          12,
+          16,
+          12
+        ],
+        [
+          8,
+          8,
+          8
+        ],
+        [
+          12,
+          12,
+          8
+        ],
+        [
+          20,
+          16,
+          12
+        ],
+        [
+          24,
+          20,
+          16
+        ],
+        [
+          28,
+          24,
+          20
+        ]
+      ],
+      "ega": [
+        0,
+        58,
+        2,
+        56,
+        20,
+        20,
+        62,
+        7
+      ],
+      "unknown": [
+        0,
+        18,
+        2,
+        16,
+        6,
+        6,
+        22,
+        7
+      ],
+      "commands": {
+        "repeat": 2625,
+        "literal": 2577
+      }
+    },
+    {
+      "set": 3,
+      "inner_size": 40127,
+      "inner_sha256": "cb188923244fb2215274ef10718bfa55787934b439171bea1cfe15d05e56a5f2",
+      "planar_size": 57600,
+      "planar_sha256": "bccb46af44a8a829cdef7998e243cf448a413d64abd789e221d1fc146873d375",
+      "pixel_count": 153600,
+      "pixel_sha256": "4ea9decde2feb5f756cc4b54254ca6a26f4bed7ace1b523217ad176aa5e36030",
+      "transparent_pixels": 51052,
+      "vga": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          16,
+          24,
+          8
+        ],
+        [
+          12,
+          20,
+          4
+        ],
+        [
+          8,
+          16,
+          0
+        ],
+        [
+          4,
+          12,
+          0
+        ],
+        [
+          20,
+          20,
+          12
+        ],
+        [
+          16,
+          16,
+          8
+        ],
+        [
+          12,
+          12,
+          4
+        ]
+      ],
+      "ega": [
+        0,
+        58,
+        2,
+        20,
+        4,
+        63,
+        7,
+        56
+      ],
+      "unknown": [
+        0,
+        18,
+        2,
+        6,
+        4,
+        23,
+        7,
+        16
+      ],
+      "commands": {
+        "repeat": 2653,
+        "literal": 2569
+      }
+    }
+  ]
+}

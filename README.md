@@ -8,7 +8,9 @@
 
 G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. `no_std` 코어 자료형과 DAT 구간 검증·압축 해제를 도입했습니다. 원작 파일 50개·소스 46개와 120개 레벨·8직업·음악 21개·효과음 18개의 검증 범위를 고정했습니다. [G02-02 압축 해제](mydocs/tech_insights/issue-9_dat_decompression.md)는 합성 테스트, 원본 21개 파일·102개 구간의 해시 대조와 실제 Rust·Python·WASM CI를 통과했습니다.
 
-G03 리소스 해석을 진행 중입니다. [G03-01 기본 레벨 레코드](mydocs/tech_insights/issue-10_level_records.md)에 이어 [G03-02 ODDTABLE·120개 카탈로그](mydocs/tech_insights/issue-11_level_catalog.md)의 원본 연결·수치·제목·40개 변형·기본 배치 보존과 실제 CI를 확인해 완료했습니다. [G03-03 GROUND 메타데이터·팔레트](mydocs/tech_insights/issue-12_ground_metadata.md)도 합성 테스트·원본 5개 전체 필드 대조·실제 CI를 통과해 완료했습니다. [G03-04 VGAGR 비트플레인·마스크](mydocs/tech_insights/issue-13_vgagr_images.md)도 원본 867개 이미지·프레임의 Rust·Python·TS 전체 픽셀 대조와 실제 CI를 통과해 완료했습니다. 다음은 G03-05 VGASPEC 특수 배경 해석이며 G04 픽셀 지형 모델도 준비 상태입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
+G03 리소스 해석을 진행 중입니다. [기본 레벨 레코드](mydocs/tech_insights/issue-10_level_records.md), [ODDTABLE·120개 카탈로그](mydocs/tech_insights/issue-11_level_catalog.md), [GROUND 메타데이터·팔레트](mydocs/tech_insights/issue-12_ground_metadata.md), [VGAGR 이미지·마스크](mydocs/tech_insights/issue-13_vgagr_images.md)의 원본 대조와 실제 CI를 통과했습니다.
+
+[G03-05 VGASPEC 특수 배경](mydocs/tech_insights/issue-14_vgaspec_backgrounds.md)은 원본 4개·614400픽셀 전체 대조와 로컬 검사를 마치고 게시·CI를 확인 중입니다. 다음은 G03-06 레벨 지형 재구성이며 G04 픽셀 지형 모델도 준비 상태입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
 
 ## Rust 개발
 
@@ -24,7 +26,7 @@ make check
 `make check-rust`, `make check-python`, `make check-wasm`으로 각각 실행할 수도 있습니다. [CI·검증 안내](mydocs/plans/issue-7_continuous_integration.md)와 [Makefile](Makefile)에 세부 명령을 정리합니다. 같은 명령이 [GitHub Actions](.github/workflows/ci.yml)의 push·PR·수동 실행에서 사용됩니다.
 
 - [crates/lemmings-core](crates/lemmings-core/src/lib.rs): 레벨 식별 자료형과 향후 시뮬레이션
-- [crates/lemmings-resources](crates/lemmings-resources/src/lib.rs): DAT·기본 레벨·ODDTABLE·120개 카탈로그·GROUND 메타데이터·팔레트·VGAGR 이미지, 코어 ID를 사용하는 로컬 의존
+- [crates/lemmings-resources](crates/lemmings-resources/src/lib.rs): DAT·기본 레벨·ODDTABLE·120개 카탈로그·GROUND·VGAGR·VGASPEC 이미지와 팔레트, 코어 ID를 사용하는 로컬 의존
 - [개발 골격 설계](mydocs/plans/issue-6_rust_workspace.md): 모듈 경계·API·개별/WASM 빌드 명령
 
 현재 빌드 대상은 라이브러리 2개이며, 게임 실행 명령은 G06의 네이티브 어댑터에서 도입합니다.
