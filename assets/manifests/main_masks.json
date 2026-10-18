@@ -1,0 +1,427 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/18",
+  "profile": "dos-original-vga",
+  "scope": "MAIN section 1 stored bit masks and countdown glyphs only; no terrain application, clipping, steel rules, positioning, timing, rendering or actual DOS execution certification.",
+  "bit_encoding": "One byte per row-major bit, 0 or 1. One means selected/foreground. This normalizes TS signed raw values -128/0, and is the inverse of TS Mask.at for in-bounds coordinates.",
+  "countdown_policy": "Preserve all ten stored glyphs in 9..0 disk order; value lookup uses index=9-digit. Lemmix reads only the 5..1 subset at offset 340, five frames. Do not copy the TS count-as-index display policy.",
+  "position_policy": "Positions belong to action/sprite context, not the bitmap API. Lemmix bashing uses sprite top-left, mining additionally changes position by frame, explosion uses (-8,-14), countdown uses x-1 and sprite top-12. TS fixed positions are recorded separately.",
+  "inputs": [
+    {
+      "path": "assets/manifests/dos_original.json",
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "assets/manifests/reference_sources.json",
+      "sha256": "af084d89ba0b9c119b7afa4f886281cfeede4a3d25de98ecb8dbb8c159942d3b"
+    },
+    {
+      "path": "assets/manifests/dos_compatibility.json",
+      "sha256": "fa8085a18e1d4322f1340b2541b8b8982401eb1b25865e7d62a5a15af1b3d6cb"
+    },
+    {
+      "path": "assets/manifests/lemming_sprites.json",
+      "sha256": "aa8b4f7f4460d9e94e1951ac89c0825b9ca2227b8adf10e38313982c709e19ab"
+    }
+  ],
+  "additional_references": [
+    {
+      "repository": "tomsoftware/Lemmings.ts",
+      "commit": "10c7c8b9167258503d02589cf048e2d83a43dd0a",
+      "path": "src/game/resources/mask-provider.ts",
+      "size": 945,
+      "git_blob_sha1": "04d48a2683761e69ebf85ca2b9041237b127d4e8",
+      "sha256": "f9e9347b3edc08bc6666178e9ed1e4f43f9f68f1fe429b3976771cb60052b397"
+    },
+    {
+      "repository": "tomsoftware/Lemmings.ts",
+      "commit": "10c7c8b9167258503d02589cf048e2d83a43dd0a",
+      "path": "src/game/resources/mask-list.ts",
+      "size": 748,
+      "git_blob_sha1": "53ff68be3e90d3dc973579f06f5a7e21e51c0ee6",
+      "sha256": "42bf0f2e1541497f7e19da330e37d53328f7c03462daf1510fb47c79da28c29b"
+    },
+    {
+      "repository": "tomsoftware/Lemmings.ts",
+      "commit": "10c7c8b9167258503d02589cf048e2d83a43dd0a",
+      "path": "src/game/resources/mask.ts",
+      "size": 1406,
+      "git_blob_sha1": "9ba20a893183da1dfe5578c512db089fadfdf881",
+      "sha256": "63c113881a0c8d4acb2151aab3795c4c1c3d159db3fdf5d057b6667695f29b61"
+    },
+    {
+      "repository": "tomsoftware/Lemmings.ts",
+      "commit": "10c7c8b9167258503d02589cf048e2d83a43dd0a",
+      "path": "src/game/resources/mask-types.ts",
+      "size": 114,
+      "git_blob_sha1": "09d17bf0b8b2935b778c3c8eb383c27d2d58e994",
+      "sha256": "06ba98bfcc91274ebf097f8b999dd41106984079d184eca874893c2c0fd426da"
+    },
+    {
+      "repository": "tomsoftware/Lemmings.ts",
+      "commit": "10c7c8b9167258503d02589cf048e2d83a43dd0a",
+      "path": "src/game/game-resources.ts",
+      "size": 5277,
+      "git_blob_sha1": "f3a202afed127990dad685a5b44712cd8fa19aca",
+      "sha256": "e510faf9bbee06c9bee24f38b68a406b5bed004bb10ae735a9f4f256fc0084d2"
+    },
+    {
+      "repository": "ericlangedijk/Lemmix",
+      "commit": "40e9bc34451f0e9127fd53b290a3877e700d143d",
+      "path": "src/Styles.Base.pas",
+      "size": 40602,
+      "git_blob_sha1": "f0e5e69df77a940abb8927f9c8e00be71b4e9428",
+      "sha256": "2c68d83660cf0c2d141e7449d20b9d747fe5c3496d31d0551ff9c547656cf2a8"
+    },
+    {
+      "repository": "ericlangedijk/Lemmix",
+      "commit": "40e9bc34451f0e9127fd53b290a3877e700d143d",
+      "path": "src/Dos.Bitmaps.pas",
+      "size": 21999,
+      "git_blob_sha1": "cbe4901d074c6f25d89feea97d41287c1afa9081",
+      "sha256": "558d4e767527cdb16b779eb3efa63c3834c93bc606c08e03ffa1b875ce415b80"
+    }
+  ],
+  "verification": "All 388 original section bytes retain previous G02/#16 hash. Rust, independent Python original DAT decode/whole-bit-string extraction and actual pinned TS DAT/MaskProvider/MaskList/Mask agree on 23 frames/3104 normalized raw bits. 923 selected bits. All seven DAT sections match previous hashes/bytes. Lemmix five-digit subset agrees.",
+  "typescript_observations": {
+    "raw_signed_bit_one": -128,
+    "at_returns_true_for": 0,
+    "length_getter": "ReferenceError in Node: unbound frames identifier; use known source counts and getMask directly",
+    "anchors": [
+      {
+        "kind": "BashingRight",
+        "x": -8,
+        "y": -10
+      },
+      {
+        "kind": "BashingLeft",
+        "x": -8,
+        "y": -10
+      },
+      {
+        "kind": "MiningRight",
+        "x": -8,
+        "y": -12
+      },
+      {
+        "kind": "MiningLeft",
+        "x": -8,
+        "y": -12
+      },
+      {
+        "kind": "Explosion",
+        "x": -8,
+        "y": -14
+      },
+      {
+        "kind": "Countdown",
+        "x": -1,
+        "y": -19
+      }
+    ]
+  },
+  "section": {
+    "part": 1,
+    "size": 388,
+    "sha256": "91071cc7578e3ce8f5f6e692537c230dadde7f564ce7e8d8a14f2f789ee4ab27"
+  },
+  "families": [
+    {
+      "kind": "BashingRight",
+      "offset": 0,
+      "frame_count": 4,
+      "width": 16,
+      "height": 10
+    },
+    {
+      "kind": "BashingLeft",
+      "offset": 80,
+      "frame_count": 4,
+      "width": 16,
+      "height": 10
+    },
+    {
+      "kind": "MiningRight",
+      "offset": 160,
+      "frame_count": 2,
+      "width": 16,
+      "height": 13
+    },
+    {
+      "kind": "MiningLeft",
+      "offset": 212,
+      "frame_count": 2,
+      "width": 16,
+      "height": 13
+    },
+    {
+      "kind": "Explosion",
+      "offset": 264,
+      "frame_count": 1,
+      "width": 16,
+      "height": 22
+    },
+    {
+      "kind": "Countdown",
+      "offset": 308,
+      "frame_count": 10,
+      "width": 8,
+      "height": 8
+    }
+  ],
+  "frames": [
+    {
+      "kind": "BashingRight",
+      "index": 0,
+      "offset": 0,
+      "width": 16,
+      "height": 10,
+      "digit": null,
+      "bit_file": "mask-BashingRight-00.bits.bin",
+      "selected_bits": 35,
+      "bit_sha256": "8ee4f68dba8cfbe50b2cf76b903a294484d32583c0c0f784bd5f80a77d9c5086"
+    },
+    {
+      "kind": "BashingRight",
+      "index": 1,
+      "offset": 20,
+      "width": 16,
+      "height": 10,
+      "digit": null,
+      "bit_file": "mask-BashingRight-01.bits.bin",
+      "selected_bits": 20,
+      "bit_sha256": "0292152c05a7c57f7af03ecf1dd4244ad45da121c30ed4bb70ba5c50deb6c5f0"
+    },
+    {
+      "kind": "BashingRight",
+      "index": 2,
+      "offset": 40,
+      "width": 16,
+      "height": 10,
+      "digit": null,
+      "bit_file": "mask-BashingRight-02.bits.bin",
+      "selected_bits": 29,
+      "bit_sha256": "1932a4d5d4f41feeb1056ecfb9e5dd19eec9cd084221e56d27acfa6414a2da96"
+    },
+    {
+      "kind": "BashingRight",
+      "index": 3,
+      "offset": 60,
+      "width": 16,
+      "height": 10,
+      "digit": null,
+      "bit_file": "mask-BashingRight-03.bits.bin",
+      "selected_bits": 45,
+      "bit_sha256": "8386df3627d4f133721ae95641f47ba27c4fc23b009af3537385dcd9ccf1fcd0"
+    },
+    {
+      "kind": "BashingLeft",
+      "index": 0,
+      "offset": 80,
+      "width": 16,
+      "height": 10,
+      "digit": null,
+      "bit_file": "mask-BashingLeft-00.bits.bin",
+      "selected_bits": 35,
+      "bit_sha256": "990b84ed228307e93aaa81a2e10b823cb28fc7b7cd624f90b6da8d4cd453ff13"
+    },
+    {
+      "kind": "BashingLeft",
+      "index": 1,
+      "offset": 100,
+      "width": 16,
+      "height": 10,
+      "digit": null,
+      "bit_file": "mask-BashingLeft-01.bits.bin",
+      "selected_bits": 20,
+      "bit_sha256": "8a7c483512d4ab6771bb192fe1d1736f75c4044ff559023f67be48f61aed2118"
+    },
+    {
+      "kind": "BashingLeft",
+      "index": 2,
+      "offset": 120,
+      "width": 16,
+      "height": 10,
+      "digit": null,
+      "bit_file": "mask-BashingLeft-02.bits.bin",
+      "selected_bits": 29,
+      "bit_sha256": "11a01afd801237098bf285755370d53c803f20178632ea3ab0c0a48f1b83ac22"
+    },
+    {
+      "kind": "BashingLeft",
+      "index": 3,
+      "offset": 140,
+      "width": 16,
+      "height": 10,
+      "digit": null,
+      "bit_file": "mask-BashingLeft-03.bits.bin",
+      "selected_bits": 45,
+      "bit_sha256": "64235eccaac981777b6dc63ea8e20cd2861f32b0fff01f1175c8ca13dda6f820"
+    },
+    {
+      "kind": "MiningRight",
+      "index": 0,
+      "offset": 160,
+      "width": 16,
+      "height": 13,
+      "digit": null,
+      "bit_file": "mask-MiningRight-00.bits.bin",
+      "selected_bits": 56,
+      "bit_sha256": "2cda647bd19f0efd197a9dde979238051a95e9f1201138c1e89379440e84eb4a"
+    },
+    {
+      "kind": "MiningRight",
+      "index": 1,
+      "offset": 186,
+      "width": 16,
+      "height": 13,
+      "digit": null,
+      "bit_file": "mask-MiningRight-01.bits.bin",
+      "selected_bits": 68,
+      "bit_sha256": "f62eef05b98f0b736eec7fdf412a2f99acfebb0e35137778bc3589678a42aca1"
+    },
+    {
+      "kind": "MiningLeft",
+      "index": 0,
+      "offset": 212,
+      "width": 16,
+      "height": 13,
+      "digit": null,
+      "bit_file": "mask-MiningLeft-00.bits.bin",
+      "selected_bits": 56,
+      "bit_sha256": "903508ad046ad18def9ee168bd91465e349d4940072eb22ee27200bfd5a61838"
+    },
+    {
+      "kind": "MiningLeft",
+      "index": 1,
+      "offset": 238,
+      "width": 16,
+      "height": 13,
+      "digit": null,
+      "bit_file": "mask-MiningLeft-01.bits.bin",
+      "selected_bits": 68,
+      "bit_sha256": "72a4fe66419b5c17527c9fb976a498a289b8fbd54b8f80c4052793eb41f3c0d9"
+    },
+    {
+      "kind": "Explosion",
+      "index": 0,
+      "offset": 264,
+      "width": 16,
+      "height": 22,
+      "digit": null,
+      "bit_file": "mask-Explosion-00.bits.bin",
+      "selected_bits": 279,
+      "bit_sha256": "c73c2b68cf2261e834e44b7fc65a13771cea4c11eb3a081150ca85cab61e2b1a"
+    },
+    {
+      "kind": "Countdown",
+      "index": 0,
+      "offset": 308,
+      "width": 8,
+      "height": 8,
+      "digit": 9,
+      "bit_file": "mask-Countdown-00.bits.bin",
+      "selected_bits": 18,
+      "bit_sha256": "ec3031b5596225dab52ef2bdb54e7e86198ea5243affa332b23932f8e1984f9b"
+    },
+    {
+      "kind": "Countdown",
+      "index": 1,
+      "offset": 316,
+      "width": 8,
+      "height": 8,
+      "digit": 8,
+      "bit_file": "mask-Countdown-01.bits.bin",
+      "selected_bits": 19,
+      "bit_sha256": "6cd66388c30590217c38034617cdd55a2b351c5a19f68238630aacdedc1fc05b"
+    },
+    {
+      "kind": "Countdown",
+      "index": 2,
+      "offset": 324,
+      "width": 8,
+      "height": 8,
+      "digit": 7,
+      "bit_file": "mask-Countdown-02.bits.bin",
+      "selected_bits": 8,
+      "bit_sha256": "7f08f5421919fb9f6b168194b358f75f6a21044629b4cfcc92777e785ccb5e44"
+    },
+    {
+      "kind": "Countdown",
+      "index": 3,
+      "offset": 332,
+      "width": 8,
+      "height": 8,
+      "digit": 6,
+      "bit_file": "mask-Countdown-03.bits.bin",
+      "selected_bits": 18,
+      "bit_sha256": "0e0c064f567a67456cb797abcb40cacb18b050e701f6c244e6eca3dff16fedee"
+    },
+    {
+      "kind": "Countdown",
+      "index": 4,
+      "offset": 340,
+      "width": 8,
+      "height": 8,
+      "digit": 5,
+      "bit_file": "mask-Countdown-04.bits.bin",
+      "selected_bits": 14,
+      "bit_sha256": "0b6b00f3a6b42251880cb07807919bdf038d7b82f07ef4212b3763ed311da702"
+    },
+    {
+      "kind": "Countdown",
+      "index": 5,
+      "offset": 348,
+      "width": 8,
+      "height": 8,
+      "digit": 4,
+      "bit_file": "mask-Countdown-05.bits.bin",
+      "selected_bits": 10,
+      "bit_sha256": "dbca17d140db424c1d011e69014644a8c6ea2c65bb5e5b5fc7c319edccc163c1"
+    },
+    {
+      "kind": "Countdown",
+      "index": 6,
+      "offset": 356,
+      "width": 8,
+      "height": 8,
+      "digit": 3,
+      "bit_file": "mask-Countdown-06.bits.bin",
+      "selected_bits": 13,
+      "bit_sha256": "9b20c6e41e1f0b4b2b910cdb1e4ffe8305ee4fdb2020498aed0b1ebc3a543455"
+    },
+    {
+      "kind": "Countdown",
+      "index": 7,
+      "offset": 364,
+      "width": 8,
+      "height": 8,
+      "digit": 2,
+      "bit_file": "mask-Countdown-07.bits.bin",
+      "selected_bits": 14,
+      "bit_sha256": "c268b9d3a03680a365f03ee61f9aef728154d9f9da6838014ebe05239a3a2ab0"
+    },
+    {
+      "kind": "Countdown",
+      "index": 8,
+      "offset": 372,
+      "width": 8,
+      "height": 8,
+      "digit": 1,
+      "bit_file": "mask-Countdown-08.bits.bin",
+      "selected_bits": 8,
+      "bit_sha256": "dd37a30fd97e79a3c5f4d0f770fa454239086d7b54e426576e01c806319b5777"
+    },
+    {
+      "kind": "Countdown",
+      "index": 9,
+      "offset": 380,
+      "width": 8,
+      "height": 8,
+      "digit": 0,
+      "bit_file": "mask-Countdown-09.bits.bin",
+      "selected_bits": 16,
+      "bit_sha256": "732af4c053f45db2cac63e994f2b9a7fa33e0ae547e4773aaa0df40ccf78b398"
+    }
+  ]
+}

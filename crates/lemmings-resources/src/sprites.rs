@@ -427,8 +427,8 @@ const ANIMATIONS: [LemmingAnimationInfo; LEMMING_ANIMATION_COUNT] = [
 
 /// Original VGA MAIN.DAT: all seven section headers/payload checksums are
 /// validated. Sprite extraction decodes section 0; the UI reader decodes selected
-/// sections 2/3/4/6. Other sections remain borrowed, and parsing alone does not
-/// validate their command streams or layouts.
+/// sections 2/3/4/6, and the mask reader decodes section 1. Other sections remain
+/// borrowed, and parsing alone does not validate their command streams or layouts.
 #[derive(Clone, Copy, Debug)]
 pub struct MainDatFile<'a> {
     bytes: &'a [u8],

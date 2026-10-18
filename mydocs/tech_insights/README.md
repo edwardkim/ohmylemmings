@@ -24,3 +24,4 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [초기 지형 합성·플래그 우선순위와 120개 전체 맵 대조](issue-15_level_terrain.md)
 - [MAIN.DAT 레밍 스프라이트·방향/기준점과 전체 337프레임 대조](issue-16_lemming_sprites.md)
 - [MAIN.DAT UI·폰트·투명도 정책과 200개 이미지/글리프 전체 대조](issue-17_main_ui.md)
+- [MAIN.DAT 마스크·카운트다운·극성/숫자 차이와 전체 23프레임 대조](issue-18_main_masks.md)
