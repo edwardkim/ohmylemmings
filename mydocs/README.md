@@ -1,27 +1,36 @@
 # Hyper-Waterfall 문서 안내
 
-프로젝트 기획은 [rusty_lemmings.md](plans/rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
+프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 
-단계별 구현 목표와 작업 순서는 [전체 구현 계획](plans/implementation_plan.md)을 참고합니다.
+단계별 구현 목표와 작업 순서는 [전체 구현 계획](plans/issue-1_implementation_plan.md)을 참고합니다.
 
-G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/dos_original_baseline.md)를 완료했습니다. 로컬 데이터 준비는 [리소스 안내](../assets/README.md)를 참고합니다.
+G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/issue-2_dos_original_baseline.md)를 완료했습니다. 로컬 데이터 준비는 [리소스 안내](../assets/README.md)를 참고합니다.
 
-[G00-02 레퍼런스 코드 지도](tech_insights/reference_code_map.md)의 고정 소스·선언 위치 검증과 게시를 완료했습니다. 다음 작업은 G00-03 호환성 검증 기준 정의입니다.
+[G00-02 레퍼런스 코드 지도](tech_insights/issue-3_reference_code_map.md)의 고정 소스·선언 위치 검증과 게시를 완료했습니다. 다음 작업은 G00-03 호환성 검증 기준 정의입니다.
 
 ## 폴더 구조
 
 - [plans/](plans/README.md): 마일스톤 및 아키텍처 계획
-- [orders/](orders/README.md): AI 작업 지시 템플릿 및 모듈별 요구사항
+- [orders/](orders/README.md): 날짜별 작업일지와 이슈별 작업 목록
 - [working/](working/README.md): 진행 중 작업 상태와 이어서 작업할 컨텍스트
 - [reports/](reports/README.md): 작업 결과와 검증 보고서
 - [feedbacks/](feedbacks/README.md): 사용자 및 리뷰어의 피드백과 반영 결과
 - [tech_insights/](tech_insights/README.md): 레퍼런스 분석과 확인된 기술 지식
 - [troubleshootings/](troubleshootings/README.md): 문제 원인과 해결 이력
 
+## 문서명과 이슈 추적
+
+- 작업 문서는 `issue-<번호>_<주제>.md`로 작성합니다. 예: `tech_insights/issue-3_reference_code_map.md`.
+- 문서 상단에 담당 GitHub 이슈의 번호·URL을 연결합니다. 여러 작업에 걸친 기획서는 상위 추적 이슈를 사용합니다.
+- `orders/`는 날짜별 일지이므로 `yyyymmdd.md`를 사용합니다. Asia/Seoul 작업일자를 기준으로 하루 한 파일에 이슈 번호·작업·결과·다음 행동을 목록으로 기록합니다.
+- 폴더 안내용 `README.md`는 공통 색인이므로 이름을 유지합니다. 문서를 이동하면 저장소와 GitHub 이슈 본문의 링크도 갱신합니다.
+
+[20261018 작업일지](orders/20261018.md)에서 #1~#4와 이슈 도입 전의 공개 기록을 확인할 수 있습니다. 문서 운영 규칙의 적용은 [#4](https://github.com/edwardkim/ohmylemmings/issues/4)에서 추적합니다.
+
 ## 작업 흐름
 
 1. GitHub 이슈를 먼저 등록하고 생성된 번호·URL을 조회해 확인합니다.
-2. 이슈를 연결한 `orders/` 작업 지시와 `working/` 진행 기록을 작성하고 관련 계획·피드백·기술 분석 문서를 읽습니다.
+2. `orders/yyyymmdd.md`의 이슈별 목록과 `working/issue-<번호>_<주제>.md`에 작업을 기록하고 관련 계획·피드백·기술 분석 문서를 읽습니다.
 3. 작은 모듈부터 TDD로 구현하고 검증하며, 진행 상황과 다음 작업을 `working/`에 기록합니다.
 4. 완료된 작업의 변경 내용과 검증 결과를 `reports/`에 정리합니다.
 5. 발견한 지식, 피드백 반영 결과, 문제 해결 이력을 기록하고 계획의 진행 상태를 갱신한 뒤 이슈를 완료 처리합니다.

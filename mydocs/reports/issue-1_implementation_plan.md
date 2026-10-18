@@ -2,9 +2,9 @@
 
 ## 대상과 범위
 
-- [작업 지시](../orders/implementation_plan.md)
-- [전체 구현 계획](../plans/implementation_plan.md)
-- [진행 기록](../working/implementation_plan.md)
+- [작업일지](../orders/20261018.md#issue-1)
+- [전체 구현 계획](../plans/issue-1_implementation_plan.md)
+- [진행 기록](../working/issue-1_implementation_plan.md)
 
 이번 작업의 산출물은 구현 계획과 추적 체계입니다. 구현 목표 G00~G12의 현재 상태는 대기입니다.
 

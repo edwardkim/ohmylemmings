@@ -1,8 +1,8 @@
 # G00-02 레퍼런스 코드 고정 결과
 
 - 작업 이슈: [#3](https://github.com/edwardkim/ohmylemmings/issues/3), 상위 [#1](https://github.com/edwardkim/ohmylemmings/issues/1)
-- [작업 지시](../orders/reference_code_map.md), [진행 기록](../working/reference_code_map.md)
-- [코드 지도](../tech_insights/reference_code_map.md), [소스 매니페스트](../../assets/manifests/reference_sources.json)
+- [작업일지](../orders/20261018.md#issue-3), [진행 기록](../working/issue-3_reference_code_map.md)
+- [코드 지도](../tech_insights/issue-3_reference_code_map.md), [소스 매니페스트](../../assets/manifests/reference_sources.json)
 
 ## 산출물
 
@@ -28,9 +28,9 @@
 
 ## 사용자 피드백과 해결 기록
 
-이슈 등록 전 작업 문서 초안을 생성했던 순서를 바로잡았습니다. [이슈 선등록 피드백](../feedbacks/issue_first_workflow.md)을 `AGENTS.md`와 작업 흐름에 반영했고, 이슈 #3 조회 확인 후 소스 확보·분석을 수행했습니다.
+이슈 등록 전 작업 문서 초안을 생성했던 순서를 바로잡았습니다. [이슈 선등록 피드백](../feedbacks/issue-3_issue_first_workflow.md)을 `AGENTS.md`와 작업 흐름에 반영했고, 이슈 #3 조회 확인 후 소스 확보·분석을 수행했습니다.
 
-Contents API의 바이트 불일치는 [전송 문제 해결 기록](../troubleshootings/github_source_bytes.md)에 남겼습니다.
+Contents API의 바이트 불일치는 [전송 문제 해결 기록](../troubleshootings/issue-3_github_source_bytes.md)에 남겼습니다.
 
 ## 다음 작업
 

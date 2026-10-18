@@ -2,7 +2,7 @@
 
 ## 상태
 
-완료했습니다. 관련 이슈 [#2](https://github.com/edwardkim/ohmylemmings/issues/2)를 완료 처리했고, 지시는 [작업 문서](../orders/dos_baseline.md), 결과는 [보고서](../reports/dos_baseline.md)를 참고합니다.
+완료했습니다. 관련 이슈 [#2](https://github.com/edwardkim/ohmylemmings/issues/2)를 완료 처리했고, 작업 내역은 [작업일지](../orders/20261018.md#issue-2), 결과는 [보고서](../reports/issue-2_dos_baseline.md)를 참고합니다.
 
 ## 확인한 내용
 

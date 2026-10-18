@@ -2,13 +2,13 @@
 
 ## 현재 상태
 
-계획 수립과 [GitHub 상위 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1) 등록을 완료했습니다. 현재 G00 진행 중이며, [G00-01 / #2](https://github.com/edwardkim/ohmylemmings/issues/2)에서 원작 파일 50개를 확보했고, [G00-02 / #3](https://github.com/edwardkim/ohmylemmings/issues/3)에서 소스 46개와 선언 290곳을 고정·검증했습니다. 세부 상태는 [G00-02 진행 기록](reference_code_map.md)에서 관리합니다. G01~G12는 대기 상태입니다.
+계획 수립과 [GitHub 상위 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1) 등록을 완료했습니다. 현재 G00 진행 중이며, [G00-01 / #2](https://github.com/edwardkim/ohmylemmings/issues/2)에서 원작 파일 50개를 확보했고, [G00-02 / #3](https://github.com/edwardkim/ohmylemmings/issues/3)에서 소스 46개와 선언 290곳을 고정·검증했습니다. 세부 상태는 [G00-02 진행 기록](issue-3_reference_code_map.md)에서 관리합니다. G01~G12는 대기 상태입니다.
 
 ## 관련 문서
 
-- [작업 지시](../orders/implementation_plan.md)
-- [전체 구현 계획](../plans/implementation_plan.md)
-- [결과 보고서](../reports/implementation_plan.md)
+- [작업일지](../orders/20261018.md#issue-1)
+- [전체 구현 계획](../plans/issue-1_implementation_plan.md)
+- [결과 보고서](../reports/issue-1_implementation_plan.md)
 
 ## 진행 내용
 

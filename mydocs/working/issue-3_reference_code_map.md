@@ -2,7 +2,7 @@
 
 ## 상태
 
-완료했습니다. [이슈 #3](https://github.com/edwardkim/ohmylemmings/issues/3)의 등록과 열린 상태를 먼저 확인한 뒤 소스 확보·분석을 수행했고, 검증·보고·게시 후 이슈를 완료 처리했습니다. 관련 내용은 [작업 지시](../orders/reference_code_map.md)를 참고합니다.
+완료했습니다. [이슈 #3](https://github.com/edwardkim/ohmylemmings/issues/3)의 등록과 열린 상태를 먼저 확인한 뒤 소스 확보·분석을 수행했고, 검증·보고·게시 후 이슈를 완료 처리했습니다. 관련 내용은 [작업일지](../orders/20261018.md#issue-3)를 참고합니다.
 
 이슈 등록 전에 작업 지시·진행 문서 초안을 생성한 순서를 바로잡았습니다. 사용자 피드백에 따라 이슈 선등록 절차를 지침에 반영했고, 소스 확보와 분석은 등록 확인 후 진행합니다.
 
@@ -21,5 +21,5 @@
 - 소스 46개와 선언 290곳의 바이트·위치를 고정했습니다.
 - 새 폴더에 소스 46개를 재확보했고 기존 원작 50개도 검증했습니다.
 - 위치·인코딩 검증을 TDD로 추가했고 테스트 8개를 통과했습니다.
-- 세부 내용은 [코드 지도](../tech_insights/reference_code_map.md)와 [결과 보고서](../reports/reference_code_map.md)에 기록했습니다.
+- 세부 내용은 [코드 지도](../tech_insights/issue-3_reference_code_map.md)와 [결과 보고서](../reports/issue-3_reference_code_map.md)에 기록했습니다.
 - 게시 커밋 `eef1d59`의 원격 파일 32개를 대조했고 이슈 #3을 완료 처리했습니다.

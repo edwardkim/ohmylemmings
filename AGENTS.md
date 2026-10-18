@@ -2,19 +2,19 @@
 
 ## Project Structure & Module Organization
 
-This repository ports DOS Lemmings to Rust. `mydocs/plans/rusty_lemmings.md` defines the architecture; `mydocs/plans/implementation_plan.md` tracks incremental goals. G00 provides DOS reference tooling; Rust crates are planned.
+This repository ports DOS Lemmings to Rust. `mydocs/plans/issue-1_rusty_lemmings.md` defines the architecture; `mydocs/plans/issue-1_implementation_plan.md` tracks incremental goals. G00 provides DOS reference tooling; Rust crates are planned.
 
-When implementing the plan:
+When implementing:
 
 - Separate resource parsing, deterministic simulation, and platform adapters into modules or crates. Keep simulation independent of rendering and I/O; prefer `no_std` compatibility where practical.
 - Use `src/` for Rust code and `tests/` for integration tests within each crate.
-- Use `mydocs/README.md` to locate plans, orders, working records, reports, feedback, technical insights, and troubleshooting.
+- Use `mydocs/README.md` for document locations and naming rules.
 - Keep acquisition tooling in `tools/` and its offline tests in `tools/tests/`.
 - Store downloaded binaries in ignored `assets/local/`; commit provenance and hashes in `assets/manifests/`.
 
 ## Build, Test, and Development Commands
 
-Run these commands from the repository root with Python 3:
+Run from the repository root with Python 3:
 
 - `python3 tools/reference_assets.py fetch`: acquire and verify pinned reference files.
 - `python3 tools/reference_assets.py verify`: check local file sizes and SHA-256 hashes.
@@ -36,8 +36,8 @@ Cover damaged or missing assets, malformed input, state transitions, collision b
 
 Use imperative commit subjects, for example `Add DAT section decoder`, and keep changes focused.
 
-PRs should describe behavior, reference the relevant milestone or issue, and report checks run or unavailable. Include screenshots for rendering/UI changes and reproducible fixtures for compatibility fixes.
+PRs should describe behavior, link issues, and report validation. Include screenshots for rendering/UI changes and reproducible fixtures for compatibility fixes.
 
 ## Hyper-Waterfall Development Workflow
 
-Register a GitHub issue and verify its number/URL before creating task documents, editing files, or running experiments. Link it in task records. Follow `mydocs/plans/rusty_lemmings.md`: read relevant documents, implement with TDD, record progress and validation, and close the issue after completion. Keep documentation synchronized with implementation.
+Register a GitHub issue and verify its number/URL before writing task documents, editing files, or running experiments. Name `mydocs/` task documents `issue-<number>_<topic>.md` and link their issue. Keep folder `README.md` indexes. Use `orders/yyyymmdd.md` for Asia/Seoul daily journals with issue-numbered task lists. Read relevant documents, implement with TDD, record progress and validation, synchronize documentation, then close completed issues.

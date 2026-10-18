@@ -1,7 +1,7 @@
 # G00-01 기준판 식별·원본 확보 결과
 
 - 추적 이슈: [#2](https://github.com/edwardkim/ohmylemmings/issues/2), 상위 [#1](https://github.com/edwardkim/ohmylemmings/issues/1)
-- [작업 지시](../orders/dos_baseline.md), [진행 기록](../working/dos_baseline.md), [기준판 분석](../tech_insights/dos_original_baseline.md)
+- [작업일지](../orders/20261018.md#issue-2), [진행 기록](../working/issue-2_dos_baseline.md), [기준판 분석](../tech_insights/issue-2_dos_original_baseline.md)
 
 ## 결과
 

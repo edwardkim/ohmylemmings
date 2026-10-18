@@ -81,8 +81,8 @@ Lemmix의 한 틱에서는 논리 카운터 증가 → 생성 → 개체 처리 
 
 이번 결과는 고정 소스의 바이트·선언 위치와 정적 호출 관계입니다. 원작 실행 파일과 두 레퍼런스의 실행 결과를 대조한 상태는 아닙니다. 선택한 파일은 구현 진입점이며, 후속 작업에서 추가 의존 파일을 읽을 때도 같은 커밋을 사용하고 필요한 잠금 항목을 확장합니다.
 
-일부 Delphi 파일은 CP1252입니다. 바이트 전송과 해시 불일치의 처리 방법은 [소스 전송 문제 해결 기록](../troubleshootings/github_source_bytes.md)에 남겼습니다.
+일부 Delphi 파일은 CP1252입니다. 바이트 전송과 해시 불일치의 처리 방법은 [소스 전송 문제 해결 기록](../troubleshootings/issue-3_github_source_bytes.md)에 남겼습니다.
 
-- [작업 지시](../orders/reference_code_map.md)
-- [진행 기록](../working/reference_code_map.md)
-- [결과 보고서](../reports/reference_code_map.md)
+- [작업일지](../orders/20261018.md#issue-3)
+- [진행 기록](../working/issue-3_reference_code_map.md)
+- [결과 보고서](../reports/issue-3_reference_code_map.md)
