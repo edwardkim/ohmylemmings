@@ -84,5 +84,5 @@ AI의 기억 상실(Context Window 초과)을 방지하고 일관된 아키텍�
 ### Phase 4: 폴리싱 및 배포 (주차 8~)
 - [ ] UI 및 사운드(Adlib/MIDI) 시스템 연동
 - [ ] 웹 브라우저(WASM) 및 데스크톱 네이티브(Windows/Linux) 크로스 빌드 파이프라인 구성
-- [ ] GitHub 저장소 공개
+- [x] GitHub 저장소 공개: [edwardkim/ohmylemmings](https://github.com/edwardkim/ohmylemmings)
 - [x] README 정리
