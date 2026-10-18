@@ -40,6 +40,8 @@ VGASPEC 특수 배경 4개는 [G03-05 재현 명령](../mydocs/tech_insights/iss
 
 초기 레벨 지형 120개는 [G03-06 재현 명령](../mydocs/tech_insights/issue-15_level_terrain.md#원본-검사-재현)의 `inspect_terrain`으로 검사합니다. [지형 검증 매니페스트](manifests/level_terrain.json)에 80개 기본 맵의 인덱스·정규화 RGBA 해시·팔레트·점유 수와 TS 우선순위 차이를 기록합니다. 원본 확인 후 새 출력 디렉터리를 사용하며 결과는 Git 추적에서 제외합니다. 확보용 입력이나 실행 호환성 인증은 아닙니다.
 
+MAIN.DAT 레밍 스프라이트는 [G03-07 재현 명령](../mydocs/tech_insights/issue-16_lemming_sprites.md#원본-검사-재현)의 `inspect_sprites`로 확인합니다. [스프라이트 검증 매니페스트](manifests/lemming_sprites.json)에 28개 애니메이션·337프레임의 픽셀 해시·발 기준점·방향과 7개 해제 구간의 해시를 기록합니다. 팔레트·재생 규칙·UI/마스크 해석은 별도이며 확보용 입력으로 사용하지 않습니다.
+
 ## 기준판 식별
 
 기준 ID는 `dos-original-vga`입니다. 원본 매체의 세부 리비전은 아직 확인되지 않았으며 확보한 파일의 바이트 식별값으로 입력을 고정합니다. 확보 출처, 상호 대조 결과, 데모와의 차이는 [기준판 분석](../mydocs/tech_insights/issue-2_dos_original_baseline.md)에 기록합니다.

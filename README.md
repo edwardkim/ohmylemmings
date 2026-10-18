@@ -10,7 +10,7 @@ G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. `
 
 G03 리소스 해석을 진행 중입니다. [기본 레벨 레코드](mydocs/tech_insights/issue-10_level_records.md), [ODDTABLE·120개 카탈로그](mydocs/tech_insights/issue-11_level_catalog.md), [GROUND 메타데이터·팔레트](mydocs/tech_insights/issue-12_ground_metadata.md), [VGAGR 이미지·마스크](mydocs/tech_insights/issue-13_vgagr_images.md)의 원본 대조와 실제 CI를 통과했습니다.
 
-[G03-05 VGASPEC 특수 배경](mydocs/tech_insights/issue-14_vgaspec_backgrounds.md)을 완료했으며 [G03-06 초기 레벨 지형](mydocs/tech_insights/issue-15_level_terrain.md)도 전체 맵 대조·로컬 검사·실제 CI를 통과해 완료했습니다. 120개 진입점·30412800픽셀·팔레트를 독립 Python과 대조했고 실제 TS 렌더링 코드와의 규칙 차이도 기록했습니다. G03 전체는 MAIN.DAT 스프라이트·UI와 객체 합성이 남아 진행 중입니다. 다음은 G03-07 MAIN.DAT 레밍 스프라이트이며 G04 픽셀 지형 모델도 준비 상태입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
+[G03-05 VGASPEC 특수 배경](mydocs/tech_insights/issue-14_vgaspec_backgrounds.md)을 완료했으며 [G03-06 초기 레벨 지형](mydocs/tech_insights/issue-15_level_terrain.md)도 전체 맵 대조·로컬 검사·실제 CI를 통과해 완료했습니다. 120개 진입점·30412800픽셀·팔레트를 독립 Python과 대조했고 실제 TS 렌더링 코드와의 규칙 차이도 기록했습니다. [G03-07 MAIN.DAT 레밍 스프라이트](mydocs/tech_insights/issue-16_lemming_sprites.md)는 337프레임·63488픽셀의 Rust·Python·TS 대조와 로컬 검사를 마쳐 게시·실제 CI를 확인합니다. G03 전체는 MAIN.DAT UI·폰트·마스크와 객체 합성이 남아 진행 중입니다. 다음은 G03-08 MAIN.DAT UI·폰트이며 G04 픽셀 지형 모델도 준비 상태입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
 
 ## Rust 개발
 
@@ -26,7 +26,7 @@ make check
 `make check-rust`, `make check-python`, `make check-wasm`으로 각각 실행할 수도 있습니다. [CI·검증 안내](mydocs/plans/issue-7_continuous_integration.md)와 [Makefile](Makefile)에 세부 명령을 정리합니다. 같은 명령이 [GitHub Actions](.github/workflows/ci.yml)의 push·PR·수동 실행에서 사용됩니다.
 
 - [crates/lemmings-core](crates/lemmings-core/src/lib.rs): 레벨 식별 자료형과 향후 시뮬레이션
-- [crates/lemmings-resources](crates/lemmings-resources/src/lib.rs): DAT·기본 레벨·ODDTABLE·120개 카탈로그·GROUND·VGAGR·VGASPEC·초기 지형 합성과 팔레트, 코어 ID를 사용하는 로컬 의존
+- [crates/lemmings-resources](crates/lemmings-resources/src/lib.rs): DAT·기본 레벨·ODDTABLE·120개 카탈로그·GROUND·VGAGR·VGASPEC·초기 지형 합성·MAIN 레밍 스프라이트와 팔레트, 코어 ID를 사용하는 로컬 의존
 - [개발 골격 설계](mydocs/plans/issue-6_rust_workspace.md): 모듈 경계·API·개별/WASM 빌드 명령
 
 현재 빌드 대상은 라이브러리 2개이며, 게임 실행 명령은 G06의 네이티브 어댑터에서 도입합니다.

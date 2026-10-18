@@ -19,6 +19,7 @@ mod ground;
 mod level;
 mod odd;
 mod reader;
+mod sprites;
 mod terrain;
 mod vgagr;
 mod vgaspec;
@@ -50,4 +51,10 @@ pub use vgaspec::{
 pub use terrain::{
     LEVEL_TERRAIN_HEIGHT, LEVEL_TERRAIN_PIXEL_COUNT, LEVEL_TERRAIN_WIDTH, LevelTerrain,
     SpecialTerrain, TerrainComposeError, TerrainGraphics, TerrainSource, compose_terrain,
+};
+
+pub use sprites::{
+    LEMMING_ANIMATION_COUNT, LEMMING_SPRITE_DATA_SIZE, LemmingAnimationInfo, LemmingFrames,
+    LemmingSpriteError, LemmingSpriteKind, LemmingSprites, MAIN_DAT_SECTION_COUNT, MainDatFile,
+    SpriteDirection, SpriteFrame,
 };

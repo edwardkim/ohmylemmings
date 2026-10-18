@@ -22,3 +22,4 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [VGAGR 비트플레인·마스크·프레임과 원본 전체 픽셀 대조](issue-13_vgagr_images.md)
 - [VGASPEC 특수 배경·팔레트·RLE와 원본 4개 전체 픽셀 대조](issue-14_vgaspec_backgrounds.md)
 - [초기 지형 합성·플래그 우선순위와 120개 전체 맵 대조](issue-15_level_terrain.md)
+- [MAIN.DAT 레밍 스프라이트·방향/기준점과 전체 337프레임 대조](issue-16_lemming_sprites.md)
