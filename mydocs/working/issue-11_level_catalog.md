@@ -20,7 +20,8 @@
 - [x] 순서표·ODD 통계와 API·오류·의존 방향 확정
 - [x] 합성 테스트 먼저 작성, Red→Green 확인: 새 13개 실패 후 전부 통과
 - [x] 원본 120개 최종 수치·제목·연결·배치 보존 대조
-- [ ] 전체 로컬 검사·실제 CI·문서·원격 게시 확인
+- [x] 전체 로컬 검사·재현 명령·문서 링크·파일명·공백 확인
+- [x] 구현 커밋 실제 CI 3개 성공, 원격 74개 파일 blob 대조
 
 작업일지: [20261018 / #11](../orders/20261018.md#issue-11).
 
@@ -28,4 +29,6 @@
 
 `OddTable`·`CatalogEntry`·`DosLevelFile`·`ResolvedLevel`과 공통 수치 검증을 구현했습니다. `make check`에서 Rust 단위 69개·문서 예제 6개·Python 8개와 빌드·포맷·Clippy·WASM을 통과했습니다. 원본 120개 연결·최종 수치·32바이트 제목이 독립 Python·기존 목록과 일치하고, 40개 변형을 포함한 전체 기본 바이트가 보존됩니다.
 
-[기술 계약·재현 명령](../tech_insights/issue-11_level_catalog.md)과 [보고서](../reports/issue-11_level_catalog.md)를 동기화하고 실제 CI·문서·원격 게시를 확인합니다. G03 전체는 진행 중이며 다음은 G03-03 GROUND 메타데이터·팔레트 해석입니다.
+구현 커밋 `5cd95d7`의 [실제 CI](https://github.com/edwardkim/ohmylemmings/actions/runs/39112114667)에서 세 작업 모두 성공했고 대상 SHA·실제 로그·원격 74개 파일을 확인했습니다. G03-02의 구현·검증 범위를 완료했습니다.
+
+[기술 계약·재현 명령](../tech_insights/issue-11_level_catalog.md)과 [보고서](../reports/issue-11_level_catalog.md)를 동기화했습니다. 최종 문서 게시·CI와 #11 종료는 GitHub 이슈에서 추적합니다. G03 전체는 진행 중이며 다음은 새 이슈의 G03-03 GROUND 메타데이터·팔레트 해석입니다.

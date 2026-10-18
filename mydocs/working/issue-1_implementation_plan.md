@@ -2,7 +2,7 @@
 
 ## 현재 상태
 
-계획 수립과 [상위 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1) 등록을 완료했습니다. G00의 원작 확보(#2)·소스 고정(#3)·비교 계약(#5), [G01-01 / #6](issue-6_rust_workspace.md)의 개발 골격과 [G01-02 / #7](issue-7_continuous_integration.md)의 실제 CI 검증을 마쳤습니다. [G02-01 / #8](issue-8_dat_sections.md) 구간 읽기와 [G02-02 / #9](issue-9_dat_decompression.md) 압축 해제의 검증으로 G02도 완료했습니다. G00·G01·G02는 완료, G03는 [G03-01 / #10](issue-10_level_records.md) 이후 [G03-02 / #11](issue-11_level_catalog.md)을 검증 중입니다. G03 전체는 그래픽 해석 등이 남아 진행 중이며 G04는 준비 상태입니다. 나머지 구현 목표는 선행 작업을 기다립니다.
+계획 수립과 [상위 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1) 등록을 완료했습니다. G00의 원작 확보(#2)·소스 고정(#3)·비교 계약(#5), [G01-01 / #6](issue-6_rust_workspace.md)의 개발 골격과 [G01-02 / #7](issue-7_continuous_integration.md)의 실제 CI 검증을 마쳤습니다. [G02-01 / #8](issue-8_dat_sections.md) 구간 읽기와 [G02-02 / #9](issue-9_dat_decompression.md) 압축 해제의 검증으로 G02도 완료했습니다. G00·G01·G02는 완료, G03는 [G03-01 / #10](issue-10_level_records.md) 이후 [G03-02 / #11](issue-11_level_catalog.md)도 마쳤습니다. G03 전체는 그래픽 해석 등이 남아 진행 중이며 G04는 준비 상태입니다. 나머지 구현 목표는 선행 작업을 기다립니다.
 
 ## 관련 문서
 
@@ -22,5 +22,5 @@
 
 ## 다음 행동
 
-1. G03-02 실제 CI·게시 확인을 마친 뒤 G03-03 GROUND 메타데이터·팔레트 이슈를 먼저 등록·확인합니다.
+1. G03-03 GROUND 메타데이터·팔레트 이슈를 먼저 등록·확인합니다.
 2. G04-01 픽셀 지형 읽기·경계 검증을 별도 이슈로 등록·확인해 진행합니다. 두 경로는 G06에서 통합합니다.

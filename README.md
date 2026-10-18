@@ -8,7 +8,7 @@
 
 G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. `no_std` 코어 자료형과 DAT 구간 검증·압축 해제를 도입했습니다. 원작 파일 50개·소스 46개와 120개 레벨·8직업·음악 21개·효과음 18개의 검증 범위를 고정했습니다. [G02-02 압축 해제](mydocs/tech_insights/issue-9_dat_decompression.md)는 합성 테스트, 원본 21개 파일·102개 구간의 해시 대조와 실제 Rust·Python·WASM CI를 통과했습니다.
 
-G03 리소스 해석을 진행 중입니다. [G03-01 기본 레벨 레코드](mydocs/tech_insights/issue-10_level_records.md)에 이어 [G03-02 ODDTABLE·120개 카탈로그](mydocs/tech_insights/issue-11_level_catalog.md)의 원본 연결·수치·제목·40개 변형·기본 배치 보존을 대조하고 실제 CI 검증 중입니다. 다음은 G03-03 GROUND 메타데이터·팔레트 해석이며 G04 픽셀 지형 모델도 준비 상태입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
+G03 리소스 해석을 진행 중입니다. [G03-01 기본 레벨 레코드](mydocs/tech_insights/issue-10_level_records.md)에 이어 [G03-02 ODDTABLE·120개 카탈로그](mydocs/tech_insights/issue-11_level_catalog.md)의 원본 연결·수치·제목·40개 변형·기본 배치 보존과 실제 CI를 확인해 완료했습니다. 다음은 G03-03 GROUND 메타데이터·팔레트 해석이며 G04 픽셀 지형 모델도 준비 상태입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
 
 ## Rust 개발
 
