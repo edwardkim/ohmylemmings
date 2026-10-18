@@ -29,8 +29,20 @@
 
 실제 TS의 Animation 생성 호출을 기록해 조회 테이블에서 사라지는 오른쪽 Shrugging도 비교했습니다. 픽셀 알고리즘은 수정하지 않았으며 TS의 방향 조회·기준점과 무수정 일치한다고 판정하지 않습니다. 로컬 미리보기는 진단 팔레트의 처음 최대 4프레임씩을 표시합니다.
 
-## 게시 상태와 다음 범위
+## 게시
 
-로컬 검증을 마쳤으며 문서 재현·추적 검사와 실제 push CI·원격 파일 대조를 확인해 완료합니다.
+구현 커밋 `5143bf552f9b872dbef41f3ad56487c7176883ef`를 `main`에 게시했습니다. [push CI 실행](https://github.com/edwardkim/ohmylemmings/actions/runs/39119469049)의 결론과 세 작업이 모두 success입니다.
+
+| 작업 | 실제 실행 근거 |
+|---|---|
+| [Rust native](https://github.com/edwardkim/ohmylemmings/actions/runs/39119469049/job/117651930406) | Rust 1.93.1, 포맷·Clippy·빌드, 단위 137개·문서 예제 11개 성공 |
+| [Python tooling](https://github.com/edwardkim/ohmylemmings/actions/runs/39119469049/job/117651930253) | Python 3.12.15, 테스트 8개 성공 |
+| [WASM libraries](https://github.com/edwardkim/ohmylemmings/actions/runs/39119469049/job/117651930432) | 고정 Rust·WASM 타깃, 두 라이브러리 컴파일 성공 |
+
+push 이벤트·대상 SHA·세 작업의 실제 로그·테스트 개수·clean-input 성공을 대조했습니다. 원본·기존 target·Cargo 패키지 캐시 없는 러너에서 통과했습니다. 원격 tree API의 파일 103개 모드·blob 해시가 로컬과 모두 일치했으며 작업 트리는 깨끗합니다. 원본·PNG·바이너리·JSONL·참조 소스 사본·빌드 출력은 추적하지 않습니다.
+
+G03-07 레밍 스프라이트 해석 범위를 완료했습니다. 최종 문서 게시·CI와 #16 종료는 GitHub 이슈 기록에서 추적합니다. 상위 #1의 G00·G01·G02만 전체 목표 완료로 유지합니다.
+
+## 남은 범위
 
 MAIN.DAT UI·폰트·메뉴 이미지·지형 변형 마스크와 객체 배치 합성은 남아 있습니다. G03 전체는 진행 중이며 다음은 별도 이슈의 G03-08 MAIN.DAT UI·폰트 해석입니다. G04-01 픽셀 지형 읽기·경계 검증도 준비 상태입니다. 물리·애니메이션 재생·게임 화면·실제 DOS 실행 호환성은 후속 범위입니다.
