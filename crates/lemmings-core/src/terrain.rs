@@ -87,6 +87,85 @@ impl<'a> TerrainMask<'a> {
     }
 }
 
+/// Exclusive binary terrain storage with checked, bool-only cell edits.
+/// Construction shares TerrainMask validation and never changes the input.
+/// Raw mutable bytes/rows are not exposed, preserving the binary invariant.
+/// This view is neither Clone nor Copy; read-only views follow Rust borrowing.
+///
+/// ```
+/// use lemmings_core::TerrainMaskMut;
+/// let mut cells = [0, 1, 0, 0, 0, 1];
+/// let mut terrain = TerrainMaskMut::new(3, 2, &mut cells)?;
+/// assert_eq!(terrain.set_pixel(0, 0, true), Some(true)); // changed
+/// assert_eq!(terrain.set_pixel(0, 0, true), Some(false)); // unchanged
+/// assert_eq!(terrain.set_solid(-1, 0, false), None); // outside
+/// assert!(terrain.as_read_only().is_solid(0, 0));
+/// let terrain = terrain.into_read_only();
+/// assert_eq!(terrain.row(0), Some(&[1, 1, 0][..]));
+/// # Ok::<(), lemmings_core::TerrainMaskError>(())
+/// ```
+#[derive(Debug, Eq, PartialEq)]
+pub struct TerrainMaskMut<'a> {
+    width: usize,
+    height: usize,
+    cells: &'a mut [u8],
+}
+impl<'a> TerrainMaskMut<'a> {
+    pub fn new(width: usize, height: usize, cells: &'a mut [u8]) -> Result<Self, TerrainMaskError> {
+        TerrainMask::new(width, height, cells)?;
+        Ok(Self {
+            width,
+            height,
+            cells,
+        })
+    }
+    /// Reborrow without copying or rescanning. Writes cannot coexist with a
+    /// read-only view that is still in use.
+    ///
+    /// ```compile_fail,E0502
+    /// use lemmings_core::TerrainMaskMut;
+    /// let mut cells = [0];
+    /// let mut terrain = TerrainMaskMut::new(1, 1, &mut cells).unwrap();
+    /// let reading = terrain.as_read_only();
+    /// let _ = terrain.set_pixel(0, 0, true);
+    /// assert_eq!(reading.pixel(0, 0), Some(false));
+    /// ```
+    pub fn as_read_only(&self) -> TerrainMask<'_> {
+        TerrainMask {
+            width: self.width,
+            height: self.height,
+            cells: self.cells,
+        }
+    }
+    /// Consume the exclusive view and retain the original buffer lifetime.
+    pub fn into_read_only(self) -> TerrainMask<'a> {
+        TerrainMask {
+            width: self.width,
+            height: self.height,
+            cells: self.cells,
+        }
+    }
+    /// Some(true) means changed, Some(false) unchanged, None outside. An outside
+    /// write changes no cells. Bounds are checked before index arithmetic.
+    pub fn set_pixel(&mut self, x: usize, y: usize, solid: bool) -> Option<bool> {
+        if x >= self.width || y >= self.height {
+            return None;
+        }
+        let cell = &mut self.cells[y * self.width + x];
+        let value = u8::from(solid);
+        let changed = *cell != value;
+        *cell = value;
+        Some(changed)
+    }
+    /// Signed counterpart; negative or unrepresentable coordinates return None.
+    pub fn set_solid(&mut self, x: i32, y: i32, solid: bool) -> Option<bool> {
+        match (usize::try_from(x), usize::try_from(y)) {
+            (Ok(x), Ok(y)) => self.set_pixel(x, y, solid),
+            _ => None,
+        }
+    }
+}
+
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum TerrainMaskError {
     EmptyDimensions { width: usize, height: usize },
@@ -324,5 +403,298 @@ mod tests {
         // Actual pinned TS SolidLayer, same ordered corpus and coordinate-set oracle.
         assert_eq!(hash, 0x2eeedec0fe771b08);
         std::println!("682 masks / 15970 queries / fnv1a64={hash:016x}");
+    }
+}
+#[cfg(test)]
+mod edit_tests {
+    extern crate std;
+    use super::*;
+    use std::{collections::BTreeSet, vec, vec::Vec};
+
+    #[test]
+    fn mutable_construction_reuses_validation_and_preserves_rejected_buffers() {
+        let cases = [
+            (
+                0,
+                1,
+                vec![255],
+                TerrainMaskError::EmptyDimensions {
+                    width: 0,
+                    height: 1,
+                },
+            ),
+            (
+                usize::MAX,
+                2,
+                vec![255],
+                TerrainMaskError::AreaOverflow {
+                    width: usize::MAX,
+                    height: 2,
+                },
+            ),
+            (
+                2,
+                2,
+                vec![255; 3],
+                TerrainMaskError::BufferSize {
+                    expected: 4,
+                    actual: 3,
+                },
+            ),
+            (
+                2,
+                2,
+                vec![255; 5],
+                TerrainMaskError::BufferSize {
+                    expected: 4,
+                    actual: 5,
+                },
+            ),
+            (
+                2,
+                2,
+                vec![0, 1, 2, 255],
+                TerrainMaskError::CellValue { index: 2, value: 2 },
+            ),
+        ];
+        for (w, h, mut cells, error) in cases {
+            let before = cells.clone();
+            assert_eq!(TerrainMaskMut::new(w, h, &mut cells), Err(error));
+            assert_eq!(cells, before);
+        }
+        for value in 2..=255 {
+            let mut cells = [0, 1, 0, value];
+            assert_eq!(
+                TerrainMaskMut::new(2, 2, &mut cells),
+                Err(TerrainMaskError::CellValue { index: 3, value })
+            );
+            assert_eq!(cells, [0, 1, 0, value]);
+        }
+    }
+    #[test]
+    fn mutable_view_reborrows_the_same_storage_and_metadata() {
+        let mut cells = [0, 1, 0, 1, 0, 1];
+        let ptr = cells.as_ptr();
+        let mask = TerrainMaskMut::new(3, 2, &mut cells).unwrap();
+        let read = mask.as_read_only();
+        assert_eq!(read.as_bytes().as_ptr(), ptr);
+        assert_eq!((read.width(), read.height(), read.pixel_count()), (3, 2, 6));
+        assert_eq!(read.row(1), Some(&[1, 0, 1][..]));
+    }
+    #[test]
+    fn setting_and_clearing_preserve_every_neighbor_and_external_canary() {
+        let mut cells = [255, 0, 1, 0, 1, 0, 1, 254];
+        {
+            let mut mask = TerrainMaskMut::new(3, 2, &mut cells[1..7]).unwrap();
+            assert_eq!(mask.set_pixel(2, 0, true), Some(true));
+            assert_eq!(mask.set_pixel(0, 1, false), Some(true));
+            assert_eq!(mask.as_read_only().as_bytes(), [0, 1, 1, 0, 0, 1]);
+        }
+        assert_eq!(cells, [255, 0, 1, 1, 0, 0, 1, 254]);
+    }
+    #[test]
+    fn repeated_writes_distinguish_changes_from_idempotent_values() {
+        let mut cells = [0, 1];
+        let mut mask = TerrainMaskMut::new(2, 1, &mut cells).unwrap();
+        for (x, value, changed) in [
+            (0, false, false),
+            (1, true, false),
+            (0, true, true),
+            (0, true, false),
+            (1, false, true),
+            (1, false, false),
+            (0, false, true),
+            (1, true, true),
+        ] {
+            assert_eq!(mask.set_pixel(x, 0, value), Some(changed));
+            assert_eq!(mask.as_read_only().pixel(x, 0), Some(value));
+        }
+        assert_eq!(mask.as_read_only().as_bytes(), [0, 1]);
+    }
+    #[test]
+    fn unsigned_outside_writes_and_extremes_preserve_the_entire_buffer() {
+        let mut cells = [0, 1, 0, 1, 0, 1];
+        let before = cells;
+        let mut mask = TerrainMaskMut::new(3, 2, &mut cells).unwrap();
+        for (x, y) in [
+            (3, 0),
+            (0, 2),
+            (3, 2),
+            (usize::MAX, 0),
+            (0, usize::MAX),
+            (usize::MAX, usize::MAX),
+        ] {
+            for value in [false, true] {
+                assert_eq!(mask.set_pixel(x, y, value), None);
+                assert_eq!(mask.as_read_only().as_bytes(), before);
+            }
+        }
+    }
+    #[test]
+    fn signed_outside_writes_reject_negative_row_aliases_and_extremes() {
+        let mut cells = [0; 6];
+        let mut mask = TerrainMaskMut::new(3, 2, &mut cells).unwrap();
+        for (x, y) in [
+            (-1, 1),
+            (3, 0),
+            (0, -1),
+            (-1, -1),
+            (i32::MIN, 0),
+            (0, i32::MIN),
+            (i32::MAX, 0),
+            (0, i32::MAX),
+        ] {
+            assert_eq!(mask.set_solid(x, y, true), None);
+            assert_eq!(mask.as_read_only().as_bytes(), [0; 6]);
+        }
+        assert_eq!(mask.set_solid(2, 1, true), Some(true));
+        assert_eq!(mask.set_solid(2, 1, true), Some(false));
+        assert!(mask.as_read_only().is_solid(2, 1));
+    }
+    #[test]
+    fn read_only_reborrows_observe_edits_and_release_before_the_next_write() {
+        let mut cells = [0; 4];
+        let mut mask = TerrainMaskMut::new(2, 2, &mut cells).unwrap();
+        let _ = mask.set_pixel(1, 0, true);
+        {
+            let read = mask.as_read_only();
+            let copy = read;
+            assert_eq!(read.row(0), Some(&[0, 1][..]));
+            assert!(copy.is_solid(1, 0));
+        }
+        let _ = mask.set_solid(1, 0, false);
+        let _ = mask.set_solid(0, 1, true);
+        assert_eq!(mask.as_read_only().as_bytes(), [0, 0, 1, 0]);
+    }
+    #[test]
+    fn consuming_the_mutable_view_retains_the_original_buffer_lifetime() {
+        let mut cells = [0; 4];
+        let ptr = cells.as_ptr();
+        let read = {
+            let mut mask = TerrainMaskMut::new(2, 2, &mut cells).unwrap();
+            let _ = mask.set_pixel(1, 1, true);
+            mask.into_read_only()
+        };
+        assert_eq!(read.as_bytes().as_ptr(), ptr);
+        assert_eq!(read.pixel(1, 1), Some(true));
+        assert_eq!(read.row(0), Some(&[0, 0][..]));
+    }
+    #[test]
+    fn all_four_corners_and_adjacent_rows_use_exact_cell_addresses() {
+        let mut cells = [0; 9];
+        let mut mask = TerrainMaskMut::new(3, 3, &mut cells).unwrap();
+        for (x, y) in [(0, 0), (2, 0), (0, 2), (2, 2)] {
+            assert_eq!(mask.set_pixel(x, y, true), Some(true));
+        }
+        assert_eq!(mask.as_read_only().row(0), Some(&[1, 0, 1][..]));
+        assert_eq!(mask.as_read_only().row(1), Some(&[0, 0, 0][..]));
+        assert_eq!(mask.as_read_only().row(2), Some(&[1, 0, 1][..]));
+        assert_eq!(mask.set_pixel(3, 0, true), None);
+        assert_eq!(mask.set_pixel(0, 3, true), None);
+        assert_eq!(mask.as_read_only().as_bytes(), [1, 0, 1, 0, 0, 0, 1, 0, 1]);
+    }
+    #[test]
+    fn independent_mutable_subslices_do_not_share_edit_state() {
+        let mut cells = [0; 8];
+        {
+            let (a, b) = cells.split_at_mut(4);
+            let mut a = TerrainMaskMut::new(2, 2, a).unwrap();
+            let mut b = TerrainMaskMut::new(1, 4, b).unwrap();
+            let _ = a.set_pixel(1, 1, true);
+            let _ = b.set_pixel(0, 0, true);
+            let _ = b.set_solid(0, 3, true);
+            let _ = a.set_solid(0, 0, true);
+            assert_eq!(a.as_read_only().as_bytes(), [1, 0, 0, 1]);
+            assert_eq!(b.as_read_only().as_bytes(), [1, 0, 0, 1]);
+        }
+        assert_eq!(cells, [1, 0, 0, 1, 1, 0, 0, 1]);
+    }
+    #[test]
+    fn failed_construction_releases_the_buffer_for_later_valid_reuse() {
+        let mut cells = [0, 1, 127, 0];
+        assert_eq!(
+            TerrainMaskMut::new(2, 2, &mut cells),
+            Err(TerrainMaskError::CellValue {
+                index: 2,
+                value: 127
+            })
+        );
+        cells[2] = 0;
+        let mut mask = TerrainMaskMut::new(2, 2, &mut cells).unwrap();
+        assert_eq!(mask.set_pixel(0, 1, true), Some(true));
+        assert_eq!(mask.into_read_only().as_bytes(), [0, 1, 1, 0]);
+    }
+    #[test]
+    fn exhaustive_cell_edits_match_coordinate_sets_and_pinned_ts_stream() {
+        let (mut masks, mut attempts, mut valid_writes, mut hash) =
+            (0, 0, 0, 0xcbf29ce484222325u64);
+        let mut mix = |v: u8| {
+            hash = (hash ^ u64::from(v)).wrapping_mul(0x100000001b3);
+        };
+        for width in 1..=3 {
+            for height in 1..=3 {
+                for pattern in 0u16..(1 << (width * height)) {
+                    let coords: Vec<_> = (0..height)
+                        .flat_map(|y| (0..width).map(move |x| (x, y)))
+                        .collect();
+                    let mut points: BTreeSet<_> = coords
+                        .iter()
+                        .enumerate()
+                        .filter(|(i, _)| pattern & (1 << i) != 0)
+                        .map(|(_, p)| *p)
+                        .collect();
+                    let mut cells: Vec<_> = (0..coords.len())
+                        .map(|i| ((pattern >> i) & 1) as u8)
+                        .collect();
+                    let original = cells.clone();
+                    let mut mask =
+                        TerrainMaskMut::new(width as usize, height as usize, &mut cells).unwrap();
+                    for y in -1..=height {
+                        for x in -1..=width {
+                            let inside = x >= 0 && x < width && y >= 0 && y < height;
+                            let restore = points.contains(&(x, y));
+                            for (step, solid) in
+                                [false, false, true, true, restore].into_iter().enumerate()
+                            {
+                                let expected = if inside {
+                                    let previous = points.contains(&(x, y));
+                                    if solid {
+                                        points.insert((x, y));
+                                    } else {
+                                        points.remove(&(x, y));
+                                    }
+                                    valid_writes += 1;
+                                    Some(previous != solid)
+                                } else {
+                                    None
+                                };
+                                let actual = if step % 2 == 0 {
+                                    mask.set_solid(x, y, solid)
+                                } else {
+                                    mask.set_pixel(
+                                        usize::try_from(x).unwrap_or(usize::MAX),
+                                        usize::try_from(y).unwrap_or(usize::MAX),
+                                        solid,
+                                    )
+                                };
+                                assert_eq!(actual, expected);
+                                mix(actual.map(u8::from).unwrap_or(2));
+                                for (&p, &v) in coords.iter().zip(mask.as_read_only().as_bytes()) {
+                                    assert_eq!(v, u8::from(points.contains(&p)));
+                                    mix(v);
+                                }
+                                attempts += 1;
+                            }
+                        }
+                    }
+                    assert_eq!(mask.into_read_only().as_bytes(), original);
+                    masks += 1;
+                }
+            }
+        }
+        assert_eq!((masks, attempts, valid_writes), (682, 79850, 27530));
+        // Actual pinned TS valid-coordinate writes; explicit rejection elsewhere.
+        assert_eq!(hash, 0x03ec6f2a34e44882);
+        std::println!("682 masks / 79850 attempts / 27530 valid writes / fnv1a64={hash:016x}");
     }
 }
