@@ -6,7 +6,7 @@
 
 [프로젝트 기획서](issue-1_rusty_lemmings.md)의 원본 호환 Rust 엔진을 작고 검증 가능한 목표로 나눕니다. 데스크톱과 웹에서 기준판의 레벨·직업·게임 규칙·사운드를 재현하는 것이 최종 목표입니다.
 
-G00 기준 정의와 G01 개발 기반을 완료했습니다. [#2](https://github.com/edwardkim/ohmylemmings/issues/2)의 원작 확보, [#3](https://github.com/edwardkim/ohmylemmings/issues/3)의 소스 고정과 [#5](https://github.com/edwardkim/ohmylemmings/issues/5)의 비교 계약을 갖췄습니다. [#6](https://github.com/edwardkim/ohmylemmings/issues/6)의 Rust workspace와 [#7](https://github.com/edwardkim/ohmylemmings/issues/7)의 실제 CI 검증을 완료했습니다. G02는 [#8 구간 읽기](../tech_insights/issue-8_dat_sections.md)에 이어 [#9 압축 해제](../tech_insights/issue-9_dat_decompression.md)의 원본 대조를 마치고 실제 CI를 검증 중입니다. G04는 준비 상태이며 나머지 구현 목표는 선행 작업을 기다립니다.
+G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. [#2](https://github.com/edwardkim/ohmylemmings/issues/2)의 원작 확보, [#3](https://github.com/edwardkim/ohmylemmings/issues/3)의 소스 고정과 [#5](https://github.com/edwardkim/ohmylemmings/issues/5)의 비교 계약을 갖췄습니다. [#6](https://github.com/edwardkim/ohmylemmings/issues/6)의 Rust workspace와 [#7](https://github.com/edwardkim/ohmylemmings/issues/7)의 실제 CI 검증을 완료했습니다. [#8 구간 읽기](../tech_insights/issue-8_dat_sections.md)와 [#9 압축 해제](../tech_insights/issue-9_dat_decompression.md)의 합성 테스트·원본 대조·실제 CI로 G02의 완료 기준을 충족했습니다. G03·G04는 준비 상태이며 나머지 구현 목표는 선행 작업을 기다립니다.
 
 [호환성 기준](../tech_insights/issue-5_compatibility_baseline.md)의 전체 120개 진입점·직업 8종·음악 21개·효과음 18개와 COMP-01~18을 검증 범위로 사용합니다. DOS 실행 대조·기준 추적·음원 매핑은 G05~G11의 실행 증거로 확인합니다. 미검증 항목은 통과로 계산하지 않습니다.
 
@@ -40,7 +40,7 @@ G02~G03 리소스 처리와 G04~G05 코어 개발은 G01 이후 분리해 진행
 
 ## 초기 실행 순서
 
-G00·G01과 **G02-01 DAT 구간 읽기 / #8**을 마쳤으며 **G02-02 압축 해제 / #9**를 검증 중입니다. 다음은 G02 완료 후 **G03-01 레벨 레코드 해석**이며 **G04-01 픽셀 지형 읽기·경계 검증**도 독립적으로 착수할 수 있습니다. 각각 별도 이슈로 진행합니다.
+G00·G01·G02를 마쳤습니다. 다음은 **G03-01 레벨 레코드 해석**이며 **G04-01 픽셀 지형 읽기·경계 검증**도 독립적으로 착수할 수 있습니다. 각각 별도 이슈로 진행합니다.
 
 1. **G00-01 기준판 식별 / #2 완료:** DOS 바이트 프로필·출처·해시로 입력을 고정했습니다. 소매판 리비전 이름은 부가 정보로 기록합니다.
 2. **G00-02 레퍼런스 고정 / #3 완료:** 참고 커밋·파일·함수·역할을 고정했습니다.
@@ -48,7 +48,7 @@ G00·G01과 **G02-01 DAT 구간 읽기 / #8**을 마쳤으며 **G02-02 압축 �
 4. **G01-01 개발 골격 / #6 완료:** [모듈 경계](issue-6_rust_workspace.md), Cargo workspace, `no_std` 라이브러리 2개와 행동 테스트·문서 예제를 도입했습니다.
 5. **G01-02 개발 검증 / #7 완료:** [공통 검증 명령](issue-7_continuous_integration.md)을 로컬·CI에 연결하고 깨끗한 체크아웃과 실제 Rust·Python·WASM 작업의 성공을 확인했습니다.
 6. **G02-01 구간 읽기 / #8 완료:** `no_std`·무할당 API와 손상 입력 오류를 구현하고 원본 21개 파일·102개 구간을 대조했습니다. [실제 CI·원격 게시](../reports/issue-8_dat_sections.md)도 확인했습니다.
-7. **G02-02 압축 해제 / #9 검증:** 역방향 비트·6종 명령·오류 처리와 호출자 버퍼 API를 구현했습니다. 합성 테스트와 고정 81개 해제 해시, 총 102개 구간의 세 구현 대조를 마쳤습니다. 실제 CI·게시 확인 후 G02 전체 완료를 판정합니다.
+7. **G02-02 압축 해제 / #9 완료:** 역방향 비트·6종 명령·오류 처리와 호출자 버퍼 API를 구현했습니다. 합성 테스트와 고정 81개 해제 해시, 총 102개 구간의 세 구현 대조 및 [실제 CI·원격 게시](../reports/issue-9_dat_decompression.md)를 확인해 G02 전체를 완료했습니다.
 8. **G03-01 / G04-01 독립 구현:** DOS 레벨 레코드 해석과 합성 픽셀 맵의 읽기·경계 검증을 각각 별도 이슈로 진행합니다. 리소스·코어 경로는 G06에서 통합합니다.
 
 ## 첫 번째 실행 결과와 확장 순서
