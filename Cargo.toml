@@ -1,0 +1,13 @@
+[workspace]
+members = ["crates/lemmings-core", "crates/lemmings-resources"]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.93.1"
+repository = "https://github.com/edwardkim/ohmylemmings"
+publish = false
+
+[workspace.lints.rust]
+unsafe_code = "forbid"

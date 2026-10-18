@@ -1,0 +1,11 @@
+[package]
+name = "lemmings-core"
+description = "Platform-independent domain types for Rusty Lemmings"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true

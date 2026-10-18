@@ -4,7 +4,24 @@
 
 ## 현재 상태
 
-G00의 원작 기준·지원 범위·비교 계약 정의를 완료했습니다. 원작 파일 50개와 레퍼런스 소스 46개를 고정했고, 120개 레벨·8직업·음악 21개·효과음 18개의 검증 범위를 정했습니다. 실제 DOS 실행 대조와 Rust 호환성 판정은 후속 목표에서 수행합니다. 다음 단계 G01에서 Rust 소스와 `Cargo.toml`을 도입합니다.
+G00의 기준 정의를 마치고 G01의 Rust workspace를 도입했습니다. 원작 파일 50개·소스 46개와 120개 레벨·8직업·음악 21개·효과음 18개의 검증 범위를 고정했습니다. 현재는 `no_std` 코어 자료형과 안전한 바이트 입력을 빌드·테스트할 수 있습니다. 다음 작업은 G01-02 CI·개발 검증 구성입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
+
+## Rust 개발
+
+Rustup을 설치한 뒤 저장소 루트에서 실행합니다. [rust-toolchain.toml](rust-toolchain.toml)이 Rust 1.93.1과 rustfmt·Clippy를 선택합니다. 도구 체인 설치 후 현재 패키지는 외부 의존성 없이 오프라인으로 빌드됩니다.
+
+```sh
+cargo build --workspace --locked --offline
+cargo test --workspace --locked --offline
+cargo fmt --all -- --check
+cargo clippy --workspace --all-targets --locked --offline -- -D warnings
+```
+
+- [crates/lemmings-core](crates/lemmings-core/src/lib.rs): 레벨 식별 자료형과 향후 시뮬레이션
+- [crates/lemmings-resources](crates/lemmings-resources/src/lib.rs): 바이트 입력과 향후 리소스 파서
+- [개발 골격 설계](mydocs/plans/issue-6_rust_workspace.md): 모듈 경계·API·개별/WASM 빌드 명령
+
+현재 빌드 대상은 라이브러리 2개이며, 게임 실행 명령은 G06의 네이티브 어댑터에서 도입합니다.
 
 ## 원본 데이터 준비
 
@@ -32,7 +49,7 @@ python3 -m unittest discover -s tools/tests -v
 
 전체 설계와 단계별 작업은 [프로젝트 기획서](mydocs/plans/issue-1_rusty_lemmings.md)를 참고하세요.
 
-구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. 다음 착수 목표는 Rust 개발 기반 구축(G01)입니다.
+구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. Rust 개발 기반 구축(G01)을 진행 중입니다.
 
 진행 상황은 [GitHub 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1)에서 추적합니다.
 
