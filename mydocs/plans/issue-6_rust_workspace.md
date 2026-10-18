@@ -9,11 +9,11 @@
 | 위치 | 책임 | 현재 상태 |
 |---|---|---|
 | [crates/lemmings-core](../../crates/lemmings-core/Cargo.toml) | 검증된 도메인 자료형, 이후 지형·틱·개체·게임 규칙 | `LevelId`, `Difficulty`, 번호 오류 구현 |
-| [crates/lemmings-resources](../../crates/lemmings-resources/Cargo.toml) | 제공받은 바이트의 읽기·형식 해석·오류 위치 | `ByteReader`, `ReadError` 구현 |
+| [crates/lemmings-resources](../../crates/lemmings-resources/Cargo.toml) | 제공받은 바이트의 읽기·형식 해석·오류 위치 | 바이트·DAT·기본 레벨·ODD·120개 연결 구현 |
 | `apps/desktop/` (G06 예정) | 파일 읽기, 데이터 조립, SDL2 화면·입력·오디오 | 실행 어댑터 도입 시 생성 |
 | `apps/web/` (G09 예정) | 브라우저 리소스 공급, WASM 경계, Canvas·입력·오디오 | 실행 어댑터 도입 시 생성 |
 
-현재 두 라이브러리에는 서로를 포함한 패키지 의존성이 없습니다. 플랫폼 조립부가 리소스 표현을 코어의 도메인 자료형으로 변환하고 코어에 데이터를 전달합니다. 코어는 파서·파일·SDL2·브라우저 API를 호출하지 않습니다. 리소스 라이브러리도 파일을 열지 않고 호출자가 준 바이트만 읽습니다. 새 공통 자료형이 필요하면 사용 지점과 변환 책임을 해당 구현 이슈에서 정합니다.
+G01-01 도입 당시 두 라이브러리에는 패키지 의존성이 없었습니다. [G03-02 / #11](../tech_insights/issue-11_level_catalog.md)에서 표시 레벨 ID 재사용을 위해 `lemmings-resources → lemmings-core` 로컬 의존 하나를 추가했습니다. 외부 패키지는 없으며 역방향 의존은 금지합니다. 플랫폼 조립부가 리소스 표현을 코어의 도메인 자료형으로 변환하고 코어에 데이터를 전달합니다. 코어는 파서·파일·SDL2·브라우저 API를 호출하지 않습니다. 리소스 라이브러리도 파일을 열지 않고 호출자가 준 바이트만 읽습니다.
 
 두 라이브러리는 항상 `#![no_std]`이며 현재 힙 할당을 사용하지 않습니다. 테스트 실행기는 호스트에서 동작하고 라이브러리 자체는 네이티브·WASM 모두 컴파일됩니다. `no_std` 선택의 의미는 [Rust 공식 설명](https://doc.rust-lang.org/stable/embedded-book/intro/no-std.html)을 참고합니다.
 
@@ -30,7 +30,7 @@
 
 `ByteReader`는 입력 슬라이스를 빌립니다. `read_bytes(count)`와 `read_u16_be()`는 성공했을 때만 위치를 전진시킵니다. 절단 입력은 `UnexpectedEof { offset, requested, remaining }`으로 반환합니다. 빈 읽기는 끝에서도 성공하고 `usize::MAX` 요청은 오버플로 없이 오류로 반환합니다. 바이트 순서는 현재 원작 레벨 메타데이터에 맞춘 빅 엔디언 API에 명시합니다.
 
-DAT 압축·레벨·그래픽 파서와 시뮬레이션은 후속 목표에서 구현합니다. 현재 API는 작은 범위 검증과 입력 처리 기반입니다.
+이 절은 G01-01의 초기 API를 기록합니다. 이후 G02에서 DAT 검증·해제를, G03-01/02에서 기본 레벨·ODDTABLE·120개 카탈로그를 도입했습니다. 현재 리소스 API는 위 G03-02 문서를 따르며 그래픽 해석·시뮬레이션은 후속 목표입니다.
 
 ## 개발과 검증
 

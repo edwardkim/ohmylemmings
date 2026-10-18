@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This repository ports DOS Lemmings to Rust. `crates/lemmings-core` owns domain types; `crates/lemmings-resources` handles DAT decompression and level parsing. Both are `no_std`. `mydocs/plans/` defines architecture; platform adapters follow in G06/G09.
+This repository ports DOS Lemmings to Rust. `crates/lemmings-resources` parses DOS data and uses `lemmings-core` IDs; keep core independent of resources. Both are `no_std`. Architecture is in `mydocs/plans/`; adapters follow in G06/G09.
 
 When implementing:
 

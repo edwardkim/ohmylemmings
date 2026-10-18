@@ -1,5 +1,5 @@
 #![no_std]
-//! Checked DOS DAT and base-level parsing with allocation-free decompression.
+//! Checked DOS resources and original level routing without allocation.
 //!
 //! ```
 //! use lemmings_resources::ByteReader;
@@ -12,15 +12,19 @@
 //! # Ok::<(), lemmings_resources::ReadError>(())
 //! ```
 
+mod catalog;
 mod dat;
 mod decompress;
 mod level;
+mod odd;
 mod reader;
 
+pub use catalog::{CatalogEntry, CatalogError, DosLevelFile, ResolvedLevel};
 pub use dat::{DatError, DatHeader, DatSection, DatSections};
 pub use decompress::DecompressError;
 pub use level::{
-    LEVEL_RECORD_SIZE, LevelError, LevelField, LevelHeader, LevelRecord, ObjectFlags,
-    ObjectPlacement, SteelArea, TerrainFlags, TerrainPlacement,
+    LEVEL_RECORD_SIZE, LevelError, LevelField, LevelHeader, LevelProperties, LevelRecord,
+    ObjectFlags, ObjectPlacement, SteelArea, TerrainFlags, TerrainPlacement,
 };
+pub use odd::{ODD_RECORD_SIZE, OddError, OddRecord, OddTable};
 pub use reader::{ByteReader, ReadError};

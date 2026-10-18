@@ -17,3 +17,4 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [DAT 구간 형식·읽기 API·원본 102개 구간 검증](issue-8_dat_sections.md)
 - [DAT 역방향 비트·압축 명령·해제 API와 원본 해시 검증](issue-9_dat_decompression.md)
 - [DOS 기본 레벨 헤더·배치·슬롯과 원본 80개 레코드 검증](issue-10_level_records.md)
+- [ODDTABLE·120개 표시 카탈로그와 변형·기본 배치 보존](issue-11_level_catalog.md)

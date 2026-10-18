@@ -7,5 +7,8 @@ rust-version.workspace = true
 repository.workspace = true
 publish.workspace = true
 
+[dependencies]
+lemmings-core = { path = "../lemmings-core" }
+
 [lints]
 workspace = true

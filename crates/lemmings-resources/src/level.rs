@@ -20,7 +20,38 @@ pub struct LevelHeader {
     pub superlemming: bool,
 }
 
+/// Initial gameplay properties, shared by base levels and ODD overrides.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct LevelProperties {
+    pub release_rate: u16,
+    pub total: u16,
+    pub required: u16,
+    pub minutes: u16,
+    pub skills: [u16; 8],
+}
+
+impl LevelProperties {
+    pub(crate) const fn apply_to(self, mut header: LevelHeader) -> LevelHeader {
+        header.release_rate = self.release_rate;
+        header.total = self.total;
+        header.required = self.required;
+        header.minutes = self.minutes;
+        header.skills = self.skills;
+        header
+    }
+}
+
 impl LevelHeader {
+    pub const fn properties(&self) -> LevelProperties {
+        LevelProperties {
+            release_rate: self.release_rate,
+            total: self.total,
+            required: self.required,
+            minutes: self.minutes,
+            skills: self.skills,
+        }
+    }
+
     /// Maps DOS selector 1..=4 to VGASPEC0..3; zero means no special image.
     pub const fn special_graphic_set(&self) -> Option<u8> {
         if self.special == 0 {
@@ -106,26 +137,16 @@ impl<'a> LevelRecord<'a> {
                 expected: LEVEL_RECORD_SIZE,
                 actual: bytes.len(),
             })?;
-        let words: [u16; 16] = core::array::from_fn(|index| word(bytes, index * 2));
-        check(LevelField::ReleaseRate, 0, words[0], 1, 99)?;
-        check(LevelField::Total, 2, words[1], 1, 255)?;
-        check(LevelField::Required, 4, words[2], 1, words[1])?;
-        check(LevelField::Minutes, 6, words[3], 1, 99)?;
-        for index in 0..8 {
-            check(
-                LevelField::Skill(index),
-                8 + index * 2,
-                words[4 + index],
-                0,
-                99,
-            )?;
-        }
-        check(LevelField::Graphics, 26, words[13], 0, 4)?;
-        check(LevelField::Special, 28, words[14], 0, 4)?;
-        if words[15] != 0 && words[15] != 0xffff {
+        let properties = read_properties(bytes)?;
+        let graphics = word(bytes, 26);
+        let special = word(bytes, 28);
+        let superlemming = word(bytes, 30);
+        check(LevelField::Graphics, 26, graphics, 0, 4)?;
+        check(LevelField::Special, 28, special, 0, 4)?;
+        if superlemming != 0 && superlemming != 0xffff {
             return Err(LevelError::UnsupportedSuperlemming {
                 offset: 30,
-                value: words[15],
+                value: superlemming,
             });
         }
         for (slot, entry) in bytes[1888..2016].chunks_exact(4).enumerate() {
@@ -139,15 +160,15 @@ impl<'a> LevelRecord<'a> {
         Ok(Self {
             bytes,
             header: LevelHeader {
-                release_rate: words[0],
-                total: words[1],
-                required: words[2],
-                minutes: words[3],
-                skills: core::array::from_fn(|index| words[4 + index]),
-                screen_x: words[12],
-                graphics: words[13],
-                special: words[14],
-                superlemming: words[15] == 0xffff,
+                release_rate: properties.release_rate,
+                total: properties.total,
+                required: properties.required,
+                minutes: properties.minutes,
+                skills: properties.skills,
+                screen_x: word(bytes, 24),
+                graphics,
+                special,
+                superlemming: superlemming == 0xffff,
             },
         })
     }
@@ -260,6 +281,31 @@ pub enum LevelField {
 // Called only for the fixed-size record header or an eight-byte object entry.
 fn word(bytes: &[u8], offset: usize) -> u16 {
     u16::from_be_bytes([bytes[offset], bytes[offset + 1]])
+}
+
+// Both callers provide a complete, length-checked level or 56-byte ODD record.
+pub(crate) fn read_properties(bytes: &[u8]) -> Result<LevelProperties, LevelError> {
+    let words: [u16; 12] = core::array::from_fn(|index| word(bytes, index * 2));
+    check(LevelField::ReleaseRate, 0, words[0], 1, 99)?;
+    check(LevelField::Total, 2, words[1], 1, 255)?;
+    check(LevelField::Required, 4, words[2], 1, words[1])?;
+    check(LevelField::Minutes, 6, words[3], 1, 99)?;
+    for index in 0..8 {
+        check(
+            LevelField::Skill(index),
+            8 + index * 2,
+            words[4 + index],
+            0,
+            99,
+        )?;
+    }
+    Ok(LevelProperties {
+        release_rate: words[0],
+        total: words[1],
+        required: words[2],
+        minutes: words[3],
+        skills: core::array::from_fn(|index| words[4 + index]),
+    })
 }
 
 fn check(

@@ -30,7 +30,7 @@ python3 -m unittest discover -s tools/tests -v
 
 Rust 해제 예제와 기존 81개 구간의 해시 대조는 [G02-02 재현 명령](../mydocs/tech_insights/issue-9_dat_decompression.md#개발용-해제와-고정-해시-재현)을 따릅니다. 해제 결과도 `assets/local/` 안에 저장하며 기존 결과는 덮어쓰지 않습니다.
 
-DAT에서 기본 레벨을 직접 해제·검사하는 `inspect_levels` 예제와 메타데이터 비교는 [G03-01 안내](../mydocs/tech_insights/issue-10_level_records.md#원본-검사-재현)를 따릅니다. ODDTABLE 변형은 후속 작업입니다.
+DAT에서 기본 레벨을 직접 해제·검사하는 `inspect_levels` 예제와 메타데이터 비교는 [G03-01 안내](../mydocs/tech_insights/issue-10_level_records.md#원본-검사-재현)를 따릅니다. ODDTABLE을 적용한 120개 진입점은 [G03-02 검사](../mydocs/tech_insights/issue-11_level_catalog.md#원본-검사-재현)의 `inspect_catalog`로 확인합니다. 기본 바이트를 포함하는 출력도 `assets/local/`에 둡니다.
 
 ## 기준판 식별
 
