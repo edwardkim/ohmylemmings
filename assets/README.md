@@ -42,6 +42,8 @@ VGASPEC 특수 배경 4개는 [G03-05 재현 명령](../mydocs/tech_insights/iss
 
 MAIN.DAT 레밍 스프라이트는 [G03-07 재현 명령](../mydocs/tech_insights/issue-16_lemming_sprites.md#원본-검사-재현)의 `inspect_sprites`로 확인합니다. [스프라이트 검증 매니페스트](manifests/lemming_sprites.json)에 28개 애니메이션·337프레임의 픽셀 해시·발 기준점·방향과 7개 해제 구간의 해시를 기록합니다. 팔레트·재생 규칙·UI/마스크 해석은 별도이며 확보용 입력으로 사용하지 않습니다.
 
+MAIN.DAT UI·폰트는 [G03-08 재현 명령](../mydocs/tech_insights/issue-17_main_ui.md#원본-검사-재현)의 `inspect_ui`로 확인합니다. [UI 검증 매니페스트](manifests/main_ui.json)에 4개 구간·19개 묶음·200개 이미지/글리프 해시와 미해석 범위를 기록합니다. 원래 인덱스와 묶음별 투명도 정책을 검증하며 화면·문자열 조립·최종 레벨 팔레트 인증이나 확보용 입력은 아닙니다.
+
 ## 기준판 식별
 
 기준 ID는 `dos-original-vga`입니다. 원본 매체의 세부 리비전은 아직 확인되지 않았으며 확보한 파일의 바이트 식별값으로 입력을 고정합니다. 확보 출처, 상호 대조 결과, 데모와의 차이는 [기준판 분석](../mydocs/tech_insights/issue-2_dos_original_baseline.md)에 기록합니다.

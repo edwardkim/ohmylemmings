@@ -21,6 +21,7 @@ mod odd;
 mod reader;
 mod sprites;
 mod terrain;
+mod ui;
 mod vgagr;
 mod vgaspec;
 
@@ -57,4 +58,9 @@ pub use sprites::{
     LEMMING_ANIMATION_COUNT, LEMMING_SPRITE_DATA_SIZE, LemmingAnimationInfo, LemmingFrames,
     LemmingSpriteError, LemmingSpriteKind, LemmingSprites, MAIN_DAT_SECTION_COUNT, MainDatFile,
     SpriteDirection, SpriteFrame,
+};
+
+pub use ui::{
+    MAIN_UI_IMAGE_KINDS, MainUiError, MainUiImageKind, MainUiRecord, MainUiSection, UiImage,
+    UiImageInfo, UiImages, UiPalette, UiTransparency,
 };

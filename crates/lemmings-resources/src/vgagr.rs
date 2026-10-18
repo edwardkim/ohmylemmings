@@ -15,6 +15,7 @@ pub enum ImageKind {
 /// Terrain colors address Custom 0..7; object colors address Standard/Preview 0..15.
 /// VGASPEC uses its own eight-color palette, with index zero transparent.
 /// MAIN lemming sprites use caller-selected colors 0..15, with zero transparent.
+/// MAIN UI images specify opaque-zero or transparent-zero policy per family.
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct IndexedPixel {
     pub color: u8,
