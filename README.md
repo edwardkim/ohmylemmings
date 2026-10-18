@@ -1,10 +1,12 @@
 # Rusty Lemmings
 
+[![CI](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml/badge.svg)](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml)
+
 고전 DOS 게임 레밍즈(Lemmings)의 데이터와 게임 동작을 Rust로 재현하는 프로젝트입니다. 렌더링·입출력과 분리된 코어 엔진을 만들고, SDL2 기반 데스크톱 환경과 WebAssembly 기반 웹 환경을 지원하는 것이 목표입니다.
 
 ## 현재 상태
 
-G00의 기준 정의를 마치고 G01의 Rust workspace를 도입했습니다. 원작 파일 50개·소스 46개와 120개 레벨·8직업·음악 21개·효과음 18개의 검증 범위를 고정했습니다. 현재는 `no_std` 코어 자료형과 안전한 바이트 입력을 빌드·테스트할 수 있습니다. 다음 작업은 G01-02 CI·개발 검증 구성입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
+G00 기준 정의와 G01 개발 기반 구축을 완료했습니다. `no_std` 코어 자료형·안전한 바이트 입력을 도입했고 Rust·Python·WASM CI가 통과했습니다. 원작 파일 50개·소스 46개와 120개 레벨·8직업·음악 21개·효과음 18개의 검증 범위를 고정했습니다. 다음 목표는 G02 DAT 처리와 G04 픽셀 지형 모델입니다. 실제 게임 실행과 DOS 호환성 판정은 후속 목표에서 수행합니다.
 
 ## Rust 개발
 
@@ -51,7 +53,7 @@ python3 -m unittest discover -s tools/tests -v
 
 전체 설계와 단계별 작업은 [프로젝트 기획서](mydocs/plans/issue-1_rusty_lemmings.md)를 참고하세요.
 
-구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. Rust 개발 기반 구축(G01)을 진행 중입니다.
+구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. G02 리소스 처리와 G04 지형 기반을 각각 작은 이슈로 나눠 진행합니다.
 
 진행 상황은 [GitHub 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1)에서 추적합니다.
 
