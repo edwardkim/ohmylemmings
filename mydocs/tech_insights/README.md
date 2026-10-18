@@ -15,3 +15,4 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [호환성 범위·입력·상태 비교 기준](issue-5_compatibility_baseline.md)
 - [DOS 전체 레벨 지원 목록](issue-5_level_inventory.md)
 - [DAT 구간 형식·읽기 API·원본 102개 구간 검증](issue-8_dat_sections.md)
+- [DAT 역방향 비트·압축 명령·해제 API와 원본 해시 검증](issue-9_dat_decompression.md)

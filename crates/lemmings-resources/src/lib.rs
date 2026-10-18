@@ -1,5 +1,5 @@
 #![no_std]
-//! Borrowed, checked input for DOS Lemmings resources.
+//! Checked DAT framing and allocation-free decompression for DOS Lemmings.
 //!
 //! ```
 //! use lemmings_resources::ByteReader;
@@ -13,7 +13,9 @@
 //! ```
 
 mod dat;
+mod decompress;
 mod reader;
 
 pub use dat::{DatError, DatHeader, DatSection, DatSections};
+pub use decompress::DecompressError;
 pub use reader::{ByteReader, ReadError};

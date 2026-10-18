@@ -28,6 +28,8 @@ python3 -m unittest discover -s tools/tests -v
 
 [비교 기준](../mydocs/tech_insights/issue-5_compatibility_baseline.md)에 따라 G02~G11에서 기대값과 실제 동작을 대조합니다. 현재 목록은 바이트·정적 구조 검증 결과이며 실행 호환성 통과 표가 아닙니다.
 
+Rust 해제 예제와 기존 81개 구간의 해시 대조는 [G02-02 재현 명령](../mydocs/tech_insights/issue-9_dat_decompression.md#개발용-해제와-고정-해시-재현)을 따릅니다. 해제 결과도 `assets/local/` 안에 저장하며 기존 결과는 덮어쓰지 않습니다.
+
 ## 기준판 식별
 
 기준 ID는 `dos-original-vga`입니다. 원본 매체의 세부 리비전은 아직 확인되지 않았으며 확보한 파일의 바이트 식별값으로 입력을 고정합니다. 확보 출처, 상호 대조 결과, 데모와의 차이는 [기준판 분석](../mydocs/tech_insights/issue-2_dos_original_baseline.md)에 기록합니다.
