@@ -1,5 +1,5 @@
 #![no_std]
-//! Domain types and checked terrain views shared by simulation and adapters.
+//! Domain types, checked terrain views and deterministic simulation scheduling.
 //!
 //! ```
 //! use lemmings_core::{Difficulty, LevelId};
@@ -22,4 +22,9 @@ pub use terrain::{TerrainChange, TerrainMask, TerrainMaskError, TerrainMaskMut, 
 pub use simulation::{
     FixedTickClock, InputCommand, InputOrderError, InputSchedule, InvalidStepState, StepEvent,
     StepOutcome, StepOverflow, StepState, TICKS_PER_SECOND, TickOverflow, TickStepper, TimedInput,
+};
+
+pub use simulation::{
+    SpawnRequest, StartupCommand, StartupConfig, StartupConfigError, StartupEvent,
+    StartupScheduler, StartupState,
 };
