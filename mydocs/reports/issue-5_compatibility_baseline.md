@@ -23,11 +23,14 @@ Fun 1은 LEVEL009.DAT 구간 1, 총 10개체·필요 구출 1·Digger 10·RR 50�
 | 오디오 구조 범위 검사 | 음악 21개 헤더·악기·채널 주소와 효과음 18개 주소가 이미지 범위 안에 있음 |
 | 지원 목록·기계 판독용 데이터·문서 표 대조 | 120개 레벨의 초기 조건·구간·변형·직업 수, 81개 해시, COMP-01~18 일치 |
 | 문서명·이슈·로컬 링크·앵커·고정 소스 링크 검사 | 문서 30개, 로컬 링크 124개, 앵커 20개, 고정 소스 줄 링크 87개, 이슈 문서명 18개 통과 |
-| `git diff --check` | 통과 |
+| `git diff --check`, `git diff --cached --check` | 통과 |
+| `git ls-tree -r HEAD`와 GitHub Git tree API 대조 | 커밋 `22f6579`의 파일 36개 blob 해시 일치 |
+| 로컬 HEAD와 GitHub main 참조 비교 | 일치 |
+| 상위 이슈 #1 조회 | G00 및 #2·#3·#5 체크, G01~G12 미완료, 상위 이슈 열림 |
 
 분석 환경은 Python 3.12.3과 Node v24.11.0입니다. TypeScript 실행은 고정된 BinaryReader·BitReader·BitWriter·UnpackFilePart·FileContainer 5개 클래스를 임시 파일에 모으고 import와 로그 출력만 대체했습니다. 전체 게임이나 레벨 로더를 구동한 검증은 아닙니다.
 
-원격 게시와 GitHub 이슈 상태를 확인한 뒤 게시 근거를 추가 기록합니다.
+커밋 `22f6579`을 `main`에 게시하고 원격 상태를 확인했습니다. 원본 바이너리는 계속 Git 추적에서 제외됩니다.
 
 ## 검증 한계와 후속 작업
 
