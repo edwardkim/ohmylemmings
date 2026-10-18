@@ -28,4 +28,10 @@ G06-02의 실제 DOS 실행·반복 관측·동일 장면 대조를 완료했습
 
 ## 게시 검증
 
-구현 게시 후 실제 push CI와 최종 문서 게시를 확인합니다. 상위 #1·#28/#29 종료·#30 미완료 상태는 GitHub 기록에서 추적합니다.
+구현 `4aa4199fe3d13690ec3f8dec61b7f61045b3d76f`를 main에 게시했습니다. [실제 push CI](https://github.com/edwardkim/ohmylemmings/actions/runs/39155065616)의 이벤트·정확한 SHA·세 작업/초기 clean-input·SDK/잠금 의존 준비·실제 테스트/모델/SDL 서명을 확인했습니다.
+
+- Rust native: 단위/예제 297개·문서 27개·기존 참조/모델·SDL 4실행/1124상태/40캡처 success.
+- Python tooling: Python 3.12.15, unittest 26개·독립 모델 두 서명 success. DOSBox/PyAV/원본 없이 합성 검사합니다.
+- WASM libraries: 기존 두 no_std 라이브러리의 잠금 의존 준비·오프라인 컴파일 success.
+
+원격 187개 파일 모드/blob이 로컬과 일치하고 작업 트리는 깨끗했습니다. 원본·도구/실행 파일·원본 파생 영상/화면/전체 추적은 추적하지 않습니다. 문서 103개·로컬 링크 736개·앵커 118개·이슈 문서명 89개도 확인했습니다. 최종 문서/CI·상위 #1 갱신·#28/#29 종료·#30 미완료 상태는 GitHub 기록에서 추적합니다.

@@ -23,4 +23,5 @@
 - 합성 Red→7 Green, 범위 분리 Red→8 Green. 전체 Python 26개, Rust 297/문서 27·모델/참조·SDL·WASM 검사 성공.
 - 최종 분석기가 실제 conf/mapper·50개/입력/영상/seed 해시와 네이티브 기존 F00 341상태·실제 SDL readback 10개를 독립 재검증했습니다.
 - [기술 계약](../tech_insights/issue-28_dos_comparison.md)과 [보고서](../reports/issue-28_dos_comparison.md), hash-only 증거 manifest를 작성했습니다. 원본·바이너리·녹화·파생 이미지는 추적하지 않습니다.
-- 다음: 게시·실제 CI·상위 #1 갱신 및 #28/#29 종료. #30 보정을 다음 단계로 유지합니다.
+- 구현 `4aa4199fe3d13690ec3f8dec61b7f61045b3d76f` 게시·[CI 세 작업](https://github.com/edwardkim/ohmylemmings/actions/runs/39155065616)의 정확한 SHA/실제 로그/테스트/서명/clean-input·SDK/fetch·원격 187개 모드/blob을 확인했습니다.
+- 최종 문서/CI·상위 #1 갱신과 #28/#29 종료는 GitHub 기록에서 추적합니다. G06-02 관측/대조는 완료이며 전체 G06은 #30 보정으로 계속 진행합니다.
