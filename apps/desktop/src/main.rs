@@ -1,12 +1,14 @@
 mod assets;
 mod input;
+mod lifecycle;
 mod pacing;
 mod render;
 mod session;
 use assets::Assets;
 use lemmings_core::{InputCommand, StartupCommand};
+use lifecycle::{LevelRun, ResultAction};
 use pacing::Pacing;
-use render::{HEIGHT, View, WIDTH};
+use render::{HEIGHT, WIDTH};
 use sdl2::{
     event::Event,
     keyboard::{Keycode, Mod},
@@ -21,7 +23,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nF/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--result-actions restart,continue]\nF/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     synthetic: bool,
@@ -33,6 +35,7 @@ struct Options {
     exit_scene: Option<bool>,
     hazard_scene: Option<(u8, bool)>,
     outcome_scene: Option<String>,
+    result_actions: std::collections::VecDeque<ResultAction>,
     level: u8,
     steps: Option<u64>,
     fast: bool,
@@ -56,6 +59,7 @@ impl Options {
             exit_scene: None,
             hazard_scene: None,
             outcome_scene: None,
+            result_actions: std::collections::VecDeque::new(),
             level: 1,
             steps: None,
             fast: false,
@@ -69,6 +73,21 @@ impl Options {
         while let Some(flag) = args.next() {
             match flag.as_str() {
                 "--help" | "-h" => return Ok(None),
+                "--result-actions" => {
+                    let value = args
+                        .next()
+                        .ok_or("--result-actions needs restart,continue actions")?;
+                    for word in value.split(',') {
+                        o.result_actions.push_back(match word {
+                            "restart" => ResultAction::Restart,
+                            "continue" => ResultAction::Continue,
+                            _ => return Err("result actions: restart or continue".into()),
+                        });
+                    }
+                    if o.result_actions.len() > 32 {
+                        return Err("at most 32 result actions".into());
+                    }
+                }
                 "--synthetic" => o.synthetic = true,
                 "--synthetic-outcome" => {
                     let kind = args
@@ -176,6 +195,9 @@ impl Options {
         }
         if !(1..=30).contains(&o.level) || (o.synthetic && o.level != 1) {
             return Err("--level: Fun 1..30 with original assets".into());
+        }
+        if !o.result_actions.is_empty() && o.steps.is_none() {
+            return Err("--result-actions requires bounded --steps per attempt".into());
         }
         if o.fast && o.steps.is_none() {
             return Err("--fast requires bounded --steps".into());
@@ -411,6 +433,9 @@ impl Capture {
         self.climber_trace.flush()?;
         self.floater_trace.flush()?;
         self.nuke_trace.flush()?;
+        self.exit_trace.flush()?;
+        self.hazards_trace.flush()?;
+        self.completion_trace.flush()?;
         write_new(&self.root.join("object-map-final.bin"), s.object_map_data())?;
         write_new(&self.root.join("terrain-final.bin"), s.terrain())?;
         write_new(&self.root.join("brick-final.bin"), s.brick_mask())?;
@@ -561,9 +586,118 @@ fn apply_replay_boundary(
         session.inputs.push(replay.next().unwrap());
     }
 }
-fn run(options: Options) -> Result<(), Box<dyn Error>> {
+fn initialize_capture(
+    c: &mut Capture,
+    assets: &Assets,
+    session: &Session,
+    level: u8,
+) -> Result<(), Box<dyn Error>> {
+    c.snapshot(session)?;
+    write_new(&c.root.join("bash-masks.bin"), &assets.bash_masks)?;
+    write_new(&c.root.join("mine-masks.bin"), &assets.mine_masks)?;
+    let objects: Vec<_> = assets
+        .steel
+        .iter()
+        .zip(&assets.one_way_left)
+        .zip(&assets.one_way_right)
+        .map(|((&steel, &left), &right)| {
+            if steel != 0 {
+                137
+            } else if left != 0 {
+                135
+            } else if right != 0 {
+                136
+            } else {
+                0
+            }
+        })
+        .collect();
+    write_new(&c.root.join("objects.bin"), &objects)?;
+    write_new(
+        &c.root.join("object-map-initial.bin"),
+        session.object_map_data(),
+    )?;
+    write_new(&c.root.join("explosion-mask.bin"), &assets.explosion_mask)?;
+    let trap_metadata: Vec<_> = assets
+        .traps
+        .iter()
+        .flat_map(|trap| {
+            trap.map_or([0, 0, 0], |t| {
+                [t.frame_count(), t.frame(), u8::from(t.continuous())]
+            })
+        })
+        .collect();
+    write_new(&c.root.join("traps.bin"), &trap_metadata)?;
+    let config = &assets.config;
+    let entrances = assets
+        .entrances
+        .iter()
+        .map(|p| format!("[{},{}]", p.x, p.y))
+        .collect::<Vec<_>>()
+        .join(",");
+    let description = format!(
+        "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"nuke_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"miners\":{},\"builders\":{},\"blockers\":{},\"bombers\":{},\"climbers\":{},\"floaters\":{},\"level\":{}}}",
+        assets.width,
+        assets.height,
+        config.time_limit_minutes,
+        config.total_lemmings,
+        config.initial_release_rate,
+        assets.diggers,
+        assets.bashers,
+        assets.miners,
+        assets.builders,
+        assets.blockers,
+        assets.bombers,
+        assets.climbers,
+        assets.floaters,
+        level
+    );
+    let description = format!(
+        "{},\"required\":{}}}",
+        description.trim_end_matches('}'),
+        assets
+            .required
+            .map_or_else(|| "null".into(), |v| v.to_string())
+    );
+    write_new(&c.root.join("config.json"), description.as_bytes())?;
+    Ok(())
+}
+fn run_summary(
+    game: &LevelRun,
+    rendered: u64,
+    observed_events: u64,
+    display: (&str, &str),
+    mode: (bool, bool, Pacing),
+) -> String {
+    let (driver, renderer) = display;
+    let (fast, synthetic, pacing) = mode;
+    let state = game.session.scheduler.step_state();
+    let runtime = sdl2::version::version();
+    format!(
+        "{{\"control_step\":{},\"iteration\":{},\"frames\":{rendered},\"input_count\":{},\"events_seen\":{observed_events},\"camera\":{},\"video_driver\":{:?},\"renderer\":{:?},\"sdl_version\":\"{}.{}.{}\",\"timing\":\"{}\",\"synthetic\":{},\"pacing\":{:?},\"rate_numerator\":{},\"rate_denominator\":{}}}",
+        state.control_step,
+        state.iteration,
+        game.session.inputs.len(),
+        game.view.camera,
+        driver,
+        renderer,
+        runtime.major,
+        runtime.minor,
+        runtime.patch,
+        if fast { "fixed-step" } else { "realtime" },
+        synthetic,
+        pacing.label(),
+        pacing.rate().0,
+        pacing.rate().1
+    )
+}
+fn load_assets(options: &Options, level: u8) -> Result<(Assets, Option<u8>), Box<dyn Error>> {
     let assets = if let Some(kind) = &options.outcome_scene {
-        Assets::synthetic_completion(kind)
+        Assets::synthetic_completion(if kind == "win" && level == 2 {
+            "loss"
+        } else {
+            kind
+        })
     } else if let Some((kind, drop)) = options.hazard_scene {
         Assets::synthetic_hazards(kind, drop)
     } else if let Some(drop) = options.exit_scene {
@@ -578,130 +712,47 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         Assets::synthetic_basher()
     } else if options.synthetic {
         Assets::synthetic()
-    } else if options.level == 1 {
+    } else if level == 1 {
         Assets::load(&options.assets)?
     } else {
-        Assets::load_level(&options.assets, options.level)?
+        Assets::load_level(&options.assets, level)?
     };
+    let next = if options.synthetic {
+        (options.outcome_scene.as_deref() == Some("win") && level == 1).then_some(2)
+    } else {
+        (level < 30).then_some(level + 1)
+    };
+    Ok((assets, next))
+}
+fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
+    let (assets, next) = load_assets(&options, options.level)?;
     let replay = if let Some(path) = &options.replay {
         input::parse_replay(&fs::read_to_string(path)?, options.steps)?
     } else {
         Vec::new()
     };
     let mut replay = replay.into_iter().peekable();
-    let mut session = Session::new(
-        assets.config,
-        assets.entrances.clone(),
-        assets.width,
-        assets.height,
-        assets.terrain.clone(),
-    )?;
     let pacing = options.pacing.unwrap_or(if options.synthetic {
         Pacing::Reference
     } else {
         Pacing::Dos
     });
-    session.set_pacing(pacing);
-    if let Some(required) = assets.required {
-        session.configure_completion(required)?;
-    }
-    session.configure_digger(assets.diggers, assets.steel.clone())?;
-    session.configure_basher(
-        assets.bashers,
-        assets.bash_masks,
-        assets.one_way_left.clone(),
-        assets.one_way_right.clone(),
-    )?;
-    session.configure_miner(assets.miners, assets.mine_masks);
-    session.configure_builder(assets.builders);
-    session.configure_blocker(assets.blockers, assets.object_map.clone())?;
-    session.configure_traps(assets.traps);
-    session.configure_bomber(assets.bombers, assets.explosion_mask)?;
-    session.configure_climber(assets.climbers);
-    session.configure_floater(assets.floaters);
-    let mut view = View::new(assets.screen_x);
-    view.replaying = options.replay.is_some();
+    let mut game = LevelRun::new(assets, options.level, next, pacing)?;
+    game.view.replaying = options.replay.is_some();
     let mut capture = options
         .capture
         .as_ref()
         .map(|p| Capture::new(p, options.synthetic))
         .transpose()?;
     if let Some(c) = &mut capture {
-        c.snapshot(&session)?;
-        write_new(&c.root.join("bash-masks.bin"), &assets.bash_masks)?;
-        write_new(&c.root.join("mine-masks.bin"), &assets.mine_masks)?;
-        let objects: Vec<_> = assets
-            .steel
-            .iter()
-            .zip(&assets.one_way_left)
-            .zip(&assets.one_way_right)
-            .map(|((&steel, &left), &right)| {
-                if steel != 0 {
-                    137
-                } else if left != 0 {
-                    135
-                } else if right != 0 {
-                    136
-                } else {
-                    0
-                }
-            })
-            .collect();
-        write_new(&c.root.join("objects.bin"), &objects)?;
-        write_new(
-            &c.root.join("object-map-initial.bin"),
-            session.object_map_data(),
-        )?;
-        write_new(&c.root.join("explosion-mask.bin"), &assets.explosion_mask)?;
-        let trap_metadata: Vec<_> = assets
-            .traps
-            .iter()
-            .flat_map(|trap| {
-                trap.map_or([0, 0, 0], |t| {
-                    [t.frame_count(), t.frame(), u8::from(t.continuous())]
-                })
-            })
-            .collect();
-        write_new(&c.root.join("traps.bin"), &trap_metadata)?;
-        let config = &assets.config;
-        let entrances = assets
-            .entrances
-            .iter()
-            .map(|p| format!("[{},{}]", p.x, p.y))
-            .collect::<Vec<_>>()
-            .join(",");
-        let description = format!(
-            "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"nuke_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"miners\":{},\"builders\":{},\"blockers\":{},\"bombers\":{},\"climbers\":{},\"floaters\":{},\"level\":{}}}",
-            assets.width,
-            assets.height,
-            config.time_limit_minutes,
-            config.total_lemmings,
-            config.initial_release_rate,
-            assets.diggers,
-            assets.bashers,
-            assets.miners,
-            assets.builders,
-            assets.blockers,
-            assets.bombers,
-            assets.climbers,
-            assets.floaters,
-            options.level
-        );
-        let description = format!(
-            "{},\"required\":{}}}",
-            description.trim_end_matches('}'),
-            assets
-                .required
-                .map_or_else(|| "null".into(), |v| v.to_string())
-        );
-        write_new(&c.root.join("config.json"), description.as_bytes())?;
+        initialize_capture(c, &game.assets, &game.session, options.level)?;
     }
     let sdl = sdl2::init()?;
     let video = sdl.video()?;
     sdl2::hint::set("SDL_RENDER_SCALE_QUALITY", "0");
     let window = video
         .window(
-            &format!("Oh My Lemmings - {}", assets.title),
+            &format!("Oh My Lemmings - {}", game.assets.title),
             WIDTH as u32 * 3,
             HEIGHT as u32 * 3,
         )
@@ -724,8 +775,20 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
     let mut last_captured = None;
     let mut demo_at = None;
     let mut pending_due = 0u64;
+    let mut attempt = 0u32;
+    let mut result_rendered = false;
+    let mut transitions = options
+        .capture
+        .as_ref()
+        .map(|p| {
+            OpenOptions::new()
+                .write(true)
+                .create_new(true)
+                .open(p.join("transitions.jsonl"))
+        })
+        .transpose()?;
     'running: loop {
-        let step = session.scheduler.step_state().control_step;
+        let step = game.session.scheduler.step_state().control_step;
         if options.demo_input && demo_at != Some(step) {
             let key = match step {
                 16 | 34 => Some(Keycode::Space),
@@ -740,92 +803,201 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             }
             demo_at = Some(step);
         }
+        if result_rendered && let Some(action) = options.result_actions.front() {
+            events.push_event(key_event(match action {
+                ResultAction::Restart => Keycode::R,
+                ResultAction::Continue => Keycode::Return,
+            }))?;
+        }
+        let mut action = None;
         for event in pump.poll_iter() {
             observed_events += 1;
+            if game.session.result().is_some() {
+                if let Some(request) = input::result_action(&event) {
+                    action.get_or_insert(request);
+                    continue;
+                }
+                if action.is_some()
+                    && !matches!(
+                        event,
+                        Event::Quit { .. }
+                            | Event::Window { .. }
+                            | Event::KeyDown {
+                                keycode: Some(Keycode::Escape),
+                                ..
+                            }
+                    )
+                {
+                    continue;
+                }
+            }
             if !input::handle(
                 event,
-                &mut session,
-                &mut view,
-                assets.width,
+                &mut game.session,
+                &mut game.view,
+                game.assets.width,
                 options.replay.is_some(),
             )? {
                 break 'running;
             }
         }
+        if let Some(action) = action {
+            let scripted = !options.result_actions.is_empty();
+            match game.prepare(action, pacing, |level| load_assets(&options, level)) {
+                Ok(Some(next)) => {
+                    if let Some(c) = &mut capture {
+                        c.finish(
+                            &game.session,
+                            &run_summary(
+                                &game,
+                                rendered,
+                                observed_events,
+                                (video.current_video_driver(), canvas.info().name),
+                                (options.fast, options.synthetic, pacing),
+                            ),
+                        )?;
+                    }
+                    if let Some(log) = &mut transitions {
+                        writeln!(
+                            log,
+                            "{{\"attempt\":{attempt},\"level\":{},\"step\":{},\"action\":\"{action:?}\",\"target\":{}}}",
+                            game.level,
+                            game.session.scheduler.step_state().control_step,
+                            next.level
+                        )?;
+                    }
+                    attempt += 1;
+                    capture = options
+                        .capture
+                        .as_ref()
+                        .map(|root| {
+                            Capture::new(
+                                &root.join(format!("attempt-{attempt:04}")),
+                                options.synthetic,
+                            )
+                        })
+                        .transpose()?;
+                    game = next;
+                    if let Some(c) = &mut capture {
+                        initialize_capture(c, &game.assets, &game.session, game.level)?;
+                    }
+                    replay = Vec::new().into_iter().peekable();
+                    options.replay = None;
+                    options.demo_input = false;
+                    if scripted {
+                        options.result_actions.pop_front();
+                    }
+                    canvas
+                        .window_mut()
+                        .set_title(&format!("Oh My Lemmings - {}", game.assets.title))?;
+                    pending_due = 0;
+                    rendered = 0;
+                    observed_events = 0;
+                    initial = true;
+                    last_captured = None;
+                    result_rendered = false;
+                    demo_at = None;
+                    // Inputs already queued for the old result must not assign a skill in the new game.
+                    for event in pump.poll_iter() {
+                        if matches!(event, Event::Quit { .. }) {
+                            break 'running;
+                        }
+                    }
+                    previous = Instant::now();
+                }
+                Ok(None) if scripted => {
+                    return Err("requested result transition is unavailable".into());
+                }
+                Ok(None) => {}
+                Err(error) if scripted => return Err(error),
+                Err(error) => {
+                    eprintln!("Cannot load level: {error}");
+                    game.view.result_error = true;
+                    result_rendered = false;
+                }
+            }
+        }
         let now = Instant::now();
         let elapsed = now.duration_since(previous);
         previous = now;
-        let due = if initial || session.result().is_some() {
+        let due = if initial || game.session.result().is_some() {
             0
         } else if options.fast {
             1
         } else {
-            session.due(elapsed)?
+            game.session.due(elapsed)?
         };
         pending_due = pending_due
             .checked_add(due)
             .ok_or("pending tick overflow")?;
         let remaining = options.steps.map_or(u64::MAX, |end| {
-            end - session.scheduler.step_state().control_step
+            end - game.session.scheduler.step_state().control_step
         });
         let mut advanced = false;
         for _ in 0..pending_due.min(remaining) {
-            if session.result().is_some() {
+            if game.session.result().is_some() {
                 break;
             }
-            apply_replay_boundary(&mut session, &mut replay);
-            session.tick()?;
+            apply_replay_boundary(&mut game.session, &mut replay);
+            game.session.tick()?;
             pending_due -= 1;
             advanced = true;
             if let Some(c) = &mut capture {
-                c.snapshot(&session)?;
-                if session.result().is_some()
+                c.snapshot(&game.session)?;
+                if game.session.result().is_some()
                     || matches!(
-                        session.scheduler.step_state().control_step,
+                        game.session.scheduler.step_state().control_step,
                         16 | 17 | 34 | 35 | 54 | 60 | 100 | 170 | 340
                     )
-                    || session
+                    || game
+                        .session
                         .events
                         .iter()
                         .any(|event| event.starts_with("Input:"))
-                    || basher_capture(&session)
-                    || bomber_capture(&session)
-                    || climber_capture(&session)
-                    || floater_capture(&session)
-                    || exit_capture(&session)
-                    || hazard_capture(&session)
+                    || basher_capture(&game.session)
+                    || bomber_capture(&game.session)
+                    || climber_capture(&game.session)
+                    || floater_capture(&game.session)
+                    || exit_capture(&game.session)
+                    || hazard_capture(&game.session)
                 {
                     break;
                 }
             }
         }
-        let step = session.scheduler.step_state().control_step;
-        let finished = options
-            .steps
-            .is_some_and(|end| step >= end || session.result().is_some());
-        let milestone = session.result().is_some()
+        let step = game.session.scheduler.step_state().control_step;
+        let finished = options.steps.is_some_and(|end| {
+            if game.session.result().is_some() {
+                options.result_actions.is_empty()
+            } else {
+                step >= end
+            }
+        });
+        let milestone = game.session.result().is_some()
             || matches!(step, 0 | 16 | 17 | 34 | 35 | 54 | 60 | 100 | 170 | 340)
-            || basher_capture(&session)
-            || bomber_capture(&session)
-            || climber_capture(&session)
-            || floater_capture(&session)
-            || exit_capture(&session)
-            || hazard_capture(&session)
-            || session.actors.iter().any(|a| {
+            || basher_capture(&game.session)
+            || bomber_capture(&game.session)
+            || climber_capture(&game.session)
+            || floater_capture(&game.session)
+            || exit_capture(&game.session)
+            || hazard_capture(&game.session)
+            || game.session.actors.iter().any(|a| {
                 a.state().action == lemmings_core::MotionAction::Building
                     && matches!(a.state().frame, 0 | 9)
             })
             || finished
-            || session.actors.iter().any(|a| {
+            || game.session.actors.iter().any(|a| {
                 a.state().action == lemmings_core::MotionAction::Digging
                     && matches!(a.state().frame, 0 | 8)
             })
-            || session
+            || game
+                .session
                 .events
                 .iter()
                 .any(|event| event.starts_with("Input:"));
         let take_capture = capture.is_some() && milestone && last_captured != Some(step);
         let render = initial
+            || (game.session.result().is_some() && !result_rendered)
             || take_capture
             || finished
             || if options.fast {
@@ -834,7 +1006,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
                 last_render.elapsed() >= Duration::from_millis(16 * options.render_every)
             };
         if render {
-            let frame = view.frame(&assets, &session)?;
+            let frame = game.view.frame(&game.assets, &game.session)?;
             texture.update(None, &frame, WIDTH * 3)?;
             canvas.set_draw_color(sdl2::pixels::Color::RGB(0, 0, 0));
             canvas.clear();
@@ -853,6 +1025,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
                 last_captured = Some(step);
             }
             canvas.present();
+            result_rendered = game.session.result().is_some();
             rendered += 1;
             last_render = Instant::now();
         }
@@ -864,34 +1037,21 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             std::thread::sleep(Duration::from_millis(1));
         }
     }
-    if replay.peek().is_some() && session.result().is_none() {
+    if !options.result_actions.is_empty() {
+        return Err("run ended before all result actions were applied".into());
+    }
+    if replay.peek().is_some() && game.session.result().is_none() {
         return Err("run ended before all replay commands were applied".into());
     }
-    let state = session.scheduler.step_state();
-    let runtime = sdl2::version::version();
-    let summary = format!(
-        "{{\"control_step\":{},\"iteration\":{},\"frames\":{rendered},\"input_count\":{},\"events_seen\":{observed_events},\"camera\":{},\"video_driver\":{:?},\"renderer\":{:?},\"sdl_version\":\"{}.{}.{}\",\"timing\":\"{}\",\"synthetic\":{},\"pacing\":{:?},\"rate_numerator\":{},\"rate_denominator\":{}}}",
-        state.control_step,
-        state.iteration,
-        session.inputs.len(),
-        view.camera,
-        video.current_video_driver(),
-        canvas.info().name,
-        runtime.major,
-        runtime.minor,
-        runtime.patch,
-        if options.fast {
-            "fixed-step"
-        } else {
-            "realtime"
-        },
-        options.synthetic,
-        pacing.label(),
-        pacing.rate().0,
-        pacing.rate().1
+    let summary = run_summary(
+        &game,
+        rendered,
+        observed_events,
+        (video.current_video_driver(), canvas.info().name),
+        (options.fast, options.synthetic, pacing),
     );
     if let Some(c) = &mut capture {
-        c.finish(&session, &summary)?;
+        c.finish(&game.session, &summary)?;
     }
     println!("{summary}");
     Ok(())
@@ -933,6 +1093,9 @@ mod tests {
     fn invalid_cli_combinations_and_missing_values_are_rejected() {
         for args in [
             vec!["--unknown"],
+            vec!["--result-actions"],
+            vec!["--result-actions", "restart"],
+            vec!["--steps", "10", "--result-actions", "invalid"],
             vec!["--fast"],
             vec!["--steps", "0"],
             vec!["--render-every", "0"],

@@ -42,7 +42,7 @@ Rustup의 최초 도구 체인·타깃 설치에는 네트워크가 필요할 �
 
 세 작업 모두 체크아웃 직후 `assets/local/`과 `target/`이 없는지 확인합니다. Rust 작업은 `$RUNNER_TEMP/cargo-home`도 없는지 검사한 뒤 `GITHUB_ENV`로 CARGO_HOME을 지정해 패키지 캐시를 공유하지 않습니다. 도구 체인은 체크아웃의 설정 파일을 읽는 `rustup show active-toolchain`으로 설치·선택합니다. Ubuntu의 Rustup 제공은 [runner 이미지 목록](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md)에 명시되어 있습니다.
 
-권한은 `contents: read`, checkout의 `persist-credentials`는 false입니다. 작업별 제한 시간은 10분이며 같은 브랜치/PR의 새 실행이 이전 실행을 취소합니다. 현재 dependency·빌드 캐시는 사용하지 않습니다.
+권한은 `contents: read`, checkout의 `persist-credentials`는 false입니다. [#54](https://github.com/edwardkim/ohmylemmings/issues/54)의 결과 전환 회귀를 포함해 Rust native 제한 시간은 15분, Python/WASM은 10분이며 같은 브랜치/PR의 새 실행이 이전 실행을 취소합니다. 현재 dependency·빌드 캐시는 사용하지 않습니다.
 
 ## 고정한 외부 Action
 

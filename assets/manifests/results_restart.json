@@ -1,0 +1,128 @@
+{
+  "format": "g08-results-restart-v1",
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/54",
+  "reference": {
+    "url": "https://github.com/ericlangedijk/Lemmix/blob/40e9bc34451f0e9127fd53b290a3877e700d143d/src/GameScreen.Postview.pas",
+    "sha256": "08fd0cce04f8464a44912d6d765a97356ddca1ef50c2aac7fe661bfd153fc94f",
+    "size": 7417,
+    "scope": "source inspection; not executed Pascal UI"
+  },
+  "binary": {
+    "path": "target/release/lemmings-desktop",
+    "sha256": "5b596fc32b2f089039b577fafb4be447bff022082b097c93d13cd5b5add1483d"
+  },
+  "asset_manifests": [
+    {
+      "path": "assets/manifests/dos_original.json",
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "assets/manifests/reference_sources.json",
+      "sha256": "af084d89ba0b9c119b7afa4f886281cfeede4a3d25de98ecb8dbb8c159942d3b"
+    }
+  ],
+  "evidence": [
+    {
+      "directory": "assets/local/issue-54-results-2",
+      "files": 1532,
+      "bytes": 984419160,
+      "canonical_index_sha256": "a07697c1ad83b3221b5b3b380459896edc829d8bdf311f1b48e0569ac222100d",
+      "summary": {
+        "status": "PASS",
+        "driver": "SDL2 dummy/software",
+        "cases": [
+          {
+            "case": "win",
+            "render": 1,
+            "attempts": 3,
+            "sha256": "24b4b8aaaa1a2cf505f209a754c31f59249ae889384ce730b39e2057f99ce25f"
+          },
+          {
+            "case": "win",
+            "render": 7,
+            "attempts": 3,
+            "sha256": "24b4b8aaaa1a2cf505f209a754c31f59249ae889384ce730b39e2057f99ce25f"
+          },
+          {
+            "case": "loss",
+            "render": 1,
+            "attempts": 2,
+            "sha256": "49e61baf778c6ac9cc8f857c9d0006909a18d764a1b8aff08b612314a625f16f"
+          },
+          {
+            "case": "loss",
+            "render": 7,
+            "attempts": 2,
+            "sha256": "49e61baf778c6ac9cc8f857c9d0006909a18d764a1b8aff08b612314a625f16f"
+          },
+          {
+            "case": "zero",
+            "render": 1,
+            "attempts": 2,
+            "sha256": "90314638066fc0ca32a333c8f5fbfa1be9efaf3f6d81d823c8c1f262a0096819"
+          },
+          {
+            "case": "zero",
+            "render": 7,
+            "attempts": 2,
+            "sha256": "90314638066fc0ca32a333c8f5fbfa1be9efaf3f6d81d823c8c1f262a0096819"
+          }
+        ],
+        "snapshots": 6038,
+        "pixel_exact_captures": 500,
+        "original": [
+          {
+            "action": "restart",
+            "target": 1,
+            "status": "PASS"
+          },
+          {
+            "action": "continue",
+            "target": 2,
+            "status": "PASS"
+          }
+        ],
+        "scope": "result scene, restart/next, fresh session and capture/replay boundaries; not DOS artwork"
+      }
+    },
+    {
+      "directory": "assets/local/issue-54-x11-1",
+      "files": 269,
+      "bytes": 180517777,
+      "canonical_index_sha256": "14e88f7ebce0999ada5b4903b60a9f54600361d11bc72a4265fd631fe1b5a957",
+      "summary": {
+        "status": "PASS",
+        "driver": "SDL2 x11/software",
+        "actions": [
+          "R",
+          "left click",
+          "right click"
+        ],
+        "attempts": 3,
+        "snapshots": 506,
+        "pixel_exact_captures": 93,
+        "final": {
+          "control_step": 173,
+          "iteration": 173,
+          "frames": 498,
+          "input_count": 0,
+          "events_seen": 1,
+          "camera": 0,
+          "video_driver": "x11",
+          "renderer": "software",
+          "sdl_version": "2.30.0",
+          "timing": "realtime",
+          "synthetic": true,
+          "pacing": "reference-17",
+          "rate_numerator": 17,
+          "rate_denominator": 1
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "own 320x200 result renderer, not DOS artwork equivalence",
+    "Fun standard graphics through 30; no cross-difficulty progression",
+    "R is restart extension; menu action exits application"
+  ]
+}

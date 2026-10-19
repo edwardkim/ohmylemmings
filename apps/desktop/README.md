@@ -1,6 +1,6 @@
 # Desktop preview
 
-Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder·Blocker·Bomber·Climber·Floater 할당과 Nuke를 지원합니다. 출구 판정·승패·음향은 후속 구현입니다.
+Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder·Blocker·Bomber·Climber·Floater 할당과 Nuke를 지원합니다. 출구·위험물·승패·결과 화면·재시작을 지원하며 음향은 후속입니다.
 
 ## 준비와 실행
 
@@ -29,6 +29,9 @@ cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/lo
 | Left / Right | 카메라 16픽셀 이동 |
 | Home / End | 월드 양끝 |
 | Esc / 창 닫기 | 종료 |
+| 결과 화면 Enter / 왼쪽 클릭 | 실패 시 재시도, 성공 시 다음 레벨 |
+| 결과 화면 R | 현재 레벨 다시 시작 |
+| 결과 화면 오른쪽 클릭 | 종료 |
 
 `--help`에서 실행 옵션을 확인합니다. `--steps 340`은 제어 호출 340회 후 종료하며, Pause 중에도 제어 호출은 증가합니다. `--fast`는 `--steps`를 지정한 검사에서만 벽시계 대기를 생략합니다.
 
@@ -137,3 +140,16 @@ python3 tools/check_completion.py
 ```
 
 합성 종류는 `win|loss|clock|particles|zero|mixed`입니다. 기존 개체 전용 합성 fixture는 지정한 전체 관측 구간을 유지합니다. 완주 세션의 유한 `--steps` 실행은 결과가 나오면 최종 상태/화면을 기록하고 끝나며 이후 예약 입력은 적용하지 않습니다. `completion.jsonl`은 단계·종료 이유·원래/현재 총원·필요/구출 수·정수 백분율을 기록합니다. [계약·Nuke 분모·DOS 경계 차이·재현](../../mydocs/tech_insights/issue-52_level_outcome.md)을 참고합니다.
+
+## 결과 화면·재시작 / #54
+
+재시작은 원래 자산에서 지형·개체·수량·시계·Nuke·카메라를 다시 구성합니다. 다음 이동은 Fun1..30의 기존 표준 그래픽 로더 범위이며 Fun30 성공 뒤에는 R/종료를 선택합니다. 다음 파일이 없거나 지원하지 않는 특수 그래픽이면 결과 화면에서 오류를 표시합니다.
+
+```sh
+cargo run --offline --release -p lemmings-desktop -- --synthetic-outcome win
+# 동일 시도 재시작 후 두 번째 합성 loss 장면으로 이동:
+cargo run --offline --release -p lemmings-desktop -- --synthetic-outcome win --steps 1200 --fast --result-actions restart,continue
+python3 tools/check_results.py
+```
+
+`--result-actions`는 결과가 표시된 뒤 순서대로 SDL 키를 주입하는 유한 실행용 옵션입니다. `--steps`는 각 시도의 상한입니다. 첫 `--replay`의 남은 명령은 전환 시 폐기하며 이후는 수동 입력을 받습니다. 캡처는 최초 루트와 `attempt-0001/` 등 시도별 폴더, 루트 `transitions.jsonl`로 구분합니다. 자체 결과 UI이며 원본 결과 배경/글꼴·메뉴/접근 코드는 후속입니다. [계약·재현](../../mydocs/tech_insights/issue-54_results_restart.md).

@@ -32,3 +32,4 @@ check-desktop:
 	python3 tools/check_exit.py --binary target/release/lemmings-desktop
 	python3 tools/check_hazards.py --binary target/release/lemmings-desktop
 	python3 tools/check_completion.py --binary target/release/lemmings-desktop
+	python3 tools/check_results.py --binary target/release/lemmings-desktop

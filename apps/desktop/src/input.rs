@@ -10,6 +10,28 @@ use sdl2::{
 };
 use std::error::Error;
 
+/// Scene commands are separate from tick commands and are checked only at a frozen result.
+pub fn result_action(event: &Event) -> Option<crate::lifecycle::ResultAction> {
+    use crate::lifecycle::ResultAction;
+    match event {
+        Event::KeyDown {
+            keycode: Some(Keycode::R),
+            repeat: false,
+            ..
+        } => Some(ResultAction::Restart),
+        Event::KeyDown {
+            keycode: Some(Keycode::Return),
+            repeat: false,
+            ..
+        }
+        | Event::MouseButtonDown {
+            mouse_btn: MouseButton::Left,
+            ..
+        } => Some(ResultAction::Continue),
+        _ => None,
+    }
+}
+
 /// Return false on quit. Only gameplay commands enter the deterministic log.
 pub fn handle(
     event: Event,
@@ -25,6 +47,10 @@ pub fn handle(
             win_event: WindowEvent::Close,
             ..
         } => return Ok(false),
+        Event::MouseButtonDown {
+            mouse_btn: MouseButton::Right,
+            ..
+        } if session.result().is_some() => return Ok(false),
         Event::MouseButtonDown {
             mouse_btn: MouseButton::Left,
             x,
@@ -173,6 +199,64 @@ mod tests {
             Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap(),
             View::new(0),
         )
+    }
+    #[test]
+    fn result_controls_ignore_repeat_and_use_separate_scene_actions() {
+        use crate::lifecycle::ResultAction;
+        assert_eq!(
+            result_action(&key(Keycode::R, false)),
+            Some(ResultAction::Restart)
+        );
+        assert_eq!(
+            result_action(&key(Keycode::Return, false)),
+            Some(ResultAction::Continue)
+        );
+        assert_eq!(result_action(&key(Keycode::Return, true)), None);
+        assert_eq!(result_action(&key(Keycode::R, true)), None);
+        let (mut session, mut view) = setup();
+        for code in [Keycode::R, Keycode::Return] {
+            handle(key(code, false), &mut session, &mut view, 640, false).unwrap();
+        }
+        assert!(session.inputs.is_empty());
+        let click = |mouse_btn| Event::MouseButtonDown {
+            timestamp: 0,
+            window_id: 0,
+            which: 0,
+            mouse_btn,
+            clicks: 1,
+            x: 120,
+            y: 80,
+        };
+        assert_eq!(
+            result_action(&click(MouseButton::Left)),
+            Some(ResultAction::Continue)
+        );
+        assert_eq!(result_action(&click(MouseButton::Right)), None);
+        assert!(
+            handle(
+                click(MouseButton::Right),
+                &mut session,
+                &mut view,
+                640,
+                false
+            )
+            .unwrap()
+        );
+        session.configure_completion(1).unwrap();
+        session
+            .queue(InputCommand::Custom(StartupCommand::Nuke))
+            .unwrap();
+        session.tick().unwrap();
+        assert!(
+            !handle(
+                click(MouseButton::Right),
+                &mut session,
+                &mut view,
+                640,
+                false
+            )
+            .unwrap()
+        );
     }
     #[test]
     fn finished_level_ignores_gameplay_keys_but_keeps_camera_and_quit() {
