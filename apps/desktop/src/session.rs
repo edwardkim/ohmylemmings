@@ -100,9 +100,6 @@ impl Session {
     pub fn result(&self) -> Option<LevelResult> {
         self.result
     }
-    pub fn completion_rules(&self) -> Option<CompletionRules> {
-        self.completion
-    }
     pub fn completion_snapshot(&self) -> String {
         let Some(rules) = self.completion else {
             return "null".into();
@@ -228,9 +225,6 @@ impl Session {
     }
     pub fn object_map_data(&self) -> &[u8] {
         self.object_map.as_deref().unwrap_or(&[])
-    }
-    pub fn has_exit(&self) -> bool {
-        self.has_exit
     }
     pub fn rescue_just_happened(&self) -> bool {
         self.rescued_this_tick

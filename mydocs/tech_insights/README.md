@@ -61,3 +61,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#52 시간·구출률·승패 계약](issue-52_level_outcome.md)
 
 - [#54 결과 화면·재시작](issue-54_results_restart.md)
+
+- [#56 원본 기술 패널·미니맵](issue-56_skill_panel.md)

@@ -21,6 +21,7 @@ pub struct View {
     pub selected_skill: SelectedSkill,
     pub next_level: Option<u8>,
     pub result_error: bool,
+    pub panel: crate::panel::Controls,
     world: Vec<[u8; 4]>,
     iteration: Option<u64>,
 }
@@ -32,6 +33,7 @@ impl View {
             selected_skill: SelectedSkill::Digger,
             next_level: None,
             result_error: false,
+            panel: crate::panel::Controls::default(),
             world: Vec::new(),
             iteration: None,
         }
@@ -229,115 +231,7 @@ impl View {
                 }
             }
         }
-        let step = session.scheduler.step_state();
-        let state = session.scheduler.state();
-        let alive = session
-            .actors
-            .iter()
-            .filter(|a| a.state().removed.is_none())
-            .count();
-        let title = format!(
-            "{}  OUT {alive}/{} RR {} TIME {}:{:02}",
-            assets.title,
-            session.scheduler.nuke_state().max_lemmings,
-            state.release_rate,
-            state.seconds_remaining / 60,
-            state.seconds_remaining % 60
-        );
-        for pixel in output[160 * WIDTH * 3..].chunks_exact_mut(3) {
-            pixel.copy_from_slice(&[20, 24, 32]);
-        }
-        text(&mut output, 4, 164, &title, [220, 228, 240]);
-        let controls = if let Some(result) = session.result() {
-            if result.success {
-                "WON | ESC QUIT"
-            } else {
-                "LOST | ESC QUIT"
-            }
-        } else if session.scheduler.nuke_state().is_nuked {
-            if step.paused {
-                "NUKE ACTIVE | SPACE RESUME"
-            } else {
-                "NUKE ACTIVE | SPACE PAUSE"
-            }
-        } else if self.replaying {
-            "REPLAYING RECORDED INPUT"
-        } else if step.paused {
-            "SPACE RESUME | UP/DOWN RATE"
-        } else {
-            "SPACE PAUSE | UP/DOWN RATE"
-        };
-        text(
-            &mut output,
-            4,
-            176,
-            controls,
-            if step.paused {
-                [255, 210, 80]
-            } else {
-                [140, 190, 170]
-            },
-        );
-        if session.has_exit() || session.completion_rules().is_some() {
-            let caption = if let Some(rules) = session.completion_rules() {
-                format!(
-                    "{}% / {}%",
-                    lemmings_core::percentage(
-                        session.saved() as u32,
-                        session.scheduler.nuke_state().max_lemmings
-                    ),
-                    rules.target_percent()
-                )
-            } else {
-                format!("SAVED {}", session.saved())
-            };
-            text(
-                &mut output,
-                WIDTH - caption.len() * 6 - 4,
-                176,
-                &caption,
-                [220, 228, 240],
-            );
-        }
-        text(
-            &mut output,
-            4,
-            188,
-            &match self.selected_skill {
-                SelectedSkill::Digger => format!(
-                    "DIG {} | CLICK LEMMING | ESC QUIT",
-                    session.remaining_diggers
-                ),
-                SelectedSkill::Basher => {
-                    format!("BASH {} | B/D SELECT | CLICK", session.remaining_bashers)
-                }
-                SelectedSkill::Miner => {
-                    format!("MINE {} | M/B/D SELECT | CLICK", session.remaining_miners)
-                }
-                SelectedSkill::Floater => {
-                    format!(
-                        "FLOAT {} | F/C/E/K/U/M/B/D | CLICK",
-                        session.remaining_floaters
-                    )
-                }
-                SelectedSkill::Climber => {
-                    format!(
-                        "CLIMB {} | C/E/K/U/M/B/D | CLICK",
-                        session.remaining_climbers
-                    )
-                }
-                SelectedSkill::Bomber => {
-                    format!("BOMB {} | E/K/U/M/B/D | CLICK", session.remaining_bombers)
-                }
-                SelectedSkill::Blocker => {
-                    format!("BLOCK {} | K/U/M/B/D | CLICK", session.remaining_blockers)
-                }
-                SelectedSkill::Builder => {
-                    format!("BUILD {} | U/M/B/D | CLICK", session.remaining_builders)
-                }
-            },
-            [140, 190, 170],
-        );
+        crate::panel::draw(&mut output, assets, session, self);
         Ok(output)
     }
 }
@@ -390,7 +284,7 @@ fn text(output: &mut [u8], x: usize, y: usize, value: &str, color: [u8; 3]) {
         }
     }
 }
-fn glyph(c: char) -> [u8; 7] {
+pub(crate) fn glyph(c: char) -> [u8; 7] {
     match c {
         'A' => [14, 17, 17, 31, 17, 17, 17],
         'B' => [30, 17, 17, 30, 17, 17, 30],
@@ -430,6 +324,7 @@ fn glyph(c: char) -> [u8; 7] {
         '9' => [14, 17, 17, 15, 1, 1, 14],
         '-' => [0, 0, 0, 31, 0, 0, 0],
         ':' => [0, 4, 4, 0, 4, 4, 0],
+        '+' => [0, 4, 4, 31, 4, 4, 0],
         '!' => [4, 4, 4, 4, 4, 0, 4],
         '/' => [1, 1, 2, 4, 8, 16, 16],
         '%' => [25, 25, 2, 4, 8, 19, 19],
@@ -514,13 +409,19 @@ mod tests {
         session
             .actors
             .push(Actor::from_state(a, MotionRules::default()).unwrap());
+        // DOS keeps the actor counted in OUT and on the map during particles;
+        // native motion already marks it removed when the particle phase starts.
+        assert!(crate::panel::info(&session).contains("OUT 1"));
         let frame = View::new(0).frame(&assets, &session).unwrap();
+        let mini = (189 * WIDTH + 211) * 3;
+        assert_eq!(&frame[mini..mini + 3], &assets.palette[2]);
         let p = (98 * WIDTH + 31) * 3;
         assert_eq!(&frame[p..p + 3], &[11, 22, 33]);
         let p = (100 * WIDTH + 32) * 3;
         assert_eq!(&frame[p..p + 3], &[44, 55, 66]);
         a.particle_timer = 0;
         session.actors[0] = Actor::from_state(a, MotionRules::default()).unwrap();
+        assert!(crate::panel::info(&session).contains("OUT 0"));
         let frame = View::new(0).frame(&assets, &session).unwrap();
         let p = (98 * WIDTH + 31) * 3;
         assert_eq!(&frame[p..p + 3], &[0, 0, 0]);
@@ -734,15 +635,22 @@ mod tests {
         s.configure_blocker(0, assets.object_map.clone()).unwrap();
         let mut view = View::new(0);
         let before = view.frame(&assets, &s).unwrap();
-        let x = WIDTH - "SAVED 0".len() * 6 - 4;
-        let at = (176 * WIDTH + x + 1) * 3;
-        assert_eq!(&before[at..at + 3], &[220, 228, 240]);
+        assert!(crate::panel::info(&s).contains("IN  0%"));
         for _ in 0..150 {
             s.tick().unwrap();
         }
         assert_eq!(s.saved(), 1);
         let after = view.frame(&assets, &s).unwrap();
-        let digit = (176 * WIDTH + x + 6 * 6 + 1) * 3;
-        assert_ne!(&before[digit..digit + 3], &after[digit..digit + 3]);
+        assert!(crate::panel::info(&s).contains("IN 100%"));
+        let region = |frame: &[u8]| {
+            (160..176)
+                .flat_map(|y| {
+                    frame[(y * WIDTH + 208) * 3..(y * WIDTH + 248) * 3]
+                        .iter()
+                        .copied()
+                })
+                .collect::<Vec<_>>()
+        };
+        assert_ne!(region(&before), region(&after));
     }
 }

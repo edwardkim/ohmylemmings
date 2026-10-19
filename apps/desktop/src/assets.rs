@@ -34,6 +34,7 @@ pub struct Assets {
     pub screen_x: i32,
     pub sprites: Vec<u8>,
     pub palette: [[u8; 3]; 16],
+    pub panel: crate::panel::Art,
     original: Option<Original>,
 }
 struct Original {
@@ -217,6 +218,7 @@ impl Assets {
             screen_x: i32::from(header.screen_x),
             sprites,
             palette,
+            panel: crate::panel::Art::load(&MainDatFile::parse(&main)?)?,
             original: Some(Original {
                 graphics: u8::try_from(header.graphics)?,
                 level: record,
@@ -266,6 +268,7 @@ impl Assets {
             },
             screen_x: 0,
             sprites: vec![255; LEMMING_SPRITE_DATA_SIZE],
+            panel: crate::panel::Art::synthetic(),
             palette: [
                 [0, 0, 0],
                 [0, 220, 0],

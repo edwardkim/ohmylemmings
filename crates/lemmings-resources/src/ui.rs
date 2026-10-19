@@ -58,8 +58,11 @@ pub enum MainUiImageKind {
     PanelGlyphs,
     DigitRight,
     DigitLeft,
+    /// DOS VGA toolbar in section 2; section 6 is the alternate low-color art.
+    VgaSkillPanel,
+    VgaPanelGlyphs,
 }
-pub const MAIN_UI_IMAGE_KINDS: [MainUiImageKind; 19] = [
+pub const MAIN_UI_IMAGE_KINDS: [MainUiImageKind; 21] = [
     MainUiImageKind::Background,
     MainUiImageKind::Logo,
     MainUiImageKind::Play,
@@ -79,6 +82,8 @@ pub const MAIN_UI_IMAGE_KINDS: [MainUiImageKind; 19] = [
     MainUiImageKind::PanelGlyphs,
     MainUiImageKind::DigitRight,
     MainUiImageKind::DigitLeft,
+    MainUiImageKind::VgaSkillPanel,
+    MainUiImageKind::VgaPanelGlyphs,
 ];
 impl MainUiImageKind {
     pub const fn info(self) -> UiImageInfo {
@@ -123,7 +128,7 @@ impl UiImageInfo {
 
 // Pinned Lemmix GameScreen.Menu/Base, Game.SkillPanel and TS MainImageSprites/
 // SkillPanelSprites. Policies/differences: mydocs/tech_insights/issue-17_main_ui.md.
-const LAYOUTS: [UiImageInfo; 19] = [
+const LAYOUTS: [UiImageInfo; 21] = [
     UiImageInfo {
         kind: MainUiImageKind::Background,
         section: MainUiSection::MenuImages,
@@ -351,6 +356,30 @@ const LAYOUTS: [UiImageInfo; 19] = [
         stride: 16,
         transparency: UiTransparency::ColorZero,
         palette: UiPalette::Monochrome,
+    },
+    UiImageInfo {
+        kind: MainUiImageKind::VgaSkillPanel,
+        section: MainUiSection::PanelDigits,
+        offset: 0,
+        width: 320,
+        height: 40,
+        planes: 4,
+        image_count: 1,
+        stride: 6400,
+        transparency: UiTransparency::Opaque,
+        palette: UiPalette::Level,
+    },
+    UiImageInfo {
+        kind: MainUiImageKind::VgaPanelGlyphs,
+        section: MainUiSection::PanelDigits,
+        offset: 0x19a0,
+        width: 8,
+        height: 16,
+        planes: 3,
+        image_count: 38,
+        stride: 48,
+        transparency: UiTransparency::Opaque,
+        palette: UiPalette::Level,
     },
 ];
 
@@ -722,7 +751,7 @@ mod tests {
         }
     }
     #[test]
-    fn nineteen_families_cover_two_hundred_images_and_fixed_plane_windows() {
+    fn all_families_cover_both_toolbar_variants_and_fixed_plane_windows() {
         let mut images = 0;
         let mut pixels = 0;
         let mut kinds = 0;
@@ -753,7 +782,7 @@ mod tests {
                 }
             }
         }
-        assert_eq!((kinds, images, pixels), (19, 200, 216192));
+        assert_eq!((kinds, images, pixels), (21, 239, 233856));
     }
     #[test]
     fn image_families_are_bound_to_their_section() {
@@ -798,6 +827,30 @@ mod tests {
         assert_eq!(image.pixel(1, 0), Some(p(2, true)));
         assert_eq!(image.pixel(2, 0), Some(p(0, true)));
         assert_eq!(image.pixel(319, 103), Some(p(3, true)));
+    }
+    #[test]
+    fn vga_toolbar_and_glyphs_use_section_two_without_aliasing_the_digit_window() {
+        let mut b = record(PanelDigits);
+        b[3 * 1600] = 128;
+        b[0x1900] = 64;
+        b[0x19a0 + 32] = 128;
+        let view = MainUiRecord::parse(PanelDigits, &b).unwrap();
+        let panel = view.images(K::VgaSkillPanel).unwrap().image(0).unwrap();
+        assert_eq!(panel.pixel(0, 0), Some(p(8, true)));
+        assert_eq!(panel.pixel(1, 0), Some(p(0, true)));
+        let digit = view.images(K::DigitRight).unwrap().image(0).unwrap();
+        assert_eq!(digit.pixel(1, 0), Some(p(1, true)));
+        let glyph = view.images(K::VgaPanelGlyphs).unwrap().image(0).unwrap();
+        assert_eq!(glyph.pixel(0, 0), Some(p(4, true)));
+        assert_eq!(glyph.pixel(1, 0), Some(p(0, true)));
+        assert!(view.images(K::VgaPanelGlyphs).unwrap().image(38).is_err());
+        let other = record(SkillPanel);
+        assert!(
+            MainUiRecord::parse(SkillPanel, &other)
+                .unwrap()
+                .images(K::VgaSkillPanel)
+                .is_err()
+        );
     }
     #[test]
     fn three_plane_fonts_have_distinct_opacity_policies_and_no_index_remap() {

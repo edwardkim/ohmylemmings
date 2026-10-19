@@ -122,6 +122,9 @@ mod tests {
         old.view.camera = 80;
         old.view.selected_skill = crate::render::SelectedSkill::Builder;
         old.view.replaying = true;
+        old.view.panel.held_rate = Some(1);
+        old.view.panel.dragging_map = true;
+        old.view.panel.pointer = Some((250, 180));
         old.session.remaining_diggers = 0;
         let fresh =
             LevelRun::new(Assets::synthetic_completion("win"), 1, Some(2), Pacing::Dos).unwrap();
@@ -150,6 +153,9 @@ mod tests {
         assert!(restarted.session.actors.is_empty());
         assert_eq!(restarted.view.camera, fresh.view.camera);
         assert!(!restarted.view.replaying);
+        assert_eq!(restarted.view.panel.held_rate, None);
+        assert!(!restarted.view.panel.dragging_map);
+        assert_eq!(restarted.view.panel.pointer, None);
         assert_eq!(restarted.view.selected_skill, fresh.view.selected_skill);
         assert!(restarted.session.result().is_none());
         assert!(old.session.result().is_some());
