@@ -73,3 +73,5 @@ MAIN.DAT 지형 마스크·카운트다운은 [G03-09 재현 명령](../mydocs/t
 - [Climber 검증 매니페스트](manifests/climber.json): #40의46개 기준 함수·영구 능력/Climbing/Hoisting·원본 네이티브·DOS 두 실행과 기존 여섯 직업 회귀의 출처/해시를 기록합니다. 원본 파생물은 ignored `assets/local/`에만 두며 확보용 fetch 입력이 아닙니다.
 
 - [Floater 검증 매니페스트](manifests/floater.json): #42의48개 원문 함수/16단계 표·두 영구 능력·원본 Fun02·독립 DOS 두 실행과 기존 일곱 직업 회귀의 출처/해시를 기록합니다. 원본 파생물은 ignored 경로에 보관하며 fetch 입력이 아닙니다.
+
+- [Nuke 검증 매니페스트](manifests/nuke.json): #44의50개 원문 함수·순차 타이머/생성 중지·별도 DOS 제거 검사 순서·원본 Fun06·DOS 반복/기존8직업 회귀의 출처·해시를 기록합니다. 원본 파생물은 ignored 경로에 보존하며 fetch 입력이 아닙니다.

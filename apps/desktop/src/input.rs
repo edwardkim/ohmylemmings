@@ -81,6 +81,9 @@ pub fn handle(
                 };
                 session.queue(command)?;
             }
+            Keycode::N if !repeat && !replaying && !session.desired_paused() => {
+                session.queue(InputCommand::Custom(StartupCommand::Nuke))?;
+            }
             Keycode::Up | Keycode::Down if !replaying => {
                 let old = session.desired_rate();
                 let initial = session.scheduler.config().initial_release_rate;
@@ -113,6 +116,7 @@ pub fn parse_replay(
         let sequence = words[1].parse()?;
         let command = match words[2..] {
             ["Pause"] => InputCommand::Pause,
+            ["Nuke"] => InputCommand::Custom(StartupCommand::Nuke),
             ["Resume"] => InputCommand::Resume,
             ["AssignDigger", id] => InputCommand::Custom(StartupCommand::AssignDigger(id.parse()?)),
             ["AssignBasher", id] => InputCommand::Custom(StartupCommand::AssignBasher(id.parse()?)),
@@ -168,6 +172,20 @@ mod tests {
             Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap(),
             View::new(0),
         )
+    }
+    #[test]
+    fn nuke_key_records_id_free_command_ignores_repeat_replay_and_pause() {
+        let (mut s, mut v) = setup();
+        handle(key(Keycode::N, true), &mut s, &mut v, 640, false).unwrap();
+        handle(key(Keycode::N, false), &mut s, &mut v, 640, true).unwrap();
+        assert!(s.inputs.is_empty());
+        handle(key(Keycode::N, false), &mut s, &mut v, 640, false).unwrap();
+        assert_eq!(s.inputs, parse_replay("0 0 Nuke", Some(10)).unwrap());
+        assert!(parse_replay("0 0 Nuke 0", Some(10)).is_err());
+        s.queue(InputCommand::Pause).unwrap();
+        let count = s.inputs.len();
+        handle(key(Keycode::N, false), &mut s, &mut v, 640, false).unwrap();
+        assert_eq!(s.inputs.len(), count);
     }
     #[test]
     fn floater_selection_click_and_replay_keep_stable_actor_id() {

@@ -28,7 +28,7 @@ CASES={
 }
 
 
-def validate_bomber_history(states,details):
+def validate_bomber_history(states,details,*,allow_nuke=False):
     if len(states)!=len(details):raise ValueError('missing Bomber boundary')
     for state,row in zip(states,details):
         if type(row['remaining']) is not int or not 0<=row['remaining']<=65535:raise ValueError('invalid Bomber count')
@@ -36,7 +36,7 @@ def validate_bomber_history(states,details):
         for actor,entry in zip(state['actors'],row['actors']):
             if (type(entry) is not list or len(entry)!=4 or any(type(v) is not int for v in entry)
                 or entry[0]!=actor['id'] or not 0<=entry[1]<=79 or not 0<=entry[2]<=52 or not 0<=entry[3]<=50):raise ValueError('invalid Bomber actor state')
-            if actor['action'] in ['OhNo','Exploding','Splatting'] and entry[1]!=0:raise ValueError('timer survived terminal action')
+            if entry[1] and (actor['action']=='Splatting' or (not allow_nuke and actor['action'] in ['OhNo','Exploding'])):raise ValueError('timer survived terminal action')
             if (entry[2] or entry[3]) and actor['removed']!='Exploded':raise ValueError('particles without explosion')
         state['bomber']=row
 

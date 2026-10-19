@@ -36,3 +36,5 @@ reference-1·native-final·original-regressions·dos-proof-1/2·dos-compare-fina
 원본 Fun02의 구출/승패·비동기 관측 이상의 원자적 전체 DOS 상태·입력 틱/속도·전체 HUD/음향·모든 직업 상호작용은 인증하지 않습니다. Nuke와 전체 상호작용 마무리가 남아 G07 전체는 진행 중입니다. 게시·실제 CI·병합/종료는 [#42](https://github.com/edwardkim/ohmylemmings/issues/42)에서 추적합니다.
 
 [계약·재현](../tech_insights/issue-42_floater.md), [진행 기록](../working/issue-42_floater.md), [작업일지](../orders/20261019.md#issue-42).
+
+PR [#43](https://github.com/edwardkim/ohmylemmings/pull/43)을 main feab3e8로 병합했고 [main CI](https://github.com/edwardkim/ohmylemmings/actions/runs/39221581981)의 세 작업·실제 로그와 #42 종료를 확인했습니다.

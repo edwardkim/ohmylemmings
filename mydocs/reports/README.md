@@ -32,3 +32,5 @@
 - [#40 G07-07 Climber](issue-40_climber.md)
 
 - [#42 G07-08 Floater](issue-42_floater.md)
+
+- [#44 G07-09 Nuke](issue-44_nuke.md)

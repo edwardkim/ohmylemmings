@@ -38,7 +38,7 @@ make check
 cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/local/dos-original
 ```
 
-F/C/E/K/U/M/B/D로 Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger를 선택하고 레밍을 클릭합니다. `--level 6`은 Bomber 원본 Fun06을 엽니다. Space로 일시정지/재개, 위/아래 화살표로 생성 속도, 좌/우 화살표로 카메라를 조작하고 Esc로 종료합니다. Nuke·출구 판정·승패·음향은 후속 구현입니다. [G06-01 검증 보고서](mydocs/reports/issue-27_native_view.md)에 X11 실행과 화면 근거를 기록합니다. [#28 DOS 세 실행·동일 장면 대조](mydocs/reports/issue-28_dos_comparison.md)를 완료했습니다. [#30 보정](mydocs/reports/issue-30_dos_differences.md)으로 일곱 기준 장면의 전체 320×160 영역이 원본 세 실행과 같고 기본 실행 간격도 DOS 관측에 맞췄습니다. 게시·실제 CI를 확인해 G06 전체를 완료했습니다. G07-01 Digger와 G07-02 Basher를 완료했으며 G07-03 Miner도 완료했으며 [G07-04 Builder / #34](mydocs/reports/issue-34_builder.md)의 병합·CI도 완료했습니다. [G07-05 Blocker / #36](mydocs/reports/issue-36_blocker.md)의 PR #37 병합·main CI·종료를 확인했습니다. [G07-06 Bomber / #38](mydocs/reports/issue-38_bomber.md)의 PR #39 병합·main CI·종료와 사용자 E키 확인을 마쳤습니다. [G07-07 Climber / #40](mydocs/reports/issue-40_climber.md)의 PR #41 병합·main CI·종료를 확인했습니다. 현재 [G07-08 Floater / #42](mydocs/reports/issue-42_floater.md)의 구현·검증·self-review를 마쳤으며 최종 통합은 #42에서 추적합니다.
+F/C/E/K/U/M/B/D로 Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger를 선택하고 레밍을 클릭합니다. `--level 6`은 Bomber 원본 Fun06을 엽니다. Space로 일시정지/재개, 위/아래 화살표로 생성 속도, 좌/우 화살표로 카메라를 조작하고 Esc로 종료합니다. 출구 판정·승패·음향은 후속 구현입니다. [G06-01 검증 보고서](mydocs/reports/issue-27_native_view.md)에 X11 실행과 화면 근거를 기록합니다. [#28 DOS 세 실행·동일 장면 대조](mydocs/reports/issue-28_dos_comparison.md)를 완료했습니다. [#30 보정](mydocs/reports/issue-30_dos_differences.md)으로 일곱 기준 장면의 전체 320×160 영역이 원본 세 실행과 같고 기본 실행 간격도 DOS 관측에 맞췄습니다. 게시·실제 CI를 확인해 G06 전체를 완료했습니다. G07-01 Digger와 G07-02 Basher를 완료했으며 G07-03 Miner도 완료했으며 [G07-04 Builder / #34](mydocs/reports/issue-34_builder.md)의 병합·CI도 완료했습니다. [G07-05 Blocker / #36](mydocs/reports/issue-36_blocker.md)의 PR #37 병합·main CI·종료를 확인했습니다. [G07-06 Bomber / #38](mydocs/reports/issue-38_bomber.md)의 PR #39 병합·main CI·종료와 사용자 E키 확인을 마쳤습니다. [G07-07 Climber / #40](mydocs/reports/issue-40_climber.md)의 PR #41 병합·main CI·종료를 확인했습니다. [G07-08 Floater / #42](mydocs/reports/issue-42_floater.md)의 PR #43 병합·main CI·종료를 확인했습니다. 현재 [G07-09 Nuke / #44](mydocs/reports/issue-44_nuke.md)의 구현·검증·self-review를 마쳤으며 최종 통합은 #44에서 추적합니다.
 
 ## 원본 데이터 준비
 
@@ -66,7 +66,7 @@ python3 -m unittest discover -s tools/tests -v
 
 전체 설계와 단계별 작업은 [프로젝트 기획서](mydocs/plans/issue-1_rusty_lemmings.md)를 참고하세요.
 
-구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. G00~G06과 G07-01 Digger·G07-02 Basher·G07-03 Miner를 완료했으며 [G07-04 Builder / #34](mydocs/reports/issue-34_builder.md)의 병합·CI도 완료했습니다. [G07-05 Blocker / #36](mydocs/reports/issue-36_blocker.md)의 PR #37 병합·main CI·종료를 확인했습니다. [G07-06 Bomber / #38](mydocs/reports/issue-38_bomber.md)의 PR #39 병합·main CI·종료와 사용자 E키 확인을 마쳤습니다. [G07-07 Climber / #40](mydocs/reports/issue-40_climber.md)의 PR #41 병합·main CI·종료를 확인했습니다. 현재 [G07-08 Floater / #42](mydocs/reports/issue-42_floater.md)의 구현·검증·self-review를 마쳤으며 최종 통합은 #42에서 추적합니다.
+구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. G00~G06과 G07-01 Digger·G07-02 Basher·G07-03 Miner를 완료했으며 [G07-04 Builder / #34](mydocs/reports/issue-34_builder.md)의 병합·CI도 완료했습니다. [G07-05 Blocker / #36](mydocs/reports/issue-36_blocker.md)의 PR #37 병합·main CI·종료를 확인했습니다. [G07-06 Bomber / #38](mydocs/reports/issue-38_bomber.md)의 PR #39 병합·main CI·종료와 사용자 E키 확인을 마쳤습니다. [G07-07 Climber / #40](mydocs/reports/issue-40_climber.md)의 PR #41 병합·main CI·종료를 확인했습니다. [G07-08 Floater / #42](mydocs/reports/issue-42_floater.md)의 PR #43 병합·main CI·종료를 확인했습니다. 현재 [G07-09 Nuke / #44](mydocs/reports/issue-44_nuke.md)의 구현·검증·self-review를 마쳤으며 최종 통합은 #44에서 추적합니다.
 
 진행 상황은 [GitHub 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1)에서 추적합니다.
 
@@ -93,7 +93,7 @@ mydocs/
 
 작업을 시작하기 전에 [기여 지침](AGENTS.md)과 [문서 안내](mydocs/README.md)를 읽어주세요. PR에는 변경 목적, 관련 작업, 검증 결과를 기록하고 계획된 기능과 구현된 동작을 구분합니다.
 
-[G07-01 Digger](mydocs/reports/issue-31_digger.md)의 구현·검증·게시/실제 CI를 완료했습니다. Digger는 아래, Basher는 수평, Miner는 대각선으로 굴착합니다. M/B/D 키로 선택한 뒤 클릭하며 정수 ID 입력으로 재생할 수 있습니다. Nuke·구출/승패/완주는 후속입니다. G07 전체는 진행 중입니다.
+[G07-01 Digger](mydocs/reports/issue-31_digger.md)의 구현·검증·게시/실제 CI를 완료했습니다. Digger는 아래, Basher는 수평, Miner는 대각선으로 굴착합니다. M/B/D 키로 선택한 뒤 클릭하며 정수 ID 입력으로 재생할 수 있습니다. 구출/승패/완주는 후속입니다. G07 전체는 진행 중입니다.
 
 [G07-02 Basher](mydocs/reports/issue-32_basher.md)의 구현·기준/원본 검증·게시/실제 CI도 완료했습니다. B/D 키로 Basher/Digger를 선택하고 클릭합니다. `--level 5`로 Basher 원본 레벨을 선택할 수 있습니다.
 
@@ -103,4 +103,6 @@ mydocs/
 
 [G07-05 Blocker](mydocs/reports/issue-36_blocker.md)는 다른 레밍의 방향을 바꿉니다. K/U/M/B/D로 직업을 선택한 뒤 클릭하며 `--level 3`으로 원본 Blocker 레벨을 선택합니다. self-review와 통합은 [#36](https://github.com/edwardkim/ohmylemmings/issues/36)에서 추적합니다.
 
-[G07-08 Floater](mydocs/reports/issue-42_floater.md)는 영구 우산 능력을 부여합니다. F키로 선택한 뒤 클릭하며 `--level 2`로 원본 Fun02를 엽니다. 높은 곳에서 우산을 펼치고 안전하게 착지합니다. 재생 예는 `54 0 AssignFloater 0`이며 Nuke·전체 상호작용·구출/승패/음향은 후속입니다.
+[G07-08 Floater](mydocs/reports/issue-42_floater.md)는 영구 우산 능력을 부여합니다. F키로 선택한 뒤 클릭하며 `--level 2`로 원본 Fun02를 엽니다. 높은 곳에서 우산을 펼치고 안전하게 착지합니다. 재생 예는 `54 0 AssignFloater 0`이며 전체 상호작용·구출/승패/음향은 후속입니다.
+
+[G07-09 Nuke](mydocs/reports/issue-44_nuke.md)는 N키로 작동합니다. 이후 생성을 중단하고 기존 레밍에 하나씩 카운트다운을 붙입니다. 일시정지 중에는 실행하지 않으며 Bomber 수량을 소비하지 않습니다. 재생 예는 `120 0 Nuke`이고 `--synthetic-nuke`로 원본 없이 검사합니다. 전체 직업 상호작용·구출/승패·원본 하단 패널·음향은 후속입니다.

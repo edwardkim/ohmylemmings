@@ -42,3 +42,4 @@ pub use simulation::{
 };
 
 pub use simulation::{BomberContext, step_actors_with_bomber};
+pub use simulation::{NukeActorError, NukeState};

@@ -21,7 +21,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nF/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nF/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     synthetic: bool,
@@ -80,7 +80,7 @@ impl Options {
                     o.synthetic = true;
                     o.climber_scene = true;
                 }
-                "--synthetic-bomber" | "--synthetic-blocker" => {
+                "--synthetic-nuke" | "--synthetic-bomber" | "--synthetic-blocker" => {
                     o.synthetic = true;
                     o.blocker_scene = true;
                 }
@@ -160,6 +160,7 @@ struct Capture {
     bomber_trace: BufWriter<File>,
     climber_trace: BufWriter<File>,
     floater_trace: BufWriter<File>,
+    nuke_trace: BufWriter<File>,
     previous_object_map: Vec<u8>,
     previous_terrain: Vec<u8>,
 }
@@ -190,6 +191,12 @@ impl Capture {
             trace,
             previous_terrain: Vec::new(),
             previous_object_map: Vec::new(),
+            nuke_trace: BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(root.join("nuke.jsonl"))?,
+            ),
             floater_trace: BufWriter::new(
                 OpenOptions::new()
                     .write(true)
@@ -245,6 +252,12 @@ impl Capture {
         writeln!(self.bomber_trace, "{}", s.bomber_snapshot())?;
         writeln!(self.climber_trace, "{}", s.climber_snapshot())?;
         writeln!(self.floater_trace, "{}", s.floater_snapshot())?;
+        let n = s.scheduler.nuke_state();
+        writeln!(
+            self.nuke_trace,
+            "{{\"is_nuked\":{},\"assigning\":{},\"next_index\":{},\"max_lemmings\":{}}}",
+            n.is_nuked, n.assigning, n.next_index, n.max_lemmings
+        )?;
         writeln!(self.miner_trace, "{{\"remaining\":{}}}", s.remaining_miners)?;
         self.trace.flush()?;
         writeln!(
@@ -326,6 +339,7 @@ impl Capture {
         self.bomber_trace.flush()?;
         self.climber_trace.flush()?;
         self.floater_trace.flush()?;
+        self.nuke_trace.flush()?;
         write_new(&self.root.join("object-map-final.bin"), s.object_map_data())?;
         write_new(&self.root.join("terrain-final.bin"), s.terrain())?;
         write_new(&self.root.join("brick-final.bin"), s.brick_mask())?;
@@ -334,6 +348,7 @@ impl Capture {
             let command = match i.command {
                 InputCommand::Pause => "Pause".to_owned(),
                 InputCommand::Resume => "Resume".to_owned(),
+                InputCommand::Custom(StartupCommand::Nuke) => "Nuke".to_owned(),
                 InputCommand::Custom(StartupCommand::AssignDigger(id)) => {
                     format!("AssignDigger {id}")
                 }
@@ -391,6 +406,7 @@ fn basher_capture(s: &Session) -> bool {
                         | StartupCommand::AssignBomber(_)
                         | StartupCommand::AssignClimber(_)
                         | StartupCommand::AssignFloater(_)
+                        | StartupCommand::Nuke
                 )
             )
         })
@@ -399,7 +415,7 @@ fn bomber_capture(s: &Session) -> bool {
     s.inputs.iter().any(|i| {
         matches!(
             i.command,
-            InputCommand::Custom(StartupCommand::AssignBomber(_))
+            InputCommand::Custom(StartupCommand::AssignBomber(_) | StartupCommand::Nuke)
         )
     }) && s.actors.iter().any(|a| {
         let a = a.state();
@@ -527,7 +543,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             .collect::<Vec<_>>()
             .join(",");
         let description = format!(
-            "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"miners\":{},\"builders\":{},\"blockers\":{},\"bombers\":{},\"climbers\":{},\"floaters\":{},\"level\":{}}}",
+            "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"nuke_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"miners\":{},\"builders\":{},\"blockers\":{},\"bombers\":{},\"climbers\":{},\"floaters\":{},\"level\":{}}}",
             assets.width,
             assets.height,
             config.time_limit_minutes,
