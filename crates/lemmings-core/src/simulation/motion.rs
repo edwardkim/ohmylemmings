@@ -7,7 +7,9 @@ mod bomber;
 mod builder;
 mod climber;
 mod floater;
+mod hazards;
 pub use bomber::{BomberContext, step_actors_with_bomber};
+pub use hazards::{TrapState, TrapStates, advance_traps, step_actors_with_hazards};
 mod digger;
 mod miner;
 pub use basher::{BashingContext, step_actors_with_skills};
@@ -57,6 +59,8 @@ pub enum MotionAction {
     Hoisting,
     Floating,
     Exiting,
+    Drowning,
+    Vaporizing,
 }
 impl MotionAction {
     pub const fn frame_count(self) -> u8 {
@@ -69,7 +73,13 @@ impl MotionAction {
             | Self::Exiting => 8,
             Self::Jumping => 1,
             Self::Falling => 4,
-            Self::Splatting | Self::Digging | Self::Building | Self::Blocking | Self::OhNo => 16,
+            Self::Splatting
+            | Self::Digging
+            | Self::Building
+            | Self::Blocking
+            | Self::OhNo
+            | Self::Drowning => 16,
+            Self::Vaporizing => 14,
             Self::Exploding => 1,
             Self::Bashing => 32,
             Self::Mining => 24,
@@ -87,6 +97,7 @@ impl MotionAction {
             Self::Digging | Self::Climbing | Self::Hoisting => 12,
             Self::Exploding => 25,
             Self::Floating => 16,
+            Self::Vaporizing => 14,
             _ => 10,
         }
     }
@@ -97,6 +108,9 @@ pub enum RemovalReason {
     SplattingFinished,
     Exploded,
     Rescued,
+    Drowned,
+    Vaporized,
+    Trapped,
 }
 
 /// Stable actor record. Coordinates are the foot, not sprite top-left. Removed
@@ -167,6 +181,8 @@ pub enum MotionError {
     InvalidClimberState,
     InvalidFloaterState,
     BomberContextRequired,
+    InvalidTrapFrames,
+    MissingTrap(u8),
 }
 impl fmt::Display for MotionError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -187,6 +203,10 @@ impl fmt::Display for MotionError {
             Self::InvalidBlockerState => f.write_str(
                 "saved field requires Blocking, OhNo or Exploding; Blocking needs a saved field",
             ),
+            Self::InvalidTrapFrames => {
+                f.write_str("trap frame count must be nonzero and first frame in range")
+            }
+            Self::MissingTrap(index) => write!(f, "object map references missing DOS trap {index}"),
             Self::InvalidBricks => f.write_str("only building retains one to twelve bricks"),
             Self::Frame { action, frame } => write!(f, "frame {frame} is outside {action:?}"),
             Self::Direction => f.write_str("stopped direction is invalid for a moving action"),
@@ -305,6 +325,8 @@ impl Actor {
                         | MotionAction::OhNo
                         | MotionAction::Exploding
                         | MotionAction::Exiting
+                        | MotionAction::Drowning
+                        | MotionAction::Vaporizing
                 ))
         {
             return Err(MotionError::InvalidBlockerState);
@@ -339,6 +361,8 @@ impl Actor {
                     state.action,
                     MotionAction::Splatting
                         | MotionAction::Exiting
+                        | MotionAction::Drowning
+                        | MotionAction::Vaporizing
                         | MotionAction::OhNo
                         | MotionAction::Exploding
                 ))
@@ -372,6 +396,26 @@ impl Actor {
                 state.action == MotionAction::Splatting
                     && state.frame == 15
                     && state.end_of_animation
+            }
+            Some(RemovalReason::Drowned) => {
+                state.action == MotionAction::Drowning
+                    && state.frame == 15
+                    && state.end_of_animation
+            }
+            Some(RemovalReason::Vaporized) => {
+                state.action == MotionAction::Vaporizing
+                    && state.frame == 13
+                    && state.end_of_animation
+            }
+            Some(RemovalReason::Trapped) => {
+                state.object_below < 16
+                    && !matches!(
+                        state.action,
+                        MotionAction::Exiting
+                            | MotionAction::Drowning
+                            | MotionAction::Vaporizing
+                            | MotionAction::Exploding
+                    )
             }
             Some(RemovalReason::Rescued) => {
                 state.action == MotionAction::Exiting && state.frame == 7 && state.end_of_animation
@@ -421,6 +465,24 @@ impl Actor {
             ..MotionOutcome::default()
         };
         match s.action {
+            MotionAction::Drowning => {
+                result.check_objects = false;
+                if s.end_of_animation {
+                    remove(&mut s, &mut result, RemovalReason::Drowned);
+                } else if !i32::try_from(i64::from(s.x) + 8 * i64::from(s.direction.delta()))
+                    .is_ok_and(|x| terrain.is_solid(x, s.y))
+                {
+                    s.x =
+                        s.x.checked_add(s.direction.delta())
+                            .ok_or(MotionError::CoordinateOverflow)?;
+                }
+            }
+            MotionAction::Vaporizing => {
+                result.check_objects = false;
+                if s.end_of_animation {
+                    remove(&mut s, &mut result, RemovalReason::Vaporized);
+                }
+            }
             MotionAction::Exiting => {
                 result.check_objects = false;
                 if s.end_of_animation {
@@ -559,7 +621,11 @@ fn transition(s: &mut ActorState, action: MotionAction, rules: MotionRules) {
     s.walking_once = false;
     if !matches!(
         action,
-        MotionAction::OhNo | MotionAction::Exploding | MotionAction::Exiting
+        MotionAction::OhNo
+            | MotionAction::Exploding
+            | MotionAction::Exiting
+            | MotionAction::Drowning
+            | MotionAction::Vaporizing
     ) {
         s.blocker_saved = None;
     }

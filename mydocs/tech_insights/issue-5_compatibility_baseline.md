@@ -160,3 +160,7 @@ F01의 첫 Walking 뒤 입력 경계는 실제 하네스의 control_step=60·seq
 ## G08-01 출구·구출 후속 기록 / #48
 
 [#48](issue-48_exit_rescue.md)은 COMP-09의 착지 Splat/출구 우선순위와 COMP-10의 입구 제외 객체0..15/16 경계·Exiting/구출 수를 구현했습니다. F01 Digger 입력60은 세 실행에서10마리 구출까지 일치하고 실제 클릭61은 별도 입력으로 대조했습니다. 새 DOS 두 실행의 출구9장면과 read-only 수치도 확인했습니다. COMP-10의 위험물/함정, COMP-11/13의 구출률·승패, COMP-14 포인터, COMP-18 최종 결과·전체 완주는 아직 완료하지 않습니다. [결과·한계](../reports/issue-48_exit_rescue.md)를 따릅니다.
+
+## G08-02 위험물·함정 후속 기록 / #50
+
+[#50](issue-50_hazards.md)에서 COMP-10의 물/불·작동형 함정 경합/재사용·제거를 연결했습니다. 사망 중 폭파 타이머는 즉시 Exploding으로 전환하며 DOS의 화면 하단 트리거 경계를 별도로 검증했습니다. 원본 Fun09/17/29의 상태·새 DOS 네 실행의18개 전체 장면은 [보고서](../reports/issue-50_hazards.md)에서 추적합니다. COMP-11의 승패·COMP-13의 최종 구출률/분모·COMP-14의 포인터 선택/RightClickGlitch와 전체 DOS 상태 인증은 후속입니다.

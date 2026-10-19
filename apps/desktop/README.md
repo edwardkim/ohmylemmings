@@ -116,4 +116,10 @@ N키를 한 번 누르면 새 레밍 생성을 멈추고 기존 개체에 순서
 
 출구 트리거에 들어간 레밍은8프레임 애니메이션 후 제거되고 SAVED 수에 한 번 집계됩니다. 공중 Falling은 진입하지 않으며 착지와 Floating의 순서는 원본 계약을 따릅니다. `exit.jsonl`은 매 제어 경계의 `saved`와 진행 중인 `exiting` ID를 기록합니다.
 
-원본 없이 `--synthetic-exit` 또는 `--synthetic-exit-drop`으로 검사합니다. 원본 Fun01은 Digger 한 번으로10마리 구출 경로를 재생할 수 있습니다: 입력 파일에 `60 0 AssignDigger 0`을 넣고 `--level 1 --replay 파일 --steps 700`으로 실행합니다. [계약·재현·범위](../../mydocs/tech_insights/issue-48_exit_rescue.md)를 참고합니다. 위험물·승패/결과 화면·재시작·원본 패널/미니맵은 후속 절편입니다.
+원본 없이 `--synthetic-exit` 또는 `--synthetic-exit-drop`으로 검사합니다. 원본 Fun01은 Digger 한 번으로10마리 구출 경로를 재생할 수 있습니다: 입력 파일에 `60 0 AssignDigger 0`을 넣고 `--level 1 --replay 파일 --steps 700`으로 실행합니다. [계약·재현·범위](../../mydocs/tech_insights/issue-48_exit_rescue.md)를 참고합니다. 물·불·함정은 #50에서 연결했으며 승패/결과 화면·재시작·원본 패널/미니맵은 후속 절편입니다.
+
+## 위험물·함정 / #50
+
+원본 Fun09(`--level 9`)의 불, Fun17(`--level 17`)의 작동형 함정, Fun29(`--level 29`)의 물에서 별도 할당 없이 사망 경로를 확인할 수 있습니다. 물/불은 사망 애니메이션 후 제거되며 함정은 한 개체를 제거한 뒤 재사용을 기다립니다. Space는 개체와 함정을 함께 일시정지합니다.
+
+`--synthetic-water`, `--synthetic-fire`, `--synthetic-trap`은 원본 없는 검사 장면입니다. `--synthetic-trap-slow|--synthetic-trap-continuous`는 경합/연속 프레임, 물/불의 `-drop`과 `-late` 접미사는 공중 진입/타이머 경계를 검사합니다. `hazards.jsonl`·`traps.bin`과 기존 입력/지형/객체 추적으로 재현합니다. [계약·명령·관측 범위](../../mydocs/tech_insights/issue-50_hazards.md)를 따릅니다. 승패/재시작·원본 하단 패널·포인터 우선순위는 후속입니다.

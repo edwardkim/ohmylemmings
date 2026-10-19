@@ -20,6 +20,8 @@ pub struct Session {
     object_map: Option<Vec<u8>>,
     has_exit: bool,
     rescued_this_tick: bool,
+    traps: TrapStates,
+    hazard_changed: bool,
     brick_mask: Vec<u8>,
     mine_masks: [u8; 104],
     bash_masks: [u8; 160],
@@ -66,6 +68,8 @@ impl Session {
             object_map: None,
             has_exit: false,
             rescued_this_tick: false,
+            traps: [None; 16],
+            hazard_changed: false,
             brick_mask: vec![0; width * height],
             mine_masks: [0; 104],
             bash_masks: [0; 160],
@@ -151,6 +155,36 @@ impl Session {
         self.has_exit = cells.contains(&OBJECT_EXIT);
         self.object_map = Some(cells);
         Ok(())
+    }
+    pub fn configure_traps(&mut self, traps: TrapStates) {
+        self.traps = traps;
+    }
+    pub fn traps(&self) -> &TrapStates {
+        &self.traps
+    }
+    pub fn hazard_just_happened(&self) -> bool {
+        self.hazard_changed
+    }
+    pub fn hazards_snapshot(&self) -> String {
+        let traps = self
+            .traps
+            .iter()
+            .enumerate()
+            .filter_map(|(i, t)| t.map(|t| format!("[{i},{},{}]", t.frame(), t.triggered())))
+            .collect::<Vec<_>>()
+            .join(",");
+        let count = |reason| {
+            self.actors
+                .iter()
+                .filter(|a| a.state().removed == Some(reason))
+                .count()
+        };
+        format!(
+            "{{\"traps\":[{traps}],\"drowned\":{},\"vaporized\":{},\"trapped\":{}}}",
+            count(RemovalReason::Drowned),
+            count(RemovalReason::Vaporized),
+            count(RemovalReason::Trapped)
+        )
     }
     pub fn object_map_data(&self) -> &[u8] {
         self.object_map.as_deref().unwrap_or(&[])
@@ -350,6 +384,7 @@ impl Session {
     pub fn tick(&mut self) -> Result<(), Box<dyn Error>> {
         let mut events = Vec::new();
         let mut rescued_this_tick = false;
+        let mut hazard_changed = false;
         let mut spawn = None;
         let schedule = InputSchedule::new(&self.inputs)?;
         let steel = TerrainMask::new(self.width, self.height, &self.steel)?;
@@ -480,6 +515,12 @@ impl Session {
             let width = self.width;
             let update_bricks = |state: ActorState, out: MotionOutcome| {
                 rescued_this_tick |= out.removal == Some(RemovalReason::Rescued);
+                hazard_changed |= matches!(
+                    out.removal,
+                    Some(
+                        RemovalReason::Drowned | RemovalReason::Vaporized | RemovalReason::Trapped
+                    )
+                );
                 for (dy, row) in out.explosion_erased.into_iter().enumerate() {
                     for dx in 0..16 {
                         if row & (1 << dx) != 0 {
@@ -505,11 +546,12 @@ impl Session {
                     DOS_OBJECT_MAP_ORIGIN,
                     cells,
                 )?;
-                step_actors_with_bomber(
+                step_actors_with_hazards(
                     &mut self.actors,
                     &mut terrain,
                     BomberContext::new(mining, &self.explosion_mask),
                     &mut map,
+                    &mut self.traps,
                     update_bricks,
                 )?;
             } else {
@@ -532,9 +574,11 @@ impl Session {
                 self.visual_blast = Some((visual, bricks));
             }
             self.scheduler.update_nuking(&mut self.actors)?;
+            advance_traps(&mut self.traps);
         }
         self.events = events;
         self.rescued_this_tick = rescued_this_tick;
+        self.hazard_changed = hazard_changed;
         Ok(())
     }
     pub fn due(&mut self, elapsed: Duration) -> Result<u64, Box<dyn Error>> {
@@ -602,6 +646,65 @@ fn snapshot(scheduler: &StartupScheduler, actors: &[Actor], events: &[String]) -
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn trap_animation_freezes_on_pause_and_reuses_after_wrap() {
+        let a = crate::assets::Assets::synthetic_hazards(0, false);
+        let mut s = Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_blocker(0, a.object_map).unwrap();
+        s.configure_traps(a.traps);
+        s.configure_bomber(0, [0; 44]).unwrap();
+        while !s.traps()[0].unwrap().triggered() {
+            s.tick().unwrap();
+        }
+        let before = s.traps()[0].unwrap();
+        assert_eq!(before.frame(), 1);
+        s.queue(InputCommand::Pause).unwrap();
+        for _ in 0..5 {
+            s.tick().unwrap();
+            assert_eq!(s.traps()[0], Some(before));
+        }
+        s.queue(InputCommand::Resume).unwrap();
+        for _ in 0..11 {
+            s.tick().unwrap();
+        }
+        assert!(!s.traps()[0].unwrap().triggered());
+        while s
+            .actors
+            .iter()
+            .filter(|a| a.state().removed == Some(RemovalReason::Trapped))
+            .count()
+            < 2
+        {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.saved(), 0);
+    }
+    #[test]
+    fn nuke_arms_drowning_without_turning_death_into_a_rescue() {
+        let a = crate::assets::Assets::synthetic_hazards(OBJECT_WATER, false);
+        let mut config = a.config;
+        config.total_lemmings = 1;
+        let mut s = Session::new(config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_blocker(0, a.object_map).unwrap();
+        s.configure_traps(a.traps);
+        s.configure_bomber(0, [0; 44]).unwrap();
+        while !s
+            .actors
+            .iter()
+            .any(|a| a.state().action == MotionAction::Drowning)
+        {
+            s.tick().unwrap();
+        }
+        s.queue(InputCommand::Custom(StartupCommand::Nuke)).unwrap();
+        s.tick().unwrap();
+        assert_eq!(s.actors[0].state().explosion_timer, 79);
+        for _ in 0..100 {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.actors[0].state().removed, Some(RemovalReason::Drowned));
+        assert_eq!(s.saved(), 0);
+    }
+
     #[test]
     fn paused_exit_keeps_animation_and_rescue_count_then_rescues_exactly_once() {
         let a = crate::assets::Assets::synthetic_exit(false);

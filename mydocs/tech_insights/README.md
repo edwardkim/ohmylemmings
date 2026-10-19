@@ -55,3 +55,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#46 G07-10 직업 전환·혼합 상호작용](issue-46_skill_interactions.md)
 
 - [#48 G08-01 객체·출구/구출](issue-48_exit_rescue.md)
+
+- [#50 G08-02 위험물·함정](issue-50_hazards.md)

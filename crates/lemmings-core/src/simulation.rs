@@ -24,9 +24,11 @@ pub use motion::{
 
 pub use objects::{
     DOS_OBJECT_MAP_HEIGHT, DOS_OBJECT_MAP_ORIGIN, DOS_OBJECT_MAP_WIDTH, OBJECT_BLOCKER,
-    OBJECT_EXIT, OBJECT_FORCE_LEFT, OBJECT_FORCE_RIGHT, OBJECT_NONE, ObjectMap, ObjectMapError,
-    ObjectMapMut,
+    OBJECT_EXIT, OBJECT_FIRE, OBJECT_FORCE_LEFT, OBJECT_FORCE_RIGHT, OBJECT_NONE, OBJECT_WATER,
+    ObjectMap, ObjectMapError, ObjectMapMut,
 };
 
 pub use motion::{BomberContext, step_actors_with_bomber};
 pub use nuke::{NukeActorError, NukeState};
+
+pub use motion::{TrapState, TrapStates, advance_traps, step_actors_with_hazards};

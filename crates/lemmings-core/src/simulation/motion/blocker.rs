@@ -53,7 +53,7 @@ impl Actor {
         *remaining -= 1;
         true
     }
-    /// Apply exit and force effects. The caller gates this with the action's
+    /// Apply exit, water, fire and force effects. The caller gates this with the action's
     /// check_objects result, exactly after HandleLemming in CheckLemmings.
     pub(super) fn apply_force(&mut self, map: ObjectMap<'_>) {
         let s = &mut self.state;
@@ -70,6 +70,18 @@ impl Actor {
         // A landing splat may enter with direction zero; Floating is allowed.
         if code == crate::OBJECT_EXIT && s.action != MotionAction::Falling {
             transition(s, MotionAction::Exiting, self.rules);
+            return;
+        }
+        if s.y < 160 && (code == crate::OBJECT_WATER || code == crate::OBJECT_FIRE) {
+            transition(
+                s,
+                if code == crate::OBJECT_WATER {
+                    MotionAction::Drowning
+                } else {
+                    MotionAction::Vaporizing
+                },
+                self.rules,
+            );
             return;
         }
         if (code == OBJECT_FORCE_LEFT && s.direction == MotionDirection::Right)
