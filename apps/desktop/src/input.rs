@@ -51,6 +51,7 @@ pub fn handle(
                     SelectedSkill::Blocker => StartupCommand::AssignBlocker(id),
                     SelectedSkill::Bomber => StartupCommand::AssignBomber(id),
                     SelectedSkill::Climber => StartupCommand::AssignClimber(id),
+                    SelectedSkill::Floater => StartupCommand::AssignFloater(id),
                 }))?;
             }
         }
@@ -64,6 +65,7 @@ pub fn handle(
             Keycode::D => view.selected_skill = SelectedSkill::Digger,
             Keycode::M => view.selected_skill = SelectedSkill::Miner,
             Keycode::U => view.selected_skill = SelectedSkill::Builder,
+            Keycode::F => view.selected_skill = SelectedSkill::Floater,
             Keycode::C => view.selected_skill = SelectedSkill::Climber,
             Keycode::E => view.selected_skill = SelectedSkill::Bomber,
             Keycode::K => view.selected_skill = SelectedSkill::Blocker,
@@ -118,6 +120,9 @@ pub fn parse_replay(
             ["AssignBuilder", id] => {
                 InputCommand::Custom(StartupCommand::AssignBuilder(id.parse()?))
             }
+            ["AssignFloater", id] => {
+                InputCommand::Custom(StartupCommand::AssignFloater(id.parse()?))
+            }
             ["AssignClimber", id] => {
                 InputCommand::Custom(StartupCommand::AssignClimber(id.parse()?))
             }
@@ -163,6 +168,43 @@ mod tests {
             Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap(),
             View::new(0),
         )
+    }
+    #[test]
+    fn floater_selection_click_and_replay_keep_stable_actor_id() {
+        let (mut s, mut v) = setup();
+        for _ in 0..80 {
+            s.tick().unwrap();
+        }
+        let a = s.actors[0].state();
+        handle(key(Keycode::F, false), &mut s, &mut v, 640, false).unwrap();
+        handle(
+            Event::MouseButtonDown {
+                timestamp: 0,
+                window_id: 0,
+                which: 0,
+                mouse_btn: MouseButton::Left,
+                clicks: 1,
+                x: a.x,
+                y: a.y - 5,
+            },
+            &mut s,
+            &mut v,
+            640,
+            false,
+        )
+        .unwrap();
+        assert_eq!(v.selected_skill, SelectedSkill::Floater);
+        assert_eq!(
+            parse_replay("80 0 AssignFloater 0", Some(340)).unwrap(),
+            s.inputs
+        );
+        for input in [
+            "80 0 AssignFloater",
+            "80 0 AssignFloater -1",
+            "80 0 AssignFloater 0 1",
+        ] {
+            assert!(parse_replay(input, Some(340)).is_err());
+        }
     }
     #[test]
     fn climber_selection_click_and_replay_keep_stable_actor_id() {

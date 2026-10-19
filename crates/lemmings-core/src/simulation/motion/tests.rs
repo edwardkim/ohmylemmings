@@ -24,6 +24,8 @@ fn state() -> ActorState {
         bricks_left: 0,
         blocker_saved: None,
         is_climber: false,
+        is_floater: false,
+        float_index: 0,
         walking_once: false,
         explosion_timer: 0,
         particle_timer: 0,
@@ -77,6 +79,8 @@ fn birth_uses_selected_original_entrance_and_preserves_stable_identity_and_rules
                 bricks_left: 0,
                 blocker_saved: None,
                 is_climber: false,
+                is_floater: false,
+                float_index: 0,
                 walking_once: false,
                 explosion_timer: 0,
                 particle_timer: 0,
@@ -696,6 +700,7 @@ fn action_code(action: MotionAction) -> u8 {
         MotionAction::Exploding => 11,
         MotionAction::Climbing => 12,
         MotionAction::Hoisting => 13,
+        MotionAction::Floating => 14,
     }
 }
 fn removal_code(reason: Option<RemovalReason>) -> u8 {
@@ -780,7 +785,8 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                             | MotionAction::OhNo
                             | MotionAction::Exploding
                             | MotionAction::Climbing
-                            | MotionAction::Hoisting => unreachable!(),
+                            | MotionAction::Hoisting
+                            | MotionAction::Floating => unreachable!(),
                         };
                         let fallen_values: &[_] = if action == MotionAction::Falling {
                             &[0, 60, 61]
@@ -804,6 +810,8 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                                         bricks_left: 0,
                                         blocker_saved: None,
                                         is_climber: false,
+                                        is_floater: false,
+                                        float_index: 0,
                                         walking_once: false,
                                         explosion_timer: 0,
                                         particle_timer: 0,

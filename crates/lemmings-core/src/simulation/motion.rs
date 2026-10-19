@@ -6,6 +6,7 @@ pub use blocker::step_actors_with_objects;
 mod bomber;
 mod builder;
 mod climber;
+mod floater;
 pub use bomber::{BomberContext, step_actors_with_bomber};
 mod digger;
 mod miner;
@@ -54,11 +55,12 @@ pub enum MotionAction {
     Exploding,
     Climbing,
     Hoisting,
+    Floating,
 }
 impl MotionAction {
     pub const fn frame_count(self) -> u8 {
         match self {
-            Self::Walking | Self::Shrugging | Self::Climbing | Self::Hoisting => 8,
+            Self::Walking | Self::Shrugging | Self::Climbing | Self::Hoisting | Self::Floating => 8,
             Self::Jumping => 1,
             Self::Falling => 4,
             Self::Splatting | Self::Digging | Self::Building | Self::Blocking | Self::OhNo => 16,
@@ -68,13 +70,17 @@ impl MotionAction {
         }
     }
     fn loops(self) -> bool {
-        matches!(self, Self::Walking | Self::Falling | Self::Climbing)
+        matches!(
+            self,
+            Self::Walking | Self::Falling | Self::Climbing | Self::Floating
+        )
     }
     fn foot_y(self) -> i32 {
         match self {
             Self::Building | Self::Mining => 13,
             Self::Digging | Self::Climbing | Self::Hoisting => 12,
             Self::Exploding => 25,
+            Self::Floating => 16,
             _ => 10,
         }
     }
@@ -103,6 +109,9 @@ pub struct ActorState {
     pub bricks_left: u8,
     pub blocker_saved: Option<[u8; 9]>,
     pub is_climber: bool,
+    pub is_floater: bool,
+    /// Original16-stage table cursor; retained after leaving Floating.
+    pub float_index: u8,
     /// DOS AssignClimber while shrugging changes action, preserving Once animation.
     pub walking_once: bool,
     pub explosion_timer: u8,
@@ -149,6 +158,7 @@ pub enum MotionError {
     InvalidBlockerState,
     InvalidBomberState,
     InvalidClimberState,
+    InvalidFloaterState,
     BomberContextRequired,
 }
 impl fmt::Display for MotionError {
@@ -157,6 +167,7 @@ impl fmt::Display for MotionError {
             Self::MutableTerrainRequired => {
                 f.write_str("terrain-changing jobs require mutable terrain")
             }
+            Self::InvalidFloaterState => f.write_str("invalid floater ability or table index"),
             Self::InvalidClimberState => {
                 f.write_str("climbing/hoisting or stale walking animation requires climber ability")
             }
@@ -248,6 +259,8 @@ impl Actor {
                 bricks_left: 0,
                 blocker_saved: None,
                 is_climber: false,
+                is_floater: false,
+                float_index: 0,
                 walking_once: false,
                 explosion_timer: 0,
                 particle_timer: 0,
@@ -263,6 +276,12 @@ impl Actor {
     /// Arbitrary i32 coordinates are accepted; later arithmetic errors are
     /// explicit and leave the complete record unchanged.
     pub fn from_state(state: ActorState, rules: MotionRules) -> Result<Self, MotionError> {
+        if state.float_index > 15
+            || (!state.is_floater && state.float_index != 0)
+            || (state.action == MotionAction::Floating && !state.is_floater)
+        {
+            return Err(MotionError::InvalidFloaterState);
+        }
         if (matches!(
             state.action,
             MotionAction::Climbing | MotionAction::Hoisting
@@ -325,6 +344,7 @@ impl Actor {
                             | MotionAction::Digging
                             | MotionAction::Mining
                             | MotionAction::OhNo
+                            | MotionAction::Floating
                     )
             }
             Some(RemovalReason::Exploded) => {
@@ -367,13 +387,15 @@ impl Actor {
         if s.removed.is_some() {
             return Ok((s, MotionOutcome::default()));
         }
-        if s.frame < s.action.frame_count() - 1 {
-            s.frame += 1;
-            s.end_of_animation = false;
-        } else {
-            s.end_of_animation = true;
-            if s.action.loops() && !s.walking_once {
-                s.frame = 0;
+        if s.action != MotionAction::Floating {
+            if s.frame < s.action.frame_count() - 1 {
+                s.frame += 1;
+                s.end_of_animation = false;
+            } else {
+                s.end_of_animation = true;
+                if s.action.loops() && !s.walking_once {
+                    s.frame = 0;
+                }
             }
         }
         let mut result = MotionOutcome {
@@ -441,7 +463,14 @@ impl Actor {
                 }
                 top(&mut s, self.rules);
             }
+            MotionAction::Floating => {
+                floater::advance(&mut s, terrain, self.rules, &mut result)?;
+            }
             MotionAction::Falling => {
+                if s.is_floater && s.fallen > 16 {
+                    transition(&mut s, MotionAction::Floating, self.rules);
+                    return Ok((s, result));
+                }
                 let mut dy = 0;
                 while dy < 3 && !pixel(terrain, s.x, i64::from(s.y), dy) {
                     dy += 1;
@@ -500,6 +529,9 @@ fn transition(s: &mut ActorState, action: MotionAction, rules: MotionRules) {
         return;
     }
     s.action = action;
+    if action == MotionAction::Floating {
+        s.float_index = 0;
+    }
     s.walking_once = false;
     if !matches!(action, MotionAction::OhNo | MotionAction::Exploding) {
         s.blocker_saved = None;

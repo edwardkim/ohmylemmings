@@ -14,6 +14,7 @@ pub struct Session {
     pub remaining_blockers: u16,
     pub remaining_bombers: u16,
     pub remaining_climbers: u16,
+    pub remaining_floaters: u16,
     explosion_mask: [u8; 44],
     visual_blast: Option<(Vec<u8>, Vec<u8>)>,
     object_map: Option<Vec<u8>>,
@@ -57,6 +58,7 @@ impl Session {
             remaining_blockers: 0,
             remaining_bombers: 0,
             remaining_climbers: 0,
+            remaining_floaters: 0,
             explosion_mask: [0; 44],
             visual_blast: None,
             object_map: None,
@@ -181,6 +183,24 @@ impl Session {
         format!(
             "{{\"remaining\":{},\"fields\":[{fields}],\"objects\":[{cached}],\"object_map_fnv1a64\":\"{hash:016x}\"}}",
             self.remaining_blockers
+        )
+    }
+    pub fn configure_floater(&mut self, remaining: u16) {
+        self.remaining_floaters = remaining;
+    }
+    pub fn floater_snapshot(&self) -> String {
+        let states = self
+            .actors
+            .iter()
+            .map(|a| {
+                let s = a.state();
+                format!("[{},{},{}]", s.id, s.is_floater, s.float_index)
+            })
+            .collect::<Vec<_>>()
+            .join(",");
+        format!(
+            "{{\"remaining\":{},\"actors\":[{states}]}}",
+            self.remaining_floaters
         )
     }
     pub fn configure_climber(&mut self, remaining: u16) {
@@ -311,6 +331,7 @@ impl Session {
         let blockers = &mut self.remaining_blockers;
         let bombers = &mut self.remaining_bombers;
         let climbers = &mut self.remaining_climbers;
+        let floaters = &mut self.remaining_floaters;
         let raw_map = &mut self.object_map;
         let context = BashingContext {
             object_map: None,
@@ -338,13 +359,17 @@ impl Session {
                     | StartupCommand::AssignBuilder(id)
                     | StartupCommand::AssignBlocker(id)
                     | StartupCommand::AssignBomber(id)
-                    | StartupCommand::AssignClimber(id) => id,
+                    | StartupCommand::AssignClimber(id)
+                    | StartupCommand::AssignFloater(id) => id,
                     _ => return false,
                 };
                 actors
                     .iter_mut()
                     .find(|a| a.state().id == id)
                     .is_some_and(|a| {
+                        if matches!(command, StartupCommand::AssignFloater(_)) {
+                            return a.assign_floater(floaters);
+                        }
                         if matches!(command, StartupCommand::AssignClimber(_)) {
                             return a.assign_climber(climbers);
                         }
@@ -561,6 +586,29 @@ mod tests {
         .unwrap()
     }
     #[test]
+    fn paused_floater_assignment_consumes_once_and_survives_resume() {
+        let a = crate::assets::Assets::synthetic_builder();
+        let mut s = Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_floater(2);
+        for _ in 0..80 {
+            s.tick().unwrap();
+        }
+        s.queue(InputCommand::Pause).unwrap();
+        for _ in 0..2 {
+            s.queue(InputCommand::Custom(StartupCommand::AssignFloater(0)))
+                .unwrap();
+        }
+        s.tick().unwrap();
+        let before = s.actors[0].state();
+        assert!(before.is_floater);
+        assert_eq!(s.remaining_floaters, 1);
+        s.tick().unwrap();
+        assert_eq!(s.actors[0].state(), before);
+        s.queue(InputCommand::Resume).unwrap();
+        s.tick().unwrap();
+        assert!(s.actors[0].state().is_floater);
+    }
+    #[test]
     fn paused_climber_assignment_consumes_once_and_survives_resume() {
         let a = crate::assets::Assets::synthetic_builder();
         let mut s = Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap();
@@ -700,6 +748,8 @@ mod tests {
                 bricks_left: 0,
                 blocker_saved: None,
                 is_climber: false,
+                is_floater: false,
+                float_index: 0,
                 walking_once: false,
                 explosion_timer: 0,
                 particle_timer: 0,
