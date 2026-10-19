@@ -21,11 +21,12 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nM/B/D: select Miner/Basher/Digger; left click: assign selected skill; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nU/M/B/D: select Builder/Miner/Basher/Digger; left click: assign selected skill; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     synthetic: bool,
     basher_scene: bool,
+    builder_scene: bool,
     level: u8,
     steps: Option<u64>,
     fast: bool,
@@ -42,6 +43,7 @@ impl Options {
             assets: "assets/local/dos-original".into(),
             synthetic: false,
             basher_scene: false,
+            builder_scene: false,
             level: 1,
             steps: None,
             fast: false,
@@ -59,6 +61,10 @@ impl Options {
                 "--synthetic-basher" => {
                     o.synthetic = true;
                     o.basher_scene = true;
+                }
+                "--synthetic-builder" => {
+                    o.synthetic = true;
+                    o.builder_scene = true;
                 }
                 "--level" => {
                     o.level = args
@@ -131,6 +137,7 @@ struct Capture {
     digger_trace: BufWriter<File>,
     basher_trace: BufWriter<File>,
     miner_trace: BufWriter<File>,
+    builder_trace: BufWriter<File>,
     previous_terrain: Vec<u8>,
 }
 fn write_new(path: &Path, data: &[u8]) -> Result<(), Box<dyn Error>> {
@@ -159,6 +166,12 @@ impl Capture {
             root: root.to_path_buf(),
             trace,
             previous_terrain: Vec::new(),
+            builder_trace: BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(root.join("builder.jsonl"))?,
+            ),
             miner_trace: BufWriter::new(
                 OpenOptions::new()
                     .write(true)
@@ -193,7 +206,7 @@ impl Capture {
             .iter()
             .zip(s.terrain())
             .enumerate()
-            .filter(|(_, (before, after))| before != after)
+            .filter(|(_, (before, after))| **before == 1 && **after == 0)
             .map(|(i, _)| i.to_string())
             .collect();
         if self.previous_terrain.is_empty() {
@@ -205,6 +218,21 @@ impl Capture {
             self.digger_trace,
             "{details},\"cleared\":[{}]}}",
             cleared.join(",")
+        )?;
+        let filled: Vec<_> = self
+            .previous_terrain
+            .iter()
+            .zip(s.terrain())
+            .enumerate()
+            .filter(|(_, (before, after))| **before == 0 && **after == 1)
+            .map(|(i, _)| i.to_string())
+            .collect();
+        let mut builder = s.builder_snapshot();
+        builder.pop();
+        writeln!(
+            self.builder_trace,
+            "{builder},\"filled\":[{}]}}",
+            filled.join(",")
         )?;
         self.previous_terrain.clear();
         self.previous_terrain.extend_from_slice(s.terrain());
@@ -227,7 +255,9 @@ impl Capture {
         self.digger_trace.flush()?;
         self.basher_trace.flush()?;
         self.miner_trace.flush()?;
+        self.builder_trace.flush()?;
         write_new(&self.root.join("terrain-final.bin"), s.terrain())?;
+        write_new(&self.root.join("brick-final.bin"), s.brick_mask())?;
         let mut inputs = String::new();
         for i in &s.inputs {
             let command = match i.command {
@@ -241,6 +271,9 @@ impl Capture {
                 }
                 InputCommand::Custom(StartupCommand::AssignMiner(id)) => {
                     format!("AssignMiner {id}")
+                }
+                InputCommand::Custom(StartupCommand::AssignBuilder(id)) => {
+                    format!("AssignBuilder {id}")
                 }
                 InputCommand::Custom(StartupCommand::SetReleaseRate(rate)) => {
                     format!("SetReleaseRate {rate}")
@@ -268,13 +301,17 @@ fn basher_capture(s: &Session) -> bool {
             matches!(
                 i.command,
                 InputCommand::Custom(
-                    StartupCommand::AssignBasher(_) | StartupCommand::AssignMiner(_)
+                    StartupCommand::AssignBasher(_)
+                        | StartupCommand::AssignMiner(_)
+                        | StartupCommand::AssignBuilder(_)
                 )
             )
         })
 }
 fn run(options: Options) -> Result<(), Box<dyn Error>> {
-    let assets = if options.basher_scene {
+    let assets = if options.builder_scene {
+        Assets::synthetic_builder()
+    } else if options.basher_scene {
         Assets::synthetic_basher()
     } else if options.synthetic {
         Assets::synthetic()
@@ -310,6 +347,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         assets.one_way_right.clone(),
     )?;
     session.configure_miner(assets.miners, assets.mine_masks);
+    session.configure_builder(assets.builders);
     let mut view = View::new(assets.screen_x);
     view.replaying = options.replay.is_some();
     let mut capture = options
@@ -347,7 +385,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             .collect::<Vec<_>>()
             .join(",");
         let description = format!(
-            "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"miners\":{},\"level\":{}}}",
+            "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"miners\":{},\"builders\":{},\"level\":{}}}",
             assets.width,
             assets.height,
             config.time_limit_minutes,
@@ -356,6 +394,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             assets.diggers,
             assets.bashers,
             assets.miners,
+            assets.builders,
             options.level
         );
         write_new(&c.root.join("config.json"), description.as_bytes())?;
@@ -464,6 +503,10 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         let finished = options.steps.is_some_and(|end| step >= end);
         let milestone = matches!(step, 0 | 16 | 17 | 34 | 35 | 54 | 60 | 100 | 170 | 340)
             || basher_capture(&session)
+            || session.actors.iter().any(|a| {
+                a.state().action == lemmings_core::MotionAction::Building
+                    && matches!(a.state().frame, 0 | 9)
+            })
             || finished
             || session.actors.iter().any(|a| {
                 a.state().action == lemmings_core::MotionAction::Digging

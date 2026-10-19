@@ -40,7 +40,11 @@ impl Actor {
             || s.removed.is_some()
             || !matches!(
                 s.action,
-                MotionAction::Walking | MotionAction::Digging | MotionAction::Mining
+                MotionAction::Walking
+                    | MotionAction::Digging
+                    | MotionAction::Mining
+                    | MotionAction::Building
+                    | MotionAction::Shrugging
             )
             || context.blocked(
                 i64::from(s.x) + i64::from(s.direction.delta()) * 8,

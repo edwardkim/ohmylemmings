@@ -13,6 +13,7 @@ fn walker(x: i32, y: i32) -> Actor {
             end_of_animation: true,
             fallen: 0,
             new_digger: false,
+            bricks_left: 0,
             removed: None,
         },
         MotionRules::default(),
@@ -258,12 +259,14 @@ fn restore_validates_new_digger_flag_and_immutable_batch_is_atomic() {
     for state in [
         ActorState {
             new_digger: true,
+            bricks_left: 0,
             ..walker(16, 20).state()
         },
         ActorState {
             action: MotionAction::Digging,
             frame: 1,
             new_digger: true,
+            bricks_left: 0,
             ..walker(16, 20).state()
         },
     ] {

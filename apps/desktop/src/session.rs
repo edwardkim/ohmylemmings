@@ -10,6 +10,8 @@ pub struct Session {
     pub remaining_diggers: u16,
     pub remaining_bashers: u16,
     pub remaining_miners: u16,
+    pub remaining_builders: u16,
+    brick_mask: Vec<u8>,
     mine_masks: [u8; 104],
     bash_masks: [u8; 160],
     one_way_left: Vec<u8>,
@@ -45,6 +47,8 @@ impl Session {
             remaining_diggers: 0,
             remaining_bashers: 0,
             remaining_miners: 0,
+            remaining_builders: 0,
+            brick_mask: vec![0; width * height],
             mine_masks: [0; 104],
             bash_masks: [0; 160],
             one_way_left: vec![0; width * height],
@@ -105,6 +109,25 @@ impl Session {
         self.remaining_miners = remaining;
         self.mine_masks = masks;
     }
+    pub fn configure_builder(&mut self, remaining: u16) {
+        self.remaining_builders = remaining;
+    }
+    pub fn brick_mask(&self) -> &[u8] {
+        &self.brick_mask
+    }
+    pub fn builder_snapshot(&self) -> String {
+        let bricks = self
+            .actors
+            .iter()
+            .filter(|a| a.state().action == MotionAction::Building)
+            .map(|a| format!("[{},{}]", a.state().id, a.state().bricks_left))
+            .collect::<Vec<_>>()
+            .join(",");
+        format!(
+            "{{\"remaining\":{},\"bricks\":[{bricks}]}}",
+            self.remaining_builders
+        )
+    }
     pub fn desired_paused(&self) -> bool {
         self.inputs
             .iter()
@@ -162,6 +185,7 @@ impl Session {
         let remaining = &mut self.remaining_diggers;
         let bashers = &mut self.remaining_bashers;
         let miners = &mut self.remaining_miners;
+        let builders = &mut self.remaining_builders;
         let context = BashingContext {
             masks: &self.bash_masks,
             steel,
@@ -183,7 +207,8 @@ impl Session {
                 let id = match command {
                     StartupCommand::AssignDigger(id)
                     | StartupCommand::AssignBasher(id)
-                    | StartupCommand::AssignMiner(id) => id,
+                    | StartupCommand::AssignMiner(id)
+                    | StartupCommand::AssignBuilder(id) => id,
                     _ => return false,
                 };
                 actors
@@ -193,6 +218,7 @@ impl Session {
                         StartupCommand::AssignDigger(_) => a.assign_digger(remaining, steel),
                         StartupCommand::AssignBasher(_) => a.assign_basher(bashers, context),
                         StartupCommand::AssignMiner(_) => a.assign_miner(miners, mining),
+                        StartupCommand::AssignBuilder(_) => a.assign_builder(builders),
                         _ => false,
                     })
             },
@@ -223,12 +249,23 @@ impl Session {
             )?);
         }
         if outcome.iteration.is_some() {
+            let brick_mask = &mut self.brick_mask;
+            let width = self.width;
             step_actors_with_jobs(
                 &mut self.actors,
                 &mut TerrainMaskMut::new(self.width, self.height, &mut self.terrain)?,
                 mining,
-                |_, _| {},
+                |_, out| {
+                    for (x, y) in out.added_pixels.into_iter().flatten() {
+                        brick_mask[y as usize * width + x as usize] = 1;
+                    }
+                },
             )?;
+            for (brick, &solid) in self.brick_mask.iter_mut().zip(&self.terrain) {
+                if solid == 0 {
+                    *brick = 0;
+                }
+            }
         }
         self.events = events;
         Ok(())
@@ -313,6 +350,88 @@ mod tests {
             vec![0; 96 * 160],
         )
         .unwrap()
+    }
+    #[test]
+    fn paused_builder_assignment_consumes_once_and_adds_material_only_after_resume() {
+        let a = crate::assets::Assets::synthetic();
+        let mut s = Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_builder(2);
+        for _ in 0..80 {
+            s.tick().unwrap();
+        }
+        s.queue(InputCommand::Pause).unwrap();
+        s.queue(InputCommand::Custom(StartupCommand::AssignBuilder(0)))
+            .unwrap();
+        s.queue(InputCommand::Custom(StartupCommand::AssignBuilder(0)))
+            .unwrap();
+        let terrain = s.terrain().to_vec();
+        s.tick().unwrap();
+        assert_eq!(s.remaining_builders, 1);
+        assert_eq!(
+            (s.actors[0].state().action, s.actors[0].state().bricks_left),
+            (MotionAction::Building, 12)
+        );
+        assert_eq!(s.terrain(), terrain);
+        assert!(s.events.last().unwrap().ends_with("false"));
+        s.queue(InputCommand::Resume).unwrap();
+        for _ in 0..9 {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.brick_mask().iter().filter(|&&v| v == 1).count(), 6);
+        assert!(s.terrain().iter().zip(terrain).any(|(&a, b)| a > b));
+    }
+    #[test]
+    fn same_tick_dig_and_rebuild_changes_material_even_when_final_collision_is_unchanged() {
+        let mut s = session();
+        let digger = Actor::from_state(
+            ActorState {
+                id: 0,
+                born_iteration: 0,
+                x: 34,
+                y: 40,
+                direction: MotionDirection::Right,
+                action: MotionAction::Digging,
+                frame: 7,
+                end_of_animation: false,
+                fallen: 0,
+                new_digger: false,
+                bricks_left: 0,
+                removed: None,
+            },
+            MotionRules::default(),
+        )
+        .unwrap();
+        let builder = Actor::from_state(
+            ActorState {
+                id: 1,
+                x: 32,
+                y: 41,
+                action: MotionAction::Building,
+                frame: 8,
+                bricks_left: 12,
+                ..digger.state()
+            },
+            digger.rules(),
+        )
+        .unwrap();
+        s.actors = vec![digger, builder];
+        let index = 40 * 96 + 34;
+        s.terrain[index] = 1;
+        assert_eq!(s.brick_mask[index], 0);
+        s.tick().unwrap();
+        assert_eq!((s.terrain[index], s.brick_mask[index]), (1, 1));
+        s.actors[0] = Actor::from_state(
+            ActorState {
+                y: 41,
+                frame: 0,
+                new_digger: true,
+                ..digger.state()
+            },
+            digger.rules(),
+        )
+        .unwrap();
+        s.tick().unwrap();
+        assert_eq!((s.terrain[index], s.brick_mask[index]), (0, 0));
     }
     #[test]
     fn paused_miner_assignment_keeps_motion_still_and_replays_inventory_and_excavation() {

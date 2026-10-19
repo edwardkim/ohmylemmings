@@ -27,7 +27,11 @@ impl Actor {
             || s.removed.is_some()
             || !matches!(
                 s.action,
-                MotionAction::Walking | MotionAction::Digging | MotionAction::Bashing
+                MotionAction::Walking
+                    | MotionAction::Digging
+                    | MotionAction::Bashing
+                    | MotionAction::Building
+                    | MotionAction::Shrugging
             )
             || context.objects.steel.is_solid(s.x, s.y)
             || context.objects.blocked(
@@ -54,6 +58,9 @@ impl Actor {
         terrain: &mut TerrainMaskMut<'_>,
         context: MiningContext<'_>,
     ) -> Result<MotionOutcome, MotionError> {
+        if self.state.action == MotionAction::Building && self.state.removed.is_none() {
+            return self.advance_building(terrain);
+        }
         if self.state.removed.is_some() || self.state.action != MotionAction::Mining {
             return self.advance_with_skills(terrain, context.objects);
         }

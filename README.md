@@ -38,7 +38,7 @@ make check
 cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/local/dos-original
 ```
 
-Space로 일시정지/재개, 위/아래 화살표로 생성 속도, 좌/우 화살표로 카메라를 조작하고 Esc로 종료합니다. 나머지 직업·출구 판정·승패·음향은 후속 구현입니다. [G06-01 검증 보고서](mydocs/reports/issue-27_native_view.md)에 X11 실행과 화면 근거를 기록합니다. [#28 DOS 세 실행·동일 장면 대조](mydocs/reports/issue-28_dos_comparison.md)를 완료했습니다. [#30 보정](mydocs/reports/issue-30_dos_differences.md)으로 일곱 기준 장면의 전체 320×160 영역이 원본 세 실행과 같고 기본 실행 간격도 DOS 관측에 맞췄습니다. 게시·실제 CI를 확인해 G06 전체를 완료했습니다. G07-01 Digger와 G07-02 Basher를 완료했으며 G07-03 Miner도 완료했으며 다음 후보는 G07-04 Builder입니다.
+Space로 일시정지/재개, 위/아래 화살표로 생성 속도, 좌/우 화살표로 카메라를 조작하고 Esc로 종료합니다. 나머지 직업·출구 판정·승패·음향은 후속 구현입니다. [G06-01 검증 보고서](mydocs/reports/issue-27_native_view.md)에 X11 실행과 화면 근거를 기록합니다. [#28 DOS 세 실행·동일 장면 대조](mydocs/reports/issue-28_dos_comparison.md)를 완료했습니다. [#30 보정](mydocs/reports/issue-30_dos_differences.md)으로 일곱 기준 장면의 전체 320×160 영역이 원본 세 실행과 같고 기본 실행 간격도 DOS 관측에 맞췄습니다. 게시·실제 CI를 확인해 G06 전체를 완료했습니다. G07-01 Digger와 G07-02 Basher를 완료했으며 G07-03 Miner도 완료했으며 현재 [G07-04 Builder / #34](mydocs/working/issue-34_builder.md)의 로컬 구현·검증을 마치고 PR·CI를 확인 중입니다.
 
 ## 원본 데이터 준비
 
@@ -66,7 +66,7 @@ python3 -m unittest discover -s tools/tests -v
 
 전체 설계와 단계별 작업은 [프로젝트 기획서](mydocs/plans/issue-1_rusty_lemmings.md)를 참고하세요.
 
-구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. G00~G06을 완료했으며 G07-01 Digger와 G07-02 Basher를 완료했으며 G07-03 Miner도 완료했으며 다음 후보는 G07-04 Builder입니다.
+구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. G00~G06과 G07-01 Digger·G07-02 Basher·G07-03 Miner를 완료했으며 현재 [G07-04 Builder / #34](mydocs/working/issue-34_builder.md)의 로컬 구현·검증을 마치고 PR·CI를 확인 중입니다.
 
 진행 상황은 [GitHub 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1)에서 추적합니다.
 
@@ -98,3 +98,5 @@ mydocs/
 [G07-02 Basher](mydocs/reports/issue-32_basher.md)의 구현·기준/원본 검증·게시/실제 CI도 완료했습니다. B/D 키로 Basher/Digger를 선택하고 클릭합니다. `--level 5`로 Basher 원본 레벨을 선택할 수 있습니다.
 
 [G07-03 Miner](mydocs/reports/issue-33_miner.md)의 구현·기준/원본 검증·게시/실제 CI도 완료했습니다. M/B/D로 직업을 선택하고 클릭합니다. `--level 4`로 원본 Miner 레벨을 선택합니다.
+
+[G07-04 Builder](mydocs/reports/issue-34_builder.md)는 계단을 만듭니다. U/M/B/D로 직업을 선택한 뒤 클릭하며 `--level 7`로 원본 Builder 레벨을 선택합니다. 로컬 구현·검증을 마쳤으며 PR·통합을 진행합니다.
