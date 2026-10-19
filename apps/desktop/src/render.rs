@@ -19,6 +19,8 @@ pub struct View {
     pub camera: i32,
     pub replaying: bool,
     pub selected_skill: SelectedSkill,
+    pub next_level: Option<u8>,
+    pub result_error: bool,
     world: Vec<[u8; 4]>,
     iteration: Option<u64>,
 }
@@ -28,15 +30,96 @@ impl View {
             camera,
             replaying: false,
             selected_skill: SelectedSkill::Digger,
+            next_level: None,
+            result_error: false,
             world: Vec::new(),
             iteration: None,
         }
+    }
+    fn result_frame(
+        &self,
+        assets: &Assets,
+        session: &Session,
+        result: lemmings_core::LevelResult,
+    ) -> Vec<u8> {
+        let mut frame = [12, 18, 32].repeat(WIDTH * HEIGHT);
+        let white = [225, 235, 240];
+        let purple = [190, 165, 255];
+        let heading = if result.success {
+            "LEVEL COMPLETE"
+        } else {
+            "TRY AGAIN"
+        };
+        centered(
+            &mut frame,
+            18,
+            heading,
+            if result.success {
+                [100, 235, 155]
+            } else {
+                [255, 160, 120]
+            },
+        );
+        centered(&mut frame, 36, &assets.title.to_ascii_uppercase(), white);
+        centered(
+            &mut frame,
+            57,
+            match result.reason {
+                lemmings_core::EndReason::TimeExpired => "TIME IS UP",
+                lemmings_core::EndReason::PopulationExhausted => "ALL LEMMINGS ACCOUNTED FOR",
+            },
+            purple,
+        );
+        centered(
+            &mut frame,
+            76,
+            &format!(
+                "YOU RESCUED {}%   NEEDED {}%",
+                result.rescued_percent, result.target_percent
+            ),
+            white,
+        );
+        centered(
+            &mut frame,
+            91,
+            &format!("SAVED {} / {}", result.rescued, result.lemming_count),
+            white,
+        );
+        let seconds = session.scheduler.state().seconds_remaining;
+        centered(
+            &mut frame,
+            106,
+            &format!("TIME LEFT {}:{:02}", seconds / 60, seconds % 60),
+            white,
+        );
+        let prompt = if !result.success {
+            "ENTER / LEFT CLICK: RETRY".to_owned()
+        } else if let Some(next) = self.next_level {
+            format!("ENTER / LEFT CLICK: LEVEL {next}")
+        } else {
+            "END OF SUPPORTED LEVELS".to_owned()
+        };
+        centered(&mut frame, 132, &prompt, purple);
+        centered(&mut frame, 149, "R: RESTART THIS LEVEL", white);
+        centered(&mut frame, 164, "ESC / RIGHT CLICK: QUIT", white);
+        if self.result_error {
+            centered(
+                &mut frame,
+                184,
+                "LEVEL LOAD FAILED - TRY R OR ENTER",
+                [255, 160, 120],
+            );
+        }
+        frame
     }
     pub fn scroll(&mut self, delta: i32, world_width: usize) {
         let max = world_width.saturating_sub(WIDTH).min(i32::MAX as usize) as i32;
         self.camera = self.camera.saturating_add(delta).clamp(0, max);
     }
     pub fn frame(&mut self, assets: &Assets, session: &Session) -> Result<Vec<u8>, Box<dyn Error>> {
+        if let Some(result) = session.result() {
+            return Ok(self.result_frame(assets, session, result));
+        }
         self.scroll(0, assets.width);
         let iteration = session.scheduler.step_state().iteration;
         if self.iteration != Some(iteration) {
@@ -281,6 +364,17 @@ fn blit(
         }
     }
 }
+fn centered(output: &mut [u8], y: usize, value: &str, color: [u8; 3]) {
+    // Long level names stay centered without overflowing or silently blank glyphs.
+    let value: String = value.chars().take(WIDTH / 6).collect();
+    text(
+        output,
+        (WIDTH - value.chars().count() * 6) / 2,
+        y,
+        &value,
+        color,
+    );
+}
 fn text(output: &mut [u8], x: usize, y: usize, value: &str, color: [u8; 3]) {
     for (index, c) in value.chars().enumerate() {
         let rows = glyph(c);
@@ -334,6 +428,7 @@ fn glyph(c: char) -> [u8; 7] {
         '7' => [31, 1, 2, 4, 8, 8, 8],
         '8' => [14, 17, 17, 14, 17, 17, 14],
         '9' => [14, 17, 17, 15, 1, 1, 14],
+        '-' => [0, 0, 0, 31, 0, 0, 0],
         ':' => [0, 4, 4, 0, 4, 4, 0],
         '!' => [4, 4, 4, 4, 4, 0, 4],
         '/' => [1, 1, 2, 4, 8, 16, 16],
@@ -344,6 +439,40 @@ fn glyph(c: char) -> [u8; 7] {
 }
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn result_scene_is_frozen_distinct_and_contains_outcome_color() {
+        for (kind, color) in [
+            ("win", [100, 235, 155]),
+            ("loss", [255, 160, 120]),
+            ("zero", [255, 160, 120]),
+        ] {
+            let mut run = crate::lifecycle::LevelRun::new(
+                Assets::synthetic_completion(kind),
+                1,
+                Some(2),
+                crate::pacing::Pacing::Reference,
+            )
+            .unwrap();
+            let playing = run.view.frame(&run.assets, &run.session).unwrap();
+            for _ in 0..1200 {
+                run.session.tick().unwrap();
+                if run.session.result().is_some() {
+                    break;
+                }
+            }
+            assert!(run.session.result().is_some());
+            let before = run.session.snapshot();
+            let result = run.view.frame(&run.assets, &run.session).unwrap();
+            assert_ne!(result, playing);
+            assert!(
+                result[18 * WIDTH * 3..25 * WIDTH * 3]
+                    .chunks_exact(3)
+                    .any(|p| p == color)
+            );
+            assert_eq!(run.view.frame(&run.assets, &run.session).unwrap(), result);
+            assert_eq!(run.session.snapshot(), before);
+        }
+    }
     #[test]
     fn removed_explosion_particles_use_signed_offsets_palette_frame_and_playfield_clip() {
         let mut assets = Assets::synthetic();
