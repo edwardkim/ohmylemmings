@@ -54,7 +54,10 @@ impl Actor {
             || self.state.explosion_timer != 0
             || matches!(
                 self.state.action,
-                MotionAction::Splatting | MotionAction::OhNo | MotionAction::Exploding
+                MotionAction::Splatting
+                    | MotionAction::OhNo
+                    | MotionAction::Exploding
+                    | MotionAction::Vaporizing
             )
         {
             return false;
@@ -85,7 +88,10 @@ impl Actor {
             if next.state.explosion_timer == 0 {
                 let action = if matches!(
                     next.state.action,
-                    MotionAction::Falling | MotionAction::Floating
+                    MotionAction::Falling
+                        | MotionAction::Floating
+                        | MotionAction::Drowning
+                        | MotionAction::Vaporizing
                 ) {
                     MotionAction::Exploding
                 } else {

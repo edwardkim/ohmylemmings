@@ -21,7 +21,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nF/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nF/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     synthetic: bool,
@@ -31,6 +31,7 @@ struct Options {
     climber_scene: bool,
     floater_scene: bool,
     exit_scene: Option<bool>,
+    hazard_scene: Option<(u8, bool)>,
     level: u8,
     steps: Option<u64>,
     fast: bool,
@@ -52,6 +53,7 @@ impl Options {
             climber_scene: false,
             floater_scene: false,
             exit_scene: None,
+            hazard_scene: None,
             level: 1,
             steps: None,
             fast: false,
@@ -66,6 +68,29 @@ impl Options {
             match flag.as_str() {
                 "--help" | "-h" => return Ok(None),
                 "--synthetic" => o.synthetic = true,
+                "--synthetic-water-late"
+                | "--synthetic-fire-late"
+                | "--synthetic-water"
+                | "--synthetic-fire"
+                | "--synthetic-trap"
+                | "--synthetic-trap-slow"
+                | "--synthetic-trap-continuous"
+                | "--synthetic-water-drop"
+                | "--synthetic-fire-drop" => {
+                    o.synthetic = true;
+                    let kind = if flag.contains("water") {
+                        if flag.ends_with("-late") { 143 } else { 133 }
+                    } else if flag.contains("fire") {
+                        if flag.ends_with("-late") { 144 } else { 134 }
+                    } else if flag.ends_with("-slow") {
+                        1
+                    } else if flag.ends_with("-continuous") {
+                        2
+                    } else {
+                        0
+                    };
+                    o.hazard_scene = Some((kind, flag.ends_with("-drop")));
+                }
                 "--synthetic-exit" | "--synthetic-exit-drop" => {
                     o.synthetic = true;
                     o.exit_scene = Some(flag == "--synthetic-exit-drop");
@@ -168,6 +193,7 @@ struct Capture {
     floater_trace: BufWriter<File>,
     nuke_trace: BufWriter<File>,
     exit_trace: BufWriter<File>,
+    hazards_trace: BufWriter<File>,
     previous_object_map: Vec<u8>,
     previous_terrain: Vec<u8>,
 }
@@ -198,6 +224,12 @@ impl Capture {
             trace,
             previous_terrain: Vec::new(),
             previous_object_map: Vec::new(),
+            hazards_trace: BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(root.join("hazards.jsonl"))?,
+            ),
             exit_trace: BufWriter::new(
                 OpenOptions::new()
                     .write(true)
@@ -263,6 +295,7 @@ impl Capture {
     fn snapshot(&mut self, s: &Session) -> Result<(), Box<dyn Error>> {
         writeln!(self.trace, "{}", s.snapshot())?;
         writeln!(self.exit_trace, "{}", s.exit_snapshot())?;
+        writeln!(self.hazards_trace, "{}", s.hazards_snapshot())?;
         writeln!(self.bomber_trace, "{}", s.bomber_snapshot())?;
         writeln!(self.climber_trace, "{}", s.climber_snapshot())?;
         writeln!(self.floater_trace, "{}", s.floater_snapshot())?;
@@ -455,6 +488,22 @@ fn climber_capture(s: &Session) -> bool {
         ) && matches!(a.frame, 0 | 3 | 4 | 7)
     })
 }
+fn hazard_capture(s: &Session) -> bool {
+    s.hazard_just_happened()
+        || s.actors.iter().any(|a| {
+            let a = a.state();
+            a.removed.is_none()
+                && matches!(
+                    a.action,
+                    lemmings_core::MotionAction::Drowning | lemmings_core::MotionAction::Vaporizing
+                )
+                && matches!(a.frame, 0 | 7 | 13 | 15)
+        })
+        || s.traps()
+            .iter()
+            .flatten()
+            .any(|t| t.triggered() && (t.frame() == 1 || t.frame() == t.frame_count() - 1))
+}
 fn exit_capture(s: &Session) -> bool {
     s.rescue_just_happened()
         || s.actors.iter().any(|a| {
@@ -474,7 +523,9 @@ fn floater_capture(s: &Session) -> bool {
     })
 }
 fn run(options: Options) -> Result<(), Box<dyn Error>> {
-    let assets = if let Some(drop) = options.exit_scene {
+    let assets = if let Some((kind, drop)) = options.hazard_scene {
+        Assets::synthetic_hazards(kind, drop)
+    } else if let Some(drop) = options.exit_scene {
         Assets::synthetic_exit(drop)
     } else if options.floater_scene {
         Assets::synthetic_floater()
@@ -520,6 +571,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
     session.configure_miner(assets.miners, assets.mine_masks);
     session.configure_builder(assets.builders);
     session.configure_blocker(assets.blockers, assets.object_map.clone())?;
+    session.configure_traps(assets.traps);
     session.configure_bomber(assets.bombers, assets.explosion_mask)?;
     session.configure_climber(assets.climbers);
     session.configure_floater(assets.floaters);
@@ -557,6 +609,16 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             session.object_map_data(),
         )?;
         write_new(&c.root.join("explosion-mask.bin"), &assets.explosion_mask)?;
+        let trap_metadata: Vec<_> = assets
+            .traps
+            .iter()
+            .flat_map(|trap| {
+                trap.map_or([0, 0, 0], |t| {
+                    [t.frame_count(), t.frame(), u8::from(t.continuous())]
+                })
+            })
+            .collect();
+        write_new(&c.root.join("traps.bin"), &trap_metadata)?;
         let config = &assets.config;
         let entrances = assets
             .entrances
@@ -682,6 +744,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
                     || climber_capture(&session)
                     || floater_capture(&session)
                     || exit_capture(&session)
+                    || hazard_capture(&session)
                 {
                     break;
                 }
@@ -695,6 +758,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             || climber_capture(&session)
             || floater_capture(&session)
             || exit_capture(&session)
+            || hazard_capture(&session)
             || session.actors.iter().any(|a| {
                 a.state().action == lemmings_core::MotionAction::Building
                     && matches!(a.state().frame, 0 | 9)

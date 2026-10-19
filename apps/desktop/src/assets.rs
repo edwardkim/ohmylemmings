@@ -22,6 +22,7 @@ pub struct Assets {
     pub countdown_masks: [u8; 80],
     pub particles: Option<Vec<u8>>,
     pub object_map: Vec<u8>,
+    pub traps: lemmings_core::TrapStates,
     pub mine_masks: [u8; 104],
     pub bash_masks: [u8; 160],
     pub one_way_left: Vec<u8>,
@@ -202,6 +203,7 @@ impl Assets {
             explosion_mask: masks[264..308].try_into()?,
             countdown_masks: masks[308..388].try_into()?,
             particles: load_particles(root)?,
+            traps: build_traps(resolved.base_record(), ground)?,
             object_map,
             mine_masks: masks[160..264].try_into()?,
             bash_masks: masks[..160].try_into()?,
@@ -240,6 +242,7 @@ impl Assets {
             bombers: 10,
             climbers: 10,
             floaters: 10,
+            traps: [None; 16],
             explosion_mask: [255; 44],
             countdown_masks: synthetic_countdown(),
             particles: None,
@@ -355,11 +358,61 @@ impl Assets {
         .into();
         scene
     }
+    pub fn synthetic_hazards(kind: u8, drop: bool) -> Self {
+        let mut scene = Self::synthetic_exit(drop);
+        let late = matches!(kind, 143 | 144);
+        let kind = if late { kind - 10 } else { kind };
+        scene.object_map.fill(OBJECT_NONE);
+        let code = if kind < 128 { 0 } else { kind };
+        let mut map = ObjectMapMut::new(
+            DOS_OBJECT_MAP_WIDTH,
+            DOS_OBJECT_MAP_HEIGHT,
+            -16,
+            -16,
+            &mut scene.object_map,
+        )
+        .unwrap();
+        for y in if drop { 60..144 } else { 96..104 } {
+            for x in if drop {
+                64..72
+            } else if late {
+                120..128
+            } else {
+                96..104
+            } {
+                map.write(x, y, code);
+            }
+        }
+        if kind < 128 {
+            scene.traps[0] = Some(
+                lemmings_core::TrapState::new(if kind == 1 { 48 } else { 12 }, 0)
+                    .unwrap()
+                    .with_continuous(kind == 2),
+            );
+        }
+        scene.title = match kind {
+            133 => "WATER",
+            134 => "FIRE",
+            _ => "TRAP",
+        }
+        .into();
+        scene
+    }
+    #[cfg(test)]
     pub fn scene_with_terrain(
         &self,
         iteration: u64,
         mask: &[u8],
         brick_mask: &[u8],
+    ) -> Result<Vec<[u8; 4]>, Box<dyn Error>> {
+        self.scene_with_traps(iteration, mask, brick_mask, &[None; 16])
+    }
+    pub fn scene_with_traps(
+        &self,
+        iteration: u64,
+        mask: &[u8],
+        brick_mask: &[u8],
+        traps: &lemmings_core::TrapStates,
     ) -> Result<Vec<[u8; 4]>, Box<dyn Error>> {
         lemmings_core::TerrainMask::new(self.width, self.height, mask)?;
         lemmings_core::TerrainMask::new(self.width, self.height, brick_mask)?;
@@ -407,10 +460,23 @@ impl Assets {
             .with_pixels(&edited)
             .ok_or("invalid edited terrain")?;
         let mut indices = [0; 32];
+        let mut compact = 0;
         for object in level.objects() {
+            let trap_index = compact;
+            if object.id != 1 {
+                compact += 1;
+            }
             let meta = ground
                 .object(usize::from(object.id))
                 .ok_or("object metadata missing")?;
+            if object.id != 1
+                && meta.trigger_effect == 4
+                && trap_index < 16
+                && let Some(trap) = traps[trap_index]
+            {
+                indices[object.slot] = usize::from(trap.frame());
+                continue;
+            }
             indices[object.slot] = object_frame(
                 object.id == 1,
                 meta.animation_loops(),
@@ -530,6 +596,25 @@ fn synthetic_countdown() -> [u8; 80] {
         }
     }
     out
+}
+
+fn build_traps(
+    level: LevelRecord<'_>,
+    ground: GroundRecord<'_>,
+) -> Result<lemmings_core::TrapStates, Box<dyn Error>> {
+    let mut traps = [None; 16];
+    for (i, object) in level.objects().filter(|o| o.id != 1).take(16).enumerate() {
+        let meta = ground
+            .object(usize::from(object.id))
+            .ok_or("object metadata missing")?;
+        if meta.trigger_effect == 4 {
+            traps[i] = Some(
+                lemmings_core::TrapState::new(meta.frame_count, meta.first_frame)?
+                    .with_continuous(meta.animation_loops()),
+            );
+        }
+    }
+    Ok(traps)
 }
 
 #[cfg(test)]

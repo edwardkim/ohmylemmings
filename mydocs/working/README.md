@@ -38,3 +38,5 @@
 - [#42 G07-08 Floater](issue-42_floater.md)
 
 - [#44 G07-09 Nuke](issue-44_nuke.md)
+
+- [#50 G08-02 위험물·함정](issue-50_hazards.md)

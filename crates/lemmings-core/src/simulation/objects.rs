@@ -1,6 +1,8 @@
 use core::fmt;
 
 pub const OBJECT_NONE: u8 = 128;
+pub const OBJECT_WATER: u8 = 133;
+pub const OBJECT_FIRE: u8 = 134;
 pub const OBJECT_EXIT: u8 = 129;
 pub const OBJECT_FORCE_LEFT: u8 = 130;
 pub const OBJECT_FORCE_RIGHT: u8 = 131;

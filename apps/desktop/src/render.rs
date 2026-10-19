@@ -42,10 +42,11 @@ impl View {
         if self.iteration != Some(iteration) {
             // Erase deleted terrain before object composition so objects behind
             // a freshly dug hole become visible with their original draw flags.
-            self.world = assets.scene_with_terrain(
+            self.world = assets.scene_with_traps(
                 iteration,
                 session.render_terrain(),
                 session.render_bricks(),
+                session.traps(),
             )?;
             self.iteration = Some(iteration);
         }
@@ -94,6 +95,8 @@ impl View {
                 MotionAction::Blocking => LemmingSpriteKind::Blocking,
                 MotionAction::Climbing => LemmingSpriteKind::Climbing,
                 MotionAction::Floating => LemmingSpriteKind::Umbrella,
+                MotionAction::Drowning => LemmingSpriteKind::Drowning,
+                MotionAction::Vaporizing => LemmingSpriteKind::Vaporizing,
                 MotionAction::Exiting => LemmingSpriteKind::Exiting,
                 MotionAction::Hoisting => LemmingSpriteKind::Hoisting,
                 MotionAction::OhNo => LemmingSpriteKind::OhNo,
@@ -386,6 +389,8 @@ mod tests {
             (MotionAction::Hoisting, 12),
             (MotionAction::Floating, 16),
             (MotionAction::Exiting, 13),
+            (MotionAction::Drowning, 10),
+            (MotionAction::Vaporizing, 14),
         ] {
             for (timer, digit) in [(79, 5u8), (64, 4), (48, 3), (32, 2), (16, 1)] {
                 let mut assets = Assets::synthetic();

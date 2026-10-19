@@ -703,6 +703,8 @@ fn action_code(action: MotionAction) -> u8 {
         MotionAction::Hoisting => 13,
         MotionAction::Floating => 14,
         MotionAction::Exiting => 15,
+        MotionAction::Drowning => 16,
+        MotionAction::Vaporizing => 17,
     }
 }
 fn removal_code(reason: Option<RemovalReason>) -> u8 {
@@ -712,6 +714,9 @@ fn removal_code(reason: Option<RemovalReason>) -> u8 {
         Some(RemovalReason::SplattingFinished) => 2,
         Some(RemovalReason::Exploded) => 3,
         Some(RemovalReason::Rescued) => 4,
+        Some(RemovalReason::Drowned) => 5,
+        Some(RemovalReason::Vaporized) => 6,
+        Some(RemovalReason::Trapped) => 7,
     }
 }
 fn put64(out: &mut Vec<u8>, v: u64) {
@@ -790,7 +795,9 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                             | MotionAction::Climbing
                             | MotionAction::Hoisting
                             | MotionAction::Floating
-                            | MotionAction::Exiting => unreachable!(),
+                            | MotionAction::Exiting
+                            | MotionAction::Drowning
+                            | MotionAction::Vaporizing => unreachable!(),
                         };
                         let fallen_values: &[_] = if action == MotionAction::Falling {
                             &[0, 60, 61]
