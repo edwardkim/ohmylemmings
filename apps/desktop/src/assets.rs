@@ -16,6 +16,7 @@ pub struct Assets {
     pub builders: u16,
     pub blockers: u16,
     pub bombers: u16,
+    pub climbers: u16,
     pub explosion_mask: [u8; 44],
     pub countdown_masks: [u8; 80],
     pub particles: Option<Vec<u8>>,
@@ -195,6 +196,7 @@ impl Assets {
             builders: header.skills[4],
             blockers: header.skills[3],
             bombers: header.skills[2],
+            climbers: header.skills[0],
             explosion_mask: masks[264..308].try_into()?,
             countdown_masks: masks[308..388].try_into()?,
             particles: load_particles(root)?,
@@ -234,6 +236,7 @@ impl Assets {
             builders: 10,
             blockers: 10,
             bombers: 10,
+            climbers: 10,
             explosion_mask: [255; 44],
             countdown_masks: synthetic_countdown(),
             particles: None,
@@ -290,6 +293,15 @@ impl Assets {
                 scene.terrain[y * scene.width + x] = u8::from(
                     (y >= 100 && x < 500) || ((60..100).contains(&y) && (160..170).contains(&x)),
                 );
+            }
+        }
+        scene
+    }
+    pub fn synthetic_climber() -> Self {
+        let mut scene = Self::synthetic_builder();
+        for y in 60..100 {
+            for x in 20..30 {
+                scene.terrain[y * scene.width + x] = 1;
             }
         }
         scene

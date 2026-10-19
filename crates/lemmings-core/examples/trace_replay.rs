@@ -99,6 +99,7 @@ fn parse(text: &str) -> Result<Run, Box<dyn Error>> {
         config,
         rules: MotionRules {
             faller_starts_with_three,
+            ..MotionRules::default()
         },
         entrances,
         inputs,

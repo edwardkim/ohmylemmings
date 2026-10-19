@@ -16,6 +16,8 @@ fn actor(action: MotionAction, frame: u8, direction: MotionDirection) -> Actor {
             new_digger: false,
             bricks_left: 0,
             blocker_saved: None,
+            is_climber: false,
+            walking_once: false,
             explosion_timer: 0,
             particle_timer: 0,
             particle_frame: 0,

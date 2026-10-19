@@ -70,6 +70,7 @@ impl Actor {
             || (code == OBJECT_FORCE_RIGHT && s.direction == MotionDirection::Left)
         {
             s.direction = s.direction.reverse();
+            s.walking_once = false;
         }
     }
     /// All current jobs plus Blocker. Restrictions use the same mutable object

@@ -23,6 +23,8 @@ fn state() -> ActorState {
         new_digger: false,
         bricks_left: 0,
         blocker_saved: None,
+        is_climber: false,
+        walking_once: false,
         explosion_timer: 0,
         particle_timer: 0,
         particle_frame: 0,
@@ -55,6 +57,7 @@ fn birth_uses_selected_original_entrance_and_preserves_stable_identity_and_rules
         };
         let rules = MotionRules {
             faller_starts_with_three: enabled,
+            ..MotionRules::default()
         };
         let a = Actor::from_spawn(request, &entrances, rules).unwrap();
         assert_eq!(a.rules(), rules);
@@ -73,6 +76,8 @@ fn birth_uses_selected_original_entrance_and_preserves_stable_identity_and_rules
                 new_digger: false,
                 bricks_left: 0,
                 blocker_saved: None,
+                is_climber: false,
+                walking_once: false,
                 explosion_timer: 0,
                 particle_timer: 0,
                 particle_frame: 0,
@@ -313,6 +318,7 @@ fn gaps_one_to_three_stay_walking_and_four_enters_falling_with_profile_counter()
                 state(),
                 MotionRules {
                     faller_starts_with_three: enabled,
+                    ..MotionRules::default()
                 },
             )
             .unwrap();
@@ -688,6 +694,8 @@ fn action_code(action: MotionAction) -> u8 {
         MotionAction::Blocking => 9,
         MotionAction::OhNo => 10,
         MotionAction::Exploding => 11,
+        MotionAction::Climbing => 12,
+        MotionAction::Hoisting => 13,
     }
 }
 fn removal_code(reason: Option<RemovalReason>) -> u8 {
@@ -770,7 +778,9 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                             | MotionAction::Shrugging
                             | MotionAction::Blocking
                             | MotionAction::OhNo
-                            | MotionAction::Exploding => unreachable!(),
+                            | MotionAction::Exploding
+                            | MotionAction::Climbing
+                            | MotionAction::Hoisting => unreachable!(),
                         };
                         let fallen_values: &[_] = if action == MotionAction::Falling {
                             &[0, 60, 61]
@@ -793,6 +803,8 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                                         new_digger: false,
                                         bricks_left: 0,
                                         blocker_saved: None,
+                                        is_climber: false,
+                                        walking_once: false,
                                         explosion_timer: 0,
                                         particle_timer: 0,
                                         particle_frame: 0,
@@ -804,6 +816,7 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                                         initial,
                                         MotionRules {
                                             faller_starts_with_three: rule,
+                                            ..MotionRules::default()
                                         },
                                     )
                                     .unwrap();

@@ -1,0 +1,288 @@
+{
+  "format": "g07-climber-v1",
+  "reference": {
+    "metadata_sha256": "2c68d83660cf0c2d141e7449d20b9d747fe5c3496d31d0551ff9c547656cf2a8",
+    "source_sha256": "c1ba9ffda9e8e277f5c9b171df2bb611210d3326b9623b28fcd35426f4d6a448",
+    "methods": {
+      "HasPixelAt": "e8c1c11b7b16795fb96f590a91bb01381f9fab87791213f00999cded06ce6243",
+      "HasPixelAt_ClipY": "dc9696798aeaa483df3899392505ba853577726f1774a931d1df91d00882523c",
+      "Transition": "2ac447b7289c2eead45d2bdf19a43c437ac6e3f1455d61fc32de95aa7c4f0aad",
+      "TurnAround": "6c85a8ec0e5da4a5cbd3f01dfa315260bb1409af418d149f396c93367e15e5df",
+      "AssignDigger": "c89b05ed99b389dde0a1f421e27f896967b42f6c15847ac464ec2c4458ddf4a7",
+      "DigOneRow": "fdf023c95fb66967aa4e133f36829a7db3e68308afb70665ffbffba2f26ba0a1",
+      "HandleLemming": "e00f1ffbafa322076f9cff9644dab1cbea83e29081ce04a126573d1f340fea91",
+      "HandleWalking": "41d1f6ededb993c451d58e773a60dbb6ff3135b7109c9709ffef40bafa5f33ce",
+      "HandleJumping": "f7c843e508a0d33c3e28fc8872e2427dfa7fbc890487c6392c4bb03e85d264a5",
+      "HandleDigging": "5aa69c62006b96b6c430c253899708189823aa531cf9db2277f49c1189ea783f",
+      "HandleFalling": "894411800603d79132d7533ef21bae8e52de61270849f0f50e2c4899f80b122a",
+      "HandleSplatting": "5e43a5f8f9c16937c55b9b5f710a809566d298066ca47cef89018cdc5fd6fe4a",
+      "CheckForLevelTopBoundary": "da00c889f8d1283fa5aad65083c5963fa8b1d56843bf06b8ab3a7eae75587933",
+      "RemoveLemming": "7307061c19354e8142270bd3a6a80900329c5c89982da2d4e1b149edbbbef1f7",
+      "IncrementIteration": "20f1800054465889d9fdad767d45a510dcbda8ae0b8d8bbee8ec597f8c030781",
+      "BtnPause": "579cdcbff69db1562f4bf5843ce41e1cef1c4dec2a53a865566bbfcf916f977c",
+      "BtnPauseStop": "217532706520d2f2aa8996a46c1136fbce9d547e8f433141bee75d3cb3cbf31a",
+      "CheckSpawnLemming": "5608a12f641eccd5dc009789311cc3e78ac4b803f8bfae5d45ce085b35bcc638",
+      "AssignBasher": "180a96371f798f64b0712da149138e4ff0bed6aedcdc71493b218b8547862793",
+      "ApplyBashingMask": "22d8a77f2920ceaa5ab5c3baeb4b6189e3908377225917fd13475b2f14bcc8d0",
+      "HandleBashing": "17a7a4540fa678e8468097ceb07d34e89f992a9c5211e0598e59c20a0a9f783f",
+      "AssignMiner": "9840ba985eb3b388a20b6611e6922ea1102cab7095b634b0fb0b45116310b392",
+      "ApplyMinerMask": "373e38da1886780b5f139dc5b4ca7ba40f1ada736cd598dff8307abc0dcb9ed3",
+      "HandleMining": "14caf0b17d8552294413733c25ae9a20b38241c51c1e9cb1fcc55fcbc6bf9a44",
+      "AssignBuilder": "e90d767eb33188406629e23a0814d01feee09bc49af56af365b06c1827e4ad2e",
+      "LayBrick": "6b008312ed286cd734d03a6d554b27fd067393e3148e6cccb5ac724caf7b93ef",
+      "HandleBuilding": "8632ac338d764372604a01a6f682446ff4850ed5a13e10687853779482b1dd65",
+      "HandleShrugging": "29581a4d792184773aab3fc4aa9f946dc9fe42cb80da9f98f26d83b8e6a92d13",
+      "ReadObjectMap": "29b3c95b92e07e711a572a2d1d14ad39aa28dc9340083023e81bbf734d4baeef",
+      "WriteObjectMap": "8346bb82cbc2f27c3ae437de4551306e41a8d3b67a6571e3c3430e0aa485f64e",
+      "SaveMap": "812c126a41dba3a449f2ff01e1c10f31645fee76fb9c575ce9a1e4f898db0a17",
+      "RestoreMap": "bc942a41d58329974adfee335a98c61b745a7080f63e6ea378aff1ec170a4d36",
+      "SetBlockerField": "a6f009d01c87941f3e7437640b384432af71169ffc2a0a1cca82766746c8bc3e",
+      "CheckForOverlappingField": "e7c69bc2d1ab9f570607c98a1f5c7fff0a3ea4cdf7cc832cc86d11648916bff1",
+      "AssignBlocker": "9d142387133544045012e2903382f1a5079f4748f5de8180fa6955b8a22187c4",
+      "CheckForInteractiveObjects": "ec5f8b9342bcba62b1efa825fc470babd92ee2e82ec267059f6e581ae862315f",
+      "HandleBlocking": "fe5cb6870888e9c5b4f4fc468e98b8307073db110d4d5fc0eab3685bb00be904",
+      "AssignBomber": "f3c62324d4c0e9f2b032dbaf3aa48f2277fdd5916201128f2fe5b0e292d9d374",
+      "UpdateExplosionTimer": "3adac18a61522cbbcabdb5f59c9e33b4db3cb1a397fada304dde867e20e045f3",
+      "ApplyExplosionMask": "5e5334dd0f89d8720584fd24a01c619bbea2f87bc831c70b10b1e16e969b3e5a",
+      "HandleOhNoing": "43f7688598edc94535046b8bb71a040422c4b7ecbfc0636a0f4b2e30f3740706",
+      "HandleExploding": "627edb73d4bc21940c20dd73e1532565e292497973733eb69dd38dad6331badc",
+      "CheckLemmings": "d78c200702a752a5ec9c4299fe6af1ee14920951119d9031547c7817add828ba",
+      "AssignClimber": "076485000a32b4f3e726ed35f353e06f3c3f99a9be8ac44d1394193ca88b6e17",
+      "HandleClimbing": "8afa293650bbf4d93482839a88f9f9fe0cd6941f644f4bc08e286d6f89665299",
+      "HandleHoisting": "499a94b1468d55a4c71236c5132fd2028fb21fac6b86aeac0f512001d7de63b1"
+    },
+    "scope": "46 original functions; seven jobs, permanent climber, climbing/hoisting, original shrugger bug; not full DOS",
+    "host_sha256": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18",
+    "builder_sha256": "eb0070c67518b432112d6cb6b73e84925949dfbe1c3a7aa33a03daa8e2df026d",
+    "generated_sha256": "70054128b7d589444fa15c2f8131e2c6fc55672bcd8c62fa5b08299702716a9b",
+    "extracted_sha256": "af0e0bea4112330806cc7f9f46a9c636815286226cc932402fbb5860c1d07fef",
+    "compiler_sha256": "c88973cd2a4895099c698ba470f99cb2288d78ac2b626991eafe1a132828bd88",
+    "executable_sha256": "c457b0e4f1811f852d9d49ea1d9c4c256216f967d7633b997fe88535bb4da5e1",
+    "stubs": "toolbar/sound/minimap/recorder; caller object codes; distinct host action flags; stable ID without secondary selection",
+    "syntax_patches": "two G05 inline-variable changes only",
+    "mask_adapter": "MSB-first caller masks, clipped erase DrawTo, rectangle geometry helpers; no graphics framework",
+    "builder_adapter": "Safe PixelS clips reads/writes; zero RGB brick colors and ALPHA_TERRAIN=1 retain collision occupancy; graphics/sound are stubbed",
+    "blocker_builder_sha256": "130802f5c0ea3a566a55243620c3bf36c932f209e519bb518b391ad1c0f0d8bb",
+    "blocker_adapter": "Raw415x47 map at(-16,-16); original read/write/save/restore/overlap and interactive checks; traps/exit/water/fire are outside exercised scope",
+    "bomber_builder_sha256": "ae901a00df78b85cfcc160802da7a0ac75a2958e20d4388c2be05dc7dad89c14",
+    "bomber_adapter": "Clipped16x22 MSB-first DrawTo; original CheckLemmings over caller-owned actors; graphics/particle drawing and unrelated object effects excluded",
+    "climber_builder_sha256": "c74e7336f2c330d409fc50a501c5ef7502bdf9bc8fb003f40b4ddf745a2070db"
+  },
+  "adapter_sha256": {
+    "build_climber_reference.py": "c74e7336f2c330d409fc50a501c5ef7502bdf9bc8fb003f40b4ddf745a2070db",
+    "build_bomber_reference.py": "ae901a00df78b85cfcc160802da7a0ac75a2958e20d4388c2be05dc7dad89c14",
+    "build_blocker_reference.py": "130802f5c0ea3a566a55243620c3bf36c932f209e519bb518b391ad1c0f0d8bb",
+    "build_builder_reference.py": "eb0070c67518b432112d6cb6b73e84925949dfbe1c3a7aa33a03daa8e2df026d",
+    "build_miner_reference.py": "115e344bb9e9f9202ea8998b1a6c7a76be06b7adc6654fd011d17d9e4938fd91",
+    "build_basher_reference.py": "aa10744ce370a37e38d6c1a57a03d3a3311ca48f1241e69963bbe6eec788b622",
+    "build_digger_reference.py": "70e83e05310628c0be164398af3a02725f50b411458fe32b8b99c5beaf42d8bc",
+    "build_reference.py": "0448f50a3d4c5dd24918c12199000fa8a40e3ea0ac7ad164899dfdaa87c29ad1",
+    "harness.pas": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18"
+  },
+  "cases": {
+    "walking_right": {
+      "snapshots_sha256": "e858310fb1cb45220a40fb48fb3ab66ebec25824ec8f71264eceb0981cf3f732",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignClimber",
+          0
+        ]
+      ]
+    },
+    "walking_left": {
+      "snapshots_sha256": "2cab555cd350b5c3a9c993752a461fa6e2a347411f8edf274e2e12b867172193",
+      "steps": 421,
+      "inputs": [
+        [
+          200,
+          0,
+          "AssignClimber",
+          0
+        ]
+      ]
+    },
+    "falling_duplicate_absent": {
+      "snapshots_sha256": "56b0f73557689103660f7ee4f4c34beb4ef94ee25ff70ac66fb4670c4d5314c5",
+      "steps": 421,
+      "inputs": [
+        [
+          54,
+          0,
+          "AssignClimber",
+          0
+        ],
+        [
+          80,
+          0,
+          "AssignClimber",
+          0
+        ],
+        [
+          80,
+          1,
+          "AssignClimber",
+          999
+        ]
+      ]
+    },
+    "pause_assign_resume": {
+      "snapshots_sha256": "f79cf56a4af0973603bf24b1d14e53daafee49209642fba779d326d5706a5731",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "Pause",
+          0
+        ],
+        [
+          80,
+          1,
+          "AssignClimber",
+          0
+        ],
+        [
+          90,
+          0,
+          "Resume",
+          0
+        ]
+      ]
+    },
+    "builder_then_climber": {
+      "snapshots_sha256": "59b85c5185f85cfe7be08b30a6867b37176163fa5495cc04d7b66c5f77971e6e",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignBuilder",
+          0
+        ],
+        [
+          100,
+          0,
+          "AssignClimber",
+          0
+        ]
+      ]
+    },
+    "shrugger_bug": {
+      "snapshots_sha256": "05561fd2c7115c4dc58aae06a1881ff4176489bbbdde75ff30c0f731cf6a6c72",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignBuilder",
+          0
+        ],
+        [
+          275,
+          0,
+          "AssignClimber",
+          0
+        ]
+      ]
+    },
+    "climber_then_bomber": {
+      "snapshots_sha256": "f62b6dc6d80635c9bb0cacc18eb6b492ef0b12197e15293dcea42019ed57f1a6",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignClimber",
+          0
+        ],
+        [
+          100,
+          0,
+          "AssignBomber",
+          0
+        ]
+      ]
+    },
+    "ability_changes_jobs": {
+      "snapshots_sha256": "df36127a5f7e19d8822c3d798c470ea3da122cb865a02708cb799e4d73ea29ef",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignClimber",
+          0
+        ],
+        [
+          81,
+          0,
+          "AssignDigger",
+          0
+        ],
+        [
+          90,
+          0,
+          "AssignMiner",
+          0
+        ],
+        [
+          95,
+          0,
+          "AssignBuilder",
+          0
+        ],
+        [
+          100,
+          0,
+          "AssignBasher",
+          0
+        ]
+      ]
+    },
+    "two_climbers": {
+      "snapshots_sha256": "2999ed2298673eebd7e7ac4f232e2bd01017815bdc89b92c7b9db1341415a124",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignClimber",
+          0
+        ],
+        [
+          105,
+          0,
+          "AssignClimber",
+          1
+        ]
+      ]
+    },
+    "blocked_assignment": {
+      "snapshots_sha256": "ccd7699c3ec27f954b2203ccfb724f1d3765f3a47c8fd5088e72e88dab9d1796",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignBlocker",
+          0
+        ],
+        [
+          100,
+          0,
+          "AssignClimber",
+          0
+        ],
+        [
+          110,
+          0,
+          "AssignBomber",
+          0
+        ]
+      ]
+    }
+  }
+}

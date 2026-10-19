@@ -13,6 +13,7 @@ pub struct Session {
     pub remaining_builders: u16,
     pub remaining_blockers: u16,
     pub remaining_bombers: u16,
+    pub remaining_climbers: u16,
     explosion_mask: [u8; 44],
     visual_blast: Option<(Vec<u8>, Vec<u8>)>,
     object_map: Option<Vec<u8>>,
@@ -55,6 +56,7 @@ impl Session {
             remaining_builders: 0,
             remaining_blockers: 0,
             remaining_bombers: 0,
+            remaining_climbers: 0,
             explosion_mask: [0; 44],
             visual_blast: None,
             object_map: None,
@@ -181,6 +183,24 @@ impl Session {
             self.remaining_blockers
         )
     }
+    pub fn configure_climber(&mut self, remaining: u16) {
+        self.remaining_climbers = remaining;
+    }
+    pub fn climber_snapshot(&self) -> String {
+        let states = self
+            .actors
+            .iter()
+            .map(|a| {
+                let s = a.state();
+                format!("[{},{},{}]", s.id, s.is_climber, s.walking_once)
+            })
+            .collect::<Vec<_>>()
+            .join(",");
+        format!(
+            "{{\"remaining\":{},\"actors\":[{states}]}}",
+            self.remaining_climbers
+        )
+    }
     pub fn configure_bomber(
         &mut self,
         remaining: u16,
@@ -290,6 +310,7 @@ impl Session {
         let builders = &mut self.remaining_builders;
         let blockers = &mut self.remaining_blockers;
         let bombers = &mut self.remaining_bombers;
+        let climbers = &mut self.remaining_climbers;
         let raw_map = &mut self.object_map;
         let context = BashingContext {
             object_map: None,
@@ -316,13 +337,17 @@ impl Session {
                     | StartupCommand::AssignMiner(id)
                     | StartupCommand::AssignBuilder(id)
                     | StartupCommand::AssignBlocker(id)
-                    | StartupCommand::AssignBomber(id) => id,
+                    | StartupCommand::AssignBomber(id)
+                    | StartupCommand::AssignClimber(id) => id,
                     _ => return false,
                 };
                 actors
                     .iter_mut()
                     .find(|a| a.state().id == id)
                     .is_some_and(|a| {
+                        if matches!(command, StartupCommand::AssignClimber(_)) {
+                            return a.assign_climber(climbers);
+                        }
                         if matches!(command, StartupCommand::AssignBomber(_)) {
                             return a.assign_bomber(bombers);
                         }
@@ -536,6 +561,29 @@ mod tests {
         .unwrap()
     }
     #[test]
+    fn paused_climber_assignment_consumes_once_and_survives_resume() {
+        let a = crate::assets::Assets::synthetic_builder();
+        let mut s = Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_climber(2);
+        for _ in 0..80 {
+            s.tick().unwrap();
+        }
+        s.queue(InputCommand::Pause).unwrap();
+        for _ in 0..2 {
+            s.queue(InputCommand::Custom(StartupCommand::AssignClimber(0)))
+                .unwrap();
+        }
+        s.tick().unwrap();
+        let before = s.actors[0].state();
+        assert!(before.is_climber);
+        assert_eq!(s.remaining_climbers, 1);
+        s.tick().unwrap();
+        assert_eq!(s.actors[0].state(), before);
+        s.queue(InputCommand::Resume).unwrap();
+        s.tick().unwrap();
+        assert!(s.actors[0].state().is_climber);
+    }
+    #[test]
     fn paused_bomber_on_blocker_preserves_timer_then_restores_map_and_erases_terrain() {
         let a = crate::assets::Assets::synthetic_builder();
         let mut s = Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap();
@@ -651,6 +699,8 @@ mod tests {
                 new_digger: false,
                 bricks_left: 0,
                 blocker_saved: None,
+                is_climber: false,
+                walking_once: false,
                 explosion_timer: 0,
                 particle_timer: 0,
                 particle_frame: 0,

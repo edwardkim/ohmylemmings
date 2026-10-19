@@ -45,3 +45,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#36 G07-05 Blocker](issue-36_blocker.md)
 
 - [#38 G07-06 Bomber](issue-38_bomber.md)
+
+- [#40 G07-07 Climber](issue-40_climber.md)
