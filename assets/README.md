@@ -81,3 +81,5 @@ MAIN.DAT 지형 마스크·카운트다운은 [G03-09 재현 명령](../mydocs/t
 - [출구·구출 검증 매니페스트](manifests/exit_rescue.json): #48의51개 기준 함수·합성9사례/18재생·원본 Fun01 구출·새 DOS read-only 관측과 출처·해시를 기록합니다. 확보용 fetch 입력이 아닙니다.
 
 - [위험물·함정 검증 매니페스트](manifests/hazards.json): #50의54개 기준 함수·합성14사례/28재생·원본 세 레벨·새 DOS 물/불/함정 관측과 전체 게임 장면의 출처·해시를 기록합니다. 원본 파생물은 ignored 경로에 두며 fetch 입력이 아닙니다.
+
+[#52 시간·구출률·승패](../mydocs/reports/issue-52_level_outcome.md)의 기준/합성/원본/DOS 결과·출처/해시는 [completion.json](manifests/completion.json)에 기록합니다. 원본 결과 화면·영상은 ignored `assets/local/`에만 보관합니다.

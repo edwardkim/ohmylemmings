@@ -18,6 +18,7 @@ pub fn handle(
     width: usize,
     replaying: bool,
 ) -> Result<bool, Box<dyn Error>> {
+    let replaying = replaying || session.result().is_some();
     match event {
         Event::Quit { .. }
         | Event::Window {
@@ -172,6 +173,24 @@ mod tests {
             Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap(),
             View::new(0),
         )
+    }
+    #[test]
+    fn finished_level_ignores_gameplay_keys_but_keeps_camera_and_quit() {
+        let (mut s, mut v) = setup();
+        s.configure_completion(1).unwrap();
+        s.queue(InputCommand::Custom(StartupCommand::Nuke)).unwrap();
+        s.tick().unwrap();
+        assert!(s.result().is_some());
+        let before = s.snapshot();
+        let count = s.inputs.len();
+        for code in [Keycode::Space, Keycode::N, Keycode::Up, Keycode::Down] {
+            assert!(handle(key(code, false), &mut s, &mut v, 640, false).unwrap());
+        }
+        assert_eq!(s.inputs.len(), count);
+        assert_eq!(s.snapshot(), before);
+        handle(key(Keycode::Right, false), &mut s, &mut v, 640, false).unwrap();
+        assert_eq!(v.camera, 16);
+        assert!(!handle(key(Keycode::Escape, false), &mut s, &mut v, 640, false).unwrap());
     }
     #[test]
     fn nuke_key_records_id_free_command_ignores_repeat_replay_and_pause() {

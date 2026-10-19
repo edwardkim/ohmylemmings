@@ -45,3 +45,7 @@ pub use simulation::{BomberContext, step_actors_with_bomber};
 pub use simulation::{NukeActorError, NukeState};
 
 pub use simulation::{TrapState, TrapStates, advance_traps, step_actors_with_hazards};
+
+pub use simulation::{
+    CompletionError, CompletionProgress, CompletionRules, EndReason, LevelResult, percentage,
+};

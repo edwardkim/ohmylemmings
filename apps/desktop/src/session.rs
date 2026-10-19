@@ -22,6 +22,8 @@ pub struct Session {
     rescued_this_tick: bool,
     traps: TrapStates,
     hazard_changed: bool,
+    completion: Option<CompletionRules>,
+    result: Option<LevelResult>,
     brick_mask: Vec<u8>,
     mine_masks: [u8; 104],
     bash_masks: [u8; 160],
@@ -70,6 +72,8 @@ impl Session {
             rescued_this_tick: false,
             traps: [None; 16],
             hazard_changed: false,
+            completion: None,
+            result: None,
             brick_mask: vec![0; width * height],
             mine_masks: [0; 104],
             bash_masks: [0; 160],
@@ -82,6 +86,42 @@ impl Session {
             width,
             height,
         })
+    }
+    pub fn configure_completion(&mut self, required: u32) -> Result<(), Box<dyn Error>> {
+        if self.completion.is_some() {
+            return Err("completion already configured".into());
+        }
+        self.completion = Some(CompletionRules::new(
+            self.scheduler.config().total_lemmings,
+            required,
+        )?);
+        Ok(())
+    }
+    pub fn result(&self) -> Option<LevelResult> {
+        self.result
+    }
+    pub fn completion_rules(&self) -> Option<CompletionRules> {
+        self.completion
+    }
+    pub fn completion_snapshot(&self) -> String {
+        let Some(rules) = self.completion else {
+            return "null".into();
+        };
+        let denominator = self.scheduler.nuke_state().max_lemmings;
+        let done = percentage(self.saved() as u32, denominator);
+        let phase = self
+            .result
+            .map_or("Playing", |r| if r.success { "Won" } else { "Lost" });
+        let reason = self
+            .result
+            .map_or_else(|| "null".into(), |r| format!("\"{:?}\"", r.reason));
+        format!(
+            "{{\"phase\":\"{phase}\",\"reason\":{reason},\"original_total\":{},\"lemming_count\":{denominator},\"required\":{},\"rescued\":{},\"target_percent\":{},\"rescued_percent\":{done}}}",
+            rules.total(),
+            rules.required(),
+            self.saved(),
+            rules.target_percent()
+        )
     }
     pub fn configure_digger(
         &mut self,
@@ -362,6 +402,9 @@ impl Session {
             .unwrap_or(self.scheduler.state().release_rate)
     }
     pub fn queue(&mut self, command: InputCommand<StartupCommand>) -> Result<(), Box<dyn Error>> {
+        if self.result.is_some() {
+            return Err("level already finished".into());
+        }
         let control_step = self.scheduler.step_state().control_step;
         let sequence = match self
             .inputs
@@ -382,6 +425,10 @@ impl Session {
         Ok(())
     }
     pub fn tick(&mut self) -> Result<(), Box<dyn Error>> {
+        if self.result.is_some() {
+            return Ok(());
+        }
+        let seconds_before_tick = self.scheduler.state().seconds_remaining;
         let mut events = Vec::new();
         let mut rescued_this_tick = false;
         let mut hazard_changed = false;
@@ -576,6 +623,27 @@ impl Session {
             self.scheduler.update_nuking(&mut self.actors)?;
             advance_traps(&mut self.traps);
         }
+        if let Some(rules) = self.completion {
+            self.result = rules.evaluate(CompletionProgress {
+                seconds_before_tick,
+                released: self.scheduler.state().released,
+                removed: self
+                    .actors
+                    .iter()
+                    .filter(|a| a.state().removed.is_some())
+                    .count()
+                    .try_into()?,
+                rescued: self.saved().try_into()?,
+                max_lemmings: self.scheduler.nuke_state().max_lemmings,
+                nuked: self.scheduler.nuke_state().is_nuked,
+                particle_timer: self
+                    .actors
+                    .iter()
+                    .map(|a| a.state().particle_timer)
+                    .max()
+                    .unwrap_or(0),
+            })?;
+        }
         self.events = events;
         self.rescued_this_tick = rescued_this_tick;
         self.hazard_changed = hazard_changed;
@@ -646,6 +714,129 @@ fn snapshot(scheduler: &StartupScheduler, actors: &[Actor], events: &[String]) -
 #[cfg(test)]
 mod tests {
     use super::*;
+    fn completion_session(minutes: u16, total: u32, required: u32) -> Session {
+        let a = crate::assets::Assets::synthetic_builder();
+        let mut config = a.config;
+        config.time_limit_minutes = minutes;
+        config.total_lemmings = total;
+        config.pause_glitch = false;
+        let mut s = Session::new(config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_blocker(10, a.object_map).unwrap();
+        s.configure_bomber(10, a.explosion_mask).unwrap();
+        s.configure_completion(required).unwrap();
+        s
+    }
+
+    #[test]
+    fn completion_clock_pause_deadline_and_terminal_state_are_stable() {
+        let mut s = completion_session(1, 100_000, 1);
+        for _ in 0..16 {
+            s.tick().unwrap();
+        }
+        s.queue(InputCommand::Pause).unwrap();
+        for _ in 0..8 {
+            s.tick().unwrap();
+        }
+        assert_eq!(
+            (
+                s.scheduler.state().seconds_remaining,
+                s.scheduler.state().clock_frame
+            ),
+            (60, 16)
+        );
+        s.queue(InputCommand::Resume).unwrap();
+        s.tick().unwrap();
+        assert_eq!(
+            (
+                s.scheduler.state().seconds_remaining,
+                s.scheduler.state().clock_frame
+            ),
+            (59, 0)
+        );
+        while s.scheduler.step_state().iteration < 1020 {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.scheduler.state().seconds_remaining, 0);
+        assert!(s.result().is_none());
+        s.tick().unwrap();
+        assert_eq!(s.scheduler.step_state().iteration, 1021);
+        assert_eq!(s.result().unwrap().reason, EndReason::TimeExpired);
+        let before = (
+            s.snapshot(),
+            s.completion_snapshot(),
+            s.bomber_snapshot(),
+            s.inputs.len(),
+        );
+        for _ in 0..5 {
+            s.tick().unwrap();
+        }
+        assert!(s.queue(InputCommand::Pause).is_err());
+        assert_eq!(
+            (
+                s.snapshot(),
+                s.completion_snapshot(),
+                s.bomber_snapshot(),
+                s.inputs.len()
+            ),
+            before
+        );
+    }
+
+    #[test]
+    fn deadline_actor_update_can_rescue_before_result_is_frozen() {
+        let a = crate::assets::Assets::synthetic_exit(false);
+        let mut config = a.config;
+        config.time_limit_minutes = 0;
+        config.total_lemmings = 2;
+        let mut s = Session::new(config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_blocker(0, a.object_map).unwrap();
+        for _ in 0..54 {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.actors.len(), 1);
+        let mut state = s.actors[0].state();
+        state.action = MotionAction::Exiting;
+        state.frame = 7;
+        state.fallen = 0;
+        s.actors[0] = Actor::from_state(state, MotionRules::default()).unwrap();
+        s.configure_completion(1).unwrap();
+        s.tick().unwrap();
+        let result = s.result().unwrap();
+        assert_eq!(
+            (result.reason, result.rescued, result.success),
+            (EndReason::TimeExpired, 1, true)
+        );
+        assert_eq!(s.saved(), 1);
+    }
+
+    #[test]
+    fn early_nuke_finishes_without_births_or_division_by_zero() {
+        let mut s = completion_session(5, 80, 40);
+        s.queue(InputCommand::Custom(StartupCommand::Nuke)).unwrap();
+        s.tick().unwrap();
+        let result = s.result().unwrap();
+        assert_eq!(
+            (
+                result.reason,
+                result.lemming_count,
+                result.rescued_percent,
+                result.success
+            ),
+            (EndReason::PopulationExhausted, 0, 0, false)
+        );
+        assert!(s.actors.is_empty());
+    }
+
+    #[test]
+    fn completion_configuration_is_validated_and_cannot_replace_a_frozen_result() {
+        let mut s = completion_session(0, 10, 5);
+        assert!(s.configure_completion(11).is_err());
+        s.tick().unwrap();
+        let before = s.completion_snapshot();
+        assert!(s.configure_completion(0).is_err());
+        assert_eq!(s.completion_snapshot(), before);
+    }
+
     #[test]
     fn trap_animation_freezes_on_pause_and_reuses_after_wrap() {
         let a = crate::assets::Assets::synthetic_hazards(0, false);

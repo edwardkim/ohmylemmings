@@ -1,0 +1,441 @@
+{
+  "format": "g08-completion-v1",
+  "reference": {
+    "metadata_sha256": "2c68d83660cf0c2d141e7449d20b9d747fe5c3496d31d0551ff9c547656cf2a8",
+    "source_sha256": "c1ba9ffda9e8e277f5c9b171df2bb611210d3326b9623b28fcd35426f4d6a448",
+    "methods": {
+      "HasPixelAt": "e8c1c11b7b16795fb96f590a91bb01381f9fab87791213f00999cded06ce6243",
+      "HasPixelAt_ClipY": "dc9696798aeaa483df3899392505ba853577726f1774a931d1df91d00882523c",
+      "Transition": "2ac447b7289c2eead45d2bdf19a43c437ac6e3f1455d61fc32de95aa7c4f0aad",
+      "TurnAround": "6c85a8ec0e5da4a5cbd3f01dfa315260bb1409af418d149f396c93367e15e5df",
+      "AssignDigger": "c89b05ed99b389dde0a1f421e27f896967b42f6c15847ac464ec2c4458ddf4a7",
+      "DigOneRow": "fdf023c95fb66967aa4e133f36829a7db3e68308afb70665ffbffba2f26ba0a1",
+      "HandleLemming": "e00f1ffbafa322076f9cff9644dab1cbea83e29081ce04a126573d1f340fea91",
+      "HandleWalking": "41d1f6ededb993c451d58e773a60dbb6ff3135b7109c9709ffef40bafa5f33ce",
+      "HandleJumping": "f7c843e508a0d33c3e28fc8872e2427dfa7fbc890487c6392c4bb03e85d264a5",
+      "HandleDigging": "5aa69c62006b96b6c430c253899708189823aa531cf9db2277f49c1189ea783f",
+      "HandleFalling": "894411800603d79132d7533ef21bae8e52de61270849f0f50e2c4899f80b122a",
+      "HandleSplatting": "5e43a5f8f9c16937c55b9b5f710a809566d298066ca47cef89018cdc5fd6fe4a",
+      "CheckForLevelTopBoundary": "da00c889f8d1283fa5aad65083c5963fa8b1d56843bf06b8ab3a7eae75587933",
+      "RemoveLemming": "7307061c19354e8142270bd3a6a80900329c5c89982da2d4e1b149edbbbef1f7",
+      "IncrementIteration": "20f1800054465889d9fdad767d45a510dcbda8ae0b8d8bbee8ec597f8c030781",
+      "BtnPause": "579cdcbff69db1562f4bf5843ce41e1cef1c4dec2a53a865566bbfcf916f977c",
+      "BtnPauseStop": "217532706520d2f2aa8996a46c1136fbce9d547e8f433141bee75d3cb3cbf31a",
+      "CheckSpawnLemming": "5608a12f641eccd5dc009789311cc3e78ac4b803f8bfae5d45ce085b35bcc638",
+      "AssignBasher": "180a96371f798f64b0712da149138e4ff0bed6aedcdc71493b218b8547862793",
+      "ApplyBashingMask": "22d8a77f2920ceaa5ab5c3baeb4b6189e3908377225917fd13475b2f14bcc8d0",
+      "HandleBashing": "17a7a4540fa678e8468097ceb07d34e89f992a9c5211e0598e59c20a0a9f783f",
+      "AssignMiner": "9840ba985eb3b388a20b6611e6922ea1102cab7095b634b0fb0b45116310b392",
+      "ApplyMinerMask": "373e38da1886780b5f139dc5b4ca7ba40f1ada736cd598dff8307abc0dcb9ed3",
+      "HandleMining": "14caf0b17d8552294413733c25ae9a20b38241c51c1e9cb1fcc55fcbc6bf9a44",
+      "AssignBuilder": "e90d767eb33188406629e23a0814d01feee09bc49af56af365b06c1827e4ad2e",
+      "LayBrick": "6b008312ed286cd734d03a6d554b27fd067393e3148e6cccb5ac724caf7b93ef",
+      "HandleBuilding": "8632ac338d764372604a01a6f682446ff4850ed5a13e10687853779482b1dd65",
+      "HandleShrugging": "29581a4d792184773aab3fc4aa9f946dc9fe42cb80da9f98f26d83b8e6a92d13",
+      "ReadObjectMap": "29b3c95b92e07e711a572a2d1d14ad39aa28dc9340083023e81bbf734d4baeef",
+      "WriteObjectMap": "8346bb82cbc2f27c3ae437de4551306e41a8d3b67a6571e3c3430e0aa485f64e",
+      "SaveMap": "812c126a41dba3a449f2ff01e1c10f31645fee76fb9c575ce9a1e4f898db0a17",
+      "RestoreMap": "bc942a41d58329974adfee335a98c61b745a7080f63e6ea378aff1ec170a4d36",
+      "SetBlockerField": "a6f009d01c87941f3e7437640b384432af71169ffc2a0a1cca82766746c8bc3e",
+      "CheckForOverlappingField": "e7c69bc2d1ab9f570607c98a1f5c7fff0a3ea4cdf7cc832cc86d11648916bff1",
+      "AssignBlocker": "9d142387133544045012e2903382f1a5079f4748f5de8180fa6955b8a22187c4",
+      "CheckForInteractiveObjects": "ec5f8b9342bcba62b1efa825fc470babd92ee2e82ec267059f6e581ae862315f",
+      "HandleBlocking": "fe5cb6870888e9c5b4f4fc468e98b8307073db110d4d5fc0eab3685bb00be904",
+      "AssignBomber": "f3c62324d4c0e9f2b032dbaf3aa48f2277fdd5916201128f2fe5b0e292d9d374",
+      "UpdateExplosionTimer": "3adac18a61522cbbcabdb5f59c9e33b4db3cb1a397fada304dde867e20e045f3",
+      "ApplyExplosionMask": "5e5334dd0f89d8720584fd24a01c619bbea2f87bc831c70b10b1e16e969b3e5a",
+      "HandleOhNoing": "43f7688598edc94535046b8bb71a040422c4b7ecbfc0636a0f4b2e30f3740706",
+      "HandleExploding": "627edb73d4bc21940c20dd73e1532565e292497973733eb69dd38dad6331badc",
+      "CheckLemmings": "d78c200702a752a5ec9c4299fe6af1ee14920951119d9031547c7817add828ba",
+      "AssignClimber": "076485000a32b4f3e726ed35f353e06f3c3f99a9be8ac44d1394193ca88b6e17",
+      "HandleClimbing": "8afa293650bbf4d93482839a88f9f9fe0cd6941f644f4bc08e286d6f89665299",
+      "HandleHoisting": "499a94b1468d55a4c71236c5132fd2028fb21fac6b86aeac0f512001d7de63b1",
+      "AssignFloater": "fce0d87b0b4842223a76e1087f8ac435d5ac1b527a6a3250436756cc060e6cb7",
+      "HandleFloating": "79ce0ec72b0804df78b442f2f798911ec1a58222ad8bf80a80bfe21cc289f27a",
+      "BtnNuke": "d36dd86fa94c49e623f8eb03d498f9d1a9eb9e11cfc3fee81681841a6c1eb418",
+      "CheckUpdateNuking": "31d9e00f53c787322cdf7a6a4de4c966715f835c0b9afc69510c4c13db7d4c93",
+      "HandleExiting": "2c12d9d71339c530845867a5019004cf31d25b2b05305b4332cc1d1744325b5f",
+      "HandleDrowning": "08aa972b38fdafcd5c5197b5f8e4872828e6eb8d969eee7012a1cfb2781c3565",
+      "HandleVaporizing": "0f8d68ccebbb675f4553c039b412a46d67d47a8020543a6d40d30cfacdae9a43",
+      "UpdateInteractiveObjects": "b066d4580305d9834de80b0d6b439465207c11acd10912312117071cb8f37a97",
+      "CheckForGameFinished": "8df77d2f5e100fd21d1b4858dfd065d549ad26142c924c7c2cbd2a30a1f4521f",
+      "SetGameResult": "b638ba2987cef5911e56c18646df56ff19ea7c378f29a2c9d147ddc8a83067e9"
+    },
+    "scope": "56 original methods/table; own DOS post-actor/pre-clock completion boundary, time bypasses particle delay; not original InternalUpdate or whole DOS",
+    "host_sha256": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18",
+    "builder_sha256": "eb0070c67518b432112d6cb6b73e84925949dfbe1c3a7aa33a03daa8e2df026d",
+    "generated_sha256": "7b05fe28eb0d673a2ee6548e9033642b4c3451bf53e307a6754b5ccf0913120d",
+    "extracted_sha256": "3ce385732abb1dcf734d221ca251e28b140116e5f475d34d71891d02cdec4f04",
+    "compiler_sha256": "93ddfaa92900749c81537d4ee39a9416d6d8c85cf545d411f0c170c15e33cdc1",
+    "executable_sha256": "9b79a59f8b2b88bb509e279d5d0c073f807be24b330f0e13d0303d81ab72ed9b",
+    "stubs": "toolbar/sound/minimap/recorder; caller object codes; distinct host action flags; stable ID without secondary selection",
+    "syntax_patches": "two G05 inline-variable changes only",
+    "mask_adapter": "MSB-first caller masks, clipped erase DrawTo, rectangle geometry helpers; no graphics framework",
+    "builder_adapter": "Safe PixelS clips reads/writes; zero RGB brick colors and ALPHA_TERRAIN=1 retain collision occupancy; graphics/sound are stubbed",
+    "blocker_builder_sha256": "130802f5c0ea3a566a55243620c3bf36c932f209e519bb518b391ad1c0f0d8bb",
+    "blocker_adapter": "Raw415x47 map at(-16,-16); original read/write/save/restore/overlap and interactive checks; traps/exit/water/fire are outside exercised scope",
+    "bomber_builder_sha256": "ae901a00df78b85cfcc160802da7a0ac75a2958e20d4388c2be05dc7dad89c14",
+    "bomber_adapter": "Clipped16x22 MSB-first DrawTo; original CheckLemmings over caller-owned actors; graphics/particle drawing and unrelated object effects excluded",
+    "climber_builder_sha256": "c74e7336f2c330d409fc50a501c5ef7502bdf9bc8fb003f40b4ddf745a2070db",
+    "floater_builder_sha256": "f031fe8dfde1e4dbb787080c5c00027d5b62977bfdf9004aabf5dfb90dfec5bd",
+    "float_table_sha256": "d53ea653842d59d46e2135dd45191ea15473d335a793e94779ea7c46d479c542",
+    "float_table": [
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        -1,
+        5
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "nuke_builder_sha256": "08736fc4290c6e10bedade3bdc26e85977b0009cb16154d8185819888fdebc17",
+    "nuke_adapter": "normal unpaused/idempotent input policy; original BtnNuke and CheckUpdateNuking bodies; RecordNuke/sound stubbed, no game-result calculation",
+    "exit_builder_sha256": "46482b271e4cc978b31207f17dc3698f6760cd977998d694c6fa88a5b261ea76",
+    "exit_adapter": "original handler unchanged; own normalized saved/exiting trace and animation metadata; toolbar UI stubs",
+    "hazards_builder_sha256": "5596a683459388c4b5516a6a226711c8a3e5216fff9e130f5d2709aeb7ba1dd6",
+    "hazards_adapter": "original handlers/update unchanged; trap metadata/normalized removal and counter trace; sound stub; entrance update disabled in this host; corrected own Hoisting metadata array capacity",
+    "completion_builder_sha256": "999db46571b5d31f037fdb2795429ac0fcf691db4239d1255d6db3032a0472ac",
+    "completion_adapter": "original CheckForGameFinished/SetGameResult unchanged; stub Finish freezes result; caller supplies pre-tick clock and clears finish delay only for timeout; original target/Nuke denominator; enabled particles"
+  },
+  "adapter_sha256": {
+    "build_completion_reference.py": "999db46571b5d31f037fdb2795429ac0fcf691db4239d1255d6db3032a0472ac",
+    "build_hazards_reference.py": "5596a683459388c4b5516a6a226711c8a3e5216fff9e130f5d2709aeb7ba1dd6",
+    "build_exit_reference.py": "46482b271e4cc978b31207f17dc3698f6760cd977998d694c6fa88a5b261ea76",
+    "build_nuke_reference.py": "08736fc4290c6e10bedade3bdc26e85977b0009cb16154d8185819888fdebc17",
+    "build_floater_reference.py": "f031fe8dfde1e4dbb787080c5c00027d5b62977bfdf9004aabf5dfb90dfec5bd",
+    "build_climber_reference.py": "c74e7336f2c330d409fc50a501c5ef7502bdf9bc8fb003f40b4ddf745a2070db",
+    "build_bomber_reference.py": "ae901a00df78b85cfcc160802da7a0ac75a2958e20d4388c2be05dc7dad89c14",
+    "build_blocker_reference.py": "130802f5c0ea3a566a55243620c3bf36c932f209e519bb518b391ad1c0f0d8bb",
+    "build_builder_reference.py": "eb0070c67518b432112d6cb6b73e84925949dfbe1c3a7aa33a03daa8e2df026d",
+    "build_miner_reference.py": "115e344bb9e9f9202ea8998b1a6c7a76be06b7adc6654fd011d17d9e4938fd91",
+    "build_basher_reference.py": "aa10744ce370a37e38d6c1a57a03d3a3311ca48f1241e69963bbe6eec788b622",
+    "build_digger_reference.py": "70e83e05310628c0be164398af3a02725f50b411458fe32b8b99c5beaf42d8bc",
+    "build_reference.py": "0448f50a3d4c5dd24918c12199000fa8a40e3ea0ac7ad164899dfdaa87c29ad1",
+    "harness.pas": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18"
+  },
+  "cases": {
+    "win": {
+      "kind": "win",
+      "inputs": [],
+      "snapshots": 166,
+      "snapshots_sha256": "cfe57efa7d9d011b540209866beb140a4f158d5119f433ec304e8d5024cb0590",
+      "final": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 3,
+        "lemming_count": 3,
+        "required": 2,
+        "rescued": 3,
+        "target_percent": 66,
+        "rescued_percent": 100
+      },
+      "final_iteration": 165
+    },
+    "loss": {
+      "kind": "loss",
+      "inputs": [],
+      "snapshots": 174,
+      "snapshots_sha256": "60106be015c6fd7b6414878e6c877bf0861325c5650f5bf93b22cd86b374ab17",
+      "final": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 3,
+        "lemming_count": 3,
+        "required": 2,
+        "rescued": 0,
+        "target_percent": 66,
+        "rescued_percent": 0
+      },
+      "final_iteration": 173
+    },
+    "clock": {
+      "kind": "clock",
+      "inputs": [],
+      "snapshots": 1022,
+      "snapshots_sha256": "00f77b4276630a99b38f2e4efebe6fbc976e02c9f05615760c8f661f8b7482a2",
+      "final": {
+        "phase": "Lost",
+        "reason": "TimeExpired",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 50,
+        "rescued_percent": 0
+      },
+      "final_iteration": 1021
+    },
+    "clock_pause_glitch": {
+      "kind": "clock",
+      "inputs": [
+        [
+          16,
+          0,
+          "Pause",
+          0
+        ],
+        [
+          34,
+          0,
+          "Resume",
+          0
+        ]
+      ],
+      "snapshots": 1058,
+      "snapshots_sha256": "072bffbf13622a959b716e56bc51bcc7850dd6c5be7dfbf748cc0b2b90cf9070",
+      "final": {
+        "phase": "Lost",
+        "reason": "TimeExpired",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 50,
+        "rescued_percent": 0
+      },
+      "final_iteration": 1039
+    },
+    "paused_exit": {
+      "kind": "win",
+      "inputs": [
+        [
+          103,
+          0,
+          "Pause",
+          0
+        ],
+        [
+          125,
+          0,
+          "Resume",
+          0
+        ]
+      ],
+      "snapshots": 188,
+      "snapshots_sha256": "740d30fced529e82e0a98398f046a099b0b121618f3208225aa17e1fcfb0f0d0",
+      "final": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 3,
+        "lemming_count": 3,
+        "required": 2,
+        "rescued": 3,
+        "target_percent": 66,
+        "rescued_percent": 100
+      },
+      "final_iteration": 165
+    },
+    "particles": {
+      "kind": "particles",
+      "inputs": [
+        [
+          60,
+          0,
+          "AssignBomber",
+          0
+        ]
+      ],
+      "snapshots": 209,
+      "snapshots_sha256": "a2b507fc0ad12845e67c4bf37850d218c6adc78d97c75570f57d93f82e03b349",
+      "final": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 1,
+        "lemming_count": 1,
+        "required": 1,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "final_iteration": 208
+    },
+    "particles_pause": {
+      "kind": "particles",
+      "inputs": [
+        [
+          60,
+          0,
+          "AssignBomber",
+          0
+        ],
+        [
+          180,
+          0,
+          "Pause",
+          0
+        ],
+        [
+          200,
+          0,
+          "Resume",
+          0
+        ]
+      ],
+      "snapshots": 229,
+      "snapshots_sha256": "812a9fde46d2c452d3a384d31ab58119633a395e1f68ae332115395125dde15e",
+      "final": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 1,
+        "lemming_count": 1,
+        "required": 1,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "final_iteration": 208
+    },
+    "nuke_mixed": {
+      "kind": "mixed",
+      "inputs": [
+        [
+          60,
+          0,
+          "Nuke",
+          0
+        ]
+      ],
+      "snapshots": 211,
+      "snapshots_sha256": "aa342d59164dd9371ec2fafb5e2638baefe106fcabe1d215c13240a4690482e2",
+      "final": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 40,
+        "rescued": 1,
+        "target_percent": 50,
+        "rescued_percent": 50
+      },
+      "final_iteration": 210
+    },
+    "early_nuke": {
+      "kind": "win",
+      "inputs": [
+        [
+          0,
+          0,
+          "Nuke",
+          0
+        ]
+      ],
+      "snapshots": 2,
+      "snapshots_sha256": "37457c768136235367c8f85880b1302a06bb42427ba57732f412c6b1e0ae7023",
+      "final": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 3,
+        "lemming_count": 0,
+        "required": 2,
+        "rescued": 0,
+        "target_percent": 66,
+        "rescued_percent": 0
+      },
+      "final_iteration": 1
+    },
+    "zero_time": {
+      "kind": "zero",
+      "inputs": [],
+      "snapshots": 2,
+      "snapshots_sha256": "6d1d9a387c850bf594d8887db189e3ed712ba27c92ff35c54a956c534fe457a7",
+      "final": {
+        "phase": "Lost",
+        "reason": "TimeExpired",
+        "original_total": 3,
+        "lemming_count": 3,
+        "required": 2,
+        "rescued": 0,
+        "target_percent": 66,
+        "rescued_percent": 0
+      },
+      "final_iteration": 1
+    },
+    "after_finish": {
+      "kind": "win",
+      "inputs": [
+        [
+          800,
+          0,
+          "Nuke",
+          0
+        ],
+        [
+          900,
+          0,
+          "AssignBomber",
+          0
+        ]
+      ],
+      "snapshots": 166,
+      "snapshots_sha256": "cfe57efa7d9d011b540209866beb140a4f158d5119f433ec304e8d5024cb0590",
+      "final": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 3,
+        "lemming_count": 3,
+        "required": 2,
+        "rescued": 3,
+        "target_percent": 66,
+        "rescued_percent": 100
+      },
+      "final_iteration": 165
+    }
+  }
+}

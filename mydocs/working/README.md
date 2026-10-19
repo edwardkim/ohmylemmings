@@ -40,3 +40,5 @@
 - [#44 G07-09 Nuke](issue-44_nuke.md)
 
 - [#50 G08-02 위험물·함정](issue-50_hazards.md)
+
+- [#52 시간·구출률·승패](issue-52_level_outcome.md)

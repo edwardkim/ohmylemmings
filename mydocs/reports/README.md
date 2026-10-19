@@ -40,3 +40,5 @@
 - [#48 G08-01 객체·출구/구출](issue-48_exit_rescue.md)
 
 - [#50 G08-02 위험물·함정](issue-50_hazards.md)
+
+- [#52 시간·구출률·승패 결과](issue-52_level_outcome.md)

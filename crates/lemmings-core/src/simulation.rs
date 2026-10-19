@@ -1,5 +1,6 @@
 //! Deterministic timing, immutable boundary inputs and startup scheduling.
 mod clock;
+mod completion;
 mod input;
 mod motion;
 mod nuke;
@@ -32,3 +33,7 @@ pub use motion::{BomberContext, step_actors_with_bomber};
 pub use nuke::{NukeActorError, NukeState};
 
 pub use motion::{TrapState, TrapStates, advance_traps, step_actors_with_hazards};
+
+pub use completion::{
+    CompletionError, CompletionProgress, CompletionRules, EndReason, LevelResult, percentage,
+};

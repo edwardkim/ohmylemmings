@@ -108,7 +108,7 @@ make check
 
 N키를 한 번 누르면 새 레밍 생성을 멈추고 기존 개체에 순서대로79틱 타이머를 붙입니다. Bomber 수량을 쓰지 않고 기존 타이머를 유지하며 Blocker 필드 해제·폭발·입자는 기존 동작을 재사용합니다. Pause 중 N키·키 반복·재생 중 실시간 입력은 무시합니다. 재생 형식은 `120 0 Nuke`이며 ID가 없습니다.
 
-`--synthetic-nuke`는 자체 생성 Builder 경기장을 사용합니다. `nuke.jsonl`은 실행 상태/진행/다음 순서/최대 인원을 기록합니다. 기본 DOS NukeGlitch에 따라 HUD의 최대 인원이 이미 생성된 수로 바뀌며 구출률/승패는 아직 구현하지 않습니다. [계약·DOS 순서 차이·재현](../../mydocs/tech_insights/issue-44_nuke.md)을 참고합니다.
+`--synthetic-nuke`는 자체 생성 Builder 경기장을 사용합니다. `nuke.jsonl`은 실행 상태/진행/다음 순서/최대 인원을 기록합니다. 기본 DOS NukeGlitch에 따라 HUD의 최대 인원이 이미 생성된 수로 바뀌며 구출률/승패는 #52의 완주 세션에서 원래 목표/현재 분모로 계산합니다. [계약·DOS 순서 차이·재현](../../mydocs/tech_insights/issue-44_nuke.md)을 참고합니다.
 
 현재 하단은 텍스트 HUD입니다. 원본 기술 선택 버튼·미니맵·구출률 등의 패널 통합은 G08 범위이며 원본 게임 영역320×160의 일치 검증과 구분합니다.
 
@@ -123,3 +123,17 @@ N키를 한 번 누르면 새 레밍 생성을 멈추고 기존 개체에 순서
 원본 Fun09(`--level 9`)의 불, Fun17(`--level 17`)의 작동형 함정, Fun29(`--level 29`)의 물에서 별도 할당 없이 사망 경로를 확인할 수 있습니다. 물/불은 사망 애니메이션 후 제거되며 함정은 한 개체를 제거한 뒤 재사용을 기다립니다. Space는 개체와 함정을 함께 일시정지합니다.
 
 `--synthetic-water`, `--synthetic-fire`, `--synthetic-trap`은 원본 없는 검사 장면입니다. `--synthetic-trap-slow|--synthetic-trap-continuous`는 경합/연속 프레임, 물/불의 `-drop`과 `-late` 접미사는 공중 진입/타이머 경계를 검사합니다. `hazards.jsonl`·`traps.bin`과 기존 입력/지형/객체 추적으로 재현합니다. [계약·명령·관측 범위](../../mydocs/tech_insights/issue-50_hazards.md)를 따릅니다. 승패/재시작·원본 하단 패널·포인터 우선순위는 후속입니다.
+
+
+## 시간·구출률·승패 / #52
+
+원본 레벨은 시간 만료 또는 전체 개체/폭발 표시 소진으로 종료합니다. 필요한 구출률만 충족한 상태에서는 계속 진행됩니다. HUD에 현재/목표 백분율과 `WON`/`LOST`를 표시하며 종료 후에는 카메라와 Esc를 사용할 수 있습니다. 결과 화면·재시작은 후속입니다.
+
+```sh
+cargo run --offline --release -p lemmings-desktop -- --synthetic-outcome win
+cargo run --offline --release -p lemmings-desktop -- --synthetic-outcome loss
+cargo run --offline --release -p lemmings-desktop -- --synthetic-outcome clock --steps 1200 --fast
+python3 tools/check_completion.py
+```
+
+합성 종류는 `win|loss|clock|particles|zero|mixed`입니다. 기존 개체 전용 합성 fixture는 지정한 전체 관측 구간을 유지합니다. 완주 세션의 유한 `--steps` 실행은 결과가 나오면 최종 상태/화면을 기록하고 끝나며 이후 예약 입력은 적용하지 않습니다. `completion.jsonl`은 단계·종료 이유·원래/현재 총원·필요/구출 수·정수 백분율을 기록합니다. [계약·Nuke 분모·DOS 경계 차이·재현](../../mydocs/tech_insights/issue-52_level_outcome.md)을 참고합니다.
