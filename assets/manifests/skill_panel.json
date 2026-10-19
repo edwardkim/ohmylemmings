@@ -1,0 +1,1628 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/56",
+  "scope": "VGA section2 toolbar/font+shared digits, panel input/replay and current-terrain minimap; not full DOS/complete G08.",
+  "inputs": [
+    {
+      "path": "assets/manifests/dos_original.json",
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "assets/manifests/main_ui.json",
+      "sha256": "c153fd304544b70608460c1ce2bca9e9b26e42d8f9b9598abf45a821f4b59a5b"
+    }
+  ],
+  "references": {
+    "commit": "40e9bc34451f0e9127fd53b290a3877e700d143d",
+    "files": [
+      {
+        "path": "assets/local/issue-56-reference/Base.Strings.pas",
+        "sha256": "d6a124c619047e22c6b7f678d9f9447b4a94642371aa690fccfa856f4c4d3d02",
+        "size": 43811
+      },
+      {
+        "path": "assets/local/issue-56-reference/Dos.Consts.pas",
+        "sha256": "8f66f615eb80858d50a794554e2a8be4db48ca45ec6309d96af5126c88a1c466",
+        "size": 16284
+      },
+      {
+        "path": "assets/local/issue-56-reference/Game.Rendering.pas",
+        "sha256": "1548af9273705b48b4d8641e25a54021288fdfcb5e166cfd7158380bd6085f10",
+        "size": 18896
+      },
+      {
+        "path": "assets/local/issue-56-reference/Game.SkillPanel.pas",
+        "sha256": "64ce2e0c853f62210ad693d3efec73d4d623032f7b840e4d4be0ac0d4a7b27f7",
+        "size": 17038
+      },
+      {
+        "path": "assets/local/issue-56-reference/Game.pas",
+        "sha256": "c1ba9ffda9e8e277f5c9b171df2bb611210d3326b9623b28fcd35426f4d6a448",
+        "size": 182303
+      },
+      {
+        "path": "assets/local/issue-56-reference/GameScreen.Player.pas",
+        "sha256": "11ba77c6f87b6abd004af38af1043343419854eae3bba8f594754551deb0ac39",
+        "size": 42045
+      }
+    ],
+    "dos_binary": "VGALEMMI.EXE",
+    "exe_sha256": "4f21e94d53b7ea814ade802b4a37d42481da3876e31fb5a23090e19c9600f21c",
+    "palette_file_offset": 49568,
+    "palette_dac6": [
+      0,
+      42,
+      0,
+      21,
+      63,
+      21,
+      21,
+      21,
+      21,
+      42,
+      0,
+      0,
+      42,
+      21,
+      0,
+      0,
+      42,
+      42,
+      63,
+      21,
+      63,
+      42,
+      0,
+      42
+    ]
+  },
+  "resources": {
+    "preserved_images": 200,
+    "added_vga_images": 39,
+    "added_pixels": 17664,
+    "section2_sha256": "7e1b6a0a63f88c37bb9bb6b40d2d4889862ece61aceffc2b6c19961436b9cadd",
+    "images": [
+      {
+        "kind": "VgaSkillPanel",
+        "section": 2,
+        "index": 0,
+        "offset": 0,
+        "width": 320,
+        "height": 40,
+        "planes": 4,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": null,
+        "pixel_file": "ui-VgaSkillPanel-000.pixels.bin",
+        "opaque_pixels": 12800,
+        "pixel_sha256": "5f06404ecff227470f25785efa88b62e2aa01108470899a16807d769a160202f"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 0,
+        "offset": 6560,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 37,
+        "pixel_file": "ui-VgaPanelGlyphs-000.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "ccc489f10a3adcdcdda65f513e540b4bb8511f8cebf660715f6e52d67b2e137e"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 1,
+        "offset": 6608,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 48,
+        "pixel_file": "ui-VgaPanelGlyphs-001.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "9f0e2dfba19c6cf0d8d3ec96029847a2425827ea57db017f1aae4c16dde37deb"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 2,
+        "offset": 6656,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 49,
+        "pixel_file": "ui-VgaPanelGlyphs-002.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "6c7aa25194827da0a525e727bdb3ae56e22576e130e968b0affec604b2da0c8e"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 3,
+        "offset": 6704,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 50,
+        "pixel_file": "ui-VgaPanelGlyphs-003.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "e2d8de406418804dc826e00fff5358434681cb7f035293e30daee48e5c4a572a"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 4,
+        "offset": 6752,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 51,
+        "pixel_file": "ui-VgaPanelGlyphs-004.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "11c3aba7553f0bcaf4c659d71bf4e41bd039578fc07518ef10e9d5326ab7db58"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 5,
+        "offset": 6800,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 52,
+        "pixel_file": "ui-VgaPanelGlyphs-005.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "8580b3d26da5d9101755367cff94a144c53569be2ff265c0e4beab60c6d6f5ca"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 6,
+        "offset": 6848,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 53,
+        "pixel_file": "ui-VgaPanelGlyphs-006.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "b1da4e19534c12b31be8971390e8f088e8a4d8a4578237e0ed332e948d19e75f"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 7,
+        "offset": 6896,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 54,
+        "pixel_file": "ui-VgaPanelGlyphs-007.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "d257aef21af28b6babf7964c9b02d944d64175e9fdc9f85d639ed340024df31f"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 8,
+        "offset": 6944,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 55,
+        "pixel_file": "ui-VgaPanelGlyphs-008.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "62092f6c4d7a7bf18c47848f70b173750f3622fa354ff9ba78e6fc63cbbf40ef"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 9,
+        "offset": 6992,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 56,
+        "pixel_file": "ui-VgaPanelGlyphs-009.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "483c0187630ac58a5800364bb905ab48b1e5ae78254b2e820ae180d109400422"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 10,
+        "offset": 7040,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 57,
+        "pixel_file": "ui-VgaPanelGlyphs-010.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "4bdf690c0f5b6aa31a6a23162e7dd22eceb0bf7db5d6cfe4e9b6846c39d6a3b4"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 11,
+        "offset": 7088,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 45,
+        "pixel_file": "ui-VgaPanelGlyphs-011.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "fe8a0f39dd6dac4c19638059320c4bb6aa04bbb4c362a657e04d6226da05a143"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 12,
+        "offset": 7136,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 65,
+        "pixel_file": "ui-VgaPanelGlyphs-012.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "ed67bf934a8c97140387cd42c14fdf00480fd70501518c2fec7410411462dfed"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 13,
+        "offset": 7184,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 66,
+        "pixel_file": "ui-VgaPanelGlyphs-013.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "7820554c8aa3cdab336619a8dbe0ad1d885be2a7d7677654e630bb98b5dfc80e"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 14,
+        "offset": 7232,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 67,
+        "pixel_file": "ui-VgaPanelGlyphs-014.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "143dca82fc7093a476308245cfd7dde10208e37d35a55a633203acd183e9fd62"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 15,
+        "offset": 7280,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 68,
+        "pixel_file": "ui-VgaPanelGlyphs-015.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "f8c0e94c6755e52780ca5de92cee8b5e0f64eff9ff500f9e68bf8f9e09542e6f"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 16,
+        "offset": 7328,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 69,
+        "pixel_file": "ui-VgaPanelGlyphs-016.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "49cbe934e36fb91fd2f860faca32f5bcb81b4d3b51792767f452fa69562561a8"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 17,
+        "offset": 7376,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 70,
+        "pixel_file": "ui-VgaPanelGlyphs-017.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "24e88b97704985306d3197f581c15aaa0a35b160832573476980fd2efd40e5fd"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 18,
+        "offset": 7424,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 71,
+        "pixel_file": "ui-VgaPanelGlyphs-018.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "c85fc51ea62e9dfcc29f778d60e88e8192a53ac691de69f2b58f2672da8901ca"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 19,
+        "offset": 7472,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 72,
+        "pixel_file": "ui-VgaPanelGlyphs-019.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "31062744c962967a31f6dcbed6e172ec71b767d5efa9027387f934acba8c73df"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 20,
+        "offset": 7520,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 73,
+        "pixel_file": "ui-VgaPanelGlyphs-020.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "f890d0bcd2dd805491146d513b910f2704b4f483c2978c4300d2eb4274a7ba24"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 21,
+        "offset": 7568,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 74,
+        "pixel_file": "ui-VgaPanelGlyphs-021.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "5ffdc1ae2c16d8bb8d8246bbbf4773bfac3f7c98384441d71c8a49cdc0a64217"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 22,
+        "offset": 7616,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 75,
+        "pixel_file": "ui-VgaPanelGlyphs-022.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "4c349ff30c819772a919656d05d7c1aedcd56542c2879f724277c2ea9f28dbc4"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 23,
+        "offset": 7664,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 76,
+        "pixel_file": "ui-VgaPanelGlyphs-023.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "53f116cc213a5290f68d90bde940e3e6b5fc6bba0e4003ebc0eb2ba277e8f626"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 24,
+        "offset": 7712,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 77,
+        "pixel_file": "ui-VgaPanelGlyphs-024.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "df89e0c24e49385bd324724693927b95f349a2d8eec2a02d60f6b761cd19d267"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 25,
+        "offset": 7760,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 78,
+        "pixel_file": "ui-VgaPanelGlyphs-025.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "844af5dcd4b9551f6b26ad6a75308afe77d6e8abed3d895053aed3e26e6ccc47"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 26,
+        "offset": 7808,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 79,
+        "pixel_file": "ui-VgaPanelGlyphs-026.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "1bc3a5b5bbcfbf66469b84a8d30ee16723e806cb8a30396f6f58e6eb45d9971a"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 27,
+        "offset": 7856,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 80,
+        "pixel_file": "ui-VgaPanelGlyphs-027.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "7b3896eaa3361b37fa3c042cca9ecdc5d0372408d54fe9d3bcf05b46142734f3"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 28,
+        "offset": 7904,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 81,
+        "pixel_file": "ui-VgaPanelGlyphs-028.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "2d72277051d97022331cd1e3df32ecb2f8b5717a7d7a8e73a67ec0c8d82a3ea6"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 29,
+        "offset": 7952,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 82,
+        "pixel_file": "ui-VgaPanelGlyphs-029.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "6a01ee9b027d809c6d0a0fafbf3d21035d47ee7ae166ebd587060f363dd770e4"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 30,
+        "offset": 8000,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 83,
+        "pixel_file": "ui-VgaPanelGlyphs-030.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "8687d5a348e3b68dd29e2ca56112e5cf8b09c71ac68917f81a8714966b09fbf7"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 31,
+        "offset": 8048,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 84,
+        "pixel_file": "ui-VgaPanelGlyphs-031.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "f4e52955d42cad452d821ddcb2bcdb5bed471386985ff694e3d8da513205a98e"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 32,
+        "offset": 8096,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 85,
+        "pixel_file": "ui-VgaPanelGlyphs-032.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "e3513593db49bf73bf0c45f5b8189af8a7fcba9ab8970977c9ea599be46d07a5"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 33,
+        "offset": 8144,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 86,
+        "pixel_file": "ui-VgaPanelGlyphs-033.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "83501614c631938396dbf2f439ff163b8e5d0fd44f7661edc180d59d71c28537"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 34,
+        "offset": 8192,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 87,
+        "pixel_file": "ui-VgaPanelGlyphs-034.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "0da8f31dd20051f89aac5281afe7fad9254f73048c04d09a902943655d95ef9b"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 35,
+        "offset": 8240,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 88,
+        "pixel_file": "ui-VgaPanelGlyphs-035.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "9d9084a76b5625f35db4f3c1759fce8ebc607ef9b0e563d262cd790d16dc55b4"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 36,
+        "offset": 8288,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 89,
+        "pixel_file": "ui-VgaPanelGlyphs-036.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "948fbd8c6a0dd36c8c36bed0031c7a80eacae2ac08794a53e364f7f25d828cbd"
+      },
+      {
+        "kind": "VgaPanelGlyphs",
+        "section": 2,
+        "index": 37,
+        "offset": 8336,
+        "width": 8,
+        "height": 16,
+        "planes": 3,
+        "transparency": "Opaque",
+        "palette": "Level",
+        "glyph_codepoint": 90,
+        "pixel_file": "ui-VgaPanelGlyphs-037.pixels.bin",
+        "opaque_pixels": 128,
+        "pixel_sha256": "153b2a5f1836c33d5d4436c58d302f7c0e8176907e8a75b9d8ba7c5bd3a351bc"
+      }
+    ]
+  },
+  "native": {
+    "binary_sha256": "32621199f7682cf1b0fcf78ee8aa91a66eacd6dc65607b4c220eb33c904af914",
+    "rust_tests": 493,
+    "doctests": 27,
+    "python_tests": 93,
+    "offline": {
+      "status": "PASS",
+      "runs": [
+        {
+          "case": "digger",
+          "render_every": 1,
+          "states": 341,
+          "sha256": "53468caf4740659fb864b764d31ca312c494d674797bfd7f1ca992a51639c0cd",
+          "minimap_frames": 44,
+          "terrain_images": 5,
+          "scaled_captures": 44
+        },
+        {
+          "case": "digger",
+          "render_every": 7,
+          "states": 341,
+          "sha256": "53468caf4740659fb864b764d31ca312c494d674797bfd7f1ca992a51639c0cd",
+          "minimap_frames": 44,
+          "terrain_images": 5,
+          "scaled_captures": 44
+        },
+        {
+          "case": "builder_bomber",
+          "render_every": 1,
+          "states": 341,
+          "sha256": "e2cb92afca7eed39ada679eb30c4de789f3e373732b6b64eda0753d163a4c402",
+          "minimap_frames": 48,
+          "terrain_images": 1,
+          "scaled_captures": 48
+        },
+        {
+          "case": "builder_bomber",
+          "render_every": 7,
+          "states": 341,
+          "sha256": "e2cb92afca7eed39ada679eb30c4de789f3e373732b6b64eda0753d163a4c402",
+          "minimap_frames": 48,
+          "terrain_images": 1,
+          "scaled_captures": 48
+        }
+      ]
+    },
+    "x11": {
+      "synthetic": {
+        "states": 197,
+        "scaled_captures": 151,
+        "replays": [
+          {
+            "render_every": 1,
+            "states": 197,
+            "sha256": "be0d1c70e8b81533cc9fc5dda2c7a42f10e30839cd5c26541de7dbedb7fab44d"
+          },
+          {
+            "render_every": 7,
+            "states": 197,
+            "sha256": "be0d1c70e8b81533cc9fc5dda2c7a42f10e30839cd5c26541de7dbedb7fab44d"
+          }
+        ],
+        "single_nuke_end_step": 179,
+        "nuke_step": 193
+      },
+      "original": {
+        "states": 180,
+        "scaled_captures": 137,
+        "replays": [
+          {
+            "render_every": 1,
+            "states": 180,
+            "sha256": "606733a35fe93ad4c714c9e0699de555dd5a2dea0bb8cc5ee101c6caf23f4bdb"
+          },
+          {
+            "render_every": 7,
+            "states": 180,
+            "sha256": "606733a35fe93ad4c714c9e0699de555dd5a2dea0bb8cc5ee101c6caf23f4bdb"
+          }
+        ],
+        "single_nuke_end_step": 164,
+        "nuke_step": 177
+      }
+    }
+  },
+  "dos": {
+    "recordings_reused": true,
+    "scope": "Climber/Digger selection differs; DOS cursor lies in Miner slot. Slots 2,8,9 excluded explicitly. No full HUD/atomic DOS state/input tick certification.",
+    "runs": 2,
+    "anchors": 16,
+    "pixels_per_anchor": 11648,
+    "pixels_compared": 186368,
+    "full_hud_difference_pixels": [
+      173,
+      173,
+      173,
+      173,
+      173,
+      173,
+      173,
+      173,
+      173,
+      173,
+      173,
+      173,
+      173,
+      173,
+      173,
+      173
+    ],
+    "recording_inputs": [
+      {
+        "recording": "assets/local/issue-44-dos-proof-4/run",
+        "videos": [
+          {
+            "name": "vgalemmi_000.avi",
+            "size": 711182,
+            "sha256": "b1a3a0f42129e777e4dfe6e936994f71d283b39544820a2f9bbb649666ad3287"
+          },
+          {
+            "name": "vgalemmi_001.avi",
+            "size": 4943726,
+            "sha256": "1a970f7cd8611e7bdcc9da55aa9512f83bcf0b1b69275a565e97a5027a9cccf5"
+          },
+          {
+            "name": "vgalemmi_002.avi",
+            "size": 2741480,
+            "sha256": "7efeca4638821b7a61a23db81ba3235610157c01cb58e06b5542bc1e141c0474"
+          }
+        ]
+      },
+      {
+        "recording": "assets/local/issue-44-dos-proof-5/run",
+        "videos": [
+          {
+            "name": "vgalemmi_000.avi",
+            "size": 711182,
+            "sha256": "1264289f3040436a668b4c07c91da168ba48044b76f81df8b00c4eaae9e36c7d"
+          },
+          {
+            "name": "vgalemmi_001.avi",
+            "size": 4943726,
+            "sha256": "2ef7ea64eb1d5025a79634651d10eab1802f3cbbf8a1657f028b74b439afcf44"
+          },
+          {
+            "name": "vgalemmi_002.avi",
+            "size": 2741480,
+            "sha256": "7e8e6e9e76b63ec011f5c73657a17488d0bacb37401532615d344f17fd2dfffb"
+          }
+        ]
+      }
+    ]
+  },
+  "source_sha256": {
+    "Makefile": "ac019f837cd989e70297f8e426fd5f10061c55ebdefbf25b771fd1aca7a9d7ab",
+    "apps/desktop/src/assets.rs": "d40e42ab7948db2cc6083c778736a788ae3beed13808377609b43b593b4ed5dd",
+    "apps/desktop/src/input.rs": "851350bac5cb5215f6585f8dd64254389af5f8ec1cc11e10be61aa2e9e68c0eb",
+    "apps/desktop/src/lifecycle.rs": "cbf4822daca4b9e0b982e08143d78c7cee919a0dd0eb4ee81aa505cbc8a11a78",
+    "apps/desktop/src/main.rs": "2aae17228b1b61a9d7ffc4dbd2b73a7ae45159f198db8c24ef246ea79a7c51b9",
+    "apps/desktop/src/pacing.rs": "476b1fd985ab59a3299e800bbb7d823184ecd6d56f1efcbd82ca659f344745ac",
+    "apps/desktop/src/panel.rs": "8e25c62879faab3a6324b25494386232a35a3ef79a1c8ee8821c82720e531773",
+    "apps/desktop/src/render.rs": "e7bb77287b37e6789615d7340e050a2bdef81464c3287c818a57f1eed70638fe",
+    "apps/desktop/src/session.rs": "91deb35f2474b70c35f37dc7a117a7c0045043e31ae9103e8a7cb02cd9b44e83",
+    "crates/lemmings-resources/examples/inspect_ui.rs": "b5813ff7008c2b46df225d296c8a2b4f77d01c09afeb91d950dce2e62fd84e1e",
+    "crates/lemmings-resources/src/ui.rs": "2ea7041f0388f7f60216a892d48f42f2dea3b03b5790715dbfb01b5f10b39e8d",
+    "tools/check_panel.py": "5c37a9e4357256af64502764df248bc10620ac83e7f517a28bdfdf46b5d49468",
+    "tools/compare_panel_dos.py": "c01ecc34f17fe9e36a66392bfd4be190c5fa3bed2da79afa78ae3b568c88e930",
+    "tools/tests/test_panel.py": "c4bc91c941e675a1156d6577190447dc43d608f5b37e4f3a888daac5b88ae0ab",
+    "tools/verify_panel.py": "50d741f4f70c6f344ff03350810613ca653bedd95e62271ca3b873febc81de67",
+    "tools/verify_panel_assets.py": "1d6bd77b34e2e8402b7f430a507a7c8de10c564334922c837e4a20fe6402ab94"
+  },
+  "evidence": [
+    {
+      "path": "assets/local/issue-56-assets-verification/summary.json",
+      "sha256": "4298f74c9d2557ce3fb5b4c8207450a2cc8c732ce357ed92debbba51c821af96"
+    },
+    {
+      "path": "assets/local/issue-56-dos-comparison-4/summary.json",
+      "sha256": "7be4db9a32abd7c3f913079641d53ee7e5131552f89154459447ec7f6d9aac27"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/bash-masks.bin",
+      "sha256": "307270fc371d4ce7dd55cf58c264e1e6e700550ef89ff089ee121c99fa9d0945"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/basher.jsonl",
+      "sha256": "80c249271a1b7516f038c0f406d988d74ee3f2e6f11c5299df92066f70cd4e05"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/blocker.jsonl",
+      "sha256": "f2d113cdce5c745eb16e70193a64aedd9cf476b4ebabe3370062e0a48f4005bc"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/bomber.jsonl",
+      "sha256": "36b71afac60df3fa47cb282372425a8fb1371e9b44feeb7511f8a636cf35923f"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/brick-final.bin",
+      "sha256": "3b7e83a686ac0e2c229796c28b81f7086d81ee57fd09f4eeb7a1fcf4726cb54d"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/builder.jsonl",
+      "sha256": "669597f468e76b7215b85ceb3c7a783b85bf69a6e091eaa533f4707f5469b881"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/climber.jsonl",
+      "sha256": "3f6328b4a824d4c1f153ff825ff94765fd99092289266ff5dde1c7e77d86f224"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/completion.jsonl",
+      "sha256": "e4e1ed888c241916f9d453523f5d5e4192b4223a9e57137958028a9255965190"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/config.json",
+      "sha256": "dc8dc9fd8b9cfb740211e7cf8d4282f7239b15881c4bc20961497122e2fdb4ef"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/digger.jsonl",
+      "sha256": "2c7d05f9b4e423d0f88805607ed4332afa80dbd393a8a88d9248e299af53c5bb"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/exit.jsonl",
+      "sha256": "9706d2b199eda0217d4cd3cdf936fbc62e0e1e035e9a7bfa86b437f9ca3e089c"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/explosion-mask.bin",
+      "sha256": "b6e6eb9c1ddd66db1b2d1d073383f6dd6a9f775bdccfd399f2ddc94f595055ab"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/floater.jsonl",
+      "sha256": "403ee41f146266fd4507d518f47a317654756aaed1c5f05606cfd0227379706e"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/hazards.jsonl",
+      "sha256": "56e7aad2262868172324b5eb4378cc1d8e56e0a87d4f3b8d698bd4361cf8d9d5"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/inputs.txt",
+      "sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/mine-masks.bin",
+      "sha256": "b6f1ea53a5d97dc539274789f2853e2ec4032fd50b030b2cdfe2471b50fa6d51"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/miner.jsonl",
+      "sha256": "80c249271a1b7516f038c0f406d988d74ee3f2e6f11c5299df92066f70cd4e05"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/nuke.jsonl",
+      "sha256": "68cb0a1b26712735c69d8c1f52500727287433963285e169332a4ad62f646b72"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/object-map-final.bin",
+      "sha256": "3196f14b29d936a02d44c6e80d88c6fecf3b122d62fc2dd4417bd5d4def1c682"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/object-map-initial.bin",
+      "sha256": "3196f14b29d936a02d44c6e80d88c6fecf3b122d62fc2dd4417bd5d4def1c682"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/objects.bin",
+      "sha256": "b73fb613f320bb4c4e47f6090ab08d8348ef8780d111fdde128c7847c63ba368"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/run.json",
+      "sha256": "4d915d1509391588c8173f6ad737242947e15663a100450797f33d677f0d533f"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/terrain-final.bin",
+      "sha256": "957563e4769ad450ebd25095a88823a46d40d8fd6cd709d7a8db9d49bc4d83a2"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/terrain-initial.bin",
+      "sha256": "9d7af867288ca7da8306f1ae1da5b6b53b9e4698f50600d5afc5c11eeb4b43d7"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/trace.jsonl",
+      "sha256": "e9ba8f84e172009aed327c2229b83f34abc41d6d905d3aaeb4df69f61daf85ab"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/transitions.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-56-native-final-2/traps.bin",
+      "sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1"
+    },
+    {
+      "path": "assets/local/issue-56-panel-final/summary.json",
+      "sha256": "2eeb201cd81e68295b5ee196154c64634516fe2c842036c41ae9bd742413f444"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/bash-masks.bin",
+      "sha256": "307270fc371d4ce7dd55cf58c264e1e6e700550ef89ff089ee121c99fa9d0945"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/basher.jsonl",
+      "sha256": "59b2e39d2c9a55866d8366d83802f1639179b432efe708ba27b6baf90e4a7d18"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/blocker.jsonl",
+      "sha256": "ef5b02125cad3276c8ebdcb5570090c89eb2634dc85b363e35c49474d282938c"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/bomber.jsonl",
+      "sha256": "a3c6656fa83f6759f81015dafc1b02108402ecce8e587a753f8456dc36402798"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/brick-final.bin",
+      "sha256": "3b7e83a686ac0e2c229796c28b81f7086d81ee57fd09f4eeb7a1fcf4726cb54d"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/builder.jsonl",
+      "sha256": "b945e97720356a6146c055b4946e082a197b5617af3f5be245d7c5e3fc22aa1f"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/climber.jsonl",
+      "sha256": "ef9116c2bfcfad7de70f2598b1cdab3874fe970f9bcc8f58a7e0a180c14ca82b"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/completion.jsonl",
+      "sha256": "bca74ea45aa62058942c827f8994113a0424a190d33d9ce38c6c0e5350a2952c"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/config.json",
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/digger.jsonl",
+      "sha256": "8719d04720131b65665c5bb543e80dd215b7a13b1ca48d5315e49d7dae4a7ce2"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/exit.jsonl",
+      "sha256": "4260ae41f95b98b889345b007105aea0935b90acd6695d0b3f6d6fe956be4610"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/explosion-mask.bin",
+      "sha256": "b6e6eb9c1ddd66db1b2d1d073383f6dd6a9f775bdccfd399f2ddc94f595055ab"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/floater.jsonl",
+      "sha256": "af63922fc661d45bd0e2e58351a5f1058b1f24736d87420b9ad1e37ffcca6838"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/hazards.jsonl",
+      "sha256": "d0a39c891908ba8da3a2ecead7edcbaa56c9347b8edd07b4826994772df811ec"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/inputs.txt",
+      "sha256": "2d0c61fc090cb582a8361329b5329212fe8301ca65fbb8671295b60a187caf7f"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/mine-masks.bin",
+      "sha256": "b6f1ea53a5d97dc539274789f2853e2ec4032fd50b030b2cdfe2471b50fa6d51"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/miner.jsonl",
+      "sha256": "59b2e39d2c9a55866d8366d83802f1639179b432efe708ba27b6baf90e4a7d18"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/nuke.jsonl",
+      "sha256": "1950df9fff74726aa70c62a3f6ff67c31cd6ece619fdd80012ed4f81fed6a6f4"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/object-map-final.bin",
+      "sha256": "30df0608a2d4cc24e80a5ebddee68120d7c3c1e0a222e52cb933cc04f64c5cf3"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/object-map-initial.bin",
+      "sha256": "30df0608a2d4cc24e80a5ebddee68120d7c3c1e0a222e52cb933cc04f64c5cf3"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/objects.bin",
+      "sha256": "3b7e83a686ac0e2c229796c28b81f7086d81ee57fd09f4eeb7a1fcf4726cb54d"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/run.json",
+      "sha256": "8f3f2461f2aaa4c9d001163ee00027c63a31741250a8a9f0bae3ad39f8fd1f08"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/terrain-final.bin",
+      "sha256": "e7aacac8ddeb969dc041dcfc05d0fa2efe6c2c57cbf88eee9258ee6cafee6260"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/terrain-initial.bin",
+      "sha256": "a5311ef0436ca29a5fe4f6feee89baa0b82afce87baaf799f59c813deb5686d7"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/trace.jsonl",
+      "sha256": "05cbe9033e65f6f342c768e2d4ea97c8ca77585e9455c6087acb336ae780c1ed"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/transitions.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/live/traps.bin",
+      "sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/bash-masks.bin",
+      "sha256": "307270fc371d4ce7dd55cf58c264e1e6e700550ef89ff089ee121c99fa9d0945"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/basher.jsonl",
+      "sha256": "59b2e39d2c9a55866d8366d83802f1639179b432efe708ba27b6baf90e4a7d18"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/blocker.jsonl",
+      "sha256": "ef5b02125cad3276c8ebdcb5570090c89eb2634dc85b363e35c49474d282938c"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/bomber.jsonl",
+      "sha256": "a3c6656fa83f6759f81015dafc1b02108402ecce8e587a753f8456dc36402798"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/brick-final.bin",
+      "sha256": "3b7e83a686ac0e2c229796c28b81f7086d81ee57fd09f4eeb7a1fcf4726cb54d"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/builder.jsonl",
+      "sha256": "b945e97720356a6146c055b4946e082a197b5617af3f5be245d7c5e3fc22aa1f"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/climber.jsonl",
+      "sha256": "ef9116c2bfcfad7de70f2598b1cdab3874fe970f9bcc8f58a7e0a180c14ca82b"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/completion.jsonl",
+      "sha256": "bca74ea45aa62058942c827f8994113a0424a190d33d9ce38c6c0e5350a2952c"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/config.json",
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/digger.jsonl",
+      "sha256": "8719d04720131b65665c5bb543e80dd215b7a13b1ca48d5315e49d7dae4a7ce2"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/exit.jsonl",
+      "sha256": "4260ae41f95b98b889345b007105aea0935b90acd6695d0b3f6d6fe956be4610"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/explosion-mask.bin",
+      "sha256": "b6e6eb9c1ddd66db1b2d1d073383f6dd6a9f775bdccfd399f2ddc94f595055ab"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/floater.jsonl",
+      "sha256": "af63922fc661d45bd0e2e58351a5f1058b1f24736d87420b9ad1e37ffcca6838"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/hazards.jsonl",
+      "sha256": "d0a39c891908ba8da3a2ecead7edcbaa56c9347b8edd07b4826994772df811ec"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/inputs.txt",
+      "sha256": "2d0c61fc090cb582a8361329b5329212fe8301ca65fbb8671295b60a187caf7f"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/mine-masks.bin",
+      "sha256": "b6f1ea53a5d97dc539274789f2853e2ec4032fd50b030b2cdfe2471b50fa6d51"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/miner.jsonl",
+      "sha256": "59b2e39d2c9a55866d8366d83802f1639179b432efe708ba27b6baf90e4a7d18"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/nuke.jsonl",
+      "sha256": "1950df9fff74726aa70c62a3f6ff67c31cd6ece619fdd80012ed4f81fed6a6f4"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/object-map-final.bin",
+      "sha256": "30df0608a2d4cc24e80a5ebddee68120d7c3c1e0a222e52cb933cc04f64c5cf3"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/object-map-initial.bin",
+      "sha256": "30df0608a2d4cc24e80a5ebddee68120d7c3c1e0a222e52cb933cc04f64c5cf3"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/objects.bin",
+      "sha256": "3b7e83a686ac0e2c229796c28b81f7086d81ee57fd09f4eeb7a1fcf4726cb54d"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/run.json",
+      "sha256": "8aeb85703929731992c4711d657085a1a599e1a9023c41cbfe3250c05579095f"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/terrain-final.bin",
+      "sha256": "e7aacac8ddeb969dc041dcfc05d0fa2efe6c2c57cbf88eee9258ee6cafee6260"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/terrain-initial.bin",
+      "sha256": "a5311ef0436ca29a5fe4f6feee89baa0b82afce87baaf799f59c813deb5686d7"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/trace.jsonl",
+      "sha256": "05cbe9033e65f6f342c768e2d4ea97c8ca77585e9455c6087acb336ae780c1ed"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/transitions.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-1/traps.bin",
+      "sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/bash-masks.bin",
+      "sha256": "307270fc371d4ce7dd55cf58c264e1e6e700550ef89ff089ee121c99fa9d0945"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/basher.jsonl",
+      "sha256": "59b2e39d2c9a55866d8366d83802f1639179b432efe708ba27b6baf90e4a7d18"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/blocker.jsonl",
+      "sha256": "ef5b02125cad3276c8ebdcb5570090c89eb2634dc85b363e35c49474d282938c"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/bomber.jsonl",
+      "sha256": "a3c6656fa83f6759f81015dafc1b02108402ecce8e587a753f8456dc36402798"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/brick-final.bin",
+      "sha256": "3b7e83a686ac0e2c229796c28b81f7086d81ee57fd09f4eeb7a1fcf4726cb54d"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/builder.jsonl",
+      "sha256": "b945e97720356a6146c055b4946e082a197b5617af3f5be245d7c5e3fc22aa1f"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/climber.jsonl",
+      "sha256": "ef9116c2bfcfad7de70f2598b1cdab3874fe970f9bcc8f58a7e0a180c14ca82b"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/completion.jsonl",
+      "sha256": "bca74ea45aa62058942c827f8994113a0424a190d33d9ce38c6c0e5350a2952c"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/config.json",
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/digger.jsonl",
+      "sha256": "8719d04720131b65665c5bb543e80dd215b7a13b1ca48d5315e49d7dae4a7ce2"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/exit.jsonl",
+      "sha256": "4260ae41f95b98b889345b007105aea0935b90acd6695d0b3f6d6fe956be4610"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/explosion-mask.bin",
+      "sha256": "b6e6eb9c1ddd66db1b2d1d073383f6dd6a9f775bdccfd399f2ddc94f595055ab"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/floater.jsonl",
+      "sha256": "af63922fc661d45bd0e2e58351a5f1058b1f24736d87420b9ad1e37ffcca6838"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/hazards.jsonl",
+      "sha256": "d0a39c891908ba8da3a2ecead7edcbaa56c9347b8edd07b4826994772df811ec"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/inputs.txt",
+      "sha256": "2d0c61fc090cb582a8361329b5329212fe8301ca65fbb8671295b60a187caf7f"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/mine-masks.bin",
+      "sha256": "b6f1ea53a5d97dc539274789f2853e2ec4032fd50b030b2cdfe2471b50fa6d51"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/miner.jsonl",
+      "sha256": "59b2e39d2c9a55866d8366d83802f1639179b432efe708ba27b6baf90e4a7d18"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/nuke.jsonl",
+      "sha256": "1950df9fff74726aa70c62a3f6ff67c31cd6ece619fdd80012ed4f81fed6a6f4"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/object-map-final.bin",
+      "sha256": "30df0608a2d4cc24e80a5ebddee68120d7c3c1e0a222e52cb933cc04f64c5cf3"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/object-map-initial.bin",
+      "sha256": "30df0608a2d4cc24e80a5ebddee68120d7c3c1e0a222e52cb933cc04f64c5cf3"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/objects.bin",
+      "sha256": "3b7e83a686ac0e2c229796c28b81f7086d81ee57fd09f4eeb7a1fcf4726cb54d"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/run.json",
+      "sha256": "7924b1f09eaf31fad851986bd50222404a8da61dd055f25daa122b2fda0af65f"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/terrain-final.bin",
+      "sha256": "e7aacac8ddeb969dc041dcfc05d0fa2efe6c2c57cbf88eee9258ee6cafee6260"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/terrain-initial.bin",
+      "sha256": "a5311ef0436ca29a5fe4f6feee89baa0b82afce87baaf799f59c813deb5686d7"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/trace.jsonl",
+      "sha256": "05cbe9033e65f6f342c768e2d4ea97c8ca77585e9455c6087acb336ae780c1ed"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/transitions.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/replay-7/traps.bin",
+      "sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1"
+    },
+    {
+      "path": "assets/local/issue-56-x11-original-proof/summary.json",
+      "sha256": "06d77b5db9cb4f45ca16f3b9f691f633a716f62416584ae34d786c07da784746"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/bash-masks.bin",
+      "sha256": "19cb414cb760df2b27bc0c0316db82a35042929e268d6b41551779c8c85d4988"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/basher.jsonl",
+      "sha256": "2525c6e7e65d6e615fae691821a4a63c8ec94b3e54e4921e54093f1698932189"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/blocker.jsonl",
+      "sha256": "b48e5e350c535754d1d57645e962c12688aac15ef8f3957ecf5c5f2d53885cda"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/bomber.jsonl",
+      "sha256": "1fdb539c3c2dd4bdd9540251b6f1aa8f169b2189d4ad05d82ad307a57e158749"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/brick-final.bin",
+      "sha256": "f627ca4c2c322f15db26152df306bd4f983f0146409b81a4341b9b340c365a16"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/builder.jsonl",
+      "sha256": "6fe3e0135a4b008e2ba48e210ff0c3bddfad75581fcb1e60ec175809a69d6059"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/climber.jsonl",
+      "sha256": "afb2398dceac2d2bc9478ecef0ec39012adaaae3330e52d2645780062e0ae591"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/completion.jsonl",
+      "sha256": "82277ace7e7b66ce8b489f45db4e0bb412a0f1b50cc50d28ce7f7c23d615af73"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/config.json",
+      "sha256": "8ec1a34d39576833837955f2608ccc94a6e5d6793f2ccc302135019040ff9b2d"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/digger.jsonl",
+      "sha256": "0e5a930316bf2f071efab42af023615e072352ebeff5b4dfcdd6d895ec8352fd"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/exit.jsonl",
+      "sha256": "63c712adc36ccd1844b5a11a714f50d2608efe8419a47e6fe767e24676ec07d4"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/explosion-mask.bin",
+      "sha256": "463d5921a6bfd5c98f6047f561495800372e627c07ce458c23b7ac164a22be51"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/floater.jsonl",
+      "sha256": "3fee1d48679eea3972835fa37c012da08646a998bb6830b2b5e2b479ebb8e4a1"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/hazards.jsonl",
+      "sha256": "8df128464c956b3e03f21a3e1fee433517360eae7b22178f2901177cf0845d1a"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/inputs.txt",
+      "sha256": "f129b10a717250ea0a3392309fd7897a7858348cc2c80617d088d2aadfc88464"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/mine-masks.bin",
+      "sha256": "f71c209c8df8eeb07005a11966d0300bd86d153006ba2e05302caf822246d90f"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/miner.jsonl",
+      "sha256": "2525c6e7e65d6e615fae691821a4a63c8ec94b3e54e4921e54093f1698932189"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/nuke.jsonl",
+      "sha256": "718bd6718f06e85bc5bf27bfbfce8e069264dffdad9b85722d8516e2450cb0c9"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/object-map-final.bin",
+      "sha256": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/object-map-initial.bin",
+      "sha256": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/objects.bin",
+      "sha256": "f627ca4c2c322f15db26152df306bd4f983f0146409b81a4341b9b340c365a16"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/run.json",
+      "sha256": "139d89c887c05a7e1399ed7e3ad2880cad34f14eb2291b391be6d344ae677511"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/terrain-final.bin",
+      "sha256": "c632df78707274d7ed002f89dab5445c5d5f1b62a3288178da4ceae282701352"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/terrain-initial.bin",
+      "sha256": "690898b78facd934bfda00940d6bee9ab304a80dba2f0d076343db7e44783e56"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/trace.jsonl",
+      "sha256": "b312067ba70840947b98d20b6ca8b2e657918cdc605ea2dded483e895320e101"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/transitions.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/live/traps.bin",
+      "sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/bash-masks.bin",
+      "sha256": "19cb414cb760df2b27bc0c0316db82a35042929e268d6b41551779c8c85d4988"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/basher.jsonl",
+      "sha256": "2525c6e7e65d6e615fae691821a4a63c8ec94b3e54e4921e54093f1698932189"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/blocker.jsonl",
+      "sha256": "b48e5e350c535754d1d57645e962c12688aac15ef8f3957ecf5c5f2d53885cda"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/bomber.jsonl",
+      "sha256": "1fdb539c3c2dd4bdd9540251b6f1aa8f169b2189d4ad05d82ad307a57e158749"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/brick-final.bin",
+      "sha256": "f627ca4c2c322f15db26152df306bd4f983f0146409b81a4341b9b340c365a16"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/builder.jsonl",
+      "sha256": "6fe3e0135a4b008e2ba48e210ff0c3bddfad75581fcb1e60ec175809a69d6059"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/climber.jsonl",
+      "sha256": "afb2398dceac2d2bc9478ecef0ec39012adaaae3330e52d2645780062e0ae591"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/completion.jsonl",
+      "sha256": "82277ace7e7b66ce8b489f45db4e0bb412a0f1b50cc50d28ce7f7c23d615af73"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/config.json",
+      "sha256": "8ec1a34d39576833837955f2608ccc94a6e5d6793f2ccc302135019040ff9b2d"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/digger.jsonl",
+      "sha256": "0e5a930316bf2f071efab42af023615e072352ebeff5b4dfcdd6d895ec8352fd"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/exit.jsonl",
+      "sha256": "63c712adc36ccd1844b5a11a714f50d2608efe8419a47e6fe767e24676ec07d4"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/explosion-mask.bin",
+      "sha256": "463d5921a6bfd5c98f6047f561495800372e627c07ce458c23b7ac164a22be51"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/floater.jsonl",
+      "sha256": "3fee1d48679eea3972835fa37c012da08646a998bb6830b2b5e2b479ebb8e4a1"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/hazards.jsonl",
+      "sha256": "8df128464c956b3e03f21a3e1fee433517360eae7b22178f2901177cf0845d1a"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/inputs.txt",
+      "sha256": "f129b10a717250ea0a3392309fd7897a7858348cc2c80617d088d2aadfc88464"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/mine-masks.bin",
+      "sha256": "f71c209c8df8eeb07005a11966d0300bd86d153006ba2e05302caf822246d90f"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/miner.jsonl",
+      "sha256": "2525c6e7e65d6e615fae691821a4a63c8ec94b3e54e4921e54093f1698932189"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/nuke.jsonl",
+      "sha256": "718bd6718f06e85bc5bf27bfbfce8e069264dffdad9b85722d8516e2450cb0c9"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/object-map-final.bin",
+      "sha256": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/object-map-initial.bin",
+      "sha256": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/objects.bin",
+      "sha256": "f627ca4c2c322f15db26152df306bd4f983f0146409b81a4341b9b340c365a16"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/run.json",
+      "sha256": "dcecf5c0eea480c91a4e86b59503bbccdd3809c5ffd2939126c7c6e9f55705f3"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/terrain-final.bin",
+      "sha256": "c632df78707274d7ed002f89dab5445c5d5f1b62a3288178da4ceae282701352"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/terrain-initial.bin",
+      "sha256": "690898b78facd934bfda00940d6bee9ab304a80dba2f0d076343db7e44783e56"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/trace.jsonl",
+      "sha256": "b312067ba70840947b98d20b6ca8b2e657918cdc605ea2dded483e895320e101"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/transitions.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-1/traps.bin",
+      "sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/bash-masks.bin",
+      "sha256": "19cb414cb760df2b27bc0c0316db82a35042929e268d6b41551779c8c85d4988"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/basher.jsonl",
+      "sha256": "2525c6e7e65d6e615fae691821a4a63c8ec94b3e54e4921e54093f1698932189"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/blocker.jsonl",
+      "sha256": "b48e5e350c535754d1d57645e962c12688aac15ef8f3957ecf5c5f2d53885cda"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/bomber.jsonl",
+      "sha256": "1fdb539c3c2dd4bdd9540251b6f1aa8f169b2189d4ad05d82ad307a57e158749"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/brick-final.bin",
+      "sha256": "f627ca4c2c322f15db26152df306bd4f983f0146409b81a4341b9b340c365a16"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/builder.jsonl",
+      "sha256": "6fe3e0135a4b008e2ba48e210ff0c3bddfad75581fcb1e60ec175809a69d6059"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/climber.jsonl",
+      "sha256": "afb2398dceac2d2bc9478ecef0ec39012adaaae3330e52d2645780062e0ae591"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/completion.jsonl",
+      "sha256": "82277ace7e7b66ce8b489f45db4e0bb412a0f1b50cc50d28ce7f7c23d615af73"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/config.json",
+      "sha256": "8ec1a34d39576833837955f2608ccc94a6e5d6793f2ccc302135019040ff9b2d"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/digger.jsonl",
+      "sha256": "0e5a930316bf2f071efab42af023615e072352ebeff5b4dfcdd6d895ec8352fd"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/exit.jsonl",
+      "sha256": "63c712adc36ccd1844b5a11a714f50d2608efe8419a47e6fe767e24676ec07d4"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/explosion-mask.bin",
+      "sha256": "463d5921a6bfd5c98f6047f561495800372e627c07ce458c23b7ac164a22be51"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/floater.jsonl",
+      "sha256": "3fee1d48679eea3972835fa37c012da08646a998bb6830b2b5e2b479ebb8e4a1"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/hazards.jsonl",
+      "sha256": "8df128464c956b3e03f21a3e1fee433517360eae7b22178f2901177cf0845d1a"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/inputs.txt",
+      "sha256": "f129b10a717250ea0a3392309fd7897a7858348cc2c80617d088d2aadfc88464"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/mine-masks.bin",
+      "sha256": "f71c209c8df8eeb07005a11966d0300bd86d153006ba2e05302caf822246d90f"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/miner.jsonl",
+      "sha256": "2525c6e7e65d6e615fae691821a4a63c8ec94b3e54e4921e54093f1698932189"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/nuke.jsonl",
+      "sha256": "718bd6718f06e85bc5bf27bfbfce8e069264dffdad9b85722d8516e2450cb0c9"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/object-map-final.bin",
+      "sha256": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/object-map-initial.bin",
+      "sha256": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/objects.bin",
+      "sha256": "f627ca4c2c322f15db26152df306bd4f983f0146409b81a4341b9b340c365a16"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/run.json",
+      "sha256": "fbf4f11fef9ce3e92694861ea9a615aa1323a4c45e8966e619712792f0a5c6da"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/terrain-final.bin",
+      "sha256": "c632df78707274d7ed002f89dab5445c5d5f1b62a3288178da4ceae282701352"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/terrain-initial.bin",
+      "sha256": "690898b78facd934bfda00940d6bee9ab304a80dba2f0d076343db7e44783e56"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/trace.jsonl",
+      "sha256": "b312067ba70840947b98d20b6ca8b2e657918cdc605ea2dded483e895320e101"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/transitions.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/replay-7/traps.bin",
+      "sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1"
+    },
+    {
+      "path": "assets/local/issue-56-x11-synthetic-proof/summary.json",
+      "sha256": "90eaa393d957aa96f36256bc0507025fcc5ea5bf97766cefe48975450562947e"
+    }
+  ],
+  "limitations": [
+    "Native initial skill remains Digger; DOS starts Climber.",
+    "Pointer priority/RightClickGlitch and exact cursor sprite are follow-up work.",
+    "Rebuild minimap immediately; original staggered column refresh latency is not reproduced.",
+    "Selection without assignment and camera are presentation state, not simulation replay commands.",
+    "Pause outline is native feedback; no paused full-HUD pixel equivalence claim."
+  ]
+}

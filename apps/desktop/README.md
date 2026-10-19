@@ -59,7 +59,7 @@ make check
 
 ## Digger
 
-왼쪽 클릭으로 레밍에게 Digger를 할당합니다. HUD의 DIG 수량은 성공 때만 줄어듭니다. 현재 Walking/Bashing/Mining 개체가 대상입니다. 출구/구출은 #48에서 구현했으며 승패는 후속입니다.
+왼쪽 클릭으로 레밍에게 Digger를 할당합니다. 기술 패널의 Digger 수량은 성공 때만 줄어듭니다. 현재 Walking/Bashing/Mining 개체가 대상입니다. 출구/구출은 #48에서 구현했으며 승패는 후속입니다.
 
 재생 입력 예: `60 0 AssignDigger 0`. 기존 Pause/Resume/SetReleaseRate와 같은 control_step/sequence 순서를 사용합니다. 일시정지 중 할당은 가능하고 굴착은 진행 때 갱신합니다.
 
@@ -153,3 +153,11 @@ python3 tools/check_results.py
 ```
 
 `--result-actions`는 결과가 표시된 뒤 순서대로 SDL 키를 주입하는 유한 실행용 옵션입니다. `--steps`는 각 시도의 상한입니다. 첫 `--replay`의 남은 명령은 전환 시 폐기하며 이후는 수동 입력을 받습니다. 캡처는 최초 루트와 `attempt-0001/` 등 시도별 폴더, 루트 `transitions.jsonl`로 구분합니다. 자체 결과 UI이며 원본 결과 배경/글꼴·메뉴/접근 코드는 후속입니다. [계약·재현](../../mydocs/tech_insights/issue-54_results_restart.md).
+
+## 원본 기술 패널·미니맵 (#56)
+
+하단40픽셀은 MAIN.DAT 구간2의 VGA 패널/숫자/폰트입니다.8직업 버튼을 클릭하거나 기존 단축키로 선택하고 레밍을 클릭합니다. 초기 선택은 기존 Digger입니다. 감소/증가 버튼은 누르는 동안 control_step마다 속도를 조정하고, Pause는 토글, Nuke는 더블클릭입니다. 기존 N 키는1회 입력입니다. 미니맵의 클릭/왼쪽 드래그는 카메라를 이동합니다.
+
+OUT/IN/TIME·직업 수량과 현재 지형/개체·카메라가 표시됩니다. 재생 중 실시간 게임 명령은 받지 않으며 카메라는 조작할 수 있습니다. 새 레벨에서 선택/누름/드래그가 초기화됩니다. [좌표·리소스·검증 계약](../../mydocs/tech_insights/issue-56_skill_panel.md)과 [결과](../../mydocs/reports/issue-56_skill_panel.md)를 참고합니다.
+
+`make check-desktop`은 원본 없는 패널·지형 변경·재생 검사를 포함합니다. 실제 X11 검사는 독립 DISPLAY에서 `python3 tools/verify_panel.py --xdotool /usr/bin/xdotool --evidence assets/local/my-panel-x11`로 실행합니다.

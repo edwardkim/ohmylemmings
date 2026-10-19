@@ -2,6 +2,7 @@ mod assets;
 mod input;
 mod lifecycle;
 mod pacing;
+mod panel;
 mod render;
 mod session;
 use assets::Assets;
@@ -939,6 +940,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                 break;
             }
             apply_replay_boundary(&mut game.session, &mut replay);
+            panel::advance_input(&mut game.session, &mut game.view, options.replay.is_some())?;
             game.session.tick()?;
             pending_due -= 1;
             advanced = true;
@@ -973,7 +975,8 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                 step >= end
             }
         });
-        let milestone = game.session.result().is_some()
+        let milestone = game.view.panel.capture_pending
+            || game.session.result().is_some()
             || matches!(step, 0 | 16 | 17 | 34 | 35 | 54 | 60 | 100 | 170 | 340)
             || basher_capture(&game.session)
             || bomber_capture(&game.session)
@@ -1023,6 +1026,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                     .unwrap()
                     .frame(step, &frame, &pixels?, size)?;
                 last_captured = Some(step);
+                game.view.panel.capture_pending = false;
             }
             canvas.present();
             result_rendered = game.session.result().is_some();

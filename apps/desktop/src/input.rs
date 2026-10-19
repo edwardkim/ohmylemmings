@@ -40,6 +40,38 @@ pub fn handle(
     width: usize,
     replaying: bool,
 ) -> Result<bool, Box<dyn Error>> {
+    view.panel.capture_pending = true;
+    if session.result().is_some() {
+        view.panel.release();
+        if let Event::KeyDown {
+            keycode: Some(key), ..
+        } = event
+        {
+            match key {
+                Keycode::Left => view.scroll(-16, width),
+                Keycode::Right => view.scroll(16, width),
+                Keycode::Home => view.scroll(i32::MIN, width),
+                Keycode::End => view.scroll(i32::MAX, width),
+                _ => {}
+            }
+        }
+        return Ok(!matches!(
+            event,
+            Event::Quit { .. }
+                | Event::Window {
+                    win_event: WindowEvent::Close,
+                    ..
+                }
+                | Event::KeyDown {
+                    keycode: Some(Keycode::Escape),
+                    ..
+                }
+                | Event::MouseButtonDown {
+                    mouse_btn: MouseButton::Right,
+                    ..
+                }
+        ));
+    }
     let replaying = replaying || session.result().is_some();
     match event {
         Event::Quit { .. }
@@ -51,6 +83,68 @@ pub fn handle(
             mouse_btn: MouseButton::Right,
             ..
         } if session.result().is_some() => return Ok(false),
+        Event::Window {
+            win_event: WindowEvent::FocusLost,
+            ..
+        } => {
+            view.panel.release();
+            view.panel.pointer = None;
+        }
+        Event::MouseButtonUp {
+            mouse_btn: MouseButton::Left,
+            ..
+        } => view.panel.release(),
+        Event::MouseMotion {
+            x, y, mousestate, ..
+        } => {
+            view.panel.pointer = Some((x, y));
+            if !mousestate.left() {
+                view.panel.release();
+            }
+            if view.panel.dragging_map
+                && let Some(camera) = crate::panel::minimap_camera(x, y, width)
+            {
+                view.camera = camera;
+            }
+        }
+        Event::MouseButtonDown {
+            mouse_btn: MouseButton::Left,
+            x,
+            y,
+            clicks,
+            ..
+        } if (0..320).contains(&x) && (160..200).contains(&y) => {
+            view.panel.release();
+            view.panel.pointer = Some((x, y));
+            if let Some(camera) = crate::panel::minimap_camera(x, y, width) {
+                view.camera = camera;
+                view.panel.dragging_map = true;
+            } else if !replaying && let Some(button) = crate::panel::hit(x, y) {
+                use crate::panel::Button;
+                match button {
+                    Button::Skill(skill) => view.selected_skill = skill,
+                    Button::Slower | Button::Faster => {
+                        view.panel.held_rate = Some(if button == Button::Faster { 1 } else { -1 });
+                        crate::panel::advance_input(session, view, false)?;
+                    }
+                    Button::Pause => {
+                        session.queue(if session.desired_paused() {
+                            InputCommand::Resume
+                        } else {
+                            InputCommand::Pause
+                        })?;
+                    }
+                    Button::Nuke
+                        if clicks >= 2
+                            && !session.desired_paused()
+                            && !session.scheduler.nuke_state().is_nuked =>
+                    {
+                        session.queue(InputCommand::Custom(StartupCommand::Nuke))?;
+                    }
+                    _ => {}
+                }
+            }
+        }
         Event::MouseButtonDown {
             mouse_btn: MouseButton::Left,
             x,
@@ -199,6 +293,179 @@ mod tests {
             Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap(),
             View::new(0),
         )
+    }
+    fn click(x: i32, y: i32, clicks: u8) -> Event {
+        Event::MouseButtonDown {
+            timestamp: 0,
+            window_id: 0,
+            which: 0,
+            mouse_btn: MouseButton::Left,
+            clicks,
+            x,
+            y,
+        }
+    }
+    #[test]
+    fn all_panel_skill_buttons_match_keyboard_and_do_not_enter_gameplay_log() {
+        for (i, keycode) in [
+            Keycode::C,
+            Keycode::F,
+            Keycode::E,
+            Keycode::K,
+            Keycode::U,
+            Keycode::B,
+            Keycode::M,
+            Keycode::D,
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            let (mut s, mut v) = setup();
+            handle(
+                click(i as i32 * 16 + 33, 190, 1),
+                &mut s,
+                &mut v,
+                640,
+                false,
+            )
+            .unwrap();
+            assert_eq!(v.selected_skill, crate::panel::SKILLS[i]);
+            let mut keyboard = View::new(0);
+            handle(key(keycode, false), &mut s, &mut keyboard, 640, false).unwrap();
+            assert_eq!(v.selected_skill, keyboard.selected_skill);
+            assert!(s.inputs.is_empty());
+        }
+    }
+    #[test]
+    fn panel_rate_hold_is_once_per_boundary_and_stops_on_release_focus_and_replay() {
+        let (mut s, mut v) = setup();
+        handle(click(20, 190, 1), &mut s, &mut v, 640, false).unwrap();
+        for _ in 0..10 {
+            crate::panel::advance_input(&mut s, &mut v, false).unwrap();
+        }
+        assert_eq!(s.desired_rate(), 51);
+        assert_eq!(s.inputs.len(), 1);
+        s.tick().unwrap();
+        crate::panel::advance_input(&mut s, &mut v, false).unwrap();
+        assert_eq!(s.desired_rate(), 52);
+        handle(
+            Event::MouseButtonUp {
+                timestamp: 0,
+                window_id: 0,
+                which: 0,
+                mouse_btn: MouseButton::Left,
+                clicks: 1,
+                x: 319,
+                y: 0,
+            },
+            &mut s,
+            &mut v,
+            640,
+            false,
+        )
+        .unwrap();
+        assert_eq!(v.panel.held_rate, None);
+        handle(click(20, 190, 1), &mut s, &mut v, 640, false).unwrap();
+        handle(
+            Event::Window {
+                timestamp: 0,
+                window_id: 0,
+                win_event: WindowEvent::FocusLost,
+            },
+            &mut s,
+            &mut v,
+            640,
+            false,
+        )
+        .unwrap();
+        assert_eq!(v.panel.held_rate, None);
+        handle(click(20, 190, 1), &mut s, &mut v, 640, false).unwrap();
+        crate::panel::advance_input(&mut s, &mut v, true).unwrap();
+        assert_eq!(v.panel.held_rate, None);
+    }
+    #[test]
+    fn panel_pause_toggle_and_double_click_nuke_share_keyboard_commands() {
+        let (mut s, mut v) = setup();
+        handle(click(164, 190, 1), &mut s, &mut v, 640, false).unwrap();
+        assert!(s.desired_paused());
+        handle(click(180, 190, 2), &mut s, &mut v, 640, false).unwrap();
+        assert_eq!(s.inputs.len(), 1);
+        handle(click(164, 190, 1), &mut s, &mut v, 640, false).unwrap();
+        handle(click(180, 190, 1), &mut s, &mut v, 640, false).unwrap();
+        assert_eq!(s.inputs.len(), 2);
+        handle(click(180, 190, 2), &mut s, &mut v, 640, false).unwrap();
+        assert_eq!(
+            s.inputs,
+            parse_replay("0 0 Pause\n0 1 Resume\n0 2 Nuke", Some(10)).unwrap()
+        );
+    }
+    #[test]
+    fn replay_blocks_panel_commands_and_minimap_never_enqueues_assignments() {
+        let (mut s, mut v) = setup();
+        for x in [2, 20, 34, 164, 180] {
+            handle(click(x, 190, 2), &mut s, &mut v, 1584, true).unwrap();
+        }
+        assert_eq!(v.selected_skill, SelectedSkill::Digger);
+        assert!(s.inputs.is_empty());
+        handle(click(250, 180, 1), &mut s, &mut v, 1584, true).unwrap();
+        assert_eq!(v.camera, 496);
+        assert!(v.panel.dragging_map);
+        handle(
+            Event::MouseMotion {
+                timestamp: 0,
+                window_id: 0,
+                which: 0,
+                mousestate: sdl2::mouse::MouseState::from_sdl_state(1),
+                x: 310,
+                y: 190,
+                xrel: 60,
+                yrel: 10,
+            },
+            &mut s,
+            &mut v,
+            1584,
+            true,
+        )
+        .unwrap();
+        assert_eq!(v.camera, 1264);
+        assert!(s.inputs.is_empty());
+    }
+    #[test]
+    fn panel_hold_replay_has_identical_logic_under_dense_and_sparse_rendering() {
+        let assets = Assets::synthetic();
+        let (mut live, mut view) = setup();
+        let (mut replay, mut replay_view) = setup();
+        for step in 0..100 {
+            if step == 4 {
+                handle(click(20, 190, 1), &mut live, &mut view, 640, false).unwrap();
+            }
+            if step == 24 {
+                view.panel.release();
+            }
+            if step == 30 || step == 40 {
+                handle(click(164, 190, 1), &mut live, &mut view, 640, false).unwrap();
+            }
+            crate::panel::advance_input(&mut live, &mut view, false).unwrap();
+            for input in live.inputs.iter().filter(|i| i.control_step == step) {
+                replay
+                    .queue(match &input.command {
+                        InputCommand::Pause => InputCommand::Pause,
+                        InputCommand::Resume => InputCommand::Resume,
+                        InputCommand::Custom(c) => InputCommand::Custom(*c),
+                    })
+                    .unwrap();
+            }
+            live.tick().unwrap();
+            replay.tick().unwrap();
+            view.frame(&assets, &live).unwrap();
+            if step % 7 == 0 {
+                replay_view.frame(&assets, &replay).unwrap();
+            }
+            assert_eq!(live.snapshot(), replay.snapshot());
+            assert_eq!(live.terrain(), replay.terrain());
+        }
+        assert_eq!(live.inputs, replay.inputs);
+        assert_eq!(live.scheduler.state().release_rate, 70);
     }
     #[test]
     fn result_controls_ignore_repeat_and_use_separate_scene_actions() {

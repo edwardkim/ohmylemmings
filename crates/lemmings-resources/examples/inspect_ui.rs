@@ -64,9 +64,9 @@ fn main() -> Result<(), Box<dyn Error>> {
             }
             let character = match kind {
                 MainUiImageKind::MenuGlyphs => Some(33 + index),
-                MainUiImageKind::PanelGlyphs => Some(usize::from(
-                    b"%0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ"[index],
-                )),
+                MainUiImageKind::PanelGlyphs | MainUiImageKind::VgaPanelGlyphs => Some(
+                    usize::from(b"%0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ"[index]),
+                ),
                 MainUiImageKind::DigitRight | MainUiImageKind::DigitLeft => Some(48 + index),
                 _ => None,
             }
