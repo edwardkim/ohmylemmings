@@ -70,11 +70,11 @@
   "validation": {
     "rust_tests": 359,
     "doc_tests": 27,
-    "python_tests": 53,
+    "python_tests": 54,
     "builder_behavior_tests": 12,
     "frame_brick_direction_combinations": 360,
     "desktop_new_tests": 5,
-    "python_new_tests": 6,
+    "python_new_tests": 7,
     "make_check_exit_code": 0,
     "make_check_elapsed_seconds": 378.189,
     "synthetic_cases": 8,
@@ -105,7 +105,10 @@
     ],
     "dos_building_action_bits": 128,
     "dos_initial_bricks": 12,
-    "unchanged_original_files_per_copy": 50
+    "unchanged_original_files_per_copy": 50,
+    "review_duplicate_recording_rejected": true,
+    "python_note": "Original full make check ran53 Python tests; the self-review duplicate-directory regression and final make check-python suite of54 passed. Rust/SDL implementation is unchanged.",
+    "review_dos_comparison": "assets/local/issue-34-dos-self-review/summary.json"
   },
   "source_files": [
     {
@@ -450,8 +453,8 @@
     },
     {
       "path": "tools/compare_builder_dos.py",
-      "size": 5570,
-      "sha256": "58bc38954ed727d27c63ab03ba29781aca3b0b46c28d56e01c217d71117e1c11"
+      "size": 5978,
+      "sha256": "d66d9a1f88c0211c427555b4ce7ab5919fce863323e89fb22829346df593e102"
     },
     {
       "path": "tools/compare_digger_dos.py",
@@ -580,8 +583,8 @@
     },
     {
       "path": "tools/tests/test_builder.py",
-      "size": 3588,
-      "sha256": "58b9690db81384ecbac6fcd56af341cbd6a36696d0fe83cc097bbb21c04c3451"
+      "size": 4650,
+      "sha256": "29431879734cdeb193d9820e1667cb53cffc7d018239d87c05a9a9841c2bdcbb"
     },
     {
       "path": "tools/tests/test_digger.py",
@@ -1384,6 +1387,81 @@
       "path": "assets/local/issue-34-dos-proof-3/runtime-seed.json",
       "size": 304,
       "sha256": "d573e8d88e6bd2a792398cf0c0b12b62187600e9a0f7c64a4f33d40547c38e26"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-1/comparison.json",
+      "size": 2454,
+      "sha256": "8658cd79695bf300319395564bb1661b3ffda556960f58e88dfbe86f6a963b4d"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-1/pair-000220.png",
+      "size": 11449,
+      "sha256": "7c38cf040099d27e12bd61d542ee6b7d8e6b46c68309ae759ef981bcfa3caa4f"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-1/pair-000220.ppm",
+      "size": 307215,
+      "sha256": "ab731f5418c1eca37a32fdd2c70967eaa6682a0082ec2043a48986e88c556fbf"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-1/pair-000260.png",
+      "size": 11542,
+      "sha256": "c4f2db3007dffcbc627e2e69db8737708de8e737fb24c93d3f1bfe4623a78f9b"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-1/pair-000260.ppm",
+      "size": 307215,
+      "sha256": "48339c306f8fe7874c97b5ef9c70f4e6f09319bbc64be2b6ec7ce443a7174f18"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-1/pair-000340.png",
+      "size": 11654,
+      "sha256": "87ecc90dda3dff255d2548dfa8d69c358993c550e054a1f2dc7edb1bccd645e2"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-1/pair-000340.ppm",
+      "size": 307215,
+      "sha256": "b316f8dcaf58325aee40f77c2dfb52e0d9c622c3079f058380409619c6ace6fb"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-2/comparison.json",
+      "size": 2454,
+      "sha256": "d9eb917c7b8ca91a0d925fa7c6bbe72adfbf53aa52bde103b0a3b43da7bc868e"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-2/pair-000220.png",
+      "size": 11449,
+      "sha256": "7c38cf040099d27e12bd61d542ee6b7d8e6b46c68309ae759ef981bcfa3caa4f"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-2/pair-000220.ppm",
+      "size": 307215,
+      "sha256": "ab731f5418c1eca37a32fdd2c70967eaa6682a0082ec2043a48986e88c556fbf"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-2/pair-000260.png",
+      "size": 11542,
+      "sha256": "c4f2db3007dffcbc627e2e69db8737708de8e737fb24c93d3f1bfe4623a78f9b"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-2/pair-000260.ppm",
+      "size": 307215,
+      "sha256": "48339c306f8fe7874c97b5ef9c70f4e6f09319bbc64be2b6ec7ce443a7174f18"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-2/pair-000340.png",
+      "size": 11654,
+      "sha256": "87ecc90dda3dff255d2548dfa8d69c358993c550e054a1f2dc7edb1bccd645e2"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/run-2/pair-000340.ppm",
+      "size": 307215,
+      "sha256": "b316f8dcaf58325aee40f77c2dfb52e0d9c622c3079f058380409619c6ace6fb"
+    },
+    {
+      "path": "assets/local/issue-34-dos-self-review/summary.json",
+      "size": 6106,
+      "sha256": "86b3f031155b598a833eabbf87e12ad16eee2dc86b413163f837817bda99309b"
     },
     {
       "path": "assets/local/issue-34-native-proof-2/F07-mouse/bash-masks.bin",
@@ -6209,6 +6287,21 @@
       "path": "assets/local/issue-34-reference-1/reference.provenance.json",
       "size": 3781,
       "sha256": "1f35980906c9bed624c97694d03adecdb628356bc363da871e89c73259b135b0"
+    },
+    {
+      "path": "assets/local/issue-34-review-validation/dos-comparison.log",
+      "size": 122,
+      "sha256": "842a9b6fb4a51f7cf253bd6fce6a4e06364276d8ece6acce02786b1d5aa9435c"
+    },
+    {
+      "path": "assets/local/issue-34-review-validation/duplicate-red.log",
+      "size": 1080,
+      "sha256": "e146869a0a536c41ecd902f90bac22429a7b8f9a73419bc225117b5d79ecc4f4"
+    },
+    {
+      "path": "assets/local/issue-34-review-validation/python-check.log",
+      "size": 9168,
+      "sha256": "53374429b78c76e22840d74aca9dd5db3fb6ea00af41d5f5b1494ecfca6db7d1"
     },
     {
       "path": "assets/local/issue-34-synthetic-screenshot-2/capture/bash-masks.bin",

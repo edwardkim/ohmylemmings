@@ -11,12 +11,30 @@ from compare_builder_dos import repeat_builder_verdict
 
 class BuilderTests(unittest.TestCase):
     def test_dos_verdict_requires_two_successes_with_the_same_execution_protocol(self):
-        good = dict(status='MATCH_VISUAL_ANCHORS', protocol_sha256='same')
-        self.assertEqual(repeat_builder_verdict([good, good]), 'MATCH_FULL_PLAYFIELD')
+        good = dict(status='MATCH_VISUAL_ANCHORS', protocol_sha256='same', recording='run-1')
+        second = good | dict(recording='run-2')
+        self.assertEqual(repeat_builder_verdict([good, second]), 'MATCH_FULL_PLAYFIELD')
         for rows in [[], [good], [good, good | dict(status='UNVERIFIED_VISUAL_ANCHORS')],
                      [good, good | dict(protocol_sha256='different')],
                      [good, dict(status='MATCH_VISUAL_ANCHORS')]]:
             self.assertEqual(repeat_builder_verdict(rows), 'UNVERIFIED')
+    def test_repeated_recording_and_path_aliases_cannot_count_as_independent_runs(self):
+        good = dict(status='MATCH_VISUAL_ANCHORS', protocol_sha256='same', recording='run-1')
+        for second in [good, good | dict(recording='./run-1'),
+                       good | dict(recording='nested/../run-1'),
+                       good | dict(recording=''), good | dict(recording=None),
+                       dict(status='MATCH_VISUAL_ANCHORS', protocol_sha256='same')]:
+            self.assertEqual(repeat_builder_verdict([good, second]), 'UNVERIFIED')
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            recording = root/'run-1'
+            recording.mkdir()
+            alias = root/'alias'
+            alias.symlink_to(recording, target_is_directory=True)
+            self.assertEqual(repeat_builder_verdict([
+                good | dict(recording=str(recording)), good | dict(recording=str(alias))]),
+                'UNVERIFIED')
+
     def test_fresh_runtime_preserves_every_byte_except_the_documented_counter(self):
         from hashlib import sha256
         original = bytes([9])+bytes(range(255))

@@ -15,7 +15,7 @@ Builder 할당과 수량, 12개 벽돌, Building/Shrugging 상태, 양방향 계
 - 최종 원본 Fun07 네이티브 4실행/1244상태/139캡처가 기준 함수·SDL readback과 일치했습니다. 실제 U키/마우스로 입력80의 ID0을 기록했습니다. 렌더 간격1/7·실시간 재생의 상태 서명은 `985c867c7211450e7fb36b116c0d686e29b11c35c439306cce56e3ce4afd3cc0`입니다.
 - 최종 DOS 두 실행의 1303개 숫자 샘플·4760게임 영상 프레임에서 수량20→19·Building0x80·벽돌12개 진입을 읽기 전용으로 관측했습니다. 220/260/340 전체320×160 장면×2회가 0픽셀 차이입니다. 정확한2배 픽셀/스캔라인·RGB565 정규화만 사용하며 커서 마스크·위치 이동·색 허용 오차는 없습니다.
 - 원본 Digger/Basher/Miner의 렌더 간격1/7 회귀 6재생/2046상태/146캡처와 기존 상태/삭제 서명이 일치합니다. F00 341상태의 서명 `3e56870904094448fdeab59715ce9c7ad96ec25deb9ff34017cd24058d74d4fe`도 유지합니다.
-- 최종 release 재빌드의 실행 파일 해시는 기존 네이티브 증거와 동일한 `d2a4c1768e56c7e47c917d9cacb970f0cbcf03684e710ea98bab060bf0358893`입니다. 원본50개·고정 소스46개와 DOS 두 실행 사본의 각50개 파일 불변을 확인했습니다. 109소스/1201산출물 해시와 출처·실행 조건·원본 불변 검증은 [Builder manifest](../../assets/manifests/builder.json)에 기록합니다.
+- 최종 release 재빌드의 실행 파일 해시는 기존 네이티브 증거와 동일한 `d2a4c1768e56c7e47c917d9cacb970f0cbcf03684e710ea98bab060bf0358893`입니다. 원본50개·고정 소스46개와 DOS 두 실행 사본의 각50개 파일 불변을 확인했습니다. 109소스/1219산출물 해시와 출처·실행 조건·원본 불변 검증은 [Builder manifest](../../assets/manifests/builder.json)에 기록합니다.
 
 ## 화면 자료
 
@@ -33,8 +33,8 @@ Builder 할당과 수량, 12개 벽돌, Building/Shrugging 상태, 양방향 계
 
 구현 `2039e329b29391ff0b82238571494404015904e2`의 [push CI](https://github.com/edwardkim/ohmylemmings/actions/runs/39200250629)와 [PR CI](https://github.com/edwardkim/ohmylemmings/actions/runs/39200279750)에서 정확한 head SHA·Rust native/Python tooling/WASM libraries 세 작업·실제 로그를 확인했습니다. Rust359/문서27/Python53·Builder16재생/6736상태/718캡처·기존 SDL/모델·clean-input/SDL SDK/잠금 의존 준비가 성공했습니다. 원격250개 파일의 모드/blob이 로컬 커밋과 같습니다.
 
-2026-10-19 사용자 지시에 따라 [PR #35](https://github.com/edwardkim/ohmylemmings/pull/35)를 self-review했습니다. 고정 원문의 할당·벽돌 배치·하위 이동/충돌·소진/상부 처리 순서, 복원 불변식·산술 오류 보존·ID 순 지형 관측, SDL 재질·객체 합성·일시정지/ID 입력 재생, 기준 호스트·golden·DOS 반복 판정과 보고 범위를 검토했습니다. 추가 코드 수정이 필요한 결함은 발견하지 못했습니다. 작성자 자체 검토 결과입니다.
+2026-10-19 사용자 지시에 따라 [PR #35](https://github.com/edwardkim/ohmylemmings/pull/35)를 self-review했습니다. 고정 원문의 할당·벽돌 배치·하위 이동/충돌·소진/상부 처리 순서, 복원 불변식·산술 오류 보존·ID 순 지형 관측, SDL 재질·객체 합성·일시정지/ID 입력 재생, 기준 호스트·golden·DOS 반복 판정과 보고 범위를 검토했습니다. 반복 DOS 판정에 같은 녹화 폴더를 두 번 지정하면 성공 두 회로 인정하는 검증 결함을 발견했습니다. 실패하는 회귀 테스트를 먼저 확인하고 정규화한 녹화 경로의 중복·빈 경로를 거부하도록 수정했습니다. 상대 경로와 심볼릭 링크 별칭도 검사합니다. 최종 `make check-python`의54개 테스트·기존 모델을 통과했으며, 수정한 도구로 기존의 서로 다른 두 녹화를 다시 비교해 전체 세 장면×2회의0픽셀 차이를 확인했습니다. Rust/SDL 구현과 기존 상태/화면 증거는 동일합니다. 작성자 자체 검토 결과입니다.
 
-최종 문서 커밋의 CI, 병합 SHA·#34 종료는 [이슈 기록](https://github.com/edwardkim/ohmylemmings/issues/34)에서 추적합니다. G07-04의 구현·검증·자체 검토를 마쳤으며 G07 전체는 진행 중입니다.
+최종 자체 검토 수정 커밋의 CI, 병합 SHA·#34 종료는 [이슈 기록](https://github.com/edwardkim/ohmylemmings/issues/34)에서 추적합니다. G07-04의 구현·검증·자체 검토를 마쳤으며 G07 전체는 진행 중입니다.
 
 [계약과 재현 명령](../tech_insights/issue-34_builder.md), [진행 기록](../working/issue-34_builder.md), [작업일지](../orders/20261019.md#issue-34).

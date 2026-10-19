@@ -15,7 +15,13 @@ def repeat_builder_verdict(rows):
             or any(r.get('status') != 'MATCH_VISUAL_ANCHORS'
                    or r.get('protocol_sha256') != rows[0]['protocol_sha256'] for r in rows)):
         return 'UNVERIFIED'
-    return 'MATCH_FULL_PLAYFIELD'
+    recordings = [r.get('recording') for r in rows]
+    if any(not isinstance(path, str) or not path for path in recordings):
+        return 'UNVERIFIED'
+    # Repeating one directory (including symlink/relative aliases) is not a
+    # second execution, even when its frames and protocol match perfectly.
+    paths = {Path(path).resolve() for path in recordings}
+    return 'MATCH_FULL_PLAYFIELD' if len(paths) == len(rows) else 'UNVERIFIED'
 
 
 def main():
