@@ -630,6 +630,7 @@ fn batch_updates_live_actors_in_strict_id_order_and_counts_each_removal_once() {
     assert_eq!(
         tick,
         ActorTick {
+            rescued: 0,
             active_before: 2,
             removed: 1,
             checking_objects: 1,
@@ -701,6 +702,7 @@ fn action_code(action: MotionAction) -> u8 {
         MotionAction::Climbing => 12,
         MotionAction::Hoisting => 13,
         MotionAction::Floating => 14,
+        MotionAction::Exiting => 15,
     }
 }
 fn removal_code(reason: Option<RemovalReason>) -> u8 {
@@ -709,6 +711,7 @@ fn removal_code(reason: Option<RemovalReason>) -> u8 {
         Some(RemovalReason::BottomBoundary) => 1,
         Some(RemovalReason::SplattingFinished) => 2,
         Some(RemovalReason::Exploded) => 3,
+        Some(RemovalReason::Rescued) => 4,
     }
 }
 fn put64(out: &mut Vec<u8>, v: u64) {
@@ -786,7 +789,8 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                             | MotionAction::Exploding
                             | MotionAction::Climbing
                             | MotionAction::Hoisting
-                            | MotionAction::Floating => unreachable!(),
+                            | MotionAction::Floating
+                            | MotionAction::Exiting => unreachable!(),
                         };
                         let fallen_values: &[_] = if action == MotionAction::Falling {
                             &[0, 60, 61]

@@ -1,6 +1,7 @@
 use core::fmt;
 
 pub const OBJECT_NONE: u8 = 128;
+pub const OBJECT_EXIT: u8 = 129;
 pub const OBJECT_FORCE_LEFT: u8 = 130;
 pub const OBJECT_FORCE_RIGHT: u8 = 131;
 pub const OBJECT_BLOCKER: u8 = 138;

@@ -29,3 +29,4 @@ check-desktop:
 	python3 tools/check_floater.py --binary target/release/lemmings-desktop
 	python3 tools/check_nuke.py --binary target/release/lemmings-desktop
 	python3 tools/check_skill_interactions.py --binary target/release/lemmings-desktop
+	python3 tools/check_exit.py --binary target/release/lemmings-desktop

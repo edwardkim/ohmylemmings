@@ -323,6 +323,38 @@ impl Assets {
         }
         scene
     }
+    pub fn synthetic_exit(drop: bool) -> Self {
+        let mut scene = Self::synthetic();
+        let floor = if drop { 140 } else { 100 };
+        if drop {
+            scene.entrances = vec![EntrancePoint { x: 40, y: 0 }];
+        }
+        for y in 0..scene.height {
+            for x in 0..scene.width {
+                scene.terrain[y * scene.width + x] = u8::from(y >= floor && x < 500);
+            }
+        }
+        let mut map = ObjectMapMut::new(
+            DOS_OBJECT_MAP_WIDTH,
+            DOS_OBJECT_MAP_HEIGHT,
+            -16,
+            -16,
+            &mut scene.object_map,
+        )
+        .unwrap();
+        for y in if drop { 60..144 } else { 96..104 } {
+            for x in if drop { 64..72 } else { 96..104 } {
+                map.write(x, y, lemmings_core::OBJECT_EXIT);
+            }
+        }
+        scene.title = if drop {
+            "Synthetic drop exit"
+        } else {
+            "Synthetic exit"
+        }
+        .into();
+        scene
+    }
     pub fn scene_with_terrain(
         &self,
         iteration: u64,
@@ -503,6 +535,39 @@ fn synthetic_countdown() -> [u8; 80] {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn exit_trigger_uses_compact_slot_fifteen_but_disables_slot_sixteen() {
+        let mut level = [0; LEVEL_RECORD_SIZE];
+        for offset in [1, 3, 5, 7] {
+            level[offset] = 1;
+        }
+        level[288..1888].fill(255);
+        level[32..40].copy_from_slice(&[0, 16, 0, 0, 0, 1, 0, 0]);
+        for slot in 1..=17 {
+            let at = 32 + slot * 8;
+            level[at..at + 2].copy_from_slice(&(16 + slot as u16 * 4).to_be_bytes());
+            level[at + 5] = 2;
+        }
+        let mut ground = [0; GROUND_RECORD_SIZE];
+        ground[56 + 14..56 + 21].copy_from_slice(&[0, 0, 1, 0, 1, 1, 1]);
+        let bytes = build_object_map(
+            LevelRecord::parse(&level).unwrap(),
+            GroundRecord::parse(&ground).unwrap(),
+        )
+        .unwrap();
+        let map = lemmings_core::ObjectMap::new(
+            DOS_OBJECT_MAP_WIDTH,
+            DOS_OBJECT_MAP_HEIGHT,
+            -16,
+            -16,
+            &bytes,
+        )
+        .unwrap();
+        assert_eq!(map.read(0, 0), 128);
+        assert_eq!(map.read(4, 0), lemmings_core::OBJECT_EXIT);
+        assert_eq!(map.read(64, 0), lemmings_core::OBJECT_EXIT);
+        assert_eq!(map.read(68, 0), 128);
+    }
     #[test]
     fn optional_original_particles_reject_bad_profiles_and_extract_the_exact_table() {
         let dir = std::env::temp_dir().join(format!("lemmings-particles-{}", std::process::id()));

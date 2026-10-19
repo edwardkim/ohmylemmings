@@ -77,3 +77,5 @@ MAIN.DAT 지형 마스크·카운트다운은 [G03-09 재현 명령](../mydocs/t
 - [Nuke 검증 매니페스트](manifests/nuke.json): #44의50개 원문 함수·순차 타이머/생성 중지·별도 DOS 제거 검사 순서·원본 Fun06·DOS 반복/기존8직업 회귀의 출처·해시를 기록합니다. 원본 파생물은 ignored 경로에 보존하며 fetch 입력이 아닙니다.
 
 - [직업 통합 회귀 매니페스트](manifests/skill_interactions.json): #46의2640할당 행렬·14혼합 사례28재생·50개 기준 함수와 합성 추적/캡처 출처·해시를 기록합니다. 새 DOS 관측은 없으며 fetch 입력이 아닙니다.
+
+- [출구·구출 검증 매니페스트](manifests/exit_rescue.json): #48의51개 기준 함수·합성9사례/18재생·원본 Fun01 구출·새 DOS read-only 관측과 출처·해시를 기록합니다. 확보용 fetch 입력이 아닙니다.

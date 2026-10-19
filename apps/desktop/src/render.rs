@@ -94,6 +94,7 @@ impl View {
                 MotionAction::Blocking => LemmingSpriteKind::Blocking,
                 MotionAction::Climbing => LemmingSpriteKind::Climbing,
                 MotionAction::Floating => LemmingSpriteKind::Umbrella,
+                MotionAction::Exiting => LemmingSpriteKind::Exiting,
                 MotionAction::Hoisting => LemmingSpriteKind::Hoisting,
                 MotionAction::OhNo => LemmingSpriteKind::OhNo,
                 MotionAction::Exploding => LemmingSpriteKind::Explosion,
@@ -185,6 +186,16 @@ impl View {
                 [140, 190, 170]
             },
         );
+        if session.has_exit() {
+            let caption = format!("SAVED {}", session.saved());
+            text(
+                &mut output,
+                WIDTH - caption.len() * 6 - 4,
+                176,
+                &caption,
+                [220, 228, 240],
+            );
+        }
         text(
             &mut output,
             4,
@@ -374,6 +385,7 @@ mod tests {
             (MotionAction::Climbing, 12),
             (MotionAction::Hoisting, 12),
             (MotionAction::Floating, 16),
+            (MotionAction::Exiting, 13),
         ] {
             for (timer, digit) in [(79, 5u8), (64, 4), (48, 3), (32, 2), (16, 1)] {
                 let mut assets = Assets::synthetic();
@@ -553,5 +565,32 @@ mod tests {
         .unwrap();
         s.actors.push(removed);
         assert_eq!(v.frame(&a, &s).unwrap(), frame);
+    }
+    #[test]
+    fn rescue_count_remains_visible_with_a_long_title_and_updates_after_exit() {
+        let mut assets = Assets::synthetic_exit(false);
+        assets.title = "A".repeat(120);
+        assets.config.total_lemmings = 1;
+        let mut s = Session::new(
+            assets.config,
+            assets.entrances.clone(),
+            assets.width,
+            assets.height,
+            assets.terrain.clone(),
+        )
+        .unwrap();
+        s.configure_blocker(0, assets.object_map.clone()).unwrap();
+        let mut view = View::new(0);
+        let before = view.frame(&assets, &s).unwrap();
+        let x = WIDTH - "SAVED 0".len() * 6 - 4;
+        let at = (176 * WIDTH + x + 1) * 3;
+        assert_eq!(&before[at..at + 3], &[220, 228, 240]);
+        for _ in 0..150 {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.saved(), 1);
+        let after = view.frame(&assets, &s).unwrap();
+        let digit = (176 * WIDTH + x + 6 * 6 + 1) * 3;
+        assert_ne!(&before[digit..digit + 3], &after[digit..digit + 3]);
     }
 }

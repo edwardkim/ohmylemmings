@@ -37,8 +37,8 @@ pub use simulation::{
 
 pub use simulation::{
     DOS_OBJECT_MAP_HEIGHT, DOS_OBJECT_MAP_ORIGIN, DOS_OBJECT_MAP_WIDTH, OBJECT_BLOCKER,
-    OBJECT_FORCE_LEFT, OBJECT_FORCE_RIGHT, OBJECT_NONE, ObjectMap, ObjectMapError, ObjectMapMut,
-    step_actors_with_objects,
+    OBJECT_EXIT, OBJECT_FORCE_LEFT, OBJECT_FORCE_RIGHT, OBJECT_NONE, ObjectMap, ObjectMapError,
+    ObjectMapMut, step_actors_with_objects,
 };
 
 pub use simulation::{BomberContext, step_actors_with_bomber};
