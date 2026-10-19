@@ -56,7 +56,7 @@ make check
 
 ## Digger
 
-왼쪽 클릭으로 레밍에게 Digger를 할당합니다. HUD의 DIG 수량은 성공 때만 줄어듭니다. 현재 Walking/Bashing/Mining 개체가 대상이며 출구/승패와 나머지 직업은 후속 구현입니다.
+왼쪽 클릭으로 레밍에게 Digger를 할당합니다. HUD의 DIG 수량은 성공 때만 줄어듭니다. 현재 Walking/Bashing/Mining 개체가 대상입니다. 출구/구출은 #48에서 구현했으며 승패는 후속입니다.
 
 재생 입력 예: `60 0 AssignDigger 0`. 기존 Pause/Resume/SetReleaseRate와 같은 control_step/sequence 순서를 사용합니다. 일시정지 중 할당은 가능하고 굴착은 진행 때 갱신합니다.
 
@@ -111,3 +111,9 @@ N키를 한 번 누르면 새 레밍 생성을 멈추고 기존 개체에 순서
 `--synthetic-nuke`는 자체 생성 Builder 경기장을 사용합니다. `nuke.jsonl`은 실행 상태/진행/다음 순서/최대 인원을 기록합니다. 기본 DOS NukeGlitch에 따라 HUD의 최대 인원이 이미 생성된 수로 바뀌며 구출률/승패는 아직 구현하지 않습니다. [계약·DOS 순서 차이·재현](../../mydocs/tech_insights/issue-44_nuke.md)을 참고합니다.
 
 현재 하단은 텍스트 HUD입니다. 원본 기술 선택 버튼·미니맵·구출률 등의 패널 통합은 G08 범위이며 원본 게임 영역320×160의 일치 검증과 구분합니다.
+
+## 출구·구출 / #48
+
+출구 트리거에 들어간 레밍은8프레임 애니메이션 후 제거되고 SAVED 수에 한 번 집계됩니다. 공중 Falling은 진입하지 않으며 착지와 Floating의 순서는 원본 계약을 따릅니다. `exit.jsonl`은 매 제어 경계의 `saved`와 진행 중인 `exiting` ID를 기록합니다.
+
+원본 없이 `--synthetic-exit` 또는 `--synthetic-exit-drop`으로 검사합니다. 원본 Fun01은 Digger 한 번으로10마리 구출 경로를 재생할 수 있습니다: 입력 파일에 `60 0 AssignDigger 0`을 넣고 `--level 1 --replay 파일 --steps 700`으로 실행합니다. [계약·재현·범위](../../mydocs/tech_insights/issue-48_exit_rescue.md)를 참고합니다. 위험물·승패/결과 화면·재시작·원본 패널/미니맵은 후속 절편입니다.

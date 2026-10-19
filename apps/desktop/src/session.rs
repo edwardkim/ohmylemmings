@@ -18,6 +18,8 @@ pub struct Session {
     explosion_mask: [u8; 44],
     visual_blast: Option<(Vec<u8>, Vec<u8>)>,
     object_map: Option<Vec<u8>>,
+    has_exit: bool,
+    rescued_this_tick: bool,
     brick_mask: Vec<u8>,
     mine_masks: [u8; 104],
     bash_masks: [u8; 160],
@@ -62,6 +64,8 @@ impl Session {
             explosion_mask: [0; 44],
             visual_blast: None,
             object_map: None,
+            has_exit: false,
+            rescued_this_tick: false,
             brick_mask: vec![0; width * height],
             mine_masks: [0; 104],
             bash_masks: [0; 160],
@@ -144,11 +148,36 @@ impl Session {
             &cells,
         )?;
         self.remaining_blockers = remaining;
+        self.has_exit = cells.contains(&OBJECT_EXIT);
         self.object_map = Some(cells);
         Ok(())
     }
     pub fn object_map_data(&self) -> &[u8] {
         self.object_map.as_deref().unwrap_or(&[])
+    }
+    pub fn has_exit(&self) -> bool {
+        self.has_exit
+    }
+    pub fn rescue_just_happened(&self) -> bool {
+        self.rescued_this_tick
+    }
+    pub fn saved(&self) -> usize {
+        self.actors
+            .iter()
+            .filter(|a| a.state().removed == Some(RemovalReason::Rescued))
+            .count()
+    }
+    pub fn exit_snapshot(&self) -> String {
+        let exiting = self
+            .actors
+            .iter()
+            .filter_map(|a| {
+                let s = a.state();
+                (s.action == MotionAction::Exiting && s.removed.is_none()).then(|| s.id.to_string())
+            })
+            .collect::<Vec<_>>()
+            .join(",");
+        format!("{{\"saved\":{},\"exiting\":[{exiting}]}}", self.saved())
     }
     pub fn blocker_snapshot(&self) -> String {
         let fields = self
@@ -320,6 +349,7 @@ impl Session {
     }
     pub fn tick(&mut self) -> Result<(), Box<dyn Error>> {
         let mut events = Vec::new();
+        let mut rescued_this_tick = false;
         let mut spawn = None;
         let schedule = InputSchedule::new(&self.inputs)?;
         let steel = TerrainMask::new(self.width, self.height, &self.steel)?;
@@ -449,6 +479,7 @@ impl Session {
             let brick_mask = &mut self.brick_mask;
             let width = self.width;
             let update_bricks = |state: ActorState, out: MotionOutcome| {
+                rescued_this_tick |= out.removal == Some(RemovalReason::Rescued);
                 for (dy, row) in out.explosion_erased.into_iter().enumerate() {
                     for dx in 0..16 {
                         if row & (1 << dx) != 0 {
@@ -503,6 +534,7 @@ impl Session {
             self.scheduler.update_nuking(&mut self.actors)?;
         }
         self.events = events;
+        self.rescued_this_tick = rescued_this_tick;
         Ok(())
     }
     pub fn due(&mut self, elapsed: Duration) -> Result<u64, Box<dyn Error>> {
@@ -570,6 +602,65 @@ fn snapshot(scheduler: &StartupScheduler, actors: &[Actor], events: &[String]) -
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn paused_exit_keeps_animation_and_rescue_count_then_rescues_exactly_once() {
+        let a = crate::assets::Assets::synthetic_exit(false);
+        let mut config = a.config;
+        config.total_lemmings = 1;
+        let mut s = Session::new(config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_blocker(0, a.object_map).unwrap();
+        s.configure_bomber(0, [0; 44]).unwrap();
+        while !s
+            .actors
+            .iter()
+            .any(|a| a.state().action == MotionAction::Exiting)
+        {
+            s.tick().unwrap();
+        }
+        let before = s.actors[0];
+        s.queue(InputCommand::Pause).unwrap();
+        for _ in 0..5 {
+            s.tick().unwrap();
+            assert_eq!(s.actors[0], before);
+            assert_eq!(s.saved(), 0);
+        }
+        s.queue(InputCommand::Resume).unwrap();
+        for _ in 0..8 {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.saved(), 1);
+        for _ in 0..20 {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.saved(), 1);
+        assert!(s.snapshot().contains("\"alive\":0,\"removed\":1"));
+    }
+
+    #[test]
+    fn nuke_can_arm_exit_without_recounting_the_removed_survivor() {
+        let a = crate::assets::Assets::synthetic_exit(false);
+        let mut config = a.config;
+        config.total_lemmings = 1;
+        let mut s = Session::new(config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_blocker(0, a.object_map).unwrap();
+        s.configure_bomber(0, [0; 44]).unwrap();
+        while !s
+            .actors
+            .iter()
+            .any(|a| a.state().action == MotionAction::Exiting)
+        {
+            s.tick().unwrap();
+        }
+        s.queue(InputCommand::Custom(StartupCommand::Nuke)).unwrap();
+        s.tick().unwrap();
+        assert_eq!(s.actors[0].state().explosion_timer, 79);
+        for _ in 0..100 {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.saved(), 1);
+        assert_eq!(s.remaining_bombers, 0);
+        assert!(!s.scheduler.nuke_state().assigning);
+    }
     fn session() -> Session {
         Session::new(
             StartupConfig {

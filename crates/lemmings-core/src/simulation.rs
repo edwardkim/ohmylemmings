@@ -24,7 +24,8 @@ pub use motion::{
 
 pub use objects::{
     DOS_OBJECT_MAP_HEIGHT, DOS_OBJECT_MAP_ORIGIN, DOS_OBJECT_MAP_WIDTH, OBJECT_BLOCKER,
-    OBJECT_FORCE_LEFT, OBJECT_FORCE_RIGHT, OBJECT_NONE, ObjectMap, ObjectMapError, ObjectMapMut,
+    OBJECT_EXIT, OBJECT_FORCE_LEFT, OBJECT_FORCE_RIGHT, OBJECT_NONE, ObjectMap, ObjectMapError,
+    ObjectMapMut,
 };
 
 pub use motion::{BomberContext, step_actors_with_bomber};

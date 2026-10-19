@@ -21,7 +21,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nF/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nF/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     synthetic: bool,
@@ -30,6 +30,7 @@ struct Options {
     blocker_scene: bool,
     climber_scene: bool,
     floater_scene: bool,
+    exit_scene: Option<bool>,
     level: u8,
     steps: Option<u64>,
     fast: bool,
@@ -50,6 +51,7 @@ impl Options {
             blocker_scene: false,
             climber_scene: false,
             floater_scene: false,
+            exit_scene: None,
             level: 1,
             steps: None,
             fast: false,
@@ -64,6 +66,10 @@ impl Options {
             match flag.as_str() {
                 "--help" | "-h" => return Ok(None),
                 "--synthetic" => o.synthetic = true,
+                "--synthetic-exit" | "--synthetic-exit-drop" => {
+                    o.synthetic = true;
+                    o.exit_scene = Some(flag == "--synthetic-exit-drop");
+                }
                 "--synthetic-basher" => {
                     o.synthetic = true;
                     o.basher_scene = true;
@@ -161,6 +167,7 @@ struct Capture {
     climber_trace: BufWriter<File>,
     floater_trace: BufWriter<File>,
     nuke_trace: BufWriter<File>,
+    exit_trace: BufWriter<File>,
     previous_object_map: Vec<u8>,
     previous_terrain: Vec<u8>,
 }
@@ -191,6 +198,12 @@ impl Capture {
             trace,
             previous_terrain: Vec::new(),
             previous_object_map: Vec::new(),
+            exit_trace: BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(root.join("exit.jsonl"))?,
+            ),
             nuke_trace: BufWriter::new(
                 OpenOptions::new()
                     .write(true)
@@ -249,6 +262,7 @@ impl Capture {
     }
     fn snapshot(&mut self, s: &Session) -> Result<(), Box<dyn Error>> {
         writeln!(self.trace, "{}", s.snapshot())?;
+        writeln!(self.exit_trace, "{}", s.exit_snapshot())?;
         writeln!(self.bomber_trace, "{}", s.bomber_snapshot())?;
         writeln!(self.climber_trace, "{}", s.climber_snapshot())?;
         writeln!(self.floater_trace, "{}", s.floater_snapshot())?;
@@ -441,6 +455,12 @@ fn climber_capture(s: &Session) -> bool {
         ) && matches!(a.frame, 0 | 3 | 4 | 7)
     })
 }
+fn exit_capture(s: &Session) -> bool {
+    s.rescue_just_happened()
+        || s.actors.iter().any(|a| {
+            a.state().action == lemmings_core::MotionAction::Exiting && a.state().removed.is_none()
+        })
+}
 fn floater_capture(s: &Session) -> bool {
     s.inputs.iter().any(|i| {
         matches!(
@@ -454,7 +474,9 @@ fn floater_capture(s: &Session) -> bool {
     })
 }
 fn run(options: Options) -> Result<(), Box<dyn Error>> {
-    let assets = if options.floater_scene {
+    let assets = if let Some(drop) = options.exit_scene {
+        Assets::synthetic_exit(drop)
+    } else if options.floater_scene {
         Assets::synthetic_floater()
     } else if options.climber_scene {
         Assets::synthetic_climber()
@@ -659,6 +681,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
                     || bomber_capture(&session)
                     || climber_capture(&session)
                     || floater_capture(&session)
+                    || exit_capture(&session)
                 {
                     break;
                 }
@@ -671,6 +694,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             || bomber_capture(&session)
             || climber_capture(&session)
             || floater_capture(&session)
+            || exit_capture(&session)
             || session.actors.iter().any(|a| {
                 a.state().action == lemmings_core::MotionAction::Building
                     && matches!(a.state().frame, 0 | 9)

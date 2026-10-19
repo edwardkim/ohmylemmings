@@ -56,11 +56,17 @@ pub enum MotionAction {
     Climbing,
     Hoisting,
     Floating,
+    Exiting,
 }
 impl MotionAction {
     pub const fn frame_count(self) -> u8 {
         match self {
-            Self::Walking | Self::Shrugging | Self::Climbing | Self::Hoisting | Self::Floating => 8,
+            Self::Walking
+            | Self::Shrugging
+            | Self::Climbing
+            | Self::Hoisting
+            | Self::Floating
+            | Self::Exiting => 8,
             Self::Jumping => 1,
             Self::Falling => 4,
             Self::Splatting | Self::Digging | Self::Building | Self::Blocking | Self::OhNo => 16,
@@ -77,7 +83,7 @@ impl MotionAction {
     }
     fn foot_y(self) -> i32 {
         match self {
-            Self::Building | Self::Mining => 13,
+            Self::Building | Self::Mining | Self::Exiting => 13,
             Self::Digging | Self::Climbing | Self::Hoisting => 12,
             Self::Exploding => 25,
             Self::Floating => 16,
@@ -90,6 +96,7 @@ pub enum RemovalReason {
     BottomBoundary,
     SplattingFinished,
     Exploded,
+    Rescued,
 }
 
 /// Stable actor record. Coordinates are the foot, not sprite top-left. Removed
@@ -182,7 +189,7 @@ impl fmt::Display for MotionError {
             ),
             Self::InvalidBricks => f.write_str("only building retains one to twelve bricks"),
             Self::Frame { action, frame } => write!(f, "frame {frame} is outside {action:?}"),
-            Self::Direction => f.write_str("stopped direction must match splatting"),
+            Self::Direction => f.write_str("stopped direction is invalid for a moving action"),
             Self::InvalidFallen => f.write_str("only falling may retain a fall counter"),
             Self::InvalidRemoval => f.write_str("removal reason is inconsistent with actor state"),
             Self::EntranceCount(n) => write!(f, "entrance count {n} exceeds 4"),
@@ -294,7 +301,10 @@ impl Actor {
             || (state.blocker_saved.is_some()
                 && !matches!(
                     state.action,
-                    MotionAction::Blocking | MotionAction::OhNo | MotionAction::Exploding
+                    MotionAction::Blocking
+                        | MotionAction::OhNo
+                        | MotionAction::Exploding
+                        | MotionAction::Exiting
                 ))
         {
             return Err(MotionError::InvalidBlockerState);
@@ -323,8 +333,15 @@ impl Actor {
                 frame: state.frame,
             });
         }
-        if (state.direction == MotionDirection::Stopped)
-            != (state.action == MotionAction::Splatting)
+        if (state.action == MotionAction::Splatting && state.direction != MotionDirection::Stopped)
+            || (state.direction == MotionDirection::Stopped
+                && !matches!(
+                    state.action,
+                    MotionAction::Splatting
+                        | MotionAction::Exiting
+                        | MotionAction::OhNo
+                        | MotionAction::Exploding
+                ))
         {
             return Err(MotionError::Direction);
         }
@@ -355,6 +372,9 @@ impl Actor {
                 state.action == MotionAction::Splatting
                     && state.frame == 15
                     && state.end_of_animation
+            }
+            Some(RemovalReason::Rescued) => {
+                state.action == MotionAction::Exiting && state.frame == 7 && state.end_of_animation
             }
         };
         if !valid_removal {
@@ -401,6 +421,12 @@ impl Actor {
             ..MotionOutcome::default()
         };
         match s.action {
+            MotionAction::Exiting => {
+                result.check_objects = false;
+                if s.end_of_animation {
+                    remove(&mut s, &mut result, RemovalReason::Rescued);
+                }
+            }
             MotionAction::Walking => {
                 s.x =
                     s.x.checked_add(s.direction.delta())
@@ -531,7 +557,10 @@ fn transition(s: &mut ActorState, action: MotionAction, rules: MotionRules) {
         s.float_index = 0;
     }
     s.walking_once = false;
-    if !matches!(action, MotionAction::OhNo | MotionAction::Exploding) {
+    if !matches!(
+        action,
+        MotionAction::OhNo | MotionAction::Exploding | MotionAction::Exiting
+    ) {
         s.blocker_saved = None;
     }
     s.new_digger = action == MotionAction::Digging;
@@ -574,6 +603,8 @@ fn remove(s: &mut ActorState, out: &mut MotionOutcome, reason: RemovalReason) {
 pub struct ActorTick {
     pub active_before: usize,
     pub removed: usize,
+    /// Rescues are also removals, emitted only on the Exiting completion tick.
+    pub rescued: usize,
     pub checking_objects: usize,
     pub splats_started: usize,
 }
@@ -619,6 +650,7 @@ pub fn step_actors(
             .expect("validated immutable motion preflight");
         tick.active_before += 1;
         tick.removed += usize::from(outcome.removal.is_some());
+        tick.rescued += usize::from(outcome.removal == Some(RemovalReason::Rescued));
         tick.checking_objects += usize::from(outcome.check_objects);
         tick.splats_started += usize::from(outcome.splat_started);
         emit(actor.state, outcome);

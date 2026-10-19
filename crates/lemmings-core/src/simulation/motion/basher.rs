@@ -213,6 +213,7 @@ pub(super) fn step_mutating(
         let out = advance(actor)?;
         tick.active_before += 1;
         tick.removed += usize::from(out.removal.is_some());
+        tick.rescued += usize::from(out.removal == Some(RemovalReason::Rescued));
         tick.checking_objects += usize::from(out.check_objects);
         tick.splats_started += usize::from(out.splat_started);
         emit(actor.state, out);

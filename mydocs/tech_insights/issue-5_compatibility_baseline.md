@@ -156,3 +156,7 @@ F01의 첫 Walking 뒤 입력 경계는 실제 하네스의 control_step=60·seq
 ## G06-03 보정 / #30
 
 [#30](issue-30_dos_differences.md)에서 F00 전체 플레이 영역의 일곱 장면을 원본 세 영상과 정확히 대조했습니다. 연속 객체 위상 +2를 보정하고 데스크톱의 물리 실행 간격을 GUI/VGA 5 IRQ 기준으로 분리했습니다. 코어의 게임 시계 17호출/초는 논리 단위와 참조 pacing이며 원작 벽시계 실행률을 인증하는 값이 아닙니다. -x는 다른 타이머 경로입니다. 제한된 읽기 전용 메모리 관측은 전체 atomic 상태 추적/입력 틱 인증이 아닙니다. F01의 native boundary 60과 DOS counter를 동일시하지 않습니다. 상세 범위는 [교정 manifest](../../assets/manifests/dos_calibration.json)에 기록합니다.
+
+## G08-01 출구·구출 후속 기록 / #48
+
+[#48](issue-48_exit_rescue.md)은 COMP-09의 착지 Splat/출구 우선순위와 COMP-10의 입구 제외 객체0..15/16 경계·Exiting/구출 수를 구현했습니다. F01 Digger 입력60은 세 실행에서10마리 구출까지 일치하고 실제 클릭61은 별도 입력으로 대조했습니다. 새 DOS 두 실행의 출구9장면과 read-only 수치도 확인했습니다. COMP-10의 위험물/함정, COMP-11/13의 구출률·승패, COMP-14 포인터, COMP-18 최종 결과·전체 완주는 아직 완료하지 않습니다. [결과·한계](../reports/issue-48_exit_rescue.md)를 따릅니다.

@@ -157,7 +157,7 @@ impl Actor {
                 let timer = next.state.explosion_timer;
                 next.state.explosion_timer = 0;
                 out = next.advance_with_objects(terrain, context.motion, map)?;
-                if next.state.action != MotionAction::Splatting {
+                if !out.splat_started && next.state.action != MotionAction::Splatting {
                     next.state.explosion_timer = timer;
                 }
             }
@@ -188,6 +188,7 @@ pub fn step_actors_with_bomber(
         }
         tick.active_before += 1;
         tick.removed += usize::from(out.removal.is_some());
+        tick.rescued += usize::from(out.removal == Some(RemovalReason::Rescued));
         tick.checking_objects += usize::from(out.check_objects);
         tick.splats_started += usize::from(out.splat_started);
         emit(actor.state, out);
