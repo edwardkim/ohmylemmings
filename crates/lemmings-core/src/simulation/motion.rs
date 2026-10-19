@@ -5,6 +5,7 @@ mod blocker;
 pub use blocker::step_actors_with_objects;
 mod bomber;
 mod builder;
+mod climber;
 pub use bomber::{BomberContext, step_actors_with_bomber};
 mod digger;
 mod miner;
@@ -51,11 +52,13 @@ pub enum MotionAction {
     Blocking,
     OhNo,
     Exploding,
+    Climbing,
+    Hoisting,
 }
 impl MotionAction {
     pub const fn frame_count(self) -> u8 {
         match self {
-            Self::Walking | Self::Shrugging => 8,
+            Self::Walking | Self::Shrugging | Self::Climbing | Self::Hoisting => 8,
             Self::Jumping => 1,
             Self::Falling => 4,
             Self::Splatting | Self::Digging | Self::Building | Self::Blocking | Self::OhNo => 16,
@@ -65,12 +68,12 @@ impl MotionAction {
         }
     }
     fn loops(self) -> bool {
-        matches!(self, Self::Walking | Self::Falling)
+        matches!(self, Self::Walking | Self::Falling | Self::Climbing)
     }
     fn foot_y(self) -> i32 {
         match self {
             Self::Building | Self::Mining => 13,
-            Self::Digging => 12,
+            Self::Digging | Self::Climbing | Self::Hoisting => 12,
             Self::Exploding => 25,
             _ => 10,
         }
@@ -84,7 +87,7 @@ pub enum RemovalReason {
 }
 
 /// Stable actor record. Coordinates are the foot, not sprite top-left. Removed
-/// records retain their last action/position and are never updated again.
+/// records retain their last action/position; explosion particle counters may advance.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct ActorState {
     pub id: u32,
@@ -99,6 +102,9 @@ pub struct ActorState {
     pub new_digger: bool,
     pub bricks_left: u8,
     pub blocker_saved: Option<[u8; 9]>,
+    pub is_climber: bool,
+    /// DOS AssignClimber while shrugging changes action, preserving Once animation.
+    pub walking_once: bool,
     pub explosion_timer: u8,
     pub particle_timer: u8,
     pub particle_frame: u8,
@@ -109,11 +115,13 @@ pub struct ActorState {
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct MotionRules {
     pub faller_starts_with_three: bool,
+    pub assign_climber_shrugger_bug: bool,
 }
 impl Default for MotionRules {
     fn default() -> Self {
         Self {
             faller_starts_with_three: true,
+            assign_climber_shrugger_bug: true,
         }
     }
 }
@@ -140,6 +148,7 @@ pub enum MotionError {
     ObjectMapRequired,
     InvalidBlockerState,
     InvalidBomberState,
+    InvalidClimberState,
     BomberContextRequired,
 }
 impl fmt::Display for MotionError {
@@ -147,6 +156,9 @@ impl fmt::Display for MotionError {
         match self {
             Self::MutableTerrainRequired => {
                 f.write_str("terrain-changing jobs require mutable terrain")
+            }
+            Self::InvalidClimberState => {
+                f.write_str("climbing/hoisting or stale walking animation requires climber ability")
             }
             Self::InvalidBomberState => f.write_str("invalid bomber timer or particle state"),
             Self::BomberContextRequired => {
@@ -235,6 +247,8 @@ impl Actor {
                 new_digger: false,
                 bricks_left: 0,
                 blocker_saved: None,
+                is_climber: false,
+                walking_once: false,
                 explosion_timer: 0,
                 particle_timer: 0,
                 particle_frame: 0,
@@ -249,6 +263,14 @@ impl Actor {
     /// Arbitrary i32 coordinates are accepted; later arithmetic errors are
     /// explicit and leave the complete record unchanged.
     pub fn from_state(state: ActorState, rules: MotionRules) -> Result<Self, MotionError> {
+        if (matches!(
+            state.action,
+            MotionAction::Climbing | MotionAction::Hoisting
+        ) && !state.is_climber)
+            || (state.walking_once && (!state.is_climber || state.action != MotionAction::Walking))
+        {
+            return Err(MotionError::InvalidClimberState);
+        }
         if (state.action == MotionAction::Blocking && state.blocker_saved.is_none())
             || (state.blocker_saved.is_some()
                 && !matches!(
@@ -350,7 +372,7 @@ impl Actor {
             s.end_of_animation = false;
         } else {
             s.end_of_animation = true;
-            if s.action.loops() {
+            if s.action.loops() && !s.walking_once {
                 s.frame = 0;
             }
         }
@@ -365,6 +387,7 @@ impl Actor {
                         .ok_or(MotionError::CoordinateOverflow)?;
                 if !(0..=1647).contains(&s.x) {
                     s.direction = s.direction.reverse();
+                    s.walking_once = false;
                 } else if pixel(terrain, s.x, i64::from(s.y), 0) {
                     let (mut dy, mut new_y) = (0, s.y);
                     while dy <= 6 && pixel(terrain, s.x, i64::from(new_y) - 1, -dy - 1) {
@@ -372,7 +395,12 @@ impl Actor {
                         new_y = add_y(new_y, -1)?;
                     }
                     if dy > 6 {
-                        s.direction = s.direction.reverse();
+                        if s.is_climber {
+                            transition(&mut s, MotionAction::Climbing, self.rules);
+                        } else {
+                            s.direction = s.direction.reverse();
+                            s.walking_once = false;
+                        }
                     } else {
                         if dy >= 3 {
                             transition(&mut s, MotionAction::Jumping, self.rules);
@@ -398,6 +426,9 @@ impl Actor {
                         remove(&mut s, &mut result, RemovalReason::BottomBoundary);
                     }
                 }
+            }
+            MotionAction::Climbing | MotionAction::Hoisting => {
+                climber::advance(&mut s, terrain, self.rules, &mut result)?;
             }
             MotionAction::Jumping => {
                 let mut dy = 0;
@@ -469,6 +500,7 @@ fn transition(s: &mut ActorState, action: MotionAction, rules: MotionRules) {
         return;
     }
     s.action = action;
+    s.walking_once = false;
     if !matches!(action, MotionAction::OhNo | MotionAction::Exploding) {
         s.blocker_saved = None;
     }
@@ -496,6 +528,7 @@ fn top(s: &mut ActorState, rules: MotionRules) {
     if i64::from(s.y) - i64::from(foot) < -5 {
         s.y = foot - 7;
         s.direction = s.direction.reverse();
+        s.walking_once = false;
         if s.action == MotionAction::Jumping {
             transition(s, MotionAction::Walking, rules);
         }

@@ -14,6 +14,8 @@ Bomber 할당/수량·카운트다운·기존 행동 병행·OhNo/폭발·지형
 
 독립된 DOS proof-2/3의1365샘플·4761게임 프레임과130/146/162/195/196/260/300/340 전체320×160 장면×2회가 일치합니다. 숫자 앵커와 폭발 지형의 한 프레임 표시 지연을 실패 테스트 후 보정했습니다. self-review 결과와 제외한 준비/중간 실행은 [보고서](../reports/issue-38_bomber.md), 계약·재현은 [기술 기록](../tech_insights/issue-38_bomber.md), 출처/해시는 [manifest](../../assets/manifests/bomber.json)에 기록합니다.
 
-## 통합 절차
+## 통합 결과
 
-자체 검토·문서/해시 확인 후 PR을 게시합니다. 정확한 PR HEAD의 push/PR CI 세 작업과 실제 로그·원격 파일을 확인하고 self-review를 기록합니다. 해당 HEAD만 병합한 뒤 main의 세 CI 작업·이슈 종료·상위 진행 상태를 확인합니다. 최종 통합 기록은 [#38](https://github.com/edwardkim/ohmylemmings/issues/38)에서 추적합니다. 다음 후보는 새 이슈 등록 후 Climber이며 G07 전체는 진행 중입니다.
+[PR #39](https://github.com/edwardkim/ohmylemmings/pull/39)를 self-review 후 병합했습니다. 검증한 HEAD `56188a20115c78e16668cddeebae7ca3cc2d4124`와 병합 main `1438c74d9f0a2263dbe6d77f08d6618927ee7291`의 트리가 같음을 확인했습니다. push/PR/main CI 세 작업과 실제 로그·원격281파일·130소스/1587산출물 해시를 확인하고 #38을 종료했습니다. [최종 통합 기록](https://github.com/edwardkim/ohmylemmings/issues/38#issuecomment-6261524793)에 근거를 남겼습니다.
+
+사용자가 E키로 Bomber가 되는 것을 직접 확인했습니다. 사용자 확인은 E키 선택/할당 범위로 기록합니다. 다음 계획 항목은 Climber이며 G07 전체는 진행 중입니다.

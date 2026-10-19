@@ -28,6 +28,8 @@ fn actor(action: MotionAction, id: u32, x: i32, y: i32) -> Actor {
                 0
             },
             blocker_saved: None,
+            is_climber: false,
+            walking_once: false,
             explosion_timer: 0,
             particle_timer: 0,
             particle_frame: 0,
@@ -379,6 +381,8 @@ fn missing_map_invalid_restoration_bad_ids_and_motion_errors_preserve_all_record
     for state in [
         ActorState {
             blocker_saved: None,
+            is_climber: false,
+            walking_once: false,
             explosion_timer: 0,
             particle_timer: 0,
             particle_frame: 0,
@@ -417,6 +421,8 @@ fn missing_map_invalid_restoration_bad_ids_and_motion_errors_preserve_all_record
             x: i32::MAX,
             action: MotionAction::Walking,
             blocker_saved: None,
+            is_climber: false,
+            walking_once: false,
             explosion_timer: 0,
             particle_timer: 0,
             particle_frame: 0,

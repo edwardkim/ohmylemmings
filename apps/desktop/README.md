@@ -1,6 +1,6 @@
 # Desktop preview
 
-Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder·Blocker·Bomber 할당을 지원합니다. 출구 판정·승패·음향은 후속 구현입니다.
+Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder·Blocker·Bomber·Climber 할당을 지원합니다. 출구 판정·승패·음향은 후속 구현입니다.
 
 ## 준비와 실행
 
@@ -21,7 +21,7 @@ cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/lo
 
 | 키 | 동작 |
 |---|---|
-| E / K / U / M / B / D | Bomber / Blocker / Builder / Miner / Basher / Digger 선택 |
+| C / E / K / U / M / B / D | Climber / Bomber / Blocker / Builder / Miner / Basher / Digger 선택 |
 | 왼쪽 클릭 | 선택한 직업을 가까운 레밍에 할당 |
 | Space | 일시정지/재개 |
 | Up / Down | 생성 속도 +1 / -1, 레벨 초기값~99 |
@@ -89,4 +89,10 @@ make check
 
 `--level 6`은 Fun06 “A task for blockers and bombers”를 엽니다. E키로 Bomber를 선택하고 살아 있는 레밍을 클릭하면 수량을 하나 소비하고79틱 카운트다운을 시작합니다. 기존 행동을 유지하다 OhNo/폭발로 전환하고 지형을 삭제합니다. Blocker의 방향 전환 영역도 복원합니다. 재생 예는 `80 0 AssignBlocker 0`과 `100 0 AssignBomber 0`입니다.
 
-원본 없이 `--synthetic-bomber`로 합성 장면을 실행합니다. `bomber.jsonl`은 수량/카운트다운/입자 카운터를 기록하며 `explosion-mask.bin`과 기존 캡처 파일로 재현합니다. 원본50개를 확보한 환경은 기존 `VGALEMMI.EXE`의 입자 표를 읽습니다. EXE가 없으면 입자 그림을 생략하고, 제공한 EXE의 크기/MZ 프로필이 다르면 오류를 반환합니다. 원본 확보 시 해시 검증을 수행하세요. [계약·기준 함수·DOS 대조](../../mydocs/tech_insights/issue-38_bomber.md)를 참고합니다. Climber/Floater·Nuke·완주 판정은 후속입니다.
+원본 없이 `--synthetic-bomber`로 합성 장면을 실행합니다. `bomber.jsonl`은 수량/카운트다운/입자 카운터를 기록하며 `explosion-mask.bin`과 기존 캡처 파일로 재현합니다. 원본50개를 확보한 환경은 기존 `VGALEMMI.EXE`의 입자 표를 읽습니다. EXE가 없으면 입자 그림을 생략하고, 제공한 EXE의 크기/MZ 프로필이 다르면 오류를 반환합니다. 원본 확보 시 해시 검증을 수행하세요. [계약·기준 함수·DOS 대조](../../mydocs/tech_insights/issue-38_bomber.md)를 참고합니다. Floater·Nuke·완주 판정은 후속입니다.
+
+## Climber / #40
+
+`--level 4`는 Fun04 “Now use miners and climbers”를 엽니다. C키로 Climber를 선택하고 레밍을 클릭하면 성공할 때만 수량을 하나 소비하고 영구 능력을 켭니다. 기존 행동을 유지하며 Walking 중 높은 벽에 닿으면 Climbing, 턱을 만나면 Hoisting으로 전환합니다. 머리 돌출 지형에는 반전·낙하합니다. 이 Fun04 경로는 Hoisting 이전에 반전하는 원본 동작을 재현합니다. 재생 예는 `80 0 AssignClimber 0`입니다.
+
+원본 없이 `--synthetic-climber`로 좌/우 벽과 Hoisting을 확인합니다. `climber.jsonl`은 수량과 각 ID의 영구 능력/Walking Once 애니메이션 표지를 기록합니다. DOS의 Shrugging 중 할당 버그도 유지합니다. [계약·재현·관측 범위](../../mydocs/tech_insights/issue-40_climber.md)를 참고합니다. Floater/Nuke·완주·음향은 후속입니다.
