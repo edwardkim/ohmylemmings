@@ -165,7 +165,13 @@ impl View {
             pixel.copy_from_slice(&[20, 24, 32]);
         }
         text(&mut output, 4, 164, &title, [220, 228, 240]);
-        let controls = if session.scheduler.nuke_state().is_nuked {
+        let controls = if let Some(result) = session.result() {
+            if result.success {
+                "WON | ESC QUIT"
+            } else {
+                "LOST | ESC QUIT"
+            }
+        } else if session.scheduler.nuke_state().is_nuked {
             if step.paused {
                 "NUKE ACTIVE | SPACE RESUME"
             } else {
@@ -189,8 +195,19 @@ impl View {
                 [140, 190, 170]
             },
         );
-        if session.has_exit() {
-            let caption = format!("SAVED {}", session.saved());
+        if session.has_exit() || session.completion_rules().is_some() {
+            let caption = if let Some(rules) = session.completion_rules() {
+                format!(
+                    "{}% / {}%",
+                    lemmings_core::percentage(
+                        session.saved() as u32,
+                        session.scheduler.nuke_state().max_lemmings
+                    ),
+                    rules.target_percent()
+                )
+            } else {
+                format!("SAVED {}", session.saved())
+            };
             text(
                 &mut output,
                 WIDTH - caption.len() * 6 - 4,
@@ -320,6 +337,7 @@ fn glyph(c: char) -> [u8; 7] {
         ':' => [0, 4, 4, 0, 4, 4, 0],
         '!' => [4, 4, 4, 4, 4, 0, 4],
         '/' => [1, 1, 2, 4, 8, 16, 16],
+        '%' => [25, 25, 2, 4, 8, 19, 19],
         '|' => [4; 7],
         _ => [0; 7],
     }

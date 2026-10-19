@@ -21,7 +21,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nF/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nF/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     synthetic: bool,
@@ -32,6 +32,7 @@ struct Options {
     floater_scene: bool,
     exit_scene: Option<bool>,
     hazard_scene: Option<(u8, bool)>,
+    outcome_scene: Option<String>,
     level: u8,
     steps: Option<u64>,
     fast: bool,
@@ -54,6 +55,7 @@ impl Options {
             floater_scene: false,
             exit_scene: None,
             hazard_scene: None,
+            outcome_scene: None,
             level: 1,
             steps: None,
             fast: false,
@@ -68,6 +70,19 @@ impl Options {
             match flag.as_str() {
                 "--help" | "-h" => return Ok(None),
                 "--synthetic" => o.synthetic = true,
+                "--synthetic-outcome" => {
+                    let kind = args
+                        .next()
+                        .ok_or("--synthetic-outcome needs win|loss|clock|particles|zero|mixed")?;
+                    if !matches!(
+                        kind.as_str(),
+                        "win" | "loss" | "clock" | "particles" | "zero" | "mixed"
+                    ) {
+                        return Err("unknown outcome scenario".into());
+                    }
+                    o.synthetic = true;
+                    o.outcome_scene = Some(kind);
+                }
                 "--synthetic-water-late"
                 | "--synthetic-fire-late"
                 | "--synthetic-water"
@@ -194,6 +209,7 @@ struct Capture {
     nuke_trace: BufWriter<File>,
     exit_trace: BufWriter<File>,
     hazards_trace: BufWriter<File>,
+    completion_trace: BufWriter<File>,
     previous_object_map: Vec<u8>,
     previous_terrain: Vec<u8>,
 }
@@ -224,6 +240,12 @@ impl Capture {
             trace,
             previous_terrain: Vec::new(),
             previous_object_map: Vec::new(),
+            completion_trace: BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(root.join("completion.jsonl"))?,
+            ),
             hazards_trace: BufWriter::new(
                 OpenOptions::new()
                     .write(true)
@@ -296,6 +318,8 @@ impl Capture {
         writeln!(self.trace, "{}", s.snapshot())?;
         writeln!(self.exit_trace, "{}", s.exit_snapshot())?;
         writeln!(self.hazards_trace, "{}", s.hazards_snapshot())?;
+        writeln!(self.completion_trace, "{}", s.completion_snapshot())?;
+        self.completion_trace.flush()?;
         writeln!(self.bomber_trace, "{}", s.bomber_snapshot())?;
         writeln!(self.climber_trace, "{}", s.climber_snapshot())?;
         writeln!(self.floater_trace, "{}", s.floater_snapshot())?;
@@ -522,8 +546,25 @@ fn floater_capture(s: &Session) -> bool {
             && matches!(a.float_index, 0 | 1 | 4 | 5 | 8 | 15)
     })
 }
+fn apply_replay_boundary(
+    session: &mut Session,
+    replay: &mut std::iter::Peekable<std::vec::IntoIter<lemmings_core::TimedInput<StartupCommand>>>,
+) {
+    if session.result().is_some() {
+        return;
+    }
+    let step = session.scheduler.step_state().control_step;
+    while replay
+        .peek()
+        .is_some_and(|input| input.control_step == step)
+    {
+        session.inputs.push(replay.next().unwrap());
+    }
+}
 fn run(options: Options) -> Result<(), Box<dyn Error>> {
-    let assets = if let Some((kind, drop)) = options.hazard_scene {
+    let assets = if let Some(kind) = &options.outcome_scene {
+        Assets::synthetic_completion(kind)
+    } else if let Some((kind, drop)) = options.hazard_scene {
         Assets::synthetic_hazards(kind, drop)
     } else if let Some(drop) = options.exit_scene {
         Assets::synthetic_exit(drop)
@@ -561,6 +602,9 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         Pacing::Dos
     });
     session.set_pacing(pacing);
+    if let Some(required) = assets.required {
+        session.configure_completion(required)?;
+    }
     session.configure_digger(assets.diggers, assets.steel.clone())?;
     session.configure_basher(
         assets.bashers,
@@ -643,6 +687,13 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             assets.floaters,
             options.level
         );
+        let description = format!(
+            "{},\"required\":{}}}",
+            description.trim_end_matches('}'),
+            assets
+                .required
+                .map_or_else(|| "null".into(), |v| v.to_string())
+        );
         write_new(&c.root.join("config.json"), description.as_bytes())?;
     }
     let sdl = sdl2::init()?;
@@ -704,7 +755,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         let now = Instant::now();
         let elapsed = now.duration_since(previous);
         previous = now;
-        let due = if initial {
+        let due = if initial || session.result().is_some() {
             0
         } else if options.fast {
             1
@@ -719,26 +770,24 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         });
         let mut advanced = false;
         for _ in 0..pending_due.min(remaining) {
-            let step = session.scheduler.step_state().control_step;
-            while replay
-                .peek()
-                .is_some_and(|input| input.control_step == step)
-            {
-                // Scripted gameplay uses its exact sequence; live game controls are disabled.
-                session.inputs.push(replay.next().unwrap());
+            if session.result().is_some() {
+                break;
             }
+            apply_replay_boundary(&mut session, &mut replay);
             session.tick()?;
             pending_due -= 1;
             advanced = true;
             if let Some(c) = &mut capture {
                 c.snapshot(&session)?;
-                if matches!(
-                    session.scheduler.step_state().control_step,
-                    16 | 17 | 34 | 35 | 54 | 60 | 100 | 170 | 340
-                ) || session
-                    .events
-                    .iter()
-                    .any(|event| event.starts_with("Input:"))
+                if session.result().is_some()
+                    || matches!(
+                        session.scheduler.step_state().control_step,
+                        16 | 17 | 34 | 35 | 54 | 60 | 100 | 170 | 340
+                    )
+                    || session
+                        .events
+                        .iter()
+                        .any(|event| event.starts_with("Input:"))
                     || basher_capture(&session)
                     || bomber_capture(&session)
                     || climber_capture(&session)
@@ -751,8 +800,11 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             }
         }
         let step = session.scheduler.step_state().control_step;
-        let finished = options.steps.is_some_and(|end| step >= end);
-        let milestone = matches!(step, 0 | 16 | 17 | 34 | 35 | 54 | 60 | 100 | 170 | 340)
+        let finished = options
+            .steps
+            .is_some_and(|end| step >= end || session.result().is_some());
+        let milestone = session.result().is_some()
+            || matches!(step, 0 | 16 | 17 | 34 | 35 | 54 | 60 | 100 | 170 | 340)
             || basher_capture(&session)
             || bomber_capture(&session)
             || climber_capture(&session)
@@ -812,7 +864,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             std::thread::sleep(Duration::from_millis(1));
         }
     }
-    if replay.peek().is_some() {
+    if replay.peek().is_some() && session.result().is_none() {
         return Err("run ended before all replay commands were applied".into());
     }
     let state = session.scheduler.step_state();
@@ -855,6 +907,27 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn completed_session_does_not_consume_next_replay_boundary() {
+        use lemmings_core::{InputCommand, StartupCommand, TimedInput};
+        let a = super::Assets::synthetic_completion("zero");
+        let mut s =
+            super::Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_completion(a.required.unwrap()).unwrap();
+        s.tick().unwrap();
+        assert!(s.result().is_some());
+        let mut replay = vec![TimedInput {
+            control_step: 1,
+            sequence: 0,
+            command: InputCommand::Custom(StartupCommand::Nuke),
+        }]
+        .into_iter()
+        .peekable();
+        super::apply_replay_boundary(&mut s, &mut replay);
+        assert!(s.inputs.is_empty());
+        assert!(replay.peek().is_some());
+    }
+
     use super::*;
     #[test]
     fn invalid_cli_combinations_and_missing_values_are_rejected() {

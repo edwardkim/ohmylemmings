@@ -30,6 +30,7 @@ pub struct Assets {
     pub title: String,
     pub entrances: Vec<EntrancePoint>,
     pub config: StartupConfig,
+    pub required: Option<u32>,
     pub screen_x: i32,
     pub sprites: Vec<u8>,
     pub palette: [[u8; 3]; 16],
@@ -188,6 +189,7 @@ impl Assets {
         };
         lemmings_core::StartupScheduler::new(config)?;
         Ok(Self {
+            required: Some(u32::from(header.required)),
             width: LEVEL_TERRAIN_WIDTH,
             height: LEVEL_TERRAIN_HEIGHT,
             terrain: mask,
@@ -254,6 +256,7 @@ impl Assets {
             one_way_right: vec![0; width * height],
             title: "JUST DIG!".into(),
             entrances: vec![EntrancePoint { x: 40, y: 40 }],
+            required: None,
             config: StartupConfig {
                 time_limit_minutes: 5,
                 total_lemmings: 10,
@@ -324,6 +327,41 @@ impl Assets {
                 );
             }
         }
+        scene
+    }
+    pub fn synthetic_completion(kind: &str) -> Self {
+        let mut scene = match kind {
+            "win" | "mixed" => Self::synthetic_exit(false),
+            "loss" => Self::synthetic_hazards(133, false),
+            _ => Self::synthetic_builder(),
+        };
+        scene.config.total_lemmings = if matches!(kind, "clock" | "mixed") {
+            80
+        } else if kind == "particles" {
+            1
+        } else {
+            3
+        };
+        scene.config.time_limit_minutes = if kind == "zero" {
+            0
+        } else if kind == "clock" {
+            1
+        } else {
+            5
+        };
+        scene.required = Some(if matches!(kind, "clock" | "mixed") {
+            40
+        } else if kind == "particles" {
+            1
+        } else {
+            2
+        });
+        if kind == "mixed" {
+            scene.entrances.push(EntrancePoint { x: 300, y: 40 });
+            scene.config.entrance_count = 2;
+            scene.config.initial_release_rate = 99;
+        }
+        scene.title = format!("SYNTHETIC {}", kind.to_ascii_uppercase());
         scene
     }
     pub fn synthetic_exit(drop: bool) -> Self {
