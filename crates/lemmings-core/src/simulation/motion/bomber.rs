@@ -79,7 +79,10 @@ impl Actor {
         if next.state.explosion_timer > 0 {
             next.state.explosion_timer -= 1;
             if next.state.explosion_timer == 0 {
-                let action = if next.state.action == MotionAction::Falling {
+                let action = if matches!(
+                    next.state.action,
+                    MotionAction::Falling | MotionAction::Floating
+                ) {
                     MotionAction::Exploding
                 } else {
                     MotionAction::OhNo

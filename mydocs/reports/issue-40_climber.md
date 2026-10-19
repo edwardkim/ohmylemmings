@@ -35,3 +35,5 @@ self-review에서 원문 할당·프레임 진행/전환·상단/머리 충돌·
 이 Fun04 경로는 Hoisting 이전에 돌출 지형으로 반전합니다. Hoisting과 Shrugging 버그는 합성/실제 원문 함수 실행에서 검증했으며 원본 DOS 영상에서 검증했다고 확대하지 않습니다. 비동기 숫자/여덟 화면 앵커는 원자적 전체 DOS 상태·입력 틱/속도·전체 HUD·모든 객체/구출/승패·음향을 인증하지 않습니다. Floater/Nuke·G07 전체는 후속입니다. 게시·실제 CI·병합/종료는 [#40](https://github.com/edwardkim/ohmylemmings/issues/40)에서 추적합니다.
 
 [계약·재현](../tech_insights/issue-40_climber.md), [진행 기록](../working/issue-40_climber.md), [작업일지](../orders/20261019.md#issue-40).
+
+PR [#41](https://github.com/edwardkim/ohmylemmings/pull/41)을 main4f629ee로 병합했고 [main CI](https://github.com/edwardkim/ohmylemmings/actions/runs/39216600369)의 세 작업·실제 로그와 #40 종료를 확인했습니다.

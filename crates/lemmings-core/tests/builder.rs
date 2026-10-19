@@ -21,6 +21,8 @@ fn actor(action: MotionAction, frame: u8, direction: MotionDirection) -> Actor {
             },
             blocker_saved: None,
             is_climber: false,
+            is_floater: false,
+            float_index: 0,
             walking_once: false,
             explosion_timer: 0,
             particle_timer: 0,

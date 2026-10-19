@@ -13,6 +13,7 @@ pub enum SelectedSkill {
     Blocker,
     Bomber,
     Climber,
+    Floater,
 }
 pub struct View {
     pub camera: i32,
@@ -92,6 +93,7 @@ impl View {
                 MotionAction::Shrugging => LemmingSpriteKind::Shrugging,
                 MotionAction::Blocking => LemmingSpriteKind::Blocking,
                 MotionAction::Climbing => LemmingSpriteKind::Climbing,
+                MotionAction::Floating => LemmingSpriteKind::Umbrella,
                 MotionAction::Hoisting => LemmingSpriteKind::Hoisting,
                 MotionAction::OhNo => LemmingSpriteKind::OhNo,
                 MotionAction::Exploding => LemmingSpriteKind::Explosion,
@@ -191,6 +193,12 @@ impl View {
                 }
                 SelectedSkill::Miner => {
                     format!("MINE {} | M/B/D SELECT | CLICK", session.remaining_miners)
+                }
+                SelectedSkill::Floater => {
+                    format!(
+                        "FLOAT {} | F/C/E/K/U/M/B/D | CLICK",
+                        session.remaining_floaters
+                    )
                 }
                 SelectedSkill::Climber => {
                     format!(
@@ -359,6 +367,7 @@ mod tests {
             (MotionAction::Mining, 13),
             (MotionAction::Climbing, 12),
             (MotionAction::Hoisting, 12),
+            (MotionAction::Floating, 16),
         ] {
             for (timer, digit) in [(79, 5u8), (64, 4), (48, 3), (32, 2), (16, 1)] {
                 let mut assets = Assets::synthetic();
@@ -385,6 +394,7 @@ mod tests {
                 .unwrap()
                 .state();
                 a.action = action;
+                a.is_floater = action == MotionAction::Floating;
                 a.is_climber = matches!(action, MotionAction::Climbing | MotionAction::Hoisting);
                 a.x = 32;
                 a.y = 100;
@@ -483,6 +493,8 @@ mod tests {
                 bricks_left: 0,
                 blocker_saved: None,
                 is_climber: false,
+                is_floater: false,
+                float_index: 0,
                 walking_once: false,
                 explosion_timer: 0,
                 particle_timer: 0,
@@ -520,6 +532,8 @@ mod tests {
                 bricks_left: 0,
                 blocker_saved: None,
                 is_climber: false,
+                is_floater: false,
+                float_index: 0,
                 walking_once: false,
                 explosion_timer: 0,
                 particle_timer: 0,

@@ -19,3 +19,7 @@ reference-1은 누락한 호스트 Blocker 플래그 준비 오류로 제외하�
 ## 통합 절차
 
 self-review·문서/해시 확인을 마쳤습니다. PR을 게시하고 정확한 HEAD의 push/PR CI 세 작업·실제 로그·원격 파일을 확인합니다. 검토한 HEAD만 병합하고 main CI·이슈 종료·상위 상태를 확인합니다. 최종 통합은 [#40](https://github.com/edwardkim/ohmylemmings/issues/40)에서 추적합니다. 다음 후보는 Floater이며 G07 전체는 진행 중입니다.
+
+## 통합 완료
+
+PR [#41](https://github.com/edwardkim/ohmylemmings/pull/41)의 검토 HEAD f90050f28fc642a66d3958082126bb35f5bf5a13와 push/PR CI를 확인하고 main4f629ee3a3c3db553ee174e6c0c16f9a9d802a92로 병합했습니다. main CI [39216600369](https://github.com/edwardkim/ohmylemmings/actions/runs/39216600369)의 세 작업/실제 로그와 #40 종료·상위 상태를 확인했습니다. 다음 승인된 작업은 [#42 Floater](issue-42_floater.md)입니다.

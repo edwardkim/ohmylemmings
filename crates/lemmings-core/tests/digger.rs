@@ -16,6 +16,8 @@ fn walker(x: i32, y: i32) -> Actor {
             bricks_left: 0,
             blocker_saved: None,
             is_climber: false,
+            is_floater: false,
+            float_index: 0,
             walking_once: false,
             explosion_timer: 0,
             particle_timer: 0,

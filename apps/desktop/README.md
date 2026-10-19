@@ -1,6 +1,6 @@
 # Desktop preview
 
-Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder·Blocker·Bomber·Climber 할당을 지원합니다. 출구 판정·승패·음향은 후속 구현입니다.
+Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder·Blocker·Bomber·Climber·Floater 할당을 지원합니다. 출구 판정·승패·음향은 후속 구현입니다.
 
 ## 준비와 실행
 
@@ -21,7 +21,7 @@ cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/lo
 
 | 키 | 동작 |
 |---|---|
-| C / E / K / U / M / B / D | Climber / Bomber / Blocker / Builder / Miner / Basher / Digger 선택 |
+| F / C / E / K / U / M / B / D | Floater / Climber / Bomber / Blocker / Builder / Miner / Basher / Digger 선택 |
 | 왼쪽 클릭 | 선택한 직업을 가까운 레밍에 할당 |
 | Space | 일시정지/재개 |
 | Up / Down | 생성 속도 +1 / -1, 레벨 초기값~99 |
@@ -71,7 +71,7 @@ make check
 
 `--level 4`는 Fun04 “Now use miners and climbers”를 엽니다. M 키로 Miner를 고르고 왼쪽 클릭하면 Walking/Digging/Bashing 개체에 할당하며 성공 때만 MINE 수량을 줄입니다. B/D로 다른 직업을 선택합니다. 재생 예는 `80 0 AssignMiner 0`입니다.
 
-캡처의 `miner.jsonl`과 공통 지형 삭제 기록, `mine-masks.bin`·기존 객체/마스크/config 입력으로 기준 실행을 재현합니다. Miner의 DOS 일방통행 버그와 원본/CI 범위는 [계약·검증](../../mydocs/tech_insights/issue-33_miner.md)을 참고합니다. Climber와 완주 판정은 후속 구현입니다.
+캡처의 `miner.jsonl`과 공통 지형 삭제 기록, `mine-masks.bin`·기존 객체/마스크/config 입력으로 기준 실행을 재현합니다. Miner의 DOS 일방통행 버그와 원본/CI 범위는 [계약·검증](../../mydocs/tech_insights/issue-33_miner.md)을 참고합니다. Climber는 아래 #40에서 구현했으며 완주 판정은 후속입니다.
 
 ## Builder / #34
 
@@ -95,4 +95,10 @@ make check
 
 `--level 4`는 Fun04 “Now use miners and climbers”를 엽니다. C키로 Climber를 선택하고 레밍을 클릭하면 성공할 때만 수량을 하나 소비하고 영구 능력을 켭니다. 기존 행동을 유지하며 Walking 중 높은 벽에 닿으면 Climbing, 턱을 만나면 Hoisting으로 전환합니다. 머리 돌출 지형에는 반전·낙하합니다. 이 Fun04 경로는 Hoisting 이전에 반전하는 원본 동작을 재현합니다. 재생 예는 `80 0 AssignClimber 0`입니다.
 
-원본 없이 `--synthetic-climber`로 좌/우 벽과 Hoisting을 확인합니다. `climber.jsonl`은 수량과 각 ID의 영구 능력/Walking Once 애니메이션 표지를 기록합니다. DOS의 Shrugging 중 할당 버그도 유지합니다. [계약·재현·관측 범위](../../mydocs/tech_insights/issue-40_climber.md)를 참고합니다. Floater/Nuke·완주·음향은 후속입니다.
+원본 없이 `--synthetic-climber`로 좌/우 벽과 Hoisting을 확인합니다. `climber.jsonl`은 수량과 각 ID의 영구 능력/Walking Once 애니메이션 표지를 기록합니다. DOS의 Shrugging 중 할당 버그도 유지합니다. [계약·재현·관측 범위](../../mydocs/tech_insights/issue-40_climber.md)를 참고합니다. Floater는 아래 #42에서 구현했으며 Nuke·완주·음향은 후속입니다.
+
+## Floater / #42
+
+`--level 2`는 Fun02 “Only floaters can survive this”를 엽니다. F키로 선택한 뒤 레밍을 클릭하면 수량 하나를 소비하고 영구 능력을 켭니다. Climber와 함께 유지되며 높은 낙하에서 원본 Umbrella 스프라이트로 펼침·잠깐 상승/정지·하강·안전 착지를 표시합니다. 재생 예는 `54 0 AssignFloater 0`입니다.
+
+원본 없이 `--synthetic-floater`로 발판/낙차와 Bomber 상호작용을 검사합니다. `floater.jsonl`은 수량과 `[id,is_floater,float_index]`를 기록합니다. 실제 UI의 Pause/Resume/속도 입력도 기준 함수에 재생합니다. [계약·실행·검증 범위](../../mydocs/tech_insights/issue-42_floater.md)를 참고합니다. 개별8직업을 지원하며 Nuke·전체 상호작용·구출/승패/음향은 후속입니다.

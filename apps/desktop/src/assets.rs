@@ -17,6 +17,7 @@ pub struct Assets {
     pub blockers: u16,
     pub bombers: u16,
     pub climbers: u16,
+    pub floaters: u16,
     pub explosion_mask: [u8; 44],
     pub countdown_masks: [u8; 80],
     pub particles: Option<Vec<u8>>,
@@ -197,6 +198,7 @@ impl Assets {
             blockers: header.skills[3],
             bombers: header.skills[2],
             climbers: header.skills[0],
+            floaters: header.skills[1],
             explosion_mask: masks[264..308].try_into()?,
             countdown_masks: masks[308..388].try_into()?,
             particles: load_particles(root)?,
@@ -237,6 +239,7 @@ impl Assets {
             blockers: 10,
             bombers: 10,
             climbers: 10,
+            floaters: 10,
             explosion_mask: [255; 44],
             countdown_masks: synthetic_countdown(),
             particles: None,
@@ -302,6 +305,20 @@ impl Assets {
         for y in 60..100 {
             for x in 20..30 {
                 scene.terrain[y * scene.width + x] = 1;
+            }
+        }
+        scene
+    }
+    pub fn synthetic_floater() -> Self {
+        let mut scene = Self::synthetic();
+        scene.entrances = vec![EntrancePoint { x: 40, y: 0 }];
+        for y in 0..scene.height {
+            for x in 0..scene.width {
+                scene.terrain[y * scene.width + x] = u8::from(
+                    (y >= 140 && x < 500)
+                        || ((60..140).contains(&y) && x < 120)
+                        || ((90..140).contains(&y) && (200..210).contains(&x)),
+                );
             }
         }
         scene
