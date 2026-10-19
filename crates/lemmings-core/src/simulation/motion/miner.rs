@@ -54,6 +54,7 @@ impl Actor {
         terrain: &mut TerrainMaskMut<'_>,
         context: MiningContext<'_>,
     ) -> Result<MotionOutcome, MotionError> {
+        self.require_basic_context()?;
         if self.state.action == MotionAction::Building && self.state.removed.is_none() {
             return self.advance_building(terrain);
         }

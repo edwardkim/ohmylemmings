@@ -20,6 +20,9 @@ fn actor(action: MotionAction, frame: u8, direction: MotionDirection) -> Actor {
                 0
             },
             blocker_saved: None,
+            explosion_timer: 0,
+            particle_timer: 0,
+            particle_frame: 0,
             object_below: 0,
             object_in_front: 0,
             removed: None,

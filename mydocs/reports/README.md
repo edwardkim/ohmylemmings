@@ -26,3 +26,5 @@
 - [#34 G07-04 Builder](issue-34_builder.md)
 
 - [#36 G07-05 Blocker](issue-36_blocker.md)
+
+- [#38 G07-06 Bomber](issue-38_bomber.md)

@@ -3,7 +3,9 @@ use crate::{TerrainMask, TerrainMaskMut};
 mod basher;
 mod blocker;
 pub use blocker::step_actors_with_objects;
+mod bomber;
 mod builder;
+pub use bomber::{BomberContext, step_actors_with_bomber};
 mod digger;
 mod miner;
 pub use basher::{BashingContext, step_actors_with_skills};
@@ -47,6 +49,8 @@ pub enum MotionAction {
     Building,
     Shrugging,
     Blocking,
+    OhNo,
+    Exploding,
 }
 impl MotionAction {
     pub const fn frame_count(self) -> u8 {
@@ -54,7 +58,8 @@ impl MotionAction {
             Self::Walking | Self::Shrugging => 8,
             Self::Jumping => 1,
             Self::Falling => 4,
-            Self::Splatting | Self::Digging | Self::Building | Self::Blocking => 16,
+            Self::Splatting | Self::Digging | Self::Building | Self::Blocking | Self::OhNo => 16,
+            Self::Exploding => 1,
             Self::Bashing => 32,
             Self::Mining => 24,
         }
@@ -66,6 +71,7 @@ impl MotionAction {
         match self {
             Self::Building | Self::Mining => 13,
             Self::Digging => 12,
+            Self::Exploding => 25,
             _ => 10,
         }
     }
@@ -74,6 +80,7 @@ impl MotionAction {
 pub enum RemovalReason {
     BottomBoundary,
     SplattingFinished,
+    Exploded,
 }
 
 /// Stable actor record. Coordinates are the foot, not sprite top-left. Removed
@@ -92,6 +99,9 @@ pub struct ActorState {
     pub new_digger: bool,
     pub bricks_left: u8,
     pub blocker_saved: Option<[u8; 9]>,
+    pub explosion_timer: u8,
+    pub particle_timer: u8,
+    pub particle_frame: u8,
     pub object_below: u8,
     pub object_in_front: u8,
     pub removed: Option<RemovalReason>,
@@ -129,6 +139,8 @@ pub enum MotionError {
     InvalidBricks,
     ObjectMapRequired,
     InvalidBlockerState,
+    InvalidBomberState,
+    BomberContextRequired,
 }
 impl fmt::Display for MotionError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -136,11 +148,15 @@ impl fmt::Display for MotionError {
             Self::MutableTerrainRequired => {
                 f.write_str("terrain-changing jobs require mutable terrain")
             }
+            Self::InvalidBomberState => f.write_str("invalid bomber timer or particle state"),
+            Self::BomberContextRequired => {
+                f.write_str("bomber progression requires bomber context")
+            }
             Self::InvalidNewDigger => f.write_str("new digger must be digging at frame zero"),
             Self::ObjectMapRequired => f.write_str("blocking requires its mutable object map"),
-            Self::InvalidBlockerState => {
-                f.write_str("only blocking retains the saved nine object cells")
-            }
+            Self::InvalidBlockerState => f.write_str(
+                "saved field requires Blocking, OhNo or Exploding; Blocking needs a saved field",
+            ),
             Self::InvalidBricks => f.write_str("only building retains one to twelve bricks"),
             Self::Frame { action, frame } => write!(f, "frame {frame} is outside {action:?}"),
             Self::Direction => f.write_str("stopped direction must match splatting"),
@@ -169,6 +185,8 @@ pub struct MotionOutcome {
     /// Actual empty-to-solid changes from a builder, in left-to-right order.
     /// Hosts may use these coordinates to maintain terrain material/color.
     pub added_pixels: [Option<(i32, i32)>; 6],
+    /// Actual explosion solid-to-empty changes:22 rows, bit0 is the left pixel.
+    pub explosion_erased: [u16; 22],
 }
 
 /// Caller-owned actor. No allocation, rendering or I/O. Trigger execution is
@@ -217,6 +235,9 @@ impl Actor {
                 new_digger: false,
                 bricks_left: 0,
                 blocker_saved: None,
+                explosion_timer: 0,
+                particle_timer: 0,
+                particle_frame: 0,
                 object_below: 0,
                 object_in_front: 0,
                 removed: None,
@@ -228,8 +249,26 @@ impl Actor {
     /// Arbitrary i32 coordinates are accepted; later arithmetic errors are
     /// explicit and leave the complete record unchanged.
     pub fn from_state(state: ActorState, rules: MotionRules) -> Result<Self, MotionError> {
-        if (state.action == MotionAction::Blocking) != state.blocker_saved.is_some() {
+        if (state.action == MotionAction::Blocking && state.blocker_saved.is_none())
+            || (state.blocker_saved.is_some()
+                && !matches!(
+                    state.action,
+                    MotionAction::Blocking | MotionAction::OhNo | MotionAction::Exploding
+                ))
+        {
             return Err(MotionError::InvalidBlockerState);
+        }
+        if state.explosion_timer > 79
+            || state.particle_timer > 52
+            || state.particle_frame > 50
+            || (matches!(
+                state.action,
+                MotionAction::OhNo | MotionAction::Exploding | MotionAction::Splatting
+            ) && state.explosion_timer != 0)
+            || ((state.particle_timer != 0 || state.particle_frame != 0)
+                && state.removed != Some(RemovalReason::Exploded))
+        {
+            return Err(MotionError::InvalidBomberState);
         }
         if (state.action == MotionAction::Building && !(1..=12).contains(&state.bricks_left))
             || (state.action != MotionAction::Building && state.bricks_left != 0)
@@ -263,7 +302,14 @@ impl Actor {
                             | MotionAction::Falling
                             | MotionAction::Digging
                             | MotionAction::Mining
+                            | MotionAction::OhNo
                     )
+            }
+            Some(RemovalReason::Exploded) => {
+                state.action == MotionAction::Exploding
+                    && state.frame == 0
+                    && state.end_of_animation
+                    && state.blocker_saved.is_none()
             }
             Some(RemovalReason::SplattingFinished) => {
                 state.action == MotionAction::Splatting
@@ -294,6 +340,7 @@ impl Actor {
         &self,
         terrain: TerrainMask<'_>,
     ) -> Result<(ActorState, MotionOutcome), MotionError> {
+        self.require_basic_context()?;
         let mut s = self.state;
         if s.removed.is_some() {
             return Ok((s, MotionOutcome::default()));
@@ -392,6 +439,9 @@ impl Actor {
                 return Err(MotionError::MutableTerrainRequired);
             }
             MotionAction::Blocking => return Err(MotionError::ObjectMapRequired),
+            MotionAction::OhNo | MotionAction::Exploding => {
+                return Err(MotionError::BomberContextRequired);
+            }
             MotionAction::Shrugging => {
                 result.check_objects = s.end_of_animation;
                 if s.end_of_animation {
@@ -419,7 +469,9 @@ fn transition(s: &mut ActorState, action: MotionAction, rules: MotionRules) {
         return;
     }
     s.action = action;
-    s.blocker_saved = None;
+    if !matches!(action, MotionAction::OhNo | MotionAction::Exploding) {
+        s.blocker_saved = None;
+    }
     s.new_digger = action == MotionAction::Digging;
     s.bricks_left = if action == MotionAction::Building {
         12
@@ -435,6 +487,7 @@ fn transition(s: &mut ActorState, action: MotionAction, rules: MotionRules) {
     };
     if action == MotionAction::Splatting {
         s.direction = MotionDirection::Stopped;
+        s.explosion_timer = 0;
     }
 }
 fn top(s: &mut ActorState, rules: MotionRules) {

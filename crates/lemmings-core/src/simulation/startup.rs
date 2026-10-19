@@ -39,6 +39,7 @@ pub enum StartupCommand {
     AssignMiner(u32),
     AssignBuilder(u32),
     AssignBlocker(u32),
+    AssignBomber(u32),
 }
 
 /// Progress immediately before the next boundary. Read control/iteration/pause
@@ -215,7 +216,8 @@ impl StartupScheduler {
                         | StartupCommand::AssignBasher(_)
                         | StartupCommand::AssignMiner(_)
                         | StartupCommand::AssignBuilder(_)
-                        | StartupCommand::AssignBlocker(_)),
+                        | StartupCommand::AssignBlocker(_)
+                        | StartupCommand::AssignBomber(_)),
                     ) => assign(command),
                     InputCommand::Custom(StartupCommand::SetReleaseRate(rate)) => {
                         if (config.initial_release_rate..=99).contains(&rate) {

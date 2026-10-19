@@ -12,6 +12,9 @@ pub struct Session {
     pub remaining_miners: u16,
     pub remaining_builders: u16,
     pub remaining_blockers: u16,
+    pub remaining_bombers: u16,
+    explosion_mask: [u8; 44],
+    visual_blast: Option<(Vec<u8>, Vec<u8>)>,
     object_map: Option<Vec<u8>>,
     brick_mask: Vec<u8>,
     mine_masks: [u8; 104],
@@ -51,6 +54,9 @@ impl Session {
             remaining_miners: 0,
             remaining_builders: 0,
             remaining_blockers: 0,
+            remaining_bombers: 0,
+            explosion_mask: [0; 44],
+            visual_blast: None,
             object_map: None,
             brick_mask: vec![0; width * height],
             mine_masks: [0; 104],
@@ -74,6 +80,14 @@ impl Session {
         self.remaining_diggers = remaining;
         self.steel = steel;
         Ok(())
+    }
+    pub fn render_terrain(&self) -> &[u8] {
+        self.visual_blast.as_ref().map_or(self.terrain(), |v| &v.0)
+    }
+    pub fn render_bricks(&self) -> &[u8] {
+        self.visual_blast
+            .as_ref()
+            .map_or(self.brick_mask(), |v| &v.1)
     }
     pub fn terrain(&self) -> &[u8] {
         &self.terrain
@@ -167,6 +181,36 @@ impl Session {
             self.remaining_blockers
         )
     }
+    pub fn configure_bomber(
+        &mut self,
+        remaining: u16,
+        mask: [u8; 44],
+    ) -> Result<(), Box<dyn Error>> {
+        if self.object_map.is_none() {
+            return Err("Bomber requires a configured object map".into());
+        }
+        self.remaining_bombers = remaining;
+        self.explosion_mask = mask;
+        Ok(())
+    }
+    pub fn bomber_snapshot(&self) -> String {
+        let states = self
+            .actors
+            .iter()
+            .map(|a| {
+                let s = a.state();
+                format!(
+                    "[{},{},{},{}]",
+                    s.id, s.explosion_timer, s.particle_timer, s.particle_frame
+                )
+            })
+            .collect::<Vec<_>>()
+            .join(",");
+        format!(
+            "{{\"remaining\":{},\"actors\":[{states}]}}",
+            self.remaining_bombers
+        )
+    }
     pub fn configure_builder(&mut self, remaining: u16) {
         self.remaining_builders = remaining;
     }
@@ -245,6 +289,7 @@ impl Session {
         let miners = &mut self.remaining_miners;
         let builders = &mut self.remaining_builders;
         let blockers = &mut self.remaining_blockers;
+        let bombers = &mut self.remaining_bombers;
         let raw_map = &mut self.object_map;
         let context = BashingContext {
             object_map: None,
@@ -270,13 +315,17 @@ impl Session {
                     | StartupCommand::AssignBasher(id)
                     | StartupCommand::AssignMiner(id)
                     | StartupCommand::AssignBuilder(id)
-                    | StartupCommand::AssignBlocker(id) => id,
+                    | StartupCommand::AssignBlocker(id)
+                    | StartupCommand::AssignBomber(id) => id,
                     _ => return false,
                 };
                 actors
                     .iter_mut()
                     .find(|a| a.state().id == id)
                     .is_some_and(|a| {
+                        if matches!(command, StartupCommand::AssignBomber(_)) {
+                            return a.assign_bomber(bombers);
+                        }
                         if matches!(command, StartupCommand::AssignBlocker(_)) {
                             return raw_map.as_mut().is_some_and(|cells| {
                                 a.assign_blocker(
@@ -345,9 +394,23 @@ impl Session {
             )?);
         }
         if outcome.iteration.is_some() {
+            self.visual_blast = None;
+            let mut blast_pixels = Vec::new();
             let brick_mask = &mut self.brick_mask;
             let width = self.width;
-            let update_bricks = |_, out: MotionOutcome| {
+            let update_bricks = |state: ActorState, out: MotionOutcome| {
+                for (dy, row) in out.explosion_erased.into_iter().enumerate() {
+                    for dx in 0..16 {
+                        if row & (1 << dx) != 0 {
+                            // Core reports only real, clipped changes. Preserve the
+                            // pre-erasure material for the DOS one-frame display lag.
+                            let x = (i64::from(state.x) - 8 + dx as i64) as usize;
+                            let y = (i64::from(state.y) - 14 + dy as i64) as usize;
+                            let index = y * width + x;
+                            blast_pixels.push((index, brick_mask[index]));
+                        }
+                    }
+                }
                 for (x, y) in out.added_pixels.into_iter().flatten() {
                     brick_mask[y as usize * width + x as usize] = 1;
                 }
@@ -361,10 +424,10 @@ impl Session {
                     DOS_OBJECT_MAP_ORIGIN,
                     cells,
                 )?;
-                step_actors_with_objects(
+                step_actors_with_bomber(
                     &mut self.actors,
                     &mut terrain,
-                    mining,
+                    BomberContext::new(mining, &self.explosion_mask),
                     &mut map,
                     update_bricks,
                 )?;
@@ -375,6 +438,17 @@ impl Session {
                 if solid == 0 {
                     *brick = 0;
                 }
+            }
+            if !blast_pixels.is_empty() {
+                let mut visual = self.terrain.clone();
+                let mut bricks = self.brick_mask.clone();
+                for (index, material) in blast_pixels {
+                    if visual[index] == 0 {
+                        visual[index] = 1;
+                        bricks[index] = material;
+                    }
+                }
+                self.visual_blast = Some((visual, bricks));
             }
         }
         self.events = events;
@@ -462,6 +536,51 @@ mod tests {
         .unwrap()
     }
     #[test]
+    fn paused_bomber_on_blocker_preserves_timer_then_restores_map_and_erases_terrain() {
+        let a = crate::assets::Assets::synthetic_builder();
+        let mut s = Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_blocker(2, a.object_map).unwrap();
+        s.configure_bomber(2, [255; 44]).unwrap();
+        for _ in 0..80 {
+            s.tick().unwrap();
+        }
+        let map = s.object_map_data().to_vec();
+        s.queue(InputCommand::Pause).unwrap();
+        for command in [
+            StartupCommand::AssignBlocker(0),
+            StartupCommand::AssignBomber(0),
+            StartupCommand::AssignBomber(0),
+        ] {
+            s.queue(InputCommand::Custom(command)).unwrap();
+        }
+        s.tick().unwrap();
+        assert_eq!(s.remaining_bombers, 1);
+        assert_eq!(s.actors[0].state().explosion_timer, 79);
+        for _ in 0..5 {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.actors[0].state().explosion_timer, 79);
+        let original = s.terrain().to_vec();
+        s.queue(InputCommand::Resume).unwrap();
+        for _ in 0..96 {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.actors[0].state().removed, Some(RemovalReason::Exploded));
+        assert_eq!(s.object_map_data(), map);
+        assert_ne!(s.terrain(), original);
+        assert_ne!(s.render_terrain(), s.terrain());
+        s.queue(InputCommand::Pause).unwrap();
+        s.tick().unwrap();
+        assert_ne!(s.render_terrain(), s.terrain());
+        s.queue(InputCommand::Resume).unwrap();
+        s.tick().unwrap();
+        assert_eq!(s.render_terrain(), s.terrain());
+        for _ in 0..52 {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.actors[0].state().particle_timer, 0);
+    }
+    #[test]
     fn paused_blocker_assignment_consumes_once_then_releases_after_support_is_removed() {
         let a = crate::assets::Assets::synthetic_builder();
         let mut s = Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap();
@@ -532,6 +651,9 @@ mod tests {
                 new_digger: false,
                 bricks_left: 0,
                 blocker_saved: None,
+                explosion_timer: 0,
+                particle_timer: 0,
+                particle_frame: 0,
                 object_below: 0,
                 object_in_front: 0,
                 removed: None,

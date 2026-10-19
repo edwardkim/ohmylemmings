@@ -24,3 +24,4 @@ check-desktop:
 	python3 tools/check_miner.py --binary target/release/lemmings-desktop
 	python3 tools/check_builder.py --binary target/release/lemmings-desktop
 	python3 tools/check_blocker.py --binary target/release/lemmings-desktop
+	python3 tools/check_bomber.py --binary target/release/lemmings-desktop

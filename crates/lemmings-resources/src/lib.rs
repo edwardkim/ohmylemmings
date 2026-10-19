@@ -76,3 +76,6 @@ pub use objects::{
     LevelScene, ObjectComposeError, ObjectFrameSelection, ObjectGraphics, ScenePixel,
     compose_objects,
 };
+
+mod particles;
+pub use particles::{EXPLOSION_PARTICLE_DATA_SIZE, ExplosionParticles, ParticleDataError};
