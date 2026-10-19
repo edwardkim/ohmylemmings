@@ -17,9 +17,10 @@ check-wasm:
 	cargo build --workspace --lib --target wasm32-unknown-unknown --locked --offline
 
 check-desktop:
-	cargo build -p lemmings-desktop --locked --offline
-	python3 tools/check_desktop.py
-	python3 tools/check_digger.py
-	python3 tools/check_basher.py
-	python3 tools/check_miner.py
-	python3 tools/check_builder.py
+	cargo build -p lemmings-desktop --release --locked --offline
+	python3 tools/check_desktop.py --binary target/release/lemmings-desktop
+	python3 tools/check_digger.py --binary target/release/lemmings-desktop
+	python3 tools/check_basher.py --binary target/release/lemmings-desktop
+	python3 tools/check_miner.py --binary target/release/lemmings-desktop
+	python3 tools/check_builder.py --binary target/release/lemmings-desktop
+	python3 tools/check_blocker.py --binary target/release/lemmings-desktop

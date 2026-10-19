@@ -34,3 +34,9 @@ pub use simulation::{
     MotionDirection, MotionError, MotionOutcome, MotionRules, RemovalReason, step_actors,
     step_actors_mut, step_actors_with_jobs, step_actors_with_skills,
 };
+
+pub use simulation::{
+    DOS_OBJECT_MAP_HEIGHT, DOS_OBJECT_MAP_ORIGIN, DOS_OBJECT_MAP_WIDTH, OBJECT_BLOCKER,
+    OBJECT_FORCE_LEFT, OBJECT_FORCE_RIGHT, OBJECT_NONE, ObjectMap, ObjectMapError, ObjectMapMut,
+    step_actors_with_objects,
+};

@@ -19,6 +19,9 @@ fn actor(action: MotionAction, frame: u8, direction: MotionDirection) -> Actor {
             } else {
                 0
             },
+            blocker_saved: None,
+            object_below: 0,
+            object_in_front: 0,
             removed: None,
         },
         MotionRules::default(),

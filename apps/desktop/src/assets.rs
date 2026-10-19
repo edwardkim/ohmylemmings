@@ -1,4 +1,7 @@
-use lemmings_core::{Difficulty, EntrancePoint, LevelId, StartupConfig};
+use lemmings_core::{
+    DOS_OBJECT_MAP_HEIGHT, DOS_OBJECT_MAP_ORIGIN, DOS_OBJECT_MAP_WIDTH, Difficulty, EntrancePoint,
+    LevelId, OBJECT_NONE, ObjectMapMut, StartupConfig,
+};
 use lemmings_resources::*;
 use std::{error::Error, fs, io, path::Path};
 
@@ -11,6 +14,8 @@ pub struct Assets {
     pub bashers: u16,
     pub miners: u16,
     pub builders: u16,
+    pub blockers: u16,
+    pub object_map: Vec<u8>,
     pub mine_masks: [u8; 104],
     pub bash_masks: [u8; 160],
     pub one_way_left: Vec<u8>,
@@ -120,6 +125,7 @@ impl Assets {
                 }
             }
         }
+        let object_map = build_object_map(resolved.base_record(), ground)?;
         let diggers = header.skills[7];
         let bashers = header.skills[5];
         let mut one_way_left = vec![0; LEVEL_TERRAIN_PIXEL_COUNT];
@@ -183,6 +189,8 @@ impl Assets {
             bashers,
             miners: header.skills[6],
             builders: header.skills[4],
+            blockers: header.skills[3],
+            object_map,
             mine_masks: masks[160..264].try_into()?,
             bash_masks: masks[..160].try_into()?,
             one_way_left,
@@ -216,6 +224,8 @@ impl Assets {
             bashers: 10,
             miners: 10,
             builders: 10,
+            blockers: 10,
+            object_map: vec![OBJECT_NONE; DOS_OBJECT_MAP_WIDTH * DOS_OBJECT_MAP_HEIGHT],
             mine_masks: [255; 104], // own full rectangular synthetic erase masks
             // Own synthetic masks (rectangular slices), never original bits.
             bash_masks: synthetic_bash_masks(),
@@ -349,6 +359,47 @@ impl Assets {
             .collect())
     }
 }
+fn build_object_map(
+    level: LevelRecord<'_>,
+    ground: GroundRecord<'_>,
+) -> Result<Vec<u8>, Box<dyn Error>> {
+    let mut object_map = vec![OBJECT_NONE; DOS_OBJECT_MAP_WIDTH * DOS_OBJECT_MAP_HEIGHT];
+    let mut raw = ObjectMapMut::new(
+        DOS_OBJECT_MAP_WIDTH,
+        DOS_OBJECT_MAP_HEIGHT,
+        DOS_OBJECT_MAP_ORIGIN,
+        DOS_OBJECT_MAP_ORIGIN,
+        &mut object_map,
+    )?;
+    for area in level.steel() {
+        for y in i64::from(area.y)..i64::from(area.y) + i64::from(area.height) {
+            for x in i64::from(area.x)..i64::from(area.x) + i64::from(area.width) {
+                raw.write(x, y, 137);
+            }
+        }
+    }
+    for (index, object) in level.objects().filter(|o| o.id != 1).take(16).enumerate() {
+        let meta = ground
+            .object(usize::from(object.id))
+            .ok_or("object metadata missing")?;
+        let rect = meta.trigger_rect();
+        let left = i64::from((object.x & !3) + rect.left);
+        let top = i64::from((i32::from(object.y) & !3) + rect.top);
+        let code = if meta.trigger_effect == 4 {
+            index as u8
+        } else {
+            meta.trigger_effect
+                .checked_add(128)
+                .ok_or("invalid object trigger effect")?
+        };
+        for y in top..top + i64::from(rect.height) {
+            for x in left..left + i64::from(rect.width) {
+                raw.write(x, y, code);
+            }
+        }
+    }
+    Ok(object_map)
+}
 fn synthetic_bash_masks() -> [u8; 160] {
     let mut masks = [0; 160];
     for direction in 0..2 {
@@ -372,6 +423,87 @@ fn synthetic_bash_masks() -> [u8; 160] {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn raw_objects_override_steel_on_the_padded_grid_and_ignore_entrances() {
+        let mut level = [0; LEVEL_RECORD_SIZE];
+        for offset in [1, 3, 5, 7] {
+            level[offset] = 1;
+        }
+        level[288..1888].fill(255);
+        // Steel starts at world(-16,0), followed by an object at(-13,0).
+        level[1888..1892].copy_from_slice(&[0, 0, 1, 0]);
+        for (slot, x, y, id) in [(0, 3u16, 0u16, 0u16), (16, 3, 0, 1)] {
+            let at = 32 + slot * 8;
+            level[at..at + 2].copy_from_slice(&x.to_be_bytes());
+            level[at + 2..at + 4].copy_from_slice(&y.to_be_bytes());
+            level[at + 4..at + 6].copy_from_slice(&id.to_be_bytes());
+        }
+        let mut ground = [0; GROUND_RECORD_SIZE];
+        // Trigger [0,4)x[0,4) becomes cell(-16,0) after grid rounding.
+        ground[14..16].copy_from_slice(&[0, 0]);
+        ground[16..18].copy_from_slice(&[1, 0]);
+        ground[18..20].copy_from_slice(&[1, 1]);
+        ground[20] = 2;
+        ground[28 + 14..28 + 21].copy_from_slice(&[0, 0, 1, 0, 1, 1, 3]);
+        let bytes = build_object_map(
+            LevelRecord::parse(&level).unwrap(),
+            GroundRecord::parse(&ground).unwrap(),
+        )
+        .unwrap();
+        let map = lemmings_core::ObjectMap::new(
+            DOS_OBJECT_MAP_WIDTH,
+            DOS_OBJECT_MAP_HEIGHT,
+            -16,
+            -16,
+            &bytes,
+        )
+        .unwrap();
+        assert_eq!(map.read(-16, 0), 130); // first object overrides steel
+        assert_eq!(map.read(-12, 0), 128); // no ceil expansion
+        assert_eq!(map.read(-17, 0), 128); // clipped outside padding
+        ground[20] = 255;
+        assert!(
+            build_object_map(
+                LevelRecord::parse(&level).unwrap(),
+                GroundRecord::parse(&ground).unwrap()
+            )
+            .is_err()
+        );
+    }
+    #[test]
+    fn object_limit_and_trap_codes_use_the_compact_non_entrance_list() {
+        let mut level = [0; LEVEL_RECORD_SIZE];
+        for offset in [1, 3, 5, 7] {
+            level[offset] = 1;
+        }
+        level[288..1888].fill(255);
+        level[32..40].copy_from_slice(&[0, 16, 0, 0, 0, 1, 0, 0]);
+        for slot in 1..=17 {
+            let at = 32 + slot * 8;
+            level[at..at + 2].copy_from_slice(&(16 + slot as u16 * 4).to_be_bytes());
+            level[at + 5] = 2;
+        }
+        let mut ground = [0; GROUND_RECORD_SIZE];
+        ground[28 + 14..28 + 21].copy_from_slice(&[0, 0, 1, 0, 1, 1, 3]);
+        ground[56 + 14..56 + 21].copy_from_slice(&[0, 0, 1, 0, 1, 1, 4]);
+        let bytes = build_object_map(
+            LevelRecord::parse(&level).unwrap(),
+            GroundRecord::parse(&ground).unwrap(),
+        )
+        .unwrap();
+        let map = lemmings_core::ObjectMap::new(
+            DOS_OBJECT_MAP_WIDTH,
+            DOS_OBJECT_MAP_HEIGHT,
+            -16,
+            -16,
+            &bytes,
+        )
+        .unwrap();
+        assert_eq!(map.read(0, 0), 128); // entrance is not an interactive-map entry
+        assert_eq!(map.read(4, 0), 0); // compact trap index, not file slot one
+        assert_eq!(map.read(64, 0), 15); // sixteenth non-entrance is active
+        assert_eq!(map.read(68, 0), 128); // seventeenth is disabled
+    }
     #[test]
     fn original_bricks_use_first_custom_terrain_color_as_the_shared_bridge_color() {
         let mut a = Assets::synthetic();

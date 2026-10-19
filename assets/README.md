@@ -65,3 +65,5 @@ MAIN.DAT 지형 마스크·카운트다운은 [G03-09 재현 명령](../mydocs/t
 - [Miner 원본/기준/네이티브 증거](manifests/miner.json): #33의24개 기준 함수·합성/원본 상태·전체 삭제·실제 M키/마우스·DOS 두 실행과 전체 세 장면 비교의 hash-only 기록입니다. 원본 파생물은 ignored assets/local에만 둡니다.
 
 - [Builder 원본/기준/네이티브 증거](manifests/builder.json): #34의28개 기준 함수·합성/원본 상태·경계별 지형 추가/삭제·실제 U키/마우스·DOS 두 실행과 전체 세 장면 비교의 hash-only 기록입니다. 원본 파생물은 ignored assets/local에만 둡니다.
+
+- [Blocker 검증 매니페스트](manifests/blocker.json): #36의37개 기준 함수·합성/원본 객체 맵/캐시/지형·실제 K키/마우스·DOS 두 실행의 전체 세 장면과 검증 자료의 출처/해시를 기록합니다. 확보용 fetch 입력이 아닙니다.

@@ -6,6 +6,7 @@ use super::*;
 #[derive(Clone, Copy, Debug)]
 pub struct BashingContext<'a> {
     pub masks: &'a [u8; 160],
+    pub object_map: Option<crate::ObjectMap<'a>>,
     pub steel: TerrainMask<'a>,
     pub one_way_left: Option<TerrainMask<'a>>,
     pub one_way_right: Option<TerrainMask<'a>>,
@@ -14,15 +15,48 @@ impl<'a> BashingContext<'a> {
     pub const fn new(masks: &'a [u8; 160], steel: TerrainMask<'a>) -> Self {
         Self {
             masks,
+            object_map: None,
             steel,
             one_way_left: None,
             one_way_right: None,
+        }
+    }
+    pub(super) fn is_steel(self, x: i32, y: i32) -> bool {
+        self.object_map.map_or_else(
+            || self.steel.is_solid(x, y),
+            |map| map.read(i64::from(x), i64::from(y)) == 137,
+        )
+    }
+    pub(super) fn assignment_steel(self, s: ActorState) -> bool {
+        if self.object_map.is_some() {
+            s.object_below == 137
+        } else {
+            self.is_steel(s.x, s.y)
+        }
+    }
+    pub(super) fn assignment_blocked(self, s: ActorState) -> bool {
+        if self.object_map.is_some() {
+            s.object_in_front == 137
+                || (s.object_in_front == 135 && s.direction != MotionDirection::Left)
+                || (s.object_in_front == 136 && s.direction != MotionDirection::Right)
+        } else {
+            self.blocked(
+                i64::from(s.x) + i64::from(s.direction.delta()) * 8,
+                i64::from(s.y) - 8,
+                s.direction,
+            )
         }
     }
     pub(super) fn blocked(self, x: i64, y: i64, direction: MotionDirection) -> bool {
         let (Ok(x), Ok(y)) = (i32::try_from(x), i32::try_from(y)) else {
             return false;
         };
+        if let Some(map) = self.object_map {
+            let value = map.read(i64::from(x), i64::from(y));
+            return value == 137
+                || (value == 135 && direction != MotionDirection::Left)
+                || (value == 136 && direction != MotionDirection::Right);
+        }
         self.steel.is_solid(x, y)
             || (direction != MotionDirection::Left
                 && self.one_way_left.is_some_and(|m| m.is_solid(x, y)))
@@ -46,11 +80,7 @@ impl Actor {
                     | MotionAction::Building
                     | MotionAction::Shrugging
             )
-            || context.blocked(
-                i64::from(s.x) + i64::from(s.direction.delta()) * 8,
-                i64::from(s.y) - 8,
-                s.direction,
-            )
+            || context.assignment_blocked(s)
         {
             return false;
         }
@@ -68,7 +98,7 @@ impl Actor {
         context: BashingContext<'_>,
     ) -> Result<MotionOutcome, MotionError> {
         if self.state.removed.is_some() || self.state.action != MotionAction::Bashing {
-            return self.advance_mut(terrain, context.steel);
+            return self.advance_digging(terrain, |x, y| context.is_steel(x, y));
         }
         let mut s = self.state;
         s.end_of_animation = s.frame == 31;

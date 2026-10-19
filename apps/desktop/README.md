@@ -1,6 +1,6 @@
 # Desktop preview
 
-Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder 할당을 지원합니다. 출구 판정·승패·음향은 후속 구현입니다.
+Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder·Blocker 할당을 지원합니다. 출구 판정·승패·음향은 후속 구현입니다.
 
 ## 준비와 실행
 
@@ -21,7 +21,7 @@ cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/lo
 
 | 키 | 동작 |
 |---|---|
-| U / M / B / D | Builder / Miner / Basher / Digger 선택 |
+| K / U / M / B / D | Blocker / Builder / Miner / Basher / Digger 선택 |
 | 왼쪽 클릭 | 선택한 직업을 가까운 레밍에 할당 |
 | Space | 일시정지/재개 |
 | Up / Down | 생성 속도 +1 / -1, 레벨 초기값~99 |
@@ -49,7 +49,7 @@ cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/lo
 make check
 ```
 
-`make check-desktop`은 앱을 오프라인 빌드한 뒤 `target/debug/lemmings-desktop`으로 실제 SDL dummy/software 창·입력 루프·화면 readback을 원본 없이 검사합니다. WASM 검사는 기존 두 라이브러리만 빌드합니다.
+`make check-desktop`은 앱을 오프라인 빌드한 뒤 `target/release/lemmings-desktop`으로 실제 SDL dummy/software 창·입력 루프·화면 readback을 원본 없이 검사합니다. 전체 SDL 합성 검사는 release 실행 파일을 사용합니다. WASM 검사는 기존 두 라이브러리만 빌드합니다.
 
 [구현 계약·참조·X11 재현](../../mydocs/tech_insights/issue-27_native_view.md), [검증 보고서](../../mydocs/reports/issue-27_native_view.md).
 
@@ -78,3 +78,9 @@ make check
 `--level 7`은 Fun07 “Builders will help you here”를 엽니다. U키로 Builder를 선택하고 클릭하면 Walking/Digging/Bashing/Mining/Shrugging 개체에 할당합니다. 수량은 성공 때만 소비하며 중복 Building 할당은 거부합니다. 12개 벽돌을 소진하면 Shrugging을 거쳐 Walking으로 돌아갑니다. 재생 예는 `80 0 AssignBuilder 0`입니다.
 
 원본 없이 `--synthetic-builder`로 양방향 계단·충돌 장면을 검사할 수 있습니다. `builder.jsonl`의 수량/남은 벽돌/`filled`, 기존 `digger.jsonl`의 `cleared`로 초기/최종 전체 지형을 재생 검증합니다. `brick-final.bin`은 벽돌 재질입니다. [계약·기준 함수·DOS 대조](../../mydocs/tech_insights/issue-34_builder.md)를 참고합니다. G07 전체·완주/승패는 후속 범위입니다.
+
+## Blocker / #36
+
+`--level 3`은 Fun03 “Tailor-made for blockers”를 엽니다. K키로 Blocker를 선택하고 클릭하면 Walking/Shrugging/Building/Bashing/Mining/Digging에 할당합니다. 성공 때만 BLOCK 수량을 줄이고, 방향 전환 영역과 겹치면 거부합니다. 발판이 없어지면 기존 객체 맵을 복원하고 Walking으로 돌아갑니다. 재생 예는 `80 0 AssignBlocker 0`입니다.
+
+원본 없이 `--synthetic-blocker`를 사용할 수 있습니다. `blocker.jsonl`의 저장9칸/객체 캐시/영역 순변화와 `object-map-initial.bin`/`object-map-final.bin`을 검증합니다. [계약·기준 함수·DOS 대조](../../mydocs/tech_insights/issue-36_blocker.md)를 참고합니다. Bomber에 의한 영역 해제와 완주 판정은 후속입니다.

@@ -10,6 +10,7 @@ pub enum SelectedSkill {
     Basher,
     Miner,
     Builder,
+    Blocker,
 }
 pub struct View {
     pub camera: i32,
@@ -68,6 +69,7 @@ impl View {
                 MotionAction::Mining => LemmingSpriteKind::Mining,
                 MotionAction::Building => LemmingSpriteKind::Building,
                 MotionAction::Shrugging => LemmingSpriteKind::Shrugging,
+                MotionAction::Blocking => LemmingSpriteKind::Blocking,
             };
             let direction = if a.direction == MotionDirection::Left {
                 SpriteDirection::Left
@@ -147,6 +149,9 @@ impl View {
                 }
                 SelectedSkill::Miner => {
                     format!("MINE {} | M/B/D SELECT | CLICK", session.remaining_miners)
+                }
+                SelectedSkill::Blocker => {
+                    format!("BLOCK {} | K/U/M/B/D | CLICK", session.remaining_blockers)
                 }
                 SelectedSkill::Builder => {
                     format!("BUILD {} | U/M/B/D | CLICK", session.remaining_builders)
@@ -316,6 +321,9 @@ mod tests {
                 fallen: 0,
                 new_digger: false,
                 bricks_left: 0,
+                blocker_saved: None,
+                object_below: 0,
+                object_in_front: 0,
                 removed: None,
             },
             MotionRules::default(),
@@ -345,6 +353,9 @@ mod tests {
                 fallen: 0,
                 new_digger: false,
                 bricks_left: 0,
+                blocker_saved: None,
+                object_below: 0,
+                object_in_front: 0,
                 removed: Some(RemovalReason::BottomBoundary),
             },
             MotionRules::default(),

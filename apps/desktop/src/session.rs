@@ -11,6 +11,8 @@ pub struct Session {
     pub remaining_bashers: u16,
     pub remaining_miners: u16,
     pub remaining_builders: u16,
+    pub remaining_blockers: u16,
+    object_map: Option<Vec<u8>>,
     brick_mask: Vec<u8>,
     mine_masks: [u8; 104],
     bash_masks: [u8; 160],
@@ -48,6 +50,8 @@ impl Session {
             remaining_bashers: 0,
             remaining_miners: 0,
             remaining_builders: 0,
+            remaining_blockers: 0,
+            object_map: None,
             brick_mask: vec![0; width * height],
             mine_masks: [0; 104],
             bash_masks: [0; 160],
@@ -108,6 +112,60 @@ impl Session {
     pub fn configure_miner(&mut self, remaining: u16, masks: [u8; 104]) {
         self.remaining_miners = remaining;
         self.mine_masks = masks;
+    }
+    pub fn configure_blocker(
+        &mut self,
+        remaining: u16,
+        cells: Vec<u8>,
+    ) -> Result<(), Box<dyn Error>> {
+        ObjectMap::new(
+            DOS_OBJECT_MAP_WIDTH,
+            DOS_OBJECT_MAP_HEIGHT,
+            DOS_OBJECT_MAP_ORIGIN,
+            DOS_OBJECT_MAP_ORIGIN,
+            &cells,
+        )?;
+        self.remaining_blockers = remaining;
+        self.object_map = Some(cells);
+        Ok(())
+    }
+    pub fn object_map_data(&self) -> &[u8] {
+        self.object_map.as_deref().unwrap_or(&[])
+    }
+    pub fn blocker_snapshot(&self) -> String {
+        let fields = self
+            .actors
+            .iter()
+            .filter_map(|a| {
+                a.state()
+                    .blocker_saved
+                    .map(|saved| format!("[{}, {:?}]", a.state().id, saved))
+            })
+            .collect::<Vec<_>>()
+            .join(",");
+        let cached = self
+            .actors
+            .iter()
+            .map(|a| {
+                format!(
+                    "[{},{},{}]",
+                    a.state().id,
+                    a.state().object_below,
+                    a.state().object_in_front
+                )
+            })
+            .collect::<Vec<_>>()
+            .join(",");
+        let hash = self
+            .object_map_data()
+            .iter()
+            .fold(0xcbf29ce484222325u64, |h, &v| {
+                (h ^ u64::from(v)).wrapping_mul(0x100000001b3)
+            });
+        format!(
+            "{{\"remaining\":{},\"fields\":[{fields}],\"objects\":[{cached}],\"object_map_fnv1a64\":\"{hash:016x}\"}}",
+            self.remaining_blockers
+        )
     }
     pub fn configure_builder(&mut self, remaining: u16) {
         self.remaining_builders = remaining;
@@ -186,7 +244,10 @@ impl Session {
         let bashers = &mut self.remaining_bashers;
         let miners = &mut self.remaining_miners;
         let builders = &mut self.remaining_builders;
+        let blockers = &mut self.remaining_blockers;
+        let raw_map = &mut self.object_map;
         let context = BashingContext {
+            object_map: None,
             masks: &self.bash_masks,
             steel,
             one_way_left: Some(TerrainMask::new(
@@ -208,18 +269,53 @@ impl Session {
                     StartupCommand::AssignDigger(id)
                     | StartupCommand::AssignBasher(id)
                     | StartupCommand::AssignMiner(id)
-                    | StartupCommand::AssignBuilder(id) => id,
+                    | StartupCommand::AssignBuilder(id)
+                    | StartupCommand::AssignBlocker(id) => id,
                     _ => return false,
                 };
                 actors
                     .iter_mut()
                     .find(|a| a.state().id == id)
-                    .is_some_and(|a| match command {
-                        StartupCommand::AssignDigger(_) => a.assign_digger(remaining, steel),
-                        StartupCommand::AssignBasher(_) => a.assign_basher(bashers, context),
-                        StartupCommand::AssignMiner(_) => a.assign_miner(miners, mining),
-                        StartupCommand::AssignBuilder(_) => a.assign_builder(builders),
-                        _ => false,
+                    .is_some_and(|a| {
+                        if matches!(command, StartupCommand::AssignBlocker(_)) {
+                            return raw_map.as_mut().is_some_and(|cells| {
+                                a.assign_blocker(
+                                    blockers,
+                                    &mut ObjectMapMut::new(
+                                        DOS_OBJECT_MAP_WIDTH,
+                                        DOS_OBJECT_MAP_HEIGHT,
+                                        DOS_OBJECT_MAP_ORIGIN,
+                                        DOS_OBJECT_MAP_ORIGIN,
+                                        cells,
+                                    )
+                                    .expect("configured map"),
+                                )
+                            });
+                        }
+                        let objects = BashingContext {
+                            object_map: raw_map.as_ref().map(|cells| {
+                                ObjectMap::new(
+                                    DOS_OBJECT_MAP_WIDTH,
+                                    DOS_OBJECT_MAP_HEIGHT,
+                                    DOS_OBJECT_MAP_ORIGIN,
+                                    DOS_OBJECT_MAP_ORIGIN,
+                                    cells,
+                                )
+                                .expect("configured map")
+                            }),
+                            ..context
+                        };
+                        match command {
+                            StartupCommand::AssignDigger(_) => {
+                                a.assign_digger_with_objects(remaining, objects)
+                            }
+                            StartupCommand::AssignBasher(_) => a.assign_basher(bashers, objects),
+                            StartupCommand::AssignMiner(_) => {
+                                a.assign_miner(miners, MiningContext { objects, ..mining })
+                            }
+                            StartupCommand::AssignBuilder(_) => a.assign_builder(builders),
+                            _ => false,
+                        }
                     })
             },
             |event| match event {
@@ -251,16 +347,30 @@ impl Session {
         if outcome.iteration.is_some() {
             let brick_mask = &mut self.brick_mask;
             let width = self.width;
-            step_actors_with_jobs(
-                &mut self.actors,
-                &mut TerrainMaskMut::new(self.width, self.height, &mut self.terrain)?,
-                mining,
-                |_, out| {
-                    for (x, y) in out.added_pixels.into_iter().flatten() {
-                        brick_mask[y as usize * width + x as usize] = 1;
-                    }
-                },
-            )?;
+            let update_bricks = |_, out: MotionOutcome| {
+                for (x, y) in out.added_pixels.into_iter().flatten() {
+                    brick_mask[y as usize * width + x as usize] = 1;
+                }
+            };
+            let mut terrain = TerrainMaskMut::new(self.width, self.height, &mut self.terrain)?;
+            if let Some(cells) = &mut self.object_map {
+                let mut map = ObjectMapMut::new(
+                    DOS_OBJECT_MAP_WIDTH,
+                    DOS_OBJECT_MAP_HEIGHT,
+                    DOS_OBJECT_MAP_ORIGIN,
+                    DOS_OBJECT_MAP_ORIGIN,
+                    cells,
+                )?;
+                step_actors_with_objects(
+                    &mut self.actors,
+                    &mut terrain,
+                    mining,
+                    &mut map,
+                    update_bricks,
+                )?;
+            } else {
+                step_actors_with_jobs(&mut self.actors, &mut terrain, mining, update_bricks)?;
+            }
             for (brick, &solid) in self.brick_mask.iter_mut().zip(&self.terrain) {
                 if solid == 0 {
                     *brick = 0;
@@ -352,6 +462,31 @@ mod tests {
         .unwrap()
     }
     #[test]
+    fn paused_blocker_assignment_consumes_once_then_releases_after_support_is_removed() {
+        let a = crate::assets::Assets::synthetic_builder();
+        let mut s = Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_blocker(2, a.object_map).unwrap();
+        for _ in 0..80 {
+            s.tick().unwrap();
+        }
+        let before = s.object_map_data().to_vec();
+        s.queue(InputCommand::Pause).unwrap();
+        s.queue(InputCommand::Custom(StartupCommand::AssignBlocker(0)))
+            .unwrap();
+        s.queue(InputCommand::Custom(StartupCommand::AssignBlocker(0)))
+            .unwrap();
+        s.tick().unwrap();
+        assert_eq!(s.remaining_blockers, 1);
+        assert_eq!(s.actors[0].state().action, MotionAction::Blocking);
+        assert_ne!(s.object_map_data(), before);
+        let position = s.actors[0].state();
+        s.terrain[position.y as usize * s.width + position.x as usize] = 0;
+        s.queue(InputCommand::Resume).unwrap();
+        s.tick().unwrap();
+        assert_eq!(s.actors[0].state().action, MotionAction::Walking);
+        assert_eq!(s.object_map_data(), before);
+    }
+    #[test]
     fn paused_builder_assignment_consumes_once_and_adds_material_only_after_resume() {
         let a = crate::assets::Assets::synthetic();
         let mut s = Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap();
@@ -396,6 +531,9 @@ mod tests {
                 fallen: 0,
                 new_digger: false,
                 bricks_left: 0,
+                blocker_saved: None,
+                object_below: 0,
+                object_in_front: 0,
                 removed: None,
             },
             MotionRules::default(),
