@@ -5,6 +5,21 @@ impl Actor {
     /// selects a stable actor ID; cursor priority and other jobs are separate.
     /// Steel is a caller-provided object-map view, not per-pixel protection.
     pub fn assign_digger(&mut self, remaining: &mut u16, steel: TerrainMask<'_>) -> bool {
+        self.assign_digger_check(remaining, |x, y| steel.is_solid(x, y))
+    }
+    pub fn assign_digger_with_objects(
+        &mut self,
+        remaining: &mut u16,
+        context: BashingContext<'_>,
+    ) -> bool {
+        let state = self.state;
+        self.assign_digger_check(remaining, |_, _| context.assignment_steel(state))
+    }
+    fn assign_digger_check(
+        &mut self,
+        remaining: &mut u16,
+        steel: impl Fn(i32, i32) -> bool,
+    ) -> bool {
         if *remaining == 0
             || self.state.removed.is_some()
             || !matches!(
@@ -15,7 +30,7 @@ impl Actor {
                     | MotionAction::Building
                     | MotionAction::Shrugging
             )
-            || steel.is_solid(self.state.x, self.state.y)
+            || steel(self.state.x, self.state.y)
         {
             return false;
         }
@@ -33,6 +48,13 @@ impl Actor {
         &mut self,
         terrain: &mut TerrainMaskMut<'_>,
         steel: TerrainMask<'_>,
+    ) -> Result<MotionOutcome, MotionError> {
+        self.advance_digging(terrain, |x, y| steel.is_solid(x, y))
+    }
+    pub(super) fn advance_digging(
+        &mut self,
+        terrain: &mut TerrainMaskMut<'_>,
+        steel: impl Fn(i32, i32) -> bool,
     ) -> Result<MotionOutcome, MotionError> {
         if self.state.removed.is_some() {
             return Ok(MotionOutcome::default());
@@ -76,7 +98,7 @@ impl Actor {
             } else {
                 if !row(y) {
                     transition(&mut s, MotionAction::Falling, self.rules);
-                } else if steel.is_solid(s.x, s.y) {
+                } else if steel(s.x, s.y) {
                     transition(&mut s, MotionAction::Walking, self.rules);
                 }
                 out.check_objects = true;

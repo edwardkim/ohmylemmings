@@ -1,6 +1,8 @@
 use super::SpawnRequest;
 use crate::{TerrainMask, TerrainMaskMut};
 mod basher;
+mod blocker;
+pub use blocker::step_actors_with_objects;
 mod builder;
 mod digger;
 mod miner;
@@ -44,6 +46,7 @@ pub enum MotionAction {
     Mining,
     Building,
     Shrugging,
+    Blocking,
 }
 impl MotionAction {
     pub const fn frame_count(self) -> u8 {
@@ -51,7 +54,7 @@ impl MotionAction {
             Self::Walking | Self::Shrugging => 8,
             Self::Jumping => 1,
             Self::Falling => 4,
-            Self::Splatting | Self::Digging | Self::Building => 16,
+            Self::Splatting | Self::Digging | Self::Building | Self::Blocking => 16,
             Self::Bashing => 32,
             Self::Mining => 24,
         }
@@ -88,6 +91,9 @@ pub struct ActorState {
     pub fallen: u32,
     pub new_digger: bool,
     pub bricks_left: u8,
+    pub blocker_saved: Option<[u8; 9]>,
+    pub object_below: u8,
+    pub object_in_front: u8,
     pub removed: Option<RemovalReason>,
 }
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -121,6 +127,8 @@ pub enum MotionError {
     MutableTerrainRequired,
     InvalidNewDigger,
     InvalidBricks,
+    ObjectMapRequired,
+    InvalidBlockerState,
 }
 impl fmt::Display for MotionError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -129,6 +137,10 @@ impl fmt::Display for MotionError {
                 f.write_str("terrain-changing jobs require mutable terrain")
             }
             Self::InvalidNewDigger => f.write_str("new digger must be digging at frame zero"),
+            Self::ObjectMapRequired => f.write_str("blocking requires its mutable object map"),
+            Self::InvalidBlockerState => {
+                f.write_str("only blocking retains the saved nine object cells")
+            }
             Self::InvalidBricks => f.write_str("only building retains one to twelve bricks"),
             Self::Frame { action, frame } => write!(f, "frame {frame} is outside {action:?}"),
             Self::Direction => f.write_str("stopped direction must match splatting"),
@@ -204,6 +216,9 @@ impl Actor {
                 fallen: if rules.faller_starts_with_three { 3 } else { 0 },
                 new_digger: false,
                 bricks_left: 0,
+                blocker_saved: None,
+                object_below: 0,
+                object_in_front: 0,
                 removed: None,
             },
             rules,
@@ -213,6 +228,9 @@ impl Actor {
     /// Arbitrary i32 coordinates are accepted; later arithmetic errors are
     /// explicit and leave the complete record unchanged.
     pub fn from_state(state: ActorState, rules: MotionRules) -> Result<Self, MotionError> {
+        if (state.action == MotionAction::Blocking) != state.blocker_saved.is_some() {
+            return Err(MotionError::InvalidBlockerState);
+        }
         if (state.action == MotionAction::Building && !(1..=12).contains(&state.bricks_left))
             || (state.action != MotionAction::Building && state.bricks_left != 0)
         {
@@ -373,6 +391,7 @@ impl Actor {
             | MotionAction::Building => {
                 return Err(MotionError::MutableTerrainRequired);
             }
+            MotionAction::Blocking => return Err(MotionError::ObjectMapRequired),
             MotionAction::Shrugging => {
                 result.check_objects = s.end_of_animation;
                 if s.end_of_animation {
@@ -400,6 +419,7 @@ fn transition(s: &mut ActorState, action: MotionAction, rules: MotionRules) {
         return;
     }
     s.action = action;
+    s.blocker_saved = None;
     s.new_digger = action == MotionAction::Digging;
     s.bricks_left = if action == MotionAction::Building {
         12

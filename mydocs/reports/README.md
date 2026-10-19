@@ -24,3 +24,5 @@
 - [#33 G07-03 Miner](issue-33_miner.md)
 
 - [#34 G07-04 Builder](issue-34_builder.md)
+
+- [#36 G07-05 Blocker](issue-36_blocker.md)

@@ -21,12 +21,13 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nU/M/B/D: select Builder/Miner/Basher/Digger; left click: assign selected skill; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nK/U/M/B/D: select Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     synthetic: bool,
     basher_scene: bool,
     builder_scene: bool,
+    blocker_scene: bool,
     level: u8,
     steps: Option<u64>,
     fast: bool,
@@ -44,6 +45,7 @@ impl Options {
             synthetic: false,
             basher_scene: false,
             builder_scene: false,
+            blocker_scene: false,
             level: 1,
             steps: None,
             fast: false,
@@ -65,6 +67,10 @@ impl Options {
                 "--synthetic-builder" => {
                     o.synthetic = true;
                     o.builder_scene = true;
+                }
+                "--synthetic-blocker" => {
+                    o.synthetic = true;
+                    o.blocker_scene = true;
                 }
                 "--level" => {
                     o.level = args
@@ -138,6 +144,8 @@ struct Capture {
     basher_trace: BufWriter<File>,
     miner_trace: BufWriter<File>,
     builder_trace: BufWriter<File>,
+    blocker_trace: BufWriter<File>,
+    previous_object_map: Vec<u8>,
     previous_terrain: Vec<u8>,
 }
 fn write_new(path: &Path, data: &[u8]) -> Result<(), Box<dyn Error>> {
@@ -166,6 +174,13 @@ impl Capture {
             root: root.to_path_buf(),
             trace,
             previous_terrain: Vec::new(),
+            previous_object_map: Vec::new(),
+            blocker_trace: BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(root.join("blocker.jsonl"))?,
+            ),
             builder_trace: BufWriter::new(
                 OpenOptions::new()
                     .write(true)
@@ -234,6 +249,21 @@ impl Capture {
             "{builder},\"filled\":[{}]}}",
             filled.join(",")
         )?;
+        let changed = self
+            .previous_object_map
+            .iter()
+            .zip(s.object_map_data())
+            .enumerate()
+            .filter(|(_, (a, b))| a != b)
+            .map(|(i, (_, b))| format!("[{i},{b}]"))
+            .collect::<Vec<_>>()
+            .join(",");
+        let mut blocker = s.blocker_snapshot();
+        blocker.pop();
+        writeln!(self.blocker_trace, "{blocker},\"changed\":[{changed}]}}")?;
+        self.previous_object_map.clear();
+        self.previous_object_map
+            .extend_from_slice(s.object_map_data());
         self.previous_terrain.clear();
         self.previous_terrain.extend_from_slice(s.terrain());
         Ok(())
@@ -256,6 +286,8 @@ impl Capture {
         self.basher_trace.flush()?;
         self.miner_trace.flush()?;
         self.builder_trace.flush()?;
+        self.blocker_trace.flush()?;
+        write_new(&self.root.join("object-map-final.bin"), s.object_map_data())?;
         write_new(&self.root.join("terrain-final.bin"), s.terrain())?;
         write_new(&self.root.join("brick-final.bin"), s.brick_mask())?;
         let mut inputs = String::new();
@@ -274,6 +306,9 @@ impl Capture {
                 }
                 InputCommand::Custom(StartupCommand::AssignBuilder(id)) => {
                     format!("AssignBuilder {id}")
+                }
+                InputCommand::Custom(StartupCommand::AssignBlocker(id)) => {
+                    format!("AssignBlocker {id}")
                 }
                 InputCommand::Custom(StartupCommand::SetReleaseRate(rate)) => {
                     format!("SetReleaseRate {rate}")
@@ -304,12 +339,13 @@ fn basher_capture(s: &Session) -> bool {
                     StartupCommand::AssignBasher(_)
                         | StartupCommand::AssignMiner(_)
                         | StartupCommand::AssignBuilder(_)
+                        | StartupCommand::AssignBlocker(_)
                 )
             )
         })
 }
 fn run(options: Options) -> Result<(), Box<dyn Error>> {
-    let assets = if options.builder_scene {
+    let assets = if options.blocker_scene || options.builder_scene {
         Assets::synthetic_builder()
     } else if options.basher_scene {
         Assets::synthetic_basher()
@@ -348,6 +384,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
     )?;
     session.configure_miner(assets.miners, assets.mine_masks);
     session.configure_builder(assets.builders);
+    session.configure_blocker(assets.blockers, assets.object_map.clone())?;
     let mut view = View::new(assets.screen_x);
     view.replaying = options.replay.is_some();
     let mut capture = options
@@ -377,6 +414,10 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             })
             .collect();
         write_new(&c.root.join("objects.bin"), &objects)?;
+        write_new(
+            &c.root.join("object-map-initial.bin"),
+            session.object_map_data(),
+        )?;
         let config = &assets.config;
         let entrances = assets
             .entrances
@@ -385,7 +426,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             .collect::<Vec<_>>()
             .join(",");
         let description = format!(
-            "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"miners\":{},\"builders\":{},\"level\":{}}}",
+            "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"miners\":{},\"builders\":{},\"blockers\":{},\"level\":{}}}",
             assets.width,
             assets.height,
             config.time_limit_minutes,
@@ -395,6 +436,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             assets.bashers,
             assets.miners,
             assets.builders,
+            assets.blockers,
             options.level
         );
         write_new(&c.root.join("config.json"), description.as_bytes())?;
@@ -532,11 +574,16 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             canvas.clear();
             canvas.copy(&texture, None, None)?;
             if take_capture {
-                let pixels = canvas.read_pixels(None, PixelFormatEnum::RGB24)?;
+                // Read the full output, including the letterbox after a WM
+                // resize. SDL's implicit read rectangle follows the viewport.
+                let size = canvas.output_size()?;
+                canvas.set_logical_size(0, 0)?;
+                let pixels = canvas.read_pixels(None, PixelFormatEnum::RGB24);
+                canvas.set_logical_size(WIDTH as u32, HEIGHT as u32)?;
                 capture
                     .as_mut()
                     .unwrap()
-                    .frame(step, &frame, &pixels, canvas.output_size()?)?;
+                    .frame(step, &frame, &pixels?, size)?;
                 last_captured = Some(step);
             }
             canvas.present();

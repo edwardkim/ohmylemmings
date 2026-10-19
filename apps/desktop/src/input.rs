@@ -48,6 +48,7 @@ pub fn handle(
                     SelectedSkill::Basher => StartupCommand::AssignBasher(id),
                     SelectedSkill::Miner => StartupCommand::AssignMiner(id),
                     SelectedSkill::Builder => StartupCommand::AssignBuilder(id),
+                    SelectedSkill::Blocker => StartupCommand::AssignBlocker(id),
                 }))?;
             }
         }
@@ -61,6 +62,7 @@ pub fn handle(
             Keycode::D => view.selected_skill = SelectedSkill::Digger,
             Keycode::M => view.selected_skill = SelectedSkill::Miner,
             Keycode::U => view.selected_skill = SelectedSkill::Builder,
+            Keycode::K => view.selected_skill = SelectedSkill::Blocker,
             Keycode::Left => view.scroll(-16, width),
             Keycode::Right => view.scroll(16, width),
             Keycode::Home => view.scroll(i32::MIN, width),
@@ -112,6 +114,9 @@ pub fn parse_replay(
             ["AssignBuilder", id] => {
                 InputCommand::Custom(StartupCommand::AssignBuilder(id.parse()?))
             }
+            ["AssignBlocker", id] => {
+                InputCommand::Custom(StartupCommand::AssignBlocker(id.parse()?))
+            }
             ["SetReleaseRate", rate] => {
                 InputCommand::Custom(StartupCommand::SetReleaseRate(rate.parse()?))
             }
@@ -150,6 +155,43 @@ mod tests {
             Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap(),
             View::new(0),
         )
+    }
+    #[test]
+    fn blocker_selection_click_and_replay_keep_stable_actor_id() {
+        let (mut s, mut v) = setup();
+        for _ in 0..80 {
+            s.tick().unwrap();
+        }
+        let a = s.actors[0].state();
+        handle(key(Keycode::K, false), &mut s, &mut v, 640, false).unwrap();
+        handle(
+            Event::MouseButtonDown {
+                timestamp: 0,
+                window_id: 0,
+                which: 0,
+                mouse_btn: MouseButton::Left,
+                clicks: 1,
+                x: a.x,
+                y: a.y - 5,
+            },
+            &mut s,
+            &mut v,
+            640,
+            false,
+        )
+        .unwrap();
+        assert_eq!(v.selected_skill, SelectedSkill::Blocker);
+        assert_eq!(
+            parse_replay("80 0 AssignBlocker 0", Some(340)).unwrap(),
+            s.inputs
+        );
+        for input in [
+            "80 0 AssignBlocker",
+            "80 0 AssignBlocker -1",
+            "80 0 AssignBlocker 0 1",
+        ] {
+            assert!(parse_replay(input, Some(340)).is_err());
+        }
     }
     #[test]
     fn builder_key_and_click_record_stable_id_and_validate_replay_arguments() {

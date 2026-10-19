@@ -22,6 +22,9 @@ fn state() -> ActorState {
         fallen: 0,
         new_digger: false,
         bricks_left: 0,
+        blocker_saved: None,
+        object_below: 0,
+        object_in_front: 0,
         removed: None,
     }
 }
@@ -66,6 +69,9 @@ fn birth_uses_selected_original_entrance_and_preserves_stable_identity_and_rules
                 fallen: if enabled { 3 } else { 0 },
                 new_digger: false,
                 bricks_left: 0,
+                blocker_saved: None,
+                object_below: 0,
+                object_in_front: 0,
                 removed: None
             }
         );
@@ -673,6 +679,7 @@ fn action_code(action: MotionAction) -> u8 {
         MotionAction::Mining => 6,
         MotionAction::Building => 7,
         MotionAction::Shrugging => 8,
+        MotionAction::Blocking => 9,
     }
 }
 fn removal_code(reason: Option<RemovalReason>) -> u8 {
@@ -751,7 +758,8 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                             | MotionAction::Bashing
                             | MotionAction::Mining
                             | MotionAction::Building
-                            | MotionAction::Shrugging => unreachable!(),
+                            | MotionAction::Shrugging
+                            | MotionAction::Blocking => unreachable!(),
                         };
                         let fallen_values: &[_] = if action == MotionAction::Falling {
                             &[0, 60, 61]
@@ -773,6 +781,9 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                                         fallen,
                                         new_digger: false,
                                         bricks_left: 0,
+                                        blocker_saved: None,
+                                        object_below: 0,
+                                        object_in_front: 0,
                                         removed: None,
                                     };
                                     let mut a = Actor::from_state(

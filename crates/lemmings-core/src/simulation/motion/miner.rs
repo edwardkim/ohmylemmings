@@ -33,12 +33,8 @@ impl Actor {
                     | MotionAction::Building
                     | MotionAction::Shrugging
             )
-            || context.objects.steel.is_solid(s.x, s.y)
-            || context.objects.blocked(
-                i64::from(s.x) + i64::from(s.direction.delta()) * 8,
-                i64::from(s.y) - 8,
-                s.direction,
-            )
+            || context.objects.assignment_steel(s)
+            || context.objects.assignment_blocked(s)
         {
             return false;
         }
@@ -119,10 +115,15 @@ impl Actor {
                 .objects
                 .blocked(i64::from(s.x), i64::from(s.y), s.direction)
                 || (context.one_way_right_bug
-                    && context
-                        .objects
-                        .one_way_right
-                        .is_some_and(|m| m.is_solid(s.x, s.y)))
+                    && context.objects.object_map.map_or_else(
+                        || {
+                            context
+                                .objects
+                                .one_way_right
+                                .is_some_and(|m| m.is_solid(s.x, s.y))
+                        },
+                        |map| map.read(i64::from(s.x), i64::from(s.y)) == 136,
+                    ))
             {
                 transition(&mut s, MotionAction::Walking, self.rules);
                 s.direction = s.direction.reverse();

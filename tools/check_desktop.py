@@ -10,24 +10,30 @@ import tempfile
 from state_replay import ROOT, digest, run_engine
 
 
+def verify_scaled_frame(width, height, pixels, logical):
+    if len(logical)!=320*200*3 or len(pixels)!=width*height*3:
+        raise AssertionError('truncated framebuffer')
+    scale=min(width//320,height//200)
+    if scale<1:raise AssertionError('capture is smaller than the logical frame')
+    left=(width-320*scale)//2;top=(height-200*scale)//2
+    for y in range(height):
+        if top<=y<top+200*scale:
+            row=logical[((y-top)//scale)*960:((y-top)//scale+1)*960]
+            expected=bytes(left*3)+b''.join(row[x:x+3]*scale for x in range(0,960,3))+bytes((width-left-320*scale)*3)
+        else:expected=bytes(width*3)
+        if pixels[y*width*3:(y+1)*width*3]!=expected:
+            raise AssertionError(f'SDL integer scaling/readback differs at output row {y}')
+
+
 def verify_pixels(directory):
-    count = 0
+    count=0
     for ppm in sorted(directory.glob('frame-*.ppm')):
-        magic, dimensions, maximum, pixels = ppm.read_bytes().split(b'\n', 3)
-        width, height = map(int, dimensions.split())
-        if magic != b'P6' or maximum != b'255' or (width, height) != (960, 600):
-            raise AssertionError('unexpected SDL readback dimensions/format')
-        logical = ppm.with_suffix('.rgb').read_bytes()
-        if len(logical) != 320*200*3 or len(pixels) != width*height*3:
-            raise AssertionError('truncated framebuffer')
-        for y in range(200):
-            row = logical[y*320*3:(y+1)*320*3]
-            expanded = b''.join(row[x:x+3]*3 for x in range(0, len(row), 3))
-            if pixels[y*3*width*3:(y+1)*3*width*3] != expanded*3:
-                raise AssertionError(f'SDL nearest scaling/readback differs at source row {y}')
-        count += 1
-    if count == 0:
-        raise AssertionError('no SDL captures')
+        magic,dimensions,maximum,pixels=ppm.read_bytes().split(b'\n',3)
+        width,height=map(int,dimensions.split())
+        if magic!=b'P6' or maximum!=b'255':raise AssertionError('unexpected SDL readback format')
+        verify_scaled_frame(width,height,pixels,ppm.with_suffix('.rgb').read_bytes())
+        count+=1
+    if count==0:raise AssertionError('no SDL captures')
     return count
 
 
