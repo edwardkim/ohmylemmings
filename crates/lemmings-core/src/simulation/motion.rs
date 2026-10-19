@@ -1,6 +1,7 @@
 use super::SpawnRequest;
 use crate::{TerrainMask, TerrainMaskMut};
 mod basher;
+mod builder;
 mod digger;
 mod miner;
 pub use basher::{BashingContext, step_actors_with_skills};
@@ -41,20 +42,29 @@ pub enum MotionAction {
     Digging,
     Bashing,
     Mining,
+    Building,
+    Shrugging,
 }
 impl MotionAction {
     pub const fn frame_count(self) -> u8 {
         match self {
-            Self::Walking => 8,
+            Self::Walking | Self::Shrugging => 8,
             Self::Jumping => 1,
             Self::Falling => 4,
-            Self::Splatting | Self::Digging => 16,
+            Self::Splatting | Self::Digging | Self::Building => 16,
             Self::Bashing => 32,
             Self::Mining => 24,
         }
     }
     fn loops(self) -> bool {
         matches!(self, Self::Walking | Self::Falling)
+    }
+    fn foot_y(self) -> i32 {
+        match self {
+            Self::Building | Self::Mining => 13,
+            Self::Digging => 12,
+            _ => 10,
+        }
     }
 }
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -77,6 +87,7 @@ pub struct ActorState {
     pub end_of_animation: bool,
     pub fallen: u32,
     pub new_digger: bool,
+    pub bricks_left: u8,
     pub removed: Option<RemovalReason>,
 }
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -109,6 +120,7 @@ pub enum MotionError {
     ActorOrder { index: usize },
     MutableTerrainRequired,
     InvalidNewDigger,
+    InvalidBricks,
 }
 impl fmt::Display for MotionError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -117,6 +129,7 @@ impl fmt::Display for MotionError {
                 f.write_str("terrain-changing jobs require mutable terrain")
             }
             Self::InvalidNewDigger => f.write_str("new digger must be digging at frame zero"),
+            Self::InvalidBricks => f.write_str("only building retains one to twelve bricks"),
             Self::Frame { action, frame } => write!(f, "frame {frame} is outside {action:?}"),
             Self::Direction => f.write_str("stopped direction must match splatting"),
             Self::InvalidFallen => f.write_str("only falling may retain a fall counter"),
@@ -141,6 +154,9 @@ pub struct MotionOutcome {
     pub check_objects: bool,
     pub removal: Option<RemovalReason>,
     pub splat_started: bool,
+    /// Actual empty-to-solid changes from a builder, in left-to-right order.
+    /// Hosts may use these coordinates to maintain terrain material/color.
+    pub added_pixels: [Option<(i32, i32)>; 6],
 }
 
 /// Caller-owned actor. No allocation, rendering or I/O. Trigger execution is
@@ -187,6 +203,7 @@ impl Actor {
                 end_of_animation: false,
                 fallen: if rules.faller_starts_with_three { 3 } else { 0 },
                 new_digger: false,
+                bricks_left: 0,
                 removed: None,
             },
             rules,
@@ -196,6 +213,11 @@ impl Actor {
     /// Arbitrary i32 coordinates are accepted; later arithmetic errors are
     /// explicit and leave the complete record unchanged.
     pub fn from_state(state: ActorState, rules: MotionRules) -> Result<Self, MotionError> {
+        if (state.action == MotionAction::Building && !(1..=12).contains(&state.bricks_left))
+            || (state.action != MotionAction::Building && state.bricks_left != 0)
+        {
+            return Err(MotionError::InvalidBricks);
+        }
         if state.new_digger && (state.action != MotionAction::Digging || state.frame != 0) {
             return Err(MotionError::InvalidNewDigger);
         }
@@ -345,8 +367,17 @@ impl Actor {
                     transition(&mut s, MotionAction::Walking, self.rules);
                 }
             }
-            MotionAction::Digging | MotionAction::Bashing | MotionAction::Mining => {
+            MotionAction::Digging
+            | MotionAction::Bashing
+            | MotionAction::Mining
+            | MotionAction::Building => {
                 return Err(MotionError::MutableTerrainRequired);
+            }
+            MotionAction::Shrugging => {
+                result.check_objects = s.end_of_animation;
+                if s.end_of_animation {
+                    transition(&mut s, MotionAction::Walking, self.rules);
+                }
             }
             MotionAction::Splatting => {
                 result.check_objects = false;
@@ -370,6 +401,11 @@ fn transition(s: &mut ActorState, action: MotionAction, rules: MotionRules) {
     }
     s.action = action;
     s.new_digger = action == MotionAction::Digging;
+    s.bricks_left = if action == MotionAction::Building {
+        12
+    } else {
+        0
+    };
     s.frame = 0;
     s.end_of_animation = false;
     s.fallen = if action == MotionAction::Falling && rules.faller_starts_with_three {
@@ -382,10 +418,10 @@ fn transition(s: &mut ActorState, action: MotionAction, rules: MotionRules) {
     }
 }
 fn top(s: &mut ActorState, rules: MotionRules) {
-    // All four supported animations have FootY=10. HEAD_MIN_Y=-5, so correction
-    // is -5-2+10=3. Preserve the reference's turn and jumping-to-walking order.
-    if s.y < 5 {
-        s.y = 3;
+    // Use the action after any transition, matching Game.pas's FrameTopDy.
+    let foot = s.action.foot_y();
+    if i64::from(s.y) - i64::from(foot) < -5 {
+        s.y = foot - 7;
         s.direction = s.direction.reverse();
         if s.action == MotionAction::Jumping {
             transition(s, MotionAction::Walking, rules);

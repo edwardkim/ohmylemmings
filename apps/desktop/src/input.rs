@@ -47,6 +47,7 @@ pub fn handle(
                     SelectedSkill::Digger => StartupCommand::AssignDigger(id),
                     SelectedSkill::Basher => StartupCommand::AssignBasher(id),
                     SelectedSkill::Miner => StartupCommand::AssignMiner(id),
+                    SelectedSkill::Builder => StartupCommand::AssignBuilder(id),
                 }))?;
             }
         }
@@ -59,6 +60,7 @@ pub fn handle(
             Keycode::B => view.selected_skill = SelectedSkill::Basher,
             Keycode::D => view.selected_skill = SelectedSkill::Digger,
             Keycode::M => view.selected_skill = SelectedSkill::Miner,
+            Keycode::U => view.selected_skill = SelectedSkill::Builder,
             Keycode::Left => view.scroll(-16, width),
             Keycode::Right => view.scroll(16, width),
             Keycode::Home => view.scroll(i32::MIN, width),
@@ -107,6 +109,9 @@ pub fn parse_replay(
             ["AssignDigger", id] => InputCommand::Custom(StartupCommand::AssignDigger(id.parse()?)),
             ["AssignBasher", id] => InputCommand::Custom(StartupCommand::AssignBasher(id.parse()?)),
             ["AssignMiner", id] => InputCommand::Custom(StartupCommand::AssignMiner(id.parse()?)),
+            ["AssignBuilder", id] => {
+                InputCommand::Custom(StartupCommand::AssignBuilder(id.parse()?))
+            }
             ["SetReleaseRate", rate] => {
                 InputCommand::Custom(StartupCommand::SetReleaseRate(rate.parse()?))
             }
@@ -145,6 +150,37 @@ mod tests {
             Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap(),
             View::new(0),
         )
+    }
+    #[test]
+    fn builder_key_and_click_record_stable_id_and_validate_replay_arguments() {
+        let (mut s, mut v) = setup();
+        for _ in 0..80 {
+            s.tick().unwrap();
+        }
+        let a = s.actors[0].state();
+        handle(key(Keycode::U, false), &mut s, &mut v, 640, false).unwrap();
+        let click = Event::MouseButtonDown {
+            timestamp: 0,
+            window_id: 0,
+            which: 0,
+            mouse_btn: MouseButton::Left,
+            clicks: 1,
+            x: a.x,
+            y: a.y - 5,
+        };
+        handle(click, &mut s, &mut v, 640, false).unwrap();
+        assert_eq!(v.selected_skill, SelectedSkill::Builder);
+        assert_eq!(
+            parse_replay("80 0 AssignBuilder 0", Some(340)).unwrap(),
+            s.inputs
+        );
+        for text in [
+            "80 0 AssignBuilder",
+            "80 0 AssignBuilder -1",
+            "80 0 AssignBuilder 0 1",
+        ] {
+            assert!(parse_replay(text, Some(340)).is_err());
+        }
     }
     #[test]
     fn miner_selection_records_id_and_replay_rejects_malformed_miner_arguments() {

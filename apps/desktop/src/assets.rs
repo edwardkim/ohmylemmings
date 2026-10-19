@@ -10,6 +10,7 @@ pub struct Assets {
     pub diggers: u16,
     pub bashers: u16,
     pub miners: u16,
+    pub builders: u16,
     pub mine_masks: [u8; 104],
     pub bash_masks: [u8; 160],
     pub one_way_left: Vec<u8>,
@@ -181,6 +182,7 @@ impl Assets {
             diggers,
             bashers,
             miners: header.skills[6],
+            builders: header.skills[4],
             mine_masks: masks[160..264].try_into()?,
             bash_masks: masks[..160].try_into()?,
             one_way_left,
@@ -213,6 +215,7 @@ impl Assets {
             diggers: 10,
             bashers: 10,
             miners: 10,
+            builders: 10,
             mine_masks: [255; 104], // own full rectangular synthetic erase masks
             // Own synthetic masks (rectangular slices), never original bits.
             bash_masks: synthetic_bash_masks(),
@@ -237,7 +240,7 @@ impl Assets {
                 [0; 3],
                 [0; 3],
                 [0; 3],
-                [0; 3],
+                [220, 140, 70], // palette7: builder material, as in Styles.Base.pas
                 [0; 3],
                 [0; 3],
                 [0; 3],
@@ -258,18 +261,37 @@ impl Assets {
         }
         scene
     }
+    pub fn synthetic_builder() -> Self {
+        let mut scene = Self::synthetic();
+        for y in 0..scene.height {
+            for x in 0..scene.width {
+                scene.terrain[y * scene.width + x] = u8::from(
+                    (y >= 100 && x < 500) || ((60..100).contains(&y) && (160..170).contains(&x)),
+                );
+            }
+        }
+        scene
+    }
     pub fn scene_with_terrain(
         &self,
         iteration: u64,
         mask: &[u8],
+        brick_mask: &[u8],
     ) -> Result<Vec<[u8; 4]>, Box<dyn Error>> {
         lemmings_core::TerrainMask::new(self.width, self.height, mask)?;
+        lemmings_core::TerrainMask::new(self.width, self.height, brick_mask)?;
         let Some(original) = &self.original else {
             return Ok(mask
                 .iter()
-                .map(|&v| {
+                .zip(brick_mask)
+                .map(|(&v, &brick)| {
                     if v == 1 {
-                        [130, 85, 45, 255]
+                        if brick == 1 {
+                            let [r, g, b] = self.palette[7];
+                            [r, g, b, 255]
+                        } else {
+                            [130, 85, 45, 255]
+                        }
                     } else {
                         [0, 0, 0, 255]
                     }
@@ -286,9 +308,16 @@ impl Assets {
             &mut terrain,
         )?;
         let mut edited = terrain.pixels().to_vec();
-        for (pixel, &solid) in edited.iter_mut().zip(mask) {
+        for ((pixel, &solid), &brick) in edited.iter_mut().zip(mask).zip(brick_mask) {
             if solid == 0 {
                 *pixel = IndexedPixel::default();
+            } else if brick == 1 {
+                *pixel = IndexedPixel {
+                    // Terrain colors are local0..7, then shifted to8..15.
+                    // Custom0 is also copied to combined palette7 for bridges.
+                    color: 0,
+                    opaque: true,
+                };
             }
         }
         let terrain = terrain
@@ -343,6 +372,53 @@ fn synthetic_bash_masks() -> [u8; 160] {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn original_bricks_use_first_custom_terrain_color_as_the_shared_bridge_color() {
+        let mut a = Assets::synthetic();
+        a.width = LEVEL_TERRAIN_WIDTH;
+        a.height = LEVEL_TERRAIN_HEIGHT;
+        let mut level = [0; LEVEL_RECORD_SIZE];
+        for offset in [1, 3, 5, 7] {
+            level[offset] = 1;
+        }
+        level[288..1888].fill(255);
+        let mut ground = vec![0; GROUND_RECORD_SIZE];
+        ground[984..987].copy_from_slice(&[48, 44, 60]);
+        ground[1005..1008].copy_from_slice(&[36, 8, 4]);
+        a.original = Some(Original {
+            graphics: 0,
+            level,
+            ground,
+            terrain_images: Vec::new(),
+            object_images: Vec::new(),
+        });
+        let mut mask = vec![0; a.width * a.height];
+        let mut bricks = mask.clone();
+        let index = 99 * a.width + 70;
+        mask[index] = 1;
+        bricks[index] = 1;
+        assert_eq!(
+            a.scene_with_terrain(0, &mask, &bricks).unwrap()[index],
+            [194, 178, 242, 255]
+        );
+    }
+    #[test]
+    fn brick_material_survives_regrowth_and_is_removed_with_the_collision_pixel() {
+        let a = Assets::synthetic();
+        let mut mask = a.terrain.clone();
+        let mut bricks = vec![0; mask.len()];
+        let index = 99 * a.width + 70;
+        mask[index] = 1;
+        bricks[index] = 1;
+        let scene = a.scene_with_terrain(0, &mask, &bricks).unwrap();
+        let [r, g, b] = a.palette[7];
+        assert_eq!(scene[index], [r, g, b, 255]);
+        mask[index] = 0;
+        assert_eq!(
+            a.scene_with_terrain(0, &mask, &bricks).unwrap()[index],
+            [0, 0, 0, 255]
+        );
+    }
     #[test]
     fn entrance_and_continuous_visual_frames_use_iteration_only() {
         assert_eq!(object_frame(true, false, 1, 10, 34), 1);

@@ -9,7 +9,11 @@ impl Actor {
             || self.state.removed.is_some()
             || !matches!(
                 self.state.action,
-                MotionAction::Walking | MotionAction::Bashing | MotionAction::Mining
+                MotionAction::Walking
+                    | MotionAction::Bashing
+                    | MotionAction::Mining
+                    | MotionAction::Building
+                    | MotionAction::Shrugging
             )
             || steel.is_solid(self.state.x, self.state.y)
         {

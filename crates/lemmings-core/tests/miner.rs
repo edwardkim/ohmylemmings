@@ -17,6 +17,7 @@ fn actor(action: MotionAction, frame: u8, direction: MotionDirection) -> Actor {
             end_of_animation: false,
             fallen: 0,
             new_digger: false,
+            bricks_left: 0,
             removed: None,
         },
         MotionRules::default(),

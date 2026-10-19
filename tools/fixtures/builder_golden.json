@@ -1,0 +1,233 @@
+{
+  "format": "g07-builder-v1",
+  "reference": {
+    "metadata_sha256": "2c68d83660cf0c2d141e7449d20b9d747fe5c3496d31d0551ff9c547656cf2a8",
+    "source_sha256": "c1ba9ffda9e8e277f5c9b171df2bb611210d3326b9623b28fcd35426f4d6a448",
+    "methods": {
+      "HasPixelAt": "e8c1c11b7b16795fb96f590a91bb01381f9fab87791213f00999cded06ce6243",
+      "HasPixelAt_ClipY": "dc9696798aeaa483df3899392505ba853577726f1774a931d1df91d00882523c",
+      "Transition": "2ac447b7289c2eead45d2bdf19a43c437ac6e3f1455d61fc32de95aa7c4f0aad",
+      "TurnAround": "6c85a8ec0e5da4a5cbd3f01dfa315260bb1409af418d149f396c93367e15e5df",
+      "AssignDigger": "c89b05ed99b389dde0a1f421e27f896967b42f6c15847ac464ec2c4458ddf4a7",
+      "DigOneRow": "fdf023c95fb66967aa4e133f36829a7db3e68308afb70665ffbffba2f26ba0a1",
+      "HandleLemming": "e00f1ffbafa322076f9cff9644dab1cbea83e29081ce04a126573d1f340fea91",
+      "HandleWalking": "41d1f6ededb993c451d58e773a60dbb6ff3135b7109c9709ffef40bafa5f33ce",
+      "HandleJumping": "f7c843e508a0d33c3e28fc8872e2427dfa7fbc890487c6392c4bb03e85d264a5",
+      "HandleDigging": "5aa69c62006b96b6c430c253899708189823aa531cf9db2277f49c1189ea783f",
+      "HandleFalling": "894411800603d79132d7533ef21bae8e52de61270849f0f50e2c4899f80b122a",
+      "HandleSplatting": "5e43a5f8f9c16937c55b9b5f710a809566d298066ca47cef89018cdc5fd6fe4a",
+      "CheckForLevelTopBoundary": "da00c889f8d1283fa5aad65083c5963fa8b1d56843bf06b8ab3a7eae75587933",
+      "RemoveLemming": "7307061c19354e8142270bd3a6a80900329c5c89982da2d4e1b149edbbbef1f7",
+      "IncrementIteration": "20f1800054465889d9fdad767d45a510dcbda8ae0b8d8bbee8ec597f8c030781",
+      "BtnPause": "579cdcbff69db1562f4bf5843ce41e1cef1c4dec2a53a865566bbfcf916f977c",
+      "BtnPauseStop": "217532706520d2f2aa8996a46c1136fbce9d547e8f433141bee75d3cb3cbf31a",
+      "CheckSpawnLemming": "5608a12f641eccd5dc009789311cc3e78ac4b803f8bfae5d45ce085b35bcc638",
+      "AssignBasher": "180a96371f798f64b0712da149138e4ff0bed6aedcdc71493b218b8547862793",
+      "ApplyBashingMask": "22d8a77f2920ceaa5ab5c3baeb4b6189e3908377225917fd13475b2f14bcc8d0",
+      "HandleBashing": "17a7a4540fa678e8468097ceb07d34e89f992a9c5211e0598e59c20a0a9f783f",
+      "AssignMiner": "9840ba985eb3b388a20b6611e6922ea1102cab7095b634b0fb0b45116310b392",
+      "ApplyMinerMask": "373e38da1886780b5f139dc5b4ca7ba40f1ada736cd598dff8307abc0dcb9ed3",
+      "HandleMining": "14caf0b17d8552294413733c25ae9a20b38241c51c1e9cb1fcc55fcbc6bf9a44",
+      "AssignBuilder": "e90d767eb33188406629e23a0814d01feee09bc49af56af365b06c1827e4ad2e",
+      "LayBrick": "6b008312ed286cd734d03a6d554b27fd067393e3148e6cccb5ac724caf7b93ef",
+      "HandleBuilding": "8632ac338d764372604a01a6f682446ff4850ed5a13e10687853779482b1dd65",
+      "HandleShrugging": "29581a4d792184773aab3fc4aa9f946dc9fe42cb80da9f98f26d83b8e6a92d13"
+    },
+    "scope": "28 original functions; four jobs, Shrugging and mutable terrain; not full DOS",
+    "host_sha256": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18",
+    "builder_sha256": "eb0070c67518b432112d6cb6b73e84925949dfbe1c3a7aa33a03daa8e2df026d",
+    "generated_sha256": "c10e2c252a962797f57e86c0154b8128f191118f420b6145690bbf3ac20db540",
+    "extracted_sha256": "d71ab164148960c9897e7fc0b8eeb94e427ad0df0731a8873c1ac6d5a57c0c09",
+    "compiler_sha256": "c88973cd2a4895099c698ba470f99cb2288d78ac2b626991eafe1a132828bd88",
+    "executable_sha256": "240d905648ef0f2de9ee4beadf9325a8c3eed29e1650ed2cc8fcf8d0aa45b7c5",
+    "stubs": "toolbar/sound/minimap/recorder; caller object codes; distinct host action flags; stable ID without secondary selection",
+    "syntax_patches": "two G05 inline-variable changes only",
+    "mask_adapter": "MSB-first caller masks, clipped erase DrawTo, rectangle geometry helpers; no graphics framework",
+    "builder_adapter": "Safe PixelS clips reads/writes; zero RGB brick colors and ALPHA_TERRAIN=1 retain collision occupancy; graphics/sound are stubbed"
+  },
+  "adapter_sha256": {
+    "build_builder_reference.py": "eb0070c67518b432112d6cb6b73e84925949dfbe1c3a7aa33a03daa8e2df026d",
+    "build_miner_reference.py": "115e344bb9e9f9202ea8998b1a6c7a76be06b7adc6654fd011d17d9e4938fd91",
+    "build_basher_reference.py": "aa10744ce370a37e38d6c1a57a03d3a3311ca48f1241e69963bbe6eec788b622",
+    "build_digger_reference.py": "70e83e05310628c0be164398af3a02725f50b411458fe32b8b99c5beaf42d8bc",
+    "build_reference.py": "0448f50a3d4c5dd24918c12199000fa8a40e3ea0ac7ad164899dfdaa87c29ad1",
+    "harness.pas": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18"
+  },
+  "synthetic_terrain_sha256": "daced2db27e22d0ce50a2be895f037d57e7d4b4d1369c50432bd253c14eaeaed",
+  "cases": {
+    "right_twelve_bricks": {
+      "snapshots_sha256": "ddb7e11f429142feda32047f4268fb258f06aef393850931adaca088a72f02dc",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignBuilder",
+          0
+        ]
+      ]
+    },
+    "left_twelve_bricks": {
+      "snapshots_sha256": "3e247c3ef9b345edaa87b4ed4a597f210aa6e35924833a53827270bd5a5272fc",
+      "steps": 421,
+      "inputs": [
+        [
+          200,
+          0,
+          "AssignBuilder",
+          0
+        ]
+      ]
+    },
+    "falling_duplicate_absent": {
+      "snapshots_sha256": "6a1d6d74652a1b1457b83462cddef3ae9daf37bf4fc264f5ec8b8eac7bcb3763",
+      "steps": 421,
+      "inputs": [
+        [
+          54,
+          0,
+          "AssignBuilder",
+          0
+        ],
+        [
+          80,
+          0,
+          "AssignBuilder",
+          0
+        ],
+        [
+          80,
+          1,
+          "AssignBuilder",
+          0
+        ],
+        [
+          80,
+          2,
+          "AssignBuilder",
+          999
+        ]
+      ]
+    },
+    "pause_assign_resume": {
+      "snapshots_sha256": "c5851c356ceeacfd2bec8004c96f359ab8593ac229a13a0542ce0ae4cd31f4bc",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "Pause",
+          0
+        ],
+        [
+          80,
+          1,
+          "AssignBuilder",
+          0
+        ],
+        [
+          90,
+          0,
+          "Resume",
+          0
+        ]
+      ]
+    },
+    "replace_all_jobs": {
+      "snapshots_sha256": "2d27015a06f05eb56e4bdb57a2c9ac4020f785f7e65c3170dc736e97dee96671",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignBuilder",
+          0
+        ],
+        [
+          100,
+          0,
+          "AssignDigger",
+          0
+        ],
+        [
+          101,
+          0,
+          "AssignBuilder",
+          0
+        ],
+        [
+          120,
+          0,
+          "AssignBasher",
+          0
+        ],
+        [
+          121,
+          0,
+          "AssignBuilder",
+          0
+        ],
+        [
+          140,
+          0,
+          "AssignMiner",
+          0
+        ],
+        [
+          141,
+          0,
+          "AssignBuilder",
+          0
+        ]
+      ]
+    },
+    "two_builders": {
+      "snapshots_sha256": "dc8ac3c7282dc6fe43754737c6f59c7cc4a42696bb322cb94981b48dcea93524",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignBuilder",
+          0
+        ],
+        [
+          110,
+          0,
+          "AssignBuilder",
+          1
+        ]
+      ]
+    },
+    "restart_shrugging": {
+      "snapshots_sha256": "25c30c511012fdc6284ce4a142f0559e8a413a961972d4addae84a932426316f",
+      "steps": 421,
+      "inputs": [
+        [
+          80,
+          0,
+          "AssignBuilder",
+          0
+        ],
+        [
+          272,
+          0,
+          "AssignBuilder",
+          0
+        ]
+      ]
+    },
+    "head_collision": {
+      "snapshots_sha256": "0be1641a550fec0c061711a1f7ce25fc94652efb9d87f9e3c46dbd219f5f29e6",
+      "steps": 421,
+      "inputs": [
+        [
+          150,
+          0,
+          "AssignBuilder",
+          0
+        ]
+      ]
+    }
+  }
+}

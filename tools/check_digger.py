@@ -28,6 +28,10 @@ def collect(directory):
     if len(states) != len(details):
         raise ValueError('missing Digger state')
     mask = bytearray((directory/'terrain-initial.bin').read_bytes())
+    builder_path = directory/'builder.jsonl'
+    builders = [json.loads(s) for s in builder_path.read_text().splitlines()] if builder_path.exists() else None
+    if builders is not None and len(builders) != len(states):
+        raise ValueError('missing Builder state boundary')
     for step, (state, detail) in enumerate(zip(states, details)):
         if state['control_step'] != step:
             raise ValueError('missing control boundary')
@@ -36,6 +40,13 @@ def collect(directory):
             if not isinstance(index, int) or not previous < index < len(mask) or mask[index] != 1:
                 raise ValueError('invalid or repeated terrain deletion')
             mask[index] = 0
+            previous = index
+        previous = -1
+        for index in builders[step]['filled'] if builders is not None else []:
+            if (type(index) is not int or not previous < index < len(mask)
+                    or mask[index] != 0 or index in detail['cleared'] or step == 0):
+                raise ValueError('invalid or repeated terrain addition')
+            mask[index] = 1
             previous = index
         state['digger'] = detail
     if bytes(mask) != (directory/'terrain-final.bin').read_bytes():

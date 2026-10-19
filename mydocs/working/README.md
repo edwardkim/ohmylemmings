@@ -22,3 +22,5 @@
 - [#32 G07-02 Basher](issue-32_basher.md)
 
 - [#33 G07-03 Miner](issue-33_miner.md)
+
+- [#34 G07-04 Builder](issue-34_builder.md)

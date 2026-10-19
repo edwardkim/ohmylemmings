@@ -9,6 +9,7 @@ pub enum SelectedSkill {
     Digger,
     Basher,
     Miner,
+    Builder,
 }
 pub struct View {
     pub camera: i32,
@@ -37,7 +38,8 @@ impl View {
         if self.iteration != Some(iteration) {
             // Erase deleted terrain before object composition so objects behind
             // a freshly dug hole become visible with their original draw flags.
-            self.world = assets.scene_with_terrain(iteration, session.terrain())?;
+            self.world =
+                assets.scene_with_terrain(iteration, session.terrain(), session.brick_mask())?;
             self.iteration = Some(iteration);
         }
         let mut output = vec![0; WIDTH * HEIGHT * 3];
@@ -64,6 +66,8 @@ impl View {
                 MotionAction::Digging => LemmingSpriteKind::Digging,
                 MotionAction::Bashing => LemmingSpriteKind::Bashing,
                 MotionAction::Mining => LemmingSpriteKind::Mining,
+                MotionAction::Building => LemmingSpriteKind::Building,
+                MotionAction::Shrugging => LemmingSpriteKind::Shrugging,
             };
             let direction = if a.direction == MotionDirection::Left {
                 SpriteDirection::Left
@@ -143,6 +147,9 @@ impl View {
                 }
                 SelectedSkill::Miner => {
                     format!("MINE {} | M/B/D SELECT | CLICK", session.remaining_miners)
+                }
+                SelectedSkill::Builder => {
+                    format!("BUILD {} | U/M/B/D | CLICK", session.remaining_builders)
                 }
             },
             [140, 190, 170],
@@ -308,6 +315,7 @@ mod tests {
                 end_of_animation: false,
                 fallen: 0,
                 new_digger: false,
+                bricks_left: 0,
                 removed: None,
             },
             MotionRules::default(),
@@ -336,6 +344,7 @@ mod tests {
                 end_of_animation: false,
                 fallen: 0,
                 new_digger: false,
+                bricks_left: 0,
                 removed: Some(RemovalReason::BottomBoundary),
             },
             MotionRules::default(),
