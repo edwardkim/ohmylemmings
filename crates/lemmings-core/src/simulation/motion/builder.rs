@@ -4,10 +4,24 @@ impl Actor {
     /// Assign by stable ID. Game.pas AssignBuilder checks the current animation's
     /// head against HEAD_MIN_Y=-5, then starts twelve bricks without moving.
     pub fn assign_builder(&mut self, remaining: &mut u16) -> bool {
+        self.assign_builder_check(
+            remaining,
+            i64::from(self.state.y) - i64::from(self.state.action.foot_y()) < -5,
+        )
+    }
+    /// AssignBuilder's secondary branch checks HEAD_MIN_Y on the primary,
+    /// even when the secondary's head lies above it.
+    pub fn assign_builder_secondary(&mut self, remaining: &mut u16, primary: ActorState) -> bool {
+        self.assign_builder_check(
+            remaining,
+            i64::from(primary.y) - i64::from(primary.action.foot_y()) < -5,
+        )
+    }
+    fn assign_builder_check(&mut self, remaining: &mut u16, head_above: bool) -> bool {
         let s = self.state;
         if *remaining == 0
             || s.removed.is_some()
-            || i64::from(s.y) - i64::from(s.action.foot_y()) < -5
+            || head_above
             || !matches!(
                 s.action,
                 MotionAction::Walking

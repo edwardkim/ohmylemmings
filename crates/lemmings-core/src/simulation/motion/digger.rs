@@ -15,6 +15,11 @@ impl Actor {
         let state = self.state;
         self.assign_digger_check(remaining, |_, _| context.assignment_steel(state))
     }
+    /// AssignDigger tests the primary's cached ObjectBelow before its
+    /// secondary branch; the secondary's own steel code does not veto it.
+    pub fn assign_digger_secondary(&mut self, remaining: &mut u16, primary: ActorState) -> bool {
+        self.assign_digger_check(remaining, |_, _| primary.object_below == 137)
+    }
     fn assign_digger_check(
         &mut self,
         remaining: &mut u16,

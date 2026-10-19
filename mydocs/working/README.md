@@ -45,3 +45,5 @@
 
 - [#52 시간·구출률·승패](issue-52_level_outcome.md)
 - [#54 결과 화면·재시작](issue-54_results_restart.md)
+
+- [#58 포인터 선택·RightClickGlitch](issue-58_pointer_selection.md)

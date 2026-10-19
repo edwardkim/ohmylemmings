@@ -270,30 +270,7 @@ pub fn draw(frame: &mut [u8], assets: &Assets, session: &Session, view: &View) {
         }
     }
     let mut caption = info(session);
-    if let Some((x, y)) = view.panel.pointer
-        && (0..320).contains(&x)
-        && (0..160).contains(&y)
-    {
-        let wx = x + view.camera;
-        if let Some(a) = session.actors.iter().map(|a| a.state()).find(|a| {
-            a.removed.is_none()
-                && (i64::from(a.x) - i64::from(wx)).abs() <= 6
-                && (i64::from(a.y) - i64::from(y) - 5).abs() <= 7
-        }) {
-            let label = match a.action {
-                lemmings_core::MotionAction::Walking => "WALKER",
-                lemmings_core::MotionAction::Digging => "DIGGER",
-                lemmings_core::MotionAction::Bashing => "BASHER",
-                lemmings_core::MotionAction::Mining => "MINER",
-                lemmings_core::MotionAction::Building => "BUILDER",
-                lemmings_core::MotionAction::Blocking => "BLOCKER",
-                lemmings_core::MotionAction::Climbing => "CLIMBER",
-                lemmings_core::MotionAction::Floating => "FLOATER",
-                _ => "LEMMING",
-            };
-            caption.replace_range(..14, &format!("{label:14}"));
-        }
-    }
+    caption.replace_range(..14, &crate::pointer::caption(session, view));
     for (i, c) in caption.chars().enumerate() {
         if let Some(n) = GLYPHS.chars().position(|g| g == c) {
             for y in 0..16 {

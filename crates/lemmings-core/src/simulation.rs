@@ -37,3 +37,6 @@ pub use motion::{TrapState, TrapStates, advance_traps, step_actors_with_hazards}
 pub use completion::{
     CompletionError, CompletionProgress, CompletionRules, EndReason, LevelResult, percentage,
 };
+
+mod selection;
+pub use selection::{AssignmentSkill, PointerAssignment, PointerHits, PointerSelection};

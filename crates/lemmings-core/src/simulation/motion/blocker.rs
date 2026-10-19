@@ -143,3 +143,56 @@ pub fn step_actors_with_objects(
         emit,
     )
 }
+
+#[cfg(test)]
+mod pointer_tests {
+    use super::*;
+    #[test]
+    fn trapped_remote_blocker_consumes_and_keeps_field_without_resurrection() {
+        let mut a = Actor::from_spawn(
+            SpawnRequest {
+                actor_id: 0,
+                entrance_index: 0,
+                iteration: 54,
+            },
+            &[EntrancePoint { x: 24, y: 86 }],
+            MotionRules::default(),
+        )
+        .unwrap();
+        a.state.action = MotionAction::Walking;
+        a.state.fallen = 0;
+        a.state.removed = Some(RemovalReason::Trapped);
+        a.state.object_below = 0;
+        let mut cells = [crate::OBJECT_NONE; 256];
+        let mut map = ObjectMapMut::new(16, 16, 0, 64, &mut cells).unwrap();
+        let mut count = 2;
+        assert!(!a.assign_blocker(&mut count, &mut map));
+        assert!(a.assign_removed(|a| a.assign_blocker(&mut count, &mut map)));
+        assert_eq!(count, 1);
+        assert_eq!(a.state.removed, Some(RemovalReason::Trapped));
+        assert_eq!(map.as_read_only().read(48, 100), crate::OBJECT_BLOCKER);
+        assert!(Actor::from_state(a.state, MotionRules::default()).is_ok());
+        assert!(!a.assign_removed(|a| a.assign_blocker(&mut count, &mut map)));
+        let terrain = [0; 160 * 160];
+        let before = a.state;
+        a.advance(TerrainMask::new(160, 160, &terrain).unwrap())
+            .unwrap();
+        assert_eq!(a.state, before);
+        assert_eq!(map.as_read_only().read(48, 100), crate::OBJECT_BLOCKER);
+        let bottom = ActorState {
+            y: 164,
+            action: MotionAction::Walking,
+            removed: Some(RemovalReason::BottomBoundary),
+            blocker_saved: None,
+            ..a.state
+        };
+        let mut bottom = Actor::from_state(bottom, MotionRules::default()).unwrap();
+        let before = bottom.state();
+        let mut empty = 0;
+        assert!(!bottom.assign_removed(|a| a.assign_builder(&mut empty)));
+        assert_eq!(bottom.state(), before);
+        assert!(bottom.assign_removed(|a| a.assign_builder(&mut count)));
+        assert_eq!(bottom.state().removed, Some(RemovalReason::BottomBoundary));
+        assert!(Actor::from_state(bottom.state(), MotionRules::default()).is_ok());
+    }
+}

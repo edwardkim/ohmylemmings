@@ -3,6 +3,7 @@ mod input;
 mod lifecycle;
 mod pacing;
 mod panel;
+mod pointer;
 mod render;
 mod session;
 use assets::Assets;
@@ -233,6 +234,7 @@ struct Capture {
     exit_trace: BufWriter<File>,
     hazards_trace: BufWriter<File>,
     completion_trace: BufWriter<File>,
+    pointer_trace: BufWriter<File>,
     previous_object_map: Vec<u8>,
     previous_terrain: Vec<u8>,
 }
@@ -263,6 +265,12 @@ impl Capture {
             trace,
             previous_terrain: Vec::new(),
             previous_object_map: Vec::new(),
+            pointer_trace: BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(root.join("pointer.jsonl"))?,
+            ),
             completion_trace: BufWriter::new(
                 OpenOptions::new()
                     .write(true)
@@ -336,6 +344,26 @@ impl Capture {
                     .open(root.join("digger.jsonl"))?,
             ),
         })
+    }
+    fn pointer(&mut self, s: &Session, v: &render::View) -> Result<(), Box<dyn Error>> {
+        let opt = |id: Option<u32>| id.map_or_else(|| "null".into(), |id| id.to_string());
+        let point = v
+            .panel
+            .pointer
+            .map_or_else(|| "null".into(), |(x, y)| format!("[{x},{y}]"));
+        writeln!(
+            self.pointer_trace,
+            "{{\"control_step\":{},\"point\":{point},\"right\":{},\"count\":{},\"primary\":{},\"secondary\":{},\"camera\":{},\"caption\":{:?}}}",
+            s.scheduler.step_state().control_step,
+            v.right_mouse,
+            v.selection.hits.count,
+            opt(v.selection.hits.primary),
+            opt(v.selection.hits.secondary),
+            v.camera,
+            crate::pointer::caption(s, v)
+        )?;
+        self.pointer_trace.flush()?;
+        Ok(())
     }
     fn snapshot(&mut self, s: &Session) -> Result<(), Box<dyn Error>> {
         writeln!(self.trace, "{}", s.snapshot())?;
@@ -469,6 +497,17 @@ impl Capture {
                 }
                 InputCommand::Custom(StartupCommand::AssignBlocker(id)) => {
                     format!("AssignBlocker {id}")
+                }
+                InputCommand::Custom(StartupCommand::AssignPointer(r)) => {
+                    format!(
+                        "AssignPointer {:?} {} {} {}",
+                        r.skill,
+                        r.primary,
+                        r.secondary
+                            .map(|id| id.to_string())
+                            .unwrap_or_else(|| "-".into()),
+                        r.right_click
+                    )
                 }
                 InputCommand::Custom(StartupCommand::SetReleaseRate(rate)) => {
                     format!("SetReleaseRate {rate}")
@@ -747,6 +786,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
         .transpose()?;
     if let Some(c) = &mut capture {
         initialize_capture(c, &game.assets, &game.session, options.level)?;
+        c.pointer(&game.session, &game.view)?;
     }
     let sdl = sdl2::init()?;
     let video = sdl.video()?;
@@ -766,6 +806,9 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     let creator = canvas.texture_creator();
     let mut texture =
         creator.create_texture_streaming(PixelFormatEnum::RGB24, WIDTH as u32, HEIGHT as u32)?;
+    let default_cursor = sdl2::mouse::Cursor::from_system(sdl2::mouse::SystemCursor::Arrow).ok();
+    let play_cursor = sdl2::mouse::Cursor::from_system(sdl2::mouse::SystemCursor::Crosshair).ok();
+    let selected_cursor = sdl2::mouse::Cursor::from_system(sdl2::mouse::SystemCursor::Hand).ok();
     let events = sdl.event()?;
     let mut pump = sdl.event_pump()?;
     let mut previous = Instant::now();
@@ -881,6 +924,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                     game = next;
                     if let Some(c) = &mut capture {
                         initialize_capture(c, &game.assets, &game.session, game.level)?;
+                        c.pointer(&game.session, &game.view)?;
                     }
                     replay = Vec::new().into_iter().peekable();
                     options.replay = None;
@@ -941,11 +985,14 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             }
             apply_replay_boundary(&mut game.session, &mut replay);
             panel::advance_input(&mut game.session, &mut game.view, options.replay.is_some())?;
+            pointer::refresh(&game.session, &mut game.view);
             game.session.tick()?;
+            pointer::refresh(&game.session, &mut game.view);
             pending_due -= 1;
             advanced = true;
             if let Some(c) = &mut capture {
                 c.snapshot(&game.session)?;
+                c.pointer(&game.session, &game.view)?;
                 if game.session.result().is_some()
                     || matches!(
                         game.session.scheduler.step_state().control_step,
@@ -998,6 +1045,22 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                 .events
                 .iter()
                 .any(|event| event.starts_with("Input:"));
+        let cursor = if game.session.result().is_some()
+            || !game
+                .view
+                .panel
+                .pointer
+                .is_some_and(|(x, y)| (0..320).contains(&x) && (0..160).contains(&y))
+        {
+            &default_cursor
+        } else if game.view.selection.hits.primary.is_some() {
+            &selected_cursor
+        } else {
+            &play_cursor
+        };
+        if let Some(cursor) = cursor {
+            cursor.set();
+        }
         let take_capture = capture.is_some() && milestone && last_captured != Some(step);
         let render = initial
             || (game.session.result().is_some() && !result_rendered)

@@ -43,6 +43,7 @@ pub enum StartupCommand {
     AssignClimber(u32),
     AssignFloater(u32),
     Nuke,
+    AssignPointer(super::PointerAssignment),
 }
 
 /// Progress immediately before the next boundary. Read control/iteration/pause
@@ -268,7 +269,8 @@ impl StartupScheduler {
                         | StartupCommand::AssignBlocker(_)
                         | StartupCommand::AssignBomber(_)
                         | StartupCommand::AssignClimber(_)
-                        | StartupCommand::AssignFloater(_)),
+                        | StartupCommand::AssignFloater(_)
+                        | StartupCommand::AssignPointer(_)),
                     ) => assign(command),
                     InputCommand::Custom(StartupCommand::SetReleaseRate(rate)) => {
                         if (config.initial_release_rate..=99).contains(&rate) {

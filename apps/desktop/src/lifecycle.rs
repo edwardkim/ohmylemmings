@@ -125,6 +125,16 @@ mod tests {
         old.view.panel.held_rate = Some(1);
         old.view.panel.dragging_map = true;
         old.view.panel.pointer = Some((250, 180));
+        old.view.right_mouse = true;
+        let mut remembered = old.session.actors[0].state();
+        remembered.removed = None;
+        remembered.action = lemmings_core::MotionAction::Walking;
+        old.view.selection.update(
+            [remembered],
+            Some((i64::from(remembered.x), i64::from(remembered.y) - 5)),
+            false,
+        );
+        assert!(old.view.selection.hits.primary.is_some());
         old.session.remaining_diggers = 0;
         let fresh =
             LevelRun::new(Assets::synthetic_completion("win"), 1, Some(2), Pacing::Dos).unwrap();
@@ -156,6 +166,11 @@ mod tests {
         assert_eq!(restarted.view.panel.held_rate, None);
         assert!(!restarted.view.panel.dragging_map);
         assert_eq!(restarted.view.panel.pointer, None);
+        assert!(!restarted.view.right_mouse);
+        assert_eq!(
+            restarted.view.selection,
+            lemmings_core::PointerSelection::default()
+        );
         assert_eq!(restarted.view.selected_skill, fresh.view.selected_skill);
         assert!(restarted.session.result().is_none());
         assert!(old.session.result().is_some());
