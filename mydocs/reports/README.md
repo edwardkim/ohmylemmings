@@ -34,3 +34,5 @@
 - [#42 G07-08 Floater](issue-42_floater.md)
 
 - [#44 G07-09 Nuke](issue-44_nuke.md)
+
+- [#46 G07-10 직업 전환·혼합 상호작용](issue-46_skill_interactions.md)
