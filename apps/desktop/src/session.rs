@@ -500,6 +500,7 @@ impl Session {
                 }
                 self.visual_blast = Some((visual, bricks));
             }
+            self.scheduler.update_nuking(&mut self.actors)?;
         }
         self.events = events;
         Ok(())
@@ -584,6 +585,37 @@ mod tests {
             vec![0; 96 * 160],
         )
         .unwrap()
+    }
+    #[test]
+    fn nuke_arms_one_after_motion_then_pauses_and_preserves_all_inventories() {
+        let a = crate::assets::Assets::synthetic_builder();
+        let mut s = Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap();
+        s.configure_blocker(10, vec![128; DOS_OBJECT_MAP_WIDTH * DOS_OBJECT_MAP_HEIGHT])
+            .unwrap();
+        s.configure_bomber(0, [255; 44]).unwrap();
+        for _ in 0..120 {
+            s.tick().unwrap();
+        }
+        let released = s.scheduler.state().released;
+        s.queue(InputCommand::Custom(StartupCommand::Nuke)).unwrap();
+        s.tick().unwrap();
+        assert_eq!(s.actors[0].state().explosion_timer, 79);
+        assert_eq!(s.actors[1].state().explosion_timer, 0);
+        s.queue(InputCommand::Pause).unwrap();
+        s.tick().unwrap();
+        assert_eq!(s.actors[0].state().explosion_timer, 79);
+        assert_eq!(s.scheduler.nuke_state().next_index, 1);
+        s.queue(InputCommand::Resume).unwrap();
+        s.tick().unwrap();
+        assert_eq!(s.actors[0].state().explosion_timer, 78);
+        assert_eq!(s.actors[1].state().explosion_timer, 79);
+        for _ in 0..150 {
+            s.tick().unwrap();
+        }
+        assert_eq!(s.scheduler.state().released, released);
+        assert_eq!(s.remaining_bombers, 0);
+        assert_eq!(s.remaining_blockers, 10);
+        assert!(s.actors.iter().all(|a| a.state().removed.is_some()));
     }
     #[test]
     fn paused_floater_assignment_consumes_once_and_survives_resume() {

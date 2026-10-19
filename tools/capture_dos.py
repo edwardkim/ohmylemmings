@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import signal
 import subprocess
 import time
 
@@ -116,7 +117,8 @@ def save_ppm(path, width, height, rgb):
 
 
 def record(args, directory, manifest, runtime=None, *, settings=SETTINGS,
-           procedure=PROCEDURE, observer=None):
+           procedure=PROCEDURE, observer=None, direct_window_keys=False,
+           terminate_after_procedure=False):
     directory.mkdir()
     (directory/'drive').mkdir()
     (directory/'capture').mkdir()
@@ -134,12 +136,26 @@ def record(args, directory, manifest, runtime=None, *, settings=SETTINGS,
                                        stderr=subprocess.DEVNULL, timeout=10).strip()
 
     def key(name):
-        windows = command('search', '--onlyvisible', '--name', 'DOSBox').splitlines()
+        selector = ['--pid', str(process.pid)] if direct_window_keys else []
+        windows = command('search', '--onlyvisible', *selector, '--name', 'DOSBox').splitlines()
         if len(windows) != 1:
             raise ValueError('a dedicated X11 display with one DOSBox window is required')
         command('windowfocus', '--sync', windows[0])
         inputs.append(dict(host_elapsed_ms=round((time.monotonic()-start)*1000), key=name))
-        command('key', '--clearmodifiers', '--delay', '150', name)
+        target = ['--window', windows[0]] if direct_window_keys else []
+        try:
+            command('key', *target, '--clearmodifiers', '--delay', '150', name)
+        except subprocess.CalledProcessError as error:
+            # DOSBox's mapped shutdown can destroy the target on keydown,
+            # before xdotool sends keyup. Accept only that child's clean exit.
+            if not direct_window_keys or name != 'x' or error.returncode != 1:
+                raise
+            try:
+                returncode = process.wait(timeout=0.5)
+            except subprocess.TimeoutExpired:
+                raise error
+            if returncode != 0:
+                raise error
 
     with (directory/'dosbox.log').open('w') as log:
         process = subprocess.Popen([str(args.dosbox), '-conf', str(directory/'dosbox.conf')],
@@ -169,8 +185,10 @@ def record(args, directory, manifest, runtime=None, *, settings=SETTINGS,
                     if name != 'wait':
                         key(name)
                     time.sleep(wait_ms/1000)
+            if terminate_after_procedure and process.poll() is None:
+                process.terminate()
             process.wait(timeout=10)
-            if process.returncode:
+            if process.returncode and not (terminate_after_procedure and process.returncode == -signal.SIGTERM):
                 raise ValueError(f'DOSBox failed: {process.returncode}')
         finally:
             if process.poll() is None:

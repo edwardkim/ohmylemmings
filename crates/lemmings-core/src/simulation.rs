@@ -2,6 +2,7 @@
 mod clock;
 mod input;
 mod motion;
+mod nuke;
 mod objects;
 mod startup;
 mod stepper;
@@ -27,3 +28,4 @@ pub use objects::{
 };
 
 pub use motion::{BomberContext, step_actors_with_bomber};
+pub use nuke::{NukeActorError, NukeState};

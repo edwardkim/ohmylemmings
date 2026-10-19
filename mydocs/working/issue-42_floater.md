@@ -17,3 +17,7 @@ DOS proof-1/2의1351샘플4749게임 프레임과 전체320×160 여덟 장면×
 ## 통합 절차
 
 self-review 후 PR을 게시하고 정확한 HEAD의 push/PR CI 세 작업·실제 로그·원격 파일을 확인합니다. 검토한 HEAD만 병합하고 main CI·이슈 종료·상위 상태를 확인합니다. 최종 통합은 [#42](https://github.com/edwardkim/ohmylemmings/issues/42)에서 추적합니다. 다음 후보는 Nuke이며 전체 상호작용·객체/구출/승패/음향·G07 전체/DOS 인증은 후속입니다.
+
+## 통합 완료
+
+PR [#43](https://github.com/edwardkim/ohmylemmings/pull/43)의 검토 HEAD a248f02f20d492f6dd37ce422ef69a9b71b201dc와 push/PR CI를 확인하고 main feab3e8851a30fdf6d32845953f3ac903a3d648e로 병합했습니다. [main CI39221581981](https://github.com/edwardkim/ohmylemmings/actions/runs/39221581981)의 세 작업/실제 로그와 #42 종료·상위 상태를 확인했습니다. 다음 승인된 작업은 [#44 Nuke](issue-44_nuke.md)입니다.

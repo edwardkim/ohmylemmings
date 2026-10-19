@@ -4,6 +4,30 @@ use crate::{FixedTickClock, TimedInput};
 use core::time::Duration;
 use std::{vec, vec::Vec};
 
+#[test]
+fn nuke_input_at_control_overflow_changes_neither_nuke_nor_startup_state() {
+    let mut s = StartupScheduler::new(config()).unwrap();
+    s.stepper = TickStepper::from_state(StepState {
+        control_step: u64::MAX,
+        iteration: 80,
+        paused: false,
+    })
+    .unwrap();
+    let before = s;
+    let inputs = [input(
+        u64::MAX,
+        0,
+        InputCommand::Custom(StartupCommand::Nuke),
+    )];
+    assert!(
+        s.step(&InputSchedule::new(&inputs).unwrap(), |_| panic!(
+            "no overflow callback"
+        ))
+        .is_err()
+    );
+    assert_eq!(s, before);
+}
+
 fn config() -> StartupConfig {
     StartupConfig {
         time_limit_minutes: 5,

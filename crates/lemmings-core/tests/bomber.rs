@@ -318,7 +318,8 @@ fn invalid_restore_missing_context_and_duplicate_ids_cannot_mutate_records() {
             ..base
         },
         ActorState {
-            action: MotionAction::OhNo,
+            action: MotionAction::Splatting,
+            direction: MotionDirection::Stopped,
             explosion_timer: 1,
             ..base
         },

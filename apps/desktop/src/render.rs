@@ -152,7 +152,7 @@ impl View {
         let title = format!(
             "{}  OUT {alive}/{} RR {} TIME {}:{:02}",
             assets.title,
-            session.scheduler.config().total_lemmings,
+            session.scheduler.nuke_state().max_lemmings,
             state.release_rate,
             state.seconds_remaining / 60,
             state.seconds_remaining % 60
@@ -161,7 +161,13 @@ impl View {
             pixel.copy_from_slice(&[20, 24, 32]);
         }
         text(&mut output, 4, 164, &title, [220, 228, 240]);
-        let controls = if self.replaying {
+        let controls = if session.scheduler.nuke_state().is_nuked {
+            if step.paused {
+                "NUKE ACTIVE | SPACE RESUME"
+            } else {
+                "NUKE ACTIVE | SPACE PAUSE"
+            }
+        } else if self.replaying {
             "REPLAYING RECORDED INPUT"
         } else if step.paused {
             "SPACE RESUME | UP/DOWN RATE"

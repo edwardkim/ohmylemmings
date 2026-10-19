@@ -42,6 +42,7 @@ pub enum StartupCommand {
     AssignBomber(u32),
     AssignClimber(u32),
     AssignFloater(u32),
+    Nuke,
 }
 
 /// Progress immediately before the next boundary. Read control/iteration/pause
@@ -82,7 +83,7 @@ pub enum StartupEvent {
 }
 
 /// Startup clock and birth scheduling over the shared deterministic stepper.
-/// The clock saturates at zero; whole-game termination, actors, Nuke, music and
+/// The clock saturates at zero; whole-game termination, actors, music and
 /// replay restoration are application/future gameplay duties. Callbacks must
 /// finish normally; external effects are not rolled back after a panic.
 ///
@@ -105,11 +106,21 @@ pub struct StartupScheduler {
     config: StartupConfig,
     stepper: TickStepper,
     state: StartupState,
+    nuke: super::NukeState,
+    nuke_glitch: bool,
+    last_nuke_iteration: Option<u64>,
 }
 
 impl StartupScheduler {
     /// Validate release rate first, then entrance count; no allocation or I/O.
     pub const fn new(config: StartupConfig) -> Result<Self, StartupConfigError> {
+        Self::new_with_nuke_glitch(config, true)
+    }
+
+    pub const fn new_with_nuke_glitch(
+        config: StartupConfig,
+        nuke_glitch: bool,
+    ) -> Result<Self, StartupConfigError> {
         if config.initial_release_rate > 99 {
             return Err(StartupConfigError::ReleaseRate(config.initial_release_rate));
         }
@@ -118,6 +129,9 @@ impl StartupScheduler {
         }
         Ok(Self {
             config,
+            nuke: super::NukeState::new(config.total_lemmings),
+            nuke_glitch,
+            last_nuke_iteration: None,
             stepper: TickStepper::new(),
             state: StartupState {
                 seconds_remaining: config.time_limit_minutes as u32 * 60,
@@ -139,6 +153,25 @@ impl StartupScheduler {
     }
     pub const fn step_state(&self) -> StepState {
         self.stepper.state()
+    }
+    pub const fn nuke_state(&self) -> super::NukeState {
+        self.nuke
+    }
+
+    /// Call after the boundary's complete actor/Bomber update, once per tick.
+    /// Removed records remain in their original ID slots. Invalid lists change
+    /// neither scan state nor timers; repeated calls in one iteration do nothing.
+    pub fn update_nuking(
+        &mut self,
+        actors: &mut [super::Actor],
+    ) -> Result<Option<u32>, super::NukeActorError> {
+        let step = self.stepper.state();
+        if step.paused || self.last_nuke_iteration == Some(step.iteration) {
+            return Ok(None);
+        }
+        let result = super::nuke::update(&mut self.nuke, self.state.released, actors)?;
+        self.last_nuke_iteration = Some(step.iteration);
+        Ok(result)
     }
 
     /// Process the boundary's inputs before clock/startup/birth updates. Emits
@@ -195,6 +228,8 @@ impl StartupScheduler {
         let mut paused = before.paused;
         let config = self.config;
         let state = &mut self.state;
+        let nuke = &mut self.nuke;
+        let nuke_glitch = self.nuke_glitch;
         self.stepper.step(schedule, |event| match event {
             StepEvent::Input(input) => {
                 let accepted = match input.command {
@@ -212,6 +247,18 @@ impl StartupScheduler {
                     InputCommand::Resume => {
                         paused = false;
                         true
+                    }
+                    InputCommand::Custom(StartupCommand::Nuke) => {
+                        if paused || nuke.is_nuked {
+                            false
+                        } else {
+                            nuke.is_nuked = true;
+                            nuke.assigning = true;
+                            if nuke_glitch {
+                                nuke.max_lemmings = state.released;
+                            }
+                            true
+                        }
                     }
                     InputCommand::Custom(
                         command @ (StartupCommand::AssignDigger(_)
@@ -257,7 +304,7 @@ impl StartupScheduler {
                     }
                     _ => {}
                 }
-                if state.entrances_open {
+                if state.entrances_open && !nuke.is_nuked {
                     state.spawn_countdown -= 1;
                     if state.spawn_countdown == 0 {
                         state.spawn_countdown = (99 - state.release_rate) / 2 + 4;

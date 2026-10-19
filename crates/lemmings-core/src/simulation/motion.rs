@@ -302,10 +302,8 @@ impl Actor {
         if state.explosion_timer > 79
             || state.particle_timer > 52
             || state.particle_frame > 50
-            || (matches!(
-                state.action,
-                MotionAction::OhNo | MotionAction::Exploding | MotionAction::Splatting
-            ) && state.explosion_timer != 0)
+            // Nuke can re-arm OhNo; its timer persists into Exploding/removal.
+            || (state.action == MotionAction::Splatting && state.explosion_timer != 0)
             || ((state.particle_timer != 0 || state.particle_frame != 0)
                 && state.removed != Some(RemovalReason::Exploded))
         {

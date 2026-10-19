@@ -29,6 +29,10 @@ impl ActorState {
     }
 }
 impl Actor {
+    // CheckUpdateNuking bypasses inventory/AssignBomber's OhNo restriction.
+    pub(crate) fn arm_nuke(&mut self) {
+        self.state.explosion_timer = 79;
+    }
     pub(super) fn require_basic_context(&self) -> Result<(), MotionError> {
         if self.state.particle_timer != 0
             || (self.state.removed.is_none()
