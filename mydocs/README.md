@@ -39,9 +39,9 @@ G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/issue-2_dos_origin
 
 문서에서는 예정된 작업과 구현·검증이 완료된 내용을 구분합니다.
 
-[#28 G06-02 실제 DOS 세 실행·장면 대조](reports/issue-28_dos_comparison.md)를 완료했습니다. 상부 일치에서 발견한 전체 화면·속도 차이는 [#30 보정](tech_insights/issue-30_dos_differences.md)과 [게시·CI](reports/issue-30_dos_differences.md)로 마무리했습니다. G00~G06과 Digger·Basher·Miner를 완료했으며 현재 [G07-04 Builder / #34](working/issue-34_builder.md)의 로컬 구현·검증을 마치고 PR·CI를 확인 중입니다.
+[#28 G06-02 실제 DOS 세 실행·장면 대조](reports/issue-28_dos_comparison.md)를 완료했습니다. 상부 일치에서 발견한 전체 화면·속도 차이는 [#30 보정](tech_insights/issue-30_dos_differences.md)과 [게시·CI](reports/issue-30_dos_differences.md)로 마무리했습니다. G00~G06과 Digger·Basher·Miner를 완료했으며 현재 [G07-04 Builder / #34](working/issue-34_builder.md)의 구현·검증·자체 검토를 마쳤습니다. 최종 통합 기록은 #34에서 추적합니다.
 
-[#31 Digger](reports/issue-31_digger.md)의 구현·기준/원본 검증·게시/실제 CI를 완료했습니다. Basher와 Miner도 완료했으며 현재 [G07-04 Builder / #34](working/issue-34_builder.md)의 로컬 구현·검증을 마치고 PR·CI를 확인 중입니다. G07 전체는 진행 중입니다.
+[#31 Digger](reports/issue-31_digger.md)의 구현·기준/원본 검증·게시/실제 CI를 완료했습니다. Basher와 Miner도 완료했으며 현재 [G07-04 Builder / #34](working/issue-34_builder.md)의 구현·검증·자체 검토를 마쳤습니다. 최종 통합 기록은 #34에서 추적합니다. G07 전체는 진행 중입니다.
 
 [#32 Basher](reports/issue-32_basher.md)의 구현·기준/원본/네이티브·전체 회귀·게시/실제 CI를 완료했습니다. G07 전체는 진행 중입니다.
 

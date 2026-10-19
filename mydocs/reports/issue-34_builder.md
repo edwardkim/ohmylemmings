@@ -31,6 +31,10 @@ Builder 할당과 수량, 12개 벽돌, Building/Shrugging 상태, 양방향 계
 
 ## 게시와 다음 절차
 
-로컬 구현·검증을 마쳤습니다. 게시한 정확한 커밋 SHA, PR과 실제 CI 결과는 [#34](https://github.com/edwardkim/ohmylemmings/issues/34)에서 추적합니다. PR 검토·통합 전까지 #34는 열어 둡니다. G07 전체는 진행 중입니다.
+구현 `2039e329b29391ff0b82238571494404015904e2`의 [push CI](https://github.com/edwardkim/ohmylemmings/actions/runs/39200250629)와 [PR CI](https://github.com/edwardkim/ohmylemmings/actions/runs/39200279750)에서 정확한 head SHA·Rust native/Python tooling/WASM libraries 세 작업·실제 로그를 확인했습니다. Rust359/문서27/Python53·Builder16재생/6736상태/718캡처·기존 SDL/모델·clean-input/SDL SDK/잠금 의존 준비가 성공했습니다. 원격250개 파일의 모드/blob이 로컬 커밋과 같습니다.
+
+2026-10-19 사용자 지시에 따라 [PR #35](https://github.com/edwardkim/ohmylemmings/pull/35)를 self-review했습니다. 고정 원문의 할당·벽돌 배치·하위 이동/충돌·소진/상부 처리 순서, 복원 불변식·산술 오류 보존·ID 순 지형 관측, SDL 재질·객체 합성·일시정지/ID 입력 재생, 기준 호스트·golden·DOS 반복 판정과 보고 범위를 검토했습니다. 추가 코드 수정이 필요한 결함은 발견하지 못했습니다. 작성자 자체 검토 결과입니다.
+
+최종 문서 커밋의 CI, 병합 SHA·#34 종료는 [이슈 기록](https://github.com/edwardkim/ohmylemmings/issues/34)에서 추적합니다. G07-04의 구현·검증·자체 검토를 마쳤으며 G07 전체는 진행 중입니다.
 
 [계약과 재현 명령](../tech_insights/issue-34_builder.md), [진행 기록](../working/issue-34_builder.md), [작업일지](../orders/20261019.md#issue-34).
