@@ -384,6 +384,9 @@ impl Actor {
                             | MotionAction::Mining
                             | MotionAction::OhNo
                             | MotionAction::Floating
+                            | MotionAction::Building
+                            | MotionAction::Bashing
+                            | MotionAction::Blocking
                     )
             }
             Some(RemovalReason::Exploded) => {
@@ -425,6 +428,23 @@ impl Actor {
             return Err(MotionError::InvalidRemoval);
         }
         Ok(Self { state, rules })
+    }
+    /// DOS RightClickGlitch retains a pointer to a removed actor. Run ordinary
+    /// skill checks on a copy, then retain the removal marker. The actor never
+    /// updates again, so a newly placed Blocker field persists over a trap.
+    /// The callback must be an ordinary atomic skill assignment.
+    pub fn assign_removed(&mut self, assign: impl FnOnce(&mut Self) -> bool) -> bool {
+        if self.state.removed.is_none() {
+            return false;
+        }
+        let mut candidate = *self;
+        candidate.state.removed = None;
+        if !assign(&mut candidate) {
+            return false;
+        }
+        candidate.state.removed = self.state.removed;
+        *self = candidate;
+        true
     }
     pub const fn state(&self) -> ActorState {
         self.state

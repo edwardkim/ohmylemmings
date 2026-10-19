@@ -22,6 +22,8 @@ pub struct View {
     pub next_level: Option<u8>,
     pub result_error: bool,
     pub panel: crate::panel::Controls,
+    pub selection: lemmings_core::PointerSelection,
+    pub right_mouse: bool,
     world: Vec<[u8; 4]>,
     iteration: Option<u64>,
 }
@@ -34,6 +36,8 @@ impl View {
             next_level: None,
             result_error: false,
             panel: crate::panel::Controls::default(),
+            selection: Default::default(),
+            right_mouse: false,
             world: Vec::new(),
             iteration: None,
         }

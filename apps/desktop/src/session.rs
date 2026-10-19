@@ -458,6 +458,24 @@ impl Session {
         let outcome = self.scheduler.step_with_skills(
             &schedule,
             |command| {
+                let mut remote = false;
+                let mut fallback_primary = None;
+                let command = if let StartupCommand::AssignPointer(request) = command {
+                    let Some(primary) = actors.iter().find(|a| a.state().id == request.primary)
+                    else {
+                        return false;
+                    };
+                    let Some(id) = request.target(primary.state()) else {
+                        return false;
+                    };
+                    if id != request.primary {
+                        fallback_primary = Some(primary.state());
+                    }
+                    remote = request.right_click;
+                    crate::pointer::command(request.skill, id)
+                } else {
+                    command
+                };
                 let id = match command {
                     StartupCommand::AssignDigger(id)
                     | StartupCommand::AssignBasher(id)
@@ -473,53 +491,72 @@ impl Session {
                     .iter_mut()
                     .find(|a| a.state().id == id)
                     .is_some_and(|a| {
-                        if matches!(command, StartupCommand::AssignFloater(_)) {
-                            return a.assign_floater(floaters);
-                        }
-                        if matches!(command, StartupCommand::AssignClimber(_)) {
-                            return a.assign_climber(climbers);
-                        }
-                        if matches!(command, StartupCommand::AssignBomber(_)) {
-                            return a.assign_bomber(bombers);
-                        }
-                        if matches!(command, StartupCommand::AssignBlocker(_)) {
-                            return raw_map.as_mut().is_some_and(|cells| {
-                                a.assign_blocker(
-                                    blockers,
-                                    &mut ObjectMapMut::new(
+                        let mut apply = |a: &mut Actor| {
+                            if matches!(command, StartupCommand::AssignFloater(_)) {
+                                return a.assign_floater(floaters);
+                            }
+                            if matches!(command, StartupCommand::AssignClimber(_)) {
+                                return a.assign_climber(climbers);
+                            }
+                            if matches!(command, StartupCommand::AssignBomber(_)) {
+                                return a.assign_bomber(bombers);
+                            }
+                            if matches!(command, StartupCommand::AssignBlocker(_)) {
+                                return raw_map.as_mut().is_some_and(|cells| {
+                                    a.assign_blocker(
+                                        blockers,
+                                        &mut ObjectMapMut::new(
+                                            DOS_OBJECT_MAP_WIDTH,
+                                            DOS_OBJECT_MAP_HEIGHT,
+                                            DOS_OBJECT_MAP_ORIGIN,
+                                            DOS_OBJECT_MAP_ORIGIN,
+                                            cells,
+                                        )
+                                        .expect("configured map"),
+                                    )
+                                });
+                            }
+                            let objects = BashingContext {
+                                object_map: raw_map.as_ref().map(|cells| {
+                                    ObjectMap::new(
                                         DOS_OBJECT_MAP_WIDTH,
                                         DOS_OBJECT_MAP_HEIGHT,
                                         DOS_OBJECT_MAP_ORIGIN,
                                         DOS_OBJECT_MAP_ORIGIN,
                                         cells,
                                     )
-                                    .expect("configured map"),
-                                )
-                            });
-                        }
-                        let objects = BashingContext {
-                            object_map: raw_map.as_ref().map(|cells| {
-                                ObjectMap::new(
-                                    DOS_OBJECT_MAP_WIDTH,
-                                    DOS_OBJECT_MAP_HEIGHT,
-                                    DOS_OBJECT_MAP_ORIGIN,
-                                    DOS_OBJECT_MAP_ORIGIN,
-                                    cells,
-                                )
-                                .expect("configured map")
-                            }),
-                            ..context
+                                    .expect("configured map")
+                                }),
+                                ..context
+                            };
+                            match command {
+                                StartupCommand::AssignDigger(_) => {
+                                    if let Some(primary) = fallback_primary {
+                                        a.assign_digger_secondary(remaining, primary)
+                                    } else {
+                                        a.assign_digger_with_objects(remaining, objects)
+                                    }
+                                }
+                                StartupCommand::AssignBasher(_) => {
+                                    a.assign_basher(bashers, objects)
+                                }
+                                StartupCommand::AssignMiner(_) => {
+                                    a.assign_miner(miners, MiningContext { objects, ..mining })
+                                }
+                                StartupCommand::AssignBuilder(_) => {
+                                    if let Some(primary) = fallback_primary {
+                                        a.assign_builder_secondary(builders, primary)
+                                    } else {
+                                        a.assign_builder(builders)
+                                    }
+                                }
+                                _ => false,
+                            }
                         };
-                        match command {
-                            StartupCommand::AssignDigger(_) => {
-                                a.assign_digger_with_objects(remaining, objects)
-                            }
-                            StartupCommand::AssignBasher(_) => a.assign_basher(bashers, objects),
-                            StartupCommand::AssignMiner(_) => {
-                                a.assign_miner(miners, MiningContext { objects, ..mining })
-                            }
-                            StartupCommand::AssignBuilder(_) => a.assign_builder(builders),
-                            _ => false,
+                        if remote && a.state().removed.is_some() {
+                            a.assign_removed(apply)
+                        } else {
+                            apply(a)
                         }
                     })
             },

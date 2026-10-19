@@ -49,3 +49,5 @@ pub use simulation::{TrapState, TrapStates, advance_traps, step_actors_with_haza
 pub use simulation::{
     CompletionError, CompletionProgress, CompletionRules, EndReason, LevelResult, percentage,
 };
+
+pub use simulation::{AssignmentSkill, PointerAssignment, PointerHits, PointerSelection};

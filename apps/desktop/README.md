@@ -161,3 +161,11 @@ python3 tools/check_results.py
 OUT/IN/TIME·직업 수량과 현재 지형/개체·카메라가 표시됩니다. 재생 중 실시간 게임 명령은 받지 않으며 카메라는 조작할 수 있습니다. 새 레벨에서 선택/누름/드래그가 초기화됩니다. [좌표·리소스·검증 계약](../../mydocs/tech_insights/issue-56_skill_panel.md)과 [결과](../../mydocs/reports/issue-56_skill_panel.md)를 참고합니다.
 
 `make check-desktop`은 원본 없는 패널·지형 변경·재생 검사를 포함합니다. 실제 X11 검사는 독립 DISPLAY에서 `python3 tools/verify_panel.py --xdotool /usr/bin/xdotool --evidence assets/local/my-panel-x11`로 실행합니다.
+
+## 포인터 선택·우클릭 (#58)
+
+포인터 아래 작업 중인 레밍을 우선 선택하며, 같은 분류에서는 나중에 생성된 개체가 선택됩니다. 우클릭을 누르면 일반 개체만 선택합니다. HUD 왼쪽은 선택 대상의 행동/영구 능력과 겹침 수를 표시합니다. 시스템 커서는 게임 영역에서 십자, 선택 대상이 있으면 손 모양입니다.
+
+DOS RightClickGlitch도 적용합니다. 일반 개체를 가리킨 뒤 우클릭을 누른 채 작업 중인 개체 위에서 왼쪽을 누르면 이전 대상에 기술을 할당합니다. 기억한 대상이 함정으로 제거된 경우에도 원래 행동이 허용하면 Blocker 수량과 필드가 적용됩니다. FocusLost/재시작은 선택 기억을 초기화합니다.
+
+기존 안정 ID 재생에 `105 0 AssignPointer Builder 0 1 false`(우선/일반 ID)와 `105 0 AssignPointer Blocker 0 - true`(원격)를 추가했습니다. `pointer.jsonl`은 원시 논리 좌표/우클릭·선택 ID·문구를 기록합니다. [상세 계약·검증·원문 충돌 차이](../../mydocs/tech_insights/issue-58_pointer_selection.md)를 참고합니다. `make check-desktop`의 `check_pointer.py`는 원본/FPC 없이 선택 golden과8개 SDL 재생을 검사합니다.

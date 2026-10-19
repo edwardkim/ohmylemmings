@@ -89,6 +89,26 @@ pub fn handle(
         } => {
             view.panel.release();
             view.panel.pointer = None;
+            view.selection = Default::default();
+            view.right_mouse = false;
+        }
+        Event::MouseButtonDown {
+            mouse_btn: MouseButton::Right,
+            x,
+            y,
+            ..
+        } => {
+            view.panel.pointer = Some((x, y));
+            view.right_mouse = true;
+        }
+        Event::MouseButtonUp {
+            mouse_btn: MouseButton::Right,
+            x,
+            y,
+            ..
+        } => {
+            view.panel.pointer = Some((x, y));
+            view.right_mouse = false;
         }
         Event::MouseButtonUp {
             mouse_btn: MouseButton::Left,
@@ -98,6 +118,7 @@ pub fn handle(
             x, y, mousestate, ..
         } => {
             view.panel.pointer = Some((x, y));
+            view.right_mouse = mousestate.right();
             if !mousestate.left() {
                 view.panel.release();
             }
@@ -151,29 +172,20 @@ pub fn handle(
             y,
             ..
         } if !replaying && (0..320).contains(&x) && (0..160).contains(&y) => {
-            let wx = i64::from(x) + i64::from(view.camera);
-            let target = session
-                .actors
-                .iter()
-                .filter(|a| {
-                    let a = a.state();
-                    a.removed.is_none()
-                        && (i64::from(a.x) - wx).abs() <= 6
-                        && (i64::from(a.y) - i64::from(y) - 5).abs() <= 7
-                })
-                .min_by_key(|a| (i64::from(a.state().x) - wx).abs())
-                .map(|a| a.state().id);
-            if let Some(id) = target {
-                session.queue(InputCommand::Custom(match view.selected_skill {
-                    SelectedSkill::Digger => StartupCommand::AssignDigger(id),
-                    SelectedSkill::Basher => StartupCommand::AssignBasher(id),
-                    SelectedSkill::Miner => StartupCommand::AssignMiner(id),
-                    SelectedSkill::Builder => StartupCommand::AssignBuilder(id),
-                    SelectedSkill::Blocker => StartupCommand::AssignBlocker(id),
-                    SelectedSkill::Bomber => StartupCommand::AssignBomber(id),
-                    SelectedSkill::Climber => StartupCommand::AssignClimber(id),
-                    SelectedSkill::Floater => StartupCommand::AssignFloater(id),
-                }))?;
+            view.panel.pointer = Some((x, y));
+            crate::pointer::refresh(session, view);
+            if let Some(request) = view
+                .selection
+                .assignment(crate::pointer::skill(view.selected_skill))
+            {
+                let command = if !request.right_click
+                    && request.secondary.is_none_or(|id| id == request.primary)
+                {
+                    crate::pointer::command(request.skill, request.primary)
+                } else {
+                    StartupCommand::AssignPointer(request)
+                };
+                session.queue(InputCommand::Custom(command))?;
             }
         }
         Event::KeyDown {
@@ -219,6 +231,7 @@ pub fn handle(
         },
         _ => {}
     }
+    crate::pointer::refresh(session, view);
     Ok(true)
 }
 pub fn parse_replay(
@@ -254,6 +267,32 @@ pub fn parse_replay(
             ["AssignBomber", id] => InputCommand::Custom(StartupCommand::AssignBomber(id.parse()?)),
             ["AssignBlocker", id] => {
                 InputCommand::Custom(StartupCommand::AssignBlocker(id.parse()?))
+            }
+            ["AssignPointer", skill, primary, secondary, right_click] => {
+                use lemmings_core::AssignmentSkill::*;
+                let skill = match skill {
+                    "Climber" => Climber,
+                    "Floater" => Floater,
+                    "Bomber" => Bomber,
+                    "Blocker" => Blocker,
+                    "Builder" => Builder,
+                    "Basher" => Basher,
+                    "Miner" => Miner,
+                    "Digger" => Digger,
+                    _ => return Err("unknown pointer skill".into()),
+                };
+                InputCommand::Custom(StartupCommand::AssignPointer(
+                    lemmings_core::PointerAssignment {
+                        skill,
+                        primary: primary.parse()?,
+                        secondary: if secondary == "-" {
+                            None
+                        } else {
+                            Some(secondary.parse()?)
+                        },
+                        right_click: right_click.parse()?,
+                    },
+                ))
             }
             ["SetReleaseRate", rate] => {
                 InputCommand::Custom(StartupCommand::SetReleaseRate(rate.parse()?))
