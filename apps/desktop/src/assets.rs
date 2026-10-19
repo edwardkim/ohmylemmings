@@ -15,6 +15,10 @@ pub struct Assets {
     pub miners: u16,
     pub builders: u16,
     pub blockers: u16,
+    pub bombers: u16,
+    pub explosion_mask: [u8; 44],
+    pub countdown_masks: [u8; 80],
+    pub particles: Option<Vec<u8>>,
     pub object_map: Vec<u8>,
     pub mine_masks: [u8; 104],
     pub bash_masks: [u8; 160],
@@ -190,6 +194,10 @@ impl Assets {
             miners: header.skills[6],
             builders: header.skills[4],
             blockers: header.skills[3],
+            bombers: header.skills[2],
+            explosion_mask: masks[264..308].try_into()?,
+            countdown_masks: masks[308..388].try_into()?,
+            particles: load_particles(root)?,
             object_map,
             mine_masks: masks[160..264].try_into()?,
             bash_masks: masks[..160].try_into()?,
@@ -225,6 +233,10 @@ impl Assets {
             miners: 10,
             builders: 10,
             blockers: 10,
+            bombers: 10,
+            explosion_mask: [255; 44],
+            countdown_masks: synthetic_countdown(),
+            particles: None,
             object_map: vec![OBJECT_NONE; DOS_OBJECT_MAP_WIDTH * DOS_OBJECT_MAP_HEIGHT],
             mine_masks: [255; 104], // own full rectangular synthetic erase masks
             // Own synthetic masks (rectangular slices), never original bits.
@@ -420,9 +432,69 @@ fn synthetic_bash_masks() -> [u8; 160] {
     }
     masks
 }
+
+fn load_particles(root: &Path) -> Result<Option<Vec<u8>>, Box<dyn Error>> {
+    // Exact table in the pinned original EXE, matching Lemmix Particles.dat.
+    let path = root.join("VGALEMMI.EXE");
+    let bytes = match fs::read(&path) {
+        Ok(v) => v,
+        Err(e) if e.kind() == io::ErrorKind::NotFound => return Ok(None),
+        Err(e) => return Err(io::Error::new(e.kind(), format!("{}: {e}", path.display())).into()),
+    };
+    if bytes.len() != 83194 || !bytes.starts_with(b"MZ") {
+        return Err(format!("{}: unsupported particle EXE profile", path.display()).into());
+    }
+    let table = bytes[49976..49976 + EXPLOSION_PARTICLE_DATA_SIZE].to_vec();
+    ExplosionParticles::parse(&table)?;
+    Ok(Some(table))
+}
+fn synthetic_countdown() -> [u8; 80] {
+    // Own 5x7 glyphs, stored in the resource bank's9..0 order.
+    let glyphs = [
+        [14, 17, 19, 21, 25, 17, 14],
+        [4, 12, 4, 4, 4, 4, 14],
+        [14, 17, 1, 2, 4, 8, 31],
+        [30, 1, 1, 14, 1, 1, 30],
+        [2, 6, 10, 18, 31, 2, 2],
+        [31, 16, 16, 30, 1, 1, 30],
+        [14, 16, 16, 30, 17, 17, 14],
+        [31, 1, 2, 4, 8, 8, 8],
+        [14, 17, 17, 14, 17, 17, 14],
+        [14, 17, 17, 15, 1, 1, 14],
+    ];
+    let mut out = [0; 80];
+    for digit in 0..10 {
+        for y in 0..7 {
+            out[(9 - digit) * 8 + y] = glyphs[digit][y] << 2;
+        }
+    }
+    out
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn optional_original_particles_reject_bad_profiles_and_extract_the_exact_table() {
+        let dir = std::env::temp_dir().join(format!("lemmings-particles-{}", std::process::id()));
+        fs::create_dir(&dir).unwrap();
+        assert!(load_particles(&dir).unwrap().is_none());
+        fs::write(dir.join("VGALEMMI.EXE"), b"MZ").unwrap();
+        assert!(load_particles(&dir).is_err());
+        let mut bytes = vec![0; 83194];
+        bytes[..2].copy_from_slice(b"MZ");
+        bytes[49976..49976 + EXPLOSION_PARTICLE_DATA_SIZE].fill(128);
+        bytes[49976] = 255;
+        bytes[49977] = 3;
+        fs::write(dir.join("VGALEMMI.EXE"), bytes).unwrap();
+        let table = load_particles(&dir).unwrap().unwrap();
+        assert_eq!(table.len(), EXPLOSION_PARTICLE_DATA_SIZE);
+        assert_eq!(
+            ExplosionParticles::parse(&table).unwrap().offset(0, 0),
+            Some((-1, 3))
+        );
+        fs::remove_dir_all(dir).unwrap();
+    }
     #[test]
     fn raw_objects_override_steel_on_the_padded_grid_and_ignore_entrances() {
         let mut level = [0; LEVEL_RECORD_SIZE];

@@ -23,6 +23,9 @@ fn state() -> ActorState {
         new_digger: false,
         bricks_left: 0,
         blocker_saved: None,
+        explosion_timer: 0,
+        particle_timer: 0,
+        particle_frame: 0,
         object_below: 0,
         object_in_front: 0,
         removed: None,
@@ -70,6 +73,9 @@ fn birth_uses_selected_original_entrance_and_preserves_stable_identity_and_rules
                 new_digger: false,
                 bricks_left: 0,
                 blocker_saved: None,
+                explosion_timer: 0,
+                particle_timer: 0,
+                particle_frame: 0,
                 object_below: 0,
                 object_in_front: 0,
                 removed: None
@@ -680,6 +686,8 @@ fn action_code(action: MotionAction) -> u8 {
         MotionAction::Building => 7,
         MotionAction::Shrugging => 8,
         MotionAction::Blocking => 9,
+        MotionAction::OhNo => 10,
+        MotionAction::Exploding => 11,
     }
 }
 fn removal_code(reason: Option<RemovalReason>) -> u8 {
@@ -687,6 +695,7 @@ fn removal_code(reason: Option<RemovalReason>) -> u8 {
         None => 0,
         Some(RemovalReason::BottomBoundary) => 1,
         Some(RemovalReason::SplattingFinished) => 2,
+        Some(RemovalReason::Exploded) => 3,
     }
 }
 fn put64(out: &mut Vec<u8>, v: u64) {
@@ -759,7 +768,9 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                             | MotionAction::Mining
                             | MotionAction::Building
                             | MotionAction::Shrugging
-                            | MotionAction::Blocking => unreachable!(),
+                            | MotionAction::Blocking
+                            | MotionAction::OhNo
+                            | MotionAction::Exploding => unreachable!(),
                         };
                         let fallen_values: &[_] = if action == MotionAction::Falling {
                             &[0, 60, 61]
@@ -782,6 +793,9 @@ fn exhaustive_motion_matches_independent_per_terrain_and_rule_goldens() {
                                         new_digger: false,
                                         bricks_left: 0,
                                         blocker_saved: None,
+                                        explosion_timer: 0,
+                                        particle_timer: 0,
+                                        particle_frame: 0,
                                         object_below: 0,
                                         object_in_front: 0,
                                         removed: None,

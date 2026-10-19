@@ -49,6 +49,7 @@ impl Actor {
         terrain: &mut TerrainMaskMut<'_>,
         steel: TerrainMask<'_>,
     ) -> Result<MotionOutcome, MotionError> {
+        self.require_basic_context()?;
         self.advance_digging(terrain, |x, y| steel.is_solid(x, y))
     }
     pub(super) fn advance_digging(
@@ -56,6 +57,7 @@ impl Actor {
         terrain: &mut TerrainMaskMut<'_>,
         steel: impl Fn(i32, i32) -> bool,
     ) -> Result<MotionOutcome, MotionError> {
+        self.require_basic_context()?;
         if self.state.removed.is_some() {
             return Ok(MotionOutcome::default());
         }

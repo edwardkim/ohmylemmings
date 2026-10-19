@@ -1,7 +1,7 @@
 use super::*;
 use crate::{OBJECT_BLOCKER, OBJECT_FORCE_LEFT, OBJECT_FORCE_RIGHT, ObjectMap, ObjectMapMut};
 
-fn field(s: ActorState) -> impl Iterator<Item = (usize, i64, i64)> {
+pub(super) fn field(s: ActorState) -> impl Iterator<Item = (usize, i64, i64)> {
     [-6, -2, 2]
         .into_iter()
         .enumerate()
@@ -55,7 +55,7 @@ impl Actor {
     }
     /// Apply only the two force effects. The caller gates this with the action's
     /// check_objects result, exactly after HandleLemming in CheckLemmings.
-    fn apply_force(&mut self, map: ObjectMap<'_>) {
+    pub(super) fn apply_force(&mut self, map: ObjectMap<'_>) {
         let s = &mut self.state;
         if s.removed.is_some() {
             return;
@@ -81,6 +81,7 @@ impl Actor {
         context: MiningContext<'_>,
         map: &mut ObjectMapMut<'_>,
     ) -> Result<MotionOutcome, MotionError> {
+        self.require_basic_context()?;
         if self.state.removed.is_some() {
             return Ok(MotionOutcome::default());
         }

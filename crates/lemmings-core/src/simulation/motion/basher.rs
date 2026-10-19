@@ -97,6 +97,7 @@ impl Actor {
         terrain: &mut TerrainMaskMut<'_>,
         context: BashingContext<'_>,
     ) -> Result<MotionOutcome, MotionError> {
+        self.require_basic_context()?;
         if self.state.removed.is_some() || self.state.action != MotionAction::Bashing {
             return self.advance_digging(terrain, |x, y| context.is_steel(x, y));
         }

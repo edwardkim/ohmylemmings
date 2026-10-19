@@ -11,6 +11,7 @@ pub enum SelectedSkill {
     Miner,
     Builder,
     Blocker,
+    Bomber,
 }
 pub struct View {
     pub camera: i32,
@@ -39,8 +40,11 @@ impl View {
         if self.iteration != Some(iteration) {
             // Erase deleted terrain before object composition so objects behind
             // a freshly dug hole become visible with their original draw flags.
-            self.world =
-                assets.scene_with_terrain(iteration, session.terrain(), session.brick_mask())?;
+            self.world = assets.scene_with_terrain(
+                iteration,
+                session.render_terrain(),
+                session.render_bricks(),
+            )?;
             self.iteration = Some(iteration);
         }
         let mut output = vec![0; WIDTH * HEIGHT * 3];
@@ -57,6 +61,22 @@ impl View {
         for actor in &session.actors {
             let a = actor.state();
             if a.removed.is_some() {
+                if a.particle_timer > 0
+                    && let Some(bytes) = &assets.particles
+                {
+                    let particles = lemmings_resources::ExplosionParticles::parse(bytes)?;
+                    let colors = [4, 15, 14, 13, 12, 11, 10, 9, 8, 11, 10, 9, 8, 7, 6, 2];
+                    for n in 0..80 {
+                        if let Some((dx, dy)) = particles.offset(usize::from(a.particle_frame), n) {
+                            let x = i64::from(a.x) + i64::from(dx) - i64::from(self.camera);
+                            let y = i64::from(a.y) + i64::from(dy);
+                            if (0..WIDTH as i64).contains(&x) && (0..160).contains(&y) {
+                                let at = (y as usize * WIDTH + x as usize) * 3;
+                                output[at..at + 3].copy_from_slice(&assets.palette[colors[n % 16]]);
+                            }
+                        }
+                    }
+                }
                 continue;
             }
             let kind = match a.action {
@@ -70,6 +90,8 @@ impl View {
                 MotionAction::Building => LemmingSpriteKind::Building,
                 MotionAction::Shrugging => LemmingSpriteKind::Shrugging,
                 MotionAction::Blocking => LemmingSpriteKind::Blocking,
+                MotionAction::OhNo => LemmingSpriteKind::OhNo,
+                MotionAction::Exploding => LemmingSpriteKind::Explosion,
             };
             let direction = if a.direction == MotionDirection::Left {
                 SpriteDirection::Left
@@ -96,6 +118,23 @@ impl View {
                     (x, y),
                     &assets.palette,
                 );
+            }
+            if let Some(digit) = a.countdown_digit() {
+                let mut glyph = [128; 64];
+                for gy in 0..8 {
+                    for gx in 0..8 {
+                        if assets.countdown_masks[usize::from(9 - digit) * 8 + gy] & (128 >> gx)
+                            != 0
+                        {
+                            glyph[gy * 8 + gx] = 3;
+                        }
+                    }
+                }
+                let x = i64::from(a.x) - i64::from(self.camera);
+                let y = (i64::from(a.y) - i64::from(info.foot_y)).max(0) - 8;
+                if let (Ok(x), Ok(y)) = (i32::try_from(x), i32::try_from(y)) {
+                    blit(&mut output, &glyph, (8, 8), (x, y), &assets.palette);
+                }
             }
         }
         let step = session.scheduler.step_state();
@@ -149,6 +188,9 @@ impl View {
                 }
                 SelectedSkill::Miner => {
                     format!("MINE {} | M/B/D SELECT | CLICK", session.remaining_miners)
+                }
+                SelectedSkill::Bomber => {
+                    format!("BOMB {} | E/K/U/M/B/D | CLICK", session.remaining_bombers)
                 }
                 SelectedSkill::Blocker => {
                     format!("BLOCK {} | K/U/M/B/D | CLICK", session.remaining_blockers)
@@ -247,6 +289,112 @@ fn glyph(c: char) -> [u8; 7] {
 }
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn removed_explosion_particles_use_signed_offsets_palette_frame_and_playfield_clip() {
+        let mut assets = Assets::synthetic();
+        assets.sprites.fill(0);
+        assets.palette[4] = [11, 22, 33];
+        assets.palette[15] = [44, 55, 66];
+        let mut table = vec![128; lemmings_resources::EXPLOSION_PARTICLE_DATA_SIZE];
+        let at = 3 * 160;
+        table[at..at + 12].copy_from_slice(&[255, 254, 0, 0, 128, 1, 129, 0, 0, 127, 0, 128]);
+        assets.particles = Some(table);
+        let mut session = Session::new(
+            assets.config,
+            assets.entrances.clone(),
+            assets.width,
+            assets.height,
+            assets.terrain.clone(),
+        )
+        .unwrap();
+        let mut a = Actor::from_spawn(
+            SpawnRequest {
+                actor_id: 0,
+                entrance_index: 0,
+                iteration: 54,
+            },
+            &[EntrancePoint { x: 0, y: 0 }],
+            MotionRules::default(),
+        )
+        .unwrap()
+        .state();
+        a.x = 32;
+        a.y = 100;
+        a.action = MotionAction::Exploding;
+        a.frame = 0;
+        a.end_of_animation = true;
+        a.fallen = 0;
+        a.removed = Some(RemovalReason::Exploded);
+        a.particle_timer = 49;
+        a.particle_frame = 3;
+        session
+            .actors
+            .push(Actor::from_state(a, MotionRules::default()).unwrap());
+        let frame = View::new(0).frame(&assets, &session).unwrap();
+        let p = (98 * WIDTH + 31) * 3;
+        assert_eq!(&frame[p..p + 3], &[11, 22, 33]);
+        let p = (100 * WIDTH + 32) * 3;
+        assert_eq!(&frame[p..p + 3], &[44, 55, 66]);
+        a.particle_timer = 0;
+        session.actors[0] = Actor::from_state(a, MotionRules::default()).unwrap();
+        let frame = View::new(0).frame(&assets, &session).unwrap();
+        let p = (98 * WIDTH + 31) * 3;
+        assert_eq!(&frame[p..p + 3], &[0, 0, 0]);
+    }
+    #[test]
+    fn countdown_glyphs_follow_sprite_foot_anchor_without_mirroring() {
+        for (action, foot) in [
+            (MotionAction::Walking, 10),
+            (MotionAction::Digging, 12),
+            (MotionAction::Building, 13),
+            (MotionAction::Mining, 13),
+        ] {
+            for (timer, digit) in [(79, 5u8), (64, 4), (48, 3), (32, 2), (16, 1)] {
+                let mut assets = Assets::synthetic();
+                assets.sprites.fill(0);
+                assets.countdown_masks.fill(0);
+                assets.countdown_masks[usize::from(9 - digit) * 8] = 128 >> digit;
+                let mut session = Session::new(
+                    assets.config,
+                    assets.entrances.clone(),
+                    assets.width,
+                    assets.height,
+                    assets.terrain.clone(),
+                )
+                .unwrap();
+                let mut a = Actor::from_spawn(
+                    SpawnRequest {
+                        actor_id: 0,
+                        entrance_index: 0,
+                        iteration: 54,
+                    },
+                    &[EntrancePoint { x: 0, y: 0 }],
+                    MotionRules::default(),
+                )
+                .unwrap()
+                .state();
+                a.action = action;
+                a.x = 32;
+                a.y = 100;
+                a.fallen = 0;
+                a.explosion_timer = timer;
+                a.direction = MotionDirection::Left;
+                a.bricks_left = if action == MotionAction::Building {
+                    12
+                } else {
+                    0
+                };
+                session
+                    .actors
+                    .push(Actor::from_state(a, MotionRules::default()).unwrap());
+                let pixels = View::new(0).frame(&assets, &session).unwrap();
+                let at = ((100 - foot - 8) * WIDTH + 32 + usize::from(digit)) * 3;
+                assert_eq!(&pixels[at..at + 3], &assets.palette[3]);
+                let empty = ((100 - foot - 8) * WIDTH + 32) * 3;
+                assert_eq!(&pixels[empty..empty + 3], &[0, 0, 0]);
+            }
+        }
+    }
     use super::*;
     use lemmings_core::*;
     #[test]
@@ -322,6 +470,9 @@ mod tests {
                 new_digger: false,
                 bricks_left: 0,
                 blocker_saved: None,
+                explosion_timer: 0,
+                particle_timer: 0,
+                particle_frame: 0,
                 object_below: 0,
                 object_in_front: 0,
                 removed: None,
@@ -354,6 +505,9 @@ mod tests {
                 new_digger: false,
                 bricks_left: 0,
                 blocker_saved: None,
+                explosion_timer: 0,
+                particle_timer: 0,
+                particle_frame: 0,
                 object_below: 0,
                 object_in_front: 0,
                 removed: Some(RemovalReason::BottomBoundary),

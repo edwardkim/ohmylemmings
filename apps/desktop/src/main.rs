@@ -21,7 +21,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nK/U/M/B/D: select Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input]\nE/K/U/M/B/D: select Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     synthetic: bool,
@@ -68,7 +68,7 @@ impl Options {
                     o.synthetic = true;
                     o.builder_scene = true;
                 }
-                "--synthetic-blocker" => {
+                "--synthetic-bomber" | "--synthetic-blocker" => {
                     o.synthetic = true;
                     o.blocker_scene = true;
                 }
@@ -145,6 +145,7 @@ struct Capture {
     miner_trace: BufWriter<File>,
     builder_trace: BufWriter<File>,
     blocker_trace: BufWriter<File>,
+    bomber_trace: BufWriter<File>,
     previous_object_map: Vec<u8>,
     previous_terrain: Vec<u8>,
 }
@@ -175,6 +176,12 @@ impl Capture {
             trace,
             previous_terrain: Vec::new(),
             previous_object_map: Vec::new(),
+            bomber_trace: BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(root.join("bomber.jsonl"))?,
+            ),
             blocker_trace: BufWriter::new(
                 OpenOptions::new()
                     .write(true)
@@ -209,6 +216,7 @@ impl Capture {
     }
     fn snapshot(&mut self, s: &Session) -> Result<(), Box<dyn Error>> {
         writeln!(self.trace, "{}", s.snapshot())?;
+        writeln!(self.bomber_trace, "{}", s.bomber_snapshot())?;
         writeln!(self.miner_trace, "{{\"remaining\":{}}}", s.remaining_miners)?;
         self.trace.flush()?;
         writeln!(
@@ -287,6 +295,7 @@ impl Capture {
         self.miner_trace.flush()?;
         self.builder_trace.flush()?;
         self.blocker_trace.flush()?;
+        self.bomber_trace.flush()?;
         write_new(&self.root.join("object-map-final.bin"), s.object_map_data())?;
         write_new(&self.root.join("terrain-final.bin"), s.terrain())?;
         write_new(&self.root.join("brick-final.bin"), s.brick_mask())?;
@@ -306,6 +315,9 @@ impl Capture {
                 }
                 InputCommand::Custom(StartupCommand::AssignBuilder(id)) => {
                     format!("AssignBuilder {id}")
+                }
+                InputCommand::Custom(StartupCommand::AssignBomber(id)) => {
+                    format!("AssignBomber {id}")
                 }
                 InputCommand::Custom(StartupCommand::AssignBlocker(id)) => {
                     format!("AssignBlocker {id}")
@@ -340,9 +352,26 @@ fn basher_capture(s: &Session) -> bool {
                         | StartupCommand::AssignMiner(_)
                         | StartupCommand::AssignBuilder(_)
                         | StartupCommand::AssignBlocker(_)
+                        | StartupCommand::AssignBomber(_)
                 )
             )
         })
+}
+fn bomber_capture(s: &Session) -> bool {
+    s.inputs.iter().any(|i| {
+        matches!(
+            i.command,
+            InputCommand::Custom(StartupCommand::AssignBomber(_))
+        )
+    }) && s.actors.iter().any(|a| {
+        let a = a.state();
+        matches!(
+            a.explosion_timer,
+            1 | 16 | 17 | 32 | 33 | 48 | 49 | 64 | 65 | 78
+        ) || (a.action == lemmings_core::MotionAction::OhNo && a.frame == 15)
+            || (a.action == lemmings_core::MotionAction::Exploding && a.removed.is_none())
+            || matches!(a.particle_timer, 1 | 52)
+    })
 }
 fn run(options: Options) -> Result<(), Box<dyn Error>> {
     let assets = if options.blocker_scene || options.builder_scene {
@@ -385,6 +414,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
     session.configure_miner(assets.miners, assets.mine_masks);
     session.configure_builder(assets.builders);
     session.configure_blocker(assets.blockers, assets.object_map.clone())?;
+    session.configure_bomber(assets.bombers, assets.explosion_mask)?;
     let mut view = View::new(assets.screen_x);
     view.replaying = options.replay.is_some();
     let mut capture = options
@@ -418,6 +448,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             &c.root.join("object-map-initial.bin"),
             session.object_map_data(),
         )?;
+        write_new(&c.root.join("explosion-mask.bin"), &assets.explosion_mask)?;
         let config = &assets.config;
         let entrances = assets
             .entrances
@@ -426,7 +457,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             .collect::<Vec<_>>()
             .join(",");
         let description = format!(
-            "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"miners\":{},\"builders\":{},\"blockers\":{},\"level\":{}}}",
+            "{{\"width\":{},\"height\":{},\"minutes\":{},\"total\":{},\"rate\":{},\"entrances\":[{entrances}],\"pause_glitch\":true,\"faller_three\":true,\"diggers\":{},\"bashers\":{},\"miners\":{},\"builders\":{},\"blockers\":{},\"bombers\":{},\"level\":{}}}",
             assets.width,
             assets.height,
             config.time_limit_minutes,
@@ -437,6 +468,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
             assets.miners,
             assets.builders,
             assets.blockers,
+            assets.bombers,
             options.level
         );
         write_new(&c.root.join("config.json"), description.as_bytes())?;
@@ -536,6 +568,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
                     .iter()
                     .any(|event| event.starts_with("Input:"))
                     || basher_capture(&session)
+                    || bomber_capture(&session)
                 {
                     break;
                 }
@@ -545,6 +578,7 @@ fn run(options: Options) -> Result<(), Box<dyn Error>> {
         let finished = options.steps.is_some_and(|end| step >= end);
         let milestone = matches!(step, 0 | 16 | 17 | 34 | 35 | 54 | 60 | 100 | 170 | 340)
             || basher_capture(&session)
+            || bomber_capture(&session)
             || session.actors.iter().any(|a| {
                 a.state().action == lemmings_core::MotionAction::Building
                     && matches!(a.state().frame, 0 | 9)

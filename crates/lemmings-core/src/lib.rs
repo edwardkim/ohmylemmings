@@ -40,3 +40,5 @@ pub use simulation::{
     OBJECT_FORCE_LEFT, OBJECT_FORCE_RIGHT, OBJECT_NONE, ObjectMap, ObjectMapError, ObjectMapMut,
     step_actors_with_objects,
 };
+
+pub use simulation::{BomberContext, step_actors_with_bomber};

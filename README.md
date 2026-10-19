@@ -38,7 +38,7 @@ make check
 cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/local/dos-original
 ```
 
-Space로 일시정지/재개, 위/아래 화살표로 생성 속도, 좌/우 화살표로 카메라를 조작하고 Esc로 종료합니다. 나머지 직업·출구 판정·승패·음향은 후속 구현입니다. [G06-01 검증 보고서](mydocs/reports/issue-27_native_view.md)에 X11 실행과 화면 근거를 기록합니다. [#28 DOS 세 실행·동일 장면 대조](mydocs/reports/issue-28_dos_comparison.md)를 완료했습니다. [#30 보정](mydocs/reports/issue-30_dos_differences.md)으로 일곱 기준 장면의 전체 320×160 영역이 원본 세 실행과 같고 기본 실행 간격도 DOS 관측에 맞췄습니다. 게시·실제 CI를 확인해 G06 전체를 완료했습니다. G07-01 Digger와 G07-02 Basher를 완료했으며 G07-03 Miner도 완료했으며 [G07-04 Builder / #34](mydocs/reports/issue-34_builder.md)의 병합·CI도 완료했습니다. 현재 [G07-05 Blocker / #36](mydocs/working/issue-36_blocker.md)의 구현·검증·self-review를 마쳤습니다. 최종 통합 기록은 #36에서 추적합니다.
+E/K/U/M/B/D로 Bomber/Blocker/Builder/Miner/Basher/Digger를 선택하고 레밍을 클릭합니다. `--level 6`은 Bomber 원본 Fun06을 엽니다. Space로 일시정지/재개, 위/아래 화살표로 생성 속도, 좌/우 화살표로 카메라를 조작하고 Esc로 종료합니다. 나머지 직업·출구 판정·승패·음향은 후속 구현입니다. [G06-01 검증 보고서](mydocs/reports/issue-27_native_view.md)에 X11 실행과 화면 근거를 기록합니다. [#28 DOS 세 실행·동일 장면 대조](mydocs/reports/issue-28_dos_comparison.md)를 완료했습니다. [#30 보정](mydocs/reports/issue-30_dos_differences.md)으로 일곱 기준 장면의 전체 320×160 영역이 원본 세 실행과 같고 기본 실행 간격도 DOS 관측에 맞췄습니다. 게시·실제 CI를 확인해 G06 전체를 완료했습니다. G07-01 Digger와 G07-02 Basher를 완료했으며 G07-03 Miner도 완료했으며 [G07-04 Builder / #34](mydocs/reports/issue-34_builder.md)의 병합·CI도 완료했습니다. [G07-05 Blocker / #36](mydocs/reports/issue-36_blocker.md)의 PR #37 병합·main CI·종료를 확인했습니다. 현재 [G07-06 Bomber / #38](mydocs/reports/issue-38_bomber.md)의 구현·검증·self-review를 마쳤으며 최종 통합은 #38에서 추적합니다.
 
 ## 원본 데이터 준비
 
@@ -66,7 +66,7 @@ python3 -m unittest discover -s tools/tests -v
 
 전체 설계와 단계별 작업은 [프로젝트 기획서](mydocs/plans/issue-1_rusty_lemmings.md)를 참고하세요.
 
-구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. G00~G06과 G07-01 Digger·G07-02 Basher·G07-03 Miner를 완료했으며 [G07-04 Builder / #34](mydocs/reports/issue-34_builder.md)의 병합·CI도 완료했습니다. 현재 [G07-05 Blocker / #36](mydocs/working/issue-36_blocker.md)의 구현·검증·self-review를 마쳤습니다. 최종 통합 기록은 #36에서 추적합니다.
+구현 순서와 목표별 완료 기준은 [분할정복 기반 전체 구현 계획](mydocs/plans/issue-1_implementation_plan.md)에 정리합니다. G00~G06과 G07-01 Digger·G07-02 Basher·G07-03 Miner를 완료했으며 [G07-04 Builder / #34](mydocs/reports/issue-34_builder.md)의 병합·CI도 완료했습니다. [G07-05 Blocker / #36](mydocs/reports/issue-36_blocker.md)의 PR #37 병합·main CI·종료를 확인했습니다. 현재 [G07-06 Bomber / #38](mydocs/reports/issue-38_bomber.md)의 구현·검증·self-review를 마쳤으며 최종 통합은 #38에서 추적합니다.
 
 진행 상황은 [GitHub 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1)에서 추적합니다.
 
