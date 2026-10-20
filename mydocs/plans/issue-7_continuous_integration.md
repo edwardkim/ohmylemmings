@@ -75,3 +75,7 @@ Rustup의 최초 도구 체인·타깃 설치에는 네트워크가 필요할 �
 ## G10-03 PCM 독립 대조 / #76
 
 [#76](../reports/issue-76_opl_pcm.md)에서 make check-rust에 고정 LGPL C1.8 소스의 크기/SHA 검증·별도 host 빌드/합성 PCM 전수 비교와 native PCM fixture/청크 검사를 추가했습니다. `cc`가 필요하며 Ubuntu runner의 기본 C 툴체인을 사용합니다. make check-web은 별도 PCM 어댑터의 실제 WASM을 실행해 두 분할의 i16LE SHA를 대조합니다. 새 원본/네트워크·npm/Unicorn 의존성 없이 기존 네 CI 작업에서 실행합니다.
+
+## G10-04 게임 명령·PCM / #78
+
+[#78](../reports/issue-78_game_sound.md)에서 `make check-rust`에 합성98경로·고정 원본 x86 메타데이터97분기/170음악조합과 typed 명령→PCM 검사를, `make check-web`에 같은 경로의 실제 WASM/PCM 검사를 추가했습니다. 기존 Web 검사도 WebGame의 사운드 API/큐/세대를 직접 실행합니다. 새로운 네트워크·외부 패키지·원본/Unicorn·장치 요구 사항은 없습니다.

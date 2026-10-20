@@ -83,3 +83,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#74 ADLIB 명령·레지스터 스트림](issue-74_adlib_stream.md)
 
 - [#76 OPL 합성기·결정론 PCM](issue-76_opl_pcm.md)
+
+- [#78 게임 사운드 이벤트·DOS 숫자 ID](issue-78_game_sound.md)

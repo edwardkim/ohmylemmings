@@ -1,5 +1,7 @@
 use crate::pacing::{Pacing, PlaybackClock};
+use crate::sound::{self, SessionSound};
 use lemmings_core::*;
+use std::cell::Cell;
 use std::{error::Error, fmt::Write as _, time::Duration};
 
 pub struct Session {
@@ -7,6 +9,10 @@ pub struct Session {
     pub actors: Vec<Actor>,
     pub inputs: Vec<TimedInput<StartupCommand>>,
     pub events: Vec<String>,
+    sound_frame: Vec<SessionSound>,
+    sound_pending: Vec<SessionSound>,
+    sound_frame_dropped: u64,
+    sound_pending_dropped: u64,
     pub remaining_diggers: u16,
     pub remaining_bashers: u16,
     pub remaining_miners: u16,
@@ -57,6 +63,10 @@ impl Session {
             actors: Vec::new(),
             inputs: Vec::new(),
             events: Vec::new(),
+            sound_frame: Vec::new(),
+            sound_pending: Vec::new(),
+            sound_frame_dropped: 0,
+            sound_pending_dropped: 0,
             remaining_diggers: 0,
             remaining_bashers: 0,
             remaining_miners: 0,
@@ -418,10 +428,42 @@ impl Session {
         });
         Ok(())
     }
+    /// Most recent successful control boundary; replaced even on paused updates.
+    /// Read after every tick. Hosts batching ticks must collect each frame.
+    pub fn sounds(&self) -> &[SessionSound] {
+        &self.sound_frame
+    }
+    pub const fn sound_dropped(&self) -> u64 {
+        self.sound_frame_dropped
+    }
+    /// Presentation selection is acknowledged even while paused. It never enters
+    /// the simulation input log or changes inventory, clocks or selected actors.
+    pub fn notify_skill_selection(&mut self) {
+        if self.result.is_none() {
+            if self.sound_pending.len() == 1024 {
+                self.sound_pending_dropped = self.sound_pending_dropped.saturating_add(1);
+                return;
+            }
+            let step = self.scheduler.step_state();
+            sound::push(
+                &mut self.sound_pending,
+                step.control_step,
+                step.iteration,
+                None,
+                None,
+                SoundCue::SkillButtonSelect,
+            );
+        }
+    }
     pub fn tick(&mut self) -> Result<(), Box<dyn Error>> {
         if self.result.is_some() {
+            self.sound_frame.clear();
+            self.sound_frame_dropped = 0;
             return Ok(());
         }
+        let before = self.scheduler.step_state();
+        let assigned = Cell::new(None);
+        let mut sounds = self.sound_pending.clone();
         let seconds_before_tick = self.scheduler.state().seconds_remaining;
         let mut events = Vec::new();
         let mut rescued_this_tick = false;
@@ -487,7 +529,7 @@ impl Session {
                     | StartupCommand::AssignFloater(id) => id,
                     _ => return false,
                 };
-                actors
+                let accepted = actors
                     .iter_mut()
                     .find(|a| a.state().id == id)
                     .is_some_and(|a| {
@@ -538,11 +580,15 @@ impl Session {
                                     }
                                 }
                                 StartupCommand::AssignBasher(_) => {
-                                    a.assign_basher(bashers, objects)
+                                    a.assign_basher_with_cues(bashers, objects, |cue| {
+                                        assigned.set(Some((id, cue)))
+                                    })
                                 }
-                                StartupCommand::AssignMiner(_) => {
-                                    a.assign_miner(miners, MiningContext { objects, ..mining })
-                                }
+                                StartupCommand::AssignMiner(_) => a.assign_miner_with_cues(
+                                    miners,
+                                    MiningContext { objects, ..mining },
+                                    |cue| assigned.set(Some((id, cue))),
+                                ),
                                 StartupCommand::AssignBuilder(_) => {
                                     if let Some(primary) = fallback_primary {
                                         a.assign_builder_secondary(builders, primary)
@@ -558,14 +604,41 @@ impl Session {
                         } else {
                             apply(a)
                         }
-                    })
+                    });
+                if accepted {
+                    let skill = match command {
+                        StartupCommand::AssignClimber(_) => AssignmentSkill::Climber,
+                        StartupCommand::AssignFloater(_) => AssignmentSkill::Floater,
+                        StartupCommand::AssignBomber(_) => AssignmentSkill::Bomber,
+                        StartupCommand::AssignBlocker(_) => AssignmentSkill::Blocker,
+                        StartupCommand::AssignBuilder(_) => AssignmentSkill::Builder,
+                        StartupCommand::AssignBasher(_) => AssignmentSkill::Basher,
+                        StartupCommand::AssignMiner(_) => AssignmentSkill::Miner,
+                        StartupCommand::AssignDigger(_) => AssignmentSkill::Digger,
+                        _ => unreachable!("resolved assignment"),
+                    };
+                    assigned.set(Some((id, SoundCue::AssignSkill(skill))));
+                }
+                accepted
             },
             |event| match event {
                 StartupEvent::Input {
                     control_step,
                     sequence,
                     accepted,
-                } => events.push(format!("Input:{control_step}:{sequence}:{accepted}")),
+                } => {
+                    events.push(format!("Input:{control_step}:{sequence}:{accepted}"));
+                    if let Some((id, cue)) = assigned.take() {
+                        sound::push(
+                            &mut sounds,
+                            control_step,
+                            before.iteration,
+                            Some(sequence),
+                            Some(id),
+                            cue,
+                        );
+                    }
+                }
                 StartupEvent::Spawn(request) => {
                     events.push(format!(
                         "Spawn:{}:{}:{}",
@@ -576,7 +649,21 @@ impl Session {
                 StartupEvent::LetsGo => events.push("LetsGo".into()),
                 StartupEvent::EntranceSound => events.push("EntranceSound".into()),
                 StartupEvent::EntrancesOpened => events.push("EntrancesOpened".into()),
-                StartupEvent::Tick(_) => {}
+                StartupEvent::Tick(iteration) => {
+                    // Original startup dispatch runs before DS:0052 increments.
+                    // DOS post-update counter = existing scene iteration + 1.
+                    // Raw pre-counters15/35/55 therefore align at15/35/55;
+                    // the legacy EntranceSound34 marker remains diagnostic only.
+                    let cue = match iteration {
+                        15 => Some(SoundCue::LetsGo),
+                        35 => Some(SoundCue::EntranceOpening),
+                        55 => Some(SoundCue::MusicStart),
+                        _ => None,
+                    };
+                    if let Some(cue) = cue {
+                        sound::push(&mut sounds, before.control_step, iteration, None, None, cue);
+                    }
+                }
             },
         )?;
         if let Some(request) = spawn {
@@ -592,6 +679,16 @@ impl Session {
             let brick_mask = &mut self.brick_mask;
             let width = self.width;
             let update_bricks = |state: ActorState, out: MotionOutcome| {
+                for cue in out.sound_cues.into_iter().flatten() {
+                    sound::push(
+                        &mut sounds,
+                        before.control_step,
+                        outcome.iteration.expect("logical update"),
+                        None,
+                        Some(state.id),
+                        cue,
+                    );
+                }
                 rescued_this_tick |= out.removal == Some(RemovalReason::Rescued);
                 hazard_changed |= matches!(
                     out.removal,
@@ -675,6 +772,19 @@ impl Session {
                     .unwrap_or(0),
             })?;
         }
+        if self.result.is_some() {
+            sound::push(
+                &mut sounds,
+                before.control_step,
+                outcome.iteration.unwrap_or(before.iteration),
+                None,
+                None,
+                SoundCue::LevelFinished,
+            );
+        }
+        self.sound_pending.clear();
+        self.sound_frame_dropped = std::mem::take(&mut self.sound_pending_dropped);
+        self.sound_frame = sounds;
         self.events = events;
         self.rescued_this_tick = rescued_this_tick;
         self.hazard_changed = hazard_changed;

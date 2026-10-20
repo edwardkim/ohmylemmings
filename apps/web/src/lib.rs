@@ -72,7 +72,13 @@ impl WebGame {
 
     /// Construct the replacement completely before discarding the current game.
     pub fn reset(&mut self, scene: &str, pacing: &str) -> Result<(), String> {
-        *self = Self::new(scene, pacing)?;
+        let mut replacement = Self::new(scene, pacing)?;
+        replacement
+            .run
+            .sound
+            .fresh_generation_after(self.run.sound.generation())
+            .map_err(str::to_string)?;
+        *self = replacement;
         Ok(())
     }
 
@@ -81,7 +87,10 @@ impl WebGame {
         let level = checked_level(number)?;
         let source = Source::Original(Rc::clone(&files.files));
         let (assets, next) = source.load(level).map_err(|e| e.to_string())?;
-        let run = LevelRun::new(assets, level, next, Pacing::Dos).map_err(|e| e.to_string())?;
+        let mut run = LevelRun::new(assets, level, next, Pacing::Dos).map_err(|e| e.to_string())?;
+        run.sound
+            .fresh_generation_after(self.run.sound.generation())
+            .map_err(str::to_string)?;
         *self = Self {
             run,
             source,
@@ -101,8 +110,12 @@ impl WebGame {
     }
     fn replace_level(&mut self, level: u8) -> Result<(), String> {
         let (assets, next) = self.source.load(level).map_err(|e| e.to_string())?;
-        let replacement =
+        let mut replacement =
             LevelRun::new(assets, level, next, self.pacing).map_err(|e| e.to_string())?;
+        replacement
+            .sound
+            .continue_from(&self.run.sound, false)
+            .map_err(|e| e.to_string())?;
         self.run = replacement;
         Ok(())
     }
@@ -127,6 +140,14 @@ impl WebGame {
                 Err(error.to_string())
             }
         }
+    }
+    /// Bounded commands collected at every logical boundary, even in step batches.
+    /// A new generation requires discarding old PCM/device queues. No device I/O.
+    pub fn drain_sound_events(&mut self) -> String {
+        self.run.sound.drain_json()
+    }
+    pub fn sound_state(&self) -> String {
+        self.run.sound.diagnostic_json()
     }
     pub fn level(&self) -> u8 {
         self.run.level
@@ -221,7 +242,7 @@ impl WebGame {
             lemmings_game::panel::advance_input(&mut self.run.session, &mut self.run.view, false)
                 .map_err(|e| e.to_string())?;
             lemmings_game::pointer::refresh(&self.run.session, &mut self.run.view);
-            self.run.session.tick().map_err(|e| e.to_string())?;
+            self.run.tick().map_err(|e| e.to_string())?;
             lemmings_game::pointer::refresh(&self.run.session, &mut self.run.view);
             if self.run.session.result().is_some() {
                 self.run.view.panel.release();

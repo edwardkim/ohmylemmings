@@ -93,6 +93,7 @@ pub fn step_actors_with_hazards(
             let index = usize::from(actor.state.object_below);
             let trap = traps[index].as_mut().expect("prevalidated trap reference");
             if !trap.triggered {
+                out.sound(crate::SoundCue::Trap { slot: index as u8 });
                 trap.triggered = true;
                 trap.frame = 0;
                 remove(&mut actor.state, &mut out, RemovalReason::Trapped);

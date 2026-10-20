@@ -83,6 +83,7 @@ impl Actor {
             *self = next;
             return Ok(MotionOutcome::default());
         }
+        let mut out = MotionOutcome::default();
         if next.state.explosion_timer > 0 {
             next.state.explosion_timer -= 1;
             if next.state.explosion_timer == 0 {
@@ -97,18 +98,17 @@ impl Actor {
                 } else {
                     MotionAction::OhNo
                 };
-                transition(&mut next.state, action, next.rules);
+                transition_sound(&mut next.state, action, next.rules, &mut out);
                 *self = next;
-                return Ok(MotionOutcome::default());
+                return Ok(out);
             }
         }
-        let mut out = MotionOutcome::default();
         match next.state.action {
             MotionAction::OhNo => {
                 let s = &mut next.state;
                 s.end_of_animation = s.frame == 15;
                 if s.end_of_animation {
-                    transition(s, MotionAction::Exploding, next.rules);
+                    transition_sound(s, MotionAction::Exploding, next.rules, &mut out);
                 } else {
                     s.frame += 1;
                     let mut dy = 0;
@@ -120,7 +120,7 @@ impl Actor {
                         remove(s, &mut out, RemovalReason::BottomBoundary);
                     } else {
                         out.check_objects = true;
-                        next.apply_force(map.as_read_only());
+                        next.apply_force(map.as_read_only(), &mut out);
                     }
                 }
             }

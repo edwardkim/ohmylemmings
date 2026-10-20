@@ -986,7 +986,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             apply_replay_boundary(&mut game.session, &mut replay);
             panel::advance_input(&mut game.session, &mut game.view, options.replay.is_some())?;
             pointer::refresh(&game.session, &mut game.view);
-            game.session.tick()?;
+            game.tick()?;
             pointer::refresh(&game.session, &mut game.view);
             pending_due -= 1;
             advanced = true;

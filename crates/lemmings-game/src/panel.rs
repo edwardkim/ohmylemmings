@@ -65,6 +65,15 @@ impl Controls {
     }
 }
 
+/// Selection affects presentation immediately; its optional logical cue is
+/// recorded for the next control boundary, including while paused.
+pub fn select_skill(session: &mut Session, view: &mut View, skill: SelectedSkill, emit_cue: bool) {
+    view.selected_skill = skill;
+    if emit_cue {
+        session.notify_skill_selection();
+    }
+}
+
 /// Hold repeats once per control boundary, independently of polling/render frequency.
 pub fn advance_input(
     session: &mut Session,

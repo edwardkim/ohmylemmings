@@ -8,6 +8,8 @@ except ImportError:
 
 def decode_audio_sample(raw):
     result=decode_sample(raw);result['adlib_selected_u8']=raw[0x2010]
+    result['audio_music_driver_id_u8']=raw[0x54]
+    result['audio_startup_flags_u8']=raw[0x4e]
     # DS:001c increments once per IRQ, wrapping at 256. DS:1fcd is a
     # game-loop budget reset every five IRQs, so it cannot measure cadence.
     # The shared observer omits that legacy field from change detection.

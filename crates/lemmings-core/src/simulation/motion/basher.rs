@@ -34,6 +34,17 @@ impl<'a> BashingContext<'a> {
             self.is_steel(s.x, s.y)
         }
     }
+    pub(super) fn assignment_front_steel(self, s: ActorState) -> bool {
+        if self.object_map.is_some() {
+            return s.object_in_front == 137;
+        }
+        let x = i64::from(s.x) + i64::from(s.direction.delta()) * 8;
+        let y = i64::from(s.y) - 8;
+        i32::try_from(x)
+            .ok()
+            .zip(i32::try_from(y).ok())
+            .is_some_and(|(x, y)| self.steel.is_solid(x, y))
+    }
     pub(super) fn assignment_blocked(self, s: ActorState) -> bool {
         if self.object_map.is_some() {
             s.object_in_front == 137
@@ -69,6 +80,16 @@ impl Actor {
     /// Assign by stable ID after caller selection. Supported replaceable jobs
     /// are Walking, Digging and Mining; rejected requests preserve inventory and state.
     pub fn assign_basher(&mut self, remaining: &mut u16, context: BashingContext<'_>) -> bool {
+        self.assign_basher_with_cues(remaining, context, |_| {})
+    }
+    /// Original assignment feedback distinguishes eligible steel rejection from
+    /// empty inventory/ineligible action/one-way rejection. No state changes on rejection.
+    pub fn assign_basher_with_cues(
+        &mut self,
+        remaining: &mut u16,
+        context: BashingContext<'_>,
+        mut emit: impl FnMut(crate::SoundCue),
+    ) -> bool {
         let s = self.state;
         if *remaining == 0
             || s.removed.is_some()
@@ -80,12 +101,20 @@ impl Actor {
                     | MotionAction::Building
                     | MotionAction::Shrugging
             )
-            || context.assignment_blocked(s)
         {
+            return false;
+        }
+        if context.assignment_blocked(s) {
+            if context.assignment_front_steel(s) {
+                emit(crate::SoundCue::AssignmentBlocked(
+                    crate::AssignmentSkill::Basher,
+                ));
+            }
             return false;
         }
         transition(&mut self.state, MotionAction::Bashing, self.rules);
         *remaining -= 1;
+        emit(crate::SoundCue::AssignSkill(crate::AssignmentSkill::Basher));
         true
     }
 
@@ -107,6 +136,10 @@ impl Actor {
         let index = s.frame % 16;
         let moving = (11..=15).contains(&index);
         let mut mask = None;
+        let mut out = MotionOutcome {
+            check_objects: moving,
+            ..MotionOutcome::default()
+        };
         if moving {
             s.x =
                 s.x.checked_add(s.direction.delta())
@@ -127,6 +160,15 @@ impl Actor {
                     i64::from(s.y) - 8,
                     s.direction,
                 ) {
+                    let x = i64::from(s.x) + i64::from(s.direction.delta()) * 8;
+                    let y = i64::from(s.y) - 8;
+                    if i32::try_from(x)
+                        .ok()
+                        .zip(i32::try_from(y).ok())
+                        .is_some_and(|(x, y)| context.is_steel(x, y))
+                    {
+                        out.sound(crate::SoundCue::HitsSteel);
+                    }
                     transition(&mut s, MotionAction::Walking, self.rules);
                     s.direction = s.direction.reverse();
                 }
@@ -175,10 +217,7 @@ impl Actor {
             }
         }
         self.state = s;
-        Ok(MotionOutcome {
-            check_objects: moving,
-            ..MotionOutcome::default()
-        })
+        Ok(out)
     }
 }
 fn mask_bit(bytes: &[u8], x: usize, y: usize) -> bool {

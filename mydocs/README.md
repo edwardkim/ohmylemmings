@@ -62,3 +62,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 [G10-02 / #74 ADLIB 명령·레지스터 스트림](tech_insights/issue-74_adlib_stream.md): 원본 드라이버 직접 실행과21곡/18효과음·반복/정지/재시작을 호출 단위로 대조합니다. 다음은 G10-03 OPL/PCM이며 G10 전체는 진행 중입니다.
 
 [G10-03 / #76 OPL·결정론 PCM](reports/issue-76_opl_pcm.md): 엔진/라이선스 고정·원본 호출 시계·유리수 샘플/청크·native/WASM 및 독립 C 비교를 검증합니다. 다음 G10-04 게임 이벤트/DOS ID, G10 전체는 진행 중입니다.
+
+[G10-04 / #78 게임 사운드·DOS ID](reports/issue-78_game_sound.md): typed 사건·시작/종료/음악 cursor·함정 raw ID·세대 큐와 native/실제 WASM PCM 연결을 검증합니다. 다음은 G10-05 장치 출력이며 G10 전체는 진행 중입니다.

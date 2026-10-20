@@ -1,6 +1,13 @@
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     use std::io::Write;
     let a: Vec<_> = std::env::args().collect();
+    if a.len() == 3 && a[1] == "game-sound" {
+        let partitions: Vec<u32> = a[2].split(',').map(str::parse).collect::<Result<_, _>>()?;
+        let result =
+            lemmings_audio_probe::game_sound_trace(&partitions).map_err(std::io::Error::other)?;
+        println!("{result}");
+        return Ok(());
+    }
     if a.len() != 8 {
         return Err("usage: audio-probe IMAGE RATE NUM DEN ACTIONS PARTITIONS pcm|direct".into());
     }

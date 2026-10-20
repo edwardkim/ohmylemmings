@@ -14,6 +14,7 @@ pub struct LevelRun {
     pub assets: Assets,
     pub session: Session,
     pub view: View,
+    pub sound: crate::sound::SoundTimeline,
 }
 
 impl LevelRun {
@@ -50,13 +51,23 @@ impl LevelRun {
         session.configure_floater(assets.floaters);
         let mut view = View::new(assets.screen_x);
         view.next_level = next;
+        let sound = crate::sound::SoundTimeline::new(assets.music_special, assets.trap_sounds)?;
         Ok(Self {
+            sound,
             level,
             next,
             assets,
             session,
             view,
         })
+    }
+
+    /// Collect every boundary before a host batches or renders another update.
+    pub fn tick(&mut self) -> Result<(), Box<dyn Error>> {
+        self.session.tick()?;
+        self.sound.report_dropped(self.session.sound_dropped());
+        self.sound.collect(self.session.sounds());
+        Ok(())
     }
 
     pub fn target(&self, action: ResultAction) -> Option<u8> {
@@ -79,7 +90,12 @@ impl LevelRun {
             return Ok(None);
         };
         let (assets, next) = load(level)?;
-        Self::new(assets, level, next, pacing).map(Some)
+        let mut replacement = Self::new(assets, level, next, pacing)?;
+        replacement.sound.continue_from(
+            &self.sound,
+            action == ResultAction::Continue && self.session.result().is_some_and(|r| r.success),
+        )?;
+        Ok(Some(replacement))
     }
 }
 

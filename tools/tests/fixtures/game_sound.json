@@ -1,0 +1,36 @@
+{
+  "scope": "Synthetic game trace and PCM only; original x86 oracle metadata separately pinned in dos_sound.json",
+  "trace_sha256": "7fd0d4d1c324d868387b77e03c65b87e4d0dea0d22113527eb033cadb854b64c",
+  "pcm": [
+    {
+      "name": "startup-56",
+      "frames": 182475,
+      "sha256": "92df061476edd24f080c538c1029eb1540ee1cde15b3f4a401f6a0f9254ac6d9"
+    },
+    {
+      "name": "splat-exit",
+      "frames": 9438,
+      "sha256": "2814f9e6eceaa67f3d879e7cc9dbb51b80734e93feb3bc6a4f6485b57da0556b"
+    },
+    {
+      "name": "assign-basher",
+      "frames": 9438,
+      "sha256": "2814f9e6eceaa67f3d879e7cc9dbb51b80734e93feb3bc6a4f6485b57da0556b"
+    },
+    {
+      "name": "expiry-0-255",
+      "frames": 9438,
+      "sha256": "2814f9e6eceaa67f3d879e7cc9dbb51b80734e93feb3bc6a4f6485b57da0556b"
+    },
+    {
+      "name": "builder-3",
+      "frames": 9438,
+      "sha256": "2814f9e6eceaa67f3d879e7cc9dbb51b80734e93feb3bc6a4f6485b57da0556b"
+    },
+    {
+      "name": "trap-11",
+      "frames": 9438,
+      "sha256": "2814f9e6eceaa67f3d879e7cc9dbb51b80734e93feb3bc6a4f6485b57da0556b"
+    }
+  ]
+}

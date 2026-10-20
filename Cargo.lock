@@ -39,6 +39,8 @@ name = "lemmings-audio-probe"
 version = "0.1.0"
 dependencies = [
  "lemmings-audio",
+ "lemmings-core",
+ "lemmings-game",
  "lemmings-opl",
  "lemmings-resources",
  "wasm-bindgen",

@@ -53,6 +53,9 @@ impl Actor {
             check_objects: !lays,
             ..MotionOutcome::default()
         };
+        if s.frame == 10 && s.bricks_left <= 3 {
+            out.sound(crate::SoundCue::BuilderWarning);
+        }
         if lays {
             let left = if s.direction == MotionDirection::Left {
                 s.x.checked_sub(4).ok_or(MotionError::CoordinateOverflow)?

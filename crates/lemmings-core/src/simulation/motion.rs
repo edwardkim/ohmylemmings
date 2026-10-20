@@ -232,11 +232,48 @@ pub struct MotionOutcome {
     pub check_objects: bool,
     pub removal: Option<RemovalReason>,
     pub splat_started: bool,
+    /// Ordered logical edges, including multiple transitions within one update.
+    /// Current actor paths produce at most two cues; three slots leave headroom.
+    pub sound_cues: [Option<crate::SoundCue>; 3],
     /// Actual empty-to-solid changes from a builder, in left-to-right order.
     /// Hosts may use these coordinates to maintain terrain material/color.
     pub added_pixels: [Option<(i32, i32)>; 6],
     /// Actual explosion solid-to-empty changes:22 rows, bit0 is the left pixel.
     pub explosion_erased: [u16; 22],
+}
+
+impl MotionOutcome {
+    pub(super) fn sound(&mut self, cue: crate::SoundCue) {
+        let slot = self
+            .sound_cues
+            .iter_mut()
+            .find(|s| s.is_none())
+            .expect("bounded actor path emits at most three sound edges");
+        *slot = Some(cue);
+    }
+}
+fn transition_sound(
+    s: &mut ActorState,
+    action: MotionAction,
+    rules: MotionRules,
+    out: &mut MotionOutcome,
+) {
+    if s.action != action {
+        use crate::SoundCue;
+        let cue = match action {
+            MotionAction::Splatting => Some(SoundCue::Splat),
+            MotionAction::Exiting => Some(SoundCue::Yippee),
+            MotionAction::Drowning => Some(SoundCue::Drowning),
+            MotionAction::Vaporizing => Some(SoundCue::Vaporizing),
+            MotionAction::OhNo => Some(SoundCue::OhNo),
+            MotionAction::Exploding => Some(SoundCue::Explosion),
+            _ => None,
+        };
+        if let Some(cue) = cue {
+            out.sound(cue);
+        }
+    }
+    transition(s, action, rules);
 }
 
 /// Caller-owned actor. No allocation, rendering or I/O. Trigger execution is
@@ -592,7 +629,7 @@ impl Actor {
                         .checked_add(3)
                         .ok_or(MotionError::FallCounterOverflow)?;
                 } else if s.fallen > 60 {
-                    transition(&mut s, MotionAction::Splatting, self.rules);
+                    transition_sound(&mut s, MotionAction::Splatting, self.rules, &mut result);
                     result.splat_started = true;
                 } else {
                     transition(&mut s, MotionAction::Walking, self.rules);

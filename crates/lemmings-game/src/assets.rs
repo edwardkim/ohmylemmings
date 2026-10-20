@@ -23,6 +23,8 @@ pub struct Assets {
     pub particles: Option<Vec<u8>>,
     pub object_map: Vec<u8>,
     pub traps: lemmings_core::TrapStates,
+    pub trap_sounds: [u8; 16],
+    pub music_special: u16,
     pub mine_masks: [u8; 104],
     pub bash_masks: [u8; 160],
     pub one_way_left: Vec<u8>,
@@ -239,6 +241,8 @@ impl Assets {
             countdown_masks: masks[308..388].try_into()?,
             particles: load_particles(source)?,
             traps: build_traps(resolved.base_record(), ground)?,
+            trap_sounds: build_trap_sounds(resolved.base_record(), ground)?,
+            music_special: header.special,
             object_map,
             mine_masks: masks[160..264].try_into()?,
             bash_masks: masks[..160].try_into()?,
@@ -279,6 +283,8 @@ impl Assets {
             climbers: 10,
             floaters: 10,
             traps: [None; 16],
+            trap_sounds: [0; 16],
+            music_special: 0,
             explosion_mask: [255; 44],
             countdown_masks: synthetic_countdown(),
             particles: None,
@@ -668,6 +674,22 @@ fn synthetic_countdown() -> [u8; 80] {
     out
 }
 
+fn build_trap_sounds(
+    level: LevelRecord<'_>,
+    ground: GroundRecord<'_>,
+) -> Result<[u8; 16], Box<dyn Error>> {
+    let mut sounds = [0; 16];
+    for (i, object) in level.objects().filter(|o| o.id != 1).take(16).enumerate() {
+        let meta = ground
+            .object(usize::from(object.id))
+            .ok_or("object metadata missing")?;
+        if meta.trigger_effect == 4 {
+            sounds[i] = meta.sound_effect;
+        }
+    }
+    Ok(sounds)
+}
+
 fn build_traps(
     level: LevelRecord<'_>,
     ground: GroundRecord<'_>,
@@ -690,6 +712,34 @@ fn build_traps(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn trap_sound_metadata_uses_the_same_compact_slots_and_preserves_unknown_raw_ids() {
+        let mut level = [0; LEVEL_RECORD_SIZE];
+        for offset in [1, 3, 5, 7] {
+            level[offset] = 1;
+        }
+        level[288..1888].fill(255);
+        for (slot, id) in [(0, 1), (1, 2), (2, 3), (3, 1), (4, 4)] {
+            let at = 32 + slot * 8;
+            level[at + 1] = (16 + slot * 4) as u8;
+            level[at + 5] = id;
+        }
+        let mut ground = [0; GROUND_RECORD_SIZE];
+        for (id, effect, sound) in [(2, 4, 7), (3, 1, 9), (4, 4, 255)] {
+            ground[id * 28 + 3] = 4;
+            ground[id * 28 + 20] = effect;
+            ground[id * 28 + 27] = sound;
+        }
+        let level = LevelRecord::parse(&level).unwrap();
+        let ground = GroundRecord::parse(&ground).unwrap();
+        let sounds = build_trap_sounds(level, ground).unwrap();
+        let traps = build_traps(level, ground).unwrap();
+        assert_eq!(&sounds[..3], &[7, 0, 255]);
+        assert!(sounds[3..].iter().all(|v| *v == 0));
+        assert!(traps[0].is_some());
+        assert!(traps[1].is_none());
+        assert!(traps[2].is_some());
+    }
     #[test]
     fn exit_trigger_uses_compact_slot_fifteen_but_disables_slot_sixteen() {
         let mut level = [0; LEVEL_RECORD_SIZE];

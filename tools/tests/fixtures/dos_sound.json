@@ -1,0 +1,2404 @@
+{
+  "status": "PASS",
+  "exe_sha256": "4f21e94d53b7ea814ade802b4a37d42481da3876e31fb5a23090e19c9600f21c",
+  "original_files": 50,
+  "unicorn": "2.1.4",
+  "scope": "Unmodified original x86 slices with synthetic guest actors/flags/maps; software INT requests recorded, handlers not executed. No complete DOS/device/listening claim.",
+  "effect_cases": [
+    {
+      "name": "landing-60",
+      "begin": 8781,
+      "stop": 8168,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "landing-61",
+      "begin": 8781,
+      "stop": 8168,
+      "calls": [
+        [
+          97,
+          1032
+        ]
+      ],
+      "state_flags": 1,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "builder-1",
+      "begin": 9875,
+      "stop": 9943,
+      "calls": [
+        [
+          97,
+          1042
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 10,
+      "timer": 0
+    },
+    {
+      "name": "builder-2",
+      "begin": 9875,
+      "stop": 9943,
+      "calls": [
+        [
+          97,
+          1042
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 10,
+      "timer": 0
+    },
+    {
+      "name": "builder-3",
+      "begin": 9875,
+      "stop": 9943,
+      "calls": [
+        [
+          97,
+          1042
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 10,
+      "timer": 0
+    },
+    {
+      "name": "builder-4",
+      "begin": 9875,
+      "stop": 9943,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 10,
+      "timer": 0
+    },
+    {
+      "name": "builder-5",
+      "begin": 9875,
+      "stop": 9943,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 10,
+      "timer": 0
+    },
+    {
+      "name": "builder-6",
+      "begin": 9875,
+      "stop": 9943,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 10,
+      "timer": 0
+    },
+    {
+      "name": "builder-7",
+      "begin": 9875,
+      "stop": 9943,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 10,
+      "timer": 0
+    },
+    {
+      "name": "builder-8",
+      "begin": 9875,
+      "stop": 9943,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 10,
+      "timer": 0
+    },
+    {
+      "name": "builder-9",
+      "begin": 9875,
+      "stop": 9943,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 10,
+      "timer": 0
+    },
+    {
+      "name": "builder-10",
+      "begin": 9875,
+      "stop": 9943,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 10,
+      "timer": 0
+    },
+    {
+      "name": "builder-11",
+      "begin": 9875,
+      "stop": 9943,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 10,
+      "timer": 0
+    },
+    {
+      "name": "builder-12",
+      "begin": 9875,
+      "stop": 9943,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 10,
+      "timer": 0
+    },
+    {
+      "name": "expiry-0-0",
+      "begin": 11780,
+      "stop": 11874,
+      "calls": [
+        [
+          97,
+          1029
+        ]
+      ],
+      "state_flags": 32768,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "expiry-4-0",
+      "begin": 11780,
+      "stop": 11967,
+      "calls": [
+        [
+          97,
+          1036
+        ]
+      ],
+      "state_flags": 6,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "expiry-1024-0",
+      "begin": 11780,
+      "stop": 11967,
+      "calls": [
+        [
+          97,
+          1036
+        ]
+      ],
+      "state_flags": 1026,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "expiry-4096-0",
+      "begin": 11780,
+      "stop": 11967,
+      "calls": [
+        [
+          97,
+          1036
+        ]
+      ],
+      "state_flags": 4098,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "expiry-16384-0",
+      "begin": 11780,
+      "stop": 11967,
+      "calls": [
+        [
+          97,
+          1036
+        ]
+      ],
+      "state_flags": 16386,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "expiry-0-255",
+      "begin": 11780,
+      "stop": 11874,
+      "calls": [
+        [
+          97,
+          1029
+        ]
+      ],
+      "state_flags": 32768,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "expiry-4-255",
+      "begin": 11780,
+      "stop": 11967,
+      "calls": [
+        [
+          97,
+          1036
+        ]
+      ],
+      "state_flags": 6,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "expiry-1024-255",
+      "begin": 11780,
+      "stop": 11967,
+      "calls": [
+        [
+          97,
+          1036
+        ]
+      ],
+      "state_flags": 1026,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "expiry-4096-255",
+      "begin": 11780,
+      "stop": 11967,
+      "calls": [
+        [
+          97,
+          1036
+        ]
+      ],
+      "state_flags": 4098,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "expiry-16384-255",
+      "begin": 11780,
+      "stop": 11967,
+      "calls": [
+        [
+          97,
+          1036
+        ]
+      ],
+      "state_flags": 16386,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "ohno-end",
+      "begin": 11535,
+      "stop": 8171,
+      "calls": [
+        [
+          97,
+          1036
+        ]
+      ],
+      "state_flags": 2,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "exit",
+      "begin": 12091,
+      "stop": 12193,
+      "calls": [
+        [
+          97,
+          1040
+        ]
+      ],
+      "state_flags": 8192,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "drowning",
+      "begin": 12280,
+      "stop": 12366,
+      "calls": [
+        [
+          97,
+          1041
+        ]
+      ],
+      "state_flags": 4096,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "vaporizing",
+      "begin": 12367,
+      "stop": 12453,
+      "calls": [
+        [
+          97,
+          1037
+        ]
+      ],
+      "state_flags": 16384,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "digger-steel",
+      "begin": 9405,
+      "stop": 9424,
+      "calls": [
+        [
+          97,
+          1034
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "basher-steel",
+      "begin": 10839,
+      "stop": 10858,
+      "calls": [
+        [
+          97,
+          1034
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "miner-steel",
+      "begin": 11514,
+      "stop": 11533,
+      "calls": [
+        [
+          97,
+          1034
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "skill-select",
+      "begin": 16233,
+      "stop": 16252,
+      "calls": [
+        [
+          97,
+          1025
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "oneway-basher--1-7",
+      "begin": 10799,
+      "stop": 8168,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "oneway-basher--1-8",
+      "begin": 10799,
+      "stop": 8168,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "oneway-basher--1-9",
+      "begin": 10799,
+      "stop": 8168,
+      "calls": [
+        [
+          97,
+          1034
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "oneway-basher-1-7",
+      "begin": 10799,
+      "stop": 8168,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "oneway-basher-1-8",
+      "begin": 10799,
+      "stop": 8168,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "oneway-basher-1-9",
+      "begin": 10799,
+      "stop": 8168,
+      "calls": [
+        [
+          97,
+          1034
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "oneway-miner--1-7",
+      "begin": 11417,
+      "stop": 8168,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "oneway-miner--1-8",
+      "begin": 11417,
+      "stop": 8168,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "oneway-miner--1-9",
+      "begin": 11417,
+      "stop": 8168,
+      "calls": [
+        [
+          97,
+          1034
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "oneway-miner-1-7",
+      "begin": 11417,
+      "stop": 8168,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "oneway-miner-1-8",
+      "begin": 11417,
+      "stop": 8168,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "oneway-miner-1-9",
+      "begin": 11417,
+      "stop": 8168,
+      "calls": [
+        [
+          97,
+          1034
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "assign-climber",
+      "begin": 12955,
+      "stop": 12811,
+      "calls": [
+        [
+          97,
+          1028
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "empty-climber",
+      "begin": 12955,
+      "stop": 12812,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "assign-floater",
+      "begin": 13655,
+      "stop": 12811,
+      "calls": [
+        [
+          97,
+          1028
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "empty-floater",
+      "begin": 13655,
+      "stop": 12812,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "assign-bomber",
+      "begin": 12740,
+      "stop": 12811,
+      "calls": [
+        [
+          97,
+          1028
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 79
+    },
+    {
+      "name": "empty-bomber",
+      "begin": 12740,
+      "stop": 12812,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "assign-blocker",
+      "begin": 13110,
+      "stop": 12811,
+      "calls": [
+        [
+          97,
+          1028
+        ]
+      ],
+      "state_flags": 256,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "empty-blocker",
+      "begin": 13110,
+      "stop": 12812,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "assign-builder",
+      "begin": 12989,
+      "stop": 12811,
+      "calls": [
+        [
+          97,
+          1028
+        ]
+      ],
+      "state_flags": 128,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "empty-builder",
+      "begin": 12989,
+      "stop": 12812,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "assign-basher",
+      "begin": 13518,
+      "stop": 12811,
+      "calls": [
+        [
+          97,
+          1028
+        ]
+      ],
+      "state_flags": 512,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "empty-basher",
+      "begin": 13518,
+      "stop": 12812,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "assign-miner",
+      "begin": 13720,
+      "stop": 12811,
+      "calls": [
+        [
+          97,
+          1028
+        ]
+      ],
+      "state_flags": 2048,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "empty-miner",
+      "begin": 13720,
+      "stop": 12812,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "assign-digger",
+      "begin": 12813,
+      "stop": 12811,
+      "calls": [
+        [
+          97,
+          1028
+        ]
+      ],
+      "state_flags": 16,
+      "frame": 17,
+      "timer": 0
+    },
+    {
+      "name": "empty-digger",
+      "begin": 12813,
+      "stop": 12812,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "blocked-basher-0-9",
+      "begin": 13518,
+      "stop": 12954,
+      "calls": [
+        [
+          97,
+          1042
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "blocked-basher-9-9",
+      "begin": 13518,
+      "stop": 12954,
+      "calls": [
+        [
+          97,
+          1042
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "blocked-basher-0-7",
+      "begin": 13518,
+      "stop": 12812,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "blocked-miner-0-9",
+      "begin": 13720,
+      "stop": 12954,
+      "calls": [
+        [
+          97,
+          1042
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "blocked-miner-9-9",
+      "begin": 13720,
+      "stop": 12812,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "blocked-miner-0-7",
+      "begin": 13720,
+      "stop": 12812,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "blocked-digger-0-9",
+      "begin": 12813,
+      "stop": 12811,
+      "calls": [
+        [
+          97,
+          1028
+        ]
+      ],
+      "state_flags": 16,
+      "frame": 17,
+      "timer": 0
+    },
+    {
+      "name": "blocked-digger-9-9",
+      "begin": 12813,
+      "stop": 12812,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "blocked-digger-0-7",
+      "begin": 12813,
+      "stop": 12811,
+      "calls": [
+        [
+          97,
+          1028
+        ]
+      ],
+      "state_flags": 16,
+      "frame": 17,
+      "timer": 0
+    },
+    {
+      "name": "trap-0",
+      "begin": 12245,
+      "stop": 12090,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-1",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1025
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-2",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1026
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-3",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1027
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-4",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1028
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-5",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1029
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-6",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1030
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-7",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1031
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-8",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1032
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-9",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1033
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-10",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1034
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-11",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1035
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-12",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1036
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-13",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1037
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-14",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1038
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-15",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1039
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-16",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1040
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-17",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1041
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "trap-18",
+      "begin": 12245,
+      "stop": 12279,
+      "calls": [
+        [
+          97,
+          1042
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "startup-14",
+      "begin": 798,
+      "stop": 895,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "startup-15",
+      "begin": 798,
+      "stop": 915,
+      "calls": [
+        [
+          97,
+          1027
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "startup-16",
+      "begin": 798,
+      "stop": 895,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "startup-34",
+      "begin": 798,
+      "stop": 895,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "startup-35",
+      "begin": 798,
+      "stop": 940,
+      "calls": [
+        [
+          97,
+          1026
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "startup-36",
+      "begin": 798,
+      "stop": 895,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "startup-54",
+      "begin": 798,
+      "stop": 895,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "startup-55",
+      "begin": 798,
+      "stop": 960,
+      "calls": [
+        [
+          97,
+          774
+        ],
+        [
+          97,
+          0
+        ]
+      ],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    },
+    {
+      "name": "startup-56",
+      "begin": 798,
+      "stop": 895,
+      "calls": [],
+      "state_flags": 0,
+      "frame": 0,
+      "timer": 0
+    }
+  ],
+  "music_cases": [
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 0,
+      "next_cursor": 0,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 1,
+      "next_cursor": 1,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 2,
+      "next_cursor": 2,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 3,
+      "next_cursor": 3,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 4,
+      "next_cursor": 4,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 5,
+      "next_cursor": 5,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 6,
+      "next_cursor": 6,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 7,
+      "next_cursor": 7,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 8,
+      "next_cursor": 8,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 9,
+      "next_cursor": 9,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 10,
+      "next_cursor": 10,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 11,
+      "next_cursor": 11,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 12,
+      "next_cursor": 12,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 13,
+      "next_cursor": 13,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 14,
+      "next_cursor": 14,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 15,
+      "next_cursor": 15,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": false,
+      "cursor": 16,
+      "next_cursor": 16,
+      "raw_music": 6
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 0,
+      "next_cursor": 1,
+      "raw_music": 7
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 1,
+      "next_cursor": 2,
+      "raw_music": 8
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 2,
+      "next_cursor": 3,
+      "raw_music": 10
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 3,
+      "next_cursor": 4,
+      "raw_music": 11
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 4,
+      "next_cursor": 5,
+      "raw_music": 4
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 5,
+      "next_cursor": 6,
+      "raw_music": 12
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 6,
+      "next_cursor": 7,
+      "raw_music": 13
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 7,
+      "next_cursor": 8,
+      "raw_music": 14
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 8,
+      "next_cursor": 9,
+      "raw_music": 15
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 9,
+      "next_cursor": 10,
+      "raw_music": 5
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 10,
+      "next_cursor": 11,
+      "raw_music": 16
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 11,
+      "next_cursor": 12,
+      "raw_music": 17
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 12,
+      "next_cursor": 13,
+      "raw_music": 18
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 13,
+      "next_cursor": 14,
+      "raw_music": 19
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 14,
+      "next_cursor": 15,
+      "raw_music": 20
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 15,
+      "next_cursor": 16,
+      "raw_music": 21
+    },
+    {
+      "special": 0,
+      "advance": true,
+      "cursor": 16,
+      "next_cursor": 0,
+      "raw_music": 6
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 0,
+      "next_cursor": 0,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 1,
+      "next_cursor": 1,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 2,
+      "next_cursor": 2,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 3,
+      "next_cursor": 3,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 4,
+      "next_cursor": 4,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 5,
+      "next_cursor": 5,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 6,
+      "next_cursor": 6,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 7,
+      "next_cursor": 7,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 8,
+      "next_cursor": 8,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 9,
+      "next_cursor": 9,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 10,
+      "next_cursor": 10,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 11,
+      "next_cursor": 11,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 12,
+      "next_cursor": 12,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 13,
+      "next_cursor": 13,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 14,
+      "next_cursor": 14,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 15,
+      "next_cursor": 15,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": false,
+      "cursor": 16,
+      "next_cursor": 16,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 0,
+      "next_cursor": 0,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 1,
+      "next_cursor": 1,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 2,
+      "next_cursor": 2,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 3,
+      "next_cursor": 3,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 4,
+      "next_cursor": 4,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 5,
+      "next_cursor": 5,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 6,
+      "next_cursor": 6,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 7,
+      "next_cursor": 7,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 8,
+      "next_cursor": 8,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 9,
+      "next_cursor": 9,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 10,
+      "next_cursor": 10,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 11,
+      "next_cursor": 11,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 12,
+      "next_cursor": 12,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 13,
+      "next_cursor": 13,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 14,
+      "next_cursor": 14,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 15,
+      "next_cursor": 15,
+      "raw_music": 1
+    },
+    {
+      "special": 1,
+      "advance": true,
+      "cursor": 16,
+      "next_cursor": 16,
+      "raw_music": 1
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 0,
+      "next_cursor": 0,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 1,
+      "next_cursor": 1,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 2,
+      "next_cursor": 2,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 3,
+      "next_cursor": 3,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 4,
+      "next_cursor": 4,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 5,
+      "next_cursor": 5,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 6,
+      "next_cursor": 6,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 7,
+      "next_cursor": 7,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 8,
+      "next_cursor": 8,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 9,
+      "next_cursor": 9,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 10,
+      "next_cursor": 10,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 11,
+      "next_cursor": 11,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 12,
+      "next_cursor": 12,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 13,
+      "next_cursor": 13,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 14,
+      "next_cursor": 14,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 15,
+      "next_cursor": 15,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": false,
+      "cursor": 16,
+      "next_cursor": 16,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 0,
+      "next_cursor": 0,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 1,
+      "next_cursor": 1,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 2,
+      "next_cursor": 2,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 3,
+      "next_cursor": 3,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 4,
+      "next_cursor": 4,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 5,
+      "next_cursor": 5,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 6,
+      "next_cursor": 6,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 7,
+      "next_cursor": 7,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 8,
+      "next_cursor": 8,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 9,
+      "next_cursor": 9,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 10,
+      "next_cursor": 10,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 11,
+      "next_cursor": 11,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 12,
+      "next_cursor": 12,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 13,
+      "next_cursor": 13,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 14,
+      "next_cursor": 14,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 15,
+      "next_cursor": 15,
+      "raw_music": 9
+    },
+    {
+      "special": 2,
+      "advance": true,
+      "cursor": 16,
+      "next_cursor": 16,
+      "raw_music": 9
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 0,
+      "next_cursor": 0,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 1,
+      "next_cursor": 1,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 2,
+      "next_cursor": 2,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 3,
+      "next_cursor": 3,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 4,
+      "next_cursor": 4,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 5,
+      "next_cursor": 5,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 6,
+      "next_cursor": 6,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 7,
+      "next_cursor": 7,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 8,
+      "next_cursor": 8,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 9,
+      "next_cursor": 9,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 10,
+      "next_cursor": 10,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 11,
+      "next_cursor": 11,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 12,
+      "next_cursor": 12,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 13,
+      "next_cursor": 13,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 14,
+      "next_cursor": 14,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 15,
+      "next_cursor": 15,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": false,
+      "cursor": 16,
+      "next_cursor": 16,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 0,
+      "next_cursor": 0,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 1,
+      "next_cursor": 1,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 2,
+      "next_cursor": 2,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 3,
+      "next_cursor": 3,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 4,
+      "next_cursor": 4,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 5,
+      "next_cursor": 5,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 6,
+      "next_cursor": 6,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 7,
+      "next_cursor": 7,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 8,
+      "next_cursor": 8,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 9,
+      "next_cursor": 9,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 10,
+      "next_cursor": 10,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 11,
+      "next_cursor": 11,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 12,
+      "next_cursor": 12,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 13,
+      "next_cursor": 13,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 14,
+      "next_cursor": 14,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 15,
+      "next_cursor": 15,
+      "raw_music": 3
+    },
+    {
+      "special": 3,
+      "advance": true,
+      "cursor": 16,
+      "next_cursor": 16,
+      "raw_music": 3
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 0,
+      "next_cursor": 0,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 1,
+      "next_cursor": 1,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 2,
+      "next_cursor": 2,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 3,
+      "next_cursor": 3,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 4,
+      "next_cursor": 4,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 5,
+      "next_cursor": 5,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 6,
+      "next_cursor": 6,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 7,
+      "next_cursor": 7,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 8,
+      "next_cursor": 8,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 9,
+      "next_cursor": 9,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 10,
+      "next_cursor": 10,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 11,
+      "next_cursor": 11,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 12,
+      "next_cursor": 12,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 13,
+      "next_cursor": 13,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 14,
+      "next_cursor": 14,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 15,
+      "next_cursor": 15,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": false,
+      "cursor": 16,
+      "next_cursor": 16,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 0,
+      "next_cursor": 0,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 1,
+      "next_cursor": 1,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 2,
+      "next_cursor": 2,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 3,
+      "next_cursor": 3,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 4,
+      "next_cursor": 4,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 5,
+      "next_cursor": 5,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 6,
+      "next_cursor": 6,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 7,
+      "next_cursor": 7,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 8,
+      "next_cursor": 8,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 9,
+      "next_cursor": 9,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 10,
+      "next_cursor": 10,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 11,
+      "next_cursor": 11,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 12,
+      "next_cursor": 12,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 13,
+      "next_cursor": 13,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 14,
+      "next_cursor": 14,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 15,
+      "next_cursor": 15,
+      "raw_music": 2
+    },
+    {
+      "special": 4,
+      "advance": true,
+      "cursor": 16,
+      "next_cursor": 16,
+      "raw_music": 2
+    }
+  ],
+  "normal_music": [
+    6,
+    7,
+    8,
+    10,
+    11,
+    4,
+    12,
+    13,
+    14,
+    15,
+    5,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "special_music": [
+    1,
+    9,
+    3,
+    2
+  ],
+  "startup_order": "CS019d calls startup dispatch before CS01a3 increments DS0052; offsets relative to MZ load image"
+}
