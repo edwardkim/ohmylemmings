@@ -4,7 +4,7 @@
 
 ## 검증 진입점
 
-[Makefile](../../Makefile)을 로컬과 GitHub Actions가 함께 사용합니다. Rustup·고정 Rust 도구 체인, GNU Make, Python 3.12, SDL2 개발 라이브러리와 WASM 표준 라이브러리를 준비합니다.
+[Makefile](../../Makefile)을 로컬과 GitHub Actions가 함께 사용합니다. Rustup·고정 Rust 도구 체인, GNU Make, Python 3.12, SDL2 개발 라이브러리, C99 컴파일러(`cc`)와 WASM 표준 라이브러리를 준비합니다.
 
 ```sh
 rustup show active-toolchain
@@ -71,3 +71,7 @@ Rustup의 최초 도구 체인·타깃 설치에는 네트워크가 필요할 �
 ## G09-03 실제 웹 검사 / #66
 
 [#66](../reports/issue-66_wasm_browser.md)에서 Web browser 작업을 추가했습니다. 원본/target/Cargo cache가 없는 체크아웃에서 고정 crate와 해시 검증한 공식 CLI만 준비하고 실제 WASM·JS를 빌드합니다.13개 합성 사례·렌더1/7의 전체 상태/지형/브릭/객체 맵·논리 RGB·Canvas readback과 시간/오류/재시작 경계를 검증합니다. Node/NPM 패키지는 사용하지 않습니다.
+
+## G10-03 PCM 독립 대조 / #76
+
+[#76](../reports/issue-76_opl_pcm.md)에서 make check-rust에 고정 LGPL C1.8 소스의 크기/SHA 검증·별도 host 빌드/합성 PCM 전수 비교와 native PCM fixture/청크 검사를 추가했습니다. `cc`가 필요하며 Ubuntu runner의 기본 C 툴체인을 사용합니다. make check-web은 별도 PCM 어댑터의 실제 WASM을 실행해 두 분할의 i16LE SHA를 대조합니다. 새 원본/네트워크·npm/Unicorn 의존성 없이 기존 네 CI 작업에서 실행합니다.

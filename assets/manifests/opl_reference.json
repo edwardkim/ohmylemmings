@@ -1,0 +1,28 @@
+{
+  "commit": "765ec962e473aeb767e4cba74ffdc8f588ffbfe8",
+  "files": [
+    {
+      "name": "opl3.c",
+      "url": "https://raw.githubusercontent.com/nukeykt/Nuked-OPL3/765ec962e473aeb767e4cba74ffdc8f588ffbfe8/opl3.c",
+      "size": 41716,
+      "sha256": "59eb873fdb6d52bc7977a0fcbb97c1bae03dd71cc88e3acddbcc01b7121bfe03",
+      "path": "tools/audio/reference/opl3.c"
+    },
+    {
+      "name": "opl3.h",
+      "url": "https://raw.githubusercontent.com/nukeykt/Nuked-OPL3/765ec962e473aeb767e4cba74ffdc8f588ffbfe8/opl3.h",
+      "size": 4397,
+      "sha256": "a84266b8d71a4929f15f573afbe407fd24310b77757d855835dacabf68763679",
+      "path": "tools/audio/reference/opl3.h"
+    },
+    {
+      "name": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nukeykt/Nuked-OPL3/765ec962e473aeb767e4cba74ffdc8f588ffbfe8/LICENSE",
+      "size": 26526,
+      "sha256": "20c17d8b8c48a600800dfd14f95d5cb9ff47066a9641ddeab48dc54aec96e331",
+      "path": "tools/audio/reference/LICENSE"
+    }
+  ],
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/76",
+  "scope": "Unmodified optional separate-process C oracle; not linked into Rust/native/WASM product"
+}

@@ -114,3 +114,5 @@ mydocs/
 [G07-09 Nuke](mydocs/reports/issue-44_nuke.md)는 N키로 작동합니다. 이후 생성을 중단하고 기존 레밍에 하나씩 카운트다운을 붙입니다. 일시정지 중에는 실행하지 않으며 Bomber 수량을 소비하지 않습니다. 재생 예는 `120 0 Nuke`이고 `--synthetic-nuke`로 원본 없이 검사합니다. 직업 상호작용은 #46, 출구·구출은 #48에서 연결했으며 승패·원본 하단 패널·음향은 후속입니다.
 
 [G10-02 ADLIB 명령·레지스터 스트림 / #74](mydocs/tech_insights/issue-74_adlib_stream.md)에서 no_std9채널 해석기·오류 보존·합성/원본 직접 대조를 연결합니다. 다음은 OPL/PCM이며 G10 전체 사운드 출력은 진행 중입니다.
+
+[G10-03 OPL·결정론 PCM / #76](mydocs/reports/issue-76_opl_pcm.md)에서 no_std 정수 합성·유리수 오디오 시계·native/WASM PCM과 독립 C 전체 샘플 비교를 연결했습니다. 엔진은 [LGPL-2.1-or-later 고지/소스·재링크 안내](third_party/README.md)를 포함합니다. 다음은 게임 이벤트/DOS ID이며 SDL/Web 실제 출력은 후속입니다.

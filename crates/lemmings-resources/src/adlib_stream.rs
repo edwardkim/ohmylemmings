@@ -173,6 +173,20 @@ impl<'a> AdlibPlayer<'a> {
         *self = next;
         Ok(output.count)
     }
+    /// Advance and validate one driver call without emitting writes. Returns the
+    /// write count for buffer sizing or independent VM replay; no OPL state is
+    /// advanced. Errors preserve the player. Uses the same runner as `step`.
+    pub fn advance_silent(&mut self, command_budget: usize) -> Result<usize, AdlibStreamError> {
+        let mut next = *self;
+        let mut output = Output {
+            target: None,
+            count: 0,
+            step: self.state.audio_step,
+        };
+        next.run(&mut output, command_budget.min(ADLIB_COMMAND_BUDGET))?;
+        *self = next;
+        Ok(output.count)
+    }
     fn run(&mut self, out: &mut Output<'_>, mut budget: usize) -> Result<(), AdlibStreamError> {
         let next_step = self
             .state

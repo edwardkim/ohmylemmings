@@ -64,3 +64,5 @@
 - [#72 AdLib 자원·통합 계약](issue-72_adlib_catalog.md)
 
 - [#74 ADLIB 명령·레지스터 스트림](issue-74_adlib_stream.md)
+
+- [#76 OPL 합성기·결정론 PCM](issue-76_opl_pcm.md)

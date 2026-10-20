@@ -1,0 +1,1701 @@
+{
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/76",
+  "baseline_main": "f63465963266a817491578a982418b518aaad2a6",
+  "engine": {
+    "name": "Nuked-OPL3-1.8/rust-0.1.0-no_std",
+    "license": "LGPL-2.1-or-later",
+    "upstream_repository": "https://github.com/tgies/nuked-opl3-rs",
+    "version": "0.1.0",
+    "revision": "eea782bc5838bfc42add4de690d6ec5d960dc1a7",
+    "archive": {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/nuked-opl3-0.1.0.crate",
+      "bytes": 56902,
+      "sha256": "fe763ce652db623a34372b1628588faaee86af83195175acee070d92d1fe27b7"
+    },
+    "archive_url": "https://static.crates.io/crates/nuked-opl3/nuked-opl3-0.1.0.crate",
+    "original_core": {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/candidates/nuked-opl3-0.1.0/src/core.rs",
+      "bytes": 55613,
+      "sha256": "3aa4a2562154d78a9f1ac4a39abef002a929269aa89da922ef59ef0016ec7617"
+    },
+    "modified_core": {
+      "path": "crates/lemmings-opl/src/core.rs",
+      "bytes": 55342,
+      "sha256": "001d976818b828e7124ce1b289cff9089a18413fb25e2e2625844ba35f3584f9"
+    },
+    "patch": {
+      "path": "crates/lemmings-opl/UPSTREAM.patch",
+      "bytes": 1684,
+      "sha256": "43967f1029b56d422a92aae43c64f4f434e9d6709e577979c8540f22c1ec8aed"
+    },
+    "modification": "2026-10-20: stereo-ext fixed false; unreachable floating panpot removed; safe integer state/sample ordering retained; bounded OPL2 adapter",
+    "notice": "third_party/README.md",
+    "relink": "crates/lemmings-opl/README.md"
+  },
+  "dependencies": {
+    "scope": "lemmings-opl and lemmings-audio library graph; probe/platform adapters use std and allocation",
+    "added_workspace_packages": [
+      "lemmings-audio",
+      "lemmings-audio-probe",
+      "lemmings-opl"
+    ],
+    "external_locked_packages_unchanged": true,
+    "runtime_unsafe": false,
+    "runtime_std": false,
+    "runtime_allocation": false,
+    "optional_reference": "unmodified LGPL C1.8 separate host subprocess; Unicorn2.1.4 in isolated ignored environment; DOSBox/Xvfb/xdotool/PyAV optional"
+  },
+  "rejected_candidate": {
+    "name": "oplon",
+    "version": "1.0.0",
+    "license": "MIT",
+    "reason": "Exploratory original music0/6/15 RMS relative to independent C was 2.223655898493545 / 2.6532334959688 / 2.967973022139094; not selected. Old candidate outputs are not selected-engine validation."
+  },
+  "pcm": {
+    "format": "mono signed i16 LE, fixed left pipeline, saturating; no adaptive normalization",
+    "sample_rate": [
+      8000,
+      192000
+    ],
+    "max_render_frames": 8192,
+    "max_commands_per_call": 4096,
+    "call_rate": "positive reduced rational 1..1000 Hz",
+    "vga_calls_per_second": "2190197/31250",
+    "unlocked_calls_per_second": "596591/8192",
+    "interval_end": "floor(n * sample_rate * denominator / numerator)",
+    "error_atomicity": "preflight entire immutable VM request before changing PCM/VM/phase/chip",
+    "controls": "music/effect/stop queued at next driver boundary; reset creates fresh VM/chip/resampler/phase; devices own queue generations"
+  },
+  "clock": {
+    "exe_sha256": "4f21e94d53b7ea814ade802b4a37d42481da3876e31fb5a23090e19c9600f21c",
+    "monotonic_irq_counter": "DS:001c u8 wrapping; DS:1fcd game budget resets and is not cadence",
+    "irq_dispatch": {
+      "status": "PASS",
+      "original_files": 50,
+      "exe_sha256": "4f21e94d53b7ea814ade802b4a37d42481da3876e31fb5a23090e19c9600f21c",
+      "unicorn": "2.1.4",
+      "rows": [
+        {
+          "name": "adlib-mask-1",
+          "irqs": 512,
+          "calls": 512,
+          "interrupt": 97,
+          "ax": 0,
+          "pattern_sha256": "6caf38d537984e261527b8caef5f990fb91415a1db917198821a79ed28997973"
+        },
+        {
+          "name": "adlib-mask-2",
+          "irqs": 512,
+          "calls": 512,
+          "interrupt": 97,
+          "ax": 0,
+          "pattern_sha256": "6caf38d537984e261527b8caef5f990fb91415a1db917198821a79ed28997973"
+        },
+        {
+          "name": "adlib-mask-3",
+          "irqs": 512,
+          "calls": 512,
+          "interrupt": 97,
+          "ax": 0,
+          "pattern_sha256": "6caf38d537984e261527b8caef5f990fb91415a1db917198821a79ed28997973"
+        },
+        {
+          "name": "speaker",
+          "irqs": 512,
+          "calls": 256,
+          "interrupt": 96,
+          "ax": 0,
+          "pattern_sha256": "6965500f3194ee935b40fe0fe7feaa6bc38538c2693a257d71c47e8a7381e6ac"
+        },
+        {
+          "name": "muted",
+          "irqs": 512,
+          "calls": 0,
+          "interrupt": null,
+          "ax": null,
+          "pattern_sha256": "076a27c79e5ace2a3d47f9dd2e83e4ff6ea8872b3c2218f66c92b89b55f36560"
+        }
+      ],
+      "scope": "Unmodified IRQ dispatch slice 0x1843..0x1874 with injected enable flags; INT payloads recorded without executing handlers. No full DOS, PIT, PCM or device emulation."
+    },
+    "dos_observation": {
+      "samples": 1659,
+      "pairs": 1658,
+      "irqs": 1390,
+      "elapsed_ns": 19889104237,
+      "measured_hz": 69.88751144529486,
+      "expected_hz": "2190197/31250",
+      "tolerance_hz": 2,
+      "adlib_selected_u8": 255,
+      "unlocked_pit_u8": 0,
+      "limitation": "asynchronous read-only RAM sampling; no atomic instruction trace or OPL/PCM/device proof",
+      "status": "PASS",
+      "command": "VGALEMMI /v -o",
+      "cycles": 3000,
+      "dosbox": {
+        "name": "dosbox",
+        "size": 2539536,
+        "sha256": "f20a416fd9b3c58948a910818c6f992bf2b30de2fe1cecf4c9402d92593f9795"
+      },
+      "xdotool": {
+        "name": "xdotool",
+        "size": 84944,
+        "sha256": "e5c6b55bb4a9677b7d6639403e0e7e279c95b0522b792f264c32359213c20626"
+      },
+      "original_files": 50,
+      "runtime_seed_sha256": "8ffc8f3ead61d66037383dd198a7118511fac7661c61b6b74282138b50c7a2a6",
+      "changed_runtime_offsets": [
+        0
+      ],
+      "exe_or_original_dat_modified": false,
+      "generated_runtime_sha256": "113c39874006a9a6c9b202675695b50ed4db36f22b33b6955ee12fa560445ec7",
+      "historical_generated_sha256": "82abd5f27dfa78c0329f7f0ff67755725f28a92e5d8c96f642a3e7df77e333bf",
+      "runtime_seed_limitation": "Newly generated original DS window; mutable trailing bytes differ from historical machine. Only byte0 disk-check counter is seeded; original key disk remains unverified.",
+      "video_rates": [
+        "2190197/31250"
+      ]
+    },
+    "unlocked_scope": "static PIT path, not a new actual -x observation",
+    "limitation": "DOSBox video metadata plus asynchronous RAM; not hardware oscillator/DAC or listening"
+  },
+  "synthetic": {
+    "status": "PASS",
+    "engine": "Nuked-OPL3-1.8/rust-0.1.0-no_std",
+    "native_cases": 24,
+    "native_deliveries": 72,
+    "frames": 1225880,
+    "cases": [
+      {
+        "name": "vga-8000-1",
+        "frames": 5600,
+        "sha256": "ca4d64653577c06b706cd8c2b81fab080f6dd18968ecb8ed3baac1b4319a7094",
+        "peak": 7658,
+        "nonzero": 5108
+      },
+      {
+        "name": "vga-8000-8",
+        "frames": 5600,
+        "sha256": "40bcd3df288658908da92e6f57db9fe302a90ea4c88db1c98ad6c02f51bd1b3f",
+        "peak": 32768,
+        "nonzero": 5112
+      },
+      {
+        "name": "pit-8000-1",
+        "frames": 5600,
+        "sha256": "e49d0583f07ac4ee8aeeb3fed07698b9735c3d998b3f8aa0849cdcf3e578d676",
+        "peak": 7499,
+        "nonzero": 4753
+      },
+      {
+        "name": "pit-8000-8",
+        "frames": 5600,
+        "sha256": "ffbedd72d44ad3e4a323afe28fa284b99904054abb8d85b29413a4c2bd5d0ad5",
+        "peak": 32768,
+        "nonzero": 4759
+      },
+      {
+        "name": "vga-44100-1",
+        "frames": 30870,
+        "sha256": "2d910d2ef338779835b76b9a7babd20062707c202aa9f8efbe19046faff07dc9",
+        "peak": 7749,
+        "nonzero": 28074
+      },
+      {
+        "name": "vga-44100-8",
+        "frames": 30870,
+        "sha256": "97997577d45a2819fb79d5c63e45b51f4ee4f712050f84cdf0f76f0f4cc5283d",
+        "peak": 32768,
+        "nonzero": 28080
+      },
+      {
+        "name": "pit-44100-1",
+        "frames": 30870,
+        "sha256": "d75527c5de431dfb0d4489960881ceab5ffaff0e7e26b0150fed1ac073ef421d",
+        "peak": 7761,
+        "nonzero": 25832
+      },
+      {
+        "name": "pit-44100-8",
+        "frames": 30870,
+        "sha256": "fd4ebb184e38271b8676c77d771d704653e28606217aff657a1a487cba9c66e2",
+        "peak": 32768,
+        "nonzero": 25835
+      },
+      {
+        "name": "vga-48000-1",
+        "frames": 33600,
+        "sha256": "3ebabcf6024829a5c06af487184ee58a0e087fcb1629efac447cbb0835c3df73",
+        "peak": 7895,
+        "nonzero": 30493
+      },
+      {
+        "name": "vga-48000-8",
+        "frames": 33600,
+        "sha256": "456ff3282b175213152fd7d0a028ffa5dbb0796b6bcd8fa8070ed5a22ed2a48b",
+        "peak": 32768,
+        "nonzero": 30497
+      },
+      {
+        "name": "pit-48000-1",
+        "frames": 33600,
+        "sha256": "21cfac5eb28c256fab08379d4f21791c97006b008f9907ee22600a1ea6a33001",
+        "peak": 7815,
+        "nonzero": 28105
+      },
+      {
+        "name": "pit-48000-8",
+        "frames": 33600,
+        "sha256": "a60ca17aa78e1b8365f50a168eabb765094c9f3e5a8469eeda50800840a20809",
+        "peak": 32768,
+        "nonzero": 28108
+      },
+      {
+        "name": "vga-49716-1",
+        "frames": 34800,
+        "sha256": "1ee804a537068e99ad86522a9065f1d4be7043d4fd5fed2c70fb2643972a3336",
+        "peak": 7790,
+        "nonzero": 31706
+      },
+      {
+        "name": "vga-49716-8",
+        "frames": 34800,
+        "sha256": "573e1ea5fd35ab141ea028f94657f05a803a6c76fa1e2dd8cc496fdd577ed1af",
+        "peak": 32768,
+        "nonzero": 31707
+      },
+      {
+        "name": "pit-49716-1",
+        "frames": 34800,
+        "sha256": "29e5ce828d534cacf3a79600d37ea89fd37369ced13fcedba1e7ff67dc65ec61",
+        "peak": 7710,
+        "nonzero": 29143
+      },
+      {
+        "name": "pit-49716-8",
+        "frames": 34800,
+        "sha256": "9e0d7d40de2b4042ce698069bf343e4d8cdce95a8ee8f388028f28b3b643c233",
+        "peak": 32768,
+        "nonzero": 29144
+      },
+      {
+        "name": "vga-96000-1",
+        "frames": 67200,
+        "sha256": "33e00dc2eea75b8de5207cfb35c831e758386540434017c8e685eb29f6252884",
+        "peak": 7725,
+        "nonzero": 61146
+      },
+      {
+        "name": "vga-96000-8",
+        "frames": 67200,
+        "sha256": "2381e60438900d4076364f62779abb51ea6397329b38d75167485d6f9e382cf7",
+        "peak": 32768,
+        "nonzero": 61156
+      },
+      {
+        "name": "pit-96000-1",
+        "frames": 67200,
+        "sha256": "ec67cb00ed4b5558e693cf05e71e23836f60120302ac6efec7aed240dc014039",
+        "peak": 7735,
+        "nonzero": 56224
+      },
+      {
+        "name": "pit-96000-8",
+        "frames": 67200,
+        "sha256": "a48115df9ff32598737b2da0631e210c5d4dcdff45cdc8b6f6bdc2fdf84ea0b5",
+        "peak": 32768,
+        "nonzero": 56238
+      },
+      {
+        "name": "vga-192000-1",
+        "frames": 134400,
+        "sha256": "d4bc07907aa8ac71ead6d58dd4b665a428a1bc3dbe2d590f3b2cf407387b85d1",
+        "peak": 7725,
+        "nonzero": 122298
+      },
+      {
+        "name": "vga-192000-8",
+        "frames": 134400,
+        "sha256": "49ca39e68d331eb56bdbc38cd39574d9c85acbf9b1aec01c3282bd3ed5d05552",
+        "peak": 32768,
+        "nonzero": 122311
+      },
+      {
+        "name": "pit-192000-1",
+        "frames": 134400,
+        "sha256": "aed94821dcbab5e475ba7d1cf2cd9f0c56224ea1befcfe19d16368add5c0b27e",
+        "peak": 7737,
+        "nonzero": 112457
+      },
+      {
+        "name": "pit-192000-8",
+        "frames": 134400,
+        "sha256": "59d9e11607e0684002f5f1cf8f072958aaddc2d4de11542ff996c6e9fd9b6d4a",
+        "peak": 32768,
+        "nonzero": 112475
+      }
+    ],
+    "pcm_device_verified": false,
+    "wasm": {
+      "status": "PASS",
+      "cases": 24,
+      "frames": 1225880,
+      "browser": "Chromium 152.0.7977.82 Arch Linux"
+    }
+  },
+  "original": {
+    "status": "PASS",
+    "engine": "Nuked-OPL3-1.8/rust-0.1.0-no_std",
+    "native_cases": 63,
+    "native_deliveries": 189,
+    "frames": 3805730,
+    "cases": [
+      {
+        "name": "vga-8000-1",
+        "frames": 5600,
+        "sha256": "ca4d64653577c06b706cd8c2b81fab080f6dd18968ecb8ed3baac1b4319a7094",
+        "peak": 7658,
+        "nonzero": 5108
+      },
+      {
+        "name": "vga-8000-8",
+        "frames": 5600,
+        "sha256": "40bcd3df288658908da92e6f57db9fe302a90ea4c88db1c98ad6c02f51bd1b3f",
+        "peak": 32768,
+        "nonzero": 5112
+      },
+      {
+        "name": "pit-8000-1",
+        "frames": 5600,
+        "sha256": "e49d0583f07ac4ee8aeeb3fed07698b9735c3d998b3f8aa0849cdcf3e578d676",
+        "peak": 7499,
+        "nonzero": 4753
+      },
+      {
+        "name": "pit-8000-8",
+        "frames": 5600,
+        "sha256": "ffbedd72d44ad3e4a323afe28fa284b99904054abb8d85b29413a4c2bd5d0ad5",
+        "peak": 32768,
+        "nonzero": 4759
+      },
+      {
+        "name": "vga-44100-1",
+        "frames": 30870,
+        "sha256": "2d910d2ef338779835b76b9a7babd20062707c202aa9f8efbe19046faff07dc9",
+        "peak": 7749,
+        "nonzero": 28074
+      },
+      {
+        "name": "vga-44100-8",
+        "frames": 30870,
+        "sha256": "97997577d45a2819fb79d5c63e45b51f4ee4f712050f84cdf0f76f0f4cc5283d",
+        "peak": 32768,
+        "nonzero": 28080
+      },
+      {
+        "name": "pit-44100-1",
+        "frames": 30870,
+        "sha256": "d75527c5de431dfb0d4489960881ceab5ffaff0e7e26b0150fed1ac073ef421d",
+        "peak": 7761,
+        "nonzero": 25832
+      },
+      {
+        "name": "pit-44100-8",
+        "frames": 30870,
+        "sha256": "fd4ebb184e38271b8676c77d771d704653e28606217aff657a1a487cba9c66e2",
+        "peak": 32768,
+        "nonzero": 25835
+      },
+      {
+        "name": "vga-48000-1",
+        "frames": 33600,
+        "sha256": "3ebabcf6024829a5c06af487184ee58a0e087fcb1629efac447cbb0835c3df73",
+        "peak": 7895,
+        "nonzero": 30493
+      },
+      {
+        "name": "vga-48000-8",
+        "frames": 33600,
+        "sha256": "456ff3282b175213152fd7d0a028ffa5dbb0796b6bcd8fa8070ed5a22ed2a48b",
+        "peak": 32768,
+        "nonzero": 30497
+      },
+      {
+        "name": "pit-48000-1",
+        "frames": 33600,
+        "sha256": "21cfac5eb28c256fab08379d4f21791c97006b008f9907ee22600a1ea6a33001",
+        "peak": 7815,
+        "nonzero": 28105
+      },
+      {
+        "name": "pit-48000-8",
+        "frames": 33600,
+        "sha256": "a60ca17aa78e1b8365f50a168eabb765094c9f3e5a8469eeda50800840a20809",
+        "peak": 32768,
+        "nonzero": 28108
+      },
+      {
+        "name": "vga-49716-1",
+        "frames": 34800,
+        "sha256": "1ee804a537068e99ad86522a9065f1d4be7043d4fd5fed2c70fb2643972a3336",
+        "peak": 7790,
+        "nonzero": 31706
+      },
+      {
+        "name": "vga-49716-8",
+        "frames": 34800,
+        "sha256": "573e1ea5fd35ab141ea028f94657f05a803a6c76fa1e2dd8cc496fdd577ed1af",
+        "peak": 32768,
+        "nonzero": 31707
+      },
+      {
+        "name": "pit-49716-1",
+        "frames": 34800,
+        "sha256": "29e5ce828d534cacf3a79600d37ea89fd37369ced13fcedba1e7ff67dc65ec61",
+        "peak": 7710,
+        "nonzero": 29143
+      },
+      {
+        "name": "pit-49716-8",
+        "frames": 34800,
+        "sha256": "9e0d7d40de2b4042ce698069bf343e4d8cdce95a8ee8f388028f28b3b643c233",
+        "peak": 32768,
+        "nonzero": 29144
+      },
+      {
+        "name": "vga-96000-1",
+        "frames": 67200,
+        "sha256": "33e00dc2eea75b8de5207cfb35c831e758386540434017c8e685eb29f6252884",
+        "peak": 7725,
+        "nonzero": 61146
+      },
+      {
+        "name": "vga-96000-8",
+        "frames": 67200,
+        "sha256": "2381e60438900d4076364f62779abb51ea6397329b38d75167485d6f9e382cf7",
+        "peak": 32768,
+        "nonzero": 61156
+      },
+      {
+        "name": "pit-96000-1",
+        "frames": 67200,
+        "sha256": "ec67cb00ed4b5558e693cf05e71e23836f60120302ac6efec7aed240dc014039",
+        "peak": 7735,
+        "nonzero": 56224
+      },
+      {
+        "name": "pit-96000-8",
+        "frames": 67200,
+        "sha256": "a48115df9ff32598737b2da0631e210c5d4dcdff45cdc8b6f6bdc2fdf84ea0b5",
+        "peak": 32768,
+        "nonzero": 56238
+      },
+      {
+        "name": "vga-192000-1",
+        "frames": 134400,
+        "sha256": "d4bc07907aa8ac71ead6d58dd4b665a428a1bc3dbe2d590f3b2cf407387b85d1",
+        "peak": 7725,
+        "nonzero": 122298
+      },
+      {
+        "name": "vga-192000-8",
+        "frames": 134400,
+        "sha256": "49ca39e68d331eb56bdbc38cd39574d9c85acbf9b1aec01c3282bd3ed5d05552",
+        "peak": 32768,
+        "nonzero": 122311
+      },
+      {
+        "name": "pit-192000-1",
+        "frames": 134400,
+        "sha256": "aed94821dcbab5e475ba7d1cf2cd9f0c56224ea1befcfe19d16368add5c0b27e",
+        "peak": 7737,
+        "nonzero": 112457
+      },
+      {
+        "name": "pit-192000-8",
+        "frames": 134400,
+        "sha256": "59d9e11607e0684002f5f1cf8f072958aaddc2d4de11542ff996c6e9fd9b6d4a",
+        "peak": 32768,
+        "nonzero": 112475
+      },
+      {
+        "name": "original-m0",
+        "frames": 66150,
+        "sha256": "e30d5b62b464c63605bb0603c8ce070167768edcad1f51aa74d270b962c207ab",
+        "peak": 9717,
+        "nonzero": 60289
+      },
+      {
+        "name": "original-m1",
+        "frames": 66150,
+        "sha256": "eea132c494db7e38143626f5ca438a99fa5b8ec4fd35da5bbd6939b9971425c8",
+        "peak": 5835,
+        "nonzero": 66110
+      },
+      {
+        "name": "original-m2",
+        "frames": 66150,
+        "sha256": "7463c03a60ddeaf2cd81373e653842831877768be73b615cb4f09fc8a2369417",
+        "peak": 5749,
+        "nonzero": 65696
+      },
+      {
+        "name": "original-m3",
+        "frames": 66150,
+        "sha256": "11b0d98395642056f6112effc79a7201b9457b17d68b4b878158633d7ea3b84a",
+        "peak": 10350,
+        "nonzero": 50731
+      },
+      {
+        "name": "original-m4",
+        "frames": 66150,
+        "sha256": "8275f2ea72a7acf0ec03b6cec2f1db5479855399975ef00185eb1ffba9be6612",
+        "peak": 3965,
+        "nonzero": 49432
+      },
+      {
+        "name": "original-m5",
+        "frames": 66150,
+        "sha256": "0bab8ed91984d92084af6f5efd0ec69801c6d5d2aaa58c1430bd1c67377b12f6",
+        "peak": 13760,
+        "nonzero": 66093
+      },
+      {
+        "name": "original-m6",
+        "frames": 66150,
+        "sha256": "33ea454d95ad769ed30f2e317d62f1e5fbee9048ad34f36cf3e10687499fd1f9",
+        "peak": 11218,
+        "nonzero": 66080
+      },
+      {
+        "name": "original-m7",
+        "frames": 66150,
+        "sha256": "d1d0f4c431d1b3af3af0d4e13f77a75c8be30b1ab54b2ad6143ea214e90f1b00",
+        "peak": 9415,
+        "nonzero": 65433
+      },
+      {
+        "name": "original-m8",
+        "frames": 66150,
+        "sha256": "ecb11b6ef3ba7e0dc9874e22f33a3a765d2b64f012062a9699b30149faaa577e",
+        "peak": 5648,
+        "nonzero": 56068
+      },
+      {
+        "name": "original-m9",
+        "frames": 66150,
+        "sha256": "79d4b31f0799055f79c87ff2fc6eb9efb9731002b371db724ab75bd4444310ad",
+        "peak": 19078,
+        "nonzero": 43696
+      },
+      {
+        "name": "original-m10",
+        "frames": 66150,
+        "sha256": "9b44e1f30da021e7f06bc2420f0285a70728ecd98249adef96b2ec10bf3c8ae7",
+        "peak": 6836,
+        "nonzero": 57464
+      },
+      {
+        "name": "original-m11",
+        "frames": 66150,
+        "sha256": "e059a3bac571b3c04d0262a2bab4993fd0be2f2cda3c6fdb9512fe2e34941ddb",
+        "peak": 14869,
+        "nonzero": 62573
+      },
+      {
+        "name": "original-m12",
+        "frames": 66150,
+        "sha256": "95e0d109f951c00117214b3977d56d119988afd7b616d9945b72228503a4b320",
+        "peak": 15605,
+        "nonzero": 52935
+      },
+      {
+        "name": "original-m13",
+        "frames": 66150,
+        "sha256": "c0dc4709e06ad20e319ed32558ef58a14c08024d4250ebce4f25183a44720941",
+        "peak": 12752,
+        "nonzero": 66108
+      },
+      {
+        "name": "original-m14",
+        "frames": 66150,
+        "sha256": "50b75420d4945618ddd4e1f3c0b72d50119ccdbea46ffd1f0fd96122eacb28c7",
+        "peak": 12268,
+        "nonzero": 62334
+      },
+      {
+        "name": "original-m15",
+        "frames": 66150,
+        "sha256": "d669b6efaafc97b50b65bfc42b93579ab570778b2ba2202734e7c185f0f7f0d2",
+        "peak": 7942,
+        "nonzero": 56486
+      },
+      {
+        "name": "original-m16",
+        "frames": 66150,
+        "sha256": "2c913056e6adc46cce522cc6c3bffa54818bd869dd081a213835303dd88a518a",
+        "peak": 15978,
+        "nonzero": 51343
+      },
+      {
+        "name": "original-m17",
+        "frames": 66150,
+        "sha256": "5d682f6e1b50ab5ca893fce9e535a5fb55c0854ebb8295e7e764afecaec2b69f",
+        "peak": 21727,
+        "nonzero": 47990
+      },
+      {
+        "name": "original-m18",
+        "frames": 66150,
+        "sha256": "b5812e8a054bfab0b5df0de60b17bb072952b96b2ab79e92f44b444ff1cadd9b",
+        "peak": 8231,
+        "nonzero": 65597
+      },
+      {
+        "name": "original-m19",
+        "frames": 66150,
+        "sha256": "54e4e16593beee56ac71d9e56b55862fd84b146453bdaf931f250905362f6679",
+        "peak": 8444,
+        "nonzero": 62591
+      },
+      {
+        "name": "original-m20",
+        "frames": 66150,
+        "sha256": "ff2e1b6d4caa826ec45f303505cc97109004cec4ccca64ebba0edcd331b51437",
+        "peak": 11196,
+        "nonzero": 52731
+      },
+      {
+        "name": "original-e0",
+        "frames": 66150,
+        "sha256": "acf143fc823719925f20a4a643376362b20995aeaff2bdb5778de60baa06f33d",
+        "peak": 4075,
+        "nonzero": 42996
+      },
+      {
+        "name": "original-e1",
+        "frames": 66150,
+        "sha256": "46467fa4007f35fce5d82629354866adfac3ea06f15dbbacd9ba4a6ce3137f73",
+        "peak": 4063,
+        "nonzero": 40680
+      },
+      {
+        "name": "original-e2",
+        "frames": 66150,
+        "sha256": "0998e36eabe8c836d250dd04c221dac3861a81cf214e29fbd10a17b682ba47c7",
+        "peak": 5133,
+        "nonzero": 18356
+      },
+      {
+        "name": "original-e3",
+        "frames": 66150,
+        "sha256": "c3e404c6a7e53f2ae3443b0a164e570379c37ceccd7ec73edeb37b000eaa64de",
+        "peak": 6318,
+        "nonzero": 37343
+      },
+      {
+        "name": "original-e4",
+        "frames": 66150,
+        "sha256": "8a07b80357ed1057b277d977625aaee8c8e673915878393891457c16c7c762d0",
+        "peak": 5033,
+        "nonzero": 16287
+      },
+      {
+        "name": "original-e5",
+        "frames": 66150,
+        "sha256": "37e21b68965aa3ab3736053fc75568c04390e54ba0bb727d5d92e94fb3fecafc",
+        "peak": 3999,
+        "nonzero": 53691
+      },
+      {
+        "name": "original-e6",
+        "frames": 66150,
+        "sha256": "7c5baf17add2d48bac0000d7daad67874bf3045f8941c7e01da85a4d0c291589",
+        "peak": 7300,
+        "nonzero": 40951
+      },
+      {
+        "name": "original-e7",
+        "frames": 66150,
+        "sha256": "b8b6a9c78547367f9d2e0a82fb73b243dc45997d2732d69b594d8fd4bc505544",
+        "peak": 3931,
+        "nonzero": 37930
+      },
+      {
+        "name": "original-e8",
+        "frames": 66150,
+        "sha256": "1f98db6ab8ae92c8d0a68dc8188152d6dbb1075b294ed665bda708c780eb9777",
+        "peak": 3985,
+        "nonzero": 47803
+      },
+      {
+        "name": "original-e9",
+        "frames": 66150,
+        "sha256": "45364fd69fd37078437ab59532e1e81c5465779c586942c7fd53f830ce1467ca",
+        "peak": 8017,
+        "nonzero": 35756
+      },
+      {
+        "name": "original-e10",
+        "frames": 66150,
+        "sha256": "4c72916782404eb49d660126b35a3c7815b3ee9fb6d3bb3bfc1c2f59ee91649e",
+        "peak": 4028,
+        "nonzero": 53608
+      },
+      {
+        "name": "original-e11",
+        "frames": 66150,
+        "sha256": "8a536d16a2e8065a5e60f15b78ccdea8bcc16878c6eb2094c9959ec5bc9d9fc7",
+        "peak": 4080,
+        "nonzero": 36073
+      },
+      {
+        "name": "original-e12",
+        "frames": 66150,
+        "sha256": "69cb8615de177d3e4e5d94671c79e55d36a2606b19cb006353a0b887464aaf4f",
+        "peak": 3990,
+        "nonzero": 56432
+      },
+      {
+        "name": "original-e13",
+        "frames": 66150,
+        "sha256": "ad8a7829eec095dbfd83ae552716183eb5ba72e393d9d6afd660886572579d9e",
+        "peak": 4082,
+        "nonzero": 37586
+      },
+      {
+        "name": "original-e14",
+        "frames": 66150,
+        "sha256": "fca773ed065eed0e60b92323d081d0c7b825e9f81e552b5c79e27fe633653d44",
+        "peak": 3945,
+        "nonzero": 38130
+      },
+      {
+        "name": "original-e15",
+        "frames": 66150,
+        "sha256": "2399811c1c7b15eb03cc0b6be1621d0672bc2eb69e1b55ea38897ffc4265132b",
+        "peak": 4085,
+        "nonzero": 47457
+      },
+      {
+        "name": "original-e16",
+        "frames": 66150,
+        "sha256": "eca56ddf79f05bfa97f1094d8791bf1317a8183d7137e041baef36107a3aabe0",
+        "peak": 3993,
+        "nonzero": 40217
+      },
+      {
+        "name": "original-e17",
+        "frames": 66150,
+        "sha256": "34ffbbf6376982990696a7ff6df16bc4ded55c9b4b0f20ecdfc925b7f3049398",
+        "peak": 7335,
+        "nonzero": 422
+      }
+    ],
+    "pcm_device_verified": false,
+    "wasm": {
+      "status": "PASS",
+      "cases": 63,
+      "frames": 3805730,
+      "browser": "Chromium 152.0.7977.82 Arch Linux"
+    },
+    "original_files": 50,
+    "original_music": 21,
+    "original_effects": 18
+  },
+  "independent_c": {
+    "status": "PASS",
+    "scope": "Exact mono left PCM; fixed Rust core/stream scheduler versus unmodified separate-process C1.8; not hardware/device listening",
+    "cases": [
+      {
+        "name": "wave-0-8000",
+        "frames": 16000,
+        "sha256": "5850ca5f4023ed430e8ea06e6ebfded925704b91624e9a6d943c81e836bbd098",
+        "peak": 4085,
+        "nonzero": 15993
+      },
+      {
+        "name": "wave-0-44100",
+        "frames": 88200,
+        "sha256": "077f5ae47f6f1336d050005425ed433774f5b8e19a1cf38bc372a4d4021be54b",
+        "peak": 4085,
+        "nonzero": 88192
+      },
+      {
+        "name": "wave-0-48000",
+        "frames": 96000,
+        "sha256": "6d7da7f402b3c782d5540def4c1660d5e8ec9c95480aca0032217d3531c12053",
+        "peak": 4085,
+        "nonzero": 95980
+      },
+      {
+        "name": "wave-0-49716",
+        "frames": 99432,
+        "sha256": "a35273c7e6f5ff096fcca586533cbb5cb059d546625534915f67b3442be9f905",
+        "peak": 4085,
+        "nonzero": 99429
+      },
+      {
+        "name": "wave-0-96000",
+        "frames": 192000,
+        "sha256": "d14290517cd345a85f227ae451f0f185f08c69f4372c68f20b5ddd23cac170ec",
+        "peak": 4085,
+        "nonzero": 191972
+      },
+      {
+        "name": "wave-0-192000",
+        "frames": 384000,
+        "sha256": "8f2ff8866d84d81ff48130c6da10f4c56cc5a3602d175713198c40a6f9f0cb54",
+        "peak": 4085,
+        "nonzero": 383940
+      },
+      {
+        "name": "wave-1-8000",
+        "frames": 16000,
+        "sha256": "1b007e825f5a6de191e9df6a0a97e53f9bad44c00e7e91e8bfe40ea9e3d37f0a",
+        "peak": 4084,
+        "nonzero": 4325
+      },
+      {
+        "name": "wave-1-44100",
+        "frames": 88200,
+        "sha256": "1355d0ffbb9da477ff7f981ae0bf62f262f54369d0108e8ceea129d23036cfdc",
+        "peak": 4084,
+        "nonzero": 23931
+      },
+      {
+        "name": "wave-1-48000",
+        "frames": 96000,
+        "sha256": "4aab55dcb6140e0c70e7378e5618b25a14aebe1aa516e24694d019dc9b042b9c",
+        "peak": 4084,
+        "nonzero": 26079
+      },
+      {
+        "name": "wave-1-49716",
+        "frames": 99432,
+        "sha256": "c6c8bdbac232ddc484d73f66de12325c8182f85770155703a111677f61f8a0f1",
+        "peak": 4084,
+        "nonzero": 24915
+      },
+      {
+        "name": "wave-1-96000",
+        "frames": 192000,
+        "sha256": "177059ad6a7b9eafcb192560937be852150c94c643cf743f8f043c8b6a397082",
+        "peak": 4084,
+        "nonzero": 52095
+      },
+      {
+        "name": "wave-1-192000",
+        "frames": 384000,
+        "sha256": "90ceb5a2ca609c5d3c926ddc6aeb233373ff32e97dba24ce9dbb212b2b62e1bf",
+        "peak": 4084,
+        "nonzero": 104220
+      },
+      {
+        "name": "wave-2-8000",
+        "frames": 16000,
+        "sha256": "ae0da98cad6ad3f37e6e00b535c93bc5855f1cabe19f756729463fe2cb264962",
+        "peak": 4084,
+        "nonzero": 15999
+      },
+      {
+        "name": "wave-2-44100",
+        "frames": 88200,
+        "sha256": "408b21f5021e607b11cb45616123c54d21d42d2cd8388d2738ac1fdc66ddd8d1",
+        "peak": 4084,
+        "nonzero": 88198
+      },
+      {
+        "name": "wave-2-48000",
+        "frames": 96000,
+        "sha256": "23f9c19c597a40c222ed1bc88aa0e14cd5c2e46340400de200b765637cfaddf3",
+        "peak": 4084,
+        "nonzero": 95998
+      },
+      {
+        "name": "wave-2-49716",
+        "frames": 99432,
+        "sha256": "e4c007b3e337a1de2a14e1898b1a78eb4e229b63bc77f72514278edf9e117139",
+        "peak": 4084,
+        "nonzero": 99429
+      },
+      {
+        "name": "wave-2-96000",
+        "frames": 192000,
+        "sha256": "0def5ba7512cc6b7fba03d60b015e6196ec3a400864ccd6e680f2bd915ba43d8",
+        "peak": 4084,
+        "nonzero": 191996
+      },
+      {
+        "name": "wave-2-192000",
+        "frames": 384000,
+        "sha256": "010a398f10bdd7db88238d4fb2757b5c1564875fcb7d67f5c4e16747e51c58f5",
+        "peak": 4084,
+        "nonzero": 383992
+      },
+      {
+        "name": "wave-3-8000",
+        "frames": 16000,
+        "sha256": "048e7b35b6bbcad512bc6190d522a1984d41d207aa55cc89d5ce51242e73283f",
+        "peak": 4084,
+        "nonzero": 6834
+      },
+      {
+        "name": "wave-3-44100",
+        "frames": 88200,
+        "sha256": "ec2178c50db78b8c213e3657692e3ebc72f2a8fb5da2aaf5009fb5d064d004c0",
+        "peak": 4084,
+        "nonzero": 37771
+      },
+      {
+        "name": "wave-3-48000",
+        "frames": 96000,
+        "sha256": "90247133b7f5daf490b8946b940b1d672c87e76cbd82092d7984a0692988b615",
+        "peak": 4084,
+        "nonzero": 41108
+      },
+      {
+        "name": "wave-3-49716",
+        "frames": 99432,
+        "sha256": "0866d0b8057294e8f8e8e3f1dc6a18e97c021938d1b9b1a0b20af302d7891fbf",
+        "peak": 4084,
+        "nonzero": 35977
+      },
+      {
+        "name": "wave-3-96000",
+        "frames": 192000,
+        "sha256": "bcede7482fdc7a23f63ccecfc8356b38e95965509516cde28ec95892f14d0883",
+        "peak": 4084,
+        "nonzero": 82286
+      },
+      {
+        "name": "wave-3-192000",
+        "frames": 384000,
+        "sha256": "25c3292f3cd63903815dd1e95cdee3896b0d524e4c274582627fd9e5490d3a11",
+        "peak": 4084,
+        "nonzero": 164582
+      },
+      {
+        "name": "original-m0",
+        "frames": 88200,
+        "sha256": "e83176d9f19c316b0738ed5b7c913091e27136b9df37834b92b94d8f1252e6f0",
+        "peak": 9717,
+        "nonzero": 81518
+      },
+      {
+        "name": "original-m1",
+        "frames": 88200,
+        "sha256": "ec7f10b0cf7d1466f522dc437106403083f89cc9ad8e73eb675d8d1a4bca90a3",
+        "peak": 5835,
+        "nonzero": 88126
+      },
+      {
+        "name": "original-m2",
+        "frames": 88200,
+        "sha256": "bdd6334c189f0fc5bc84a301b727b87fef8b61be89925a8555f2091d91fff140",
+        "peak": 5782,
+        "nonzero": 87288
+      },
+      {
+        "name": "original-m3",
+        "frames": 88200,
+        "sha256": "96af704da836228646d25f30f5864bf019dcb3571260a1b0f637be19812851aa",
+        "peak": 10593,
+        "nonzero": 58145
+      },
+      {
+        "name": "original-m4",
+        "frames": 88200,
+        "sha256": "9e88f1b66065b99eec389ccba770819e20e68717ece847ca558ec649ff7c6120",
+        "peak": 3965,
+        "nonzero": 68141
+      },
+      {
+        "name": "original-m5",
+        "frames": 88200,
+        "sha256": "292b00be5de9382f2e1460f23cf2dbf3f276d25c0c29fd01d2a13ed0f5023628",
+        "peak": 13919,
+        "nonzero": 88126
+      },
+      {
+        "name": "original-m6",
+        "frames": 88200,
+        "sha256": "1996331c4dedcc3050bd019f5e58dde5a3c4653ceb1de7f0303abb0f23762f0c",
+        "peak": 11865,
+        "nonzero": 88134
+      },
+      {
+        "name": "original-m7",
+        "frames": 88200,
+        "sha256": "cad0a774a1e1844f09cfd28d7f75270657d4ddac9bc0bc2cc5ccb05e451bf7f2",
+        "peak": 9415,
+        "nonzero": 88053
+      },
+      {
+        "name": "original-m8",
+        "frames": 88200,
+        "sha256": "8abee111b95d20793eea6132ab5c9621de96cc96edf941ebe7014e1ff12a139d",
+        "peak": 5652,
+        "nonzero": 73824
+      },
+      {
+        "name": "original-m9",
+        "frames": 88200,
+        "sha256": "672b52f455c5af42461dde211494de0c17721ec9d06339335a506f4b17aaa7a9",
+        "peak": 19082,
+        "nonzero": 65181
+      },
+      {
+        "name": "original-m10",
+        "frames": 88200,
+        "sha256": "7181c8d6c03a851cc6628a79b807c599e06b858a05b61dafbe7db7928900204a",
+        "peak": 6873,
+        "nonzero": 76462
+      },
+      {
+        "name": "original-m11",
+        "frames": 88200,
+        "sha256": "582eea55ae88b1cbf65a0be6907922329ad23cac9e32ea97b7c1ca9a6a8a4fa3",
+        "peak": 14889,
+        "nonzero": 87428
+      },
+      {
+        "name": "original-m12",
+        "frames": 88200,
+        "sha256": "1539747905bdd6fe51e67419efc08d4ec36536456c815dcbe859a22b607bbd2a",
+        "peak": 15605,
+        "nonzero": 84104
+      },
+      {
+        "name": "original-m13",
+        "frames": 88200,
+        "sha256": "b42860a505096bdbb5b2db0ddc2e7c3e9a8acf5621496bf5626b866acfe6375d",
+        "peak": 12752,
+        "nonzero": 88144
+      },
+      {
+        "name": "original-m14",
+        "frames": 88200,
+        "sha256": "6edc41cc5a1f8b333de67d3b97167fa16de34bb87679d5e6b11adcd656c62553",
+        "peak": 12268,
+        "nonzero": 87455
+      },
+      {
+        "name": "original-m15",
+        "frames": 88200,
+        "sha256": "15b2405b6bd248d3bc95c21ef4e3d68f1527129fbf0fce5e4edfde07ae96c5c1",
+        "peak": 7943,
+        "nonzero": 79111
+      },
+      {
+        "name": "original-m16",
+        "frames": 88200,
+        "sha256": "b8bf46460068dc725fe91227513ae245122c44dc9d8f5e8e36b715eeced60398",
+        "peak": 15978,
+        "nonzero": 80806
+      },
+      {
+        "name": "original-m17",
+        "frames": 88200,
+        "sha256": "c919afc3375ede220090fdabb15336b60d1eaaeaf2dcba55e757cc74884165e6",
+        "peak": 21727,
+        "nonzero": 73946
+      },
+      {
+        "name": "original-m18",
+        "frames": 88200,
+        "sha256": "be575a3e9d8b6324160d36d923f745f21b632088a2181d0c0feed30524142072",
+        "peak": 8232,
+        "nonzero": 88059
+      },
+      {
+        "name": "original-m19",
+        "frames": 88200,
+        "sha256": "8a1069e518abb7b11304db80b9948ed62debcb0ae0ce371ff1d282e12f7f1d5f",
+        "peak": 8444,
+        "nonzero": 87449
+      },
+      {
+        "name": "original-m20",
+        "frames": 88200,
+        "sha256": "8b4c9cffcb10a6a05d837ee091c14bd8c865a5ab6502948091985ac640e8f750",
+        "peak": 11205,
+        "nonzero": 72295
+      },
+      {
+        "name": "original-e0",
+        "frames": 88200,
+        "sha256": "70908458fc4b150f895f62b1c78bbaf9fef7a4d8336c8d8e02b5b236ec03247b",
+        "peak": 4075,
+        "nonzero": 63985
+      },
+      {
+        "name": "original-e1",
+        "frames": 88200,
+        "sha256": "da52db4094ff0017219956171525236db0baee2797652e26eb49655efb82b22d",
+        "peak": 4063,
+        "nonzero": 59254
+      },
+      {
+        "name": "original-e2",
+        "frames": 88200,
+        "sha256": "40c49af895c3f478565ce0c2d280ab98074d39157e0cd2498df87026a207d3f9",
+        "peak": 5147,
+        "nonzero": 36714
+      },
+      {
+        "name": "original-e3",
+        "frames": 88200,
+        "sha256": "7f91f009354ebdbe36336d5cae6598cb10fc7ef4bb4c01ab6f887ede7f2cb6a6",
+        "peak": 6318,
+        "nonzero": 53142
+      },
+      {
+        "name": "original-e4",
+        "frames": 88200,
+        "sha256": "1a8569d5a530d4db41677c34d62e8fa0105bd6eac7dbdf067e6a13ff2eef29ab",
+        "peak": 5048,
+        "nonzero": 32582
+      },
+      {
+        "name": "original-e5",
+        "frames": 88200,
+        "sha256": "ac559fcea8451af00884c19bf4928d70d7ba4a6ee0da375694734c0a80632177",
+        "peak": 3999,
+        "nonzero": 85059
+      },
+      {
+        "name": "original-e6",
+        "frames": 88200,
+        "sha256": "a9cf709e2af6d7a938129bff3c14631f16fd1131e4e0a4ad2da23c2f45468a6d",
+        "peak": 7373,
+        "nonzero": 81728
+      },
+      {
+        "name": "original-e7",
+        "frames": 88200,
+        "sha256": "3b234a81188c485bf8016d384ac4bfb48096ea2341967610a969fe49b84fbefa",
+        "peak": 3931,
+        "nonzero": 53933
+      },
+      {
+        "name": "original-e8",
+        "frames": 88200,
+        "sha256": "63ac1302e282458c64c78cdad12e08d175f0803839489e726b3d0e968017281a",
+        "peak": 4032,
+        "nonzero": 73660
+      },
+      {
+        "name": "original-e9",
+        "frames": 88200,
+        "sha256": "fb586a00008ac02f233a38a9dfaabe0182c5120d8d741c997ed7faab1702f12d",
+        "peak": 8017,
+        "nonzero": 50305
+      },
+      {
+        "name": "original-e10",
+        "frames": 88200,
+        "sha256": "da058991a1272b114e6f62d96a75750c23ca0acd7e5bfb04c8b0d4dd6b051714",
+        "peak": 4028,
+        "nonzero": 83641
+      },
+      {
+        "name": "original-e11",
+        "frames": 88200,
+        "sha256": "e965dae7b80a4258b88e184d5eb42c3c6eaebc406f2f598640b41f5e372015d2",
+        "peak": 4080,
+        "nonzero": 50806
+      },
+      {
+        "name": "original-e12",
+        "frames": 88200,
+        "sha256": "f2b541d0bc30de5462483052b8b5df325b1d644e8d21282c51e0db5b1552a8e5",
+        "peak": 3999,
+        "nonzero": 86442
+      },
+      {
+        "name": "original-e13",
+        "frames": 88200,
+        "sha256": "5537dee55c1f6c03b40ad32ebff881e8171f531e38ba6b82317735206616c9bb",
+        "peak": 4085,
+        "nonzero": 53438
+      },
+      {
+        "name": "original-e14",
+        "frames": 88200,
+        "sha256": "927704e034c1cd733b5d89ef7ba40879645e7c7d9d4420469924cecfda162197",
+        "peak": 3945,
+        "nonzero": 53825
+      },
+      {
+        "name": "original-e15",
+        "frames": 88200,
+        "sha256": "9579a809b855b0641cf6481646e2c33c293a03fe6ab8bd147d40c8033f0086af",
+        "peak": 4085,
+        "nonzero": 74560
+      },
+      {
+        "name": "original-e16",
+        "frames": 88200,
+        "sha256": "2fd027f14204e3ad47fc80f0b75096085d9d8e5073f92792ea4715ad0fe9bcbd",
+        "peak": 3993,
+        "nonzero": 80471
+      },
+      {
+        "name": "original-e17",
+        "frames": 88200,
+        "sha256": "22965a7f05461adef2e8d508b202645f2e1202ea6d4951fbeffc7d403d3e67bd",
+        "peak": 7446,
+        "nonzero": 846
+      }
+    ],
+    "case_count": 63,
+    "frames": 6942328,
+    "c_commit": "765ec962e473aeb767e4cba74ffdc8f588ffbfe8",
+    "compiler": "cc (GCC) 16.2.1 20260810",
+    "original_files": 50,
+    "music": 21,
+    "effects": 18
+  },
+  "c_reference": "assets/manifests/opl_reference.json",
+  "local_validation": {
+    "status": "PASS",
+    "exit_code": 0,
+    "rust": 563,
+    "doc": 29,
+    "python": 141,
+    "sha256": "d396c858500e4f0c6eb4c84812d62e8436205c519beff0b342cdf5944f4fe54e",
+    "bytes": 100891,
+    "scope": "Full make check: format/Clippy/Rust/docs/Python/offline C PCM/native PCM/WASM/SDL/Web including actual audio WASM"
+  },
+  "self_review": {
+    "status": "PASS",
+    "method": "Author self-review, as authorized by user; no delegated reviewer",
+    "unresolved": 0,
+    "checks": [
+      "Core remains independent of resources, audio and platforms; synthesis libraries no_std/no allocation/no unsafe; external Cargo.lock packages unchanged",
+      "Exact selected core diff against official archive: stereo-ext fixed false and unreachable floating pan removed; full LGPL notice/source/license/relink materials retained; C oracle separate process only",
+      "Sample/call bounds prevent resampler zero divisor and u64 arithmetic overflow; reduced rational carries floor endpoints across all chunk partitions; sample frame overflow rejected before mutation",
+      "Whole-request VM preflight preserves output/driver/phase/chip on late failure and insufficient scratch; immutable assets and control sequence make actual replay identical; silent runner uses same VM",
+      "Controls apply at driver boundaries; empty render inert; stop preserves time/release; reset validates index before replacing whole chip/VM/resampler/phase",
+      "Mono left is explicit due OPL pipeline L/R delay; signed i16LE and saturation; no amplitude normalization to hide differences",
+      "Fixed source-verified independent C1.8 matches all63cases/6942328frames; synthetic fixture plus direct absolute scheduling and actual WASM two partitions pass63cases/3805730frames",
+      "Original IRQ slice proves AdLib every IRQ versus speaker odd IRQ; actual VGA/AdLib FF RAM counter is DS001c, not resetting game budget DS1fcd; new wrap/reset regression passes",
+      "Original50files checked before/after, decoded SHA fixed; private PCM/video/runtime/emulator not staged; new runtime seed only byte0 modified, key-disk limitation recorded",
+      "Rejected candidate and failed timing runs preserved as failed/exploratory evidence, not counted as selected-engine passes; actual PCM checks are bounded prefixes, not full device/listening claim",
+      "Self-review fixed optional DOS wrapper's hardcoded review-log directory; private Xvfb log now temporary/owned, invalid external evidence path rejected before startup; Python compilation passes",
+      "New probes do not change product UI/game input/render/device flows; default checks offline and original-free; real WASM needs pinned CLI/Chrome, independent C needs cc; CI uses same Makefile",
+      "Pending publication is gated by full local checks and exact push/PR/main four-job CI, full ZIP checkout logs, same reviewed/merge tree and remote mode/blob checks"
+    ]
+  },
+  "sources": [
+    {
+      "path": "Cargo.lock",
+      "bytes": 5213,
+      "sha256": "26c43930e62e993451111e4ce082611d22ad73dfde19cf543624ff317c3a5389"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 438,
+      "sha256": "641018c65a08d7720699b9de1f0868f8c2e1f873168f0edb904467dfa446877c"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 2270,
+      "sha256": "b02e0d14e12bd23e4fc299caa0ebdd68491d7cfef8e5e0934c9c5fc2582fd0f0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 17592,
+      "sha256": "b68e1bba606d700a1d525b1a5e3345d0d6dab5e662038fd394d5bb7b40fce03b"
+    },
+    {
+      "path": "apps/audio-probe/Cargo.toml",
+      "bytes": 590,
+      "sha256": "5a881bafaaca46c146698dd928d821e585a82c458bdca6fb633c5f701aa8818b"
+    },
+    {
+      "path": "apps/audio-probe/src/lib.rs",
+      "bytes": 5509,
+      "sha256": "065e357c583fe3c55906ab19d753b604653994164126991f434ea408aff3f1bd"
+    },
+    {
+      "path": "apps/audio-probe/src/main.rs",
+      "bytes": 913,
+      "sha256": "82351291f2951a4077492777daf1e24f0a17fd29b4904d18641f12b61e6e18c5"
+    },
+    {
+      "path": "assets/README.md",
+      "bytes": 15890,
+      "sha256": "7756403d564900fcf95cbf960f2942b2e3ac4a2832fc1719a4e1041ced46d70c"
+    },
+    {
+      "path": "assets/manifests/opl_reference.json",
+      "bytes": 1158,
+      "sha256": "810d5ecf265d52308218fa83d5fb040acbc18b05892551a5bc581a0165549441"
+    },
+    {
+      "path": "crates/lemmings-audio/Cargo.toml",
+      "bytes": 374,
+      "sha256": "c2eae955e839183561a148afa14c752950451d4c9c0dd6c07cd5b205d963547b"
+    },
+    {
+      "path": "crates/lemmings-audio/src/lib.rs",
+      "bytes": 8834,
+      "sha256": "58a4c37ce4f74c8da40246a0620f9ad06813dd7c99f1e0803d2eb16862353cf2"
+    },
+    {
+      "path": "crates/lemmings-audio/tests/pcm.rs",
+      "bytes": 7737,
+      "sha256": "b39380ca2f2c31c39e47faead046a319c0df9f7ca6080ee33d2bde4a192a6de7"
+    },
+    {
+      "path": "crates/lemmings-opl/Cargo.toml",
+      "bytes": 302,
+      "sha256": "624bc0eacdd25697130bc1eaeb4bf640d4d5d41710f285c6dbec7c41a3a52823"
+    },
+    {
+      "path": "crates/lemmings-opl/LICENSE",
+      "bytes": 26526,
+      "sha256": "20c17d8b8c48a600800dfd14f95d5cb9ff47066a9641ddeab48dc54aec96e331"
+    },
+    {
+      "path": "crates/lemmings-opl/README.md",
+      "bytes": 1383,
+      "sha256": "309684d13b6de012a266b7e437bf6924013c472d183b270acedc83ea3e39a5b3"
+    },
+    {
+      "path": "crates/lemmings-opl/UPSTREAM.patch",
+      "bytes": 1684,
+      "sha256": "43967f1029b56d422a92aae43c64f4f434e9d6709e577979c8540f22c1ec8aed"
+    },
+    {
+      "path": "crates/lemmings-opl/src/core.rs",
+      "bytes": 55342,
+      "sha256": "001d976818b828e7124ce1b289cff9089a18413fb25e2e2625844ba35f3584f9"
+    },
+    {
+      "path": "crates/lemmings-opl/src/lib.rs",
+      "bytes": 2804,
+      "sha256": "5a60522b004780996702d94cdd7fcf1094779902f40a7f7ab48de4a465e4f8c2"
+    },
+    {
+      "path": "crates/lemmings-resources/src/adlib_stream.rs",
+      "bytes": 18785,
+      "sha256": "222f3b91a15708966c987604d3f1f0b0c8c0efef67a918fc149e5184f521016e"
+    },
+    {
+      "path": "crates/lemmings-resources/tests/adlib_stream.rs",
+      "bytes": 12587,
+      "sha256": "89078d692eaafcabace939345479659b9bedf1b93597cf80dab41716bf38fbf2"
+    },
+    {
+      "path": "mydocs/README.md",
+      "bytes": 13190,
+      "sha256": "14bae304184c8cbc14d2bbef4ae4cf76c63a130d6f00aa30ad2d2b0adf59a490"
+    },
+    {
+      "path": "mydocs/orders/20261020.md",
+      "bytes": 9596,
+      "sha256": "2e9c6426272666d478b4df92b3c21d1655aea5fe5277e313368c03dfa2cfcd14"
+    },
+    {
+      "path": "mydocs/plans/issue-1_implementation_plan.md",
+      "bytes": 35040,
+      "sha256": "7254651013e619678144e9a44b25dab355baec97964aa714cd86617d5accf785"
+    },
+    {
+      "path": "mydocs/plans/issue-7_continuous_integration.md",
+      "bytes": 7126,
+      "sha256": "ee59c159252a970313be45a3ea0d723d65a4a4e27393d0149fde3f139a5f808e"
+    },
+    {
+      "path": "mydocs/reports/README.md",
+      "bytes": 2453,
+      "sha256": "3fd1e6935fba1f33d4eb2c501e208903637d12dd7f863e944efee5def0047750"
+    },
+    {
+      "path": "mydocs/reports/issue-76_opl_pcm.md",
+      "bytes": 3543,
+      "sha256": "9769b38a9053d43937877ce4a0b946197b62237df5ccc22cdb9c93756836bc72"
+    },
+    {
+      "path": "mydocs/tech_insights/README.md",
+      "bytes": 3973,
+      "sha256": "8f2b32bc8cd8ee47bdd14334976d97e315f253afc1246c7a305eefe0fdde2428"
+    },
+    {
+      "path": "mydocs/tech_insights/issue-76_opl_pcm.md",
+      "bytes": 9270,
+      "sha256": "98b7999fc8a51705d70c996c8e2ca018a2410289b9821924e82d06536693cdfb"
+    },
+    {
+      "path": "mydocs/working/README.md",
+      "bytes": 2389,
+      "sha256": "ace6edd089ea1372cca14c7d634f2d1a5a08da7d93d893cc9f5789b951bf538b"
+    },
+    {
+      "path": "mydocs/working/issue-76_opl_pcm.md",
+      "bytes": 1707,
+      "sha256": "659ce1e7830bc0927bdbe2160088fdb70dc29522aba63566190c653d3587837d"
+    },
+    {
+      "path": "third_party/README.md",
+      "bytes": 780,
+      "sha256": "4e157bba4f858292a7897483cc5446a5014a5dc67d4230d8da9d3d5cb1cd7340"
+    },
+    {
+      "path": "tools/audio/check.html",
+      "bytes": 120,
+      "sha256": "104c84546439a835eec22ee59dd0bc11ea36e9e2a4b0c31fa8ef82db912cc507"
+    },
+    {
+      "path": "tools/audio/check.js",
+      "bytes": 1350,
+      "sha256": "debdd8bda38b9cde227bccf87d891a6dbb6015265d540ed61695cdd7c6b15348"
+    },
+    {
+      "path": "tools/audio/nuked_reference.c",
+      "bytes": 1844,
+      "sha256": "01a6c179d84a367cee982ba2ebf8594aa3b49b1a62f6bddf802fe96550212550"
+    },
+    {
+      "path": "tools/audio/reference/LICENSE",
+      "bytes": 26526,
+      "sha256": "20c17d8b8c48a600800dfd14f95d5cb9ff47066a9641ddeab48dc54aec96e331"
+    },
+    {
+      "path": "tools/audio/reference/README.md",
+      "bytes": 708,
+      "sha256": "597779a19b2225b40f535ab26e030667f05117580aafb1277689e12c69e4e7e9"
+    },
+    {
+      "path": "tools/audio/reference/opl3.c",
+      "bytes": 41716,
+      "sha256": "59eb873fdb6d52bc7977a0fcbb97c1bae03dd71cc88e3acddbcc01b7121bfe03"
+    },
+    {
+      "path": "tools/audio/reference/opl3.h",
+      "bytes": 4397,
+      "sha256": "a84266b8d71a4929f15f573afbe407fd24310b77757d855835dacabf68763679"
+    },
+    {
+      "path": "tools/audio_timing.py",
+      "bytes": 1649,
+      "sha256": "47a1ae25bd9f17a1cd4ccbe68774f183f127189b2b408df0894286143d1fd650"
+    },
+    {
+      "path": "tools/check_audio.py",
+      "bytes": 9877,
+      "sha256": "283603de0dd9322de8b35d30565c9ac4d06dd746e269b0e3463626bfd4ef30f5"
+    },
+    {
+      "path": "tools/check_opl_reference.py",
+      "bytes": 5356,
+      "sha256": "78c6ae37747672613c3f2434a34018e9e09a6cb99cba891170d427314fe30113"
+    },
+    {
+      "path": "tools/observe_audio_dos.py",
+      "bytes": 4965,
+      "sha256": "07be4fb40a5841ea5007ab81fccfdbc5ac56cc8cf20cdcacd1c355cef0268a40"
+    },
+    {
+      "path": "tools/tests/fixtures/audio_pcm.json",
+      "bytes": 4460,
+      "sha256": "52bd775571c8760932d6fd30cb0b1abce91f18f50592ff034fe64997c5a390c5"
+    },
+    {
+      "path": "tools/tests/test_audio.py",
+      "bytes": 2390,
+      "sha256": "740d52d026b5d8cc2ea60154c09b1ec0fed24d385cd8361385328255bc679d8a"
+    },
+    {
+      "path": "tools/tests/test_audio_timing.py",
+      "bytes": 1394,
+      "sha256": "99ae3a88a3b15cef33583e38932b8c2342ab1fe835d31c9002e0d03b0152b5a8"
+    },
+    {
+      "path": "tools/tests/test_opl_reference.py",
+      "bytes": 2011,
+      "sha256": "b1d6f70edb535519128d5dc352be187728eccddae113366eb3e98a44347682dd"
+    },
+    {
+      "path": "tools/verify_adlib_timing.py",
+      "bytes": 3657,
+      "sha256": "e58af77fabb9a2d7c71c9bbcaf01b000279baeead7b47a65f75d80e25e0f5d88"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/tdd-red.log",
+      "bytes": 971,
+      "sha256": "4120ddad288f83a96cf600dd19c267749e1ab642a1e37e65085e327209143ebf"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/tdd-green-first.log",
+      "bytes": 1297,
+      "sha256": "71e9033e09b03970bd02b9d0220585e802c517619ed6eb2cf8bd1bceac28044d"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/python-red.log",
+      "bytes": 869,
+      "sha256": "efa5eb9023992127262da29017f61d08e9504897fd6795050374c49d17a82051"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/timing-red.log",
+      "bytes": 921,
+      "sha256": "8a9f3604342c1a0c04b25289c1120c44d05677b39e59bc101d0e9dfb9c6b43e7"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/timing-green.log",
+      "bytes": 570,
+      "sha256": "2d1023ab3920fe421fcb5d379bf5589ce2c9da81d878e5ef334d1b9927e2b927"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/nuked-first.log",
+      "bytes": 2001,
+      "sha256": "94d2d4cdcd1e48830d04e61e5ae5bbad295066f8a6c1ba263d39c1b6ce720fcf"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/nuked-synthetic.log",
+      "bytes": 658,
+      "sha256": "83715b1c2655eb2639e4d4181ac30472bffd17661bbdbe8b129fcd967b1b7ca8"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/nuked-original.log",
+      "bytes": 522,
+      "sha256": "33ee77e3f3e593614bd993a85d9b9a96f863c4bb1ba63b135f3255956cead381"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/c-reference.log",
+      "bytes": 463,
+      "sha256": "83fffd91a8e2631115e4d10d86e665f8533f4368da2473abec24d6446d8d5dea"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/dos-monotonic.log",
+      "bytes": 1239,
+      "sha256": "ecab50c2f4778c2542b2a9a568304a545a2bf022832be8a9fc6786cb57d39d88"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/irq-dispatch.json",
+      "bytes": 1395,
+      "sha256": "df369245600fa3e27565022974f478f27c58dcbab8910dc740396e4fcdb8e50b"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/irq-dispatch.log",
+      "bytes": 1147,
+      "sha256": "e09607fa7b325757d98a7b21346acf2ebacb3f9af01634041892a0891dbdcfe4"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/dos-cli-guard.log",
+      "bytes": 131,
+      "sha256": "93789740eab3ad91b2a82e6f7b03548e9388eeed693136ccd9d6d13102c5ffb4"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/make-check.log",
+      "bytes": 100891,
+      "sha256": "d396c858500e4f0c6eb4c84812d62e8436205c519beff0b342cdf5944f4fe54e"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/make-check.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/local-validation.json",
+      "bytes": 313,
+      "sha256": "7d95ff179160d5fa085a1f1c46b9e8d87967a1d8ec2f1807ddc97dfc931fcc89"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/self-review.json",
+      "bytes": 2529,
+      "sha256": "5b34b27aab916e0d06c4a85c51362c0c4532a8bcd8d7a138d612719d2ff150fb"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/acoustic-probe.py",
+      "bytes": 2539,
+      "sha256": "07bc11c9058a1d4f0ba5a1b168dc56efc8a4b0d8eeaddbe1342c5523018bc46d"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/acoustic-probe.log",
+      "bytes": 735,
+      "sha256": "43977ad0912582ef3a1bb11313148957922b6ee79fe8742d4768840b63b3de15"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/dos-observation-final.log",
+      "bytes": 1616,
+      "sha256": "3fa4f81398d0af40c49d0ea28cf89d7b847809b23c412b8b062cda93bf46f651"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/dos-adlib-cadence.log",
+      "bytes": 1559,
+      "sha256": "3f52cc9700f50873160eac566694c3df1ead325628ec5858814206d6df1ad155"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/oplon-metadata.json",
+      "bytes": 5323,
+      "sha256": "b2c13069c92384d16da5e3a284edd953276b2aceb27a24feb05ff10029fda173"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/oplon-1.0.0.crate",
+      "bytes": 52287,
+      "sha256": "0df1044d4a29bc6db30e653b263b80599bcb4f15c0c0e2c61f9ac32f71d58de3"
+    },
+    {
+      "path": "target/release/lemmings-audio-probe",
+      "bytes": 579176,
+      "sha256": "af4a674b524e090f1a307f2be764d98df2578bb4fb8edac1c275f95bdf4dfcf0"
+    },
+    {
+      "path": "target/wasm32-unknown-unknown/release/lemmings_audio_probe.wasm",
+      "bytes": 153486,
+      "sha256": "566a61cf35404e6308bf0b9e9026f1e865e4a2baa69f49f40977d4ba4828e5d9"
+    }
+  ],
+  "evidence_trees": [
+    {
+      "directory": "assets/local/issue-76-nuked-synthetic",
+      "files": 12,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/issue-76-nuked-synthetic-index.json",
+        "bytes": 1861,
+        "sha256": "fcbd319d5c48651f20f10adce16e05a3c3d0ec26d698487049ae5661b5a4191f"
+      }
+    },
+    {
+      "directory": "assets/local/issue-76-nuked-original",
+      "files": 13,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/issue-76-nuked-original-index.json",
+        "bytes": 2012,
+        "sha256": "cadd50c4e7130ea8d48db4b99861c6a41757f7751bded58fa7146c55592e196b"
+      }
+    },
+    {
+      "directory": "assets/local/issue-76-c-reference",
+      "files": 70,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/issue-76-c-reference-index.json",
+        "bytes": 10652,
+        "sha256": "f89802e10530125af27f979c460ace34b509b12db34f18b0057aa369dd4953ea"
+      }
+    },
+    {
+      "directory": "assets/local/issue-76-dos-adlib-monotonic",
+      "files": 121,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-76-review/issue-76-dos-adlib-monotonic-index.json",
+        "bytes": 20230,
+        "sha256": "0002ff9d5a48f9dff822134b5b01692c3210087ac5806104a5b365a012fef927"
+      }
+    }
+  ],
+  "index_algorithm": "Sorted POSIX path order; compact sorted-key JSON array plus newline; exact bytes/SHA256",
+  "limitations": [
+    "Original music/effects PCM: 3sec at22050Hz native/WASM, 2sec at44100Hz independent C; complete-loop register evidence belongs to issue74",
+    "No SDL/Web device output, game-event mapping, activation/mute, original device PCM or listening claim",
+    "New DOS-generated 256-byte DS window validates immutable filename prefix; only byte0 seeded0; key disk unverified",
+    "Earlier candidate and invalid counter/cycles experiments retained as failures, excluded from selected-engine passes"
+  ],
+  "next": "G10-04 game events/DOS numeric IDs; then05SDL/Web devices and06integration/listening; G10 remains in progress",
+  "publication": "Exact push/PR/main four jobs/full ZIP checkout logs/same merge tree and remote mode/blob proof recorded in issue76 before closure"
+}

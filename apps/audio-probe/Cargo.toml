@@ -1,0 +1,22 @@
+[package]
+name = "lemmings-audio-probe"
+description = "Native/WASM verification adapter for deterministic PCM; no audio device"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+lemmings-audio = { path = "../../crates/lemmings-audio" }
+lemmings-resources = { path = "../../crates/lemmings-resources" }
+lemmings-opl = { path = "../../crates/lemmings-opl" }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "=0.2.129"
+
+[lints]
+workspace = true
