@@ -316,6 +316,153 @@ mod tests {
     use super::*;
     use crate::assets::Assets;
     use sdl2::keyboard::Mod;
+    #[test]
+    fn browser_input_matches_sdl_state_maps_selection_and_frames_for_all_skills() {
+        use crate::{lifecycle::LevelRun, pacing::Pacing};
+        use lemmings_web::WebGame;
+        for (code, keycode) in [
+            ("KeyC", Keycode::C),
+            ("KeyF", Keycode::F),
+            ("KeyE", Keycode::E),
+            ("KeyK", Keycode::K),
+            ("KeyU", Keycode::U),
+            ("KeyB", Keycode::B),
+            ("KeyM", Keycode::M),
+            ("KeyD", Keycode::D),
+        ] {
+            let mut native =
+                LevelRun::new(Assets::synthetic_builder(), 1, None, Pacing::Reference).unwrap();
+            let mut web = WebGame::new("builder", "reference").unwrap();
+            for step in 0..150 {
+                let mut events = Vec::new();
+                if step == 0 {
+                    web.key(code, false).unwrap();
+                    events.push(key(keycode, false));
+                    for code in ["Space", "Space", "ArrowUp"] {
+                        web.key(code, false).unwrap();
+                    }
+                    events.extend([
+                        key(Keycode::Space, false),
+                        key(Keycode::Space, false),
+                        key(Keycode::Up, false),
+                    ]);
+                }
+                if step == 10 {
+                    web.pointer("down", 24.0, 185.0, 0.0, 1.0, 1.0).unwrap();
+                    events.push(click(24, 185, 1));
+                }
+                if step == 14 {
+                    web.release_input();
+                    events.push(Event::Window {
+                        timestamp: 0,
+                        window_id: 0,
+                        win_event: WindowEvent::FocusLost,
+                    });
+                }
+                if step == 80 {
+                    let actor = native.session.actors[0].state();
+                    let (x, y) = (actor.x, actor.y - 5);
+                    web.pointer("move", x.into(), y.into(), 0.0, 0.0, 0.0)
+                        .unwrap();
+                    events.push(Event::MouseMotion {
+                        timestamp: 0,
+                        window_id: 0,
+                        which: 0,
+                        mousestate: sdl2::mouse::MouseState::from_sdl_state(0),
+                        x,
+                        y,
+                        xrel: 0,
+                        yrel: 0,
+                    });
+                    web.pointer("down", x.into(), y.into(), 2.0, 2.0, 1.0)
+                        .unwrap();
+                    events.push(Event::MouseButtonDown {
+                        timestamp: 0,
+                        window_id: 0,
+                        which: 0,
+                        mouse_btn: MouseButton::Right,
+                        clicks: 1,
+                        x,
+                        y,
+                    });
+                    web.pointer("down", x.into(), y.into(), 0.0, 3.0, 1.0)
+                        .unwrap();
+                    events.push(click(x, y, 1));
+                }
+                if step == 82 {
+                    web.release_input();
+                    events.push(Event::Window {
+                        timestamp: 0,
+                        window_id: 0,
+                        win_event: WindowEvent::FocusLost,
+                    });
+                }
+                if step == 90 {
+                    web.pointer("down", 280.0, 185.0, 0.0, 1.0, 1.0).unwrap();
+                    events.push(click(280, 185, 1));
+                }
+                if step == 92 {
+                    web.pointer("move", 250.0, 185.0, 0.0, 1.0, 0.0).unwrap();
+                    events.push(Event::MouseMotion {
+                        timestamp: 0,
+                        window_id: 0,
+                        which: 0,
+                        mousestate: sdl2::mouse::MouseState::from_sdl_state(1),
+                        x: 250,
+                        y: 185,
+                        xrel: -30,
+                        yrel: 0,
+                    });
+                }
+                if step == 94 {
+                    web.release_input();
+                    events.push(Event::Window {
+                        timestamp: 0,
+                        window_id: 0,
+                        win_event: WindowEvent::FocusLost,
+                    });
+                }
+                for event in events {
+                    handle(
+                        event,
+                        &mut native.session,
+                        &mut native.view,
+                        native.assets.width,
+                        false,
+                    )
+                    .unwrap();
+                }
+                assert!(
+                    web.state()
+                        .contains(&format!("\"session\":{}", native.session.snapshot())),
+                    "{code}/{step}"
+                );
+                assert!(web.state().contains(&format!(
+                    "\"inputs\":{:?}",
+                    format!("{:?}", native.session.inputs)
+                )));
+                assert!(web.view_state().contains(&format!(
+                    "\"selection\":{:?}",
+                    format!("{:?}", native.view.selection)
+                )));
+                assert_eq!(web.terrain(), native.session.terrain());
+                assert_eq!(web.bricks(), native.session.brick_mask());
+                assert_eq!(web.objects(), native.session.object_map_data());
+                if step % 17 == 0 || step == 80 || step == 92 {
+                    assert_eq!(
+                        web.frame().unwrap(),
+                        native.view.frame(&native.assets, &native.session).unwrap(),
+                        "{code}/{step}"
+                    );
+                }
+                web.step(1.0).unwrap();
+                crate::panel::advance_input(&mut native.session, &mut native.view, false).unwrap();
+                crate::pointer::refresh(&native.session, &mut native.view);
+                native.session.tick().unwrap();
+                crate::pointer::refresh(&native.session, &mut native.view);
+            }
+        }
+    }
     pub fn key(key: Keycode, repeat: bool) -> Event {
         Event::KeyDown {
             timestamp: 0,

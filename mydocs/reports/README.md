@@ -56,3 +56,5 @@
 - [#64 자산 바이트 공급·공통 장면과 패널](issue-64_shared_game.md)
 
 - [#66 JS/WASM 바인딩·합성 브라우저 진입](issue-66_wasm_browser.md)
+
+- [#68 G09-04 브라우저 입력·원본 자산·레벨 전환](issue-68_web_input_assets.md)

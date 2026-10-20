@@ -91,3 +91,5 @@ MAIN.DAT 지형 마스크·카운트다운은 [G03-09 재현 명령](../mydocs/t
 [#64 자산 바이트·공통 장면 분리](../mydocs/reports/issue-64_shared_game.md)의 추출 전후 네이티브 재생·원본 파일/메모리 공급 비교는 [shared_game.json](manifests/shared_game.json)에 출처와 해시를 기록합니다. 원본 파생물은 ignored 경로에만 보관합니다.
 
 [#66 JS/WASM·합성 브라우저](../mydocs/reports/issue-66_wasm_browser.md)의 공식 CLI 출처/고정 해시는 [web_tools.json](manifests/web_tools.json), 소스·WASM/JS·실제 브라우저 검증 증거는 [web_browser.json](manifests/web_browser.json)에 기록합니다. 다운로드·생성물은 ignored assets/local에 둡니다.
+
+- [브라우저 입력·자산·전환 검증](manifests/web_input_assets.json): #68의 원본 없는24사례와 선택 원본 Fun01..03 초기 실행/입력/재시작27사례, SDL 대조·CDP19222 실제 조작·출처/해시를 기록합니다. 원본 바이트/추적/화면은 ignored assets/local에만 보관합니다. 원본 전체 레벨의 브라우저 통합 완주는 G09-05 후속입니다.

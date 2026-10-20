@@ -17,5 +17,8 @@ lemmings-game = { path = "../../crates/lemmings-game" }
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 wasm-bindgen = "=0.2.129"
 
+[dev-dependencies]
+lemmings-resources = { path = "../../crates/lemmings-resources" }
+
 [lints]
 workspace = true
