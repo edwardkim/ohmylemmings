@@ -6,7 +6,7 @@
 
 ## 현재 상태
 
-현재 G00~G07을 완료했고 G08의 출구·위험물·승패와 [결과 화면·재시작](mydocs/reports/issue-54_results_restart.md)을 연결했습니다. [#56 원본 기술 패널·미니맵](mydocs/reports/issue-56_skill_panel.md)을 통합하며 다음은 포인터 선택입니다.
+현재 G00~G08을 완료했습니다. [#60 한 레벨 통합 완주](mydocs/reports/issue-60_native_playthrough.md)의 병합·main CI를 확인했고, [G09-01 / #62](mydocs/tech_insights/issue-62_shared_session.md)에서 웹과 네이티브가 공유할 게임 세션과 이식 경계를 분리합니다.
 
 G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. `no_std` 코어 자료형과 DAT 구간 검증·압축 해제를 도입했습니다. 원작 파일 50개·소스 46개와 120개 레벨·8직업·음악 21개·효과음 18개의 검증 범위를 고정했습니다. [G02-02 압축 해제](mydocs/tech_insights/issue-9_dat_decompression.md)는 합성 테스트, 원본 21개 파일·102개 구간의 해시 대조와 실제 Rust·Python·WASM CI를 통과했습니다.
 

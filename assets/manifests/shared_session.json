@@ -1,0 +1,755 @@
+{
+  "format": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/62",
+  "baseline_main": "93578a253b6d140cfbb0061bde59d01bdca27053",
+  "scope": "G09-01 SDL-free shared Session/Pacing and host contract; native before/after replay and WASM library compilation; no browser execution or new DOS recording",
+  "source_preservation": {
+    "status": "PASS",
+    "baseline": "93578a253b6d140cfbb0061bde59d01bdca27053",
+    "entire_session_preserved_except": [
+      "pointer command helper relocation",
+      "test-only fixture path"
+    ],
+    "pacing_byte_identical": true,
+    "command_function_byte_identical": true,
+    "session_test_count": 24,
+    "pacing_test_count": 5
+  },
+  "dependencies": {
+    "status": "PASS",
+    "session_normal_dependencies": [
+      "lemmings-core"
+    ],
+    "core_resources_no_std": true,
+    "external_packages_added": 0
+  },
+  "baseline": [
+    {
+      "name": "win",
+      "kind": "win",
+      "original": false,
+      "states": 162,
+      "sha256": "a8df929a8c2bcd573c143f37cf1275f6c52cf588906463aab305bda8f674aec2",
+      "captures": 34,
+      "completion": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 3,
+        "lemming_count": 3,
+        "required": 2,
+        "rescued": 3,
+        "target_percent": 66,
+        "rescued_percent": 100
+      }
+    },
+    {
+      "name": "loss",
+      "kind": "win",
+      "original": false,
+      "states": 272,
+      "sha256": "c5b207825e568a17a495a8dd749a2a7fc408e40ef7ff7c15aa0e9073118443ce",
+      "captures": 56,
+      "completion": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 3,
+        "lemming_count": 3,
+        "required": 2,
+        "rescued": 1,
+        "target_percent": 66,
+        "rescued_percent": 33
+      }
+    },
+    {
+      "name": "mixed",
+      "kind": "mixed",
+      "original": false,
+      "states": 316,
+      "sha256": "033a6abf7b4aebeb75e1bbda88c90cdeccf17681c23d19611c7c5695f3fad484",
+      "captures": 170,
+      "completion": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 25,
+        "required": 40,
+        "rescued": 13,
+        "target_percent": 50,
+        "rescued_percent": 52
+      }
+    },
+    {
+      "name": "particles",
+      "kind": "particles",
+      "original": false,
+      "states": 229,
+      "sha256": "ddcece3ff6fcd12df261a7ab09a69b345da08699438e1c1b85514ae019c894c3",
+      "captures": 27,
+      "completion": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 1,
+        "lemming_count": 1,
+        "required": 1,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      }
+    },
+    {
+      "name": "Fun01-win",
+      "kind": "win",
+      "original": true,
+      "states": 661,
+      "sha256": "0abec0f5f6cb2261e8ae0d6beaa7536ed0eecd53ba14a738d8b7dfc28c5ce37b",
+      "captures": 84,
+      "completion": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 10,
+        "lemming_count": 10,
+        "required": 1,
+        "rescued": 10,
+        "target_percent": 10,
+        "rescued_percent": 100
+      }
+    },
+    {
+      "name": "Fun01-loss",
+      "kind": "win",
+      "original": true,
+      "states": 272,
+      "sha256": "9e167a7004982d2daab45ac58b1ecfca03a1b52c768b3962360a8fc71bac28b8",
+      "captures": 42,
+      "completion": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 10,
+        "lemming_count": 3,
+        "required": 1,
+        "rescued": 0,
+        "target_percent": 10,
+        "rescued_percent": 0
+      }
+    }
+  ],
+  "comparison": {
+    "status": "PASS",
+    "baseline_commit": "93578a253b6d140cfbb0061bde59d01bdca27053",
+    "cases": 6,
+    "baseline_runs": 6,
+    "post_runs": 12,
+    "post_states": 3824,
+    "post_captures": 826,
+    "runs": [
+      {
+        "name": "win",
+        "render": 1,
+        "states": 162,
+        "sha256": "a8df929a8c2bcd573c143f37cf1275f6c52cf588906463aab305bda8f674aec2",
+        "captures": 34,
+        "binary_files": 10,
+        "rgb_frames": 34,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 3,
+          "lemming_count": 3,
+          "required": 2,
+          "rescued": 3,
+          "target_percent": 66,
+          "rescued_percent": 100
+        }
+      },
+      {
+        "name": "win",
+        "render": 7,
+        "states": 162,
+        "sha256": "a8df929a8c2bcd573c143f37cf1275f6c52cf588906463aab305bda8f674aec2",
+        "captures": 34,
+        "binary_files": 10,
+        "rgb_frames": 34,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 3,
+          "lemming_count": 3,
+          "required": 2,
+          "rescued": 3,
+          "target_percent": 66,
+          "rescued_percent": 100
+        }
+      },
+      {
+        "name": "loss",
+        "render": 1,
+        "states": 272,
+        "sha256": "c5b207825e568a17a495a8dd749a2a7fc408e40ef7ff7c15aa0e9073118443ce",
+        "captures": 56,
+        "binary_files": 10,
+        "rgb_frames": 56,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 3,
+          "lemming_count": 3,
+          "required": 2,
+          "rescued": 1,
+          "target_percent": 66,
+          "rescued_percent": 33
+        }
+      },
+      {
+        "name": "loss",
+        "render": 7,
+        "states": 272,
+        "sha256": "c5b207825e568a17a495a8dd749a2a7fc408e40ef7ff7c15aa0e9073118443ce",
+        "captures": 56,
+        "binary_files": 10,
+        "rgb_frames": 56,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 3,
+          "lemming_count": 3,
+          "required": 2,
+          "rescued": 1,
+          "target_percent": 66,
+          "rescued_percent": 33
+        }
+      },
+      {
+        "name": "mixed",
+        "render": 1,
+        "states": 316,
+        "sha256": "033a6abf7b4aebeb75e1bbda88c90cdeccf17681c23d19611c7c5695f3fad484",
+        "captures": 170,
+        "binary_files": 10,
+        "rgb_frames": 170,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 80,
+          "lemming_count": 25,
+          "required": 40,
+          "rescued": 13,
+          "target_percent": 50,
+          "rescued_percent": 52
+        }
+      },
+      {
+        "name": "mixed",
+        "render": 7,
+        "states": 316,
+        "sha256": "033a6abf7b4aebeb75e1bbda88c90cdeccf17681c23d19611c7c5695f3fad484",
+        "captures": 170,
+        "binary_files": 10,
+        "rgb_frames": 170,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 80,
+          "lemming_count": 25,
+          "required": 40,
+          "rescued": 13,
+          "target_percent": 50,
+          "rescued_percent": 52
+        }
+      },
+      {
+        "name": "particles",
+        "render": 1,
+        "states": 229,
+        "sha256": "ddcece3ff6fcd12df261a7ab09a69b345da08699438e1c1b85514ae019c894c3",
+        "captures": 27,
+        "binary_files": 10,
+        "rgb_frames": 27,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 1,
+          "lemming_count": 1,
+          "required": 1,
+          "rescued": 0,
+          "target_percent": 100,
+          "rescued_percent": 0
+        }
+      },
+      {
+        "name": "particles",
+        "render": 7,
+        "states": 229,
+        "sha256": "ddcece3ff6fcd12df261a7ab09a69b345da08699438e1c1b85514ae019c894c3",
+        "captures": 27,
+        "binary_files": 10,
+        "rgb_frames": 27,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 1,
+          "lemming_count": 1,
+          "required": 1,
+          "rescued": 0,
+          "target_percent": 100,
+          "rescued_percent": 0
+        }
+      },
+      {
+        "name": "Fun01-win",
+        "render": 1,
+        "states": 661,
+        "sha256": "0abec0f5f6cb2261e8ae0d6beaa7536ed0eecd53ba14a738d8b7dfc28c5ce37b",
+        "captures": 84,
+        "binary_files": 10,
+        "rgb_frames": 84,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 10,
+          "required": 1,
+          "rescued": 10,
+          "target_percent": 10,
+          "rescued_percent": 100
+        }
+      },
+      {
+        "name": "Fun01-win",
+        "render": 7,
+        "states": 661,
+        "sha256": "0abec0f5f6cb2261e8ae0d6beaa7536ed0eecd53ba14a738d8b7dfc28c5ce37b",
+        "captures": 84,
+        "binary_files": 10,
+        "rgb_frames": 84,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 10,
+          "required": 1,
+          "rescued": 10,
+          "target_percent": 10,
+          "rescued_percent": 100
+        }
+      },
+      {
+        "name": "Fun01-loss",
+        "render": 1,
+        "states": 272,
+        "sha256": "9e167a7004982d2daab45ac58b1ecfca03a1b52c768b3962360a8fc71bac28b8",
+        "captures": 42,
+        "binary_files": 10,
+        "rgb_frames": 42,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 3,
+          "required": 1,
+          "rescued": 0,
+          "target_percent": 10,
+          "rescued_percent": 0
+        }
+      },
+      {
+        "name": "Fun01-loss",
+        "render": 7,
+        "states": 272,
+        "sha256": "9e167a7004982d2daab45ac58b1ecfca03a1b52c768b3962360a8fc71bac28b8",
+        "captures": 42,
+        "binary_files": 10,
+        "rgb_frames": 42,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 3,
+          "required": 1,
+          "rescued": 0,
+          "target_percent": 10,
+          "rescued_percent": 0
+        }
+      }
+    ],
+    "scope": "unchanged normalized full state and ordered terrain/object history; every initial/final binary and all logical RGB captures; not browser or new DOS execution"
+  },
+  "sources": [
+    {
+      "path": "Cargo.lock",
+      "bytes": 1971,
+      "sha256": "aa4ae81ef8ec320e728f7e295ec60e9faf2305e1a520a62214a1f0d16f3110d9"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 334,
+      "sha256": "f6b0825f82b0c2e56c0bd3ab4f801a55728aa217c2db6d09c14d4ddb50adba1c"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 1902,
+      "sha256": "d742163bf0e829c9b3af5bc14f5d10fa172a1b2f7425e669d0bf167b8a023a1e"
+    },
+    {
+      "path": "apps/desktop/Cargo.toml",
+      "bytes": 481,
+      "sha256": "48eae0842e68a26a8a87d667e2b23ddff4172dbd32bd1d5ef420a5564aab5411"
+    },
+    {
+      "path": "apps/desktop/src/pacing.rs",
+      "bytes": 98,
+      "sha256": "8c18fadfa69868664d70d3305e8b1cabe2dcf556a7f5d6cfebd75d47573696fa"
+    },
+    {
+      "path": "apps/desktop/src/pointer.rs",
+      "bytes": 8103,
+      "sha256": "814a42f3a9157bc5cd58cf43d48ae3eb0d45f89df8b4628f592357f7d5e1992e"
+    },
+    {
+      "path": "apps/desktop/src/session.rs",
+      "bytes": 106,
+      "sha256": "9f3272a22d84e639c6fda46c490f1cf4d0bd6a1ab93cfea14b054cd4203fc52f"
+    },
+    {
+      "path": "crates/lemmings-core/src/level.rs",
+      "bytes": 3322,
+      "sha256": "c832a8049fcd98c00dbd18e2c2ade1d6c83a38f517594f0044c07a5f61d59643"
+    },
+    {
+      "path": "crates/lemmings-core/src/lib.rs",
+      "bytes": 1927,
+      "sha256": "4913e68c02b5115608002bafe3b884d34ce1d516b6ca80aa60e8478c2c76bd3e"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/clock.rs",
+      "bytes": 5264,
+      "sha256": "5f2d94121235b7bdefa75372339cffc961285aa8a39f29383da15ef0684f4cc6"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/completion.rs",
+      "bytes": 3932,
+      "sha256": "8353d3872d130f319279942da3e1e23093a3d33016b6ef4b3d75b4b0107a1243"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/input.rs",
+      "bytes": 5561,
+      "sha256": "29bd3e760a35d04ee0f22170b828761b8a38a2a9c25d372c2f1ab91dc3537aa9"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/basher.rs",
+      "bytes": 8775,
+      "sha256": "14b3009a424fcced00575e291e1b403e99bdedc247d71b0731bd32cb4379190b"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/blocker.rs",
+      "bytes": 7595,
+      "sha256": "c4d56c777c74a0297d774a270e476b2143f55c29f2680fdce7f9f8bdf5592ff5"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/bomber.rs",
+      "bytes": 7854,
+      "sha256": "15a2d4630e907a0dd263d1663fdde7d67ea8d488236ff8cb7eb29ff86fbc4532"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/builder.rs",
+      "bytes": 4549,
+      "sha256": "41cc899175e4cfeee7ae73f40cd0eeb94463bc48631107a353eb683021f785ea"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/climber.rs",
+      "bytes": 2151,
+      "sha256": "4d980955e83780358d9f8c181ef06cc2932d2788a33f179985d70cfc86faa90a"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/digger.rs",
+      "bytes": 5929,
+      "sha256": "4783974e7649ce4f6ec1a78913eec061aa2406d978dd93cda72b958fed46bb16"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/floater.rs",
+      "bytes": 1691,
+      "sha256": "d25bfb886138f4a4018cc57556311dfd3684c093bf51647624860bd78010ee2b"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/golden.rs",
+      "bytes": 24867,
+      "sha256": "09308318e247c7c9c702b534e718ee5e278d88b0ec1603e8b15356586d6aed97"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/hazards.rs",
+      "bytes": 3866,
+      "sha256": "c60b30e31b234f5e321f870586cb8bd52a4df89ea52011a3a1af5d1486e8cf0e"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/miner.rs",
+      "bytes": 5953,
+      "sha256": "969a48d926217e80c9e1dca1183fe0670ef8b7bc0f5a2da649ccfc2e948a8a05"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/tests.rs",
+      "bytes": 35480,
+      "sha256": "d0092eea6f1f942974eccb102e6b23c45abf5aa8ac32b290fe3103c69c3e5e6a"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion.rs",
+      "bytes": 27938,
+      "sha256": "ecdcc9de52f8382e38a2d158320141900381bd71ab8b8e584bb45af3a4e9bacb"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/nuke.rs",
+      "bytes": 2613,
+      "sha256": "f670d417edffcf07818a7dd97fe9000630a2b35b04284ee5cf7747d8a39d7e37"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/objects.rs",
+      "bytes": 4442,
+      "sha256": "347b660e54753a701480b0cc3c0390a2bdad46ca7d8b73ef3a8540e3b334e2f1"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/selection.rs",
+      "bytes": 10999,
+      "sha256": "0ba07e048e90d584e97183265b710bf065fb7ac8680055bd4625b5c5b8201e31"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/startup/tests.rs",
+      "bytes": 23015,
+      "sha256": "ce82102b83de1c41329dde05eca3159588d5be02575e438695f4bbecfe75f403"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/startup.rs",
+      "bytes": 13155,
+      "sha256": "e681aef7109cb51e782960be1fc935086f27f0df0c9bd147df9ee814a7015826"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/stepper.rs",
+      "bytes": 17877,
+      "sha256": "c84499865a88f6ef6a082d384285be433c0d870c1967ef120698d5a083932c43"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation.rs",
+      "bytes": 1519,
+      "sha256": "be0a7e5898dca0c79657682bb455696a194f25d33ce18db8b5840c3786c4f65a"
+    },
+    {
+      "path": "crates/lemmings-core/src/terrain/bulk.rs",
+      "bytes": 19000,
+      "sha256": "f17522325d42bf3eb63bbf96a656ced30f13f9065baf36d81f3fbaa2d9172c40"
+    },
+    {
+      "path": "crates/lemmings-core/src/terrain.rs",
+      "bytes": 27264,
+      "sha256": "c5deac5341a5679dc322ba70e6ed8df5f51249709746ea5d6b8e52a485f529d1"
+    },
+    {
+      "path": "crates/lemmings-session/Cargo.toml",
+      "bytes": 338,
+      "sha256": "137e5b6db8113cec8b0f4e930956f36339da2e63ba0d0eab2bbacc7ebe01f67f"
+    },
+    {
+      "path": "crates/lemmings-session/src/fixtures.rs",
+      "bytes": 4370,
+      "sha256": "fe6da73a4698b3436fa5239dcf38f49bf441ca656a82b5702945537750873a00"
+    },
+    {
+      "path": "crates/lemmings-session/src/lib.rs",
+      "bytes": 1395,
+      "sha256": "97af4161463cf9f6cae5c2d1d1c83f33f35625da99e144c9b2c7c1f03f40e268"
+    },
+    {
+      "path": "crates/lemmings-session/src/pacing.rs",
+      "bytes": 3750,
+      "sha256": "476b1fd985ab59a3299e800bbb7d823184ecd6d56f1efcbd82ca659f344745ac"
+    },
+    {
+      "path": "crates/lemmings-session/src/session.rs",
+      "bytes": 54223,
+      "sha256": "e2da5be93644e90fdf5b41e069961836962afc596e440165d8e4829dbd7ebe5a"
+    },
+    {
+      "path": "crates/lemmings-session/tests/host_contract.rs",
+      "bytes": 5164,
+      "sha256": "02e006ce49955653b9189a7c0e8fde8ff821481300d663e8c95b69c5be8d44f0"
+    },
+    {
+      "path": "tools/check_blocker.py",
+      "bytes": 7690,
+      "sha256": "4cbce1fa3e3365d98d5068cb9246e455a2344820f39b37506e8eff60fe758989"
+    },
+    {
+      "path": "tools/check_bomber.py",
+      "bytes": 7363,
+      "sha256": "48662da933781543e4edef19e2338af88db7a4435a2ade44ade34b2f7632ce7c"
+    },
+    {
+      "path": "tools/check_builder.py",
+      "bytes": 7818,
+      "sha256": "1e9d7fcf59ff84b0353a2e9438f8182d809281802a6bee1dc1d0a6b673128bf6"
+    },
+    {
+      "path": "tools/check_climber.py",
+      "bytes": 8213,
+      "sha256": "c9614d11cc29b96a8d95db4e95567a6ee38168aa9de7e9f28225cfdc8a464842"
+    },
+    {
+      "path": "tools/check_completion.py",
+      "bytes": 9789,
+      "sha256": "c74cdaf29b0576acd81509875f7d61dfe1df1c4c2e4ca68ef4b631d312093f3b"
+    },
+    {
+      "path": "tools/check_desktop.py",
+      "bytes": 5484,
+      "sha256": "eb6cc74bfbe21bb7f3dfe62869f1ab12fc9839c2f1b5af74d3cb91e8dc4b86fa"
+    },
+    {
+      "path": "tools/check_digger.py",
+      "bytes": 7525,
+      "sha256": "2b83916b1760d80bb6d7450044d62a0cdb1a77753a97e9343e8b10c0c2921ba9"
+    },
+    {
+      "path": "tools/check_exit.py",
+      "bytes": 9920,
+      "sha256": "f01c93c96f5a2a7618b3e3e6234b2336a88c4f731d9d313dc1ea69e90d63a849"
+    },
+    {
+      "path": "tools/check_floater.py",
+      "bytes": 8303,
+      "sha256": "1a402a9fd5b31fe821c3008baf4654e83a627f99439c80a1f712933a75d6c817"
+    },
+    {
+      "path": "tools/check_hazards.py",
+      "bytes": 11077,
+      "sha256": "fe3e11d98e86d3bcd425f384efcdb763d109d0805168dd9f33252f841d18cc5e"
+    },
+    {
+      "path": "tools/check_nuke.py",
+      "bytes": 8729,
+      "sha256": "bb0128fbd94e5ad37109748e0ff55a68b531f9e1beddf4b5a2fd0d4f60c036af"
+    },
+    {
+      "path": "tools/check_skill_interactions.py",
+      "bytes": 12915,
+      "sha256": "5bf70afbda5b83b8e49926968a585e6f605005f45a9cc062b433e5ca9d60d742"
+    },
+    {
+      "path": "tools/state_replay.py",
+      "bytes": 16162,
+      "sha256": "f9485c7f9e97ec385ede05755e64d2cfb96ec7cf3e056b285e535ff1016c80fa"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "assets/local/issue-62-review/baseline-desktop",
+      "bytes": 1060608,
+      "sha256": "21057115473b0d3b3cc43d5fd9cc794c36255f64cc46e11711676ac57d0320da"
+    },
+    {
+      "path": "assets/local/issue-62-review/compare-migration.py",
+      "bytes": 1923,
+      "sha256": "b78136b20affe038d2b9afa2d86ecedcceaa988c45cb46e1ca954aeb10432edc"
+    },
+    {
+      "path": "assets/local/issue-62-review/red.log",
+      "bytes": 1810,
+      "sha256": "dcae86aa4c57e0ae61b847d3d787ec998dabeb99bc2eaed8d5f0e6098bad0c51"
+    },
+    {
+      "path": "assets/local/issue-62-review/shared-tests.log",
+      "bytes": 3659,
+      "sha256": "5be015725e6cd435ad9d6e082afa4b8e4d4f704398b87679925f4b5fd67deb0f"
+    },
+    {
+      "path": "assets/local/issue-62-review/clippy.log",
+      "bytes": 435,
+      "sha256": "ede87a3f31bc85ac3beab83a6a67aa0b164a2faa2c0af07bdaac3f4e665aca0f"
+    },
+    {
+      "path": "assets/local/issue-62-review/wasm.log",
+      "bytes": 166,
+      "sha256": "eefa5fdfc449e563119d8d3e0b1dd1a4bf41ab954c5d8a7667bfcb2f0a2a0593"
+    },
+    {
+      "path": "assets/local/issue-62-review/isolated-wasm.log",
+      "bytes": 254,
+      "sha256": "07f95b7426b8e58be94ec0007428170e077c5e74b1e2bc3df99b5f44df748992"
+    },
+    {
+      "path": "assets/local/issue-62-review/dependency-tree.txt",
+      "bytes": 166,
+      "sha256": "83117c3ba71bfac5112ff099c897ae07e2cee737f0c73a16b77d921e14533d6b"
+    },
+    {
+      "path": "assets/local/issue-62-review/dependencies.json",
+      "bytes": 148,
+      "sha256": "ea3c131c8b701f42bf42a84dd4704d2f826abdd27c3ff5a90522bbf5fe16505f"
+    },
+    {
+      "path": "assets/local/issue-62-review/source-preservation.json",
+      "bytes": 325,
+      "sha256": "49e8d9c1463396a83c990711cbff94f2d9132e187d47edba8ded553ddc1b523c"
+    },
+    {
+      "path": "assets/local/issue-62-review/self-review.json",
+      "bytes": 1252,
+      "sha256": "1f2c002e3cf043db89243174ada9f068eea88a1c8e8ab724647059de6f19611f"
+    },
+    {
+      "path": "assets/local/issue-62-review/public-tests-final.log",
+      "bytes": 607,
+      "sha256": "5bb6ea57fc02532d788b72d8ea1c44fe9ce18c7b3c0d7b092784b38286641ef7"
+    },
+    {
+      "path": "assets/local/issue-62-review/clippy-final.log",
+      "bytes": 166,
+      "sha256": "6dfd873dffe672297648b7f266e2507462e2dc7da9a3605ede57b61a0e6bc226"
+    },
+    {
+      "path": "target/release/lemmings-desktop",
+      "bytes": 1067056,
+      "sha256": "f5d21b9e11273548750e90971c8d72cb0f42953e136d2df04c2467e5fe3bcdbf"
+    },
+    {
+      "path": "assets/local/issue-62-review/baseline-source/session.rs",
+      "bytes": 54190,
+      "sha256": "9da3ab53343aeac0cb3fb9f210f1d347eed17b267526f4f3087817b9821ec593"
+    },
+    {
+      "path": "assets/local/issue-62-review/baseline-source/pacing.rs",
+      "bytes": 3750,
+      "sha256": "476b1fd985ab59a3299e800bbb7d823184ecd6d56f1efcbd82ca659f344745ac"
+    },
+    {
+      "path": "assets/local/issue-62-review/baseline-source/pointer.rs",
+      "bytes": 8738,
+      "sha256": "2d4148fa10b2181751851401f57d4ac418d31dafe1157c822eb6340954d61dc5"
+    },
+    {
+      "path": "assets/local/issue-62-wasm-target/wasm32-unknown-unknown/debug/liblemmings_session.rlib",
+      "bytes": 1864700,
+      "sha256": "57a65e8c800d39cb56b25ca3cdbb1f70808be50617b962f44ce2b6de0a431f93"
+    }
+  ],
+  "evidence_trees": [
+    {
+      "directory": "assets/local/issue-62-baseline",
+      "files": 1001,
+      "bytes": 801019257,
+      "index": {
+        "path": "assets/local/issue-62-review/baseline-index.json",
+        "bytes": 157092,
+        "sha256": "566b1a46e8cad6da24150d0228818285834f64a0d61bf4129df835d683bc542a"
+      }
+    },
+    {
+      "directory": "assets/local/issue-62-after",
+      "files": 1989,
+      "bytes": 1602038990,
+      "index": {
+        "path": "assets/local/issue-62-review/after-index.json",
+        "bytes": 310359,
+        "sha256": "2597e079f1bc5cdb9feab99bfde5ff08bc4f8c3544b8ebdaa5b8fbd9c59cfc97"
+      }
+    }
+  ],
+  "index_algorithm": "POSIX relative-path lexicographic order; compact JSON array with sorted keys and final newline; entries path/bytes/SHA-256",
+  "local_validation": "shared unit29/publicAPI3/doc1 and isolated WASM passed; final make check and exact push/PR/main CI/logs recorded in issue62 after completion",
+  "browser_status": "not implemented; G09-02 bytes/scene separation is next"
+}

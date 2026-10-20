@@ -10,6 +10,7 @@ publish.workspace = true
 [dependencies]
 lemmings-core = { path = "../../crates/lemmings-core" }
 lemmings-resources = { path = "../../crates/lemmings-resources" }
+lemmings-session = { path = "../../crates/lemmings-session" }
 sdl2 = "=0.38.0"
 
 [lints]

@@ -3,7 +3,7 @@ use crate::{
     render::{SelectedSkill, View},
     session::Session,
 };
-use lemmings_core::{AssignmentSkill, StartupCommand};
+use lemmings_core::AssignmentSkill;
 
 pub fn skill(skill: SelectedSkill) -> AssignmentSkill {
     match skill {
@@ -17,18 +17,7 @@ pub fn skill(skill: SelectedSkill) -> AssignmentSkill {
         SelectedSkill::Digger => AssignmentSkill::Digger,
     }
 }
-pub fn command(skill: AssignmentSkill, id: u32) -> StartupCommand {
-    match skill {
-        AssignmentSkill::Climber => StartupCommand::AssignClimber(id),
-        AssignmentSkill::Floater => StartupCommand::AssignFloater(id),
-        AssignmentSkill::Bomber => StartupCommand::AssignBomber(id),
-        AssignmentSkill::Blocker => StartupCommand::AssignBlocker(id),
-        AssignmentSkill::Builder => StartupCommand::AssignBuilder(id),
-        AssignmentSkill::Basher => StartupCommand::AssignBasher(id),
-        AssignmentSkill::Miner => StartupCommand::AssignMiner(id),
-        AssignmentSkill::Digger => StartupCommand::AssignDigger(id),
-    }
-}
+pub use lemmings_session::command;
 pub fn refresh(session: &Session, view: &mut View) {
     if session.result().is_some() {
         view.selection = Default::default();
