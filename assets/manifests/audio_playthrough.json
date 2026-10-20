@@ -98,12 +98,19 @@
   ],
   "limitations": [
     "DOSBox DBOPL/mixer and Nuked PCM loudness/timbre differ; not waveform-equivalent",
-    "Physical DAC/speaker listening and user feedback not yet verified",
+    "Physical DAC/speaker measurements and full-song waveform equivalence are not certified by the user listening verdict",
     "Per-channel musical timing alignment is not absolute IRQ/device phase equality",
     "Original key disk not verified; runtime RUSSELL counter seed only, original EXE/DAT unchanged"
   ],
   "dosbox_source": {
     "url": "https://sources.debian.org/src/dosbox/0.74-4/src/hardware/adlib.cpp",
     "local_sha256": "a569850a4d0d33619b51ae12e5b4da755d94c98ef750801f8cfa5e4a5df09d72"
-  }
+  },
+  "user_sound_check": {
+    "date": "2026-10-21",
+    "verdict": "PASS",
+    "source": "User confirmation in the project session",
+    "statement": "사운드 체크 통과 판정입니다."
+  },
+  "g10_status": "complete"
 }

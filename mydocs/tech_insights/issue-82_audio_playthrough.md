@@ -33,10 +33,10 @@ python3 tools/dro.py --capture CAPTURE.dro --native assets/local/native-music.js
 
 음악4채널의 keyed F-number/block 순서를 정확히 비교한다. 채널별 첫 사건 정렬 뒤 상대 시간 허용차는 IRQ 한 번+1ms(15.268123ms)다. 실제23.099초/1,434쓰기에서272사건(95/93/72/12)이 같고 최대 오차는4.122914ms다. 첫 음악 주파수/템포의 증거이며 전체 register·전곡·효과음·절대 장치 위상의 동일성이 아니다. 전체 명령/반복·독립 C PCM·효과음 ID 근거는 [#74](issue-74_adlib_stream.md)·[#76](issue-76_opl_pcm.md)·[#78](issue-78_game_sound.md)에 있다.
 
-## 실제 SDL과 남은 청취
+## 실제 SDL과 사용자 청취
 
 원본 Fun1을180경계 실행하고 소유 PID의 PulseAudio/PipeWire 스트림만 전용 null sink로 이동했다. 그 monitor만44100Hz mono로 녹음하고 임시 장치/프로세스를 정리했다.11.888617초/524,288프레임에서419,057nonzero 샘플을 확인했다. 마이크·다른 앱·물리 스피커 녹음이 아니다. 첫 두 라우팅 실패는 보존하고 비동기 이동 완료를 확인한 마지막 실행만 성공에 집계한다.
 
-[로컬 청취 페이지](http://192.168.2.146:8080/listening/)에서 DOS/native/WASM/SDL을 하나씩 재생한다. DOS와 통합 시나리오의 입력/시작 시점은 다르다. native/WASM WAV는 완전히 같지만 DOSBox DBOPL/믹서와 Nuked PCM의 음량·음색/파형은 다르다. 탐색적10초 RMS-envelope 상관도0.161을 음질 동등성 통과로 쓰지 않았다. 실제 OPL 캡처로 주파수·템포 일치와 파형 차이를 분리했다. 물리 DAC·주관적 청취·전곡 음질·DOS 합성기와의 파형 동등성은 미확인이다. 사용자 청취를 요청했으며 수신 전 이를 통과로 쓰지 않는다.
+[로컬 청취 페이지](http://192.168.2.146:8080/listening/)에서 DOS/native/WASM/SDL을 하나씩 재생한다. DOS와 통합 시나리오의 입력/시작 시점은 다르다. native/WASM WAV는 완전히 같지만 DOSBox DBOPL/믹서와 Nuked PCM의 음량·음색/파형은 다르다. 탐색적10초 RMS-envelope 상관도0.161을 음질 동등성 통과로 쓰지 않았다. 실제 OPL 캡처로 주파수·템포 일치와 파형 차이를 분리했다. 2026-10-21 사용자에게서 “사운드 체크 통과 판정입니다.”라는 청취 검증 결과를 수신하여 G10을 마감한다. 물리 DAC 계측·전곡 전구간 검사·DOS 합성기와의 파형 또는 절대 위상 동등성은 이 판정의 범위에 포함하지 않는다.
 
 [선정 증거 해시](../../assets/manifests/audio_playthrough.json) · [검사 결과/남은 작업](../reports/issue-82_audio_playthrough.md).
