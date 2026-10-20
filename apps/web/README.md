@@ -21,7 +21,7 @@ wasm-bindgen crate/CLI는0.2.129로 맞추고 [도구 명세](../../assets/manif
 
 ## 호스트 API
 
-`WebGame(scene, pacing)`는 `builder/basher/climber/floater/win/loss/mixed/clock/zero/particles` 합성과 `reference/dos` pacing을 받습니다. 합성 승리 장면의 다음 레벨은 실패 장면이며 원본은 Fun/Tricky/Taxing/Mayhem 각1..30의 일반116개를 지원합니다. 특수4개는 G11-03 후속입니다.
+`WebGame(scene, pacing)`는 `builder/basher/climber/floater/win/loss/mixed/clock/zero/particles` 합성과 `reference/dos` pacing을 받습니다. 합성 승리 장면의 다음 레벨은 실패 장면이며 원본은 Fun/Tricky/Taxing/Mayhem 각1..30과 특수4개 배경을 지원합니다. 전수 완주 인증은 G11 후속입니다.
 
 - `due(integer_microseconds)`는0..3600000000의 유한 정수 시간을 받고 호출 수만 계산합니다. 실제 진행은 `step(count)`로 하며0..1000 유한 정수만 받습니다. 완료 결과에서 step은0을 돌려주고 입력을 거절합니다.
 - `command(name, value)`는 Pause/Resume/Nuke의 인자0, 레벨 초기값..99의 SetReleaseRate,8개 Assign*의0..u32::MAX 정수 ID를 검증한 후 같은 Session에 큐잉합니다. 잘못된 명령/숫자는 큐를 바꾸지 않습니다. `paused()`는 현재 경계에 큐잉한 Pause/Resume까지 반영합니다.
@@ -31,13 +31,13 @@ wasm-bindgen crate/CLI는0.2.129로 맞추고 [도구 명세](../../assets/manif
 
 `WebAssets`는 `insert(name, Uint8Array)`로 바이트를 복사합니다. MAIN.DAT/ODDTABLE.DAT/VGALEMMI.EXE, LEVEL000..009.DAT, GROUND0O..4O.DAT, VGAGR0..4.DAT만 허용하고 ASCII 대소문자를 통일합니다. 경로·미지원 이름·대소문자 중복·1 MiB 초과 파일은 변경 전에 거절합니다. 로드한 게임은 불변 바이트 묶음을 유지하므로 이후 은행에 파일을 추가해도 재시작/전환에 영향을 주지 않습니다. 사용한 은행은 `free()`할 수 있습니다.
 
-- `load_original(bank, level)`은 Fun1..30 유한 정수와 파일을 검사하고 새 DOS pacing 게임을 조립한 후 교체합니다. `start_level(level)`도 Fun 호환 진입점입니다. 새 `load_original_rank(bank, difficulty, level)`·`start_level_rank(difficulty, level)`로 난이도를 지정하며 `difficulty()`·View difficulty/next_difficulty로 전체 ID를 조회합니다. 누락/손상/미지원 특수 배경 실패는 기존 실행·View·시계를 보존합니다.
+- `load_original(bank, level)`은 Fun1..30 유한 정수와 파일을 검사하고 새 DOS pacing 게임을 조립한 후 교체합니다. `start_level(level)`도 Fun 호환 진입점입니다. 새 `load_original_rank(bank, difficulty, level)`·`start_level_rank(difficulty, level)`로 난이도를 지정하며 `difficulty()`·View difficulty/next_difficulty로 전체 ID를 조회합니다. 누락/손상 파일 교체 실패는 기존 실행·View·시계를 보존합니다.
 - `restart_level()`은 진행 중에도 현재 레벨의 새 세션을 만듭니다. `transition('restart'|'continue')`는 완료 결과에서만 작동하며 실패면 같은 레벨, 성공이면 다음 레벨, 마지막 성공이면 false입니다. 전환 로드 실패는 결과와 세션을 보존하고 결과 오류 표시만 켭니다.
 - `key(code, repeat)`와 `pointer(kind, x, y, button, buttons, clicks)`는 플랫폼 이벤트를 공유 패널/포인터/큐에 연결합니다. 좌표는 논리 정수, button0..2/buttons0..31/clicks0..255를 검증합니다. 반환값 none/restart/continue/exit는 호스트가 처리하는 장면 명령입니다. `release_input()`은 포커스/숨김 이탈 시 누름과 선택 기억을 지웁니다. `view_state()`는 별도의 표현 진단 JSON입니다.
 
 ## 원본 파일과 조작
 
-웹 페이지의 **게임 파일 선택**에서 보유한 DOS 게임 폴더의 DAT와 VGALEMMI.EXE를 함께 선택합니다. 관련 없는 파일은 건너뛰며 파일 내용은 네트워크로 보내지 않습니다. 필요한 파일 누락은 이름과 함께 화면에 표시됩니다. 다음 레벨에 필요한 파일도 처음에 함께 선택하면 레벨 열기/재시작/전환에 같은 바이트를 사용합니다. 새로고침하면 다시 선택해야 합니다. 원본을 자동 다운로드하거나 배포물에 포함하지 않습니다. 현재 Fun22 특수 배경은 미지원입니다.
+웹 페이지의 **게임 파일 선택**에서 보유한 DOS 게임 폴더의 DAT와 VGALEMMI.EXE를 함께 선택합니다. 관련 없는 파일은 건너뛰며 파일 내용은 네트워크로 보내지 않습니다. 필요한 파일 누락은 이름과 함께 화면에 표시됩니다. 다음 레벨에 필요한 파일도 처음에 함께 선택하면 레벨 열기/재시작/전환에 같은 바이트를 사용합니다. 새로고침하면 다시 선택해야 합니다. 원본을 자동 다운로드하거나 배포물에 포함하지 않습니다. 특수 배경 Fun22/Tricky14/Taxing15/Mayhem22에는 VGASPEC0..3.DAT도 함께 선택합니다.
 
 화면을 클릭해 키보드 포커스를 둡니다. C/F/E/K/U/B/M/D는 등반/낙하산/폭파/차단/계단/수평/대각/아래 굴착입니다. 기술 선택 후 레밍을 클릭합니다. Space 일시 정지, ↑↓ 출현 속도, ←→/Home/End 화면 이동, N 전체 폭파, Esc 중단 후 버튼으로 복귀합니다. 하단 패널 속도 버튼은 누름 반복, 전체 폭파는 더블클릭, 작은 지도는 끌기로 이동합니다. 우클릭을 누른 채 왼쪽 버튼을 눌러 기존 선택 규칙도 사용할 수 있습니다. 결과에서 Enter/왼쪽 클릭은 다음/재도전, R은 현재 레벨 재시작입니다.
 

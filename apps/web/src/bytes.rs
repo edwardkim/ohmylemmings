@@ -45,5 +45,6 @@ fn known(name: &str) -> bool {
         name,
         "MAIN.DAT" | "ODDTABLE.DAT" | "VGALEMMI.EXE" | "ADLIB.DAT"
     ) || (0..10).any(|n| name == format!("LEVEL{n:03}.DAT"))
+        || (0..4).any(|n| name == format!("VGASPEC{n}.DAT"))
         || (0..5).any(|n| name == format!("GROUND{n}O.DAT") || name == format!("VGAGR{n}.DAT"))
 }

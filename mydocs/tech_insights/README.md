@@ -93,3 +93,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#80 SDL/Web 오디오 출력](issue-80_audio_output.md)
 
 - [#82 실제 DOS OPL·SDL·WASM 통합 사운드](issue-82_audio_playthrough.md)
+
+- [#89 G11-03 특수4개 장면 연결 계약](issue-89_special_scenes.md)

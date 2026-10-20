@@ -1,0 +1,608 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/89",
+  "baseline_main": "facbc46ea2d3644574520f00fca6c43d3952c3b2",
+  "scope": "G11-03 four special scenes in shared loader, SDL and actual WASM; selected initial/restart/UI/transition proof, not full120 playthrough or new DOS observation certification",
+  "source_scope": {
+    "standard": 116,
+    "special": 4,
+    "total": 120,
+    "g11_full_execution": "120 pending under the G11-04/05 contract; historical #85/#87 manifests retained at their baselines"
+  },
+  "special": [
+    {
+      "id": "fun-22",
+      "file": "LEVEL001.DAT",
+      "part": 3,
+      "special": 4,
+      "asset": "VGASPEC3.DAT",
+      "terrain_pixels": 102548,
+      "terrain_mask_sha256": "615ee657b0aa8ad7318d19dac459440c252e58ea855985eeef6e63d1becb9bea",
+      "object_map_sha256": "b1498f98e6ee6a27c579af0b986d84b3d340e8b0e16ea9fecb0c932e5872b7bf",
+      "initial_world_rgba_sha256": "e3d9af805346cca5891e8af68dac84340c12af0f8eb6055a7735c637a99d0ef4",
+      "static_phase_aligned_iteration": 4,
+      "static_phase_aligned_rgba_sha256": "90271fee3b037f15218d7ccdd1beb4e2d7b52dbd52eae41d25166fe00a9ce753",
+      "static_phase_difference_pixels": 21,
+      "static_scene_pixel_sha256": "89bb12992d6b6a52c00a3dbdb851eaed3a8a9615849094e594ab210af5210150",
+      "palette_hex": "0000004040e000b000f0d0d0b0b000f020208080807c7c007c7c00406120305010204000103000505030404020303010"
+    },
+    {
+      "id": "tricky-14",
+      "file": "LEVEL000.DAT",
+      "part": 2,
+      "special": 2,
+      "asset": "VGASPEC1.DAT",
+      "terrain_pixels": 42406,
+      "terrain_mask_sha256": "3c547ad74662a8b9a8086625ed556633448846efa10a19344213c895e42b3705",
+      "object_map_sha256": "cfffa01ef5fd68d8cb399f75dc1460b098ab5bdf35b197998d00a075ebd23bc1",
+      "initial_world_rgba_sha256": "b4f74b509f58e6e040f6d72b50c899c972bbb3c7cbc7f8be4a8c58a8a94d2fcd",
+      "static_phase_aligned_iteration": 4,
+      "static_phase_aligned_rgba_sha256": "ddfec9114dfc0da730138bb2367305ff47397846fa106ec69c85711cbc828042",
+      "static_phase_difference_pixels": 21,
+      "static_scene_pixel_sha256": "3fdca008862003fec5f1ccaf1c1ed23d137952e24dcceab08e0aed09d5ee4c88",
+      "palette_hex": "0000004040e000b000f0d0d0b0b000f020208080807c7c007c7c00c24061a10000610000918150716120504000302000"
+    },
+    {
+      "id": "taxing-15",
+      "file": "LEVEL000.DAT",
+      "part": 1,
+      "special": 1,
+      "asset": "VGASPEC0.DAT",
+      "terrain_pixels": 69579,
+      "terrain_mask_sha256": "f181c222441a0e2785d0340288e79cc62b758d8c939bdb6e67286f9a1e3aad08",
+      "object_map_sha256": "503ff501ff7718a0acc5f5a1ead1aa94dfc160d70c39ace5bac27d6eb06cac73",
+      "initial_world_rgba_sha256": "f2bb6a1be46967e889879f51b89888171c1e9b3fb29941a5a4c177688fbb5c88",
+      "static_phase_aligned_iteration": 4,
+      "static_phase_aligned_rgba_sha256": "ef1e8e88f487acd37f6f2303f0f24d22a6bd4fae5bbc67e5e44e02fb5836bab1",
+      "static_phase_difference_pixels": 21,
+      "static_scene_pixel_sha256": "0e50d9e9d21d5f2f9e9087d0e94a11430f637c9e2da3ad136fff4505289a38b7",
+      "palette_hex": "0000004040e000b000f0d0d0b0b000f020208080807c7c007c7c002091c2205081203061a17161714030502020202020"
+    },
+    {
+      "id": "mayhem-22",
+      "file": "LEVEL000.DAT",
+      "part": 4,
+      "special": 3,
+      "asset": "VGASPEC2.DAT",
+      "terrain_pixels": 45453,
+      "terrain_mask_sha256": "0e9f9c439420da942ad2b7462bd7f94a299b1c3cc172839674a8da41033fa0a1",
+      "object_map_sha256": "9f21c832eb9434022f89d06e8544bf46c4a5602e1fd0ca56981f84c02f3fa442",
+      "initial_world_rgba_sha256": "d4f4b662038e4bf56f2556aafb11a6a7d0b54be56340519eaa64e2ffec9fffa1",
+      "static_phase_aligned_iteration": 4,
+      "static_phase_aligned_rgba_sha256": "4fe8a8990570f54e85052b27adb1fa0e9ef8a7c8045bf0011ca2b25b35e2f7bc",
+      "static_phase_difference_pixels": 21,
+      "static_scene_pixel_sha256": "de402ee21a470e4bc0fbcf0f27ee32c5864b71b934ebf1fedcab8409bb5f6f1c",
+      "palette_hex": "0000004040e000b000f0d0d0b0b000f020208080807c7c007c7c00405020304030202020303020504030615040716150"
+    }
+  ],
+  "static_comparison": "Four selected scenes freshly reproduced from existing resources inspector and compared with independently validated #19 hashes; initial collision occupancy exact, palette exact, world RGBA exact after aligning disk-frame phase. At iteration0 only21 torch pixels per scene differ from static first-frame; existing host startup phase2 is retained.",
+  "host_comparison": "All81 SDL boundary snapshots per special scene equal native Web wrapper before restart, at render1/7; actual WASM independently checked against that wrapper for every state/map/frame in web summary.",
+  "local_validation": {
+    "commands": [
+      "make check-rust check-python check-wasm",
+      "tools/check_web.py --original-assets assets/local/dos-original --evidence assets/local/issue-89-review/web",
+      "ignored check-native.py and check-evidence.py"
+    ],
+    "rust": 606,
+    "doc": 29,
+    "python": 164,
+    "full_make_check": false,
+    "remaining": "Full SDL and Web journey/audio regressions in publication CI"
+  },
+  "web": {
+    "status": "PASS",
+    "cases": 43,
+    "runs": 86,
+    "states": 14980,
+    "frames": 8617,
+    "canvas_readbacks": 8617,
+    "dom": {
+      "status": "PASS",
+      "ranks": {
+        "status": "PASS",
+        "rank_selections": 8,
+        "restarts": 8,
+        "cross_rank_continues": 3,
+        "terminal_mayhem": true,
+        "atomic_file_failure": true,
+        "special_selections": 4,
+        "special_restarts": 4,
+        "special_continues": 4,
+        "special_atomic_failures": 8
+      },
+      "scaled_assignments": 8,
+      "panel_skills": 8,
+      "held_release": true,
+      "focus_release": true,
+      "double_click_capture": true,
+      "right_chord_fallback": true,
+      "local_files": true,
+      "atomic_replacement": true,
+      "result_lifecycle": true
+    },
+    "sound_commands": {
+      "startup_events": 3,
+      "ui_burst": 1100,
+      "retained": 1024,
+      "dropped": 76,
+      "lifecycle": true,
+      "simulation_unchanged": true
+    },
+    "browser": "Chromium 152.0.7977.82 Arch Linux",
+    "expected_sha256": "94dc7fa6ed0a1cf6256c0e8876869ff058ab4b4e6e200f23eea2fbcef7ff5cd8"
+  },
+  "native": {
+    "status": "PASS",
+    "original_files": 50,
+    "originals_unchanged": true,
+    "states": 648,
+    "sdl_readbacks": 80,
+    "render_every": [
+      1,
+      7
+    ],
+    "steps": 80,
+    "cases": [
+      {
+        "id": "fun-22",
+        "render_every": 1,
+        "states": 81,
+        "sdl_readbacks": 10,
+        "trace_sha256": "aaaea2f311a2357b4fa267ad5239ae7ddc110c67b92fa086a06c0b1284dc8df7",
+        "config": {
+          "width": 1584,
+          "height": 160,
+          "minutes": 5,
+          "total": 80,
+          "rate": 50,
+          "entrances": [
+            [
+              336,
+              80
+            ]
+          ],
+          "pause_glitch": true,
+          "nuke_glitch": true,
+          "faller_three": true,
+          "diggers": 20,
+          "bashers": 20,
+          "miners": 20,
+          "builders": 20,
+          "blockers": 20,
+          "bombers": 20,
+          "climbers": 20,
+          "floaters": 20,
+          "level": 22,
+          "difficulty": "fun",
+          "required": 64
+        }
+      },
+      {
+        "id": "fun-22",
+        "render_every": 7,
+        "states": 81,
+        "sdl_readbacks": 10,
+        "trace_sha256": "aaaea2f311a2357b4fa267ad5239ae7ddc110c67b92fa086a06c0b1284dc8df7",
+        "config": {
+          "width": 1584,
+          "height": 160,
+          "minutes": 5,
+          "total": 80,
+          "rate": 50,
+          "entrances": [
+            [
+              336,
+              80
+            ]
+          ],
+          "pause_glitch": true,
+          "nuke_glitch": true,
+          "faller_three": true,
+          "diggers": 20,
+          "bashers": 20,
+          "miners": 20,
+          "builders": 20,
+          "blockers": 20,
+          "bombers": 20,
+          "climbers": 20,
+          "floaters": 20,
+          "level": 22,
+          "difficulty": "fun",
+          "required": 64
+        }
+      },
+      {
+        "id": "tricky-14",
+        "render_every": 1,
+        "states": 81,
+        "sdl_readbacks": 10,
+        "trace_sha256": "13c3424c73b1d3d2978d6c6e64e5ef176b615740ddfedccbae99147bbb3cf36c",
+        "config": {
+          "width": 1584,
+          "height": 160,
+          "minutes": 6,
+          "total": 80,
+          "rate": 50,
+          "entrances": [
+            [
+              336,
+              88
+            ]
+          ],
+          "pause_glitch": true,
+          "nuke_glitch": true,
+          "faller_three": true,
+          "diggers": 15,
+          "bashers": 15,
+          "miners": 15,
+          "builders": 15,
+          "blockers": 10,
+          "bombers": 15,
+          "climbers": 10,
+          "floaters": 10,
+          "level": 14,
+          "difficulty": "tricky",
+          "required": 70
+        }
+      },
+      {
+        "id": "tricky-14",
+        "render_every": 7,
+        "states": 81,
+        "sdl_readbacks": 10,
+        "trace_sha256": "13c3424c73b1d3d2978d6c6e64e5ef176b615740ddfedccbae99147bbb3cf36c",
+        "config": {
+          "width": 1584,
+          "height": 160,
+          "minutes": 6,
+          "total": 80,
+          "rate": 50,
+          "entrances": [
+            [
+              336,
+              88
+            ]
+          ],
+          "pause_glitch": true,
+          "nuke_glitch": true,
+          "faller_three": true,
+          "diggers": 15,
+          "bashers": 15,
+          "miners": 15,
+          "builders": 15,
+          "blockers": 10,
+          "bombers": 15,
+          "climbers": 10,
+          "floaters": 10,
+          "level": 14,
+          "difficulty": "tricky",
+          "required": 70
+        }
+      },
+      {
+        "id": "taxing-15",
+        "render_every": 1,
+        "states": 81,
+        "sdl_readbacks": 10,
+        "trace_sha256": "b3c2cf13dd6a0ecf86de0dbb41209b93d92f2302b0de2bef4923fd828887927f",
+        "config": {
+          "width": 1584,
+          "height": 160,
+          "minutes": 6,
+          "total": 80,
+          "rate": 50,
+          "entrances": [
+            [
+              352,
+              4
+            ]
+          ],
+          "pause_glitch": true,
+          "nuke_glitch": true,
+          "faller_three": true,
+          "diggers": 20,
+          "bashers": 20,
+          "miners": 20,
+          "builders": 20,
+          "blockers": 20,
+          "bombers": 20,
+          "climbers": 20,
+          "floaters": 20,
+          "level": 15,
+          "difficulty": "taxing",
+          "required": 64
+        }
+      },
+      {
+        "id": "taxing-15",
+        "render_every": 7,
+        "states": 81,
+        "sdl_readbacks": 10,
+        "trace_sha256": "b3c2cf13dd6a0ecf86de0dbb41209b93d92f2302b0de2bef4923fd828887927f",
+        "config": {
+          "width": 1584,
+          "height": 160,
+          "minutes": 6,
+          "total": 80,
+          "rate": 50,
+          "entrances": [
+            [
+              352,
+              4
+            ]
+          ],
+          "pause_glitch": true,
+          "nuke_glitch": true,
+          "faller_three": true,
+          "diggers": 20,
+          "bashers": 20,
+          "miners": 20,
+          "builders": 20,
+          "blockers": 20,
+          "bombers": 20,
+          "climbers": 20,
+          "floaters": 20,
+          "level": 15,
+          "difficulty": "taxing",
+          "required": 64
+        }
+      },
+      {
+        "id": "mayhem-22",
+        "render_every": 1,
+        "states": 81,
+        "sdl_readbacks": 10,
+        "trace_sha256": "1a2cbd6e7afef6724757bd2a1a108177f938af773a78db1341e5f10f27711969",
+        "config": {
+          "width": 1584,
+          "height": 160,
+          "minutes": 5,
+          "total": 80,
+          "rate": 75,
+          "entrances": [
+            [
+              320,
+              68
+            ]
+          ],
+          "pause_glitch": true,
+          "nuke_glitch": true,
+          "faller_three": true,
+          "diggers": 10,
+          "bashers": 10,
+          "miners": 10,
+          "builders": 15,
+          "blockers": 10,
+          "bombers": 10,
+          "climbers": 10,
+          "floaters": 10,
+          "level": 22,
+          "difficulty": "mayhem",
+          "required": 68
+        }
+      },
+      {
+        "id": "mayhem-22",
+        "render_every": 7,
+        "states": 81,
+        "sdl_readbacks": 10,
+        "trace_sha256": "1a2cbd6e7afef6724757bd2a1a108177f938af773a78db1341e5f10f27711969",
+        "config": {
+          "width": 1584,
+          "height": 160,
+          "minutes": 5,
+          "total": 80,
+          "rate": 75,
+          "entrances": [
+            [
+              320,
+              68
+            ]
+          ],
+          "pause_glitch": true,
+          "nuke_glitch": true,
+          "faller_three": true,
+          "diggers": 10,
+          "bashers": 10,
+          "miners": 10,
+          "builders": 15,
+          "blockers": 10,
+          "bombers": 10,
+          "climbers": 10,
+          "floaters": 10,
+          "level": 22,
+          "difficulty": "mayhem",
+          "required": 68
+        }
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "path": "assets/manifests/dos_original.json",
+      "bytes": 12573,
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "assets/manifests/dos_compatibility.json",
+      "bytes": 96918,
+      "sha256": "8ee52327df06f30d730192942f4e77ae8a6933edf0c1a9aff021de9d2f954419"
+    },
+    {
+      "path": "assets/manifests/vgaspec_backgrounds.json",
+      "bytes": 6785,
+      "sha256": "176b23c4ff891760e828bddfe4f42c505aa425b7d28cd532ef8c5289a4db4a4d"
+    },
+    {
+      "path": "assets/manifests/level_terrain.json",
+      "bytes": 36528,
+      "sha256": "207ad3775bb9d684a9d72e5511d10523320d6abeabc328dc9c6b70b614a0559b"
+    },
+    {
+      "path": "assets/manifests/level_objects.json",
+      "bytes": 114186,
+      "sha256": "d5411b3ec6f346dd239c8faf6cd9ea3b387f2966a1b98b6c00490d32a0dea232"
+    },
+    {
+      "path": "assets/manifests/game_sound.json",
+      "bytes": 26147,
+      "sha256": "7e425f922dfcfd909651a32fa1f196f9e8f096f223c1c12e5a3a7b4622766c49"
+    },
+    {
+      "path": "assets/manifests/compatibility_plan.json",
+      "bytes": 82864,
+      "sha256": "7ca43c22d5f30c64e9080bd09700cab34f161233294fce71a96388685ea26765"
+    },
+    {
+      "path": "assets/manifests/rank_selection.json",
+      "bytes": 11445,
+      "sha256": "48c2929cddacab40128a0a0e5faeb165bd86e32fb9bafd7cb4ac1e22edff92bb"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/tdd-red.log",
+      "bytes": 2356,
+      "sha256": "6553c93e037fca7cc6b95395e86fbe641d1451b8b4450ed3542ef7f3297bc807"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/tdd-green.log",
+      "bytes": 1129,
+      "sha256": "f9553297e646ec89da8997daf6f648c143a417d9742cdb469a9a6543225c1d7c"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/web-assets.log",
+      "bytes": 858,
+      "sha256": "0fe6fec37cf2054c7d750c1b0a8b32b711cb943ce60cfa2247ef465aee761319"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/local-checks.log",
+      "bytes": 97970,
+      "sha256": "95a768876ed201285981989b240ab82af3cdb56874b2b8404c6a1206887cdcf7"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/web/summary.json",
+      "bytes": 8674,
+      "sha256": "491bfb924afda87ef191f6f9a1f196c5326db7a34a6454a8c4f99f97e0f577ab"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/web/expected.json",
+      "bytes": 21158508,
+      "sha256": "94dc7fa6ed0a1cf6256c0e8876869ff058ab4b4e6e200f23eea2fbcef7ff5cd8"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/native-summary.json",
+      "bytes": 6511,
+      "sha256": "e4191ee84c747b51f129a000ddbb4d087b7e3e89c1363d295ed90379e601a7ef"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/cross-evidence.json",
+      "bytes": 4153,
+      "sha256": "72446bf2b33011a1e33d3c38daf5f43b6fadabf8bb81c7a0d0b36d7929f8069d"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/check-native.py",
+      "bytes": 2769,
+      "sha256": "6f397890d7413be16cbe3ade1f52aabb1dd3f8916b725777e89bd534541d628c"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/check-evidence.py",
+      "bytes": 3076,
+      "sha256": "9e4cd4ebabbd9a6c350903e8f879fb615838efe9c62051131a49b81c2bf13c61"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/probe/Cargo.toml",
+      "bytes": 225,
+      "sha256": "19258c191e4325bf0848159d178816a045602fc1ac5543cf4db54291fb59ef4d"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/probe/src/main.rs",
+      "bytes": 1325,
+      "sha256": "529e7baaf989042aac2fd0d21b0c57ad13d112f0c182897ebeb52ce97baf30db"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-89-review/capture-ui.py",
+      "bytes": 1696,
+      "sha256": "d7e72d14f04199dbb80acaa778cbb3fce50888b185d6e8ff46aade0b98f392d7"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "apps/web/src/bytes.rs",
+      "bytes": 1698,
+      "sha256": "330a4957f36f01a6419e2ae767095473e039e35298e4bb8b0124225713f01ae6"
+    },
+    {
+      "path": "apps/web/tests/input_assets.rs",
+      "bytes": 9659,
+      "sha256": "ec61985743c086a138cac9cd1a8639d0c2e56dd7051db7f720dce868e9308663"
+    },
+    {
+      "path": "apps/web/tests/support/mod.rs",
+      "bytes": 4963,
+      "sha256": "b69fa9e7264bb0b67cb4380bf271c47ab52c5a0d8a4a273719d466df014ff3fe"
+    },
+    {
+      "path": "apps/web/www/index.html",
+      "bytes": 4599,
+      "sha256": "d0e00fee78e04fe3aaf4118d8a228ec8740d0de302e81068784bb74fcabb8fae"
+    },
+    {
+      "path": "crates/lemmings-game/src/assets.rs",
+      "bytes": 35607,
+      "sha256": "800a7bb015d44db368368385685b0c0e392bb8121b1b9ebc55cb43f5bb2ad717"
+    },
+    {
+      "path": "crates/lemmings-game/tests/byte_source.rs",
+      "bytes": 11500,
+      "sha256": "41e76fd4ccd05e3e2dd209c1c1c05a219e29fe01969773ee942df7597b513a1a"
+    },
+    {
+      "path": "crates/lemmings-game/tests/support/mod.rs",
+      "bytes": 4522,
+      "sha256": "4c5d838db83442403b04e50135ad8ab28a4ce2c18757643c2611b8f24c2e01b8"
+    },
+    {
+      "path": "tools/check_web.py",
+      "bytes": 12093,
+      "sha256": "af918ce5512c43381840d189c7d02c71490778017a5d4dc9c806ae0316778acd"
+    },
+    {
+      "path": "tools/web/check.js",
+      "bytes": 8608,
+      "sha256": "95e67f0142c460149ccee06b5894eb1a798fed7fcff457cf74179b0360371927"
+    },
+    {
+      "path": "tools/web/dom_check.js",
+      "bytes": 11732,
+      "sha256": "f657bcf2d656e2a04478e82287c8fc8f8aff108dc1dc756619b9a80a8b1aaa9e"
+    },
+    {
+      "path": "tools/web_fixture.py",
+      "bytes": 3457,
+      "sha256": "bff990ca6b763edb1e46c5d0203a5569d2ff1ee5cd2083fb18d700b8898b8ae1"
+    }
+  ],
+  "screenshot": {
+    "path": "mydocs/reports/issue-89_special_scenes.png",
+    "bytes": 237173,
+    "sha256": "9bc7a77043e0f3b800c9dda97b5c3264c4bb712cc8f65fee965028c91e601b66",
+    "kind": "Actual product UI with invented VGASPEC input. No original artwork."
+  },
+  "self_review": {
+    "status": "PASS",
+    "unresolved": 0,
+    "checks": [
+      "Source selection1-based to0-based and owned validated record lifetime",
+      "Initial mask and dynamic rendering use same special source at304,0; black opacity preserved",
+      "Separate palettes; removed/regrown bridge and object precedence covered by invented fixture",
+      "Failed special file replacement preserves session/view/clock/sound and immutable bank",
+      "Four special music IDs, restart and normal-to-special Continue in actual product DOM",
+      "Eight actual SDL entries match native Web boundary snapshots; actual WASM state/maps/Canvas compared",
+      "Normal cases and legacy Fun entry remain covered; no dependencies/workflows or network changes",
+      "Static first-frame differs by21 torch pixels from retained startup phase; aligned complete RGBA hashes match independent #19",
+      "Historic120 metadata preserved; full120 initialization/completion and performance explicitly pending",
+      "Original50files unchanged; screenshots public invented, raw original artifacts ignored"
+    ]
+  }
+}

@@ -37,11 +37,33 @@ async function checkProductRanks(assert) {
             assert(proceed.disabled===!next,'terminal Continue availability');
             if(next) {proceed.click();assert(game.difficulty()===next&&game.level()===1&&rank.value===next&&level.value==='1','product cross-rank Continue');}
         }
+        const specialNames=[...names,...Array.from({length:4},(_,i)=>`VGASPEC${i}.DAT`)];
+        const specialFiles=await Promise.all(specialNames.map(async name=>new win.File([await (await fetch('./special/'+name)).arrayBuffer()],name)));
+        for(const [name,number,music] of [['fun',22,1],['tricky',14,8],['taxing',15,0],['mayhem',22,2]]) {
+            rank.value=name;level.value=number;await selectFiles(specialFiles);
+            assert(game.difficulty()===name&&game.level()===number,'special product selection');
+            assert(JSON.parse(game.sound_state()).music===music,'special product music');
+            const initial=game.state();game.step(60);doc.querySelector('#restart').click();
+            assert(game.state()===initial,'special product restart');
+            for(const damaged of [false,true]) {
+                const before=[game.state(),game.view_state(),game.sound_state(),Array.from(game.frame())];
+                const broken=specialFiles.filter(f=>f.name!==`VGASPEC${({fun:3,tricky:1,taxing:0,mayhem:2})[name]}.DAT`);
+                if(damaged)broken.push(new win.File([new Uint8Array([0])],`VGASPEC${({fun:3,tricky:1,taxing:0,mayhem:2})[name]}.DAT`));
+                await selectFiles(broken);
+                assert(JSON.stringify(before)===JSON.stringify([game.state(),game.view_state(),game.sound_state(),Array.from(game.frame())]),'special product failed replacement changed game');
+            }
+            // Reload a complete bank and win the preceding normal level using the
+            // invented exit. The actual Continue button must enter this special.
+            level.value=number-1;await selectFiles(specialFiles);game.step(1000);
+            assert(JSON.parse(game.state()).completion.phase==='Won','special predecessor did not win');
+            doc.dispatchEvent(new win.Event('visibilitychange'));doc.querySelector('#continue').click();
+            assert(game.level()===number&&JSON.parse(game.sound_state()).music===music,'Continue into special lost level/music');
+        }
         const before=[game.state(),game.view_state(),game.sound_state()];
         await selectFiles([new win.File([new Uint8Array([0])],'LEVEL009.DAT')]);
         assert(JSON.stringify(before)===JSON.stringify([game.state(),game.view_state(),game.sound_state()]),'failed product file replacement changed current rank/session');
         assert(doc.querySelector('#error').textContent.includes('불러오기 실패'),'product file error missing');
-        return {status:'PASS',rank_selections:8,restarts:8,cross_rank_continues:3,terminal_mayhem:true,atomic_file_failure:true};
+        return {status:'PASS',rank_selections:8,restarts:8,cross_rank_continues:3,terminal_mayhem:true,atomic_file_failure:true,special_selections:4,special_restarts:4,special_continues:4,special_atomic_failures:8};
     } finally {detach();frame.remove();}
 }
 

@@ -155,7 +155,7 @@ fn odd_routes_request_the_table_and_apply_its_header_and_title() {
 }
 
 #[test]
-fn unsupported_numbers_and_special_scenes_stop_before_unneeded_reads() {
+fn unsupported_numbers_and_missing_special_files_fail_explicitly() {
     for number in [0, 31, 255] {
         let error = Assets::from_source(
             &mut |_: &str| -> Result<Option<Vec<u8>>, Box<dyn Error>> {
@@ -176,8 +176,11 @@ fn unsupported_numbers_and_special_scenes_stop_before_unneeded_reads() {
     )
     .err()
     .unwrap();
-    assert!(error.to_string().contains("standard graphics"));
-    assert_eq!(names, ["LEVEL009.DAT"]);
+    assert_eq!(
+        error.downcast_ref::<MissingAsset>().unwrap().name,
+        "VGASPEC0.DAT"
+    );
+    assert!(names.contains(&"VGASPEC0.DAT".to_owned()));
 }
 
 #[test]
@@ -269,4 +272,86 @@ fn failed_byte_load_preserves_the_finished_scene_and_restart_uses_fresh_bytes() 
     assert_eq!(restarted.assets.title, "BYTE BANK");
     assert!(restarted.session.result().is_none());
     assert_eq!(restarted.session.scheduler.step_state().control_step, 0);
+}
+
+#[test]
+fn special_sources_keep_offsets_opacity_palette_edits_and_object_priority() {
+    use lemmings_core::{Difficulty, LevelId};
+    for (index, difficulty, number) in [
+        (3, Difficulty::Fun, 22),
+        (1, Difficulty::Tricky, 14),
+        (0, Difficulty::Taxing, 15),
+        (2, Difficulty::Mayhem, 22),
+    ] {
+        let bank = support::special_bank(index);
+        let mut names = Vec::new();
+        let a = Assets::from_level_source(
+            &mut |name: &str| {
+                names.push(name.to_owned());
+                Ok(bank.get(name).cloned())
+            },
+            LevelId::new(difficulty, number).unwrap(),
+        )
+        .unwrap();
+        assert_eq!(a.music_special, u16::from(index + 1));
+        assert!(names.contains(&format!("VGASPEC{index}.DAT")));
+        assert_eq!(a.terrain.iter().map(|&v| usize::from(v)).sum::<usize>(), 2);
+        assert_eq!(&a.terrain[304..308], &[0, 1, 1, 0]);
+        assert_eq!(a.terrain[100 * a.width + 48], 0);
+        let mut mask = a.terrain.clone();
+        let mut bricks = vec![0; mask.len()];
+        let image = a.scene_with_traps(0, &mask, &bricks, &[None; 16]).unwrap();
+        assert_eq!(image[305], [((10 + index) << 2), 80, 120, 255]);
+        assert_eq!(image[306], [0, 0, 0, 255]); // black is solid
+        assert_eq!(image[303], [0, 0, 0, 0]);
+        // Entrance is color1 in the fixed object bank, independent of the picture.
+        assert_eq!(image[4 * a.width + 304], [64, 64, 224, 255]);
+        for x in [306, 310] {
+            mask[x] = 1;
+            bricks[x] = 1;
+        }
+        mask[305] = 0;
+        let image = a.scene_with_traps(50, &mask, &bricks, &[None; 16]).unwrap();
+        assert_eq!(image[305], [0, 0, 0, 0]);
+        assert_eq!(image[306], [124, 124, 0, 255]); // special bridge color
+        assert_eq!(image[310], [124, 124, 0, 255]); // new terrain
+        mask[4 * a.width + 304] = 1;
+        bricks[4 * a.width + 304] = 1;
+        assert_eq!(
+            a.scene_with_traps(50, &mask, &bricks, &[None; 16]).unwrap()[4 * a.width + 304],
+            [64, 64, 224, 255]
+        );
+        mask[310] = 0;
+        assert_eq!(
+            a.scene_with_traps(50, &mask, &bricks, &[None; 16]).unwrap()[310],
+            [0, 0, 0, 0]
+        );
+    }
+}
+
+#[test]
+fn special_dependencies_reject_damaged_records_and_propagate_read_errors() {
+    let complete = support::special_bank(0);
+    for bytes in [vec![0; 4], {
+        let mut b = complete["VGASPEC0.DAT"].clone();
+        b[1] ^= 1;
+        b
+    }] {
+        let mut bank = complete.clone();
+        bank.insert("VGASPEC0.DAT".into(), bytes);
+        assert!(load(&bank, 1).is_err());
+    }
+    let error = Assets::from_source(
+        &mut |name: &str| {
+            if name == "VGASPEC0.DAT" {
+                Err(std::io::Error::other("special read failed").into())
+            } else {
+                Ok(complete.get(name).cloned())
+            }
+        },
+        1,
+    )
+    .err()
+    .unwrap();
+    assert_eq!(error.to_string(), "special read failed");
 }
