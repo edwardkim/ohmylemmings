@@ -79,3 +79,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#70 G09-05 브라우저 통합 완주](issue-70_web_playthrough.md)
 
 - [#72 AdLib 자원·통합 계약](issue-72_adlib_catalog.md)
+
+- [#74 ADLIB 명령·레지스터 스트림](issue-74_adlib_stream.md)

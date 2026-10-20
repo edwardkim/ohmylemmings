@@ -112,3 +112,5 @@ mydocs/
 [G07-08 Floater](mydocs/reports/issue-42_floater.md)는 영구 우산 능력을 부여합니다. F키로 선택한 뒤 클릭하며 `--level 2`로 원본 Fun02를 엽니다. 높은 곳에서 우산을 펼치고 안전하게 착지합니다. 재생 예는 `54 0 AssignFloater 0`이며 직업 상호작용은 #46, 출구·구출은 #48에서 연결했으며 승패/음향은 후속입니다.
 
 [G07-09 Nuke](mydocs/reports/issue-44_nuke.md)는 N키로 작동합니다. 이후 생성을 중단하고 기존 레밍에 하나씩 카운트다운을 붙입니다. 일시정지 중에는 실행하지 않으며 Bomber 수량을 소비하지 않습니다. 재생 예는 `120 0 Nuke`이고 `--synthetic-nuke`로 원본 없이 검사합니다. 직업 상호작용은 #46, 출구·구출은 #48에서 연결했으며 승패·원본 하단 패널·음향은 후속입니다.
+
+[G10-02 ADLIB 명령·레지스터 스트림 / #74](mydocs/tech_insights/issue-74_adlib_stream.md)에서 no_std9채널 해석기·오류 보존·합성/원본 직접 대조를 연결합니다. 다음은 OPL/PCM이며 G10 전체 사운드 출력은 진행 중입니다.

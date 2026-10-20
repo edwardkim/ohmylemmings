@@ -1,0 +1,1105 @@
+{
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/74",
+  "scope": "Original x86-16 ADLIB driver calls, DX=0; no PIT, PCM, OPL emulation or hardware listening",
+  "driver": {
+    "source": "assets/manifests/dos_original.json",
+    "decoded_size": 22125,
+    "decoded_sha256": "ad4f33eb383c60b5a67945987f27580fc0540e38558d4c158efe1a672db5f490"
+  },
+  "oracle_tool": {
+    "name": "unicorn",
+    "version": "2.1.4",
+    "license": "GPL-2.0 engine; see upstream licensing",
+    "project": "https://github.com/unicorn-engine/unicorn/tree/2.1.4",
+    "filename": "unicorn-2.1.4-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "url": "https://files.pythonhosted.org/packages/e7/df/ded5e3684c2d7600b30cc8a7530277b8cb36644a1a9d34cade7ebb45604c/unicorn-2.1.4-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "size": 16436886,
+    "sha256": "9d6e6dea140560de4ebd8446661f7ef84a357d428c14a3ef09dacd306ec8c239",
+    "usage": "Optional isolated verification tool; no runtime or offline CI dependency"
+  },
+  "synthetic_fixture": {
+    "path": "tools/tests/fixtures/adlib_stream.json",
+    "size": 205113,
+    "sha256": "29ecf128c3fbf890e511ba75adfc0da3a8560155904237056967474f16350dfb",
+    "scenarios": 10,
+    "steps": 877,
+    "writes": 1621,
+    "encoding": "Each record: SHA256 of sorted compact JSON of complete step/channel/global/flag/register state, plus ordered register/value writes. Executable and original music data are not included.",
+    "regenerate": "tools/check_adlib_stream.py --fixture-driver assets/local/DECODED_ADLIB_IMAGE --fixture-output tools/tests/fixtures/adlib_stream.json"
+  },
+  "baseline_main": "b6d0d3c72a295347f20373095a2979e63193d3a5",
+  "local_validation": {
+    "status": "PASS",
+    "exit_code": 0,
+    "rust": 550,
+    "doc": 29,
+    "python": 128,
+    "sha256": "b36805582c9b0bcbf9a0624c5b911f08d998b46ec662df24491c3812280a6909",
+    "bytes": 95453,
+    "scope": "Full make check: Rust/docs/Python/offline synthetic ADLIB state/stream/WASM/SDL/Web"
+  },
+  "original": {
+    "status": "PASS",
+    "scope": "original x86-16 driver; every channel/global/flag/register and ordered write per call; DX=0",
+    "music": 21,
+    "effects": 18,
+    "steps": 227615,
+    "writes": 215681,
+    "original_files": 50,
+    "image_sha256": "ad4f33eb383c60b5a67945987f27580fc0540e38558d4c158efe1a672db5f490",
+    "unicorn": "2.1.4",
+    "pcm_verified": false,
+    "pit_verified": false
+  },
+  "original_scenarios": [
+    {
+      "name": "music-0",
+      "actions": "m0:40000",
+      "steps": 9857,
+      "writes": 9170,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "632fab5782ae38b18854032974ac079d5e8483f5bce32631c5fa7cc4b497370e",
+      "stream_sha256": "8be248e9215967fe6f66f1dc7e5450a5868c73024d7d18eb6599708ec8e9b6e4"
+    },
+    {
+      "name": "music-1",
+      "actions": "m1:40000",
+      "steps": 12289,
+      "writes": 5918,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "84306cdfab8cba1b5e71549aca9109d906d515105f2e401124818eb0f82a63ef",
+      "stream_sha256": "64fc580d561b96fc74292d65cffcd2905319437677b9260b5f6647ac264adacb"
+    },
+    {
+      "name": "music-2",
+      "actions": "m2:40000",
+      "steps": 12545,
+      "writes": 8610,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "75ecd6d4884088615d8021c441641e4db0c163b786b9aed7d97cef5777adb187",
+      "stream_sha256": "55374f38ac9ce4ef9792c19a20df61423829939851c91f2486ee66b836e4b0c3"
+    },
+    {
+      "name": "music-3",
+      "actions": "m3:40000",
+      "steps": 7681,
+      "writes": 7010,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "4c3078e4f31e525b044f40c260ee64b425054089d952bc792f9152fa25b96cd5",
+      "stream_sha256": "89002cbeb8d88bf99ed0bfd7f0daa3c6060f60af519c612aa8fa0b49f2c6f568"
+    },
+    {
+      "name": "music-4",
+      "actions": "m4:40000",
+      "steps": 6401,
+      "writes": 7933,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "cd45f6154ce91bde8b9ddbe1dfd93137bae930635c87b2079642f3907b24df2e",
+      "stream_sha256": "a1f03477ee7eb0b0d24455bc9fc37578642e921edc04d0484bdf7023ee8172ab"
+    },
+    {
+      "name": "music-5",
+      "actions": "m5:40000",
+      "steps": 7681,
+      "writes": 8609,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "d24e8eabb2f894aa5969b47a3132d8f89fe015ab6c1473766d48bc8976348e3b",
+      "stream_sha256": "f7571defdf7356184c48586ab940c66490634d2afd3afc4aa548c551c4e9eb56"
+    },
+    {
+      "name": "music-6",
+      "actions": "m6:40000",
+      "steps": 15361,
+      "writes": 19785,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "9b92508fd00d73398fdc10fc68366e105418305794fbcfcb986a48afc08e2ce0",
+      "stream_sha256": "aed801d5c5d790c58ffac9248a21a6b9674f560ddce607cee69242dc43a6fbbf"
+    },
+    {
+      "name": "music-7",
+      "actions": "m7:40000",
+      "steps": 9857,
+      "writes": 12166,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "2803049c4111a0b18bc8405d58cbbe091589362d26c1be8714de5a8813cf7f87",
+      "stream_sha256": "83864f0551d2c2a23da6155def4cb52b5f49fc740e439f175ab57710d009326a"
+    },
+    {
+      "name": "music-8",
+      "actions": "m8:40000",
+      "steps": 13441,
+      "writes": 21041,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "c5d048f3c4dc0448110edc99a0fce41c7200c8df067f29d16c2aa6ec67be65d0",
+      "stream_sha256": "adbc2eb187e6b2f0dc17e094a22357697e304a3ada9adf5d90b307c318d5ddec"
+    },
+    {
+      "name": "music-9",
+      "actions": "m9:40000",
+      "steps": 7681,
+      "writes": 11500,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "a016de34b47e448ab49c27ab6b1f36ee150be7320f19100476cb6d095f692c61",
+      "stream_sha256": "9a6830018e3d74a1ba8b208e0a09c03b7de03a243de575dd05a712eb690f1b15"
+    },
+    {
+      "name": "music-10",
+      "actions": "m10:40000",
+      "steps": 9217,
+      "writes": 6447,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "ebff9db7ef73ff3d5c89d62a9b1d7d118c91f71ba15d2badbc33b56f1514436d",
+      "stream_sha256": "8af9be81c8305b49bfafd1fe0abda2d8ce275ab6f47f898273cfa154b2292a5c"
+    },
+    {
+      "name": "music-11",
+      "actions": "m11:40000",
+      "steps": 16129,
+      "writes": 14003,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "c738821bc0fdebf8f9836f954b51bcca248654baadd115526353bb6dd7c4829b",
+      "stream_sha256": "f73a9844ea8e69d7e089f273b3a88a59ce22626de9b3d7baa7059a127799c29d"
+    },
+    {
+      "name": "music-12",
+      "actions": "m12:40000",
+      "steps": 8065,
+      "writes": 6031,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "19b2a3cc396a1075b46f06936aaed76f63be5ea98e7a5761eb1c29a183c6e78d",
+      "stream_sha256": "598d68d963bf8c746293e7e9010ea9ad5669ad8f6d2684410273e115ca64bbdc"
+    },
+    {
+      "name": "music-13",
+      "actions": "m13:40000",
+      "steps": 11521,
+      "writes": 8751,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "b5ea6a5a6c8d7671e3450a14d273ad3a441391287ac08d30cd891525497db470",
+      "stream_sha256": "6ba72147a9d723a0cfa29407552c2c6a6f44cf9ff799ba374259333bec83274d"
+    },
+    {
+      "name": "music-14",
+      "actions": "m14:40000",
+      "steps": 13825,
+      "writes": 14963,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "8ebba70ec4b4232a4710b8e73fa8f28bc4d51377d3dd92f01e6f39c5aa90409d",
+      "stream_sha256": "d634bd6c0823a8de0e1f60944c59492aeca2efa128178ceabfeab501ce967b94"
+    },
+    {
+      "name": "music-15",
+      "actions": "m15:40000",
+      "steps": 12673,
+      "writes": 11706,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "62e0bcd08c22917397afefb1e3d7512e3f6e3245202ff40ba002fb63ad45cd50",
+      "stream_sha256": "5cacc7d62116921f71c8685f26327e98e9b61993da8352c6a1e5ca3b5abf114c"
+    },
+    {
+      "name": "music-16",
+      "actions": "m16:40000",
+      "steps": 10369,
+      "writes": 9009,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "459571e349a19259f061a30b6901f4190269392b8d04ba680b8faebdb6478ebb",
+      "stream_sha256": "d2981a24fe526b333fd233486353ce3a3d8c028ce061b165fa8dc65fc0e1082f"
+    },
+    {
+      "name": "music-17",
+      "actions": "m17:40000",
+      "steps": 9217,
+      "writes": 8116,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "33001ff9f1d673e03d40588ebcc45bb6f581d447c80d4eda3ab63974bbd67406",
+      "stream_sha256": "988d3c494dc032ed854d7f748fe243b1fb576d4c8a6ef28e5b9f29fafd7c9dd7"
+    },
+    {
+      "name": "music-18",
+      "actions": "m18:40000",
+      "steps": 9217,
+      "writes": 4779,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "a3ef7a2db9040dc0b5a3bbad6d75d2bc68c1f1c763f2c9fa7e95c55dabefb853",
+      "stream_sha256": "6e0d68e40d3782a0e561ddb37db8d2bca4e0e5ad90bce717d5e280599daede68"
+    },
+    {
+      "name": "music-19",
+      "actions": "m19:40000",
+      "steps": 8065,
+      "writes": 6687,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "ee7a127496f5bfa3b3d6a0701f78533b70ab2bfc75abcc4251a5185a3f9e8f4a",
+      "stream_sha256": "f468c243fba9dc8403f688a75b2143c12e0e4a506a7ef4c86a057b390374340b"
+    },
+    {
+      "name": "music-20",
+      "actions": "m20:40000",
+      "steps": 11521,
+      "writes": 8519,
+      "channel_loops": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "b9dbb0f184c485a9a33a308ccb8af1ee975268461ff42a608e1dd22f23e17769",
+      "stream_sha256": "032fb7bac5699f51f0a53b313b30a1c80fd9c3ffeb432d90ffc09d5aa0fd749d"
+    },
+    {
+      "name": "effect-0",
+      "actions": "e0:512",
+      "steps": 24,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "5c56ab35d0a74bb22735fc462d66f16de43c617a885d5f011c88f7d3793e43e4",
+      "stream_sha256": "d2c4450f5cc0d291ea4a92b30b3fff5490a8280ffb0edae21509083f6e4ff483"
+    },
+    {
+      "name": "effect-1",
+      "actions": "e1:512",
+      "steps": 24,
+      "writes": 43,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "84c37bacc37e95f29a5d1c01d8d44266762c81cb875740df6cf017f37bb33de1",
+      "stream_sha256": "59a25a712725365662487357ce6b620db513a97275f1a248e97f989a8f333e73"
+    },
+    {
+      "name": "effect-2",
+      "actions": "e2:512",
+      "steps": 36,
+      "writes": 63,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "0d8b26fc65424a91800dbe5ee0ec32b91ae174b45fe26575ddda6fa69f2a3753",
+      "stream_sha256": "946d5067193060740196a5df7b30f4432f1609429fc33abe54b146e8c58adebb"
+    },
+    {
+      "name": "effect-3",
+      "actions": "e3:512",
+      "steps": 14,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "55cecc6b3785f58acd0fbd84e5ab15bd4f99fddd72e6234123f2a6c599bbf636",
+      "stream_sha256": "5f5d1c6019a5ad9b79114b988a21dbd955cad6035c7a9e554e3e46661bc2e717"
+    },
+    {
+      "name": "effect-4",
+      "actions": "e4:512",
+      "steps": 36,
+      "writes": 60,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "6314df45590e3e53714db2d3cf707620d22daea001ffafb98ed348f45b924f43",
+      "stream_sha256": "1a9a4fc780bf90ff5c3518c1c717b108b6d81c2a678734bf1addb7e6c106bba8"
+    },
+    {
+      "name": "effect-5",
+      "actions": "e5:512",
+      "steps": 24,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "cc8721ce505fe5749fcfefce7418c903bcac4b244865c957bd546f2a425cb126",
+      "stream_sha256": "702bd0fce46ddbd47e05a4f06ef15283a16f1e8587cf2ccf0294abe38e948e2b"
+    },
+    {
+      "name": "effect-6",
+      "actions": "e6:512",
+      "steps": 14,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "f5cb54ddeef73beee1442604939c68ecf0ffed59b8bf8cb560e724bc380a56de",
+      "stream_sha256": "37d4a072201e93f9fce517280341d4ad7c82a4a2300f78294bf933b0aa3dc6d0"
+    },
+    {
+      "name": "effect-7",
+      "actions": "e7:512",
+      "steps": 24,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "9160a104fd82e453f01319b512bac62a105efca173e616c8e70535d5ba557789",
+      "stream_sha256": "da54e1d6c1cfbb33298e519c70a453d627b669a69d700c44a74a4a3f9b2c18ce"
+    },
+    {
+      "name": "effect-8",
+      "actions": "e8:512",
+      "steps": 84,
+      "writes": 30,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "2ea0f0c05dd8c5357e4e7eb83b89e29b0bb08cd0a84f348d4ddb53f6bf4d6c42",
+      "stream_sha256": "cc703861772467392d58fad0cef4dc45df01b7593e2909d3a122564112a744bd"
+    },
+    {
+      "name": "effect-9",
+      "actions": "e9:512",
+      "steps": 12,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "ff587e30848d29cee24ae8b1669fb244230748c8dba7a749078a00652bab7d7e",
+      "stream_sha256": "8c8b62b6b027938d4f05bf8111bdc9797f7ef20fbc31fa9bb1b81bdab27e51f7"
+    },
+    {
+      "name": "effect-10",
+      "actions": "e10:512",
+      "steps": 54,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "2130561b6aa3f0f97db02231bc8b4af53bbdf8068c7c2eeedec234444637890f",
+      "stream_sha256": "8773bf6fe6fe8f98f4e57b75a0c36ac12b322ebd11a33a4e7e0a7a7bac376ccb"
+    },
+    {
+      "name": "effect-11",
+      "actions": "e11:512",
+      "steps": 24,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "5f99fe7b9b6c373b2cc2bfcde7f0dcfa6feb056a3896fbba21ea73925b05feeb",
+      "stream_sha256": "3708db259b09ab5e341eb5d0a39001abb388ede8c07f60619caaca481219dc7f"
+    },
+    {
+      "name": "effect-12",
+      "actions": "e12:512",
+      "steps": 64,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "fa32c178b8975f0809f0639d349b37de6270e0bff7031504cea6669c2a706f0b",
+      "stream_sha256": "362478268fe56043dd727212a8c6f26bc02bb39b0dc55f18db2af97d14cde155"
+    },
+    {
+      "name": "effect-13",
+      "actions": "e13:512",
+      "steps": 24,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "83660701d1df3dceebc994f03e116114aa394c6dc86f7cd92701ae8b1c8978f4",
+      "stream_sha256": "82d8b8368655c278fdbb9c49441c20899b2b83b52dbfdc644a1743eb5c117ea6"
+    },
+    {
+      "name": "effect-14",
+      "actions": "e14:512",
+      "steps": 24,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "58634f36cd482cca3ca743cbb5cf0c524dcc34d06b901cc709257f21783c50ba",
+      "stream_sha256": "a70ee8a44f9366e1d5df297093c5b1e7b37f902a5bdc7d6e333ffd371d72aacd"
+    },
+    {
+      "name": "effect-15",
+      "actions": "e15:512",
+      "steps": 24,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "26c43fccadb0fb6f9d06332019899fc01bd397ee2ed03bb9c170a76b7ac86f0e",
+      "stream_sha256": "e5e7fafbc9024788718c3cc9a8971d2d4fc2f0580a8bcf9cc2deff3320c16a25"
+    },
+    {
+      "name": "effect-16",
+      "actions": "e16:512",
+      "steps": 20,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "82367a6bae8b8b6c2183684294efcba6991498954829fdd0c015479be1c9335d",
+      "stream_sha256": "f00e6e42d4b87bd075c2527936e731014a1ab5c9c0aa2c4ec9a1c3ef8c279c57"
+    },
+    {
+      "name": "effect-17",
+      "actions": "e17:512",
+      "steps": 12,
+      "writes": 15,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 1,
+      "state_sha256": "bf767037b73a04f409075070218c90fc73bdfd27da5665f995302134934e874d",
+      "stream_sha256": "78f6cbb6c648c0d23aea1a27968e9f50cfe5e35f0b427bee07d24a020f5e80fc"
+    },
+    {
+      "name": "mixed",
+      "actions": "m20:200,e0:1,e1:1,e2:1,e3:1,e4:256,m0:500,s:3,m0:500",
+      "steps": 1463,
+      "writes": 1838,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 5,
+      "state_sha256": "93ee1f69c2f20afd6a1f20d7eb6b927583cb65f5326b981e5ba18de9de5cc092",
+      "stream_sha256": "f4cca20c58133bdcf20c3156d01cb96c7066d76b4a38232a31d49fe20ff206c6"
+    },
+    {
+      "name": "restart",
+      "actions": "m0:1000,m0:1000,s:1,m20:1000",
+      "steps": 3001,
+      "writes": 2684,
+      "channel_loops": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stops": 0,
+      "state_sha256": "21a8383dd44f467bfab83f7a5d28cae36e430829a9cdd370fcc3e719a231386a",
+      "stream_sha256": "089daab72b8f8422fc9239bc793590ffca0258ea4c767c719b9881229093eeb5"
+    }
+  ],
+  "self_review": {
+    "status": "PASS",
+    "method": "Author self-review requested by user",
+    "unresolved": 0,
+    "checked": [
+      "No allocation/I/O/platform/game dependencies in VM; resources->core unchanged",
+      "Exact supported dispatch range, initial rest, original AL/SAR/table overlap, DX=0 volume ABI",
+      "All nine raw records/globals/flags/shadow registers and ordered writes compared per call",
+      "Per-call shared budget hard cap4096; dynamic read bounds; immutable double pass preserves state/output on all errors",
+      "Slot priority/pending/stop/reset/restart and monotonic call clock; hardware time explicitly deferred",
+      "Synthetic oracle fixture contains synthetic writes/state hashes only; optional pinned emulator not required in offline CI",
+      "Original decoded hash and all50original file hashes before/after; pinned TS discrepancies recorded",
+      "Focused source/test/docs change; unrelated untracked directory and remote preview preserved"
+    ],
+    "material_limitations": [
+      "Fixed driver-call ABI DX=0/IN=0; not full DOS IRQ/PIT/hardware OPL",
+      "No PCM/device/game event integration yet; G10-03..06 follow"
+    ]
+  },
+  "dependencies": {
+    "status": "PASS",
+    "new_runtime_dependencies": 0,
+    "cargo_lock_unchanged": true,
+    "core_session_game_apps_unchanged": true,
+    "optional_verification_tool": "Unicorn2.1.4 isolated ignored venv; pinned wheel SHA; no CI requirement"
+  },
+  "pinned_sources": [
+    {
+      "path": "assets/local/reference-sources/lemmings-ts__public__data__config.json",
+      "bytes": 5212,
+      "sha256": "9ae8aca2369b0ae097a4d278384ba9d51ed5e9621024dd3fb6c2149a4da0a653"
+    },
+    {
+      "path": "assets/local/reference-sources/lemmings-ts__src__game__resources__file__binary-reader.ts",
+      "bytes": 4703,
+      "sha256": "e9aa57961af72dea86d720906be77c74c5433a4c86aa5b6170674f8faabfa39e"
+    },
+    {
+      "path": "assets/local/reference-sources/lemmings-ts__src__game__resources__sound__sound-image-player.ts",
+      "bytes": 6306,
+      "sha256": "232525b1b651f9eb17f454076f5f54f015fca021c05980c88bedee1a6ce599d9"
+    },
+    {
+      "path": "assets/local/reference-sources/lemmings-ts__src__game__resources__sound__sound-image-channel.ts",
+      "bytes": 10554,
+      "sha256": "d3e4ab268ce9eeaea638592fae0c105185b98bf7cad7e0f017c901d3050001cb"
+    }
+  ],
+  "sources": [
+    {
+      "path": "Cargo.toml",
+      "bytes": 370,
+      "sha256": "fe8a13bb135c1f9f517a5a5555ae45ec0c235ea21ec64d5310024a8f1b70a7b2"
+    },
+    {
+      "path": "Cargo.lock",
+      "bytes": 4890,
+      "sha256": "d8c6a748167e636f4600aec73cd3a43788674e6c8ab0867cfa088ec5056e7edb"
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "bytes": 86,
+      "sha256": "e1633ee4dccddc1fd314c184e83109e96a8366e1fbc8f8e51e505f8aa879a929"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 2165,
+      "sha256": "e5fc6aed07ddbb1eb8e03deee1fd92551cc0d2a2d94e7a7dd1df40a5e81c2a5b"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 3369,
+      "sha256": "a184b9692417f90711fff70bc1ae8864e90e4b8293fddb55c74a4e5610b573d3"
+    },
+    {
+      "path": "crates/lemmings-resources/Cargo.toml",
+      "bytes": 321,
+      "sha256": "c430e2a3913de2bd874e5d03657142c7ba6e262a7179d3f5593f495980099b82"
+    },
+    {
+      "path": "crates/lemmings-resources/src/lib.rs",
+      "bytes": 2796,
+      "sha256": "12b704432efc25059c3112716daf4d82b20224f66ec97d8823e1c1fe96d60da9"
+    },
+    {
+      "path": "crates/lemmings-resources/src/adlib.rs",
+      "bytes": 6843,
+      "sha256": "6f64002a9cf3f8c2339a347da68676ef4407d2faa931aeb0c6a1966660ff68a4"
+    },
+    {
+      "path": "crates/lemmings-resources/src/adlib_stream.rs",
+      "bytes": 18157,
+      "sha256": "3b7def97a28318b7789b9e048e306208912414ba9c3d9181488ac59106fbdb2f"
+    },
+    {
+      "path": "crates/lemmings-resources/tests/adlib_stream.rs",
+      "bytes": 11888,
+      "sha256": "d2dd1b572974f3812a80f2cd05f7827a461d5196ea9868a88c7910a939d43067"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/trace_adlib.rs",
+      "bytes": 2039,
+      "sha256": "5b65e6cd47cd32d9edba194c92f722282e7c8a15e7914b5b39171f4905e00096"
+    },
+    {
+      "path": "tools/check_adlib_stream.py",
+      "bytes": 10040,
+      "sha256": "7bbeec1b694bec031027d23c2d6b923ded57ded75a71e0d651e1e8dfc46db23b"
+    },
+    {
+      "path": "tools/adlib_driver_reference.py",
+      "bytes": 3560,
+      "sha256": "83a39ee1cab2e35080b69ab6caba7965ae3876a720154899242909324c321c7e"
+    },
+    {
+      "path": "tools/tests/test_adlib_stream.py",
+      "bytes": 2867,
+      "sha256": "9074393f9858f7681dae1a360b409888460315ce11939d483bfbfeeed55bb927"
+    },
+    {
+      "path": "tools/tests/fixtures/adlib_stream.json",
+      "bytes": 205113,
+      "sha256": "29ecf128c3fbf890e511ba75adfc0da3a8560155904237056967474f16350dfb"
+    },
+    {
+      "path": "tools/state_replay.py",
+      "bytes": 16162,
+      "sha256": "f9485c7f9e97ec385ede05755e64d2cfb96ec7cf3e056b285e535ff1016c80fa"
+    },
+    {
+      "path": "assets/manifests/reference_sources.json",
+      "bytes": 67116,
+      "sha256": "af084d89ba0b9c119b7afa4f886281cfeede4a3d25de98ecb8dbb8c159942d3b"
+    },
+    {
+      "path": "assets/manifests/dos_original.json",
+      "bytes": 12573,
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "mydocs/tech_insights/issue-74_adlib_stream.md",
+      "bytes": 10311,
+      "sha256": "7b7c731c900d2d0d8c7bcc64db2c4d7c4a2287689c4531cd0a73bdd5b6ccd51e"
+    },
+    {
+      "path": "mydocs/reports/issue-74_adlib_stream.md",
+      "bytes": 4365,
+      "sha256": "fd04313bf9e5917322318f958eb9d1816736d1ad885d6d7737c2376f019a3c6d"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-74-review/tdd-red.log",
+      "bytes": 981,
+      "sha256": "78fbd24cfaebd559d18a4aded97f3e7dc4873e010d6932dc6ec4a4803324483e"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-74-review/tdd-original-boundaries-red.log",
+      "bytes": 1662,
+      "sha256": "5532861279c0baf9cf0fc9c63d997ee16715d9cfdeac06db6b435d1edde189dc"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-74-review/tdd-final.log",
+      "bytes": 1422,
+      "sha256": "ea6ac7ae34f0465534ca7063eca59eff380b7b82f26953dd70a08e32e9111f40"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-74-review/python-targeted.log",
+      "bytes": 1136,
+      "sha256": "007362e8f26db846a0c4be4d2468ae56655f6a4b59fb12a4be5a42cafb0f1865"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-74-review/clippy.log",
+      "bytes": 416,
+      "sha256": "4c194c0e57b0fd250e30771a7ede6727ae4e9acf87b344af7846bdd1bf632eae"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-74-review/make-check.log",
+      "bytes": 95453,
+      "sha256": "b36805582c9b0bcbf9a0624c5b911f08d998b46ec662df24491c3812280a6909"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-74-review/make-check.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-74-review/local-validation.json",
+      "bytes": 282,
+      "sha256": "5111e5434f355c70ed84f5f8feddd9b2cb3377e6e29150b31224c19cb5a99787"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-74-review/original-final.log",
+      "bytes": 26670,
+      "sha256": "1b8aac5968bc00490618fb440e9cf25eecd33c5cd7dd339e121f253858aa2cfb"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-74-review/self-review.json",
+      "bytes": 1133,
+      "sha256": "aad8d56623e0aae2b5e6e51806bcc973e5192b85430cf6baac83ebfe500aa7ad"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-74-review/dependency-audit.json",
+      "bytes": 239,
+      "sha256": "ebc54e850ec12c1943ca801646183445a940d667ece1f55712fd096044df8db0"
+    },
+    {
+      "path": "target/release/examples/trace_adlib",
+      "bytes": 506480,
+      "sha256": "2367c14b36eca44760aa7bf2d80f92f17edaf52424bf6c0e7024438a2fa23613"
+    },
+    {
+      "path": "target/release/examples/unpack_dat",
+      "bytes": 477808,
+      "sha256": "d29be923809d0a3ec571a9ec2e2f8a7c6261118bad1ce12f3961b42654620991"
+    }
+  ],
+  "evidence_tree": {
+    "directory": "assets/local/issue-74-original-final",
+    "files": 43,
+    "index": {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-74-review/original-index.json",
+      "bytes": 6468,
+      "sha256": "58170ebf7dd4cc8452e3ce545f31bbace78586fcb4e757d83a46276775511ccd"
+    }
+  },
+  "index_algorithm": "POSIX relative path order; compact sorted-key JSON array plus newline; exact file size/SHA256",
+  "next": "G10-03 OPL license/implementation, deterministic PCM sample/chunk/reset and original PIT timing; G10 remains in progress",
+  "publication": "Exact push/PR/main four jobs/full ZIP checkout logs and same merge tree/mode/blob recorded in issue74 before closure"
+}
