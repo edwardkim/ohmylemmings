@@ -53,7 +53,7 @@ cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/lo
 make check
 ```
 
-`make check-desktop`은 앱을 오프라인 빌드한 뒤 `target/release/lemmings-desktop`으로 실제 SDL dummy/software 창·입력 루프·화면 readback을 원본 없이 검사합니다. 전체 SDL 합성 검사는 release 실행 파일을 사용합니다. WASM 검사는 core/resources/session/game 라이브러리를 빌드합니다.
+`make check-desktop`은 앱을 오프라인 빌드한 뒤 `target/release/lemmings-desktop`으로 실제 SDL dummy/software 창·입력 루프·화면 readback을 원본 없이 검사합니다. 전체 SDL 합성 검사는 release 실행 파일을 사용합니다. WASM 검사는 core/resources/session/game/web 라이브러리를 빌드합니다. 전체 make check의 새 브라우저 검사 준비는 [웹 안내](../web/README.md)를 따릅니다.
 
 [구현 계약·참조·X11 재현](../../mydocs/tech_insights/issue-27_native_view.md), [검증 보고서](../../mydocs/reports/issue-27_native_view.md).
 

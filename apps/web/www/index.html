@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>Rusty Lemmings · 브라우저 연습장</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main>
+        <header><a class="brand" href="./">RUSTY <span>LEMMINGS</span></a><span class="badge">연습 모드</span></header>
+        <div class="intro"><p class="eyebrow">작은 발걸음, 같은 목적지</p><h1>레밍들의 이동을 지켜보세요.</h1><p>원본 파일 없이 열어보는 브라우저 연습장입니다.</p></div>
+        <section class="game" aria-label="레밍즈 연습 게임">
+            <div class="game-bar"><label for="scene">연습 장면</label><select id="scene" disabled><option value="builder">기술 연습</option><option value="win">구출 장면</option><option value="loss">위험물 장면</option></select><output id="status" role="status" aria-live="polite">불러오는 중…</output></div>
+            <div class="screen"><canvas id="game" width="320" height="200" aria-label="레밍즈 게임 화면">Canvas를 지원하는 브라우저에서 실행해주세요.</canvas></div>
+            <div class="controls"><button id="pause" type="button" disabled>멈추기</button><button id="restart" class="secondary" type="button" disabled>처음부터</button><p id="population">레밍들의 이동과 구출 과정을 살펴보세요.</p></div>
+        </section>
+        <footer><span class="dot"></span>자체 제작한 합성 자산을 사용하는 연습 장면입니다.</footer>
+    </main>
+    <script type="module" src="./app.js"></script>
+</body>
+</html>

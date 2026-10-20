@@ -1,0 +1,16 @@
+{
+  "version": "0.2.129",
+  "platform": "x86_64-unknown-linux-musl",
+  "release": "https://github.com/wasm-bindgen/wasm-bindgen/releases/tag/0.2.129",
+  "archive": {
+    "url": "https://github.com/wasm-bindgen/wasm-bindgen/releases/download/0.2.129/wasm-bindgen-0.2.129-x86_64-unknown-linux-musl.tar.gz",
+    "size": 11695824,
+    "sha256": "82d12bb940e2d4e72e0d5605387fc1b8ca179044e012b620f0ce4e7440e8320e"
+  },
+  "binary": {
+    "member": "wasm-bindgen-0.2.129-x86_64-unknown-linux-musl/wasm-bindgen",
+    "size": 8014800,
+    "sha256": "fb59da714982a04273e9e4b09a85e523e5dd04de35b1a4a8b1641785ee7a71cf"
+  },
+  "source": "Official wasm-bindgen GitHub release asset; archive SHA-256 matches GitHub release API digest; exact binary extracted in memory without unpacking other members"
+}
