@@ -6,7 +6,7 @@
 
 ## 현재 상태
 
-현재 G00~G08을 완료했습니다. [#60 한 레벨 통합 완주](mydocs/reports/issue-60_native_playthrough.md)의 병합·main CI를 확인했고, [G09-01 / #62](mydocs/tech_insights/issue-62_shared_session.md)에서 웹과 네이티브가 공유할 게임 세션과 이식 경계를 분리합니다.
+현재 G00~G08을 완료했습니다. [#60 한 레벨 통합 완주](mydocs/reports/issue-60_native_playthrough.md)의 병합·main CI를 확인했고, [G09-01 / #62](mydocs/tech_insights/issue-62_shared_session.md)의 공유 세션을 완료했습니다. [G09-02 / #64](mydocs/tech_insights/issue-64_shared_game.md)에서 자산 바이트 공급과 공통 장면·패널을 분리합니다.
 
 G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. `no_std` 코어 자료형과 DAT 구간 검증·압축 해제를 도입했습니다. 원작 파일 50개·소스 46개와 120개 레벨·8직업·음악 21개·효과음 18개의 검증 범위를 고정했습니다. [G02-02 압축 해제](mydocs/tech_insights/issue-9_dat_decompression.md)는 합성 테스트, 원본 21개 파일·102개 구간의 해시 대조와 실제 Rust·Python·WASM CI를 통과했습니다.
 
@@ -30,6 +30,8 @@ make check
 
 - [crates/lemmings-core](crates/lemmings-core/src/lib.rs): 레벨 식별 자료형·0/1 지형 읽기/변형·호출 경계 입력·17호출 게임 시계·시작/생성·기본 개체 이동/제거
 - [crates/lemmings-resources](crates/lemmings-resources/src/lib.rs): DAT·기본 레벨·ODDTABLE·120개 카탈로그·GROUND·VGAGR·VGASPEC·초기 지형·객체 합성·MAIN 레밍/UI/폰트·마스크·숫자와 팔레트, 코어 ID를 사용하는 로컬 의존
+- [crates/lemmings-session](crates/lemmings-session/README.md): 공유 결정적 게임 세션·호스트 시간 전달
+- [crates/lemmings-game](crates/lemmings-game/README.md): 이름 기반 자산 바이트 조립·CPU 화면·패널·장면 전환
 - [개발 골격 설계](mydocs/plans/issue-6_rust_workspace.md): 모듈 경계·API·개별/WASM 빌드 명령
 
 - [apps/desktop](apps/desktop/README.md): Linux SDL2 창·입력·원본 Fun01 지형/스프라이트·고정 틱 세션·캡처/재생

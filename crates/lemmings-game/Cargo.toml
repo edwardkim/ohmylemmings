@@ -1,0 +1,16 @@
+[package]
+name = "lemmings-game"
+description = "Shared asset assembly and CPU scene presentation for native and web hosts"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+lemmings-core = { path = "../lemmings-core" }
+lemmings-resources = { path = "../lemmings-resources" }
+lemmings-session = { path = "../lemmings-session" }
+
+[lints]
+workspace = true

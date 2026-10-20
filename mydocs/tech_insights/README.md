@@ -69,3 +69,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#60 네이티브 한 레벨 통합 완주](issue-60_native_playthrough.md)
 
 - [#62 공유 세션·웹 이식 경계](issue-62_shared_session.md)
+
+- [#64 자산 바이트 공급·공통 장면과 패널](issue-64_shared_game.md)

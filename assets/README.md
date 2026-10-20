@@ -87,3 +87,5 @@ MAIN.DAT 지형 마스크·카운트다운은 [G03-09 재현 명령](../mydocs/t
 [#56 기술 패널·미니맵](../mydocs/tech_insights/issue-56_skill_panel.md)은 MAIN 구간2의 VGA 패널/폰트39이미지와 전용 UI 팔레트를 추가로 식별합니다. [출처·검증 해시](manifests/skill_panel.json)에 기존200이미지 보존과 원본/합성 검증 범위를 기록합니다.
 
 [#58 포인터 선택·RightClickGlitch](../mydocs/tech_insights/issue-58_pointer_selection.md)의 원문53함수/표·48494개 합성 비교·SDL 입력/재생 출처는 [pointer_selection.json](manifests/pointer_selection.json)에 기록합니다. 새 DOS 실행 증거로 집계하지 않으며 원본 파생 자료는 ignored 경로에만 보관합니다.
+
+[#64 자산 바이트·공통 장면 분리](../mydocs/reports/issue-64_shared_game.md)의 추출 전후 네이티브 재생·원본 파일/메모리 공급 비교는 [shared_game.json](manifests/shared_game.json)에 출처와 해시를 기록합니다. 원본 파생물은 ignored 경로에만 보관합니다.
