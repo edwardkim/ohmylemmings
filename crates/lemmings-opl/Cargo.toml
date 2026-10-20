@@ -1,0 +1,12 @@
+[package]
+name = "lemmings-opl"
+description = "Fixed no_std integer Nuked-OPL3 core with an OPL2-only register interface"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish = false
+license = "LGPL-2.1-or-later"
+
+[lints]
+workspace = true

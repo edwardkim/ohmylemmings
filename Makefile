@@ -10,6 +10,8 @@ check-rust:
 	python3 tools/check_state_replay.py
 	python3 tools/check_adlib.py
 	python3 tools/check_adlib_stream.py
+	python3 tools/check_opl_reference.py
+	python3 tools/check_audio.py
 
 check-python:
 	python3 -m unittest discover -s tools/tests -v
@@ -47,3 +49,4 @@ serve-web:
 check-web:
 	python3 tools/check_web.py
 	python3 tools/check_web_journey.py
+	python3 tools/check_audio.py --wasm

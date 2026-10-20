@@ -359,3 +359,25 @@ fn effect_request_is_released_on_the_call_after_a_slot_ends() {
     assert_eq!(p.state().pending_effect, 0);
     assert_eq!(p.state().channels[8][16], 2);
 }
+#[test]
+fn silent_advance_matches_emitting_every_write_and_preserves_errors() {
+    let mut b = fixture();
+    let img = AdlibImage::parse(&b).unwrap();
+    let mut a = AdlibPlayer::new(img);
+    a.request_music(0).unwrap();
+    let mut c = a;
+    let mut out = writes();
+    for _ in 0..200 {
+        assert_eq!(
+            a.step(&mut out, 128).unwrap(),
+            c.advance_silent(128).unwrap()
+        );
+        assert_eq!(a.state(), c.state());
+    }
+    b[3100] = 0x88;
+    let mut bad = AdlibPlayer::new(AdlibImage::parse(&b).unwrap());
+    bad.request_music(0).unwrap();
+    let before = bad.state();
+    assert!(bad.advance_silent(128).is_err());
+    assert_eq!(bad.state(), before);
+}

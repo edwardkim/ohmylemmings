@@ -1,0 +1,7 @@
+# Fixed OPL2 synthesis core
+
+This library is **LGPL-2.1-or-later**, derived from the pure Rust core of `nuked-opl3 0.1.0` (Tony Gies), itself a port of Nuked-OPL3 1.8 (Nuke.YKT). The complete [license](LICENSE), original copyright notices, preferred source, build files and modification record are included.
+
+Changes made on 2026-10-20: expose a bounded OPL2 low-bank interface; freeze the optional stereo extension off; remove its unreachable floating-point pan calculation. The integer synthesis/state machine and register/sample ordering are retained. No device wrapper, build script, allocator, std, C FFI or unsafe code is used. Source archive, upstream revision, hashes, exact patch and independent C PCM comparison are recorded in [#76](../../mydocs/tech_insights/issue-76_opl_pcm.md).
+
+To modify and relink: edit `src/core.rs` or the adapter, use the repository's pinned Rust 1.93.1 toolchain, and run `cargo build --workspace --release --locked --offline` after `cargo fetch --locked`. The corresponding source of the library and project adapters is present in this repository; generated WASM can be rebuilt using the pinned tools in `tools/web_build.py`. Include the library source, this license/notice and relinking materials with binaries that contain it. Modification/relinking for personal use and reverse engineering to debug such library modifications are permitted.

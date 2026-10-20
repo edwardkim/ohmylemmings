@@ -1,0 +1,41 @@
+--- nuked-opl3-0.1.0/src/core.rs
++++ lemmings-opl/src/core.rs
+@@ -0,0 +1,2 @@
++// Modified for ohmylemmings on 2026-10-20: freeze stereo-ext off,
++// remove unreachable floating-point panning; preserve the integer OPL core.
+@@ -28 +30 @@
+-const CHANNEL_SAMPLE_DELAY: bool = !cfg!(feature = "stereo-ext");
++const CHANNEL_SAMPLE_DELAY: bool = !false;
+@@ -529 +531 @@
+-                            if cfg!(feature = "stereo-ext") {
++                            if false {
+@@ -595 +597 @@
+-            0xd0 if cfg!(feature = "stereo-ext") && (regm & 0x0f) < 9 => {
++            0xd0 if false && (regm & 0x0f) < 9 => {
+@@ -864 +866 @@
+-            let main = if cfg!(feature = "stereo-ext") {
++            let main = if false {
+@@ -1186 +1188 @@
+-        if cfg!(feature = "stereo-ext") && self.stereoext == 0 {
++        if false && self.stereoext == 0 {
+@@ -1193,7 +1195,2 @@
+-    fn channel_write_d0(&mut self, channel: usize, data: u8) {
+-        if self.stereoext != 0 {
+-            self.channels[channel].leftpan = panpot(data ^ 0xff);
+-            self.channels[channel].rightpan = panpot(data);
+-            self.refresh_channel_mix_mask(channel);
+-        }
+-    }
++    // stereo-ext is fixed off; this register cannot be reached in OPL2 mode.
++    fn channel_write_d0(&mut self, _channel: usize, _data: u8) {}
+@@ -1203 +1200 @@
+-        let left_active = if cfg!(feature = "stereo-ext") {
++        let left_active = if false {
+@@ -1208 +1205 @@
+-        let right_active = if cfg!(feature = "stereo-ext") {
++        let right_active = if false {
+@@ -1406,4 +1402,0 @@
+-fn panpot(value: u8) -> i32 {
+-    ((value as f64 * std::f64::consts::PI / 512.0).sin() * 65536.0) as i32
+-}
+-

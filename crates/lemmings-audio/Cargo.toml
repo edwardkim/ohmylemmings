@@ -1,0 +1,15 @@
+[package]
+name = "lemmings-audio"
+description = "Deterministic DOS AdLib driver-call to mono PCM synthesis"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+lemmings-resources = { path = "../lemmings-resources" }
+lemmings-opl = { path = "../lemmings-opl" }
+
+[lints]
+workspace = true
