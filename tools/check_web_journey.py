@@ -52,7 +52,7 @@ def compare_native(data,directory,assets=None,desktop=True):
     for index,attempt in enumerate(data['attempts']):
         folder=directory/f'attempt-{index:04}';folder.mkdir()
         rows=list(expanded(attempt));events=attempt['events'];steps=len(rows)-1
-        scene=f'original:{attempt["level"]}' if assets else 'win:2' if index==3 else 'win'
+        scene=f'original:{attempt.get("difficulty", "fun")}:{attempt["level"]}' if assets else 'win:2' if index==3 else 'win'
         command=[str(ROOT/'target/release/web_trace'),scene,'dos' if assets else 'reference',str(steps)]
         if assets:command.append(str(assets))
         command+=['--interactive']
@@ -97,7 +97,7 @@ def compare_native(data,directory,assets=None,desktop=True):
             for render in [1,7,13]:
                 dest=folder/f'desktop-{render}'
                 cmd=[str(ROOT/'target/release/lemmings-desktop'),'--steps',str(steps),'--render-every',str(render),'--capture',str(dest),'--replay',str(folder/'inputs.txt'),'--fast']
-                cmd+=['--assets',str(assets),'--level',str(attempt['level'])] if assets else ['--synthetic-outcome','loss' if index==3 else 'win']
+                cmd+=['--assets',str(assets),'--difficulty',attempt.get('difficulty','fun'),'--level',str(attempt['level'])] if assets else ['--synthetic-outcome','loss' if index==3 else 'win']
                 subprocess.run(cmd,check=True,capture_output=True,text=True,env=dict(os.environ,SDL_VIDEODRIVER='dummy'),timeout=180)
                 actual=collect(dest)
                 if actual!=expected:

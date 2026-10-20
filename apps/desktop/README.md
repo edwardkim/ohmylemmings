@@ -1,6 +1,6 @@
 # Desktop preview
 
-Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder·Blocker·Bomber·Climber·Floater 할당과 Nuke를 지원합니다. 출구·위험물·승패·결과 화면·재시작을 지원하며 음향은 후속입니다.
+Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder·Blocker·Bomber·Climber·Floater 할당과 Nuke를 지원합니다. 출구·위험물·승패·결과 화면·재시작과 SDL 음향을 지원합니다. `--difficulty fun|tricky|taxing|mayhem --level 1..30`으로 일반 레벨을 선택합니다. 생략하면 Fun1입니다. 특수4장면과 전수 완주 인증은 후속입니다.
 
 ## 준비와 실행
 
@@ -67,7 +67,7 @@ make check
 
 ## Basher와 레벨 선택
 
-`--level 5`는 Fun05 “You need bashers this time”을 엽니다. 현재 Fun1..30의 표준 그래픽 레벨을 선택할 수 있습니다. B 키로 Basher를 선택하고 왼쪽 클릭하면 Walking/Digging/Mining 개체에 할당하며 성공 때만 BASH 수량을 줄입니다. D 키로 Digger를 다시 선택합니다. 재생은 `166 0 AssignBasher 0` 형식입니다.
+`--level 5`는 Fun05 “You need bashers this time”을 엽니다. `--difficulty tricky --level 1`처럼 네 난이도의 일반 레벨을 선택할 수 있습니다. B 키로 Basher를 선택하고 왼쪽 클릭하면 Walking/Digging/Mining 개체에 할당하며 성공 때만 BASH 수량을 줄입니다. D 키로 Digger를 다시 선택합니다. 재생은 `166 0 AssignBasher 0` 형식입니다.
 
 `--synthetic-basher`는 원본 없는 양방향 굴착 검사 장면입니다. 캡처의 `basher.jsonl`과 공통 지형 삭제 기록, `config.json`·`objects.bin`·`bash-masks.bin`으로 기준 실행을 재현합니다. [Basher 계약·검증](../../mydocs/tech_insights/issue-32_basher.md)을 참고합니다.
 
@@ -143,7 +143,7 @@ python3 tools/check_completion.py
 
 ## 결과 화면·재시작 / #54
 
-재시작은 원래 자산에서 지형·개체·수량·시계·Nuke·카메라를 다시 구성합니다. 다음 이동은 Fun1..30의 기존 표준 그래픽 로더 범위이며 Fun30 성공 뒤에는 R/종료를 선택합니다. 다음 파일이 없거나 지원하지 않는 특수 그래픽이면 결과 화면에서 오류를 표시합니다.
+재시작은 원래 자산에서 지형·개체·수량·시계·Nuke·카메라를 다시 구성합니다. 성공 시 다음 번호로 이동하며 Fun30→Tricky1, Tricky30→Taxing1, Taxing30→Mayhem1로 이어집니다. Mayhem30 성공 뒤에는 R/종료를 선택합니다. 다음 파일이 없거나 지원하지 않는 특수 그래픽이면 결과 화면에서 오류를 표시합니다.
 
 ```sh
 cargo run --offline --release -p lemmings-desktop -- --synthetic-outcome win
@@ -177,3 +177,5 @@ DOS RightClickGlitch도 적용합니다. 일반 개체를 가리킨 뒤 우클�
 ## 사운드 / #80
 
 기본 음량40%, S로 켜기/음소거·장치 오류 후 재시도, PageUp/PageDown으로10%씩 조절합니다. `--mute`, `--volume 0..100`을 지원하며 `--fast`는 장치를 사용하지 않습니다. 원본 폴더의 ADLIB.DAT가 필요하고 누락/손상·장치 오류가 있어도 게임은 계속됩니다. 연습 모드는 새로 만든 음원입니다. 창 숨김/최소화·결과는 큐를 비우고, 재개 시 현재 음악을 처음부터 시작합니다. 게임 Pause 중 음악은 계속됩니다. 창 제목에서 상태를 확인합니다. [계약/검증](../../mydocs/tech_insights/issue-80_audio_output.md) · [LGPL 소스/재링크](../../third_party/README.md).
+
+난이도/전환은 [#87 계약](../../mydocs/tech_insights/issue-87_rank_selection.md)을 따릅니다. 캡처 config와 transitions에는 difficulty/target_difficulty를 기록합니다. 기존 정수 경계/순번/명령 재생 파일은 유지하고 재생 시 같은 `--difficulty`를 지정합니다.

@@ -90,16 +90,20 @@ fn transition(old: &LevelRun, event: Event) -> LevelRun {
     let next = old
         .prepare(action, Pacing::Reference, |level| {
             Ok((
-                Assets::synthetic_completion(if level == 1 { "win" } else { "loss" }),
-                Some(level + 1),
+                Assets::synthetic_completion(if level.number() == 1 { "win" } else { "loss" }),
+                level.next(),
             ))
         })
         .unwrap()
         .unwrap();
-    let fresh = LevelRun::new(
-        Assets::synthetic_completion(if next.level == 1 { "win" } else { "loss" }),
+    let fresh = LevelRun::new_for_level(
+        Assets::synthetic_completion(if next.level.number() == 1 {
+            "win"
+        } else {
+            "loss"
+        }),
         next.level,
-        Some(next.level + 1),
+        next.level.next(),
         Pacing::Reference,
     )
     .unwrap();
@@ -170,7 +174,7 @@ fn panel_pointer_win_nuke_loss_retry_win_and_next_level_start_fresh() {
     let old_result = run.session.result();
     let old_inputs = run.session.inputs.len();
     run = transition(&run, crate::key_event(Keycode::R));
-    assert_eq!(run.level, 1);
+    assert_eq!(run.level.number(), 1);
     assert_eq!(run.session.terrain(), original_terrain);
     until(&mut run, 80);
     let a = run.session.actors[0].state();
@@ -190,12 +194,12 @@ fn panel_pointer_win_nuke_loss_retry_win_and_next_level_start_fresh() {
     assert!(old_result.unwrap().success);
     assert!(old_inputs > 0);
     run = transition(&run, mouse(160, 130, true, 1));
-    assert_eq!(run.level, 1);
+    assert_eq!(run.level.number(), 1);
     assert_eq!(run.session.terrain(), original_terrain);
     assert!(!run.session.scheduler.nuke_state().is_nuked);
     finish(&mut run, true);
     run = transition(&run, crate::key_event(Keycode::Return));
-    assert_eq!(run.level, 2);
+    assert_eq!(run.level.number(), 2);
     assert_eq!(run.target(ResultAction::Continue), None);
     until(&mut run, 80);
     assert_eq!(run.session.actors[0].state().id, 0);

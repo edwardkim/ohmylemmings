@@ -19,7 +19,7 @@ pub struct View {
     pub camera: i32,
     pub replaying: bool,
     pub selected_skill: SelectedSkill,
-    pub next_level: Option<u8>,
+    pub next_level: Option<lemmings_core::LevelId>,
     pub result_error: bool,
     pub panel: crate::panel::Controls,
     pub selection: lemmings_core::PointerSelection,
@@ -101,7 +101,14 @@ impl View {
         let prompt = if !result.success {
             "ENTER / LEFT CLICK: RETRY".to_owned()
         } else if let Some(next) = self.next_level {
-            format!("ENTER / LEFT CLICK: LEVEL {next}")
+            if next.number() == 1 {
+                format!(
+                    "ENTER / LEFT CLICK: {} 1",
+                    next.difficulty().name().to_uppercase()
+                )
+            } else {
+                format!("ENTER / LEFT CLICK: LEVEL {}", next.number())
+            }
         } else {
             "END OF SUPPORTED LEVELS".to_owned()
         };

@@ -18,7 +18,7 @@ export class JourneyRecorder {
         if(type==='reset') {
             if(this.current&&!this.current.final)throw new Error('unfinished attempt replaced');
             const initial=this.read();this.previous=this.maps();initial.maps=Object.fromEntries(names.map(n=>[n,encoded(this.previous[n])]));
-            this.current={level:initial.view.level,reason:detail.reason,initial,rows:[],events:[],frames:[]};
+            this.current={level:initial.view.level,difficulty:initial.view.difficulty,reason:detail.reason,initial,rows:[],events:[],frames:[]};
             this.data.attempts.push(this.current);this.lastFrame=null;
         } else if(!this.current)return;
         if(type==='input')this.current.events.push({step:this.read().state.session.control_step,op:detail.op,args:detail.args});

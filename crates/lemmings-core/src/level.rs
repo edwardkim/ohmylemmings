@@ -10,9 +10,40 @@ pub enum Difficulty {
 }
 
 impl Difficulty {
+    pub const fn name(self) -> &'static str {
+        match self {
+            Self::Fun => "fun",
+            Self::Tricky => "tricky",
+            Self::Taxing => "taxing",
+            Self::Mayhem => "mayhem",
+        }
+    }
     /// Returns the zero-based group index used by the compatibility catalog.
     pub const fn index(self) -> usize {
         self as usize
+    }
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct InvalidDifficulty;
+impl fmt::Display for InvalidDifficulty {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str("difficulty must be fun, tricky, taxing or mayhem")
+    }
+}
+impl core::error::Error for InvalidDifficulty {}
+impl core::str::FromStr for Difficulty {
+    type Err = InvalidDifficulty;
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
+        [Self::Fun, Self::Tricky, Self::Taxing, Self::Mayhem]
+            .into_iter()
+            .find(|d| value.eq_ignore_ascii_case(d.name()))
+            .ok_or(InvalidDifficulty)
+    }
+}
+impl fmt::Display for Difficulty {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str(self.name())
     }
 }
 
@@ -50,6 +81,28 @@ impl LevelId {
     /// This index is not a DAT section number or an ODDTABLE record index.
     pub const fn global_index(self) -> usize {
         self.difficulty.index() * 30 + self.index()
+    }
+
+    /// Catalog successor, including rank boundaries; Mayhem 30 is terminal.
+    /// Pinned Lemmix Styles.Base.TSection.DoAddLevelInfo links adjacent sections.
+    pub const fn next(self) -> Option<Self> {
+        if self.number < 30 {
+            Some(Self {
+                difficulty: self.difficulty,
+                number: self.number + 1,
+            })
+        } else {
+            let difficulty = match self.difficulty {
+                Difficulty::Fun => Difficulty::Tricky,
+                Difficulty::Tricky => Difficulty::Taxing,
+                Difficulty::Taxing => Difficulty::Mayhem,
+                Difficulty::Mayhem => return None,
+            };
+            Some(Self {
+                difficulty,
+                number: 1,
+            })
+        }
     }
 }
 
@@ -107,5 +160,28 @@ mod tests {
             }
         }
         assert_eq!(expected_global_index, 120);
+    }
+
+    #[test]
+    fn named_difficulties_and_catalog_successors_keep_rank_identity() {
+        for (i, name) in ["fun", "tricky", "taxing", "mayhem"]
+            .into_iter()
+            .enumerate()
+        {
+            let difficulty: Difficulty = name.parse().unwrap();
+            assert_eq!(difficulty.index(), i);
+            assert_eq!(difficulty.name(), name);
+            let first = LevelId::new(difficulty, 1).unwrap();
+            assert_eq!(first.next().unwrap().number(), 2);
+            let last = LevelId::new(difficulty, 30).unwrap();
+            assert_eq!(
+                last.next().map(|n| n.global_index()),
+                (i < 3).then_some((i + 1) * 30)
+            );
+        }
+        for name in ["", "easy", "4", " fun", "FUN "] {
+            assert!(name.parse::<Difficulty>().is_err(), "{name}");
+        }
+        assert_eq!("Tricky".parse::<Difficulty>().unwrap(), Difficulty::Tricky);
     }
 }

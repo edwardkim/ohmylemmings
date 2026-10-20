@@ -31,6 +31,13 @@ class WebJourneyTests(unittest.TestCase):
     def test_complete_journey_has_fresh_attempts_and_all_rescued(self):
         self.assertEqual(validate_journey(self.fixture())['states'],8)
 
+    def test_rank_identity_cannot_be_lost_or_confused_with_fun_replay(self):
+        for rank in ['tricky', 'invalid', 1]:
+            data=self.fixture();data['attempts'][0]['difficulty']=rank
+            with self.assertRaises(ValueError):validate_journey(data)
+        data=self.fixture();data['attempts'][0]['initial']['view']['level']=30
+        with self.assertRaises(ValueError):validate_journey(data)
+
     def test_missing_duplicate_out_of_order_boundaries_are_rejected(self):
         for mode in ['missing','duplicate','order']:
             data=self.fixture();rows=data['attempts'][0]['rows']

@@ -10,6 +10,8 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 
 ## 현재 자료
 
+- [#87 네 난이도 ID·선택/전환·재생 호환 계약](issue-87_rank_selection.md)
+
 - [#85 G11 전체120레벨 지원 범위·실행 증거 점검표](issue-85_compatibility_matrix.md)
 
 - [DOS 기준판과 원본 리소스](issue-2_dos_original_baseline.md)

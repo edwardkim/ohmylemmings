@@ -7,7 +7,7 @@ export async function replayJourney(data,bank=null) {
     let replayStates=0,replayFrames=0;
     for(const [render,rate] of [[1,60],[7,120],[13,144]])for(let a=0;a<data.attempts.length;a++) {
         const attempt=data.attempts[a],game=new WebGame('win','reference');
-        if(data.original)game.load_original(bank,attempt.level);
+        if(data.original)game.load_original_rank(bank,attempt.difficulty || 'fun',attempt.level);
         else if(a===3){game.step(1000);game.transition('continue');}
         const maps=Object.fromEntries(['terrain','bricks','objects'].map(n=>[n,decode(attempt.initial.maps[n])]));
         let seen=0;const last=attempt.rows.length-1;

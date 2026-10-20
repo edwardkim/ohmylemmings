@@ -59,7 +59,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 bank.insert(&name, &std::fs::read(entry.path())?)?;
             }
         }
-        game.load_original(&bank, level.parse()?)?;
+        let (difficulty, number) = level.split_once(':').unwrap_or(("fun", level));
+        game.load_original_rank(&bank, difficulty, number.parse()?)?;
     }
     let interactive = args.iter().any(|arg| arg == "--interactive");
     let steps: u32 = args[3].parse()?;
@@ -99,6 +100,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     game.transition("continue")?;
                 }
                 ["Level", number] => game.start_level(number.parse()?)?,
+                ["Level", difficulty, number] => {
+                    game.start_level_rank(difficulty, number.parse()?)?
+                }
                 [name, value] => game.command(name, value.parse()?)?,
                 _ => return Err("invalid diagnostic operation".into()),
             }

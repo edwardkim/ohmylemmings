@@ -1,0 +1,335 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/87",
+  "baseline_main": "ae8ab7cddbb1aa02c6fe93b426b5ba6d9a2f2b30",
+  "scope": "G11-02 rank identity and selection/restart/Continue integration; selected entry/replay evidence, not 120 complete playthroughs or new DOS execution certification",
+  "identity": {
+    "type": "lemmings_core::LevelId",
+    "difficulties": [
+      "fun",
+      "tricky",
+      "taxing",
+      "mayhem"
+    ],
+    "number_range": [
+      1,
+      30
+    ],
+    "legacy": "SDL defaults and old Web load_original/start_level are Fun; missing journey difficulty is Fun",
+    "source_scope": {
+      "standard": 116,
+      "special_pending": [
+        "fun-22",
+        "tricky-14",
+        "taxing-15",
+        "mayhem-22"
+      ]
+    },
+    "g11_full_execution": "120 pending, retain scoped historical evidence"
+  },
+  "transitions": {
+    "within_rank": "number+1",
+    "rank_end": {
+      "fun-30": "tricky-01",
+      "tricky-30": "taxing-01",
+      "taxing-30": "mayhem-01",
+      "mayhem-30": null
+    },
+    "failure_or_restart": "same full LevelId",
+    "reference": "Pinned Lemmix linked sections and postview success branch; not a new actual DOS rank-end observation"
+  },
+  "additional_reference_sources": [
+    {
+      "repository": "ericlangedijk/Lemmix",
+      "commit": "40e9bc34451f0e9127fd53b290a3877e700d143d",
+      "path": "src/Styles.Base.pas",
+      "bytes": 40602,
+      "sha256": "2c68d83660cf0c2d141e7449d20b9d747fe5c3496d31d0551ff9c547656cf2a8",
+      "git_blob_sha1": "f0e5e69df77a940abb8927f9c8e00be71b4e9428",
+      "url": "https://raw.githubusercontent.com/ericlangedijk/Lemmix/40e9bc34451f0e9127fd53b290a3877e700d143d/src/Styles.Base.pas"
+    },
+    {
+      "repository": "ericlangedijk/Lemmix",
+      "commit": "40e9bc34451f0e9127fd53b290a3877e700d143d",
+      "path": "src/GameScreen.Postview.pas",
+      "bytes": 7417,
+      "sha256": "08fd0cce04f8464a44912d6d765a97356ddca1ef50c2aac7fe661bfd153fc94f",
+      "git_blob_sha1": "d7e6caacff746a07fd089598fc4b04fbb3f5c60c",
+      "url": "https://raw.githubusercontent.com/ericlangedijk/Lemmix/40e9bc34451f0e9127fd53b290a3877e700d143d/src/GameScreen.Postview.pas"
+    }
+  ],
+  "local_validation": {
+    "status": "PASS",
+    "rust": 603,
+    "doc": 29,
+    "python": 164,
+    "commands": [
+      "make check-rust check-python check-wasm",
+      "tools/check_web.py --original-assets assets/local/dos-original",
+      "ignored check-native.py"
+    ],
+    "full_make_check": false,
+    "remaining": "Full SDL synthetic and Web journey/audio regressions run in publication CI"
+  },
+  "web": {
+    "status": "PASS",
+    "cases": 35,
+    "runs": 70,
+    "states": 12564,
+    "rgb_and_canvas": 7225,
+    "dom": {
+      "status": "PASS",
+      "rank_selections": 8,
+      "restarts": 8,
+      "cross_rank_continues": 3,
+      "terminal_mayhem": true,
+      "atomic_file_failure": true
+    },
+    "browser": "Chromium 152.0.7977.82 Arch Linux",
+    "original_scope": "Fun1/2/3 and Tricky1/Taxing1/Mayhem1, initial 150 steps with selected input/restart; no original full-rank solutions"
+  },
+  "native": {
+    "status": "PASS",
+    "original_entries": [
+      "fun-01",
+      "fun-30",
+      "tricky-01",
+      "tricky-30",
+      "taxing-01",
+      "taxing-30",
+      "mayhem-01",
+      "mayhem-30"
+    ],
+    "states": 648,
+    "sdl_readbacks": 80,
+    "original_numbers_and_skills": "Compared initial config against pinned compatibility catalog",
+    "original_files": 50,
+    "originals_unchanged": true,
+    "invented_rank_boundary_transitions": [
+      {
+        "attempt": 0,
+        "level": 30,
+        "step": 77,
+        "action": "Continue",
+        "target": 1,
+        "difficulty": "fun",
+        "target_difficulty": "tricky"
+      },
+      {
+        "attempt": 0,
+        "level": 30,
+        "step": 77,
+        "action": "Continue",
+        "target": 1,
+        "difficulty": "tricky",
+        "target_difficulty": "taxing"
+      },
+      {
+        "attempt": 0,
+        "level": 30,
+        "step": 77,
+        "action": "Continue",
+        "target": 1,
+        "difficulty": "taxing",
+        "target_difficulty": "mayhem"
+      }
+    ],
+    "special_rejected": [
+      "fun-22",
+      "tricky-14",
+      "taxing-15",
+      "mayhem-22"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-87-review/red.log",
+      "bytes": 5814,
+      "sha256": "469c3cf61fa4717375e5623fc72e6faa450fa9a12215a00a56b917e2bbe23e92"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-87-review/python-red.log",
+      "bytes": 756,
+      "sha256": "a15e6ae2d9dfdbb2f32d460dacff00ebd3a541a8c6054e26f4f6f85593ab311c"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-87-review/check.log",
+      "bytes": 97013,
+      "sha256": "f3d26017a64f2a912ca905d0d40e48a72aeb882a569850a8e28312a1bf7a5527"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-87-review/web/summary.json",
+      "bytes": 7048,
+      "sha256": "7d06e58184ac397ac40a92cc8a9df29e09d3de4449e8a7bf76f51a9c28178290"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-87-review/web/expected.json",
+      "bytes": 18811361,
+      "sha256": "6982b45fb366a2e2da93fdc139af013cc72ebc748deac274280d4eec35ef0a2e"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-87-review/native-summary.json",
+      "bytes": 7322,
+      "sha256": "bdf43960f13113336eb5fdcbc689a6ce866138ba5162401b302e9c41d89fb9ff"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-87-review/check-native.py",
+      "bytes": 3652,
+      "sha256": "33c3346f7a581969e46832df516dcccd66c27c25153cfddf32b57315ae3a0b5a"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-87-review/reference-provenance.json",
+      "bytes": 630,
+      "sha256": "6540b855578b52bd697e51c4e7160df7f87930b9ee2ef0717c8f8911e2191a3d"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "apps/desktop/src/assets.rs",
+      "bytes": 1945,
+      "sha256": "8bb0208bf58588c8fcd0b6b0494c452c6bb28ae34f3821914757c2f7c093b8e6"
+    },
+    {
+      "path": "apps/desktop/src/main.rs",
+      "bytes": 49250,
+      "sha256": "95979738670727ec2b1aed373b5d78484a9061b8373adbed915b690e892520c5"
+    },
+    {
+      "path": "apps/desktop/src/playthrough_tests.rs",
+      "bytes": 6536,
+      "sha256": "c2fef1ebbe229ef5f6e9fad34d951f2383859782e427afe785bd882a3f0b9c36"
+    },
+    {
+      "path": "apps/web/src/bin/web_trace.rs",
+      "bytes": 4457,
+      "sha256": "bb9e11fda507f9fc17cf29546a2029f2aabaf3a0123423c3b0f70d81776e904b"
+    },
+    {
+      "path": "apps/web/src/lib.rs",
+      "bytes": 16798,
+      "sha256": "df50a05e28e0d605595fba24f6031f31a3f8c95b5f68335356a7a0dfd9eff4fa"
+    },
+    {
+      "path": "apps/web/tests/input_assets.rs",
+      "bytes": 7565,
+      "sha256": "cc9e86ebbf73756e81a5d8dd5f7393d083b96c36b23ac02e30b08b3005792936"
+    },
+    {
+      "path": "apps/web/tests/support/mod.rs",
+      "bytes": 3525,
+      "sha256": "fae9784ed277c8f87d6d5737c019c16b7a7ca719d1aca1c0f5e6adfb2bbfc09b"
+    },
+    {
+      "path": "apps/web/www/app.js",
+      "bytes": 8577,
+      "sha256": "db8e52135fea78b358b2d3cf9560e55b18cc48e6bdc3d84a86e3c28a21d3952d"
+    },
+    {
+      "path": "apps/web/www/index.html",
+      "bytes": 4619,
+      "sha256": "14d3adbea225334097a2f3a0511630e883b4b45b3e52e406b01f636ee8731a8d"
+    },
+    {
+      "path": "crates/lemmings-core/src/level.rs",
+      "bytes": 6029,
+      "sha256": "b6492a02680ac3f50ed2611701fab8e9c316efc6f064a69413912a8d0c0c80eb"
+    },
+    {
+      "path": "crates/lemmings-core/src/lib.rs",
+      "bytes": 1982,
+      "sha256": "2ea8f42f3ff533af0b8f42caa1456e2c90bf7f466970b57e3adb12c173748b0e"
+    },
+    {
+      "path": "crates/lemmings-game/src/assets.rs",
+      "bytes": 33975,
+      "sha256": "e2c9198badfdacb0feef743e179c018799585d4eb32a18322969264bc2a88c9f"
+    },
+    {
+      "path": "crates/lemmings-game/src/lifecycle.rs",
+      "bytes": 14922,
+      "sha256": "7042bbacbe1f3a6c96796a9b66cde2f375441a784e8c35cf987445e244999037"
+    },
+    {
+      "path": "crates/lemmings-game/src/render.rs",
+      "bytes": 25174,
+      "sha256": "d205e764b00820b136e4cfb845e0f3c8edc68364cf412c58b661900a402e1721"
+    },
+    {
+      "path": "crates/lemmings-game/tests/byte_source.rs",
+      "bytes": 8400,
+      "sha256": "496630d238064b4ec5a1da951f3b522e8c58739f4be60c8a4a0f7b439a78e203"
+    },
+    {
+      "path": "tools/check_web.py",
+      "bytes": 11125,
+      "sha256": "7cd784d31261a54b6d93fe90b11b7728e4a3388160111fcd47ac039c6c68a1a4"
+    },
+    {
+      "path": "tools/check_web_journey.py",
+      "bytes": 11296,
+      "sha256": "4bbf23bf8695ee8dbf495db415643cd954ea3bc854f9910fd568ab21230765b0"
+    },
+    {
+      "path": "tools/tests/test_web_journey.py",
+      "bytes": 6244,
+      "sha256": "4b5fac88d2c71c0f6dedae4d8f5a1bf0c3eabbdc3d4ec3544a9e09dc7e1fbc83"
+    },
+    {
+      "path": "tools/web/check.js",
+      "bytes": 8237,
+      "sha256": "22c809d5d0b223a73693bfa2001258a1b79d82d580bbbe9c0acd086d78f45cb1"
+    },
+    {
+      "path": "tools/web/dom_check.js",
+      "bytes": 9608,
+      "sha256": "b1cd34143f9cd04a0488d674c095f946bfa168714492419c4e16476e178259a9"
+    },
+    {
+      "path": "tools/web/journey_recorder.js",
+      "bytes": 3549,
+      "sha256": "3930a3bde9484751b6017ff90c39c3bd5302aa7fbbccce08922fe9d103a44c23"
+    },
+    {
+      "path": "tools/web/journey_replay.js",
+      "bytes": 3029,
+      "sha256": "4f423b032c206a85d598e382e8328881e879b034dcb08fbd91ba229a34d2201f"
+    },
+    {
+      "path": "tools/web_fixture.py",
+      "bytes": 1847,
+      "sha256": "20bed414eba2760468543f39bc08e8832fc2350b1098ee2e68ab74b6e07dc35a"
+    },
+    {
+      "path": "tools/web_journey.py",
+      "bytes": 5636,
+      "sha256": "3f9834c056b886939ae46831390958880835a147b0b6c01320a514bb73018e06"
+    },
+    {
+      "path": "apps/web/tests/rank_selection.rs",
+      "bytes": 3581,
+      "sha256": "5416399f2541419ad2258675c54612111753382d0a0294d67b2196c1b63d1a60"
+    }
+  ],
+  "screenshot": {
+    "path": "mydocs/reports/issue-87_rank_selection.png",
+    "bytes": 238075,
+    "sha256": "24f1ee0a6e696b6901ce8db8291e6dd1235541bd75457c4108479646812ae58a",
+    "kind": "actual Chromium product UI over synthetic practice scene; no original files"
+  },
+  "self_review": {
+    "status": "PASS",
+    "method": "author self-review",
+    "unresolved": 0,
+    "checks": [
+      "Canonical typed ID throughout loading and transition; numeric legacy APIs explicitly remain Fun",
+      "Atomic validation/replacement preserves session, immutable bank, clock and sound on failure",
+      "Cross-rank Continue and terminal success tested in Rust, actual WASM, product DOM and SDL invented bytes",
+      "Music cursor advances once only for successful Continue; retry/generation/failed replacement retained",
+      "Raw input format retained; new metadata carries rank and old journeys default to Fun",
+      "Additional reference blob IDs match pinned tree; distinguish source evidence from actual DOS observation",
+      "Source scope116 not claimed as complete playthroughs; four special failures explicit",
+      "UI screenshot visually inspected with rank/level selectors and pending-special hint visible",
+      "No dependency/workflow/network configuration change; originals and unrelated untracked directory preserved"
+    ]
+  }
+}
