@@ -70,3 +70,5 @@
 - [#78 게임 사운드 이벤트·DOS 숫자 ID](issue-78_game_sound.md)
 
 - [#80 SDL/Web 오디오 출력](issue-80_audio_output.md)
+
+- [#82 G10-06 통합 사운드 검증](issue-82_audio_playthrough.md)

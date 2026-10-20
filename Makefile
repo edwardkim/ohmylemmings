@@ -54,3 +54,4 @@ check-web:
 	python3 tools/check_audio.py --wasm
 	python3 tools/check_game_sound.py --wasm
 	python3 tools/check_audio_output.py --wasm
+	python3 tools/sound_playthrough.py

@@ -70,3 +70,5 @@ python3 tools/check_web.py --evidence assets/local/web-original-check --original
 새로고침 후 소리 켜기 버튼 또는 S로 활성화합니다. 음량 slider/PageUp/PageDown, 명시적 음소거·숨김/복귀·결과/재시작을 처리합니다. 음악은 Pause 중에도 계속되며 음소거/숨김 후 현재 곡을 처음부터 재개합니다. 원본 파일 선택에 ADLIB.DAT를 포함합니다. API/자원/장치 오류는 음향 상태에 표시하고 게임을 유지합니다. 연습 모드는 새로 만든 음원입니다. AudioBufferSource 예약 경로로 LAN HTTP를 지원합니다.
 
 `WebAudio`의 prepare/render는 게임을 tick하지 않는 owned PCM API입니다. `AudioHost`가 사용자 활성화와 bounded node/큐를 담당합니다. Footer의 라이선스 페이지에서 LGPL 전문과 이 빌드의 소스 묶음·WASM/소스 해시를 제공합니다. 추출본은 Git 없이 수정/재링크할 수 있습니다. [상세 계약](../../mydocs/tech_insights/issue-80_audio_output.md).
+
+통합 사운드 검사는 `python3 tools/sound_playthrough.py`이며 `make check-web`에도 포함합니다. 선택적 실제 DOS/원본 검증과 남은 청취 범위는 [#82](../../mydocs/tech_insights/issue-82_audio_playthrough.md)를 따릅니다.

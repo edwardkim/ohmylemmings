@@ -1,0 +1,109 @@
+{
+  "issue": 82,
+  "baseline": "cce167e242c77aa1bcce345a1b4a7d3706569129",
+  "original_manifest": "assets/manifests/dos_original.json",
+  "original_files": 50,
+  "originals_unchanged": true,
+  "synthetic_pcm_sha256": "a60e2bdcd2c229a23bff8527dad26890180b963b535e9a415e4b4e3485aa489c",
+  "original_pcm_sha256": "807f7076a70cb3f206b7b982c921122464efdf1aec07f4ff99886d5926ca1565",
+  "each_integrated_frames": 1824750,
+  "each_control_boundaries": 580,
+  "dos_opl_comparison": {
+    "status": "PASS",
+    "matched_notes": 272,
+    "tolerance_ms": 15.268122913144342,
+    "channels": [
+      {
+        "channel": 0,
+        "notes": 95,
+        "offset_ms": 2840.0,
+        "max_relative_error_ms": 2.2014033440827916
+      },
+      {
+        "channel": 1,
+        "notes": 93,
+        "offset_ms": 2841.0,
+        "max_relative_error_ms": 3.16179046907655
+      },
+      {
+        "channel": 2,
+        "notes": 72,
+        "offset_ms": 2842.0,
+        "max_relative_error_ms": 4.122913144343329
+      },
+      {
+        "channel": 3,
+        "notes": 12,
+        "offset_ms": 2843.0,
+        "max_relative_error_ms": 3.7474957732119947
+      }
+    ],
+    "scope": "Exact keyed frequency sequence and relative timing prefix; per-channel start alignment; excludes PCM, physical OPL and subjective listening",
+    "dro_sha256": "ac9bcbc23dd255ac5d90b0b84ccd6933a041f651e5de803a977637a6b464b099",
+    "dro_milliseconds": 23099,
+    "dro_writes": 1434,
+    "native_sha256": "aefc7c739c8527961e315c32db0337c35d9b924335871ba9016ce7ad7e8a0a83"
+  },
+  "evidence": [
+    {
+      "path": "assets/local/issue-82-synthetic/summary.json",
+      "bytes": 1159,
+      "sha256": "2f3bf9590e25ad662272dc736f3a049d83085c45d6e43e5df5d59e0b3068da19"
+    },
+    {
+      "path": "assets/local/issue-82-original/summary.json",
+      "bytes": 1123,
+      "sha256": "1246c0d1f9887a04081443f03d0b4c09e629bd2578428ed2aa02fea3cb180b64"
+    },
+    {
+      "path": "assets/local/issue-82-dos/summary.json",
+      "bytes": 1379,
+      "sha256": "347eb1e9cd3e95acfde1aa06c0444e3835ee72b1b809307bca2b841b31245ee3"
+    },
+    {
+      "path": "assets/local/issue-82-dos-audio/summary.json",
+      "bytes": 1021,
+      "sha256": "160036b4c0d2c4f83e1f2d70ff00720848b4dc41b65a085a90535729f6de04a3"
+    },
+    {
+      "path": "assets/local/issue-82-sdl-confirmed/summary.json",
+      "bytes": 406,
+      "sha256": "ada35da31702d5679a62e63ea64b57a631ac5529f1eaf86eb3fce7042ab0b39e"
+    },
+    {
+      "path": "assets/local/issue-82-opl-comparison/summary.json",
+      "bytes": 994,
+      "sha256": "923043acfb58ffc82d35a17ac962572371ddc1325ddfbe2bdb50f5a4b88324bd"
+    },
+    {
+      "path": "assets/local/issue-82-review/dos-music-comparison.json",
+      "bytes": 1434,
+      "sha256": "320e1e6a53f77e7b01032a0d506881406822fe63b0cc61e0d322aa98a52e66cd"
+    },
+    {
+      "path": "assets/local/issue-82-review/record-sdl.py",
+      "bytes": 3266,
+      "sha256": "a32a8bf3ee29effa5e269871bda2ae9bbc7550cb39f092ca57775c8b6de07adf"
+    },
+    {
+      "path": "assets/local/issue-82-review/capture-opl.py",
+      "bytes": 1409,
+      "sha256": "bb4962849a03c61eb37f344a1d6067a3ed0466e4819db94422a9d39f3f5cc18d"
+    },
+    {
+      "path": "assets/local/issue-82-review/local-validation.json",
+      "bytes": 612,
+      "sha256": "47d6826397b69c6d63770db3e68a8fff35e45233e7d8cbbf713fcbe12fefa61a"
+    }
+  ],
+  "limitations": [
+    "DOSBox DBOPL/mixer and Nuked PCM loudness/timbre differ; not waveform-equivalent",
+    "Physical DAC/speaker listening and user feedback not yet verified",
+    "Per-channel musical timing alignment is not absolute IRQ/device phase equality",
+    "Original key disk not verified; runtime RUSSELL counter seed only, original EXE/DAT unchanged"
+  ],
+  "dosbox_source": {
+    "url": "https://sources.debian.org/src/dosbox/0.74-4/src/hardware/adlib.cpp",
+    "local_sha256": "a569850a4d0d33619b51ae12e5b4da755d94c98ef750801f8cfa5e4a5df09d72"
+  }
+}

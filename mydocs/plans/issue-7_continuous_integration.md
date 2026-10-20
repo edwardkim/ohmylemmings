@@ -83,3 +83,7 @@ Rustup의 최초 도구 체인·타깃 설치에는 네트워크가 필요할 �
 ## G10-05 장치·라이선스 배포 / #80
 
 [#80](../reports/issue-80_audio_output.md)에서 check-desktop에 생산 SDL service의 dummy 큐 소비·음소거/숨김/세대·없는 장치/게임 불변 검사와 fixed6조합249492프레임을 추가했습니다. check-web은 실제 WASM/OfflineAudioContext·실시간 AudioContext graph와 bounded scheduling/활성화 오류·소스/라이선스/WASM 해시 배포를 검사합니다. headless graph만 autoplay 테스트 플래그를 사용하고 trusted gesture/LAN은 별도 실제 로컬 증거입니다. Python은 source archive의 private/symlink 배제·재현성·Git 없는 수정/재빌드를 검사합니다. 새 외부 패키지/원본/물리 장치 의존성은 없습니다.
+
+## G10-06 통합 사운드 / #82
+
+`make check-web`은 원본 없이580경계/1,824,750PCM의 native/실제 WASM 게임·사건·오디오·18맵/RGB와 청크 분할을 비교합니다. Python은 WAV/좌채널 보존과 DRO 손상/주파수/시간 검사를 포함합니다. 원본/DOSBox·PipeWire 녹음/주관적 청취는 선택적 로컬 증거입니다. [재현·범위](../tech_insights/issue-82_audio_playthrough.md).
