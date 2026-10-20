@@ -32,7 +32,7 @@
 
 ## 통합 시나리오와 증거 경계
 
-원본 없는 CI는 실제 제품 HTML/DOM·GameInput·WASM을 사용하고 rAF 시각만 제어합니다. 합성 성공→R 재시작→Digger/단일 Nuke 거절/더블 Nuke 실패→결과 클릭 재도전→전원 구출→Enter 다음 레벨→새 ID0→Escape를 실행합니다. Pause/RR 누름 반복·미니맵·카메라·결과 고정도 포함합니다. 기존24사례의 잘못된 숫자·손상/누락 파일·전환 실패 보존·숨김/복귀·시간 분할 회귀와 함께 `make check-web`에서 실행합니다. SDL 독립 재생 때문에 Web CI도 SDL2 개발 헤더를 준비합니다.
+원본 없는 CI는 실제 제품 HTML/DOM·GameInput·WASM을 사용하고 rAF 시각만 제어합니다. 합성 성공→R 재시작→Digger/단일 Nuke 거절/더블 Nuke 실패→결과 클릭 재도전→전원 구출→Enter 다음 레벨→새 ID0→Escape를 실행합니다. Pause/RR 누름 반복·미니맵·카메라·결과 고정도 포함합니다. 기존24사례의 잘못된 숫자·손상/누락 파일·전환 실패 보존·숨김/복귀·시간 분할 회귀와 함께 `make check-web`에서 실행합니다. SDL 독립 재생 때문에 Web CI도 SDL2 개발 헤더를 준비합니다. `cargo build -p lemmings-web -p lemmings-desktop --bins`로 두 실행 파일을 모두 만듭니다. `--bin web_trace`를 함께 지정하면 다른 패키지의 데스크톱 실행 파일이 제외되므로 사용하지 않습니다.
 
 사용자 Chromium CDP19222에서는 실제 rAF와 trusted 키/마우스·로컬23파일 선택으로 원본 Fun01을 두 번 10/10 구출하고 중간 조기 Nuke 실패(0/3)를 재현했습니다. Pause/RR·미니맵 끌기·CSS 크기 변경/외부 클릭·숨김/복귀·결과 고정, 다음 Fun02 새 ID0도 확인했습니다. 증거 수치는 [보고서](../reports/issue-70_web_playthrough.md)에 분리합니다.
 

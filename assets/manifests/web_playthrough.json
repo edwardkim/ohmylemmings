@@ -46,6 +46,10 @@
       {
         "topic": "Public artifacts and shared sources",
         "resolution": "Only synthetic screenshot public; original hashes verified before/after; common core/resources/session/game and lockfile unchanged"
+      },
+      {
+        "topic": "Fresh CI executable selection",
+        "resolution": "Initial remote Web CI exposed cargo --bin web_trace filtering out desktop. Select --bins for both packages and verify after moving the pre-existing desktop executable away. Full prior local checks retained; corrected clean-browser check supplements them."
       }
     ],
     "unresolved": []
@@ -59,7 +63,8 @@
     "sha256": "5fcd1ac2f4d16b1a1b7967ce7fe1542df38f019abd9d196f9482441974b46220",
     "bytes": 89020,
     "elapsed_seconds": 708.69,
-    "scope": "Complete make check: fmt/Clippy/offline Rust/test/state replay, Python fixtures, WASM libraries, all SDL skill/result/pointer suites and old/new actual browser suites"
+    "scope": "Complete make check: fmt/Clippy/offline Rust/test/state replay, Python fixtures, WASM libraries, all SDL skill/result/pointer suites and old/new actual browser suites",
+    "supplement": "clean-validation.json: corrected --bins and reran full browser journey with pre-existing desktop executable moved; original full make check log retained"
   },
   "synthetic": {
     "status": "PASS",
@@ -886,8 +891,8 @@
     },
     {
       "path": "tools/check_web_journey.py",
-      "bytes": 11225,
-      "sha256": "4e073a43c1617ded271515fbc4fcf1be75033f4ab96903e430dec56c71a78528"
+      "bytes": 11214,
+      "sha256": "755330e04cb307089b2c4278be294b435f00c73ae3cde2012711eeecf8e6c717"
     },
     {
       "path": "tools/state_replay.py",
@@ -972,6 +977,21 @@
       "sha256": "43da895abd69255abcc5d01fea20664d1292f717a270a9fb88c269eab078c521"
     },
     {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/journey-clean.log",
+      "bytes": 2889,
+      "sha256": "3e89bb17cb5787b51096f2d6e70ec41546d84d431062d3b75f3ee850e0b49c36"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/ci-web-failure.log",
+      "bytes": 68268,
+      "sha256": "a3e3ca9e77fb97a6c712cca20ac77aacbd59ce04e997911e42e0123721b20fdd"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/clean-validation.json",
+      "bytes": 4838,
+      "sha256": "229cf9117b22bdb1adc587bcac87600b7c3ca6d133fc13603f24f5134efef82a"
+    },
+    {
       "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/original-journey.json",
       "bytes": 96282761,
       "sha256": "6a9182f75166bb2bfeb1491a6896a5fb1087601f330ee64a6568da422f86a7a2"
@@ -1033,8 +1053,8 @@
     },
     {
       "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/self-review.json",
-      "bytes": 1321,
-      "sha256": "4d2ea28d0236281acd651468fb67ffe9a39a46a943ae9d1598ca73c8b41403a1"
+      "bytes": 1659,
+      "sha256": "c1d59f26fa7a4ca9e271bbd58f3b30c67a17913dfd2b1abb1cddd6575694746a"
     },
     {
       "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/dependency-audit.json",
@@ -1053,8 +1073,8 @@
     },
     {
       "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/local-validation.json",
-      "bytes": 394,
-      "sha256": "8da62229c6f74cfa150c3ce1a9e2907ee0d2c3a26c6fadc4ec90c3cd3c8fcba9"
+      "bytes": 566,
+      "sha256": "508f7a1b87c67d50bca7daf78490274181e8e9c05630e3fd3f659a49aac2d462"
     },
     {
       "path": "mydocs/reports/issue-70_web_playthrough.png",
@@ -1099,13 +1119,13 @@
   ],
   "evidence_trees": [
     {
-      "directory": "assets/local/issue-70-synthetic-matrix",
+      "directory": "assets/local/issue-70-clean-matrix",
       "files": 396,
-      "bytes": 48147800,
+      "bytes": 48147795,
       "index": {
-        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/issue-70-synthetic-matrix-index.json",
-        "bytes": 69565,
-        "sha256": "6f59dda6849eccdcda2ec359f4313eb3e635248f193a12c238864240c88486e4"
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/issue-70-clean-matrix-index.json",
+        "bytes": 67981,
+        "sha256": "44c07b3076bc16019618b0f045a0f2c00baad8bd8891e006505b5595d09f4d98"
       }
     },
     {

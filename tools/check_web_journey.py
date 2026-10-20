@@ -119,7 +119,7 @@ def compare_native(data,directory,assets=None,desktop=True):
 
 def run(directory):
     directory.mkdir(parents=True,exist_ok=True);build(directory)
-    subprocess.run(['cargo','build','-p','lemmings-web','--bin','web_trace','-p','lemmings-desktop','--release','--locked','--offline'],cwd=ROOT,check=True)
+    subprocess.run(['cargo','build','-p','lemmings-web','-p','lemmings-desktop','--bins','--release','--locked','--offline'],cwd=ROOT,check=True)
     for name in ['journey_check.js','journey_recorder.js','journey_replay.js']:shutil.copyfile(ROOT/'tools/web'/name,directory/name)
     html=(directory/'index.html').read_text()
     shim='<script>window.__frames=new Map();let sequence=0;window.requestAnimationFrame=fn=>{const id=++sequence;__frames.set(id,fn);return id;};window.cancelAnimationFrame=id=>__frames.delete(id);</script>'
