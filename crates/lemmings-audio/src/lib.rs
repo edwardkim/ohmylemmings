@@ -6,7 +6,8 @@
 use core::fmt;
 use lemmings_opl::Opl2;
 use lemmings_resources::{
-    AdlibCommand, AdlibImage, AdlibPlayer, AdlibState, AdlibStreamError, AdlibWrite,
+    AdlibCommand, AdlibContinuation, AdlibImage, AdlibPlayer, AdlibState, AdlibStreamError,
+    AdlibWrite,
 };
 
 /// Bound per render request; large streams can be delivered in arbitrary chunks.
@@ -108,7 +109,37 @@ pub struct AdlibPcm<'a> {
     call_rate: AudioRate,
     position: PcmPosition,
 }
+/// Asset-independent, opaque playback state. Owning adapters retain immutable
+/// image bytes separately; no leaked allocation or self-referential borrow.
+pub struct PcmContinuation {
+    driver: AdlibContinuation,
+    chip: Opl2,
+    sample_rate: u32,
+    call_rate: AudioRate,
+    position: PcmPosition,
+}
 impl<'a> AdlibPcm<'a> {
+    pub fn into_continuation(self) -> PcmContinuation {
+        PcmContinuation {
+            driver: self.driver.into_continuation(),
+            chip: self.chip,
+            sample_rate: self.sample_rate,
+            call_rate: self.call_rate,
+            position: self.position,
+        }
+    }
+    /// Resume using the same immutable image contents, possibly at a new address.
+    /// Stream bounds/preflight remain checked; use new() for a different image.
+    pub fn resume(image: AdlibImage<'a>, saved: PcmContinuation) -> Self {
+        Self {
+            image,
+            driver: AdlibPlayer::resume(image, saved.driver),
+            chip: saved.chip,
+            sample_rate: saved.sample_rate,
+            call_rate: saved.call_rate,
+            position: saved.position,
+        }
+    }
     pub fn new(
         image: AdlibImage<'a>,
         sample_rate: u32,

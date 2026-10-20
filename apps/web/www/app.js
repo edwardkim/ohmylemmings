@@ -1,5 +1,6 @@
-import init, { WebGame } from './pkg/lemmings_web.js';
+import init, { WebGame, WebAudio } from './pkg/lemmings_web.js';
 import { FramePump, present } from './host.js';
+import { AudioHost } from './audio.js';
 import { GameInput, readFiles } from './controls.js';
 
 const canvas = document.querySelector('#game');
@@ -15,6 +16,8 @@ const level = document.querySelector('#level');
 const openLevel = document.querySelector('#open-level');
 const errorText = document.querySelector('#error');
 const source = document.querySelector('#source');
+let audio;
+let audioHeld=false;
 let game;
 let pump;
 let input;
@@ -50,6 +53,7 @@ function recover(error) {
 }
 function fail(error) {
     stop();
+    audio?.mute();
     console.error(error);
     errorText.textContent = '게임을 실행하지 못했습니다. 새로고침해주세요.';
     for (const control of document.querySelectorAll('button,select,input')) control.disabled = true;
@@ -59,6 +63,9 @@ function draw() {
     const state = JSON.parse(game.state());
     const finished = state.completion && state.completion.phase !== 'Playing';
     const paused = game.paused();
+    audioHeld=loading||Boolean(finished)||exited;
+    audio?.service();
+    audio?.hold(document.hidden||audioHeld);
     pause.textContent = exited ? '게임으로 돌아가기' : paused ? '계속하기' : '멈추기';
     pause.disabled = loading || Boolean(finished);
     restart.disabled = loading;
@@ -126,6 +133,7 @@ files.addEventListener('change', async () => {
 document.addEventListener('visibilitychange', () => {
     if (!game) return;
     input.release(); pump.suspend(); stop();
+    audio?.hold(document.hidden||audioHeld);
     if (!document.hidden && draw()) schedule();
 });
 
@@ -133,6 +141,23 @@ try {
     await init();
     game = new WebGame(scene.value, 'reference');
     pump = newPump();
+    const sound=document.querySelector('#sound'),volume=document.querySelector('#volume'),audioStatus=document.querySelector('#audio-status');
+    const audioSupported=typeof globalThis.AudioContext==='function';
+    audio=new AudioHost(()=>game,WebAudio,({state,volume,muted,error})=>{
+        if(!audioSupported){sound.disabled=true;audioStatus.textContent='이 브라우저에서는 소리를 사용할 수 없습니다. 게임은 계속할 수 있습니다.';return;}
+        sound.disabled=state==='starting';sound.textContent=muted?'소리 켜기':'음소거';
+        audioStatus.textContent=state==='on'?`소리 켜짐 · ${volume}%`:state==='held'?'소리 일시 중지':state==='starting'?'소리를 준비하는 중…':state==='error'?(error.includes('ADLIB.DAT')?'ADLIB.DAT 파일을 함께 선택한 후 소리를 켜주세요.':'소리를 재생하지 못했습니다. 소리 켜기로 다시 시도해주세요.'):'소리는 버튼을 눌러 켤 수 있습니다.';
+    },()=>!audioHeld&&!document.hidden);
+    const toggleSound=()=>{if(!audioSupported)return;if(audio.muted)void audio.activate();else audio.mute();};
+    sound.addEventListener('click',toggleSound);
+    canvas.addEventListener('keydown',event=>{
+        if(event.isComposing||event.ctrlKey||event.altKey||event.metaKey||!['KeyS','PageUp','PageDown'].includes(event.code))return;
+        event.preventDefault();if(event.repeat)return;
+        if(event.code==='KeyS')toggleSound();else {volume.value=Math.max(0,Math.min(100,Number(volume.value)+(event.code==='PageUp'?10:-10)));audio.setVolume(Number(volume.value));}
+    });
+    volume.addEventListener('input',()=>audio.setVolume(Number(volume.value)));
+    audio.setVolume(Number(volume.value));
+    window.addEventListener('pagehide',()=>void audio.dispose());
     input = new GameInput(canvas, () => inputGame, action, draw, recover, () => !loading && !exited);
     draw(); schedule();
 } catch (error) { fail(error); }

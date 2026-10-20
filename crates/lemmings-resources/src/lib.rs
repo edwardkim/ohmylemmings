@@ -88,7 +88,7 @@ pub use adlib::{
 
 mod adlib_stream;
 pub use adlib_stream::{
-    ADLIB_COMMAND_BUDGET, AdlibPlayer, AdlibState, AdlibStreamError, AdlibWrite,
+    ADLIB_COMMAND_BUDGET, AdlibContinuation, AdlibPlayer, AdlibState, AdlibStreamError, AdlibWrite,
 };
 
 mod sound;

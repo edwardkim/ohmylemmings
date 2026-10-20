@@ -1,0 +1,1136 @@
+{
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/80",
+  "baseline_main": "4234535a6c13ac7037718fa083fa2583c7aa97b9",
+  "contract": "mydocs/tech_insights/issue-80_audio_output.md",
+  "engine": {
+    "reference": "assets/manifests/adlib_pcm.json",
+    "license": "LGPL-2.1-or-later",
+    "selected_core_adapter_patch_license_unchanged": true,
+    "owned_reborrow": "opaque continuations bound only to same private immutable image; no unsafe/leaks/self-borrows"
+  },
+  "dependencies": {
+    "new_external_packages": false,
+    "new_workspace_packages": false,
+    "external_locked_packages_unchanged": true,
+    "local_edge": "lemmings-game -> lemmings-audio"
+  },
+  "output": {
+    "format": "mono left signed i16; browser exact sample/32768",
+    "sample_rates": [
+      8000,
+      192000
+    ],
+    "volume": "integer0..100, i32(sample)*volume/100; default40",
+    "driver_clock": "2190197/31250Hz independent of gameplay",
+    "sdl": {
+      "chunk_frames": 512,
+      "target_frames": 2048,
+      "queue_cap_frames": 3072,
+      "max_refills": 4,
+      "fast_mode_devices": false
+    },
+    "web": {
+      "chunk_frames": 512,
+      "max_nodes": 8,
+      "target_seconds": 0.06,
+      "initial_seconds": 0.005,
+      "timer_ms": 20,
+      "worklet": false,
+      "activation": "explicit button/S trusted gesture; asynchronous ticket/timeout; no constructor autoplay"
+    },
+    "resync": "first activation/mute/hide/generation/drop -> fresh current music; discard already-issued stale effects; no wall catch-up",
+    "controls": "S and PageUp/PageDown; no gameplay input entries; Pause music continues; volume0 advances silently"
+  },
+  "source_delivery": {
+    "notice": "apps/web/www/audio-license.html",
+    "license": "crates/lemmings-opl/LICENSE",
+    "builder": "tools/web_build.py",
+    "artifacts": [
+      "LGPL-2.1-or-later.txt",
+      "audio-source.tar.gz",
+      "audio-source.json"
+    ],
+    "source_manifest": "sorted path/bytes/mode/SHA; normalized tar/gzip; current public tracked and new build source",
+    "excludes": "assets/local/target, unrelated untracked roots/env files, symlink files/parents",
+    "relink_without_git": true,
+    "hash_pair": "served source archive/license/WASM identities checked by actual browser"
+  },
+  "synthetic_native": {
+    "status": "PASS",
+    "native_cases": 6,
+    "native_frames": 249492,
+    "simulation_unchanged": true,
+    "physical_listening_verified": false,
+    "sdl": {
+      "status": "PASS",
+      "driver": "dummy",
+      "queued_bytes": 3072,
+      "consumed_bytes": 1024,
+      "cleared_bytes": 0,
+      "queue_limit_frames": 3072,
+      "nonzero_frames": 3625,
+      "submitted_frames": 8192,
+      "mute_hide_generation": true,
+      "gameplay_unchanged": true,
+      "compared_files": 20,
+      "missing_device_recoverable": true
+    }
+  },
+  "synthetic_web": {
+    "status": "PASS",
+    "native_cases": 6,
+    "native_frames": 249492,
+    "simulation_unchanged": true,
+    "physical_listening_verified": false,
+    "wasm": {
+      "status": "PASS",
+      "cases": 6,
+      "frames": 249492,
+      "secure_context": true,
+      "offline_context": true,
+      "source_delivery": {
+        "license": true,
+        "archive": true,
+        "wasm_pair": true
+      },
+      "live": {
+        "state": "running",
+        "nonzero": 780,
+        "queued_nodes": 7,
+        "queue_seconds": 0.058333333333333334
+      },
+      "browser": "Chromium 152.0.7977.82 Arch Linux",
+      "autoplay_policy": "headless no-user-gesture-required; separate blocked/race mocks; trusted gesture checked separately"
+    }
+  },
+  "original": {
+    "status": "PASS",
+    "native_cases": 6,
+    "native_frames": 249492,
+    "simulation_unchanged": true,
+    "physical_listening_verified": false,
+    "wasm": {
+      "status": "PASS",
+      "cases": 6,
+      "frames": 249492,
+      "secure_context": false,
+      "offline_context": true,
+      "source_delivery": {
+        "license": true,
+        "archive": true,
+        "wasm_pair": true
+      },
+      "live": {
+        "state": "running",
+        "nonzero": 1291,
+        "queued_nodes": 7,
+        "queue_seconds": 0.05833333333333334
+      },
+      "browser": "Chromium 152.0.7977.82 Arch Linux",
+      "autoplay_policy": "headless no-user-gesture-required; separate blocked/race mocks; trusted gesture checked separately"
+    },
+    "original_files": 50
+  },
+  "original_web": {
+    "dom": {
+      "status": "PASS",
+      "scaled_assignments": 8,
+      "panel_skills": 8,
+      "held_release": true,
+      "focus_release": true,
+      "double_click_capture": true,
+      "right_chord_fallback": true,
+      "local_files": true,
+      "atomic_replacement": true,
+      "result_lifecycle": true
+    },
+    "sound_commands": {
+      "startup_events": 3,
+      "ui_burst": 1100,
+      "retained": 1024,
+      "dropped": 76,
+      "lifecycle": true,
+      "simulation_unchanged": true
+    },
+    "status": "PASS",
+    "cases": 27,
+    "runs": 54,
+    "states": 8648,
+    "frames": 4978,
+    "canvas_readbacks": 4978,
+    "boundary_checks": true,
+    "refresh_rates": [
+      60,
+      120,
+      144
+    ],
+    "browser": "Chromium 152.0.7977.82 Arch Linux",
+    "expected_sha256": "6014f5be12bf2e6145d3e35a983ac442c4a91b155f6d925036b8cdf767b8abc4",
+    "scope": "real WASM versus native wrapper: every full diagnostic state and all terrain/brick/object bytes by SHA-256; all rendered RGB and opaque Canvas readback; synthetic/invented bytes plus explicitly selected verified originals"
+  },
+  "native_device": {
+    "status": "PASS",
+    "driver": "pipewire",
+    "queued_bytes": 4096,
+    "consumed_bytes": 1024,
+    "cleared_bytes": 0,
+    "queue_limit_frames": 3072,
+    "nonzero_frames": 3625,
+    "submitted_frames": 8192,
+    "mute_hide_generation": true
+  },
+  "trusted_ui": {
+    "status": "PASS",
+    "scope": "Existing Chromium19222, owned tab, no autoplay flag; trusted Input click, actual AudioContext/Source observations; synthetic scene only",
+    "before": {
+      "secure": false,
+      "hidden": false,
+      "contexts": 0,
+      "clicks": [],
+      "activeGenerations": [],
+      "button": "소리 켜기",
+      "status": "소리는 버튼을 눌러 켤 수 있습니다.",
+      "volume": "40",
+      "sound": {
+        "generation": 0,
+        "queued": 3,
+        "dropped": 0,
+        "next_sequence": 3,
+        "music": 5,
+        "playing": true,
+        "reset": true,
+        "sequence_exhausted": false
+      },
+      "overflow": false
+    },
+    "enabled": {
+      "secure": false,
+      "hidden": false,
+      "contexts": 1,
+      "clicks": [
+        {
+          "trusted": true,
+          "active": true
+        }
+      ],
+      "state": "running",
+      "time": 0,
+      "starts": 6,
+      "stops": 0,
+      "nonzero": 3068,
+      "lastPeak": 0.049774169921875,
+      "active": 6,
+      "activeGenerations": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "resumes": [
+        {
+          "active": true,
+          "sticky": true
+        }
+      ],
+      "button": "음소거",
+      "status": "소리 켜짐 · 40%",
+      "volume": "40",
+      "sound": {
+        "generation": 0,
+        "queued": 0,
+        "dropped": 0,
+        "next_sequence": 3,
+        "music": 5,
+        "playing": true,
+        "reset": false,
+        "sequence_exhausted": false
+      },
+      "overflow": false
+    },
+    "muted": {
+      "secure": false,
+      "hidden": false,
+      "contexts": 1,
+      "clicks": [
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        }
+      ],
+      "state": "suspended",
+      "time": 0.8533333333333334,
+      "starts": 83,
+      "stops": 8,
+      "nonzero": 42470,
+      "lastPeak": 0.04949951171875,
+      "active": 0,
+      "activeGenerations": [],
+      "resumes": [
+        {
+          "active": true,
+          "sticky": true
+        }
+      ],
+      "button": "소리 켜기",
+      "status": "소리는 버튼을 눌러 켤 수 있습니다.",
+      "volume": "40",
+      "sound": {
+        "generation": 0,
+        "queued": 0,
+        "dropped": 0,
+        "next_sequence": 3,
+        "music": 5,
+        "playing": true,
+        "reset": false,
+        "sequence_exhausted": false
+      },
+      "overflow": false
+    },
+    "hidden": {
+      "secure": false,
+      "hidden": true,
+      "contexts": 1,
+      "clicks": [
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        }
+      ],
+      "state": "suspended",
+      "time": 1.0346666666666666,
+      "starts": 99,
+      "stops": 11,
+      "nonzero": 50655,
+      "lastPeak": 0.04949951171875,
+      "active": 0,
+      "activeGenerations": [],
+      "resumes": [
+        {
+          "active": true,
+          "sticky": true
+        },
+        {
+          "active": true,
+          "sticky": true
+        }
+      ],
+      "button": "음소거",
+      "status": "소리 일시 중지",
+      "volume": "40",
+      "sound": {
+        "generation": 0,
+        "queued": 0,
+        "dropped": 0,
+        "next_sequence": 3,
+        "music": 5,
+        "playing": true,
+        "reset": false,
+        "sequence_exhausted": false
+      },
+      "overflow": false
+    },
+    "returned": {
+      "secure": false,
+      "hidden": false,
+      "contexts": 1,
+      "clicks": [
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        }
+      ],
+      "state": "running",
+      "time": 1.088,
+      "starts": 107,
+      "stops": 11,
+      "nonzero": 54747,
+      "lastPeak": 0.0496826171875,
+      "active": 8,
+      "activeGenerations": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "resumes": [
+        {
+          "active": true,
+          "sticky": true
+        },
+        {
+          "active": true,
+          "sticky": true
+        },
+        {
+          "active": true,
+          "sticky": true
+        }
+      ],
+      "button": "음소거",
+      "status": "소리 켜짐 · 40%",
+      "volume": "40",
+      "sound": {
+        "generation": 0,
+        "queued": 0,
+        "dropped": 0,
+        "next_sequence": 3,
+        "music": 5,
+        "playing": true,
+        "reset": false,
+        "sequence_exhausted": false
+      },
+      "overflow": false
+    },
+    "zero": {
+      "secure": false,
+      "hidden": false,
+      "contexts": 1,
+      "clicks": [
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        }
+      ],
+      "state": "running",
+      "time": 1.216,
+      "starts": 123,
+      "stops": 23,
+      "nonzero": 58841,
+      "lastPeak": 0,
+      "active": 6,
+      "activeGenerations": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "resumes": [
+        {
+          "active": true,
+          "sticky": true
+        },
+        {
+          "active": true,
+          "sticky": true
+        },
+        {
+          "active": true,
+          "sticky": true
+        }
+      ],
+      "button": "음소거",
+      "status": "소리 켜짐 · 0%",
+      "volume": "0",
+      "sound": {
+        "generation": 0,
+        "queued": 0,
+        "dropped": 0,
+        "next_sequence": 3,
+        "music": 5,
+        "playing": true,
+        "reset": false,
+        "sequence_exhausted": false
+      },
+      "overflow": false
+    },
+    "restart": {
+      "secure": false,
+      "hidden": false,
+      "contexts": 1,
+      "clicks": [
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        }
+      ],
+      "state": "running",
+      "time": 2.7733333333333334,
+      "starts": 446,
+      "stops": 342,
+      "nonzero": 218241,
+      "lastPeak": 0,
+      "active": 7,
+      "activeGenerations": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "resumes": [
+        {
+          "active": true,
+          "sticky": true
+        },
+        {
+          "active": true,
+          "sticky": true
+        },
+        {
+          "active": true,
+          "sticky": true
+        },
+        {
+          "active": true,
+          "sticky": true
+        }
+      ],
+      "button": "음소거",
+      "status": "소리 켜짐 · 40%",
+      "volume": "40",
+      "sound": {
+        "generation": 1,
+        "queued": 0,
+        "dropped": 0,
+        "next_sequence": 0,
+        "music": 5,
+        "playing": false,
+        "reset": false,
+        "sequence_exhausted": false
+      },
+      "overflow": false
+    },
+    "mobile": {
+      "secure": false,
+      "hidden": false,
+      "contexts": 1,
+      "clicks": [
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        },
+        {
+          "trusted": true,
+          "active": true
+        }
+      ],
+      "state": "running",
+      "time": 6.325333333333333,
+      "starts": 778,
+      "stops": 342,
+      "nonzero": 337491,
+      "lastPeak": 0.049774169921875,
+      "active": 7,
+      "activeGenerations": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "resumes": [
+        {
+          "active": true,
+          "sticky": true
+        },
+        {
+          "active": true,
+          "sticky": true
+        },
+        {
+          "active": true,
+          "sticky": true
+        },
+        {
+          "active": true,
+          "sticky": true
+        }
+      ],
+      "button": "음소거",
+      "status": "소리 켜짐 · 40%",
+      "volume": "40",
+      "sound": {
+        "generation": 1,
+        "queued": 0,
+        "dropped": 0,
+        "next_sequence": 3,
+        "music": 5,
+        "playing": true,
+        "reset": false,
+        "sequence_exhausted": false
+      },
+      "overflow": false
+    },
+    "gameplay_input_log_unchanged": true,
+    "keyboard_audio_controls": true
+  },
+  "unsupported_api": {
+    "status": "PASS",
+    "api_absent": true,
+    "disabled_sound_control": true,
+    "shortcut_does_not_reenable": true,
+    "volume_does_not_reenable": true,
+    "game_continues": true,
+    "ui_status": "이 브라우저에서는 소리를 사용할 수 없습니다. 게임은 계속할 수 있습니다."
+  },
+  "relink": {
+    "status": "PASS",
+    "source_archive_sha256": "078563f1c21e03833f09e38170806df6eedc63abd6fd714a05ad7270af0edf9a",
+    "git_required": false,
+    "offline_build": true,
+    "modified_library": "Private adapter returns zero samples; application source unchanged",
+    "wasm_rebuilt": true,
+    "native_cases": 6,
+    "all_modified_pcm_zero": true,
+    "scope": "Relink capability proof only; intentionally modified outputs are not production engine validation"
+  },
+  "local_validation": {
+    "status": "PASS",
+    "exit_code": 0,
+    "rust": 596,
+    "doc": 29,
+    "python": 155,
+    "bytes": 108677,
+    "sha256": "042d6639424eab59f791987f82e9f4c958ab3251dcb37d0c3ecbc783bed6babe",
+    "scope": "Full final make check: format/Clippy/offline Rust/docs/Python/C/PCM/WASM/SDL/Web plus owned output, actual AudioContext and source/license delivery"
+  },
+  "self_review": {
+    "status": "PASS",
+    "method": "Author self-review authorized by user; no delegated agents",
+    "unresolved": 0,
+    "new_rust_tests": 9,
+    "new_python_tests": 9,
+    "checks": [
+      "Core remains independent; resources/audio no_std and allocation-free; owned bytes/scratch/live output in std Game/platforms. No new external/package lock entries; only local Game-to-Audio edge.",
+      "Opaque driver/PCM continuations retain no image borrow; owning adapters bind only the same private immutable bytes. Existing resampler/VM/preflight/mono-left semantics and vendor core/license/patch bytes remain unchanged.",
+      "AudioOutput validates all batch indices/generation/sequence before mutation; malformed/stale/duplicate requests preserve playback. Render bounds/error atomicity and exact integer volume tested. Game input/state/maps/RGB do not depend on device consumption.",
+      "Activation/resume/generation/loss reset VM/chip/phase and current music, discard already-issued stale effects; mute/hide/result clear device queues. Pause keeps music advancing; volume0 advances silently. These are explicit output policies, not original IRQ phase/listening certification.",
+      "SDL production service bounded4x512 refills/2048target/3072cap; mono actual spec; nonfatal source/device errors release resources and S retries. Fast mode opens no device; S/Page audio controls do not enter gameplay log.",
+      "Web construction has no AudioContext/autoplay. Trusted event calls resume; ticket/timeout prevent stale activation after mute/hide; context recreation frees rate-dependent PCM source; API absence keeps controls disabled and gameplay active.",
+      "Web512frame buffers/8nodes/60ms target/20ms timer, stop/disconnect/ended cleanup and bounded clock-jump recovery. No AudioWorklet secure dependency; actual insecure LAN original graph and trusted CDP click/keyboard/hide/restart/volume0 passed.",
+      "SDL dummy and real PipeWire backend consume nonzero PCM. Six native/WASM cases249492frames and actual OfflineAudioContext samples agree; mocked blocked/race/recreate/clock-jump cases separate from actual graph and trusted gesture.",
+      "Original50files pre/post hashes equal. Original PCM/device evidence ignored; practice tones independently composed. Public screenshots synthetic and visually reviewed at1280/390 widths; original Web8648states/4978Canvas passed.",
+      "Visible LGPL footer/notice/license and archive/hash pair ship with WASM. Source bundle current public/build source excludes local/target/unrelated untracked roots/env/symlinks and requires source/license/relink materials. Deterministic manifest/archive and Git-free extraction tested.",
+      "Actual fixed input archive copied before private library modification, offline native/WASM rebuild/relink and deliberately silent replacement output succeeded. Initial moving-input proof and interrupted pre-delivery full check excluded from final success evidence.",
+      "Final full make check passed596Rust/29docs/155Python and all existing PCM/SDL/Web journeys. Publication gated on exact push/PR/main fourjobs/full ZIP checkout logs, equal reviewed/merge tree and remote mode/blob proof."
+    ]
+  },
+  "sources": [
+    {
+      "path": "Cargo.lock",
+      "bytes": 5268,
+      "sha256": "70583cf110134b484a0fe31b92ab43a0fb9f3b10b7ffa3c155cd74a86229c317"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 2469,
+      "sha256": "b0b8b2a47a8aa3085416b1a0e57b71000d45bb1e58826c35d6760b017938ea5e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 18269,
+      "sha256": "1bb325d4672806be961223dfb880d9c51241eee5163fec3aa0cfac7b906e0f3c"
+    },
+    {
+      "path": "apps/desktop/README.md",
+      "bytes": 19445,
+      "sha256": "ce8d24ffe7ecf0b48869471d4a5c5f25237bf632d75f30158e8f199a9d143d4d"
+    },
+    {
+      "path": "apps/desktop/src/audio.rs",
+      "bytes": 7824,
+      "sha256": "a14436546911b5fb5c87768b9418d7bad61c20bb85bca4465815651cd43478cf"
+    },
+    {
+      "path": "apps/desktop/src/main.rs",
+      "bytes": 47202,
+      "sha256": "c0f41d858c434e65050a65fe56e2fb8935a49c9a51b71d8b795914a31bfc071a"
+    },
+    {
+      "path": "apps/web/README.md",
+      "bytes": 9966,
+      "sha256": "3fe2d9d8a09561e672f2a28214e8eff9d021f71d003c496e5a6acd32340d2008"
+    },
+    {
+      "path": "apps/web/src/audio.rs",
+      "bytes": 3215,
+      "sha256": "520e3df17475063858c5d6065cdbd93e4f2b1e6dc7e491ae6783134b01d56a5e"
+    },
+    {
+      "path": "apps/web/src/bin/audio_trace.rs",
+      "bytes": 3167,
+      "sha256": "0c9822fed23a85b1c51bf7512b5de90912a1bfd5375029988394a58ae8e1d4f7"
+    },
+    {
+      "path": "apps/web/src/bytes.rs",
+      "bytes": 1637,
+      "sha256": "18e5f8b2cfd1b050394c466c7780f2e4ee6f3afc915e44efe898ae63e1c3e824"
+    },
+    {
+      "path": "apps/web/src/lib.rs",
+      "bytes": 15658,
+      "sha256": "9cc69bcded21819f18c98234ae074c9f90e5e03d179ab44581a993b137168b88"
+    },
+    {
+      "path": "apps/web/tests/audio_output.rs",
+      "bytes": 3933,
+      "sha256": "3166225c16a28bb78f4f1d326af5ad3953c0c98f6a0856b5349b6cf84ac17e72"
+    },
+    {
+      "path": "apps/web/www/app.js",
+      "bytes": 8351,
+      "sha256": "b67b049bf86d585039e0b95f20c146fa617f1c4c8689b89272a7baf553d48fd6"
+    },
+    {
+      "path": "apps/web/www/audio-license.html",
+      "bytes": 2005,
+      "sha256": "8df3c06350512fd75d5a4ddd44df2dd9010ba4adda29a3b4d1390b675d96c582"
+    },
+    {
+      "path": "apps/web/www/audio.js",
+      "bytes": 5537,
+      "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+    },
+    {
+      "path": "apps/web/www/index.html",
+      "bytes": 4320,
+      "sha256": "01385c447b65688aba1a4cfb93268021f4decfaf3b2a1b0ca766f1b3cc1d150e"
+    },
+    {
+      "path": "apps/web/www/style.css",
+      "bytes": 4566,
+      "sha256": "25b5a725ba90ceaa9366b9e5a80f5791bc82f9ef86ce859fdecc55d8910c8b85"
+    },
+    {
+      "path": "assets/README.md",
+      "bytes": 16927,
+      "sha256": "1ee9d77bd5be92a5246ad3e37bda351919244424effc894d65bbf62eb39def36"
+    },
+    {
+      "path": "crates/lemmings-audio/src/lib.rs",
+      "bytes": 10545,
+      "sha256": "3627878e068cb91ac69cb2c1b6a16071fe4c17e5e459893669767f77890e285a"
+    },
+    {
+      "path": "crates/lemmings-audio/tests/pcm.rs",
+      "bytes": 8740,
+      "sha256": "6d57bdbaa98b95c425aaa44af2b6c0685259e8badc90888c60b90e93cb08ac59"
+    },
+    {
+      "path": "crates/lemmings-game/Cargo.toml",
+      "bytes": 500,
+      "sha256": "b65fc4f245f60167271198e0138feee2708b60e34c6bff289d1bfc52f5a503b4"
+    },
+    {
+      "path": "crates/lemmings-game/README.md",
+      "bytes": 2287,
+      "sha256": "a62878eda0cddd2ca09b9b88fdaebb4b53f387fa29dd5e644b4734728ddb1aa6"
+    },
+    {
+      "path": "crates/lemmings-game/src/audio.rs",
+      "bytes": 7403,
+      "sha256": "f4d5f5ae176cb71555c1965d984febd748c8bad5452e2df6cef80662fba1265b"
+    },
+    {
+      "path": "crates/lemmings-game/src/lib.rs",
+      "bytes": 706,
+      "sha256": "7b7456db1865f36eeb5195cd67fd9eb5c8f866ecf7fcf6847303e4b8a53a5124"
+    },
+    {
+      "path": "crates/lemmings-game/tests/audio_output.rs",
+      "bytes": 4221,
+      "sha256": "d2e82377524c7249c9fbe93f164b50995fad27b89ea2fa23bfe98885727608b9"
+    },
+    {
+      "path": "crates/lemmings-opl/README.md",
+      "bytes": 1832,
+      "sha256": "3931ee95eb432622b7d43875e53e49d2d45091c8a219594bbc49d4fdd6fe27c4"
+    },
+    {
+      "path": "crates/lemmings-resources/src/adlib_stream.rs",
+      "bytes": 19266,
+      "sha256": "7e4edbfe6353163abd40379ed5c72965a46b7640eb8afba279da025514062e19"
+    },
+    {
+      "path": "crates/lemmings-resources/src/lib.rs",
+      "bytes": 2909,
+      "sha256": "ef5aec4e9fb624662b581bacaf1b44fa6be516ec7be2d51c58e9483e8585582d"
+    },
+    {
+      "path": "mydocs/README.md",
+      "bytes": 13743,
+      "sha256": "c00a977dc5fe801f1f45207bb9540e9bede26ac142deebeb2df9f66d92384ce7"
+    },
+    {
+      "path": "mydocs/orders/20261020.md",
+      "bytes": 10462,
+      "sha256": "5d0c5af7a38d7dc2b3c4b3f8fed86cee59d63de056e49977d85b56982a288f4d"
+    },
+    {
+      "path": "mydocs/orders/20261021.md",
+      "bytes": 1034,
+      "sha256": "f82d98fedec9611b2f72c736c39261de7acc4d6e97534575490debd64d4e6d0e"
+    },
+    {
+      "path": "mydocs/orders/README.md",
+      "bytes": 1779,
+      "sha256": "24db98e73556f24d936dba235985a98d30fc8b8e78b6c69cd043e9fe3a167b8b"
+    },
+    {
+      "path": "mydocs/plans/issue-1_implementation_plan.md",
+      "bytes": 35609,
+      "sha256": "514c968a0f3af83db0cdf8797e637673b51532b6c196728c0dc1a864dc72de8f"
+    },
+    {
+      "path": "mydocs/plans/issue-7_continuous_integration.md",
+      "bytes": 8345,
+      "sha256": "3a62e177bd35b98f28cc9c803942fe0b41e9eba1f58eb1ca20c607c3f4a03ef5"
+    },
+    {
+      "path": "mydocs/reports/README.md",
+      "bytes": 2588,
+      "sha256": "f2a942d5f6f33529d8f38cf7d38b07ff9aa856ce9dd03702f24a282815a34a61"
+    },
+    {
+      "path": "mydocs/reports/issue-80_audio_desktop.png",
+      "bytes": 223552,
+      "sha256": "fed60456ad0df4e3efce61e8b1a16db145fa439c5ae9b8778e34b1963505ff28"
+    },
+    {
+      "path": "mydocs/reports/issue-80_audio_mobile.png",
+      "bytes": 118498,
+      "sha256": "264ff316aff70ef4392a869f9248bd7399ab2a7d66bfeedbea2975d7e6a1895f"
+    },
+    {
+      "path": "mydocs/reports/issue-80_audio_output.md",
+      "bytes": 3658,
+      "sha256": "8ab77f42156cb9e9c1067de257b6486b679acce6d817d063ae95027a2235faa3"
+    },
+    {
+      "path": "mydocs/tech_insights/README.md",
+      "bytes": 4108,
+      "sha256": "2d840a1e56c1b1e263bc88d82c35410530acfd6a0c67489ed3341896b100c4eb"
+    },
+    {
+      "path": "mydocs/tech_insights/issue-80_audio_output.md",
+      "bytes": 8550,
+      "sha256": "ea722967e8854d94024e6c32598ef6d10d2e3b861c35a981aff8bf1aabc1353b"
+    },
+    {
+      "path": "mydocs/working/README.md",
+      "bytes": 2524,
+      "sha256": "21a9ae2316886d396200e04fd14163fb68143c6651d43f5f1f4cd2d67fee2dc3"
+    },
+    {
+      "path": "mydocs/working/issue-80_audio_output.md",
+      "bytes": 1235,
+      "sha256": "cd8ec9e71725d11ac62529f5efc7af32a1a07e71bd1a80ea87a338fa76edf092"
+    },
+    {
+      "path": "third_party/README.md",
+      "bytes": 1146,
+      "sha256": "137b20c61633897f0de877e8eafccffef32f4e36c2d9c3b05bd33d6ec0776cc2"
+    },
+    {
+      "path": "tools/audio/output-check.html",
+      "bytes": 199,
+      "sha256": "46a0f79f26e6ff6205a3877b09a68dc30bf0a6d913054fee842388828350d2f4"
+    },
+    {
+      "path": "tools/audio/output-check.js",
+      "bytes": 9356,
+      "sha256": "a83d98ec1175b832f1bf3ff0c146d8b7bf227a4607bf3e9c936f999f66d81e34"
+    },
+    {
+      "path": "tools/check_audio_output.py",
+      "bytes": 12203,
+      "sha256": "7ceca78f6c688977409524a28d87c8cbb0cf3a3dbe231dad972ef328e3e526f3"
+    },
+    {
+      "path": "tools/tests/fixtures/audio_output.json",
+      "bytes": 3455,
+      "sha256": "b209fbd629c16b95fa1317b03efd3c798a117911f06731ed4238a9e5996dee2b"
+    },
+    {
+      "path": "tools/tests/test_audio_output.py",
+      "bytes": 2571,
+      "sha256": "f5aaa64eb354571895023e628bf4c7009d8e9ba8c8a9ed60604aded11ab91cd1"
+    },
+    {
+      "path": "tools/tests/test_web_build.py",
+      "bytes": 7627,
+      "sha256": "663bff1374f6e066242d29a87f304551825985c4b65c65c2ba34a2659aefbcd4"
+    },
+    {
+      "path": "tools/web_build.py",
+      "bytes": 7918,
+      "sha256": "7b20c57acd011af968d80e94d2d62e370cbf6f4cf9b64f77e8e862cb654a1010"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/continuation-red.log",
+      "bytes": 1500,
+      "sha256": "d4988a9ce335a9aff5685594110eb44bd5899df05cb7d28dcd74fa0e864efe7a"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/continuation-green.log",
+      "bytes": 1123,
+      "sha256": "4e7a8658c895c435498aa5ba0135ed7a1924735ffc09e11386ded07b6bd005e1"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/output-red.log",
+      "bytes": 1264,
+      "sha256": "9ae9dcf44cd53a5860262aa569a8e2546e8793641d63dd37e3b5639916701857"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/output-first.log",
+      "bytes": 701,
+      "sha256": "1c77140b6bae12fd3fcc5585ef3087f393a8b03b717cc8cccca7b21aff13d2ee"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/web-output-red.log",
+      "bytes": 491,
+      "sha256": "bcfe12e811bebcbbdc2c759a8a588717ec756de7aa76ef860112c351e826a4d6"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/web-boundaries.log",
+      "bytes": 697,
+      "sha256": "11194c40f0b5e039f55a488fec6874619b00bbcb1fe3c3642de7d2030b034e10"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/python-red.log",
+      "bytes": 934,
+      "sha256": "a55b04e90daa405752b76db7fe795bd81c2693573338b023773bdfb82c6ba487"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/python-delivery-final.log",
+      "bytes": 2637,
+      "sha256": "8490abd43f577617942d8c9be82eb35a79f9384077c223e72f47c54f8b45dc74"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/source-delivery-red.log",
+      "bytes": 2945,
+      "sha256": "c276e874a2753e9d57d7bdfde0d837b07ffbf1a51ad942fda2380711eb5a7e0a"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/source-delivery-final.log",
+      "bytes": 1718,
+      "sha256": "a4a1e77e0b99e74e4a330738dab8993e58fb71a8a54f2d02984c2a3f3281dbac"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/native-device.json",
+      "bytes": 198,
+      "sha256": "f2a551b5831b59a969bf44a6e18647fb962eb15bd9117cfa5e8004be69e25ccc"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/native-device.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/output-native-final.log",
+      "bytes": 499,
+      "sha256": "7571edc8156d39c0d02dd2adbd8e3de95f792f214d2e41fc98ea1db9f0b143cf"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/output-web-final.log",
+      "bytes": 849,
+      "sha256": "ad6bf5bbc8ef49b3745937587cce5cbd4d736e901af926723230eb62e544a6c7"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/original-lan-final.log",
+      "bytes": 871,
+      "sha256": "13010bc753c1b16965b9b5c7be12bdb0422d9438107b2a3c55556b75479e9d14"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/original-web.log",
+      "bytes": 1253,
+      "sha256": "a2497fb6070df59c11bab10bbf924af3a1e13b9541de20c0a6e8dfc63a859810"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/ui-probe.mjs",
+      "bytes": 8801,
+      "sha256": "69e0d0f5340346a794407aeec6dbc6be5b4e545e633a95e0b3e5af6c731dd697"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/ui-probe-final.log",
+      "bytes": 157,
+      "sha256": "0d302c1cad2e7348ff7e907d0074d3ddaf123e8da3abfa75ebede9e7b3f9561e"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/ui-proof.json",
+      "bytes": 8083,
+      "sha256": "17adcd51805ac175421e4e9a7ecceb93c079a33da6feb73bb88463ae75c51c18"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/unsupported-probe.mjs",
+      "bytes": 3255,
+      "sha256": "0e94b07aaf83aa94369a2e0829b9f5c21c97b9093d5be2cf674803d7bb0fc78c"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/unsupported-probe.log",
+      "bytes": 270,
+      "sha256": "0116e5c8a5f18e62df39ee9adae740adf4b3be6e4bd0097cf7dfda5d53a794a1"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/unsupported-proof.json",
+      "bytes": 299,
+      "sha256": "17315426a42dfe6557a8bafd367b6dffeca8d215bd5aa7f1c6bfa2f4f40924ac"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/relink-final.py",
+      "bytes": 2238,
+      "sha256": "39349910c69f39f56e01478817f184a4b538f062b5421d96372ab3e04183b126"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/relink-final.log",
+      "bytes": 2946,
+      "sha256": "28836b6bb8c27d36d66e7fd253ad827c270cffe7165e80684a34682f685c5e1e"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/relink-proof-final.json",
+      "bytes": 450,
+      "sha256": "a8c638787243e0cb7de081af39131a5bb0b5dc6e6d21383dc86957e2c021d3fb"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/make-check.log",
+      "bytes": 108677,
+      "sha256": "042d6639424eab59f791987f82e9f4c958ab3251dcb37d0c3ecbc783bed6babe"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/make-check.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/local-validation.json",
+      "bytes": 347,
+      "sha256": "a3597a99144fab2d2ce8a8b4fbbaf93f5e6c6ca33a19d568d74d32a634416c90"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/self-review.json",
+      "bytes": 3162,
+      "sha256": "37a276e3fdc2b493804a1a35f0af769364d11a77ee9f176a6e6e1a47b8284791"
+    }
+  ],
+  "evidence_trees": [
+    {
+      "directory": "assets/local/issue-80-synthetic-native-final",
+      "files": 112,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/issue-80-synthetic-native-final-index.json",
+        "bytes": 18719,
+        "sha256": "78e457da18328a4d95e6ee31d700ae01e5861fb46e57a4f9fe2067dd250cb589"
+      }
+    },
+    {
+      "directory": "assets/local/issue-80-synthetic-web-final",
+      "files": 45,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/issue-80-synthetic-web-final-index.json",
+        "bytes": 7302,
+        "sha256": "e8ad97399eb6c22851c4d3bd4997d9a20c387fb316247509816ac070d8858068"
+      }
+    },
+    {
+      "directory": "assets/local/issue-80-original-lan-final",
+      "files": 69,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/issue-80-original-lan-final-index.json",
+        "bytes": 11162,
+        "sha256": "f10d94bf5b2d0d583a3e5311dbde01da5e2a0fa7a50b8505533d1795855cac63"
+      }
+    },
+    {
+      "directory": "assets/local/issue-80-original-web",
+      "files": 54,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/issue-80-original-web-index.json",
+        "bytes": 8334,
+        "sha256": "3d92a94c69e0c4e1f68639e4baa67e64fd9ed90978c6f216dbbac41374d32feb"
+      }
+    },
+    {
+      "directory": "assets/local/issue-80-relink-evidence",
+      "files": 32,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-80-review/issue-80-relink-evidence-index.json",
+        "bytes": 5058,
+        "sha256": "ef3843559e01a716a94cc2f8f579d5f62a436a794052cc7e8e6a85eda8c4909f"
+      }
+    }
+  ],
+  "index_algorithm": "Sorted POSIX paths; compact sorted-key JSON array/newline; exact size/SHA256",
+  "limitations": [
+    "No physical DAC/speaker or subjective listening/full song/real asynchronous DOS phase certification; G10-06 follows",
+    "Headless graph uses explicit autoplay test flag; trusted existing Chromium no-autoplay-flag UI proof separate",
+    "Original recordings/PCM and private logs remain ignored; public screenshots/fixture are synthetic",
+    "Intentional zero-output replacement library in private relink proof is not a production PCM pass",
+    "Initial interrupted make check and moving-input relink evidence retained but excluded from final passes"
+  ],
+  "next": "G10-06 DOS/native/browser integrated comparison/listening and G10 closure",
+  "publication": "Exact push/PR/main fourjobs/full ZIP checkout logs/equal merge tree/remote blob modes recorded in issue80 before closure"
+}

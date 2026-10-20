@@ -8,6 +8,7 @@ repository.workspace = true
 publish.workspace = true
 
 [dependencies]
+lemmings-audio = { path = "../lemmings-audio" }
 lemmings-core = { path = "../lemmings-core" }
 lemmings-resources = { path = "../lemmings-resources" }
 lemmings-session = { path = "../lemmings-session" }

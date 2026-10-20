@@ -66,6 +66,7 @@ dependencies = [
 name = "lemmings-game"
 version = "0.1.0"
 dependencies = [
+ "lemmings-audio",
  "lemmings-core",
  "lemmings-resources",
  "lemmings-session",

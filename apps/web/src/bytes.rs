@@ -41,7 +41,9 @@ impl WebAssets {
     }
 }
 fn known(name: &str) -> bool {
-    matches!(name, "MAIN.DAT" | "ODDTABLE.DAT" | "VGALEMMI.EXE")
-        || (0..10).any(|n| name == format!("LEVEL{n:03}.DAT"))
+    matches!(
+        name,
+        "MAIN.DAT" | "ODDTABLE.DAT" | "VGALEMMI.EXE" | "ADLIB.DAT"
+    ) || (0..10).any(|n| name == format!("LEVEL{n:03}.DAT"))
         || (0..5).any(|n| name == format!("GROUND{n}O.DAT") || name == format!("VGAGR{n}.DAT"))
 }

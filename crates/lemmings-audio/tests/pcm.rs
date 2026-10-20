@@ -202,3 +202,27 @@ fn equivalent_rates_reduce_and_large_valid_terms_do_not_overflow() {
         .unwrap();
     assert_eq!(p.driver_state().audio_step, 1);
 }
+
+#[test]
+fn detached_state_survives_owned_image_relocation_without_resetting_pcm_or_driver() {
+    let b = fixture();
+    let image = AdlibImage::parse(&b).unwrap();
+    let mut a = AdlibPcm::new(image, 44100, AudioRate::DOS_VGA).unwrap();
+    let mut c = AdlibPcm::new(image, 44100, AudioRate::DOS_VGA).unwrap();
+    a.request_music(0).unwrap();
+    c.request_music(0).unwrap();
+    let mut scratch = [AdlibWrite::default(); 4096];
+    let mut prefix = [0; 713];
+    a.render(&mut prefix, &mut scratch, 4096).unwrap();
+    c.render(&mut prefix, &mut scratch, 4096).unwrap();
+    let saved = a.into_continuation();
+    let relocated = b.clone();
+    let mut a = AdlibPcm::resume(AdlibImage::parse(&relocated).unwrap(), saved);
+    let mut x = [0; 4096];
+    let mut y = [0; 4096];
+    a.render(&mut x, &mut scratch, 4096).unwrap();
+    c.render(&mut y, &mut scratch, 4096).unwrap();
+    assert_eq!(x, y);
+    assert_eq!(a.position(), c.position());
+    assert_eq!(a.driver_state(), c.driver_state());
+}
