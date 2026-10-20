@@ -79,3 +79,9 @@ pub use objects::{
 
 mod particles;
 pub use particles::{EXPLOSION_PARTICLE_DATA_SIZE, ExplosionParticles, ParticleDataError};
+
+mod adlib;
+pub use adlib::{
+    ADLIB_EFFECT_COUNT, ADLIB_IMAGE_SIZE, ADLIB_MUSIC_COUNT, AdlibChannel, AdlibError, AdlibFile,
+    AdlibImage, AdlibMusic,
+};

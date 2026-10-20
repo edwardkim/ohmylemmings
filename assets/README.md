@@ -95,3 +95,5 @@ MAIN.DAT 지형 마스크·카운트다운은 [G03-09 재현 명령](../mydocs/t
 - [브라우저 입력·자산·전환 검증](manifests/web_input_assets.json): #68의 원본 없는24사례와 선택 원본 Fun01..03 초기 실행/입력/재시작27사례, SDL 대조·CDP19222 실제 조작·출처/해시를 기록합니다. 원본 바이트/추적/화면은 ignored assets/local에만 보관합니다. 원본 한 레벨의 브라우저 통합 완주는 다음 #70 증거로 구분합니다.
 
 - [브라우저 통합 완주 검증](manifests/web_playthrough.json): #70의 합성/원본 네 시도, 매 제어 경계 전체 상태/맵 변형·Canvas, raw 이벤트와 독립 SDL 재생·시간/렌더 분할의 출처/해시입니다. 원본 Fun01 두 번 전원 구출·조기 Nuke 실패·초기화와 Fun02 새 ID0을 검증했고 기존 #60 DOS 증거와 구분합니다. 원본 파생물은 ignored assets/local에만 둡니다.
+
+- [AdLib 자원 목록 검증](manifests/adlib_catalog.json): #72의 합성21곡48채널·원본21곡69채널/18효과음·120레벨 대응, 실제 고정 TS 초기화 함수/기존 목록 대조와 출처/해시입니다. OPL/PCM/DOS 오디오 실행 근거가 아닙니다. 선택 원본 검사는 `python3 tools/check_adlib.py --original-assets assets/local/dos-original --evidence assets/local/adlib-original-check`로 재현하며 Node가 필요합니다. 원본 파생물은 ignored assets/local에만 둡니다.
