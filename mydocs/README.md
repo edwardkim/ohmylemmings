@@ -52,3 +52,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 [G09-02 / #64 자산 바이트·공통 장면과 패널](tech_insights/issue-64_shared_game.md)을 진행합니다. JS/WASM·Canvas·브라우저 완주는 후속 단계입니다.
 
 [G09-03 / #66 JS/WASM·합성 브라우저](tech_insights/issue-66_wasm_browser.md)에서 원본 없는 실제 WASM과 네이티브/브라우저 상태·픽셀 대조를 연결합니다. 원본 공급/입력·같은 레벨 브라우저 완주는 G09-04/05 후속입니다.
+
+[G09-04 / #68 브라우저 입력·원본 자산·레벨 전환](tech_insights/issue-68_web_input_assets.md)을 연결합니다. 브라우저의 원본 한 레벨 통합 완주는 G09-05에서 검증합니다.

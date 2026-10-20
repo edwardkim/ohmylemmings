@@ -1,5 +1,6 @@
-import init, { WebGame } from './pkg/lemmings_web.js';
+import init, { WebGame, WebAssets } from './pkg/lemmings_web.js';
 import { FramePump, present } from './host.js';
+import { checkDom } from './dom_check.js';
 
 const assert = (condition, label) => { if (!condition) throw new Error(label); };
 const throws = (fn, label) => { let did = false; try { fn(); } catch { did = true; } assert(did, label); };
@@ -9,19 +10,37 @@ try {
     await init();
     const expected = await (await fetch('./expected.json')).json();
     const context = document.querySelector('#screen').getContext('2d', { willReadFrequently: true });
+    const bank = new WebAssets();
+    for (const name of [...Array.from({length:10},(_,i)=>`LEVEL${String(i).padStart(3,'0')}.DAT`),'GROUND0O.DAT','VGAGR0.DAT','MAIN.DAT','ODDTABLE.DAT']) bank.insert(name,new Uint8Array(await (await fetch('./fixture/'+name)).arrayBuffer()));
+    const originals=new WebAssets();
+    for (const name of expected.original_files || []) originals.insert(name,new Uint8Array(await (await fetch('./original/'+name)).arrayBuffer()));
+    function operation(game, row) {
+        const [,name,...args]=row;
+        switch(name) {
+            case 'Key': game.key(args[0],Boolean(args[1])); break;
+            case 'Pointer': game.pointer(...args); break;
+            case 'Release': game.release_input(); break;
+            case 'Restart': game.restart_level(); break;
+            case 'Continue': game.transition('continue'); break;
+            case 'Level': game.start_level(args[0]); break;
+            default: game.command(name,args[0]);
+        }
+    }
     let states = 0, frames = 0, readbacks = 0;
     const rows = [];
     for (const test of expected.cases) {
         for (const render of [1, 7]) {
-            const game = new WebGame(test.scene, test.pacing);
+            const game = new WebGame(test.scene.startsWith('original:') ? 'builder' : test.scene, test.pacing);
+            if (test.scene.startsWith('original:')) game.load_original(test.original ? originals : bank,Number(test.scene.split(':')[1]));
             for (let step = 0; step < test.rows.length; step++) {
-                for (const [at,name,value] of test.commands) if (at === step) game.command(name, value);
+                for (const row of test.commands) if (row[0] === step) operation(game,row);
                 const row = test.rows[step];
                 const state = JSON.parse(game.state());
                 assert(JSON.stringify(state) === JSON.stringify(row.state), `${test.name}/${render}/${step}: full state`);
                 for (const name of ['terrain','bricks','objects']) {
                     assert(await sha(game[name]()) === row[name], `${test.name}/${render}/${step}: ${name}`);
                 }
+                assert(JSON.stringify(JSON.parse(game.view_state()))===JSON.stringify(row.view),`${test.name}/${render}/${step}: presentation state`);
                 states++;
                 if (step % render === 0 || step === test.rows.length - 1) {
                     const before = game.state();
@@ -38,7 +57,7 @@ try {
                     frame.fill(17); // Exported arrays must not alias the live Rust frame.
                     assert(await sha(game.frame()) === row.frame, 'frame copy aliases game');
                 }
-                if (step < test.rows.length - 1) assert(game.step(1) === 1, 'missing explicit tick');
+                if (step < test.rows.length - 1) assert(game.step(1) === (state.completion && state.completion.phase!=='Playing' ? 0 : 1), 'wrong explicit tick count');
             }
             rows.push({name:test.name,render,states:test.rows.length});game.free();
         }
@@ -76,7 +95,9 @@ try {
     assert(JSON.parse(frozen).completion.phase==='Won','synthetic win did not finish');
     assert(game.step(1000)===0,'finished ticked');throws(()=>game.command('Nuke',0),'finished accepted input');assert(game.state()===frozen,'finished changed');
     game.free();pumpGame.free();
-    const result={status:'PASS',cases:expected.cases.length,runs:rows.length,states,frames,canvas_readbacks:readbacks,boundary_checks:true,refresh_rates:[60,120,144],runs_detail:rows};
+    const dom = await checkDom(assert,throws,bank);
+    bank.free();originals.free();
+    const result={dom,status:'PASS',cases:expected.cases.length,runs:rows.length,states,frames,canvas_readbacks:readbacks,boundary_checks:true,refresh_rates:[60,120,144],runs_detail:rows};
     report.textContent=JSON.stringify(result);await fetch('/__result',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(result)});
 } catch (error) {
     const result={status:'FAIL',error:String(error),stack:error.stack};report.textContent=JSON.stringify(result);

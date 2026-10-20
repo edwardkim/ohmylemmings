@@ -38,6 +38,7 @@ dependencies = [
  "lemmings-game",
  "lemmings-resources",
  "lemmings-session",
+ "lemmings-web",
  "sdl2",
 ]
 
@@ -70,6 +71,7 @@ version = "0.1.0"
 dependencies = [
  "lemmings-core",
  "lemmings-game",
+ "lemmings-resources",
  "wasm-bindgen",
 ]
 

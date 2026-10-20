@@ -14,5 +14,8 @@ lemmings-resources = { path = "../../crates/lemmings-resources" }
 lemmings-session = { path = "../../crates/lemmings-session" }
 sdl2 = "=0.38.0"
 
+[dev-dependencies]
+lemmings-web = { path = "../web" }
+
 [lints]
 workspace = true
