@@ -47,3 +47,5 @@
 - [#54 결과 화면·재시작](issue-54_results_restart.md)
 
 - [#58 포인터 선택·RightClickGlitch](issue-58_pointer_selection.md)
+
+- [#60 네이티브 한 레벨 통합 완주](issue-60_native_playthrough.md)

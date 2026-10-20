@@ -1,0 +1,2003 @@
+{
+  "format": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/60",
+  "baseline_main": "091cf2a2ac9e00d537b4028aacce8804d92d75bb",
+  "scope": "G08 native one-level playthrough; separate exact reference/replay state, SDL pixels, DOS asynchronous numeric results and ordered image anchors; not whole DOS",
+  "native": {
+    "original": {
+      "status": "PASS",
+      "states": 1699,
+      "replays": 12,
+      "live_captures": 240,
+      "replay_captures": 675,
+      "attempts": [
+        {
+          "attempt": 0,
+          "level": 1,
+          "states": 667,
+          "sha256": "7f438a779cb6703c0626123970332bb796e171b572078f536ed11c33eb3d8ae6",
+          "final": {
+            "phase": "Won",
+            "reason": "PopulationExhausted",
+            "original_total": 10,
+            "lemming_count": 10,
+            "required": 1,
+            "rescued": 10,
+            "target_percent": 10,
+            "rescued_percent": 100
+          },
+          "inputs": "61 0 AssignDigger 0\n63 0 Pause\n65 0 SetReleaseRate 51\n66 0 SetReleaseRate 52\n67 0 SetReleaseRate 53\n68 0 SetReleaseRate 54\n75 0 Resume\n",
+          "reference_executed": true
+        },
+        {
+          "attempt": 1,
+          "level": 1,
+          "states": 285,
+          "sha256": "0c0880f1211f0f32a4b322ac45bcb3da010c46e8f42f579a3ba9ca5164570cb2",
+          "final": {
+            "phase": "Lost",
+            "reason": "PopulationExhausted",
+            "original_total": 10,
+            "lemming_count": 3,
+            "required": 1,
+            "rescued": 0,
+            "target_percent": 10,
+            "rescued_percent": 0
+          },
+          "inputs": "133 0 Nuke\n",
+          "reference_executed": true
+        },
+        {
+          "attempt": 2,
+          "level": 1,
+          "states": 666,
+          "sha256": "85a5f406ed97e6d85e3ae277c80e9b6cc3e24b9775c5a823adbc8a3122caf66e",
+          "final": {
+            "phase": "Won",
+            "reason": "PopulationExhausted",
+            "original_total": 10,
+            "lemming_count": 10,
+            "required": 1,
+            "rescued": 10,
+            "target_percent": 10,
+            "rescued_percent": 100
+          },
+          "inputs": "62 0 AssignDigger 0\n",
+          "reference_executed": true
+        },
+        {
+          "attempt": 3,
+          "level": 2,
+          "states": 81,
+          "sha256": "88d0082101c2a135a0c867b37d2cc58ec9fa2032f2cb42be4e7ca6375cd780a5",
+          "final": {
+            "phase": "Playing",
+            "reason": null,
+            "original_total": 10,
+            "lemming_count": 10,
+            "required": 1,
+            "rescued": 0,
+            "target_percent": 10,
+            "rescued_percent": 0
+          },
+          "inputs": "",
+          "reference_executed": true
+        }
+      ],
+      "transitions": [
+        {
+          "attempt": 0,
+          "level": 1,
+          "step": 666,
+          "action": "Restart",
+          "target": 1
+        },
+        {
+          "attempt": 1,
+          "level": 1,
+          "step": 284,
+          "action": "Continue",
+          "target": 1
+        },
+        {
+          "attempt": 2,
+          "level": 1,
+          "step": 665,
+          "action": "Continue",
+          "target": 2
+        }
+      ]
+    },
+    "synthetic-final": {
+      "status": "PASS",
+      "states": 663,
+      "replays": 12,
+      "live_captures": 149,
+      "replay_captures": 393,
+      "attempts": [
+        {
+          "attempt": 0,
+          "level": 1,
+          "states": 178,
+          "sha256": "a8a272b60362375f84c62211e29cef3dbfcb6fcaa60fd4568ce1725d4fa0db11",
+          "final": {
+            "phase": "Won",
+            "reason": "PopulationExhausted",
+            "original_total": 3,
+            "lemming_count": 3,
+            "required": 2,
+            "rescued": 3,
+            "target_percent": 66,
+            "rescued_percent": 100
+          },
+          "inputs": "77 0 AssignClimber 0\n79 0 Pause\n81 0 SetReleaseRate 51\n82 0 SetReleaseRate 52\n83 0 SetReleaseRate 53\n84 0 SetReleaseRate 54\n85 0 SetReleaseRate 55\n93 0 Resume\n",
+          "reference_executed": false
+        },
+        {
+          "attempt": 1,
+          "level": 1,
+          "states": 238,
+          "sha256": "84b4e5502a9272feac4772bbc2876b6acf53afa5e67ab0c50235414f84dde9f8",
+          "final": {
+            "phase": "Lost",
+            "reason": "PopulationExhausted",
+            "original_total": 3,
+            "lemming_count": 2,
+            "required": 2,
+            "rescued": 1,
+            "target_percent": 66,
+            "rescued_percent": 50
+          },
+          "inputs": "71 0 AssignDigger 0\n88 0 Nuke\n",
+          "reference_executed": false
+        },
+        {
+          "attempt": 2,
+          "level": 1,
+          "states": 166,
+          "sha256": "b10c786253703ad8168fe834779c38fad060b40ab48fe1c196e5c5f282a183ad",
+          "final": {
+            "phase": "Won",
+            "reason": "PopulationExhausted",
+            "original_total": 3,
+            "lemming_count": 3,
+            "required": 2,
+            "rescued": 3,
+            "target_percent": 66,
+            "rescued_percent": 100
+          },
+          "inputs": "77 0 AssignClimber 0\n",
+          "reference_executed": false
+        },
+        {
+          "attempt": 3,
+          "level": 2,
+          "states": 81,
+          "sha256": "46f31175cb9cd6882bf1d96aa03f67307db2f09c01c26f6ed8c4f224ef237981",
+          "final": {
+            "phase": "Playing",
+            "reason": null,
+            "original_total": 3,
+            "lemming_count": 3,
+            "required": 2,
+            "rescued": 0,
+            "target_percent": 66,
+            "rescued_percent": 0
+          },
+          "inputs": "",
+          "reference_executed": false
+        }
+      ],
+      "transitions": [
+        {
+          "attempt": 0,
+          "level": 1,
+          "step": 177,
+          "action": "Restart",
+          "target": 1
+        },
+        {
+          "attempt": 1,
+          "level": 1,
+          "step": 237,
+          "action": "Continue",
+          "target": 1
+        },
+        {
+          "attempt": 2,
+          "level": 1,
+          "step": 165,
+          "action": "Continue",
+          "target": 2
+        }
+      ]
+    }
+  },
+  "canonical": {
+    "states": 661,
+    "captures": 84,
+    "reference": true,
+    "completion": {
+      "phase": "Won",
+      "reason": "PopulationExhausted",
+      "original_total": 10,
+      "lemming_count": 10,
+      "required": 1,
+      "rescued": 10,
+      "target_percent": 10,
+      "rescued_percent": 100
+    }
+  },
+  "dos": {
+    "win-2": {
+      "samples": 1307,
+      "result": {
+        "saved_u8": 10,
+        "rescued_percent_u8": 100,
+        "target_percent_u8": 10,
+        "max_lemmings_u8": 10,
+        "result_success_u8": 255,
+        "level_index_u8": 1
+      }
+    },
+    "win-3": {
+      "samples": 1300,
+      "result": {
+        "saved_u8": 10,
+        "rescued_percent_u8": 100,
+        "target_percent_u8": 10,
+        "max_lemmings_u8": 10,
+        "result_success_u8": 255,
+        "level_index_u8": 1
+      }
+    },
+    "win-4": {
+      "samples": 1310,
+      "result": {
+        "saved_u8": 10,
+        "rescued_percent_u8": 100,
+        "target_percent_u8": 10,
+        "max_lemmings_u8": 10,
+        "result_success_u8": 255,
+        "level_index_u8": 1
+      }
+    },
+    "loss-1": {
+      "samples": 472,
+      "result": {
+        "saved_u8": 0,
+        "rescued_percent_u8": 0,
+        "target_percent_u8": 10,
+        "max_lemmings_u8": 3,
+        "result_success_u8": 0,
+        "level_index_u8": 0
+      }
+    }
+  },
+  "scenes": {
+    "status": "MATCH_FULL_PLAYFIELD",
+    "scope": "nine ordered 320x160 exit image anchors; exact 2x/RGB565 normalization; no cursor mask, shift, tolerance or DOS tick inference",
+    "runs": [
+      {
+        "status": "MATCH_VISUAL_ANCHORS",
+        "anchors": [
+          {
+            "native_control_step": 478,
+            "scene_sha256": "50e63c53651e4a0703e732aa47f9dbe7456ae74092da8daa73388dde86d7f839",
+            "dos_frames": [
+              2439,
+              2440,
+              2441,
+              2442,
+              2443
+            ]
+          },
+          {
+            "native_control_step": 479,
+            "scene_sha256": "f06e72cf4a42fd7e603b7ec14c8b74cf01137dd048ff853d53f034b7f98b8349",
+            "dos_frames": [
+              2444,
+              2445,
+              2446,
+              2447,
+              2448
+            ]
+          },
+          {
+            "native_control_step": 480,
+            "scene_sha256": "ab8cab061fbff28e3d6ee0147c10db65ac1ea945c75db475b8fe5a7c106ff5ac",
+            "dos_frames": [
+              2449,
+              2450,
+              2451,
+              2452,
+              2453
+            ]
+          },
+          {
+            "native_control_step": 481,
+            "scene_sha256": "90e9e2aa96f43c20dc3dd247084ba49e8807921c4c3415b400cc970f211fb0f2",
+            "dos_frames": [
+              2454,
+              2455,
+              2456,
+              2457,
+              2458
+            ]
+          },
+          {
+            "native_control_step": 482,
+            "scene_sha256": "6521655028e86a28be51130ab9b06e75632f49b96e80594ae562933110b7a832",
+            "dos_frames": [
+              2459,
+              2460,
+              2461,
+              2462,
+              2463
+            ]
+          },
+          {
+            "native_control_step": 483,
+            "scene_sha256": "19792f9a4c5b0508ef1832756fd674d737323b35494dba792c22186e5228e673",
+            "dos_frames": [
+              2464,
+              2465,
+              2466,
+              2467,
+              2468
+            ]
+          },
+          {
+            "native_control_step": 484,
+            "scene_sha256": "8aea761b775b0770bc82c4a4c92c9d0e70f16e564f74262d3cf7c028bf5a1232",
+            "dos_frames": [
+              2469,
+              2470,
+              2471,
+              2472,
+              2473
+            ]
+          },
+          {
+            "native_control_step": 485,
+            "scene_sha256": "6c492f76e3834d938f31b1c16d1de6ce81409b808d1a20f181a10410b0dcc711",
+            "dos_frames": [
+              2474,
+              2475,
+              2476,
+              2477,
+              2478
+            ]
+          },
+          {
+            "native_control_step": 486,
+            "scene_sha256": "82ef033c3bc8a7d84a1531c888638a18cc41e3423ea29879a78a28cb666d894b",
+            "dos_frames": [
+              2479,
+              2480,
+              2481,
+              2482,
+              2483
+            ]
+          }
+        ],
+        "unverified": [
+          "internal_state",
+          "tick_rate",
+          "input_tick_alignment",
+          "skills",
+          "triggers",
+          "rescue",
+          "result",
+          "audio",
+          "full_screen_hud"
+        ],
+        "recording": "assets/local/issue-60-dos-win-2",
+        "game_video_frames": 3518,
+        "videos": [
+          {
+            "name": "vgalemmi_000.avi",
+            "size": 720286,
+            "sha256": "6f115ec6d755d7bb0fd6a2a7114dc2b360963d9ec5b892a40844f1d8fa2cab38",
+            "decoded_frames": 70
+          },
+          {
+            "name": "vgalemmi_001.avi",
+            "size": 10741722,
+            "sha256": "b9cf3b6019e1da3f815346633875e3b671cd2c945437c5e29ec974d1ebaf5d64",
+            "decoded_frames": 3518
+          },
+          {
+            "name": "vgalemmi_002.avi",
+            "size": 842674,
+            "sha256": "324940d42418925477b2b7f524dabda1ceed2683ec5df79fd9e0b6318565fb58",
+            "decoded_frames": 98
+          }
+        ]
+      },
+      {
+        "status": "MATCH_VISUAL_ANCHORS",
+        "anchors": [
+          {
+            "native_control_step": 478,
+            "scene_sha256": "50e63c53651e4a0703e732aa47f9dbe7456ae74092da8daa73388dde86d7f839",
+            "dos_frames": [
+              2439,
+              2440,
+              2441,
+              2442,
+              2443
+            ]
+          },
+          {
+            "native_control_step": 479,
+            "scene_sha256": "f06e72cf4a42fd7e603b7ec14c8b74cf01137dd048ff853d53f034b7f98b8349",
+            "dos_frames": [
+              2444,
+              2445,
+              2446,
+              2447,
+              2448
+            ]
+          },
+          {
+            "native_control_step": 480,
+            "scene_sha256": "ab8cab061fbff28e3d6ee0147c10db65ac1ea945c75db475b8fe5a7c106ff5ac",
+            "dos_frames": [
+              2449,
+              2450,
+              2451,
+              2452,
+              2453
+            ]
+          },
+          {
+            "native_control_step": 481,
+            "scene_sha256": "90e9e2aa96f43c20dc3dd247084ba49e8807921c4c3415b400cc970f211fb0f2",
+            "dos_frames": [
+              2454,
+              2455,
+              2456,
+              2457,
+              2458
+            ]
+          },
+          {
+            "native_control_step": 482,
+            "scene_sha256": "6521655028e86a28be51130ab9b06e75632f49b96e80594ae562933110b7a832",
+            "dos_frames": [
+              2459,
+              2460,
+              2461,
+              2462,
+              2463
+            ]
+          },
+          {
+            "native_control_step": 483,
+            "scene_sha256": "19792f9a4c5b0508ef1832756fd674d737323b35494dba792c22186e5228e673",
+            "dos_frames": [
+              2464,
+              2465,
+              2466,
+              2467,
+              2468
+            ]
+          },
+          {
+            "native_control_step": 484,
+            "scene_sha256": "8aea761b775b0770bc82c4a4c92c9d0e70f16e564f74262d3cf7c028bf5a1232",
+            "dos_frames": [
+              2469,
+              2470,
+              2471,
+              2472,
+              2473
+            ]
+          },
+          {
+            "native_control_step": 485,
+            "scene_sha256": "6c492f76e3834d938f31b1c16d1de6ce81409b808d1a20f181a10410b0dcc711",
+            "dos_frames": [
+              2474,
+              2475,
+              2476,
+              2477,
+              2478
+            ]
+          },
+          {
+            "native_control_step": 486,
+            "scene_sha256": "82ef033c3bc8a7d84a1531c888638a18cc41e3423ea29879a78a28cb666d894b",
+            "dos_frames": [
+              2479,
+              2480,
+              2481,
+              2482,
+              2483
+            ]
+          }
+        ],
+        "unverified": [
+          "internal_state",
+          "tick_rate",
+          "input_tick_alignment",
+          "skills",
+          "triggers",
+          "rescue",
+          "result",
+          "audio",
+          "full_screen_hud"
+        ],
+        "recording": "assets/local/issue-60-dos-win-3",
+        "game_video_frames": 3518,
+        "videos": [
+          {
+            "name": "vgalemmi_000.avi",
+            "size": 715214,
+            "sha256": "298608feb44906ce6c5207685e30f86bc44bab9b1fc67f1dcae3cb517f21808d",
+            "decoded_frames": 68
+          },
+          {
+            "name": "vgalemmi_001.avi",
+            "size": 10741932,
+            "sha256": "945d7ca2ace82520eb4aac02a633807771411133d277d5e8f05919df71922901",
+            "decoded_frames": 3518
+          },
+          {
+            "name": "vgalemmi_002.avi",
+            "size": 827098,
+            "sha256": "8e9065db2e03c0ee04f1d2d2b026ebff92bbc4c21f8da0ae33805d95d48ee72f",
+            "decoded_frames": 92
+          }
+        ]
+      },
+      {
+        "status": "MATCH_VISUAL_ANCHORS",
+        "anchors": [
+          {
+            "native_control_step": 478,
+            "scene_sha256": "50e63c53651e4a0703e732aa47f9dbe7456ae74092da8daa73388dde86d7f839",
+            "dos_frames": [
+              2439,
+              2440,
+              2441,
+              2442,
+              2443
+            ]
+          },
+          {
+            "native_control_step": 479,
+            "scene_sha256": "f06e72cf4a42fd7e603b7ec14c8b74cf01137dd048ff853d53f034b7f98b8349",
+            "dos_frames": [
+              2444,
+              2445,
+              2446,
+              2447,
+              2448
+            ]
+          },
+          {
+            "native_control_step": 480,
+            "scene_sha256": "ab8cab061fbff28e3d6ee0147c10db65ac1ea945c75db475b8fe5a7c106ff5ac",
+            "dos_frames": [
+              2449,
+              2450,
+              2451,
+              2452,
+              2453
+            ]
+          },
+          {
+            "native_control_step": 481,
+            "scene_sha256": "90e9e2aa96f43c20dc3dd247084ba49e8807921c4c3415b400cc970f211fb0f2",
+            "dos_frames": [
+              2454,
+              2455,
+              2456,
+              2457,
+              2458
+            ]
+          },
+          {
+            "native_control_step": 482,
+            "scene_sha256": "6521655028e86a28be51130ab9b06e75632f49b96e80594ae562933110b7a832",
+            "dos_frames": [
+              2459,
+              2460,
+              2461,
+              2462,
+              2463
+            ]
+          },
+          {
+            "native_control_step": 483,
+            "scene_sha256": "19792f9a4c5b0508ef1832756fd674d737323b35494dba792c22186e5228e673",
+            "dos_frames": [
+              2464,
+              2465,
+              2466,
+              2467,
+              2468
+            ]
+          },
+          {
+            "native_control_step": 484,
+            "scene_sha256": "8aea761b775b0770bc82c4a4c92c9d0e70f16e564f74262d3cf7c028bf5a1232",
+            "dos_frames": [
+              2469,
+              2470,
+              2471,
+              2472,
+              2473
+            ]
+          },
+          {
+            "native_control_step": 485,
+            "scene_sha256": "6c492f76e3834d938f31b1c16d1de6ce81409b808d1a20f181a10410b0dcc711",
+            "dos_frames": [
+              2474,
+              2475,
+              2476,
+              2477,
+              2478
+            ]
+          },
+          {
+            "native_control_step": 486,
+            "scene_sha256": "82ef033c3bc8a7d84a1531c888638a18cc41e3423ea29879a78a28cb666d894b",
+            "dos_frames": [
+              2479,
+              2480,
+              2481,
+              2482,
+              2483
+            ]
+          }
+        ],
+        "unverified": [
+          "internal_state",
+          "tick_rate",
+          "input_tick_alignment",
+          "skills",
+          "triggers",
+          "rescue",
+          "result",
+          "audio",
+          "full_screen_hud"
+        ],
+        "recording": "assets/local/issue-60-dos-win-4",
+        "game_video_frames": 3518,
+        "videos": [
+          {
+            "name": "vgalemmi_000.avi",
+            "size": 715214,
+            "sha256": "24ab0a6a2e03980ee50a35b480f707ec7d3d8e322b12bba85fb1000c6ccd4e1b",
+            "decoded_frames": 68
+          },
+          {
+            "name": "vgalemmi_001.avi",
+            "size": 10741770,
+            "sha256": "e673116bc249ca697de41c483335779f11e3d3f8e4ef8640926a08b3a4ee5fb8",
+            "decoded_frames": 3518
+          },
+          {
+            "name": "vgalemmi_002.avi",
+            "size": 837426,
+            "sha256": "7b9986338d763377ee76b0a3904d724fe6c4cab1ab6bb8c3cf502a488bf47f0a",
+            "decoded_frames": 96
+          }
+        ]
+      }
+    ]
+  },
+  "reference": {
+    "commit": "40e9bc34451f0e9127fd53b290a3877e700d143d",
+    "functions_and_table": 56,
+    "completion_boundary_adapter": true
+  },
+  "sources": [
+    {
+      "path": "apps/desktop/src/assets.rs",
+      "bytes": 32376,
+      "sha256": "d40e42ab7948db2cc6083c778736a788ae3beed13808377609b43b593b4ed5dd"
+    },
+    {
+      "path": "apps/desktop/src/input.rs",
+      "bytes": 32833,
+      "sha256": "103d1bc90a92a9cedce8f3830e35a8d09dbf8bd947551a7fec38692ee57dec17"
+    },
+    {
+      "path": "apps/desktop/src/lifecycle.rs",
+      "bytes": 11060,
+      "sha256": "73f8dd2be8d713bdc8206e913937f18274aa54766e0569d0089b29bad09856cf"
+    },
+    {
+      "path": "apps/desktop/src/main.rs",
+      "bytes": 45715,
+      "sha256": "f3933da24666ef6bd42c66d434ac4a384b8055c5f7bcd19b3c8a0aedfe89a573"
+    },
+    {
+      "path": "apps/desktop/src/pacing.rs",
+      "bytes": 3750,
+      "sha256": "476b1fd985ab59a3299e800bbb7d823184ecd6d56f1efcbd82ca659f344745ac"
+    },
+    {
+      "path": "apps/desktop/src/panel.rs",
+      "bytes": 16256,
+      "sha256": "8d67dafc082a9e47d92f18d1c4f430683091a9739f3deebe7d6cf41ef545259e"
+    },
+    {
+      "path": "apps/desktop/src/playthrough_tests.rs",
+      "bytes": 6447,
+      "sha256": "a1dcac37e3ba47c28fb4527e75c79a61a19c7f0c53c11043def9abf6514ab445"
+    },
+    {
+      "path": "apps/desktop/src/pointer.rs",
+      "bytes": 8738,
+      "sha256": "2d4148fa10b2181751851401f57d4ac418d31dafe1157c822eb6340954d61dc5"
+    },
+    {
+      "path": "apps/desktop/src/render.rs",
+      "bytes": 24917,
+      "sha256": "53709ee0c87ecdd05b68b8c766d484a334cf0f38cc09d0c435f26f19963a7ba4"
+    },
+    {
+      "path": "apps/desktop/src/session.rs",
+      "bytes": 54190,
+      "sha256": "9da3ab53343aeac0cb3fb9f210f1d347eed17b267526f4f3087817b9821ec593"
+    },
+    {
+      "path": "assets/local/reference-sources/lemmix__src__Game.pas",
+      "bytes": 182303,
+      "sha256": "c1ba9ffda9e8e277f5c9b171df2bb611210d3326b9623b28fcd35426f4d6a448"
+    },
+    {
+      "path": "assets/manifests/dos_original.json",
+      "bytes": 12573,
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "tools/capture_dos.py",
+      "bytes": 12117,
+      "sha256": "07a0b2514ba2c41263f9e66b54f1d0ed2aa275692c78a085f7a3d2caa8dd3a85"
+    },
+    {
+      "path": "tools/check_basher.py",
+      "bytes": 7177,
+      "sha256": "3db2f061548b65adfa4225f99da8fb92b886692c196eb0ec04b92e06c0b40a40"
+    },
+    {
+      "path": "tools/check_blocker.py",
+      "bytes": 7690,
+      "sha256": "4cbce1fa3e3365d98d5068cb9246e455a2344820f39b37506e8eff60fe758989"
+    },
+    {
+      "path": "tools/check_bomber.py",
+      "bytes": 7363,
+      "sha256": "48662da933781543e4edef19e2338af88db7a4435a2ade44ade34b2f7632ce7c"
+    },
+    {
+      "path": "tools/check_builder.py",
+      "bytes": 7818,
+      "sha256": "1e9d7fcf59ff84b0353a2e9438f8182d809281802a6bee1dc1d0a6b673128bf6"
+    },
+    {
+      "path": "tools/check_climber.py",
+      "bytes": 8213,
+      "sha256": "c9614d11cc29b96a8d95db4e95567a6ee38168aa9de7e9f28225cfdc8a464842"
+    },
+    {
+      "path": "tools/check_completion.py",
+      "bytes": 9789,
+      "sha256": "c74cdaf29b0576acd81509875f7d61dfe1df1c4c2e4ca68ef4b631d312093f3b"
+    },
+    {
+      "path": "tools/check_desktop.py",
+      "bytes": 5484,
+      "sha256": "eb6cc74bfbe21bb7f3dfe62869f1ab12fc9839c2f1b5af74d3cb91e8dc4b86fa"
+    },
+    {
+      "path": "tools/check_digger.py",
+      "bytes": 7525,
+      "sha256": "2b83916b1760d80bb6d7450044d62a0cdb1a77753a97e9343e8b10c0c2921ba9"
+    },
+    {
+      "path": "tools/check_exit.py",
+      "bytes": 9920,
+      "sha256": "f01c93c96f5a2a7618b3e3e6234b2336a88c4f731d9d313dc1ea69e90d63a849"
+    },
+    {
+      "path": "tools/check_floater.py",
+      "bytes": 8303,
+      "sha256": "1a402a9fd5b31fe821c3008baf4654e83a627f99439c80a1f712933a75d6c817"
+    },
+    {
+      "path": "tools/check_hazards.py",
+      "bytes": 11077,
+      "sha256": "fe3e11d98e86d3bcd425f384efcdb763d109d0805168dd9f33252f841d18cc5e"
+    },
+    {
+      "path": "tools/check_miner.py",
+      "bytes": 7066,
+      "sha256": "d87ea3a9a80e89296db3dd24d63b70acb887223553e5fb4bdee42e496e7cb742"
+    },
+    {
+      "path": "tools/check_nuke.py",
+      "bytes": 8729,
+      "sha256": "bb0128fbd94e5ad37109748e0ff55a68b531f9e1beddf4b5a2fd0d4f60c036af"
+    },
+    {
+      "path": "tools/check_results.py",
+      "bytes": 7787,
+      "sha256": "741457509d83ddaa5209c5885ccfd432e2e94f66b8e9ea0ce9e0733b020aa640"
+    },
+    {
+      "path": "tools/check_skill_interactions.py",
+      "bytes": 12915,
+      "sha256": "5bf70afbda5b83b8e49926968a585e6f605005f45a9cc062b433e5ca9d60d742"
+    },
+    {
+      "path": "tools/compare_exit_dos.py",
+      "bytes": 3923,
+      "sha256": "6ff7457d5c72ba8d46fb5646b6506475256cdbc95fe476cca2a7f416bd0dedc9"
+    },
+    {
+      "path": "tools/dos_memory.py",
+      "bytes": 2069,
+      "sha256": "0c6c120e00d844c7475aa4da01c5c896ae94afc063bd2d1c900254b1bd1a1616"
+    },
+    {
+      "path": "tools/dos_observation.py",
+      "bytes": 4364,
+      "sha256": "1937e15e8da4c2895f834d0817946f3c1cbb8ad828093546e23e332264af056c"
+    },
+    {
+      "path": "tools/lemmix/build_basher_reference.py",
+      "bytes": 7417,
+      "sha256": "aa10744ce370a37e38d6c1a57a03d3a3311ca48f1241e69963bbe6eec788b622"
+    },
+    {
+      "path": "tools/lemmix/build_blocker_reference.py",
+      "bytes": 9670,
+      "sha256": "130802f5c0ea3a566a55243620c3bf36c932f209e519bb518b391ad1c0f0d8bb"
+    },
+    {
+      "path": "tools/lemmix/build_bomber_reference.py",
+      "bytes": 9130,
+      "sha256": "ae901a00df78b85cfcc160802da7a0ac75a2958e20d4388c2be05dc7dad89c14"
+    },
+    {
+      "path": "tools/lemmix/build_builder_reference.py",
+      "bytes": 7789,
+      "sha256": "eb0070c67518b432112d6cb6b73e84925949dfbe1c3a7aa33a03daa8e2df026d"
+    },
+    {
+      "path": "tools/lemmix/build_climber_reference.py",
+      "bytes": 5836,
+      "sha256": "c74e7336f2c330d409fc50a501c5ef7502bdf9bc8fb003f40b4ddf745a2070db"
+    },
+    {
+      "path": "tools/lemmix/build_completion_reference.py",
+      "bytes": 6415,
+      "sha256": "999db46571b5d31f037fdb2795429ac0fcf691db4239d1255d6db3032a0472ac"
+    },
+    {
+      "path": "tools/lemmix/build_digger_reference.py",
+      "bytes": 9353,
+      "sha256": "70e83e05310628c0be164398af3a02725f50b411458fe32b8b99c5beaf42d8bc"
+    },
+    {
+      "path": "tools/lemmix/build_exit_reference.py",
+      "bytes": 5397,
+      "sha256": "46482b271e4cc978b31207f17dc3698f6760cd977998d694c6fa88a5b261ea76"
+    },
+    {
+      "path": "tools/lemmix/build_floater_reference.py",
+      "bytes": 5610,
+      "sha256": "f031fe8dfde1e4dbb787080c5c00027d5b62977bfdf9004aabf5dfb90dfec5bd"
+    },
+    {
+      "path": "tools/lemmix/build_hazards_reference.py",
+      "bytes": 8781,
+      "sha256": "5596a683459388c4b5516a6a226711c8a3e5216fff9e130f5d2709aeb7ba1dd6"
+    },
+    {
+      "path": "tools/lemmix/build_interactions_reference.py",
+      "bytes": 2779,
+      "sha256": "53faf496b55058a2429d449ea4a06f5ee4f5d58a326f437adfc60eeefc86627d"
+    },
+    {
+      "path": "tools/lemmix/build_miner_reference.py",
+      "bytes": 8157,
+      "sha256": "115e344bb9e9f9202ea8998b1a6c7a76be06b7adc6654fd011d17d9e4938fd91"
+    },
+    {
+      "path": "tools/lemmix/build_nuke_reference.py",
+      "bytes": 4591,
+      "sha256": "08736fc4290c6e10bedade3bdc26e85977b0009cb16154d8185819888fdebc17"
+    },
+    {
+      "path": "tools/lemmix/build_pointer_reference.py",
+      "bytes": 5857,
+      "sha256": "8d59845d51957c003b1459faa85f8e8be6d526db003ec419c0b1a582e866405c"
+    },
+    {
+      "path": "tools/lemmix/build_reference.py",
+      "bytes": 6109,
+      "sha256": "0448f50a3d4c5dd24918c12199000fa8a40e3ea0ac7ad164899dfdaa87c29ad1"
+    },
+    {
+      "path": "tools/observe_blocker_dos.py",
+      "bytes": 8158,
+      "sha256": "3ee62cf6d3e1b3587b3edee15078d076d703ae2bb8ea3f48a0a0495e2daa322c"
+    },
+    {
+      "path": "tools/observe_bomber_dos.py",
+      "bytes": 8278,
+      "sha256": "864e3a9db072ca28204355a5363b04d59b396f3da9d4c75fdac3d4e7f611339c"
+    },
+    {
+      "path": "tools/observe_completion_dos.py",
+      "bytes": 7339,
+      "sha256": "9dfdf485d8da78b7962bd42ef8d623785fd0955182905e057a20a605c4c00542"
+    },
+    {
+      "path": "tools/observe_digger_dos.py",
+      "bytes": 6664,
+      "sha256": "aaf5ee314b02f9e200339ac1f7fd16d42c6fb0d05793adef42fdd6f5aa1db29b"
+    },
+    {
+      "path": "tools/observe_dos.py",
+      "bytes": 7177,
+      "sha256": "6e709f19c95d6397d4d3812a7171aee6c423d9406192b71d4d95e2a8a3f6b8d9"
+    },
+    {
+      "path": "tools/observe_exit_dos.py",
+      "bytes": 5576,
+      "sha256": "a62c2f6e64931a73e29f8b7a87183036bbe60b4b51856119a734033d558f13d4"
+    },
+    {
+      "path": "tools/observe_miner_dos.py",
+      "bytes": 5916,
+      "sha256": "e2432575a71f3366c824857265b1fc23fe2215e99ea095e1baba68d8ea392197"
+    },
+    {
+      "path": "tools/observe_nuke_dos.py",
+      "bytes": 9894,
+      "sha256": "e70771ed89224b94de3ba78ccbd65be88fff203fdbfa06e5a96d5e2060ce832b"
+    },
+    {
+      "path": "tools/observe_playthrough_dos.py",
+      "bytes": 5740,
+      "sha256": "c1cb15c64d1155893d30689216a4001c48bbb7b60406dac477066bd30fe23d2c"
+    },
+    {
+      "path": "tools/reference_assets.py",
+      "bytes": 4272,
+      "sha256": "ee5ac0096b77bc27aed41d28434d49a1c03a6de5062aab71a9b84de8ce38f3db"
+    },
+    {
+      "path": "tools/state_replay.py",
+      "bytes": 16162,
+      "sha256": "f9485c7f9e97ec385ede05755e64d2cfb96ec7cf3e056b285e535ff1016c80fa"
+    },
+    {
+      "path": "tools/tests/test_playthrough.py",
+      "bytes": 2683,
+      "sha256": "43244deb2785caf81996ab1a3c4689e686c708aac346d8cd3490bba0161b6f2b"
+    },
+    {
+      "path": "tools/tests/test_playthrough_dos.py",
+      "bytes": 1409,
+      "sha256": "fe05b031a8d693fe2dabbe23574e79c8e8325a248ee2b9693a1a874ae4f43258"
+    },
+    {
+      "path": "tools/verify_native_view.py",
+      "bytes": 9359,
+      "sha256": "b398c355b9613038abd6a8b2e5232a1759e7f31fa6e75cefc3ae2fbc033f2fad"
+    },
+    {
+      "path": "tools/verify_playthrough.py",
+      "bytes": 12700,
+      "sha256": "9fdef2d8362548900247ff2e526d8ca3aface3c58b10a258b12834dd3fa7dc44"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0000-replay-1/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0000-replay-1/inputs.txt",
+      "bytes": 135,
+      "sha256": "39469fb74355c75c62c0a2946e2d2c563a24df2c196749203ecd3be448fe499d"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0000-replay-1/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0000-replay-13/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0000-replay-13/inputs.txt",
+      "bytes": 135,
+      "sha256": "39469fb74355c75c62c0a2946e2d2c563a24df2c196749203ecd3be448fe499d"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0000-replay-13/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0000-replay-7/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0000-replay-7/inputs.txt",
+      "bytes": 135,
+      "sha256": "39469fb74355c75c62c0a2946e2d2c563a24df2c196749203ecd3be448fe499d"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0000-replay-7/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0001-replay-1/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0001-replay-1/inputs.txt",
+      "bytes": 11,
+      "sha256": "6f1ec9ade674e9ad3d984410abfb51fd46889dacd9c92efc629700171d97c895"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0001-replay-1/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0001-replay-13/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0001-replay-13/inputs.txt",
+      "bytes": 11,
+      "sha256": "6f1ec9ade674e9ad3d984410abfb51fd46889dacd9c92efc629700171d97c895"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0001-replay-13/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0001-replay-7/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0001-replay-7/inputs.txt",
+      "bytes": 11,
+      "sha256": "6f1ec9ade674e9ad3d984410abfb51fd46889dacd9c92efc629700171d97c895"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0001-replay-7/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0002-replay-1/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0002-replay-1/inputs.txt",
+      "bytes": 20,
+      "sha256": "5bd9f2d6322e0434d29320eff02f2ef23c7f9801378f29d69e363b25cf28ddad"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0002-replay-1/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0002-replay-13/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0002-replay-13/inputs.txt",
+      "bytes": 20,
+      "sha256": "5bd9f2d6322e0434d29320eff02f2ef23c7f9801378f29d69e363b25cf28ddad"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0002-replay-13/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0002-replay-7/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0002-replay-7/inputs.txt",
+      "bytes": 20,
+      "sha256": "5bd9f2d6322e0434d29320eff02f2ef23c7f9801378f29d69e363b25cf28ddad"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0002-replay-7/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0003-replay-1/config.json",
+      "bytes": 264,
+      "sha256": "acad16fa9f166bb10b6f768cbfcd9347a588823d82ce625c8163498f08bc8187"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0003-replay-1/inputs.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0003-replay-1/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0003-replay-13/config.json",
+      "bytes": 264,
+      "sha256": "acad16fa9f166bb10b6f768cbfcd9347a588823d82ce625c8163498f08bc8187"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0003-replay-13/inputs.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0003-replay-13/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0003-replay-7/config.json",
+      "bytes": 264,
+      "sha256": "acad16fa9f166bb10b6f768cbfcd9347a588823d82ce625c8163498f08bc8187"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0003-replay-7/inputs.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/attempt-0003-replay-7/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/controller-at-run.py",
+      "bytes": 12419,
+      "sha256": "ade500d31936b1e47c12edb1b1a5f415cb03170ba15aab59cf2eb1774f772e9a"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/live/attempt-0001/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/live/attempt-0001/inputs.txt",
+      "bytes": 11,
+      "sha256": "6f1ec9ade674e9ad3d984410abfb51fd46889dacd9c92efc629700171d97c895"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/live/attempt-0002/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/live/attempt-0002/inputs.txt",
+      "bytes": 20,
+      "sha256": "5bd9f2d6322e0434d29320eff02f2ef23c7f9801378f29d69e363b25cf28ddad"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/live/attempt-0003/config.json",
+      "bytes": 264,
+      "sha256": "acad16fa9f166bb10b6f768cbfcd9347a588823d82ce625c8163498f08bc8187"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/live/attempt-0003/inputs.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/live/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/live/inputs.txt",
+      "bytes": 135,
+      "sha256": "39469fb74355c75c62c0a2946e2d2c563a24df2c196749203ecd3be448fe499d"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/live/transitions.jsonl",
+      "bytes": 197,
+      "sha256": "b3edc0779c8863e1080ee4dc44eccff338348702b727297c15c01f5729110303"
+    },
+    {
+      "path": "assets/local/issue-60-native-original/summary.json",
+      "bytes": 15874,
+      "sha256": "633f80ca86b974929675f9ad3cef4e984e96d1294835eb0149ba5514e2720a3d"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0000-replay-1/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0000-replay-1/inputs.txt",
+      "bytes": 159,
+      "sha256": "ddbcb1b3519040bea459c15b042c61618555ae16ccaad43f665613a041fa6bac"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0000-replay-1/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0000-replay-13/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0000-replay-13/inputs.txt",
+      "bytes": 159,
+      "sha256": "ddbcb1b3519040bea459c15b042c61618555ae16ccaad43f665613a041fa6bac"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0000-replay-13/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0000-replay-7/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0000-replay-7/inputs.txt",
+      "bytes": 159,
+      "sha256": "ddbcb1b3519040bea459c15b042c61618555ae16ccaad43f665613a041fa6bac"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0000-replay-7/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0001-replay-1/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0001-replay-1/inputs.txt",
+      "bytes": 30,
+      "sha256": "98d3fcf1f74fe552e42513da48bbfc61db9f800a3f016df8231802920eb58b68"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0001-replay-1/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0001-replay-13/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0001-replay-13/inputs.txt",
+      "bytes": 30,
+      "sha256": "98d3fcf1f74fe552e42513da48bbfc61db9f800a3f016df8231802920eb58b68"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0001-replay-13/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0001-replay-7/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0001-replay-7/inputs.txt",
+      "bytes": 30,
+      "sha256": "98d3fcf1f74fe552e42513da48bbfc61db9f800a3f016df8231802920eb58b68"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0001-replay-7/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0002-replay-1/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0002-replay-1/inputs.txt",
+      "bytes": 21,
+      "sha256": "278e3ed54753260f213ab68674befdb71caf0059c35e6f5dd5264d61055c4212"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0002-replay-1/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0002-replay-13/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0002-replay-13/inputs.txt",
+      "bytes": 21,
+      "sha256": "278e3ed54753260f213ab68674befdb71caf0059c35e6f5dd5264d61055c4212"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0002-replay-13/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0002-replay-7/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0002-replay-7/inputs.txt",
+      "bytes": 21,
+      "sha256": "278e3ed54753260f213ab68674befdb71caf0059c35e6f5dd5264d61055c4212"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0002-replay-7/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0003-replay-1/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0003-replay-1/inputs.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0003-replay-1/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0003-replay-13/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0003-replay-13/inputs.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0003-replay-13/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0003-replay-7/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0003-replay-7/inputs.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/attempt-0003-replay-7/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/controller-at-run.py",
+      "bytes": 12700,
+      "sha256": "9fdef2d8362548900247ff2e526d8ca3aface3c58b10a258b12834dd3fa7dc44"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/attempt-0001/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/attempt-0001/frame-000237.png",
+      "bytes": 8185,
+      "sha256": "1f65b48b0e615bde5543e699126a1c79e55295e82e286e0b40a088f990bccc11"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/attempt-0001/inputs.txt",
+      "bytes": 30,
+      "sha256": "98d3fcf1f74fe552e42513da48bbfc61db9f800a3f016df8231802920eb58b68"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/attempt-0002/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/attempt-0002/frame-000165.png",
+      "bytes": 8390,
+      "sha256": "fc01835f9e694eaebb397b4cd54284b2cc7c4a5383fd6a3c4444f08639cae287"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/attempt-0002/inputs.txt",
+      "bytes": 21,
+      "sha256": "278e3ed54753260f213ab68674befdb71caf0059c35e6f5dd5264d61055c4212"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/attempt-0003/config.json",
+      "bytes": 269,
+      "sha256": "42d6da85aaa851d14c63750027c8db3bd5977779b945abfae009a702982d9bcf"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/attempt-0003/frame-000060.png",
+      "bytes": 6641,
+      "sha256": "58df87c530b8ea55ad4e62f3ec1579bf93ed0adc2e896d35b4a5b784161545b6"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/attempt-0003/inputs.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/config.json",
+      "bytes": 269,
+      "sha256": "d86d0e391760989d532f4dd0a808d221f263266b6bea9dae5cfaad586f6fa7d1"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/frame-000177.png",
+      "bytes": 8390,
+      "sha256": "fc01835f9e694eaebb397b4cd54284b2cc7c4a5383fd6a3c4444f08639cae287"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/inputs.txt",
+      "bytes": 159,
+      "sha256": "ddbcb1b3519040bea459c15b042c61618555ae16ccaad43f665613a041fa6bac"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/live/transitions.jsonl",
+      "bytes": 197,
+      "sha256": "aa387bf9bdc87af785cda7501c7316c2f1d29043273db2f82d0eb84f9c6fa9be"
+    },
+    {
+      "path": "assets/local/issue-60-native-synthetic-final/summary.json",
+      "bytes": 16403,
+      "sha256": "7da4de69b11f51f4ae4c4a9aa03c4e4a4d2ebd8fce5b2412c475ccd6a9aa4fc6"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-2/capture/vgalemmi_000.avi",
+      "bytes": 720286,
+      "sha256": "6f115ec6d755d7bb0fd6a2a7114dc2b360963d9ec5b892a40844f1d8fa2cab38"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-2/capture/vgalemmi_000.png",
+      "bytes": 49390,
+      "sha256": "060de045d2f77239151b32ab96d1a629451433924c2db239dead93ba8c00eaf8"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-2/capture/vgalemmi_001.avi",
+      "bytes": 10741722,
+      "sha256": "b9cf3b6019e1da3f815346633875e3b671cd2c945437c5e29ec974d1ebaf5d64"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-2/capture/vgalemmi_001.png",
+      "bytes": 58239,
+      "sha256": "5542ec31a72a25ddf6a873fa0b9103f1284a99b696610a88618339f99288d6d5"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-2/capture/vgalemmi_002.avi",
+      "bytes": 842674,
+      "sha256": "324940d42418925477b2b7f524dabda1ceed2683ec5df79fd9e0b6318565fb58"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-2/provenance.json",
+      "bytes": 13650,
+      "sha256": "67d0d0accf43e5ab3d6c846fe06dd73d0604a7bdd45e958ebf89ebe6281aa9f9"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-2/summary.json",
+      "bytes": 4156,
+      "sha256": "edb9e401654368e60bd9289eebaf2e0896c3473cdad6a1078617e35dc97e78f1"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-3/capture/vgalemmi_000.avi",
+      "bytes": 715214,
+      "sha256": "298608feb44906ce6c5207685e30f86bc44bab9b1fc67f1dcae3cb517f21808d"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-3/capture/vgalemmi_000.png",
+      "bytes": 49390,
+      "sha256": "060de045d2f77239151b32ab96d1a629451433924c2db239dead93ba8c00eaf8"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-3/capture/vgalemmi_001.avi",
+      "bytes": 10741932,
+      "sha256": "945d7ca2ace82520eb4aac02a633807771411133d277d5e8f05919df71922901"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-3/capture/vgalemmi_001.png",
+      "bytes": 58239,
+      "sha256": "5542ec31a72a25ddf6a873fa0b9103f1284a99b696610a88618339f99288d6d5"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-3/capture/vgalemmi_002.avi",
+      "bytes": 827098,
+      "sha256": "8e9065db2e03c0ee04f1d2d2b026ebff92bbc4c21f8da0ae33805d95d48ee72f"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-3/provenance.json",
+      "bytes": 13650,
+      "sha256": "a50576fe4bd7d183aa87a3389f7070c00f4947a45fc447abe7f12df2ba3bb7d1"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-3/summary.json",
+      "bytes": 4156,
+      "sha256": "e3994975948b491ba1009eee3c2450ddccd58b1508386087fa65e8bd32f6f032"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-4/capture/vgalemmi_000.avi",
+      "bytes": 715214,
+      "sha256": "24ab0a6a2e03980ee50a35b480f707ec7d3d8e322b12bba85fb1000c6ccd4e1b"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-4/capture/vgalemmi_000.png",
+      "bytes": 49390,
+      "sha256": "060de045d2f77239151b32ab96d1a629451433924c2db239dead93ba8c00eaf8"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-4/capture/vgalemmi_001.avi",
+      "bytes": 10741770,
+      "sha256": "e673116bc249ca697de41c483335779f11e3d3f8e4ef8640926a08b3a4ee5fb8"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-4/capture/vgalemmi_001.png",
+      "bytes": 58239,
+      "sha256": "5542ec31a72a25ddf6a873fa0b9103f1284a99b696610a88618339f99288d6d5"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-4/capture/vgalemmi_002.avi",
+      "bytes": 837426,
+      "sha256": "7b9986338d763377ee76b0a3904d724fe6c4cab1ab6bb8c3cf502a488bf47f0a"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-4/provenance.json",
+      "bytes": 13650,
+      "sha256": "0b040ca2bfb94fb09b1f6d696545149a3af069e054a33c4f6c78df5663265ea0"
+    },
+    {
+      "path": "assets/local/issue-60-dos-win-4/summary.json",
+      "bytes": 4156,
+      "sha256": "9e9b133ed399e6d5c4fa282efff6380a26bf87710cd9c8f6c939819a6f3f85cd"
+    },
+    {
+      "path": "assets/local/issue-60-dos-loss-1/capture/vgalemmi_000.avi",
+      "bytes": 717926,
+      "sha256": "82aba9287987f6e55b5b290d6f1747e5a651071bf2c786d26403a806d8280249"
+    },
+    {
+      "path": "assets/local/issue-60-dos-loss-1/capture/vgalemmi_000.png",
+      "bytes": 49390,
+      "sha256": "060de045d2f77239151b32ab96d1a629451433924c2db239dead93ba8c00eaf8"
+    },
+    {
+      "path": "assets/local/issue-60-dos-loss-1/capture/vgalemmi_001.avi",
+      "bytes": 5388448,
+      "sha256": "8345760c6d92fba32c92f50a6a3484940a2e05d3137b606a90011a7e44d31460"
+    },
+    {
+      "path": "assets/local/issue-60-dos-loss-1/capture/vgalemmi_001.png",
+      "bytes": 54059,
+      "sha256": "f05fc0f4b7f15da757f97dec8f9f920178cfce7efd220c2b329cb920d27373d4"
+    },
+    {
+      "path": "assets/local/issue-60-dos-loss-1/capture/vgalemmi_002.avi",
+      "bytes": 762778,
+      "sha256": "dc2e9e778a23736d4570b3c1d9706f92082395781132bcdecc3a3a57013a9a15"
+    },
+    {
+      "path": "assets/local/issue-60-dos-loss-1/provenance.json",
+      "bytes": 13650,
+      "sha256": "ed16e853dddf00a5fc63412e0e3508016cf64fcd0c0f82d17e4339e8b929a0e9"
+    },
+    {
+      "path": "assets/local/issue-60-dos-loss-1/summary.json",
+      "bytes": 3019,
+      "sha256": "d0ffc338cdd4f0c25db64f9b303b93c8595edb49eda4be118ddd8b29a48e7e75"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-1/pair-000478.png",
+      "bytes": 26810,
+      "sha256": "335e84818ece618a0ab87903b04c617979aa9311d9aac1dfd822e4f4e086b6bd"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-1/pair-000479.png",
+      "bytes": 26754,
+      "sha256": "9804ef79b018e327b53b5f9657eb4bf20c51ff8e3e4ebce00d9e4a1ef6a37e75"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-1/pair-000480.png",
+      "bytes": 26740,
+      "sha256": "5cd9a19882c41db51122c695e8f333ca8909a0b752cb892e57a4ffab307405cf"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-1/pair-000481.png",
+      "bytes": 26807,
+      "sha256": "3d3be3a60eb73399cbadc810228888a15f2289c6df85b80ff7be3db0475ee1b1"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-1/pair-000482.png",
+      "bytes": 26770,
+      "sha256": "9043683e2810cea225bf4ab531593fbd12956a1e1e59eea432a32cf49c7a163c"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-1/pair-000483.png",
+      "bytes": 26782,
+      "sha256": "cdaf37eecc76453732dbf721c1e2989da6d78afa28e6c795ef34125c4846863a"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-1/pair-000484.png",
+      "bytes": 26733,
+      "sha256": "f347383539bdee7917738cdea675da41eb47c52bc37cd2d9e781f0bcf83f0989"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-1/pair-000485.png",
+      "bytes": 26740,
+      "sha256": "09c166bfe3ef301db9fcfa359b2c695ec7aa2d6ea9723eca8689c02e3f2b22d8"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-1/pair-000486.png",
+      "bytes": 26773,
+      "sha256": "cbd9a05f37edfbf23fea1781a6765ef7b559a19f47eca0638aba81442de818e2"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-2/pair-000478.png",
+      "bytes": 26810,
+      "sha256": "335e84818ece618a0ab87903b04c617979aa9311d9aac1dfd822e4f4e086b6bd"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-2/pair-000479.png",
+      "bytes": 26754,
+      "sha256": "9804ef79b018e327b53b5f9657eb4bf20c51ff8e3e4ebce00d9e4a1ef6a37e75"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-2/pair-000480.png",
+      "bytes": 26740,
+      "sha256": "5cd9a19882c41db51122c695e8f333ca8909a0b752cb892e57a4ffab307405cf"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-2/pair-000481.png",
+      "bytes": 26807,
+      "sha256": "3d3be3a60eb73399cbadc810228888a15f2289c6df85b80ff7be3db0475ee1b1"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-2/pair-000482.png",
+      "bytes": 26770,
+      "sha256": "9043683e2810cea225bf4ab531593fbd12956a1e1e59eea432a32cf49c7a163c"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-2/pair-000483.png",
+      "bytes": 26782,
+      "sha256": "cdaf37eecc76453732dbf721c1e2989da6d78afa28e6c795ef34125c4846863a"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-2/pair-000484.png",
+      "bytes": 26733,
+      "sha256": "f347383539bdee7917738cdea675da41eb47c52bc37cd2d9e781f0bcf83f0989"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-2/pair-000485.png",
+      "bytes": 26740,
+      "sha256": "09c166bfe3ef301db9fcfa359b2c695ec7aa2d6ea9723eca8689c02e3f2b22d8"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-2/pair-000486.png",
+      "bytes": 26773,
+      "sha256": "cbd9a05f37edfbf23fea1781a6765ef7b559a19f47eca0638aba81442de818e2"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-3/pair-000478.png",
+      "bytes": 26810,
+      "sha256": "335e84818ece618a0ab87903b04c617979aa9311d9aac1dfd822e4f4e086b6bd"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-3/pair-000479.png",
+      "bytes": 26754,
+      "sha256": "9804ef79b018e327b53b5f9657eb4bf20c51ff8e3e4ebce00d9e4a1ef6a37e75"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-3/pair-000480.png",
+      "bytes": 26740,
+      "sha256": "5cd9a19882c41db51122c695e8f333ca8909a0b752cb892e57a4ffab307405cf"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-3/pair-000481.png",
+      "bytes": 26807,
+      "sha256": "3d3be3a60eb73399cbadc810228888a15f2289c6df85b80ff7be3db0475ee1b1"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-3/pair-000482.png",
+      "bytes": 26770,
+      "sha256": "9043683e2810cea225bf4ab531593fbd12956a1e1e59eea432a32cf49c7a163c"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-3/pair-000483.png",
+      "bytes": 26782,
+      "sha256": "cdaf37eecc76453732dbf721c1e2989da6d78afa28e6c795ef34125c4846863a"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-3/pair-000484.png",
+      "bytes": 26733,
+      "sha256": "f347383539bdee7917738cdea675da41eb47c52bc37cd2d9e781f0bcf83f0989"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-3/pair-000485.png",
+      "bytes": 26740,
+      "sha256": "09c166bfe3ef301db9fcfa359b2c695ec7aa2d6ea9723eca8689c02e3f2b22d8"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/run-3/pair-000486.png",
+      "bytes": 26773,
+      "sha256": "cbd9a05f37edfbf23fea1781a6765ef7b559a19f47eca0638aba81442de818e2"
+    },
+    {
+      "path": "assets/local/issue-60-dos-scenes/summary.json",
+      "bytes": 10861,
+      "sha256": "61056a6729860a3b6c68639fe15a498c9f7140dfa078b57d4c78ea8e2173f13b"
+    },
+    {
+      "path": "assets/local/issue-60-native-canonical/config.json",
+      "bytes": 265,
+      "sha256": "9ebf946da4404129dde08085f9961c4ec8f394db523aefa5358bc6b46a8f265b"
+    },
+    {
+      "path": "assets/local/issue-60-native-canonical/inputs.txt",
+      "bytes": 20,
+      "sha256": "87e508bbc1b98f4fd5562b5c322c7caac3d9695ba2cc914a1c2c90ec76cb9a85"
+    },
+    {
+      "path": "assets/local/issue-60-native-canonical/summary.json",
+      "bytes": 235,
+      "sha256": "abc5bbf1856390c130febd398952c8a916de9c88f7cfdb995375e42061f459e1"
+    },
+    {
+      "path": "assets/local/issue-60-native-canonical/transitions.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/local/issue-60-reference/hazards-base/exit-base/nuke-base/floater-base/climber-base/bomber-base/blocker-base/builder-base/miner-base/basher-base/digger-base/reference.provenance.json",
+      "bytes": 2622,
+      "sha256": "751651723b0273b2ea4627c924942408abd577bc36d04cd14778dd10bc1dae59"
+    },
+    {
+      "path": "assets/local/issue-60-reference/hazards-base/exit-base/nuke-base/floater-base/climber-base/bomber-base/blocker-base/builder-base/miner-base/basher-base/reference.provenance.json",
+      "bytes": 3022,
+      "sha256": "43f553bbd39554783fa7f8207a0993fb216d44fc847b8c084983056f29bc3d35"
+    },
+    {
+      "path": "assets/local/issue-60-reference/hazards-base/exit-base/nuke-base/floater-base/climber-base/bomber-base/blocker-base/builder-base/miner-base/reference.provenance.json",
+      "bytes": 3295,
+      "sha256": "ddbae7983054557b6928df038c37b5f8bf523b5b26bac23dd52946c50655dacb"
+    },
+    {
+      "path": "assets/local/issue-60-reference/hazards-base/exit-base/nuke-base/floater-base/climber-base/bomber-base/blocker-base/builder-base/reference.provenance.json",
+      "bytes": 3781,
+      "sha256": "1f35980906c9bed624c97694d03adecdb628356bc363da871e89c73259b135b0"
+    },
+    {
+      "path": "assets/local/issue-60-reference/hazards-base/exit-base/nuke-base/floater-base/climber-base/bomber-base/blocker-base/reference.provenance.json",
+      "bytes": 4874,
+      "sha256": "7ec60af3ca2b2f63591c462fb431c4740b4f6ec408020f78c26bae226e93ccc4"
+    },
+    {
+      "path": "assets/local/issue-60-reference/hazards-base/exit-base/nuke-base/floater-base/climber-base/bomber-base/reference.provenance.json",
+      "bytes": 5692,
+      "sha256": "a28a381847acc45ed8631b7fefdcb3d14457b78b02f9d2fd37622d10f2373c1b"
+    },
+    {
+      "path": "assets/local/issue-60-reference/hazards-base/exit-base/nuke-base/floater-base/climber-base/reference.provenance.json",
+      "bytes": 6068,
+      "sha256": "f3221cfebcca97b4b5ba146da1f0f3e2651a4fcb525abbb61d6a6ac6ffe83002"
+    },
+    {
+      "path": "assets/local/issue-60-reference/hazards-base/exit-base/nuke-base/floater-base/reference.provenance.json",
+      "bytes": 6942,
+      "sha256": "f870f6495fb75b38bffcd9c5f55fc1c633d1ed4739cb9f681010f31d12c90ff0"
+    },
+    {
+      "path": "assets/local/issue-60-reference/hazards-base/exit-base/nuke-base/reference.provenance.json",
+      "bytes": 7417,
+      "sha256": "e2ef437a47e01bc7fb4b3ab38af421790a5283929ca73d31da4cc167272686d4"
+    },
+    {
+      "path": "assets/local/issue-60-reference/hazards-base/exit-base/reference.provenance.json",
+      "bytes": 7662,
+      "sha256": "1057d1c82c8fb3e3235f57c22c217b242b848ff65b95e3c72eefad7b7938e8c4"
+    },
+    {
+      "path": "assets/local/issue-60-reference/hazards-base/reference.provenance.json",
+      "bytes": 8255,
+      "sha256": "7be9b3be6609e84c919f3ee3ddde0e57a33f56863e2b42a2cc0b229b066867b7"
+    },
+    {
+      "path": "assets/local/issue-60-reference/reference.provenance.json",
+      "bytes": 8823,
+      "sha256": "0e19e052e9ac6d40f0db3f9fdf912ebdb2f86b5cc1f9111d083fce8f2d96e236"
+    }
+  ],
+  "evidence_trees": [
+    {
+      "directory": "assets/local/issue-60-native-original",
+      "files": 2285,
+      "bytes": 1874626210,
+      "index": {
+        "path": "assets/local/issue-60-review/issue-60-native-original-index.json",
+        "bytes": 403211,
+        "sha256": "108c30a29f15e0aabf5ae250f9adb8b5029c0d038aee12f09d1b7725823333f9"
+      }
+    },
+    {
+      "directory": "assets/local/issue-60-native-synthetic-final",
+      "files": 1536,
+      "bytes": 1098816097,
+      "index": {
+        "path": "assets/local/issue-60-review/issue-60-native-synthetic-final-index.json",
+        "bytes": 281172,
+        "sha256": "7d31ce29ecd587db6737486b75a740f3c346a73197a5576ca1a1026c32986979"
+      }
+    },
+    {
+      "directory": "assets/local/issue-60-dos-win-2",
+      "files": 65,
+      "bytes": 17234831,
+      "index": {
+        "path": "assets/local/issue-60-review/issue-60-dos-win-2-index.json",
+        "bytes": 9801,
+        "sha256": "e35c22bc633602567dcf5b2c2377dde5443737c7fc22a06da075b802f9124dae"
+      }
+    },
+    {
+      "directory": "assets/local/issue-60-dos-win-3",
+      "files": 65,
+      "bytes": 17229342,
+      "index": {
+        "path": "assets/local/issue-60-review/issue-60-dos-win-3-index.json",
+        "bytes": 9801,
+        "sha256": "d76f7a876841180edd0c2838349ea7f2911d85366e6de5dbfd8616a116ed4087"
+      }
+    },
+    {
+      "directory": "assets/local/issue-60-dos-win-4",
+      "files": 65,
+      "bytes": 17272144,
+      "index": {
+        "path": "assets/local/issue-60-review/issue-60-dos-win-4-index.json",
+        "bytes": 9801,
+        "sha256": "35172d68c69c4a316e91bb8ce1966644a70d3ce8f6619e16df49b60b02128af1"
+      }
+    },
+    {
+      "directory": "assets/local/issue-60-dos-loss-1",
+      "files": 65,
+      "bytes": 8856279,
+      "index": {
+        "path": "assets/local/issue-60-review/issue-60-dos-loss-1-index.json",
+        "bytes": 9865,
+        "sha256": "f950f9b1ed36fba995389e033d57a7aa4c3774a73180e4eb76abaea90dafd2f4"
+      }
+    },
+    {
+      "directory": "assets/local/issue-60-dos-scenes",
+      "files": 58,
+      "bytes": 9037411,
+      "index": {
+        "path": "assets/local/issue-60-review/issue-60-dos-scenes-index.json",
+        "bytes": 9065,
+        "sha256": "ab13145e9baf78549f9586ae921ff3df0885b2bdf8707a543876152ea9aea0eb"
+      }
+    },
+    {
+      "directory": "assets/local/issue-60-native-canonical",
+      "files": 198,
+      "bytes": 163902283,
+      "index": {
+        "path": "assets/local/issue-60-review/issue-60-native-canonical-index.json",
+        "bytes": 31249,
+        "sha256": "f4c80f13691752ff884d5ae4516a4af73e0547211ff6390a7ccf77d87a1e830e"
+      }
+    },
+    {
+      "directory": "assets/local/issue-60-reference",
+      "files": 60,
+      "bytes": 13372509,
+      "index": {
+        "path": "assets/local/issue-60-review/issue-60-reference-index.json",
+        "bytes": 12788,
+        "sha256": "4708c7dee3db71ef881595661717b7032faa44c4bce558223e15e5402fdde168"
+      }
+    }
+  ],
+  "index_algorithm": "POSIX relative-path lexicographic order, bytes/SHA-256 JSON array, compact separators and sorted keys, final newline; stored under ignored review path",
+  "excluded_attempts": [
+    "synthetic initial/2/3 harness failures; no successful result claimed",
+    "DOS win-1 valid recording but old index validator rejected it; excluded from three successful validated runs",
+    "Xvfb readiness/PIPE and existing-output retries; only four summary/provenance records counted"
+  ],
+  "script_snapshot_note": "original native controller-at-run.py predates final metadata snapshot/latest nonterminal PNG fallback additions; simulation/replay validation unchanged. Synthetic final uses current script.",
+  "limitations": [
+    "runtime RUSSELL.DAT copy offset0 9->0 only; original50 EXE/DAT unchanged",
+    "successful DOS result increments level index before dismissal; compare initial playing level and final result counts",
+    "UI journey timing differs from canonical Digger60 scene run",
+    "ordered 320x160 RGB565 game scenes; no masks/shifts/tolerance, HUD/result artwork excluded",
+    "asynchronous read-only DOS samples are not atomic full DOS state",
+    "native logical state excludes camera/pointer presentation; reset and actual controls checked separately"
+  ],
+  "executables": [
+    {
+      "path": "target/release/lemmings-desktop",
+      "bytes": 1060608,
+      "sha256": "21057115473b0d3b3cc43d5fd9cc794c36255f64cc46e11711676ac57d0320da"
+    },
+    {
+      "path": "/usr/bin/dosbox",
+      "bytes": 2539536,
+      "sha256": "f20a416fd9b3c58948a910818c6f992bf2b30de2fe1cecf4c9402d92593f9795"
+    },
+    {
+      "path": "/usr/bin/xdotool",
+      "bytes": 84944,
+      "sha256": "e5c6b55bb4a9677b7d6639403e0e7e279c95b0522b792f264c32359213c20626"
+    },
+    {
+      "path": "/usr/bin/Xvfb",
+      "bytes": 1973888,
+      "sha256": "567a9b39284e303522fdc178059fe60d0e9917b811bd5066fb63260fd198a97c"
+    },
+    {
+      "path": "/usr/lib/fpc/3.2.2/ppcx64",
+      "bytes": 4057872,
+      "sha256": "c88973cd2a4895099c698ba470f99cb2288d78ac2b626991eafe1a132828bd88"
+    }
+  ],
+  "dos_audit": {
+    "path": "assets/local/issue-60-review/dos-audit.json",
+    "bytes": 475,
+    "sha256": "ce243726614a970459a595bb5603be711c9aa2785ea98283f34cfe6bfc73bab9"
+  },
+  "local_validation": "Rust504/doc27/Python101 passed; final make check exit/log and exact push/PR/main CI are recorded in issue60 after completion",
+  "self_review": {
+    "path": "assets/local/issue-60-review/self-review.json",
+    "bytes": 1328,
+    "sha256": "e687db8fd5570d8a6fa88de92ad278cd39f8182317a85ada45bd9bc890ffc5c7"
+  }
+}

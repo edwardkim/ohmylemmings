@@ -48,3 +48,5 @@
 - [#56 원본 기술 패널·미니맵](issue-56_skill_panel.md)
 
 - [#58 포인터 선택·RightClickGlitch](issue-58_pointer_selection.md)
+
+- [#60 네이티브 한 레벨 통합 완주](issue-60_native_playthrough.md)
