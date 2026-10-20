@@ -77,3 +77,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#68 G09-04 브라우저 입력·원본 자산·레벨 전환](issue-68_web_input_assets.md)
 
 - [#70 G09-05 브라우저 통합 완주](issue-70_web_playthrough.md)
+
+- [#72 AdLib 자원·통합 계약](issue-72_adlib_catalog.md)

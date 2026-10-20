@@ -1,0 +1,495 @@
+{
+  "format": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/72",
+  "baseline_main": "07c727ef0c4ec145be5e9215948f7bdcd960f251",
+  "scope": "G10-01 decoded DOS-original AdLib metadata/initial-read bounds:21 music tracks,18 effects,120 displayed level routing. No interpreter/OPL/PCM/device playback or DOS audio timing/event-ID certification.",
+  "local_validation": {
+    "status": "PASS",
+    "exit_code": 0,
+    "rust": 535,
+    "doc": 29,
+    "python": 121,
+    "sha256": "5b8b601a65c70071b7380c9f6fb093143cf1e07ec4f0ba637c8c1e104abf5090",
+    "bytes": 92459,
+    "elapsed_seconds": 829.0,
+    "scope": "Full make check including synthetic AdLib export comparison, all Rust/docs/Python/WASM/SDL/Web suites"
+  },
+  "synthetic": {
+    "status": "PASS",
+    "music": 21,
+    "effects": 18,
+    "music_channels": 48,
+    "levels": 120
+  },
+  "original": {
+    "status": "PASS",
+    "music": 21,
+    "effects": 18,
+    "music_channels": 69,
+    "levels": 120,
+    "reference_scope": "actual pinned initMusic/initSound/channel initMusic/readWordBE/readByte/setOffset method bodies; channel creation uses metadata-only stub; no command interpreter, OPL or PCM execution",
+    "configured_tracks": 20,
+    "adopted_tracks": 21,
+    "decoded_sha256": "ad4f33eb383c60b5a67945987f27580fc0540e38558d4c158efe1a672db5f490",
+    "sources": [
+      {
+        "name": "lemmings-ts__public__data__config.json",
+        "size": 5212,
+        "sha256": "9ae8aca2369b0ae097a4d278384ba9d51ed5e9621024dd3fb6c2149a4da0a653"
+      },
+      {
+        "name": "lemmings-ts__src__game__resources__file__binary-reader.ts",
+        "size": 4703,
+        "sha256": "e9aa57961af72dea86d720906be77c74c5433a4c86aa5b6170674f8faabfa39e"
+      },
+      {
+        "name": "lemmings-ts__src__game__resources__sound__sound-image-player.ts",
+        "size": 6306,
+        "sha256": "232525b1b651f9eb17f454076f5f54f015fca021c05980c88bedee1a6ce599d9"
+      },
+      {
+        "name": "lemmings-ts__src__game__resources__sound__sound-image-channel.ts",
+        "size": 10554,
+        "sha256": "d3e4ab268ce9eeaea638592fae0c105185b98bf7cad7e0f017c901d3050001cb"
+      }
+    ],
+    "original_files": 50,
+    "dos_audio_verified": false,
+    "pcm_verified": false
+  },
+  "pinned_sources": [
+    {
+      "path": "assets/local/reference-sources/lemmix__src__Dos.Consts.pas",
+      "bytes": 16284,
+      "sha256": "8f66f615eb80858d50a794554e2a8be4db48ca45ec6309d96af5126c88a1c466"
+    },
+    {
+      "path": "assets/local/reference-sources/lemmix__src__Styles.Dos.pas",
+      "bytes": 16326,
+      "sha256": "d9890fb5a736658637da2db35c6e74f92f7837636b38eec4ded13d4e2ffed2b2"
+    },
+    {
+      "path": "assets/local/reference-sources/lemmix__src__Game.pas",
+      "bytes": 182303,
+      "sha256": "c1ba9ffda9e8e277f5c9b171df2bb611210d3326b9623b28fcd35426f4d6a448"
+    },
+    {
+      "path": "assets/local/reference-sources/lemmix__src__Game.Sound.pas",
+      "bytes": 17584,
+      "sha256": "93b5c76ff24a6ad7768f4f87b973e965ff682fce47475fea5280e0550600e2e3"
+    },
+    {
+      "path": "assets/local/reference-sources/lemmings-ts__public__data__config.json",
+      "bytes": 5212,
+      "sha256": "9ae8aca2369b0ae097a4d278384ba9d51ed5e9621024dd3fb6c2149a4da0a653"
+    },
+    {
+      "path": "assets/local/reference-sources/lemmings-ts__src__game__resources__file__binary-reader.ts",
+      "bytes": 4703,
+      "sha256": "e9aa57961af72dea86d720906be77c74c5433a4c86aa5b6170674f8faabfa39e"
+    },
+    {
+      "path": "assets/local/reference-sources/lemmings-ts__src__game__resources__sound__sound-image-player.ts",
+      "bytes": 6306,
+      "sha256": "232525b1b651f9eb17f454076f5f54f015fca021c05980c88bedee1a6ce599d9"
+    },
+    {
+      "path": "assets/local/reference-sources/lemmings-ts__src__game__resources__sound__sound-image-channel.ts",
+      "bytes": 10554,
+      "sha256": "d3e4ab268ce9eeaea638592fae0c105185b98bf7cad7e0f017c901d3050001cb"
+    }
+  ],
+  "dependencies": {
+    "status": "PASS",
+    "registry_dependencies_changed": false,
+    "lockfile_changed": false,
+    "unchanged": [
+      "Cargo.toml",
+      "Cargo.lock",
+      "crates/lemmings-core",
+      "crates/lemmings-session",
+      "crates/lemmings-game",
+      "apps",
+      "tools/web",
+      "tools/check_web.py",
+      "tools/check_web_journey.py"
+    ],
+    "notes": "no new library or synth selected; Node only for optional original reference initialization; default CI uses stdlib Python and existing Rust"
+  },
+  "self_review": {
+    "status": "PASS",
+    "method": "author self-review",
+    "findings": [
+      {
+        "topic": "Initial read bounds",
+        "resolution": "Validate complete size/all21+18 entries, header/count before reads,16-byte first instrument,2-byte program and1-byte bar, index before multiplication"
+      },
+      {
+        "topic": "Shared music data",
+        "resolution": "Keep global music region and input channel order; actual bar21727 shared, music09 non-monotonic channel addresses; regression test"
+      },
+      {
+        "topic": "Reference scope",
+        "resolution": "Execute actual pinned initialization and reader methods/enum with metadata-only channel factory;21-track parameter explicit; no claim of interpreter/OPL/PCM/DOS sound"
+      },
+      {
+        "topic": "Compatibility and output boundary",
+        "resolution": "No core/session/game/input/render/registry changes; original source hashes before/after and ignored output guard; game time independent of audio"
+      },
+      {
+        "topic": "Integration plan",
+        "resolution": "Logical18 events are distinct from raw IDs; record unknown DOS timing/mapping, VM/OPL/PCM stages and LAN HTTP browser output candidate"
+      }
+    ],
+    "unresolved": []
+  },
+  "source_semantics": [
+    "TS readWordBE is little endian",
+    "TS configured20 tracks; supplied21-track pinned G00/Lemmix contract",
+    "music bars can be shared globally; preserve channel order",
+    "Reference executes pinned initialization/reader methods and enum only; metadata-only channel factory",
+    "All original50files verified before/after; decoded size/SHA checked against existing catalog"
+  ],
+  "tool_versions": {
+    "node": "v26.8.2"
+  },
+  "sources": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 3369,
+      "sha256": "a184b9692417f90711fff70bc1ae8864e90e4b8293fddb55c74a4e5610b573d3"
+    },
+    {
+      "path": "Cargo.lock",
+      "bytes": 4890,
+      "sha256": "d8c6a748167e636f4600aec73cd3a43788674e6c8ab0867cfa088ec5056e7edb"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 370,
+      "sha256": "fe8a13bb135c1f9f517a5a5555ae45ec0c235ea21ec64d5310024a8f1b70a7b2"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 2128,
+      "sha256": "6b8dedf5082d1c8c84aec195ceed4d2477771d5c1d2f26ca57b681d5cbb686a6"
+    },
+    {
+      "path": "assets/manifests/dos_compatibility.json",
+      "bytes": 96918,
+      "sha256": "8ee52327df06f30d730192942f4e77ae8a6933edf0c1a9aff021de9d2f954419"
+    },
+    {
+      "path": "assets/manifests/dos_original.json",
+      "bytes": 12573,
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "assets/manifests/reference_sources.json",
+      "bytes": 67116,
+      "sha256": "af084d89ba0b9c119b7afa4f886281cfeede4a3d25de98ecb8dbb8c159942d3b"
+    },
+    {
+      "path": "crates/lemmings-core/Cargo.toml",
+      "bytes": 355,
+      "sha256": "fda80e247255d40f3ff97b0f8f883abca7044c3de20b87b79e33b21a7ed6c253"
+    },
+    {
+      "path": "crates/lemmings-core/src/level.rs",
+      "bytes": 3322,
+      "sha256": "c832a8049fcd98c00dbd18e2c2ade1d6c83a38f517594f0044c07a5f61d59643"
+    },
+    {
+      "path": "crates/lemmings-resources/Cargo.toml",
+      "bytes": 321,
+      "sha256": "c430e2a3913de2bd874e5d03657142c7ba6e262a7179d3f5593f495980099b82"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_adlib.rs",
+      "bytes": 2463,
+      "sha256": "0bdcd3680edc26d21345b4cea380e0234db168f17b47a51351e58234f2a31ba6"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_catalog.rs",
+      "bytes": 3215,
+      "sha256": "31f65ee4dc4acece1c73415bb2d7804766d12143f24d0de6a45f8a56e234d1cc"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_dat.rs",
+      "bytes": 1476,
+      "sha256": "cd4d72b847ea224cc559d52c2b08ea61033424aa30c60d2c16da5541ced42272"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_ground.rs",
+      "bytes": 3492,
+      "sha256": "4bfdde54fc63b358c0ce50442b4c24b8987f7847ab55e984fccb2156206187a0"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_levels.rs",
+      "bytes": 3731,
+      "sha256": "f5dae139b0740a0e55c3b4eb12aee617ef11793d273f8a50543ac1643063e6ff"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_masks.rs",
+      "bytes": 2886,
+      "sha256": "d00131830322407995c2adaf08e1a0db6c7745fcafde7a7ac214e5f691e8c275"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_objects.rs",
+      "bytes": 9307,
+      "sha256": "5a61fc4c3acd2a3f8e5ff0d34b8fd8d23edee3a8eefdd3358e4752047f3a45f2"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_sprites.rs",
+      "bytes": 3203,
+      "sha256": "58dbd3cf7d25fdbf4039c75a1b773b90db546aac2fadf4db02dac3279c4a8100"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_terrain.rs",
+      "bytes": 6652,
+      "sha256": "e3ef215bb3f530567bb4057e7d4c0b3c1cb6699ed9346a097f589a7b24b922f2"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_ui.rs",
+      "bytes": 3973,
+      "sha256": "b5813ff7008c2b46df225d296c8a2b4f77d01c09afeb91d950dce2e62fd84e1e"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_vgagr.rs",
+      "bytes": 3438,
+      "sha256": "8c20a2dddff5601bee7ffdd1abf95a6dcae7197f2c1ef762f50815bec634622d"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_vgaspec.rs",
+      "bytes": 2588,
+      "sha256": "72f76237832dc2f9e2fd16a257ae2e10d32ca16e9fd26ec27faf10054c2c66af"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/unpack_dat.rs",
+      "bytes": 1679,
+      "sha256": "6cf37ccaa403baf80d1a0c3d06946dbc7ac54914555430b938f2da8db7b26315"
+    },
+    {
+      "path": "crates/lemmings-resources/src/adlib.rs",
+      "bytes": 6843,
+      "sha256": "6f64002a9cf3f8c2339a347da68676ef4407d2faa931aeb0c6a1966660ff68a4"
+    },
+    {
+      "path": "crates/lemmings-resources/src/catalog.rs",
+      "bytes": 20391,
+      "sha256": "482e6e19efb152ea111b4037eaba3f8d9ec0d55ced02508638fa72394b66182f"
+    },
+    {
+      "path": "crates/lemmings-resources/src/dat.rs",
+      "bytes": 15857,
+      "sha256": "e2b26f994f33b87c7a1fad7e9f7411f5d971d74ceb3163a0607f1e2e77b074fd"
+    },
+    {
+      "path": "crates/lemmings-resources/src/decompress.rs",
+      "bytes": 22421,
+      "sha256": "70671fd5a88211a121aebc110c63cb997d03432694a9db18c593f8c1442c32f2"
+    },
+    {
+      "path": "crates/lemmings-resources/src/ground.rs",
+      "bytes": 17041,
+      "sha256": "b8d6fc8335de563b7465450a02bc3789850344258a51ece148d2965a6053f651"
+    },
+    {
+      "path": "crates/lemmings-resources/src/level.rs",
+      "bytes": 28391,
+      "sha256": "7c4d5b6c02c5442dc0fa30706bc8956c11b3384e01b6e93646d55d76ce7f4331"
+    },
+    {
+      "path": "crates/lemmings-resources/src/lib.rs",
+      "bytes": 2669,
+      "sha256": "d235aecd25349c6f26f1153c7089363438dda9929e62a957726e036ec758375a"
+    },
+    {
+      "path": "crates/lemmings-resources/src/masks.rs",
+      "bytes": 20832,
+      "sha256": "06dcc3d9cf648af8327ef3fac2df7ab7f08f364f12c6b6f5f7454736af340911"
+    },
+    {
+      "path": "crates/lemmings-resources/src/objects.rs",
+      "bytes": 29931,
+      "sha256": "2fcbfc27434943f0a3c25e18758dbfcd9b6212c935ad76f1d1e00b39280893fd"
+    },
+    {
+      "path": "crates/lemmings-resources/src/odd.rs",
+      "bytes": 8421,
+      "sha256": "e4cb0a0cd73c3bbf1619a0c8eac79514649406695b6f5e8416e697b301020e7e"
+    },
+    {
+      "path": "crates/lemmings-resources/src/particles.rs",
+      "bytes": 2699,
+      "sha256": "ef9a7b86b4ba4daf3ac7c5d13e0a14757fdfa2c98cb361b7aff5115fb727283b"
+    },
+    {
+      "path": "crates/lemmings-resources/src/reader.rs",
+      "bytes": 3984,
+      "sha256": "8ff493a5db815d33deb25b21a4c27db9ab529328357bc1382f0514a518cd77f7"
+    },
+    {
+      "path": "crates/lemmings-resources/src/sprites.rs",
+      "bytes": 33838,
+      "sha256": "88d0375463113ae34f3c412a5d9f0338ccee048b499501f60faf5e69c5e0d05e"
+    },
+    {
+      "path": "crates/lemmings-resources/src/terrain.rs",
+      "bytes": 29099,
+      "sha256": "e2a086dc3df9f4c3d1486ba8a9fe1c6e7504a0f15206b896c3604316efa0c4ff"
+    },
+    {
+      "path": "crates/lemmings-resources/src/ui.rs",
+      "bytes": 38527,
+      "sha256": "2ea7041f0388f7f60216a892d48f42f2dea3b03b5790715dbfb01b5f10b39e8d"
+    },
+    {
+      "path": "crates/lemmings-resources/src/vgagr.rs",
+      "bytes": 33687,
+      "sha256": "f973cbfd6e1d6ce87b3430b2c8a6053d1a209b773859afb3095a2fd0cc1dbdf0"
+    },
+    {
+      "path": "crates/lemmings-resources/src/vgaspec.rs",
+      "bytes": 27891,
+      "sha256": "680ae409742e6e8cb2c98477ec1607289ee30314a94120d40f0639c2c141cb56"
+    },
+    {
+      "path": "crates/lemmings-resources/tests/adlib.rs",
+      "bytes": 5940,
+      "sha256": "71be3107a65f9f1eba16f9bc03cb058e071b7dfaf844641fd6aeff9cc2134093"
+    },
+    {
+      "path": "mydocs/reports/issue-72_adlib_catalog.md",
+      "bytes": 3863,
+      "sha256": "57d218fb41f15cb9cd922676969382ab9a3b850175d28a3310b4c8ef7f74aa6e"
+    },
+    {
+      "path": "mydocs/tech_insights/issue-72_adlib_catalog.md",
+      "bytes": 11299,
+      "sha256": "02c28b452312b76acf64a25c32218f8fca9b8771ef18f47f0a9b32733133b1d0"
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "bytes": 86,
+      "sha256": "e1633ee4dccddc1fd314c184e83109e96a8366e1fbc8f8e51e505f8aa879a929"
+    },
+    {
+      "path": "tools/adlib_reference.mjs",
+      "bytes": 3446,
+      "sha256": "eabd3633c1f2c804bcfc239c9d80a19fcc4ac3dfc4d7948b6434d4c1ff2b8120"
+    },
+    {
+      "path": "tools/check_adlib.py",
+      "bytes": 6268,
+      "sha256": "d5e9e1d7c04f5b3867c7ae907ee807d31d3e0b00421afb01acb8829ea9e2de20"
+    },
+    {
+      "path": "tools/state_replay.py",
+      "bytes": 16162,
+      "sha256": "f9485c7f9e97ec385ede05755e64d2cfb96ec7cf3e056b285e535ff1016c80fa"
+    },
+    {
+      "path": "tools/tests/test_adlib.py",
+      "bytes": 2303,
+      "sha256": "4473a1600a2caf7cfbd8b060be65607ad5533f99820a8b8ee5cbb723986394e1"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "assets/local/issue-72-review/rust-red.log",
+      "bytes": 1226,
+      "sha256": "b5f8b25e5092b81240f1887ed6cbcc054c82231c3ae37476e1d8f49a2eb1e74a"
+    },
+    {
+      "path": "assets/local/issue-72-review/rust-green.log",
+      "bytes": 991,
+      "sha256": "e4fdd7660b6afd34532440df1b5a58f89ee39a525dbca5d08db60ac46e24bd65"
+    },
+    {
+      "path": "assets/local/issue-72-review/rust-final.log",
+      "bytes": 1078,
+      "sha256": "0648c48c447c177e42e5f549b4f92326feff24e7e47e578c7798eae39b3f87ae"
+    },
+    {
+      "path": "assets/local/issue-72-review/clippy.log",
+      "bytes": 170,
+      "sha256": "c9618a9e87d49af4ae06c832b0ea18d07343714e90ed7def875b0f970e4bc482"
+    },
+    {
+      "path": "assets/local/issue-72-review/python-red.log",
+      "bytes": 821,
+      "sha256": "aa2cc2d832a86b0a81fdbba184ddd390e481edc734d7b5a6f577559a83504390"
+    },
+    {
+      "path": "assets/local/issue-72-review/python-green.log",
+      "bytes": 104,
+      "sha256": "b95b5805bef96b568b1b2424b637003cd6f306e6312d682e4f2e4e23f635b26a"
+    },
+    {
+      "path": "assets/local/issue-72-review/synthetic.log",
+      "bytes": 244,
+      "sha256": "9b56b3cd1cec764d8357c12c4c50969d49aa88e355826b3bbcb6dfbfeb85a679"
+    },
+    {
+      "path": "assets/local/issue-72-review/original-verified.log",
+      "bytes": 1219,
+      "sha256": "f48a706feea321edca37efbbac67d08d1583c23e9c201cd57fc152f02030d1bb"
+    },
+    {
+      "path": "assets/local/issue-72-review/self-review.json",
+      "bytes": 1195,
+      "sha256": "21a02a4a6541f5592def4737869ca17ad5fe335539cb101779da3d1c6d0e3add"
+    },
+    {
+      "path": "assets/local/issue-72-review/dependency-audit.json",
+      "bytes": 481,
+      "sha256": "fdd58d756e117931ed985d20204d2120c2660bf3f4eca7a424026cd3aed139ed"
+    },
+    {
+      "path": "assets/local/issue-72-review/make-check.log",
+      "bytes": 92459,
+      "sha256": "5b8b601a65c70071b7380c9f6fb093143cf1e07ec4f0ba637c8c1e104abf5090"
+    },
+    {
+      "path": "assets/local/issue-72-review/local-validation.json",
+      "bytes": 328,
+      "sha256": "5605e2acc4c1082b976032ac2c98ff0d429f1af8ae1dc8a267cc4c0f17da0c17"
+    },
+    {
+      "path": "target/release/examples/inspect_adlib",
+      "bytes": 488424,
+      "sha256": "704952fb3b11fd289f9205172c5605fa9a6cf962c4c042daf6e797bca3823b79"
+    },
+    {
+      "path": "target/release/examples/unpack_dat",
+      "bytes": 477808,
+      "sha256": "a7a7fe6f7706cac67e69e3099c34e50a29440b6d8fdaf517201febbfd449a2dd"
+    }
+  ],
+  "evidence_trees": [
+    {
+      "directory": "assets/local/issue-72-synthetic",
+      "files": 4,
+      "bytes": 38885,
+      "index": {
+        "path": "assets/local/issue-72-review/issue-72-synthetic-index.json",
+        "bytes": 580,
+        "sha256": "57962e75ee777572b7609817c751ad22204c637c31b8febcaad81dbe73d6dc51"
+      }
+    },
+    {
+      "directory": "assets/local/issue-72-original-verified",
+      "files": 4,
+      "bytes": 40635,
+      "index": {
+        "path": "assets/local/issue-72-review/issue-72-original-verified-index.json",
+        "bytes": 622,
+        "sha256": "8a6eca941a07165fb0a78d454172e4153753193ae11a68918be826de61cbf8d0"
+      }
+    }
+  ],
+  "index_algorithm": "POSIX relative-path lexicographic order; compact sorted-key JSON array and final newline; exact size/SHA-256",
+  "next": "G10-02 bounded ADLIB command interpreter/register stream, loop/stop and timing evidence; G10 overall remains open",
+  "publication": "Exact reviewed head, push/PR/main four jobs and actual full ZIP checkout logs, same merge-tree/mode/blob recorded in issue72 before closure"
+}

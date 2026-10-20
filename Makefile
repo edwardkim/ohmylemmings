@@ -8,6 +8,7 @@ check-rust:
 	cargo build --workspace --locked --offline
 	cargo test --workspace --locked --offline
 	python3 tools/check_state_replay.py
+	python3 tools/check_adlib.py
 
 check-python:
 	python3 -m unittest discover -s tools/tests -v
