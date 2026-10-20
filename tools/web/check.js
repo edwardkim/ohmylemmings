@@ -13,6 +13,8 @@ try {
     const context = document.querySelector('#screen').getContext('2d', { willReadFrequently: true });
     const bank = new WebAssets();
     for (const name of [...Array.from({length:10},(_,i)=>`LEVEL${String(i).padStart(3,'0')}.DAT`),'GROUND0O.DAT','VGAGR0.DAT','MAIN.DAT','ODDTABLE.DAT']) bank.insert(name,new Uint8Array(await (await fetch('./fixture/'+name)).arrayBuffer()));
+    const winning = new WebAssets();
+    for (const name of [...Array.from({length:10},(_,i)=>`LEVEL${String(i).padStart(3,'0')}.DAT`),'GROUND0O.DAT','VGAGR0.DAT','MAIN.DAT','ODDTABLE.DAT']) winning.insert(name,new Uint8Array(await (await fetch('./winning/'+name)).arrayBuffer()));
     const originals=new WebAssets();
     for (const name of expected.original_files || []) originals.insert(name,new Uint8Array(await (await fetch('./original/'+name)).arrayBuffer()));
     function operation(game, row) {
@@ -23,7 +25,7 @@ try {
             case 'Release': game.release_input(); break;
             case 'Restart': game.restart_level(); break;
             case 'Continue': game.transition('continue'); break;
-            case 'Level': game.start_level(args[0]); break;
+            case 'Level': if(args.length===2)game.start_level_rank(args[0],args[1]);else game.start_level(args[0]); break;
             default: game.command(name,args[0]);
         }
     }
@@ -32,7 +34,10 @@ try {
     for (const test of expected.cases) {
         for (const render of [1, 7]) {
             const game = new WebGame(test.scene.startsWith('original:') ? 'builder' : test.scene, test.pacing);
-            if (test.scene.startsWith('original:')) game.load_original(test.original ? originals : bank,Number(test.scene.split(':')[1]));
+            if (test.scene.startsWith('original:')) {
+                const parts=test.scene.split(':');
+                game.load_original_rank(test.original ? originals : test.winning ? winning : bank,parts.length===3?parts[1]:'fun',Number(parts.at(-1)));
+            }
             for (let step = 0; step < test.rows.length; step++) {
                 for (const row of test.commands) if (row[0] === step) operation(game,row);
                 const row = test.rows[step];
@@ -98,7 +103,7 @@ try {
     game.free();pumpGame.free();
     const sound_commands = checkSoundCommands(WebGame,assert,throws);
     const dom = await checkDom(assert,throws,bank);
-    bank.free();originals.free();
+    bank.free();winning.free();originals.free();
     const result={dom,sound_commands,status:'PASS',cases:expected.cases.length,runs:rows.length,states,frames,canvas_readbacks:readbacks,boundary_checks:true,refresh_rates:[60,120,144],runs_detail:rows};
     report.textContent=JSON.stringify(result);await fetch('/__result',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(result)});
 } catch (error) {

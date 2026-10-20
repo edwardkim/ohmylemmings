@@ -1,5 +1,7 @@
 # 작업 결과 보고서
 
+- [#87 네 난이도 선택·재시작·전환 검증](issue-87_rank_selection.md)
+
 - [#85 G11-01 전수 점검표·성능 측정 기준](issue-85_compatibility_validation.md)
 
 완료된 작업의 변경 내용과 검증 결과를 관리합니다.

@@ -13,6 +13,7 @@ const proceed = document.querySelector('#continue');
 const population = document.querySelector('#population');
 const files = document.querySelector('#files');
 const level = document.querySelector('#level');
+const difficulty = document.querySelector('#difficulty');
 const openLevel = document.querySelector('#open-level');
 const errorText = document.querySelector('#error');
 const source = document.querySelector('#source');
@@ -42,7 +43,7 @@ const inputGame={
     pointer:(...args)=>invoke('Pointer',args,()=>game.pointer(...args)),
     release_input:()=>invoke('Release',[],()=>game.release_input()),
 };
-for (let n = 1; n <= 30; n++) level.add(new Option(`Fun ${String(n).padStart(2,'0')}`, n));
+for (let n = 1; n <= 30; n++) level.add(new Option(String(n).padStart(2,'0'), n));
 
 function stop() {
     if (request !== null) cancelAnimationFrame(request);
@@ -71,13 +72,14 @@ function draw() {
     restart.disabled = loading;
     scene.disabled = files.disabled = loading;
     openLevel.disabled = loading || !game.original();
-    level.disabled = loading;
+    level.disabled = difficulty.disabled = loading;
     proceed.hidden = !finished;
     proceed.disabled = loading || !game.can_continue();
     proceed.textContent = state.completion?.phase === 'Won' ? game.can_continue() ? '다음 레벨' : '마지막 레벨 완료' : '다시 도전';
     status.textContent = loading ? '파일을 읽는 중…' : exited ? '게임 중단' : finished ? (state.completion.phase === 'Won' ? '구출 완료' : '다시 도전') : paused ? '일시 정지' : '진행 중';
     population.textContent = `활동 중 ${state.session.alive} · 구출 ${state.exit.saved}`;
-    source.textContent = game.original() ? `원본 파일 · Fun ${String(game.level()).padStart(2,'0')}` : '직접 만든 자산으로 기술과 구출을 연습합니다.';
+    const rank = game.difficulty();
+    source.textContent = game.original() ? `원본 파일 · ${rank[0].toUpperCase()+rank.slice(1)} ${String(game.level()).padStart(2,'0')}` : '직접 만든 자산으로 기술과 구출을 연습합니다.';
     notify('present',{canvas});
     if (finished || exited) stop();
     return !finished && !exited;
@@ -98,7 +100,7 @@ function replaced(reason) {
     input.release();
     exited = false;
     errorText.textContent = '';
-    if (game.original()) { level.value = game.level(); scene.value = ''; }
+    if (game.original()) { difficulty.value = game.difficulty(); level.value = game.level(); scene.value = ''; }
     pump = newPump();
     stop(); draw(); schedule();
 }
@@ -116,7 +118,7 @@ pause.addEventListener('click', () => attempt(() => {
 restart.addEventListener('click', () => attempt(() => { game.restart_level(); replaced('restart'); }));
 proceed.addEventListener('click', () => attempt(() => action('continue')));
 scene.addEventListener('change', () => attempt(() => { game.reset(scene.value, 'reference'); replaced('synthetic'); }));
-openLevel.addEventListener('click', () => attempt(() => { game.start_level(Number(level.value)); replaced('level'); }));
+openLevel.addEventListener('click', () => attempt(() => { game.start_level_rank(difficulty.value, Number(level.value)); replaced('level'); }));
 files.addEventListener('change', async () => {
     if (!files.files.length || loading) return;
     loading = true;
@@ -125,7 +127,7 @@ files.addEventListener('change', async () => {
     let bank;
     try {
         bank = await readFiles(Array.from(files.files));
-        game.load_original(bank, Number(level.value));
+        game.load_original_rank(bank, difficulty.value, Number(level.value));
         replaced('load');
     } catch (error) { recover(error); }
     finally { bank?.free(); loading = false; files.value = ''; draw(); }

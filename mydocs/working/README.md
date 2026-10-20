@@ -1,5 +1,7 @@
 # 진행 중 작업
 
+- [#87 G11-02 네 난이도 레벨 선택·전환](issue-87_rank_selection.md)
+
 - [#85 G11-01 전체 호환성·성능 검증 준비](issue-85_compatibility_validation.md)
 
 - [#82 G10-06 통합 사운드 검증](issue-82_audio_playthrough.md)

@@ -45,6 +45,10 @@ fn packed(bytes: &[u8]) -> Vec<u8> {
 }
 
 pub fn bank(special: bool) -> BTreeMap<String, Vec<u8>> {
+    bank_with_exit(special, false)
+}
+
+pub fn bank_with_exit(special: bool, exit: bool) -> BTreeMap<String, Vec<u8>> {
     let mut level = vec![0; LEVEL_RECORD_SIZE];
     for (i, word) in [50u16, 1, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8]
         .into_iter()
@@ -58,11 +62,20 @@ pub fn bank(special: bool) -> BTreeMap<String, Vec<u8>> {
     level[288..292].copy_from_slice(&[0, 64, 52, 0]); // own 8-pixel ground at (48,100)
     level[2016..].fill(b' ');
     level[2016..2025].copy_from_slice(b"BYTE BANK");
+    if exit {
+        level[40..48].copy_from_slice(&[0, 16, 0, 4, 0, 0, 0, 0]);
+        level[288..292].copy_from_slice(&[0, 88, 52, 0]);
+    }
     let dat = packed(&level).repeat(8);
     let mut ground = vec![0; GROUND_RECORD_SIZE];
     ground[28 + 3..28 + 10].copy_from_slice(&[1, 8, 1, 5, 0, 4, 0]);
     ground[448..454].copy_from_slice(&[8, 1, 0, 0, 3, 0]);
     ground[984..987].copy_from_slice(&[63, 10, 2]);
+    if exit {
+        let entrance = ground[28..56].to_vec();
+        ground[..28].copy_from_slice(&entrance);
+        ground[16..21].copy_from_slice(&[1, 0, 255, 40, 1]);
+    }
     let mut graphics = packed(&[255, 0, 0, 255]);
     graphics.extend(packed(&[255, 0, 0, 0, 255]));
     let mut main = Vec::new();

@@ -8,7 +8,7 @@ mod pointer;
 mod render;
 mod session;
 use assets::Assets;
-use lemmings_core::{InputCommand, StartupCommand};
+use lemmings_core::{Difficulty, InputCommand, LevelId, StartupCommand};
 use lifecycle::{LevelRun, ResultAction};
 use pacing::Pacing;
 use render::{HEIGHT, WIDTH};
@@ -26,7 +26,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--result-actions restart,continue]\nS: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--result-actions restart,continue]\nS: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     mute: bool,
@@ -42,6 +42,7 @@ struct Options {
     outcome_scene: Option<String>,
     result_actions: std::collections::VecDeque<ResultAction>,
     level: u8,
+    difficulty: Difficulty,
     steps: Option<u64>,
     fast: bool,
     render_every: u64,
@@ -68,6 +69,7 @@ impl Options {
             outcome_scene: None,
             result_actions: std::collections::VecDeque::new(),
             level: 1,
+            difficulty: Difficulty::Fun,
             steps: None,
             fast: false,
             render_every: 1,
@@ -156,10 +158,13 @@ impl Options {
                     o.synthetic = true;
                     o.blocker_scene = true;
                 }
+                "--difficulty" => {
+                    o.difficulty = args.next().ok_or("--difficulty requires a name")?.parse()?;
+                }
                 "--level" => {
                     o.level = args
                         .next()
-                        .ok_or("--level requires Fun number 1..30")?
+                        .ok_or("--level requires number 1..30")?
                         .parse()?
                 }
                 "--mute" => o.mute = true,
@@ -207,8 +212,10 @@ impl Options {
         if o.synthetic && specified_assets {
             return Err("choose --assets or --synthetic".into());
         }
-        if !(1..=30).contains(&o.level) || (o.synthetic && o.level != 1) {
-            return Err("--level: Fun 1..30 with original assets".into());
+        if !(1..=30).contains(&o.level)
+            || (o.synthetic && (o.level != 1 || o.difficulty != Difficulty::Fun))
+        {
+            return Err("--level: 1..30; difficulty selection requires original assets".into());
         }
         if !o.result_actions.is_empty() && o.steps.is_none() {
             return Err("--result-actions requires bounded --steps per attempt".into());
@@ -642,7 +649,7 @@ fn initialize_capture(
     c: &mut Capture,
     assets: &Assets,
     session: &Session,
-    level: u8,
+    level: LevelId,
 ) -> Result<(), Box<dyn Error>> {
     c.snapshot(session)?;
     write_new(&c.root.join("bash-masks.bin"), &assets.bash_masks)?;
@@ -702,11 +709,12 @@ fn initialize_capture(
         assets.bombers,
         assets.climbers,
         assets.floaters,
-        level
+        level.number()
     );
     let description = format!(
-        "{},\"required\":{}}}",
+        "{},\"difficulty\":{:?},\"required\":{}}}",
         description.trim_end_matches('}'),
+        level.difficulty().name(),
         assets
             .required
             .map_or_else(|| "null".into(), |v| v.to_string())
@@ -743,9 +751,12 @@ fn run_summary(
         pacing.rate().1
     )
 }
-fn load_assets(options: &Options, level: u8) -> Result<(Assets, Option<u8>), Box<dyn Error>> {
+fn load_assets(
+    options: &Options,
+    level: LevelId,
+) -> Result<(Assets, Option<LevelId>), Box<dyn Error>> {
     let assets = if let Some(kind) = &options.outcome_scene {
-        Assets::synthetic_completion(if kind == "win" && level == 2 {
+        Assets::synthetic_completion(if kind == "win" && level.number() == 2 {
             "loss"
         } else {
             kind
@@ -764,20 +775,27 @@ fn load_assets(options: &Options, level: u8) -> Result<(Assets, Option<u8>), Box
         Assets::synthetic_basher()
     } else if options.synthetic {
         Assets::synthetic()
-    } else if level == 1 {
-        assets::load(&options.assets)?
+    } else if level.difficulty() == Difficulty::Fun {
+        if level.number() == 1 {
+            assets::load(&options.assets)?
+        } else {
+            assets::load_level(&options.assets, level.number())?
+        }
     } else {
-        assets::load_level(&options.assets, level)?
+        assets::load_id(&options.assets, level)?
     };
     let next = if options.synthetic {
-        (options.outcome_scene.as_deref() == Some("win") && level == 1).then_some(2)
+        level
+            .next()
+            .filter(|_| options.outcome_scene.as_deref() == Some("win") && level.number() == 1)
     } else {
-        (level < 30).then_some(level + 1)
+        level.next()
     };
     Ok((assets, next))
 }
 fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
-    let (assets, next) = load_assets(&options, options.level)?;
+    let level = LevelId::new(options.difficulty, options.level)?;
+    let (assets, next) = load_assets(&options, level)?;
     let replay = if let Some(path) = &options.replay {
         input::parse_replay(&fs::read_to_string(path)?, options.steps)?
     } else {
@@ -789,7 +807,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     } else {
         Pacing::Dos
     });
-    let mut game = LevelRun::new(assets, options.level, next, pacing)?;
+    let mut game = LevelRun::new_for_level(assets, level, next, pacing)?;
     game.view.replaying = options.replay.is_some();
     let mut capture = options
         .capture
@@ -797,7 +815,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
         .map(|p| Capture::new(p, options.synthetic))
         .transpose()?;
     if let Some(c) = &mut capture {
-        initialize_capture(c, &game.assets, &game.session, options.level)?;
+        initialize_capture(c, &game.assets, &game.session, level)?;
         c.pointer(&game.session, &game.view)?;
     }
     let sdl = sdl2::init()?;
@@ -929,10 +947,12 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                     if let Some(log) = &mut transitions {
                         writeln!(
                             log,
-                            "{{\"attempt\":{attempt},\"level\":{},\"step\":{},\"action\":\"{action:?}\",\"target\":{}}}",
-                            game.level,
+                            "{{\"attempt\":{attempt},\"level\":{},\"step\":{},\"action\":\"{action:?}\",\"target\":{},\"difficulty\":{:?},\"target_difficulty\":{:?}}}",
+                            game.level.number(),
                             game.session.scheduler.step_state().control_step,
-                            next.level
+                            next.level.number(),
+                            game.level.difficulty().name(),
+                            next.level.difficulty().name()
                         )?;
                     }
                     attempt += 1;
@@ -1192,6 +1212,39 @@ mod tests {
     }
 
     use super::*;
+    #[test]
+    fn cli_retains_fun_default_and_validates_rank_and_level_boundaries() {
+        for rank in ["fun", "tricky", "taxing", "mayhem"] {
+            for number in ["1", "30"] {
+                let o = Options::parse(
+                    ["--level", number, "--difficulty", rank]
+                        .into_iter()
+                        .map(str::to_owned),
+                )
+                .unwrap()
+                .unwrap();
+                assert_eq!(o.difficulty.name(), rank);
+                assert_eq!(o.level.to_string(), number);
+            }
+        }
+        assert_eq!(
+            Options::parse(["--level", "2"].into_iter().map(str::to_owned))
+                .unwrap()
+                .unwrap()
+                .difficulty,
+            Difficulty::Fun
+        );
+        for args in [
+            vec!["--difficulty"],
+            vec!["--difficulty", "easy"],
+            vec!["--difficulty", "tricky", "--level", "0"],
+            vec!["--difficulty", "mayhem", "--level", "31"],
+            vec!["--difficulty", "taxing", "--synthetic"],
+        ] {
+            assert!(Options::parse(args.into_iter().map(str::to_owned)).is_err());
+        }
+    }
+
     #[test]
     fn invalid_cli_combinations_and_missing_values_are_rejected() {
         for args in [

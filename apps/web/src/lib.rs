@@ -1,5 +1,5 @@
 //! Owned JS/WASM boundary; game rules and CPU rendering remain in shared crates.
-use lemmings_core::{AssignmentSkill, InputCommand, StartupCommand};
+use lemmings_core::{AssignmentSkill, Difficulty, InputCommand, LevelId, StartupCommand};
 use lemmings_game::{Assets, LevelRun, lifecycle::ResultAction, pacing::Pacing};
 use std::{collections::BTreeMap, error::Error, rc::Rc};
 mod audio;
@@ -29,17 +29,17 @@ enum Source {
     Original(Rc<BTreeMap<String, Vec<u8>>>),
 }
 impl Source {
-    fn load(&self, level: u8) -> Result<(Assets, Option<u8>), Box<dyn Error>> {
+    fn load(&self, level: LevelId) -> Result<(Assets, Option<LevelId>), Box<dyn Error>> {
         let assets = match self {
             Self::Original(files) => {
-                Assets::from_source(&mut |name: &str| Ok(files.get(name).cloned()), level)?
+                Assets::from_level_source(&mut |name: &str| Ok(files.get(name).cloned()), level)?
             }
             Self::Synthetic(scene) => match scene.as_str() {
                 "builder" => Assets::synthetic_builder(),
                 "basher" => Assets::synthetic_basher(),
                 "climber" => Assets::synthetic_climber(),
                 "floater" => Assets::synthetic_floater(),
-                "win" if level == 2 => Assets::synthetic_completion("loss"),
+                "win" if level.number() == 2 => Assets::synthetic_completion("loss"),
                 "win" | "loss" | "mixed" | "clock" | "zero" | "particles" => {
                     Assets::synthetic_completion(scene)
                 }
@@ -47,8 +47,10 @@ impl Source {
             },
         };
         let next = match self {
-            Self::Original(_) => (level < 30).then_some(level + 1),
-            Self::Synthetic(scene) => (scene == "win" && level == 1).then_some(2),
+            Self::Original(_) => level.next(),
+            Self::Synthetic(scene) => level
+                .next()
+                .filter(|_| scene == "win" && level.number() == 1),
         };
         Ok((assets, next))
     }
@@ -64,9 +66,10 @@ impl WebGame {
             _ => return Err("unknown pacing; expected dos or reference".into()),
         };
         let source = Source::Synthetic(scene.into());
-        let (assets, next) = source.load(1).map_err(|e| e.to_string())?;
+        let level = LevelId::new(Difficulty::Fun, 1).unwrap();
+        let (assets, next) = source.load(level).map_err(|e| e.to_string())?;
         Ok(Self {
-            run: LevelRun::new(assets, 1, next, pacing).map_err(|e| e.to_string())?,
+            run: LevelRun::new_for_level(assets, level, next, pacing).map_err(|e| e.to_string())?,
             source,
             pacing,
         })
@@ -86,10 +89,20 @@ impl WebGame {
 
     /// Parsing and construction finish before replacing any live state or clock.
     pub fn load_original(&mut self, files: &WebAssets, number: f64) -> Result<(), String> {
-        let level = checked_level(number)?;
+        self.load_original_rank(files, "fun", number)
+    }
+
+    pub fn load_original_rank(
+        &mut self,
+        files: &WebAssets,
+        difficulty: &str,
+        number: f64,
+    ) -> Result<(), String> {
+        let level = checked_level(difficulty, number)?;
         let source = Source::Original(Rc::clone(&files.files));
         let (assets, next) = source.load(level).map_err(|e| e.to_string())?;
-        let mut run = LevelRun::new(assets, level, next, Pacing::Dos).map_err(|e| e.to_string())?;
+        let mut run =
+            LevelRun::new_for_level(assets, level, next, Pacing::Dos).map_err(|e| e.to_string())?;
         run.sound
             .fresh_generation_after(self.run.sound.generation())
             .map_err(str::to_string)?;
@@ -101,7 +114,10 @@ impl WebGame {
         Ok(())
     }
     pub fn start_level(&mut self, number: f64) -> Result<(), String> {
-        let level = checked_level(number)?;
+        self.start_level_rank("fun", number)
+    }
+    pub fn start_level_rank(&mut self, difficulty: &str, number: f64) -> Result<(), String> {
+        let level = checked_level(difficulty, number)?;
         if !self.original() {
             return Err("select original files first".into());
         }
@@ -110,10 +126,10 @@ impl WebGame {
     pub fn restart_level(&mut self) -> Result<(), String> {
         self.replace_level(self.run.level)
     }
-    fn replace_level(&mut self, level: u8) -> Result<(), String> {
+    fn replace_level(&mut self, level: LevelId) -> Result<(), String> {
         let (assets, next) = self.source.load(level).map_err(|e| e.to_string())?;
         let mut replacement =
-            LevelRun::new(assets, level, next, self.pacing).map_err(|e| e.to_string())?;
+            LevelRun::new_for_level(assets, level, next, self.pacing).map_err(|e| e.to_string())?;
         replacement
             .sound
             .continue_from(&self.run.sound, false)
@@ -152,7 +168,10 @@ impl WebGame {
         self.run.sound.diagnostic_json()
     }
     pub fn level(&self) -> u8 {
-        self.run.level
+        self.run.level.number()
+    }
+    pub fn difficulty(&self) -> String {
+        self.run.level.difficulty().name().into()
     }
     pub fn original(&self) -> bool {
         matches!(self.source, Source::Original(_))
@@ -184,19 +203,24 @@ impl WebGame {
         let next = self
             .run
             .next
-            .map_or_else(|| "null".into(), |n| n.to_string());
+            .map_or_else(|| "null".into(), |n| n.number().to_string());
+        let next_difficulty = self
+            .run
+            .next
+            .map_or_else(|| "null".into(), |n| format!("{:?}", n.difficulty().name()));
         let pointer = format!("{:?}", v.panel.pointer);
         let held = format!("{:?}", v.panel.held_rate);
         let selection = format!("{:?}", v.selection);
         format!(
-            "{{\"level\":{},\"next\":{next},\"original\":{},\"camera\":{},\"skill\":\"{:?}\",\"right\":{},\"dragging\":{},\"error\":{},\"pointer\":{pointer:?},\"held\":{held:?},\"selection\":{selection:?}}}",
-            self.run.level,
+            "{{\"level\":{},\"next\":{next},\"original\":{},\"camera\":{},\"skill\":\"{:?}\",\"right\":{},\"dragging\":{},\"error\":{},\"pointer\":{pointer:?},\"held\":{held:?},\"selection\":{selection:?},\"difficulty\":{:?},\"next_difficulty\":{next_difficulty}}}",
+            self.run.level.number(),
             self.original(),
             v.camera,
             v.selected_skill,
             v.right_mouse,
             v.panel.dragging_map,
-            v.result_error
+            v.result_error,
+            self.run.level.difficulty().name()
         )
     }
 
@@ -377,9 +401,15 @@ impl WebGame {
     }
 }
 
-fn checked_level(number: f64) -> Result<u8, String> {
+fn checked_level(difficulty: &str, number: f64) -> Result<LevelId, String> {
     if !number.is_finite() || number.fract() != 0.0 || !(1.0..=30.0).contains(&number) {
-        return Err("Fun level must be an integer in 1..=30".into());
+        return Err("level must be an integer in 1..=30".into());
     }
-    Ok(number as u8)
+    LevelId::new(
+        difficulty
+            .parse::<Difficulty>()
+            .map_err(|e| e.to_string())?,
+        number as u8,
+    )
+    .map_err(|e| e.to_string())
 }

@@ -1,5 +1,6 @@
 //! Shared scene transitions. Simulation results remain immutable until replacement.
 use crate::{assets::Assets, pacing::Pacing, render::View, session::Session};
+use lemmings_core::{Difficulty, LevelId};
 use std::error::Error;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -9,8 +10,8 @@ pub enum ResultAction {
 }
 
 pub struct LevelRun {
-    pub level: u8,
-    pub next: Option<u8>,
+    pub level: LevelId,
+    pub next: Option<LevelId>,
     pub assets: Assets,
     pub session: Session,
     pub view: View,
@@ -22,6 +23,20 @@ impl LevelRun {
         assets: Assets,
         level: u8,
         next: Option<u8>,
+        pacing: Pacing,
+    ) -> Result<Self, Box<dyn Error>> {
+        Self::new_for_level(
+            assets,
+            LevelId::new(Difficulty::Fun, level)?,
+            next.map(|n| LevelId::new(Difficulty::Fun, n)).transpose()?,
+            pacing,
+        )
+    }
+
+    pub fn new_for_level(
+        assets: Assets,
+        level: LevelId,
+        next: Option<LevelId>,
         pacing: Pacing,
     ) -> Result<Self, Box<dyn Error>> {
         let mut session = Session::new(
@@ -70,7 +85,7 @@ impl LevelRun {
         Ok(())
     }
 
-    pub fn target(&self, action: ResultAction) -> Option<u8> {
+    pub fn target(&self, action: ResultAction) -> Option<LevelId> {
         let result = self.session.result()?;
         match action {
             ResultAction::Restart => Some(self.level),
@@ -84,13 +99,13 @@ impl LevelRun {
         &self,
         action: ResultAction,
         pacing: Pacing,
-        load: impl FnOnce(u8) -> Result<(Assets, Option<u8>), Box<dyn Error>>,
+        load: impl FnOnce(LevelId) -> Result<(Assets, Option<LevelId>), Box<dyn Error>>,
     ) -> Result<Option<Self>, Box<dyn Error>> {
         let Some(level) = self.target(action) else {
             return Ok(None);
         };
         let (assets, next) = load(level)?;
-        let mut replacement = Self::new(assets, level, next, pacing)?;
+        let mut replacement = Self::new_for_level(assets, level, next, pacing)?;
         replacement.sound.continue_from(
             &self.sound,
             action == ResultAction::Continue && self.session.result().is_some_and(|r| r.success),
@@ -104,6 +119,66 @@ mod tests {
     use super::*;
     use lemmings_core::{InputCommand, StartupCommand};
     use std::time::Duration;
+
+    #[test]
+    fn rank_boundary_continue_keeps_full_identity_and_advances_music_once() {
+        for difficulty in [
+            Difficulty::Fun,
+            Difficulty::Tricky,
+            Difficulty::Taxing,
+            Difficulty::Mayhem,
+        ] {
+            let level = LevelId::new(difficulty, 30).unwrap();
+            let mut run = LevelRun::new_for_level(
+                Assets::synthetic_completion("win"),
+                level,
+                level.next(),
+                Pacing::Dos,
+            )
+            .unwrap();
+            for _ in 0..1200 {
+                run.tick().unwrap();
+                if run.session.result().is_some() {
+                    break;
+                }
+            }
+            assert!(run.session.result().unwrap().success);
+            assert_eq!(run.target(ResultAction::Restart), Some(level));
+            assert_eq!(run.target(ResultAction::Continue), level.next());
+            let sound = run.sound.diagnostic_json();
+            assert!(
+                run.prepare(ResultAction::Restart, Pacing::Dos, |_| Err(
+                    "missing rank assets".into()
+                ))
+                .is_err()
+            );
+            assert_eq!(run.sound.diagnostic_json(), sound);
+            let retry = run
+                .prepare(ResultAction::Restart, Pacing::Dos, |id| {
+                    assert_eq!(id, level);
+                    Ok((Assets::synthetic_completion("win"), id.next()))
+                })
+                .unwrap()
+                .unwrap();
+            assert_eq!(retry.level, level);
+            assert_eq!(retry.sound.music_index(), 5);
+            assert_eq!(retry.sound.generation(), run.sound.generation() + 1);
+            let next = run
+                .prepare(ResultAction::Continue, Pacing::Dos, |id| {
+                    assert_eq!(Some(id), level.next());
+                    Ok((Assets::synthetic_completion("win"), id.next()))
+                })
+                .unwrap();
+            if let Some(next) = next {
+                assert_eq!(Some(next.level), level.next());
+                assert_eq!(next.sound.music_index(), 6);
+                assert_eq!(next.sound.generation(), run.sound.generation() + 1);
+                assert_eq!(next.session.scheduler.step_state().control_step, 0);
+            } else {
+                assert_eq!(difficulty, Difficulty::Mayhem);
+            }
+        }
+    }
 
     fn finished(kind: &str, level: u8, next: Option<u8>) -> LevelRun {
         let mut run =
@@ -120,13 +195,25 @@ mod tests {
     #[test]
     fn continue_retries_failure_advances_success_and_stops_at_last_level() {
         let win = finished("win", 1, Some(2));
-        assert_eq!(win.target(ResultAction::Continue), Some(2));
-        assert_eq!(win.target(ResultAction::Restart), Some(1));
+        assert_eq!(
+            win.target(ResultAction::Continue).map(LevelId::number),
+            Some(2)
+        );
+        assert_eq!(
+            win.target(ResultAction::Restart).map(LevelId::number),
+            Some(1)
+        );
         let loss = finished("loss", 2, Some(3));
-        assert_eq!(loss.target(ResultAction::Continue), Some(2));
+        assert_eq!(
+            loss.target(ResultAction::Continue).map(LevelId::number),
+            Some(2)
+        );
         let last = finished("win", 30, None);
         assert_eq!(last.target(ResultAction::Continue), None);
-        assert_eq!(last.target(ResultAction::Restart), Some(30));
+        assert_eq!(
+            last.target(ResultAction::Restart).map(LevelId::number),
+            Some(30)
+        );
         let playing =
             LevelRun::new(Assets::synthetic_completion("win"), 1, Some(2), Pacing::Dos).unwrap();
         assert_eq!(playing.target(ResultAction::Restart), None);
@@ -156,7 +243,10 @@ mod tests {
             LevelRun::new(Assets::synthetic_completion("win"), 1, Some(2), Pacing::Dos).unwrap();
         let restarted = old
             .prepare(ResultAction::Restart, Pacing::Dos, |_| {
-                Ok((Assets::synthetic_completion("win"), Some(2)))
+                Ok((
+                    Assets::synthetic_completion("win"),
+                    LevelId::new(Difficulty::Fun, 2).ok(),
+                ))
             })
             .unwrap()
             .unwrap();
@@ -306,7 +396,7 @@ mod tests {
             })
             .unwrap()
             .unwrap();
-        assert_eq!(next.level, 2);
+        assert_eq!(next.level.number(), 2);
         assert!(next.session.result().is_none());
         assert_eq!(
             next.session.terrain(),

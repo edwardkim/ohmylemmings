@@ -36,6 +36,8 @@ def validate_journey(data):
     if [a['level'] for a in attempts]!=[1,1,1,2] or [a['reason'] for a in attempts]!=['load' if data['original'] else 'synthetic','restart','continue','continue']:raise ValueError('wrong level transition')
     for index,a in enumerate(attempts):
         initial=a['initial'];s=initial['state']['session'];v=initial['view'];n=initial['state']['nuke']
+        rank=a.get('difficulty','fun')
+        if rank not in ['fun','tricky','taxing','mayhem'] or v.get('difficulty','fun')!=rank or v['level']!=a['level']:raise ValueError('level/rank identity differs')
         if any(type(s[k]) is not int for k in ['control_step','iteration','released']) or type(s['paused']) is not bool or type(n['is_nuked']) is not bool or s['control_step']!=0 or s['iteration']!=0 or s['paused'] or s['released'] or s['actors'] or n['is_nuked'] or n['assigning'] or n['next_index']:raise ValueError('attempt not fresh')
         if v['right'] or v['dragging'] or v['held']!='None' or v['pointer']!='None' or v['skill']!='Digger' or v['error']:raise ValueError('old view input leaked')
         if index<3 and initial!=first:raise ValueError('restart initial state differs')

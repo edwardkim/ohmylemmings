@@ -191,7 +191,8 @@ fn original_bytes_match_direct_native_game_and_level_switch_resets_clock_and_vie
         game.key("End", false).unwrap();
         game.due(69999.0).unwrap();
     }
-    assert!(game.view_state().contains("\"next\":null"));
+    assert!(game.view_state().contains("\"next\":1"));
+    assert!(game.view_state().contains("\"next_difficulty\":\"tricky\""));
     let before = (game.state(), game.view_state(), game.frame().unwrap());
     let mut special = WebAssets::new();
     for (name, data) in support::bank(true) {

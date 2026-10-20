@@ -1,6 +1,50 @@
 import { WebGame, WebAssets } from './pkg/lemmings_web.js';
 import { GameInput, logicalPoint, readFiles } from './controls.js';
 
+async function checkProductRanks(assert) {
+    const frame=document.createElement('iframe');
+    const html=await (await fetch('./index.html')).text();
+    frame.srcdoc=html.replace('<script type="module" src="./app.js">','<script>window.requestAnimationFrame=()=>0;</script><script type="module" src="./app.js">');
+    const loaded=new Promise(resolve=>frame.addEventListener('load',resolve,{once:true}));
+    document.body.append(frame);await loaded;
+    const win=frame.contentWindow,doc=win.document;
+    const app=await win.eval('import("./app.js")');
+    let game;const detach=app.observe((type,g)=>{game=g;});
+    const rank=doc.querySelector('#difficulty'),level=doc.querySelector('#level');
+    const names=[...Array.from({length:10},(_,i)=>`LEVEL${String(i).padStart(3,'0')}.DAT`),'GROUND0O.DAT','VGAGR0.DAT','MAIN.DAT','ODDTABLE.DAT'];
+    const files=await Promise.all(names.map(async name=>new win.File([await (await fetch('./winning/'+name)).arrayBuffer()],name)));
+    async function selectFiles(values) {
+        const transfer=new win.DataTransfer();for(const file of values)transfer.items.add(file);
+        const input=doc.querySelector('#files');input.files=transfer.files;input.dispatchEvent(new win.Event('change',{bubbles:true}));
+        for(let i=0;i<200&&input.disabled;i++)await new Promise(resolve=>setTimeout(resolve,10));
+        assert(!input.disabled,'product file load did not finish');
+    }
+    try {
+        assert(rank.options.length===4 && level.options.length===30,'product rank/level inventory');
+        await selectFiles(files);assert(game.original(),'product file input did not load');
+        for(const name of ['fun','tricky','taxing','mayhem'])for(const number of [1,30]) {
+            rank.value=name;level.value=number;doc.querySelector('#open-level').click();
+            assert(game.difficulty()===name&&game.level()===number,'product rank selection lost ID');
+            const initial=game.state();game.step(80);doc.querySelector('#restart').click();
+            assert(game.difficulty()===name&&game.level()===number&&game.state()===initial,'product restart lost rank/state');
+            assert(doc.querySelector('#source').textContent.toLowerCase().includes(`${name} ${String(number).padStart(2,'0')}`),'product source label lost rank');
+        }
+        for(const [name,next] of [['fun','tricky'],['tricky','taxing'],['taxing','mayhem'],['mayhem',null]]) {
+            rank.value=name;level.value=30;doc.querySelector('#open-level').click();game.step(1000);
+            assert(JSON.parse(game.state()).completion.phase==='Won','invented exit fixture did not win');
+            doc.dispatchEvent(new win.Event('visibilitychange'));
+            const proceed=doc.querySelector('#continue');assert(!proceed.hidden,'result button hidden');
+            assert(proceed.disabled===!next,'terminal Continue availability');
+            if(next) {proceed.click();assert(game.difficulty()===next&&game.level()===1&&rank.value===next&&level.value==='1','product cross-rank Continue');}
+        }
+        const before=[game.state(),game.view_state(),game.sound_state()];
+        await selectFiles([new win.File([new Uint8Array([0])],'LEVEL009.DAT')]);
+        assert(JSON.stringify(before)===JSON.stringify([game.state(),game.view_state(),game.sound_state()]),'failed product file replacement changed current rank/session');
+        assert(doc.querySelector('#error').textContent.includes('불러오기 실패'),'product file error missing');
+        return {status:'PASS',rank_selections:8,restarts:8,cross_rank_continues:3,terminal_mayhem:true,atomic_file_failure:true};
+    } finally {detach();frame.remove();}
+}
+
 export async function checkDom(assert, throws, bank) {
     const canvas=document.createElement('canvas');canvas.width=320;canvas.height=200;canvas.tabIndex=0;
     canvas.style.cssText='width:640px;height:400px;display:block';document.body.append(canvas);
@@ -55,9 +99,10 @@ export async function checkDom(assert, throws, bank) {
         assert(duplicate,'case-insensitive duplicate selected files accepted');
         const sourceBytes=new Uint8Array([3,4]);const one=await readFiles([new File([sourceBytes],'LEVEL009.DAT'),new File(['ignore'],'README.TXT')]);
         assert(one.count()===1,'unrelated selected files not ignored');one.free();
-        game.start_level(30);assert(game.level()===30 && JSON.parse(game.view_state()).next===null,'last catalog level has next');
+        game.start_level(30);assert(game.level()===30 && JSON.parse(game.view_state()).next===1 && JSON.parse(game.view_state()).next_difficulty==='tricky','rank boundary lost next difficulty');
         reset();game.reset('win','reference');game.step(1000);key('Enter',true);assert(actions.at(-1)==='none','repeated result key accepted');key('Enter');assert(actions.at(-1)==='continue','result key action missing');
         game.transition('continue');assert(game.level()===2,'win did not advance');game.step(1000);game.transition('continue');assert(game.level()===2 && JSON.parse(game.state()).completion.phase==='Playing','loss did not retry');
-        return {status:'PASS',scaled_assignments:8,panel_skills:8,held_release:true,focus_release:true,double_click_capture:true,right_chord_fallback:true,local_files:true,atomic_replacement:true,result_lifecycle:true};
+        const ranks=await checkProductRanks(assert);
+        return {status:'PASS',ranks,scaled_assignments:8,panel_skills:8,held_release:true,focus_release:true,double_click_capture:true,right_chord_fallback:true,local_files:true,atomic_replacement:true,result_lifecycle:true};
     } finally { input.release();game.free();game=null;canvas.remove(); }
 }

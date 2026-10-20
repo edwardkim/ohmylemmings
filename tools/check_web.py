@@ -29,6 +29,9 @@ def cases():
     rows.append(dict(name='panel-camera-focus',scene='builder',pacing='reference',steps=100,commands=[[0,'Key','Space',0],[0,'Key','Space',1],[1,'Key','Space',0],[2,'Pointer','down',24,185,0,1,1],[7,'Release'],[10,'Pointer','down',104,185,0,1,1],[11,'Pointer','down',280,185,0,1,1],[12,'Pointer','move',250,185,0,1,0],[13,'Release'],[14,'Key','Home',0],[15,'Key','End',0],[16,'Key','ArrowLeft',0],[17,'Key','ArrowRight',0],[80,'Pointer','down',184,185,0,1,1],[81,'Pointer','down',184,185,0,1,2]]))
     rows.append(dict(name='result-lifecycle',scene='win',pacing='reference',steps=650,interactive=True,commands=[[220,'Continue'],[550,'Continue'],[600,'Restart']]))
     rows.append(dict(name='byte-bank-lifecycle',scene='original:1',pacing='dos',steps=100,interactive=True,commands=[[10,'Key','KeyU',0],[10,'Pointer','down',280,185,0,1,1],[20,'Level',2],[40,'Restart'],[60,'Level',30]]))
+    rows.append(dict(name='byte-bank-ranks',scene='original:tricky:30',pacing='dos',steps=100,interactive=True,commands=[[10,'Level','taxing',1],[20,'Level','taxing',30],[30,'Level','mayhem',1],[40,'Level','mayhem',30],[50,'Restart'],[60,'Level','fun',1],[70,'Level','fun',30]]))
+    for rank in ['fun','tricky','taxing','mayhem']:
+        rows.append(dict(name=f'byte-bank-{rank}-boundary',scene=f'original:{rank}:30',pacing='dos',steps=350,interactive=True,winning=True,commands=[[250,'Continue'],[300,'Restart']]))
     return rows
 
 
@@ -81,8 +84,10 @@ def check(directory, browser=None, original_assets=None):
     tests=cases()
     fixture=directory/'fixture';fixture.mkdir(exist_ok=True)
     for name,data in bank().items(): (fixture/name).write_bytes(data)
+    winning=directory/'winning';winning.mkdir(exist_ok=True)
+    for name,data in bank(win=True).items(): (winning/name).write_bytes(data)
     for test in tests:
-        if test['scene'].startswith('original:'): test['asset_directory']=fixture
+        if test['scene'].startswith('original:'): test['asset_directory']=winning if test.get('winning') else fixture
         test['rows']=native_rows(binary,test)
         test.pop('asset_directory',None)
     selected=[]
@@ -93,8 +98,8 @@ def check(directory, browser=None, original_assets=None):
             name=entry['name']
             if re.fullmatch(r'(MAIN|ODDTABLE|LEVEL00[0-9]|GROUND[0-4]O|VGAGR[0-4])\.DAT|VGALEMMI\.EXE',name):
                 shutil.copyfile(original_assets/name,original/name);selected.append(name)
-        for level,code in [(1,'KeyD'),(2,'KeyU'),(3,'KeyC')]:
-            test=dict(name=f'original-Fun{level:02}',scene=f'original:{level}',pacing='dos',steps=150,asset_directory=original,original=True,interactive=True,commands=[[10,'Key',code,0],[20,'Key','ArrowUp',0],[40,'Key','ArrowRight',0],[50,'Key','Home',0],[70,'Key','Space',0],[72,'Key','Space',0],[100,'Pointer','down',280,185,0,1,1],[110,'Release'],[120,'Restart']])
+        for rank,level,code in [('fun',1,'KeyD'),('fun',2,'KeyU'),('fun',3,'KeyC'),('tricky',1,'KeyC'),('taxing',1,'KeyU'),('mayhem',1,'KeyB')]:
+            test=dict(name=f'original-{rank}{level:02}',scene=f'original:{rank}:{level}',pacing='dos',steps=150,asset_directory=original,original=True,interactive=True,commands=[[10,'Key',code,0],[20,'Key','ArrowUp',0],[40,'Key','ArrowRight',0],[50,'Key','Home',0],[70,'Key','Space',0],[72,'Key','Space',0],[100,'Pointer','down',280,185,0,1,1],[110,'Release'],[120,'Restart']])
             probe=native_rows(binary,test)[80];actor=probe['state']['session']['actors'][0]
             map_x=max(208,min(310,208+(actor['x']+16)//16));camera=max(0,min(1280,(map_x-208)*16-176))
             test['commands'] += [[79,'Pointer','down',map_x,185,0,1,1],[79,'Release'],[80,'Pointer','move',actor['x']-camera,actor['y']-5,0,0,0],[80,'Pointer','down',actor['x']-camera,actor['y']-5,0,1,1],[81,'Release']]

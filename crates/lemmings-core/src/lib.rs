@@ -17,7 +17,7 @@ mod sound;
 mod terrain;
 pub use sound::SoundCue;
 
-pub use level::{Difficulty, InvalidLevelNumber, LevelId};
+pub use level::{Difficulty, InvalidDifficulty, InvalidLevelNumber, LevelId};
 
 pub use terrain::{TerrainChange, TerrainMask, TerrainMaskError, TerrainMaskMut, TerrainRect};
 

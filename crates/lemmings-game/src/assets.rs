@@ -50,7 +50,7 @@ struct Original {
 ///
 /// Return `Ok(None)` only for an absent asset. Other read failures must be errors,
 /// including failures for the optional particle EXE. The loader owns returned bytes
-/// and requests only assets needed for the selected supported Fun level.
+/// and requests only assets needed for the selected level.
 pub trait AssetSource {
     fn read(&mut self, name: &str) -> Result<Option<Vec<u8>>, Box<dyn Error>>;
 }
@@ -110,12 +110,20 @@ pub fn object_frame(
     }
 }
 impl Assets {
-    /// Assemble a supported Fun 1..=30 level from named host bytes.
+    /// Backward-compatible Fun 1..=30 entry point.
     ///
     /// Parses the same resources used by native rendering, without filesystem,
     /// SDL or browser access. Special graphics levels remain unsupported.
     pub fn from_source(source: &mut dyn AssetSource, number: u8) -> Result<Self, Box<dyn Error>> {
-        let entry = CatalogEntry::for_level(LevelId::new(Difficulty::Fun, number)?);
+        Self::from_level_source(source, LevelId::new(Difficulty::Fun, number)?)
+    }
+
+    /// Assemble a catalog level from named bytes. Special scenes remain unsupported.
+    pub fn from_level_source(
+        source: &mut dyn AssetSource,
+        level: LevelId,
+    ) -> Result<Self, Box<dyn Error>> {
+        let entry = CatalogEntry::for_level(level);
         let level_bytes = read(source, &format!("LEVEL{:03}.DAT", entry.file_index()))?;
         let file = DosLevelFile::parse(entry.file_index(), &level_bytes)?;
         let mut record = [0; LEVEL_RECORD_SIZE];

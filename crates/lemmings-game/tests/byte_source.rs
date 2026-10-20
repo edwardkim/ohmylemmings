@@ -2,6 +2,38 @@ use lemmings_game::{AssetSource, Assets, MissingAsset};
 use std::error::Error;
 
 #[test]
+fn all_difficulties_request_the_selected_catalog_file_before_scene_assembly() {
+    use lemmings_core::{Difficulty, LevelId};
+    use lemmings_resources::CatalogEntry;
+    for difficulty in [
+        Difficulty::Fun,
+        Difficulty::Tricky,
+        Difficulty::Taxing,
+        Difficulty::Mayhem,
+    ] {
+        for number in 1..=30 {
+            let level = LevelId::new(difficulty, number).unwrap();
+            let mut requested = Vec::new();
+            let error = Assets::from_level_source(
+                &mut |name: &str| {
+                    requested.push(name.to_owned());
+                    Ok(None)
+                },
+                level,
+            )
+            .err()
+            .unwrap();
+            let expected = format!(
+                "LEVEL{:03}.DAT",
+                CatalogEntry::for_level(level).file_index()
+            );
+            assert_eq!(requested.as_slice(), std::slice::from_ref(&expected));
+            assert_eq!(error.downcast_ref::<MissingAsset>().unwrap().name, expected);
+        }
+    }
+}
+
+#[test]
 fn missing_asset_retains_its_logical_name() {
     let mut source = |_: &str| -> Result<Option<Vec<u8>>, Box<dyn Error>> { Ok(None) };
     let error = Assets::from_source(&mut source as &mut dyn AssetSource, 1)
@@ -218,8 +250,8 @@ fn failed_byte_load_preserves_the_finished_scene_and_restart_uses_fresh_bytes() 
     ] {
         assert!(
             run.prepare(ResultAction::Restart, Pacing::Reference, |n| Ok((
-                load(&bank, n)?,
-                Some(2)
+                load(&bank, n.number())?,
+                lemmings_core::LevelId::new(lemmings_core::Difficulty::Fun, 2).ok()
             )))
             .is_err()
         );
@@ -230,7 +262,7 @@ fn failed_byte_load_preserves_the_finished_scene_and_restart_uses_fresh_bytes() 
     let bank = support::bank(false);
     let restarted = run
         .prepare(ResultAction::Restart, Pacing::Reference, |n| {
-            Ok((load(&bank, n)?, Some(2)))
+            Ok((load(&bank, n.number())?, n.next()))
         })
         .unwrap()
         .unwrap();

@@ -1,4 +1,5 @@
 //! Filesystem adapter for shared game assets.
+use lemmings_core::{Difficulty, LevelId};
 use lemmings_game::MissingAsset;
 pub use lemmings_game::assets::Assets;
 use std::{error::Error, fs, io, path::Path};
@@ -7,6 +8,9 @@ pub fn load(root: &Path) -> Result<Assets, Box<dyn Error>> {
     load_level(root, 1)
 }
 pub fn load_level(root: &Path, number: u8) -> Result<Assets, Box<dyn Error>> {
+    load_id(root, LevelId::new(Difficulty::Fun, number)?)
+}
+pub fn load_id(root: &Path, level: LevelId) -> Result<Assets, Box<dyn Error>> {
     let mut source = |name: &str| -> Result<Option<Vec<u8>>, Box<dyn Error>> {
         let path = root.join(name);
         match fs::read(&path) {
@@ -17,7 +21,7 @@ pub fn load_level(root: &Path, number: u8) -> Result<Assets, Box<dyn Error>> {
             }
         }
     };
-    Assets::from_source(&mut source, number).map_err(|error| {
+    Assets::from_level_source(&mut source, level).map_err(|error| {
         if let Some(missing) = error.downcast_ref::<MissingAsset>() {
             io::Error::new(
                 io::ErrorKind::NotFound,
