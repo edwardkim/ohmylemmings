@@ -260,3 +260,13 @@ fn special_asset_names_are_bounded_and_missing_or_damaged_replacement_is_atomic(
         );
     }
 }
+
+#[test]
+fn initial_asset_diagnostics_preserve_optional_target_and_own_material_bytes() {
+    let game = WebGame::new("builder", "reference").unwrap();
+    assert!(game.asset_info().contains("\"required\":null"));
+    let mut material = game.materials();
+    assert_eq!(material.len(), 640 * 160);
+    material.fill(255);
+    assert!(game.materials().iter().all(|&v| v == 0));
+}

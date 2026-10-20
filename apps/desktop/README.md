@@ -179,3 +179,5 @@ DOS RightClickGlitch도 적용합니다. 일반 개체를 가리킨 뒤 우클�
 기본 음량40%, S로 켜기/음소거·장치 오류 후 재시도, PageUp/PageDown으로10%씩 조절합니다. `--mute`, `--volume 0..100`을 지원하며 `--fast`는 장치를 사용하지 않습니다. 원본 폴더의 ADLIB.DAT가 필요하고 누락/손상·장치 오류가 있어도 게임은 계속됩니다. 연습 모드는 새로 만든 음원입니다. 창 숨김/최소화·결과는 큐를 비우고, 재개 시 현재 음악을 처음부터 시작합니다. 게임 Pause 중 음악은 계속됩니다. 창 제목에서 상태를 확인합니다. [계약/검증](../../mydocs/tech_insights/issue-80_audio_output.md) · [LGPL 소스/재링크](../../third_party/README.md).
 
 난이도/전환은 [#87 계약](../../mydocs/tech_insights/issue-87_rank_selection.md)을 따릅니다. 캡처 config와 transitions에는 difficulty/target_difficulty를 기록합니다. 기존 정수 경계/순번/명령 재생 파일은 유지하고 재생 시 같은 `--difficulty`를 지정합니다.
+
+초기 전수 재생의 선택적 `--capture-stream`·`--elapsed-replay FILE` 계약은 [#91](../../mydocs/tech_insights/issue-91_initial_replay.md)을 참고합니다. `--fast --steps --capture`에서 전체 상태와 검증된 SDL RGB 스트림을 기록하며 기본 실행/파일 캡처는 유지합니다.

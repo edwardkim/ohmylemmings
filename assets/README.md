@@ -107,3 +107,5 @@ ADLIB 명령/레지스터 스트림의 합성877호출과 원본 드라이버 �
 [#80 출력 계약](../mydocs/tech_insights/issue-80_audio_output.md)·[출처/해시](manifests/audio_output.json): 원본 사운드는 ADLIB.DAT도 공급합니다. 연습 모드는 독립 작성한 음원을 사용합니다. `python3 tools/check_audio_output.py`/`--wasm`는 원본 없는 SDL/실제 Web Audio와 native/WASM PCM을 검사합니다. 선택적 원본/LAN 증거는 새 ignored 경로를 사용합니다. 웹 빌드는 LGPL 전문·대응 소스 묶음/해시를 함께 생성하며 원본/로컬 자료는 제외합니다.
 
 [#89 특수4개 장면](../mydocs/reports/issue-89_special_scenes.md)의 현재 소스 범위·원본4개 SDL/WASM 진입·기존 정적 독립 해시 대조와 합성 UI/오류 보존 증거는 [special_scenes.json](manifests/special_scenes.json)에 기록합니다. 전체120개 완주·성능 인증과 구분하며 원본/파생물은 ignored assets/local에 둡니다.
+
+[#91 초기 전수 재생](../mydocs/tech_insights/issue-91_initial_replay.md)의 소스/창작 증거와 실행 계약은 [initial_replay.json](manifests/initial_replay.json), 원본120개 최종 판정·레벨별 해시·CI는 [GitHub #91](https://github.com/edwardkim/ohmylemmings/issues/91)에서 추적합니다. 원본 파생 실행은 ignored assets/local에 보존합니다.

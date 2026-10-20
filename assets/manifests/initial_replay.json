@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/91",
+  "baseline_main": "dfaa1fafb55769f64c585c49105186f58c7630e4",
+  "scope": "G11-04 initial no-input replay tooling/contract; final120 scoped execution verdict, per-level proof hashes and exact CI checkouts published in GitHub issue91 after execution. Not a solutions/COMP/fullDOS/performance certificate.",
+  "execution_contract": {
+    "levels": 120,
+    "steps": 340,
+    "probes_per_run": 341,
+    "repeats_per_platform": 3,
+    "platforms": [
+      "actual SDL desktop binary: dummy/software",
+      "actual WASM WebGame and FramePump/Canvas"
+    ],
+    "render_every": [
+      1,
+      7,
+      13
+    ],
+    "elapsed_rates": [
+      30,
+      60,
+      144
+    ],
+    "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "frozen": "Guarded Session::tick / WebGame::step attempted after results; probe ordinals distinct from stopped control_step",
+    "comparison": "all version1 state and terrain/brick/object bytes by SHA256, every actual SDL render/readback and every WASM RGB/Canvas render; independent original initial world viewport/material/trigger maps and pinned static/header evidence",
+    "publication_state": "Original120 execution and independent reference comparisons still running at code-review commit. Do not mark PASS or merge until both complete.",
+    "final_record": "https://github.com/edwardkim/ohmylemmings/issues/91"
+  },
+  "local_validation": {
+    "rust": 611,
+    "doc": 29,
+    "python": 172,
+    "commands": [
+      "make check-rust check-python check-wasm",
+      "make check-python after final boundary test addition",
+      "initial_replay.py --smoke"
+    ],
+    "full_make_check": false,
+    "ci": "Full SDL/Web journeys/audio and new invented replay run in publication CI"
+  },
+  "invented_smoke": {
+    "status": "PASS",
+    "levels": 5,
+    "steps": 340,
+    "native_runs": 15,
+    "wasm_runs": 15,
+    "native_probes": 5115,
+    "wasm_probes": 5115,
+    "sdl_readbacks": 2230,
+    "canvas_readbacks": 2095
+  },
+  "inputs": [
+    {
+      "path": "assets/manifests/dos_original.json",
+      "bytes": 12573,
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "assets/manifests/dos_compatibility.json",
+      "bytes": 96918,
+      "sha256": "8ee52327df06f30d730192942f4e77ae8a6933edf0c1a9aff021de9d2f954419"
+    },
+    {
+      "path": "assets/manifests/level_terrain.json",
+      "bytes": 36528,
+      "sha256": "207ad3775bb9d684a9d72e5511d10523320d6abeabc328dc9c6b70b614a0559b"
+    },
+    {
+      "path": "assets/manifests/level_objects.json",
+      "bytes": 114186,
+      "sha256": "d5411b3ec6f346dd239c8faf6cd9ea3b387f2966a1b98b6c00490d32a0dea232"
+    },
+    {
+      "path": "assets/manifests/vgagr_images.json",
+      "bytes": 4687,
+      "sha256": "ea066b8d3c8f4fd990daab20b435a6a7ec2a9a65345cf1c8bccfed7626b82fbc"
+    },
+    {
+      "path": "assets/manifests/compatibility_plan.json",
+      "bytes": 82864,
+      "sha256": "7ca43c22d5f30c64e9080bd09700cab34f161233294fce71a96388685ea26765"
+    },
+    {
+      "path": "assets/manifests/special_scenes.json",
+      "bytes": 20580,
+      "sha256": "66da1f1c5832a1d8c97ef68be34edbee1521cb9a8bd0ace61a835f597fd8281e"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-91-review/tdd-red.log",
+      "bytes": 888,
+      "sha256": "7682bf45d07eb4d3a57632120a3316b210616c85c59da0e27fa8e24a43bb8374"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-91-review/tdd-green.log",
+      "bytes": 840,
+      "sha256": "e9f7c0bf36d1c2a507e1ba9727b5a46ddbff2741c7d42874ccb6a8370fef37e0"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-91-review/reference-red.log",
+      "bytes": 870,
+      "sha256": "94636bc3699f162d6f030baf3e8b3dd02f26744c254f9f77a86c7d4a20994cf8"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-91-review/reference-green.log",
+      "bytes": 648,
+      "sha256": "bd25d28bff1b18baa686f43fd730e3f5625eed47629d0a7eddab0725715dc218"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-91-review/tools-unit.log",
+      "bytes": 1586,
+      "sha256": "6b168d0df03f55e28724a5c5f09499db73edb8807460758b4e33d34bb806757f"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-91-review/local-checks.log",
+      "bytes": 98486,
+      "sha256": "f08f4caf0661b4965aec49bbf211f6e10abbe89cc456db7ecba76d0e2e7a0972"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-91-review/python-final.log",
+      "bytes": 28161,
+      "sha256": "38436f66498a05ba44826fd9784e825a0ac88cad1a0306762deedca6bc55166d"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-91-review/smoke/summary.json",
+      "bytes": 156346,
+      "sha256": "183f42cff595315d764031fe640dd5ec94a64df94db79350bcc18b2fe59304e3"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "apps/desktop/src/main.rs",
+      "bytes": 54300,
+      "sha256": "d45e6853a2ecbd9e34f07879fc5c42d2a8f69bd89c142df2d4c6304c96267720"
+    },
+    {
+      "path": "apps/web/src/lib.rs",
+      "bytes": 15826,
+      "sha256": "ddd3561b52eb9b5112eac588cd92aec1657e34f8fffea524e713153402561ff7"
+    },
+    {
+      "path": "apps/web/tests/input_assets.rs",
+      "bytes": 10038,
+      "sha256": "65544adcd3fb5a34ffcd12fb4635a49fb331acf2fa7a48bb608e762ad526a2ae"
+    },
+    {
+      "path": "crates/lemmings-game/src/lib.rs",
+      "bytes": 727,
+      "sha256": "3d1a055b87eddb42c8548c063a0581f1a45346223e8c84cba7d454926d460ff9"
+    },
+    {
+      "path": "apps/desktop/src/replay_capture.rs",
+      "bytes": 3603,
+      "sha256": "4237cbcc9238517fddbe114796dd0c1acf16f3ed0957832bb68c2b3888187938"
+    },
+    {
+      "path": "crates/lemmings-game/src/diagnostics.rs",
+      "bytes": 2557,
+      "sha256": "f9994ad20de9121464ee54650229e717d7a29e3f78a7e8b646e8171fa834e2d9"
+    },
+    {
+      "path": "tools/initial_replay.py",
+      "bytes": 16434,
+      "sha256": "7bfd66ffe1bbc794cce2e029d29bd1d3e957b6e6a5be501263a7006ba9224ee0"
+    },
+    {
+      "path": "tools/initial_reference.py",
+      "bytes": 9394,
+      "sha256": "bb4441fbe71564431b0d053247f3e3d769992eac42e7ec4b1694de90e4eab0e7"
+    },
+    {
+      "path": "tools/tests/test_initial_replay.py",
+      "bytes": 2363,
+      "sha256": "3d65df5a092bf6abb5407b73c5b1e73419bed5678bf938380a22b14c7a2c886b"
+    },
+    {
+      "path": "tools/tests/test_initial_reference.py",
+      "bytes": 2152,
+      "sha256": "94b8f5b4f50e6d96b33c77e22b3c8f5426142a051c40564b3579962e5cc7cbd5"
+    },
+    {
+      "path": "tools/web/initial_replay.js",
+      "bytes": 5299,
+      "sha256": "0619eba74758664d2aa9a77961ff665e2e824dc835efe57ccfb6593d2c253b2b"
+    },
+    {
+      "path": "tools/web/initial_replay.html",
+      "bytes": 246,
+      "sha256": "a0d2b64b851a8cf94b39acb051fb3f4194836c4d71784a50e5b37b41fa3e0a15"
+    }
+  ],
+  "self_review": {
+    "status": "PASS",
+    "unresolved": 0,
+    "checks": [
+      "Existing state v1 string extracted literally into host-neutral game diagnostics; original no_std/resource/platform boundaries retained",
+      "Opt-in SDL capture/clock flags require bounded fast capture, existing default timing and capture files preserved",
+      "All SDL physical output pixels, integer scale and letterbox checked before logical RGB stream; strict stream order/size/end checked",
+      "Full snapshot fields and per-boundary maps compare; frozen probes are guarded calls rather than fabricated repeated rows",
+      "Actual WASM uses public exports, FramePump and Canvas; time partition and hidden resume exercised, input remains empty",
+      "Original first-frame hashes and decoded sections pinned; independent Python object plane/trigger/material/startup composition separate from Rust renderer",
+      "Invented tests cover duplicate/missing catalog IDs, nested/typed differences, damaged streams, frozen mutation, opaque black, clipping and compact trap limits",
+      "Original120 execution must pass before ready/merge; new original artifacts remain ignored and public final proof is issue91",
+      "No dependencies, CI workflow permissions, network/firewall or audio-listening changes; unrelated untracked directory preserved"
+    ]
+  }
+}

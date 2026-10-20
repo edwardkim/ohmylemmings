@@ -6,6 +6,7 @@ mod pacing;
 mod panel;
 mod pointer;
 mod render;
+mod replay_capture;
 mod session;
 use assets::Assets;
 use lemmings_core::{Difficulty, InputCommand, LevelId, StartupCommand};
@@ -26,7 +27,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--result-actions restart,continue]\nS: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nS: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
     assets: PathBuf,
     mute: bool,
@@ -47,6 +48,8 @@ struct Options {
     fast: bool,
     render_every: u64,
     capture: Option<PathBuf>,
+    capture_stream: bool,
+    elapsed_replay: Option<PathBuf>,
     replay: Option<PathBuf>,
     demo_input: bool,
     pacing: Option<Pacing>,
@@ -74,6 +77,8 @@ impl Options {
             fast: false,
             render_every: 1,
             capture: None,
+            capture_stream: false,
+            elapsed_replay: None,
             replay: None,
             demo_input: false,
             pacing: None,
@@ -175,6 +180,14 @@ impl Options {
                     }
                 }
                 "--fast" => o.fast = true,
+                "--capture-stream" => o.capture_stream = true,
+                "--elapsed-replay" => {
+                    o.elapsed_replay = Some(
+                        args.next()
+                            .ok_or("--elapsed-replay requires a file")?
+                            .into(),
+                    )
+                }
                 "--demo-input" => o.demo_input = true,
                 "--pacing" => {
                     o.pacing = Some(match args.next().as_deref() {
@@ -235,11 +248,27 @@ impl Options {
         if o.demo_input && o.replay.is_some() {
             return Err("choose --replay or --demo-input".into());
         }
+        if (o.capture_stream || o.elapsed_replay.is_some()) && (!o.fast || o.capture.is_none()) {
+            return Err(
+                "capture stream/elapsed replay require --fast, --steps and --capture".into(),
+            );
+        }
+        if (o.capture_stream || o.elapsed_replay.is_some())
+            && (!o.result_actions.is_empty() || o.demo_input)
+        {
+            return Err(
+                "capture stream/elapsed replay cannot combine with result-actions/demo-input"
+                    .into(),
+            );
+        }
         Ok(Some(o))
     }
 }
 struct Capture {
     root: PathBuf,
+    full: BufWriter<File>,
+    frames: Option<BufWriter<std::io::Stdout>>,
+    probes: u64,
     trace: BufWriter<File>,
     digger_trace: BufWriter<File>,
     basher_trace: BufWriter<File>,
@@ -263,7 +292,7 @@ fn write_new(path: &Path, data: &[u8]) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 impl Capture {
-    fn new(root: &Path, synthetic: bool) -> Result<Self, Box<dyn Error>> {
+    fn new(root: &Path, synthetic: bool, stream: bool) -> Result<Self, Box<dyn Error>> {
         if !synthetic {
             let parent = fs::canonicalize(root.parent().ok_or("capture parent required")?)?;
             let local =
@@ -281,6 +310,14 @@ impl Capture {
         );
         Ok(Self {
             root: root.to_path_buf(),
+            full: BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(root.join("full.jsonl"))?,
+            ),
+            frames: stream.then(|| BufWriter::new(std::io::stdout())),
+            probes: 0,
             trace,
             previous_terrain: Vec::new(),
             previous_object_map: Vec::new(),
@@ -385,6 +422,8 @@ impl Capture {
         Ok(())
     }
     fn snapshot(&mut self, s: &Session) -> Result<(), Box<dyn Error>> {
+        writeln!(self.full, "{}", lemmings_game::diagnostics::state(s))?;
+        self.probes += 1;
         writeln!(self.trace, "{}", s.snapshot())?;
         writeln!(self.exit_trace, "{}", s.exit_snapshot())?;
         writeln!(self.hazards_trace, "{}", s.hazards_snapshot())?;
@@ -465,12 +504,22 @@ impl Capture {
         pixels: &[u8],
         size: (u32, u32),
     ) -> Result<(), Box<dyn Error>> {
+        if let Some(stream) = &mut self.frames {
+            replay_capture::verify_readback(size, pixels, logical)?;
+            replay_capture::write_frame(stream, self.probes - 1, logical)?;
+            return Ok(());
+        }
         write_new(&self.root.join(format!("frame-{step:06}.rgb")), logical)?;
         let mut ppm = format!("P6\n{} {}\n255\n", size.0, size.1).into_bytes();
         ppm.extend_from_slice(pixels);
         write_new(&self.root.join(format!("frame-{step:06}.ppm")), &ppm)
     }
     fn finish(&mut self, s: &Session, summary: &str) -> Result<(), Box<dyn Error>> {
+        self.full.flush()?;
+        if let Some(stream) = &mut self.frames {
+            replay_capture::write_frame(stream, u64::MAX, &[])?;
+            stream.flush()?;
+        }
         self.trace.flush()?;
         self.digger_trace.flush()?;
         self.basher_trace.flush()?;
@@ -652,6 +701,10 @@ fn initialize_capture(
     level: LevelId,
 ) -> Result<(), Box<dyn Error>> {
     c.snapshot(session)?;
+    write_new(
+        &c.root.join("asset-info.json"),
+        lemmings_game::diagnostics::asset_info(assets).as_bytes(),
+    )?;
     write_new(&c.root.join("bash-masks.bin"), &assets.bash_masks)?;
     write_new(&c.root.join("mine-masks.bin"), &assets.mine_masks)?;
     let objects: Vec<_> = assets
@@ -802,6 +855,12 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
         Vec::new()
     };
     let mut replay = replay.into_iter().peekable();
+    let elapsed = options
+        .elapsed_replay
+        .as_ref()
+        .map(|p| replay_capture::elapsed(&fs::read_to_string(p)?))
+        .transpose()?;
+    let mut elapsed_chunks = elapsed.map(|v| v.into_iter());
     let pacing = options.pacing.unwrap_or(if options.synthetic {
         Pacing::Reference
     } else {
@@ -812,7 +871,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     let mut capture = options
         .capture
         .as_ref()
-        .map(|p| Capture::new(p, options.synthetic))
+        .map(|p| Capture::new(p, options.synthetic, options.capture_stream))
         .transpose()?;
     if let Some(c) = &mut capture {
         initialize_capture(c, &game.assets, &game.session, level)?;
@@ -963,6 +1022,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                             Capture::new(
                                 &root.join(format!("attempt-{attempt:04}")),
                                 options.synthetic,
+                                options.capture_stream,
                             )
                         })
                         .transpose()?;
@@ -1012,6 +1072,12 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
         previous = now;
         let due = if initial || game.session.result().is_some() {
             0
+        } else if let Some(chunks) = &mut elapsed_chunks {
+            game.session.due(Duration::from_micros(
+                chunks
+                    .next()
+                    .ok_or("elapsed replay exhausted before final boundary")?,
+            ))?
         } else if options.fast {
             1
         } else {
@@ -1129,7 +1195,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             canvas.set_draw_color(sdl2::pixels::Color::RGB(0, 0, 0));
             canvas.clear();
             canvas.copy(&texture, None, None)?;
-            if take_capture {
+            if take_capture || options.capture_stream {
                 // Read the full output, including the letterbox after a WM
                 // resize. SDL's implicit read rectangle follows the viewport.
                 let size = canvas.output_size()?;
@@ -1154,6 +1220,31 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
         }
         if !options.fast {
             std::thread::sleep(Duration::from_millis(1));
+        }
+    }
+    if options.capture_stream && game.session.result().is_some() {
+        let before = lemmings_game::diagnostics::state(&game.session);
+        for probe in game.session.scheduler.step_state().control_step + 1..=options.steps.unwrap() {
+            game.session.tick()?;
+            if lemmings_game::diagnostics::state(&game.session) != before {
+                return Err("finished session changed during frozen probe".into());
+            }
+            if let Some(c) = &mut capture {
+                c.snapshot(&game.session)?;
+                if probe % options.render_every == 0 || probe == options.steps.unwrap() {
+                    let frame = game.view.frame(&game.assets, &game.session)?;
+                    texture.update(None, &frame, WIDTH * 3)?;
+                    canvas.clear();
+                    canvas.copy(&texture, None, None)?;
+                    let size = canvas.output_size()?;
+                    canvas.set_logical_size(0, 0)?;
+                    let pixels = canvas.read_pixels(None, PixelFormatEnum::RGB24)?;
+                    canvas.set_logical_size(WIDTH as u32, HEIGHT as u32)?;
+                    c.frame(probe, &frame, &pixels, size)?;
+                    canvas.present();
+                    rendered += 1;
+                }
+            }
         }
     }
     if !options.result_actions.is_empty() {
@@ -1243,6 +1334,41 @@ mod tests {
         ] {
             assert!(Options::parse(args.into_iter().map(str::to_owned)).is_err());
         }
+    }
+
+    #[test]
+    fn streamed_capture_and_virtual_elapsed_require_bounded_offline_capture() {
+        for args in [
+            vec!["--capture-stream"],
+            vec!["--elapsed-replay", "time.txt"],
+            vec!["--capture-stream", "--fast", "--steps", "10"],
+            vec![
+                "--capture-stream",
+                "--fast",
+                "--steps",
+                "10",
+                "--capture",
+                "new",
+                "--result-actions",
+                "restart",
+            ],
+        ] {
+            assert!(Options::parse(args.into_iter().map(str::to_owned)).is_err());
+        }
+        let args = [
+            "--capture-stream",
+            "--fast",
+            "--steps",
+            "10",
+            "--capture",
+            "new",
+            "--elapsed-replay",
+            "time.txt",
+        ];
+        let o = Options::parse(args.into_iter().map(str::to_owned))
+            .unwrap()
+            .unwrap();
+        assert!(o.capture_stream && o.elapsed_replay.is_some());
     }
 
     #[test]
