@@ -12,6 +12,7 @@ check-rust:
 	python3 tools/check_adlib_stream.py
 	python3 tools/check_opl_reference.py
 	python3 tools/check_audio.py
+	python3 tools/check_game_sound.py
 
 check-python:
 	python3 -m unittest discover -s tools/tests -v
@@ -50,3 +51,4 @@ check-web:
 	python3 tools/check_web.py
 	python3 tools/check_web_journey.py
 	python3 tools/check_audio.py --wasm
+	python3 tools/check_game_sound.py --wasm

@@ -55,7 +55,7 @@ impl Actor {
     }
     /// Apply exit, water, fire and force effects. The caller gates this with the action's
     /// check_objects result, exactly after HandleLemming in CheckLemmings.
-    pub(super) fn apply_force(&mut self, map: ObjectMap<'_>) {
+    pub(super) fn apply_force(&mut self, map: ObjectMap<'_>, out: &mut MotionOutcome) {
         let s = &mut self.state;
         if s.removed.is_some() {
             return;
@@ -69,11 +69,11 @@ impl Actor {
         // CheckForInteractiveObjects excludes only Falling from DOM_EXIT.
         // A landing splat may enter with direction zero; Floating is allowed.
         if code == crate::OBJECT_EXIT && s.action != MotionAction::Falling {
-            transition(s, MotionAction::Exiting, self.rules);
+            transition_sound(s, MotionAction::Exiting, self.rules, out);
             return;
         }
         if s.y < 160 && (code == crate::OBJECT_WATER || code == crate::OBJECT_FIRE) {
-            transition(
+            transition_sound(
                 s,
                 if code == crate::OBJECT_WATER {
                     MotionAction::Drowning
@@ -81,6 +81,7 @@ impl Actor {
                     MotionAction::Vaporizing
                 },
                 self.rules,
+                out,
             );
             return;
         }
@@ -122,9 +123,9 @@ impl Actor {
             object_map: Some(map.as_read_only()),
             ..context.objects
         };
-        let out = self.advance_with_jobs(terrain, MiningContext { objects, ..context })?;
+        let mut out = self.advance_with_jobs(terrain, MiningContext { objects, ..context })?;
         if out.check_objects {
-            self.apply_force(map.as_read_only());
+            self.apply_force(map.as_read_only(), &mut out);
         }
         Ok(out)
     }

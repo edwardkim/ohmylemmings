@@ -13,7 +13,9 @@
 
 mod level;
 mod simulation;
+mod sound;
 mod terrain;
+pub use sound::SoundCue;
 
 pub use level::{Difficulty, InvalidLevelNumber, LevelId};
 

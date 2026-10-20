@@ -90,3 +90,6 @@ mod adlib_stream;
 pub use adlib_stream::{
     ADLIB_COMMAND_BUDGET, AdlibPlayer, AdlibState, AdlibStreamError, AdlibWrite,
 };
+
+mod sound;
+pub use sound::{AdlibCommand, DosMusic, SoundMappingError, adlib_effect_for_cue};

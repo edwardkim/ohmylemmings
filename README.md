@@ -116,3 +116,5 @@ mydocs/
 [G10-02 ADLIB 명령·레지스터 스트림 / #74](mydocs/tech_insights/issue-74_adlib_stream.md)에서 no_std9채널 해석기·오류 보존·합성/원본 직접 대조를 연결합니다. 다음은 OPL/PCM이며 G10 전체 사운드 출력은 진행 중입니다.
 
 [G10-03 OPL·결정론 PCM / #76](mydocs/reports/issue-76_opl_pcm.md)에서 no_std 정수 합성·유리수 오디오 시계·native/WASM PCM과 독립 C 전체 샘플 비교를 연결했습니다. 엔진은 [LGPL-2.1-or-later 고지/소스·재링크 안내](third_party/README.md)를 포함합니다. 다음은 게임 이벤트/DOS ID이며 SDL/Web 실제 출력은 후속입니다.
+
+[G10-04 게임 사운드·DOS ID / #78](mydocs/reports/issue-78_game_sound.md)에서 논리 사건·원본 효과음/음악 선택·공유 큐/세대·native/actual WASM 명령→PCM을 연결합니다. 다음은 G10-05 SDL/Web 실제 출력입니다.

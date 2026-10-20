@@ -1,0 +1,663 @@
+{
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/78",
+  "baseline_main": "a3ce44ebccf364f55caf8b054f8495dc5b4668fd",
+  "contract": "mydocs/tech_insights/issue-78_game_sound.md",
+  "exe_sha256": "4f21e94d53b7ea814ade802b4a37d42481da3876e31fb5a23090e19c9600f21c",
+  "oracle": {
+    "unicorn": "2.1.4",
+    "effect_branches": 97,
+    "music_combinations": 170,
+    "scope": "Unmodified original x86 slices with synthetic guest actors/flags/maps; software INT requests recorded, handlers not executed. No complete DOS/device/listening claim.",
+    "fixture": {
+      "path": "tools/tests/fixtures/dos_sound.json",
+      "bytes": 40601,
+      "sha256": "e795b4c343ae9b7bdf724fc144db14c36f07cced8f07057a2cd125e3c4954a84"
+    },
+    "startup_order": "CS019d calls startup dispatch before CS01a3 increments DS0052; offsets relative to MZ load image",
+    "normal_music": [
+      6,
+      7,
+      8,
+      10,
+      11,
+      4,
+      12,
+      13,
+      14,
+      15,
+      5,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "special_music": [
+      1,
+      9,
+      3,
+      2
+    ]
+  },
+  "routing": {
+    "original_ids": "One-based INT61 AL; convert once to zero-based resources; not Lemmix WAV IDs",
+    "music_retry": "Keep normal cursor; select first raw6 on nonadvance, advance cursor only successful normal Continue",
+    "startup_iterations": [
+      15,
+      35,
+      55
+    ],
+    "trap": "GROUND byte27 at existing compact nonentrance slot;0silent/1..18valid/other explicit error"
+  },
+  "queues": {
+    "session_pending_capacity": 1024,
+    "game_capacity": 1024,
+    "overflow": "Explicit dropped counts; game retains latest events; sequence never reused",
+    "generation": "Checked new generation only on valid replacement; reset instructs future consumer to discard VM/chip/phase/devicequeue"
+  },
+  "dependencies": {
+    "new_external_packages": false,
+    "new_workspace_packages": false,
+    "probe_local_edges": [
+      "lemmings-core",
+      "lemmings-game"
+    ],
+    "external_locked_packages_unchanged": true,
+    "core_no_std": true,
+    "resources_no_std": true,
+    "game_session_std": true,
+    "opl_engine_unchanged": true,
+    "optional_original_tools": "Unicorn2.1.4/DOSBox/Xvfb/xdotool; absent from default offline checks"
+  },
+  "synthetic": {
+    "status": "PASS",
+    "game_cases": 98,
+    "original_effect_branches": 97,
+    "original_music_combinations": 170,
+    "trace_sha256": "7fd0d4d1c324d868387b77e03c65b87e4d0dea0d22113527eb033cadb854b64c",
+    "pcm_cases": 6,
+    "pcm_frames": 229665,
+    "device_verified": false,
+    "wasm": {
+      "status": "PASS",
+      "browser": "Chromium 152.0.7977.82 Arch Linux"
+    }
+  },
+  "actual_dos": {
+    "samples": 1712,
+    "pairs": 1711,
+    "irqs": 1435,
+    "elapsed_ns": 20532295179,
+    "measured_hz": 69.88989723212667,
+    "expected_hz": "2190197/31250",
+    "tolerance_hz": 2,
+    "adlib_selected_u8": 255,
+    "unlocked_pit_u8": 0,
+    "limitation": "asynchronous read-only RAM sampling; no atomic instruction trace or OPL/PCM/device proof",
+    "status": "PASS",
+    "command": "VGALEMMI /v -o",
+    "cycles": 3000,
+    "dosbox": {
+      "name": "dosbox",
+      "size": 2539536,
+      "sha256": "f20a416fd9b3c58948a910818c6f992bf2b30de2fe1cecf4c9402d92593f9795"
+    },
+    "xdotool": {
+      "name": "xdotool",
+      "size": 84944,
+      "sha256": "e5c6b55bb4a9677b7d6639403e0e7e279c95b0522b792f264c32359213c20626"
+    },
+    "original_files": 50,
+    "runtime_seed_sha256": "79723712eaae15c8ab1bbcc6ef2c1f8411bb81f2ce00ddfdd3f2440b25176715",
+    "changed_runtime_offsets": [
+      0
+    ],
+    "exe_or_original_dat_modified": false,
+    "generated_runtime_sha256": "590dd08dc2ac9ce92146879d1de19120519fc437690405774b84980e85845ab1",
+    "historical_generated_sha256": "82abd5f27dfa78c0329f7f0ff67755725f28a92e5d8c96f642a3e7df77e333bf",
+    "runtime_seed_limitation": "Newly generated original DS window; mutable trailing bytes differ from historical machine. Only byte0 disk-check counter is seeded; original key disk remains unverified.",
+    "selected_music_driver_ids": [
+      6
+    ],
+    "video_rates": [
+      "2190197/31250"
+    ]
+  },
+  "original_web": {
+    "dom": {
+      "status": "PASS",
+      "scaled_assignments": 8,
+      "panel_skills": 8,
+      "held_release": true,
+      "focus_release": true,
+      "double_click_capture": true,
+      "right_chord_fallback": true,
+      "local_files": true,
+      "atomic_replacement": true,
+      "result_lifecycle": true
+    },
+    "sound_commands": {
+      "startup_events": 3,
+      "ui_burst": 1100,
+      "retained": 1024,
+      "dropped": 76,
+      "lifecycle": true,
+      "simulation_unchanged": true
+    },
+    "status": "PASS",
+    "cases": 27,
+    "runs": 54,
+    "states": 8648,
+    "frames": 4978,
+    "canvas_readbacks": 4978,
+    "boundary_checks": true,
+    "refresh_rates": [
+      60,
+      120,
+      144
+    ],
+    "browser": "Chromium 152.0.7977.82 Arch Linux",
+    "expected_sha256": "6014f5be12bf2e6145d3e35a983ac442c4a91b155f6d925036b8cdf767b8abc4",
+    "scope": "real WASM versus native wrapper: every full diagnostic state and all terrain/brick/object bytes by SHA-256; all rendered RGB and opaque Canvas readback; synthetic/invented bytes plus explicitly selected verified originals"
+  },
+  "local_validation": {
+    "status": "PASS",
+    "exit_code": 0,
+    "rust": 587,
+    "doc": 29,
+    "python": 146,
+    "sha256": "672b01c42c290cc82d7d5be6227ae75c4101b8d08094223a7221e69ca624ca49",
+    "bytes": 106710,
+    "scope": "Full make check: offline format/Clippy/Rust/docs/Python/independent C/native PCM/WASM/SDL/Web plus original-backed synthetic sound oracle and actual game/audio WASM"
+  },
+  "self_review": {
+    "status": "PASS",
+    "method": "Author self-review authorized by user; no delegated agents",
+    "unresolved": 0,
+    "new_rust_tests": 24,
+    "new_python_tests": 5,
+    "checks": [
+      "Core only emits typed logical edges, independent of resource IDs/OPL/render/I/O. Existing actor/terrain/state behavior and error semantics remain unchanged; no whole-session transaction claim.",
+      "Original one-based INT61 IDs converted once. All eight assignments4; eligible front steel rejection18; empty/foot-steel/ineligible/one-way rejection silent. Working one-way turnarounds silent versus real steel10. Builder frame10/last3. Explosion on entry; Nuke OhNo retained.",
+      "Unmodified original x8697cases and170music combinations match actual Game commands. Normal retry selects first6 while keeping cursor; special override never advances normal cursor. Startup preincrement15/35/55 documented separately from legacy diagnostic34 and driver IRQ phase.",
+      "Trap byte27 matches existing compact nonentrance slots; silent0, raw1..18, malformed255/slot16 explicit errors. Synthetic metadata unit and original asset loading preserve bytes.",
+      "UI acknowledgments do not enter gameplay replay; repeat/focus no duplicate; paused selections retained. Session pending1024/drop count; Game bounded1024 evicts oldest and exposes sequence/generation/drops. Sequence exhaustion never reuses IDs.",
+      "Every production SDL/Web tick collects cues through LevelRun; same8skills compare exact SDL/Web drain JSON per boundary. Batching/render/drain/ignored sound preserve legacy states/maps/RGB. WebAPI tested in actual WASM including1100 request burst.",
+      "Replacement built/validated before generation increment and assignment; invalid asset/selector/generation overflow preserves prior queues/music. Result Stop once and frozen ticks silent; new generation tells future consumer to reset VM/chip/phase/devicequeue.",
+      "98scenario native/WASM/partition trace fixed SHA;6typed command-to-PCM cases229665frames match direct absolute scheduling and two chunk layouts. Synthetic phase convention explicit; no device/listening/asynchronous phase-equivalence claim.",
+      "No new external locked packages; only audio-probe local core/game edges. OPL source/license/engine unchanged. Optional original/Unicorn/DOS emulation absent from offline CI. Public fixtures metadata or synthetic only.",
+      "Original50files unchanged after all optional checks. Actual DOSRAM6/IRQ observation separate from source slices; runtime byte0seed/trailing-memory/keydisk limitations retained. All binaries/PCM/video/private logs ignored.",
+      "Full local checks and optional original Web8648states/4978Canvas passed; documentation links/provenance audit gates publication. Exact push/PR/main fourjobs, ZIP checkout logs, remote mode/blob and equal merge tree required before issue closure."
+    ]
+  },
+  "sources": [
+    {
+      "path": "Cargo.lock",
+      "bytes": 5249,
+      "sha256": "741f084fb8a3a8949f375b30a926f12fbc14612ee9a74f7d218e056fcd031411"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 2347,
+      "sha256": "d8dfd475e00dee483142b097f73fddf23ddcb0297fea7d2d6442876e589b6ef2"
+    },
+    {
+      "path": "README.md",
+      "bytes": 17845,
+      "sha256": "92021fb4797adbbf678ac1498e2e5079600438b83188ad457a8bae01f5e2a91c"
+    },
+    {
+      "path": "apps/audio-probe/Cargo.toml",
+      "bytes": 702,
+      "sha256": "057ab7e8fe0f2fa0da8897e5b270179271587c622ca5cbfa2c869450095f3c34"
+    },
+    {
+      "path": "apps/audio-probe/src/game_sound.rs",
+      "bytes": 12917,
+      "sha256": "7284aa60c73d884b8c7872f28793d5284151dbccb27e4120589fd16a7442b589"
+    },
+    {
+      "path": "apps/audio-probe/src/lib.rs",
+      "bytes": 5923,
+      "sha256": "0ba5abe37bf0bdc571b32e0a82eff84d5c314a9635e7e304c546026568b191a0"
+    },
+    {
+      "path": "apps/audio-probe/src/main.rs",
+      "bytes": 1231,
+      "sha256": "eafc737e49a872489a270a26e0f7d9f249c7cf13661752ea28c9ea0f7fa78296"
+    },
+    {
+      "path": "apps/desktop/src/input.rs",
+      "bytes": 40154,
+      "sha256": "7fe6b172c61682d3d440c10988cb963d24e4866fa2a02f71f982a31a8d288fea"
+    },
+    {
+      "path": "apps/desktop/src/main.rs",
+      "bytes": 45707,
+      "sha256": "492cfe67ddd872849dd58d680e9e2a61b8fa1c3dbce8bca80a365be3e661c70b"
+    },
+    {
+      "path": "apps/web/src/input.rs",
+      "bytes": 7170,
+      "sha256": "5ba26ad378f5e3b56be9bba24a6df9fcbab432fb743128c317abc3f2aee35639"
+    },
+    {
+      "path": "apps/web/src/lib.rs",
+      "bytes": 15622,
+      "sha256": "08c410e37e1b8251ad524456435318598381068fbae243d6d3f60ae98efe1600"
+    },
+    {
+      "path": "apps/web/tests/sound.rs",
+      "bytes": 2228,
+      "sha256": "df8c5f1f11ce623e324860af41cd82742dd1bac2d16878faa4e4c39a8c8e7b9f"
+    },
+    {
+      "path": "assets/README.md",
+      "bytes": 16385,
+      "sha256": "6e271e7233b720108acd189f648dd31d76badc8b32b0c3db71c2958acb59c0b8"
+    },
+    {
+      "path": "crates/lemmings-audio/src/lib.rs",
+      "bytes": 9411,
+      "sha256": "ddd5861980fdbe3e493cac0507800da2e65d8a023f00f93353cae34e9198b62d"
+    },
+    {
+      "path": "crates/lemmings-core/src/lib.rs",
+      "bytes": 1963,
+      "sha256": "02fe0add41a2778d795114037ee4dc662bcbc8fbeab0c26e9a1363f03caf1131"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion.rs",
+      "bytes": 29210,
+      "sha256": "468b04cc0c4bbd131dc73c786bfc52c7e99c076fa5d1201f85371a99575bf642"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/basher.rs",
+      "bytes": 10383,
+      "sha256": "5d37688f8a2203aa846f68fefa328f34e85b309fd2762a4ae73cd3670716b81a"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/blocker.rs",
+      "bytes": 7672,
+      "sha256": "c50d1eb651a4bf949c7f8251e0a75979e90701c20d78c6fb7b71f3d96833b395"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/bomber.rs",
+      "bytes": 7875,
+      "sha256": "8347dd021673142d05927e286bb0e9797a346135690a938e5b0231aae61738a7"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/builder.rs",
+      "bytes": 4664,
+      "sha256": "ba7677dc9af0facdbbc5cd1115e50609b044c0479df8ac0e8951c108f9e9817a"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/digger.rs",
+      "bytes": 5988,
+      "sha256": "866806bef4baf6bf7e0b7e578c19515dc4892728505da56def047d3e0ceecc90"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/hazards.rs",
+      "bytes": 3938,
+      "sha256": "d6f83b1192626f82f61dbaf9e7b70700d25db955eeca986b78dcbc5c6a63f664"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/miner.rs",
+      "bytes": 6801,
+      "sha256": "0717b89d6a56904ce28ad0b96f74587b0472318105a0b5cb54c4a71358218550"
+    },
+    {
+      "path": "crates/lemmings-core/src/sound.rs",
+      "bytes": 484,
+      "sha256": "f79fe9d1f79bcabf310a57a336aed2c3d63b7eb736c2eb05e1b86475c1c88c86"
+    },
+    {
+      "path": "crates/lemmings-core/tests/sound_events.rs",
+      "bytes": 8785,
+      "sha256": "686a5bfabaaaff7f7923ab17c6b9a3a190e345b8569aed1a64f5b54ceda46ba5"
+    },
+    {
+      "path": "crates/lemmings-game/src/assets.rs",
+      "bytes": 33734,
+      "sha256": "f7452fdedbf78051809131416dcf76e227bdf910cdba8668f922da219adc8c05"
+    },
+    {
+      "path": "crates/lemmings-game/src/lib.rs",
+      "bytes": 691,
+      "sha256": "7f48821d72709b3d3e36dd5641403dc3b2c824954b6c88d2ec6d3edef4de589e"
+    },
+    {
+      "path": "crates/lemmings-game/src/lifecycle.rs",
+      "bytes": 11745,
+      "sha256": "81e609ba33935b5d394730e2e8304f1dd6f13881cc6221e33fc0ad263516bc46"
+    },
+    {
+      "path": "crates/lemmings-game/src/panel.rs",
+      "bytes": 16602,
+      "sha256": "cf3af71d41e1a6dc83d58320cd3707ae7dfe0101ed98aadd359892f2410c3e8f"
+    },
+    {
+      "path": "crates/lemmings-game/src/sound.rs",
+      "bytes": 10464,
+      "sha256": "1ed5ac0b1a9d191f84b283d8d27fac5c731fe6a41fc2548ca04fd8ac79a38b01"
+    },
+    {
+      "path": "crates/lemmings-game/tests/sound.rs",
+      "bytes": 3826,
+      "sha256": "1e2ee781240d4c38ff99f68021850da431ee4b1a4300ec25791c7261c0ea49da"
+    },
+    {
+      "path": "crates/lemmings-resources/src/lib.rs",
+      "bytes": 2890,
+      "sha256": "ba8e71d7e131eaf12d6e70c3a4e19a06e2ab8f3f03d4a107cbcabc9ddbeff873"
+    },
+    {
+      "path": "crates/lemmings-resources/src/sound.rs",
+      "bytes": 3648,
+      "sha256": "cd5f5b5046ffb716dc371683c1f660a3f3d9229107e57f92c003d412ec0ad319"
+    },
+    {
+      "path": "crates/lemmings-resources/tests/sound_mapping.rs",
+      "bytes": 2680,
+      "sha256": "202a6487bc35898e2cfd5dac7aaaad4c58fa6e563c99a7e715ceca65243cca44"
+    },
+    {
+      "path": "crates/lemmings-session/src/lib.rs",
+      "bytes": 1435,
+      "sha256": "4cb09d2ea29598d14d8eda5348215d69ddb5da7c3ad86e79301b305a2b365051"
+    },
+    {
+      "path": "crates/lemmings-session/src/session.rs",
+      "bytes": 59138,
+      "sha256": "1ffde5db70d9f28863beab317ff82fbcbe006a96aa8859ff3c64a5127ab54098"
+    },
+    {
+      "path": "crates/lemmings-session/src/sound.rs",
+      "bytes": 789,
+      "sha256": "75ccc95f5263218d425b5a1fede679dd1da6a5a48bccc35d74e99d37de2a0229"
+    },
+    {
+      "path": "crates/lemmings-session/tests/sound_events.rs",
+      "bytes": 3560,
+      "sha256": "783a203dd5a35e3676347ca91bc61e5b8c48d5feda511d59b9da30a1215bd2c8"
+    },
+    {
+      "path": "mydocs/README.md",
+      "bytes": 13458,
+      "sha256": "fecb21df750508b0ff42df6a545ad7a6c75153aa1059f133ff58009ce29a5cb4"
+    },
+    {
+      "path": "mydocs/orders/20261020.md",
+      "bytes": 10193,
+      "sha256": "7c7aee5c471e0bdd15a680ddafd772462bc771ffbd238d64cf750fda62e7f438"
+    },
+    {
+      "path": "mydocs/plans/issue-1_implementation_plan.md",
+      "bytes": 35316,
+      "sha256": "d090fc414b8a14fd1fa3e8218833202a58737d9a35613120e2fcfdbeb5902010"
+    },
+    {
+      "path": "mydocs/plans/issue-7_continuous_integration.md",
+      "bytes": 7601,
+      "sha256": "a34549609103c2a8b62db80aaf9b0e0a45b197f990ace66389a004664c8911c4"
+    },
+    {
+      "path": "mydocs/reports/README.md",
+      "bytes": 2528,
+      "sha256": "062c5583c93aa2e91606e13e85c8b18c98bda6101086f52d6e3a7e5db27ed7cb"
+    },
+    {
+      "path": "mydocs/reports/issue-78_game_sound.md",
+      "bytes": 2885,
+      "sha256": "3eb8c9905f93ecda0ae6c04fb90d60de17178b08bbd3e829ef160c943b468b61"
+    },
+    {
+      "path": "mydocs/tech_insights/README.md",
+      "bytes": 4048,
+      "sha256": "8a95ee111ed1bfaed0024fb9f569c8942732e860c779307037d272739129517b"
+    },
+    {
+      "path": "mydocs/tech_insights/issue-78_game_sound.md",
+      "bytes": 7409,
+      "sha256": "70d1a6279bf8358c7bf6f7394d35310af74e730674642e2a2a70b4a168a469dc"
+    },
+    {
+      "path": "mydocs/working/README.md",
+      "bytes": 2464,
+      "sha256": "1addfafc07aad331d72becbec5afd6055f1f125376ef84ce852e89cb2c003dd2"
+    },
+    {
+      "path": "mydocs/working/issue-78_game_sound.md",
+      "bytes": 958,
+      "sha256": "becb6926060b66829284159cdf9004c27385fa7c45b6c0d742cd87836e0d7aeb"
+    },
+    {
+      "path": "tools/audio/game-check.html",
+      "bytes": 132,
+      "sha256": "07463003049937b98352f6124415a284ae2104d0d479c998509c2532672219d2"
+    },
+    {
+      "path": "tools/audio/game-check.js",
+      "bytes": 2167,
+      "sha256": "87e35dba549a58ac0607eabf3b6ecebf6448548418e190e79a1c2a35c2a1f5f6"
+    },
+    {
+      "path": "tools/audio_timing.py",
+      "bytes": 1745,
+      "sha256": "8661579af8bee9f5cff8c80a1ea091de169db87a4eb5c8aeafa2688b41628c67"
+    },
+    {
+      "path": "tools/check_game_sound.py",
+      "bytes": 10800,
+      "sha256": "12e5bc7f5135c71ace899dcaf98abfbc73ab5d9f8b40363d0b14d76da15b0947"
+    },
+    {
+      "path": "tools/check_web.py",
+      "bytes": 10339,
+      "sha256": "bb0ef66bda7e04aab4dd0c6319c0c4798017891976320368f3d43d71805bfcbd"
+    },
+    {
+      "path": "tools/dos_sound_reference.py",
+      "bytes": 8615,
+      "sha256": "acb1ea8b49756ae1ccec7c0ba3d6b8d82c7cd4e0db5dcb215d959f852b2fa225"
+    },
+    {
+      "path": "tools/observe_audio_dos.py",
+      "bytes": 5236,
+      "sha256": "caf4bdc00d0b885d60de89cafea8e46aed409364233fbd8948388ea978c730a0"
+    },
+    {
+      "path": "tools/tests/fixtures/dos_sound.json",
+      "bytes": 40601,
+      "sha256": "e795b4c343ae9b7bdf724fc144db14c36f07cced8f07057a2cd125e3c4954a84"
+    },
+    {
+      "path": "tools/tests/fixtures/game_sound.json",
+      "bytes": 1097,
+      "sha256": "09f2d2c7cdb62b41033d69d84a3952a17a1a83366df6ad6f3c4351a9a4131383"
+    },
+    {
+      "path": "tools/tests/test_game_sound.py",
+      "bytes": 2509,
+      "sha256": "1f781ec9935f3b760673f026314ccd7daf9fa54a75f6ed6858cb922bb010902e"
+    },
+    {
+      "path": "tools/web/check.js",
+      "bytes": 7744,
+      "sha256": "1b71e11576116584a2ca6d45fd2aa6a7b5b9372e8b653a3b2306a3d7b76fda8f"
+    },
+    {
+      "path": "tools/web/sound_check.js",
+      "bytes": 2747,
+      "sha256": "b46e90cf7e25fe34ead65a9a271228696b80a0c2b8cc997c5925baffeee92667"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/core-red.log",
+      "bytes": 4216,
+      "sha256": "3a67e5ffaf5dc80af620aa41732a7862f193cf57b42607749bea709964540bea"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/core-first.log",
+      "bytes": 673,
+      "sha256": "deb8eba53f15a45bbac452cbaf71371325d65347f126b349c13cbd82582638bb"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/assignment-cue-red.log",
+      "bytes": 2151,
+      "sha256": "2f21b8302e6daad997eaf2f982c675ae9f64fcafbde65672058535dceb574b14"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/edges-green.log",
+      "bytes": 1892,
+      "sha256": "9d44eff07891af06523af5204419c9af4558c247dd2710f553f18fe1a7294909"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/session-red.log",
+      "bytes": 2484,
+      "sha256": "1b23f14a0ca9a1443a43953c99a8435984bc7461e6ce19b0c88a4a9f65e12780"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/mapping-independent-red.log",
+      "bytes": 1217,
+      "sha256": "721edaa57b5b5fd370abe2a79a88ea7da7b4ac99f7d337a1b27f78351c661554"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/music-independent-red.log",
+      "bytes": 1227,
+      "sha256": "13e92990a82f3a61d9843d9742ca5e4f768f4415cc00f22fac715415a262bef6"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/music-green.log",
+      "bytes": 621,
+      "sha256": "f49dd4552298d274fbe64a222921ced7ad554c0251fac620370ef482765ca241"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/ui-burst-red.log",
+      "bytes": 931,
+      "sha256": "4c539a84f05f1bb2feccff28777f7d73da18ff3c21d3c7cfa531414b9063ce64"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/ui-burst-green.log",
+      "bytes": 1361,
+      "sha256": "c04f5de0e892e719b5b6227f32c46af86d69170a9757b6d6049ad1f1cbb5c000"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/oneway-red.log",
+      "bytes": 1429,
+      "sha256": "e71f3a0629a0433173d8e51142af2155c3ae10c727216b5a1173212e720da4ee"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/oneway-green.log",
+      "bytes": 864,
+      "sha256": "5f95e605c7fc1216aa4bf736383a91a0fba7dafd1978ff32143d2b9e23d64483"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/python-red.log",
+      "bytes": 918,
+      "sha256": "5b46aac03ba1c0e666aa697dde80f78954bdda35d5da22ae79724a1d1f3b8bd0"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/python-final.log",
+      "bytes": 1016,
+      "sha256": "be704fce04aee4d4435e30eabde4f34fcbc3e6b1a84229ecea758cbe7ec0a07f"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/rust-boundaries.log",
+      "bytes": 9719,
+      "sha256": "2549023eb40ca0172de1c8ae7c44f52bda6193da25a461ba56ea716502c4ab7b"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/game-sound-final.log",
+      "bytes": 1552,
+      "sha256": "2c40a4b9a4e7b2d9c129aed85dffdf1a78b1cf2917daaa340290a4444f890370"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/dos-sound-proof-final.json",
+      "bytes": 40601,
+      "sha256": "e795b4c343ae9b7bdf724fc144db14c36f07cced8f07057a2cd125e3c4954a84"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/dos-sound-proof-final.log",
+      "bytes": 550,
+      "sha256": "626d35999c5385475523cea210eadb2f62fee2147c4eae54b0079fdfa7dbf725"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/dos-music.log",
+      "bytes": 1273,
+      "sha256": "18d9b2feb474aab12df52402f2986c3238b86cd79b450af17712ab472e304896"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/original-web.log",
+      "bytes": 1328,
+      "sha256": "25a7eda2e5e7e27057d6b72a38d68f819dc9254b03adac85ffa2a9597e9560a2"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/original-files-after.json",
+      "bytes": 6772,
+      "sha256": "e99e4e0c967ed215136670b4c65b73863e2ca19f3271e536ce2e9032b0964bc1"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/make-check.log",
+      "bytes": 106710,
+      "sha256": "672b01c42c290cc82d7d5be6227ae75c4101b8d08094223a7221e69ca624ca49"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/make-check.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/local-validation.json",
+      "bytes": 364,
+      "sha256": "7a1fb8bcab70ea0c6aab45fad5fbfbdcc951617727403aac1d20c5161b4b1f8c"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/self-review.json",
+      "bytes": 2865,
+      "sha256": "4f603b7394aea2183a095b6d487c2fa9f171c4c6eeeebca954dbe8e788dc4a1d"
+    }
+  ],
+  "evidence_trees": [
+    {
+      "directory": "assets/local/issue-78-synthetic-final",
+      "files": 12,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/issue-78-synthetic-final-index.json",
+        "bytes": 1867,
+        "sha256": "4ac6ef6c1b666896d43eb9fb6fd79b442a7b578785f4549f58e6952a2bd60eea"
+      }
+    },
+    {
+      "directory": "assets/local/issue-78-dos-music",
+      "files": 122,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/issue-78-dos-music-index.json",
+        "bytes": 19161,
+        "sha256": "b2172072ddc7ee1284f902ab4f88efb0dee8b790829523874835d40895a551c8"
+      }
+    },
+    {
+      "directory": "assets/local/issue-78-original-web",
+      "files": 53,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-78-review/issue-78-original-web-index.json",
+        "bytes": 8190,
+        "sha256": "6a0b44cb885c24fa863f1c71284b5d44816c05171db3038687e41a1c8c2ec324"
+      }
+    }
+  ],
+  "index_algorithm": "Sorted POSIX path order; compact sorted-key JSON array plus newline; exact bytes/SHA256",
+  "limitations": [
+    "No SDL/Web device output/listening; G10-05/06 follow",
+    "Original source slices use synthetic guest state and record software INT requests without executing handler; no full DOS phase equivalence",
+    "PCM from synthetic resources at declared control boundary convention, not actual asynchronous original device audio",
+    "Actual DOS read-only RAM confirms first music6 and IRQ clock only; generated runtime byte0seed/keydisk/trailing mutable memory limitations retained",
+    "Original/derived binaries, PCM and video remain ignored assets/local; public oracle metadata only",
+    "Historical Lemmix music_for_level catalog retained separately; special background product support unchanged"
+  ],
+  "next": "G10-05 SDL/Web devices, activation/mute/hide/LAN HTTP; then06integration/listening; G10 in progress",
+  "publication": "Exact push/PR/main fourjobs/full ZIP checkout logs/same tree/remote blob modes recorded in issue78 before closure"
+}

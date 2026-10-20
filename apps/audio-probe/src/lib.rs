@@ -1,7 +1,9 @@
 //! Verification adapter only: library PCM versus independent direct OPL delivery.
+mod game_sound;
+pub use game_sound::trace as game_sound_trace;
 use lemmings_audio::{AdlibPcm, AudioRate, MAX_PCM_FRAMES};
 use lemmings_opl::Opl2;
-use lemmings_resources::{AdlibImage, AdlibPlayer, AdlibWrite};
+use lemmings_resources::{AdlibCommand, AdlibImage, AdlibPlayer, AdlibWrite};
 
 fn actions(sequence: &str) -> Result<Vec<(&str, usize)>, String> {
     let mut result = Vec::new();
@@ -61,13 +63,14 @@ pub fn render(
     let mut chunk = 0;
     for (command, count) in actions {
         match command.as_bytes()[0] {
-            b'm' => pcm.request_music(index(command)?),
-            b'e' => pcm.request_effect(index(command)?),
+            b'm' => pcm.apply(AdlibCommand::Music(
+                u8::try_from(index(command)?).map_err(|_| "music index exceeds byte")?,
+            )),
+            b'e' => pcm.apply(AdlibCommand::Effect(
+                u8::try_from(index(command)?).map_err(|_| "effect index exceeds byte")?,
+            )),
             b'r' => pcm.reset_music(index(command)?),
-            b's' if command == "s" => {
-                pcm.request_stop();
-                Ok(())
-            }
+            b's' if command == "s" => pcm.apply(AdlibCommand::Stop),
             b'n' if command == "n" => Ok(()),
             _ => return Err("unknown command".into()),
         }
@@ -148,6 +151,10 @@ pub fn direct(
 #[cfg(target_arch = "wasm32")]
 mod wasm {
     use wasm_bindgen::prelude::*;
+    #[wasm_bindgen]
+    pub fn game_sound_trace(partitions: &[u32]) -> Result<String, JsValue> {
+        super::game_sound_trace(partitions).map_err(|e| JsValue::from_str(&e))
+    }
     #[wasm_bindgen]
     pub fn audio_pcm(
         data: &[u8],

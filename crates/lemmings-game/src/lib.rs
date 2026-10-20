@@ -9,6 +9,7 @@ pub mod lifecycle;
 pub mod panel;
 pub mod pointer;
 pub mod render;
+pub mod sound;
 pub use assets::{AssetSource, Assets, MissingAsset};
 pub use lemmings_session as session;
 pub use lemmings_session::pacing;

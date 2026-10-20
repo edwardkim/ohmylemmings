@@ -11,6 +11,8 @@ publish = false
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
+lemmings-core = { path = "../../crates/lemmings-core" }
+lemmings-game = { path = "../../crates/lemmings-game" }
 lemmings-audio = { path = "../../crates/lemmings-audio" }
 lemmings-resources = { path = "../../crates/lemmings-resources" }
 lemmings-opl = { path = "../../crates/lemmings-opl" }

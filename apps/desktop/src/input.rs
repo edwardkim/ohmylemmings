@@ -143,7 +143,7 @@ pub fn handle(
             } else if !replaying && let Some(button) = crate::panel::hit(x, y) {
                 use crate::panel::Button;
                 match button {
-                    Button::Skill(skill) => view.selected_skill = skill,
+                    Button::Skill(skill) => crate::panel::select_skill(session, view, skill, true),
                     Button::Slower | Button::Faster => {
                         view.panel.held_rate = Some(if button == Button::Faster { 1 } else { -1 });
                         crate::panel::advance_input(session, view, false)?;
@@ -194,14 +194,54 @@ pub fn handle(
             ..
         } => match key {
             Keycode::Escape => return Ok(false),
-            Keycode::B => view.selected_skill = SelectedSkill::Basher,
-            Keycode::D => view.selected_skill = SelectedSkill::Digger,
-            Keycode::M => view.selected_skill = SelectedSkill::Miner,
-            Keycode::U => view.selected_skill = SelectedSkill::Builder,
-            Keycode::F => view.selected_skill = SelectedSkill::Floater,
-            Keycode::C => view.selected_skill = SelectedSkill::Climber,
-            Keycode::E => view.selected_skill = SelectedSkill::Bomber,
-            Keycode::K => view.selected_skill = SelectedSkill::Blocker,
+            Keycode::B => crate::panel::select_skill(
+                session,
+                view,
+                SelectedSkill::Basher,
+                !repeat && !replaying,
+            ),
+            Keycode::D => crate::panel::select_skill(
+                session,
+                view,
+                SelectedSkill::Digger,
+                !repeat && !replaying,
+            ),
+            Keycode::M => crate::panel::select_skill(
+                session,
+                view,
+                SelectedSkill::Miner,
+                !repeat && !replaying,
+            ),
+            Keycode::U => crate::panel::select_skill(
+                session,
+                view,
+                SelectedSkill::Builder,
+                !repeat && !replaying,
+            ),
+            Keycode::F => crate::panel::select_skill(
+                session,
+                view,
+                SelectedSkill::Floater,
+                !repeat && !replaying,
+            ),
+            Keycode::C => crate::panel::select_skill(
+                session,
+                view,
+                SelectedSkill::Climber,
+                !repeat && !replaying,
+            ),
+            Keycode::E => crate::panel::select_skill(
+                session,
+                view,
+                SelectedSkill::Bomber,
+                !repeat && !replaying,
+            ),
+            Keycode::K => crate::panel::select_skill(
+                session,
+                view,
+                SelectedSkill::Blocker,
+                !repeat && !replaying,
+            ),
             Keycode::Left => view.scroll(-16, width),
             Keycode::Right => view.scroll(16, width),
             Keycode::Home => view.scroll(i32::MIN, width),
@@ -458,7 +498,12 @@ mod tests {
                 web.step(1.0).unwrap();
                 crate::panel::advance_input(&mut native.session, &mut native.view, false).unwrap();
                 crate::pointer::refresh(&native.session, &mut native.view);
-                native.session.tick().unwrap();
+                native.tick().unwrap();
+                assert_eq!(
+                    native.sound.drain_json(),
+                    web.drain_sound_events(),
+                    "sound at {code}/{step}"
+                );
                 crate::pointer::refresh(&native.session, &mut native.view);
             }
         }

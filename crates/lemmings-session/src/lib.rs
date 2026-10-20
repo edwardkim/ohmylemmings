@@ -12,8 +12,10 @@
 
 pub mod pacing;
 mod session;
+mod sound;
 use lemmings_core::{AssignmentSkill, StartupCommand};
 pub use session::Session;
+pub use sound::SessionSound;
 
 /// Turn a resolved skill/actor ID into the command consumed at a control boundary.
 pub fn command(skill: AssignmentSkill, id: u32) -> StartupCommand {

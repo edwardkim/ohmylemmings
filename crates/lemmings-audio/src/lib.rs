@@ -5,7 +5,9 @@
 #![no_std]
 use core::fmt;
 use lemmings_opl::Opl2;
-use lemmings_resources::{AdlibImage, AdlibPlayer, AdlibState, AdlibStreamError, AdlibWrite};
+use lemmings_resources::{
+    AdlibCommand, AdlibImage, AdlibPlayer, AdlibState, AdlibStreamError, AdlibWrite,
+};
 
 /// Bound per render request; large streams can be delivered in arbitrary chunks.
 pub const MAX_PCM_FRAMES: usize = 8192;
@@ -138,6 +140,18 @@ impl<'a> AdlibPcm<'a> {
     }
     /// Queue controls for the next driver boundary; do not discard queued PCM in
     /// a device here. The platform owns device queues/generations separately.
+    /// Apply ordered game-to-driver requests at the next audio boundary. Multiple
+    /// effects before that boundary retain the original driver's last request.
+    pub fn apply(&mut self, command: AdlibCommand) -> Result<(), PcmError> {
+        match command {
+            AdlibCommand::Music(index) => self.request_music(usize::from(index)),
+            AdlibCommand::Effect(index) => self.request_effect(usize::from(index)),
+            AdlibCommand::Stop => {
+                self.request_stop();
+                Ok(())
+            }
+        }
+    }
     pub fn request_music(&mut self, index: usize) -> Result<(), PcmError> {
         self.driver.request_music(index)?;
         Ok(())

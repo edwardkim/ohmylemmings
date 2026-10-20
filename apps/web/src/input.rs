@@ -34,14 +34,14 @@ pub fn key(run: &mut LevelRun, code: &str, repeat: bool) -> Result<String, Strin
     }
     let s = &mut run.session;
     match code {
-        "KeyB" => run.view.selected_skill = SelectedSkill::Basher,
-        "KeyD" => run.view.selected_skill = SelectedSkill::Digger,
-        "KeyM" => run.view.selected_skill = SelectedSkill::Miner,
-        "KeyU" => run.view.selected_skill = SelectedSkill::Builder,
-        "KeyF" => run.view.selected_skill = SelectedSkill::Floater,
-        "KeyC" => run.view.selected_skill = SelectedSkill::Climber,
-        "KeyE" => run.view.selected_skill = SelectedSkill::Bomber,
-        "KeyK" => run.view.selected_skill = SelectedSkill::Blocker,
+        "KeyB" => panel::select_skill(s, &mut run.view, SelectedSkill::Basher, !repeat),
+        "KeyD" => panel::select_skill(s, &mut run.view, SelectedSkill::Digger, !repeat),
+        "KeyM" => panel::select_skill(s, &mut run.view, SelectedSkill::Miner, !repeat),
+        "KeyU" => panel::select_skill(s, &mut run.view, SelectedSkill::Builder, !repeat),
+        "KeyF" => panel::select_skill(s, &mut run.view, SelectedSkill::Floater, !repeat),
+        "KeyC" => panel::select_skill(s, &mut run.view, SelectedSkill::Climber, !repeat),
+        "KeyE" => panel::select_skill(s, &mut run.view, SelectedSkill::Bomber, !repeat),
+        "KeyK" => panel::select_skill(s, &mut run.view, SelectedSkill::Blocker, !repeat),
         "Space" if !repeat => {
             s.queue(if s.desired_paused() {
                 InputCommand::Resume
@@ -144,7 +144,7 @@ pub fn event(
             } else if let Some(button) = panel::hit(x, y) {
                 use panel::Button;
                 match button {
-                    Button::Skill(skill) => v.selected_skill = skill,
+                    Button::Skill(skill) => panel::select_skill(s, v, skill, true),
                     Button::Slower | Button::Faster => {
                         v.panel.held_rate = Some(if button == Button::Faster { 1 } else { -1 });
                         panel::advance_input(s, v, false).map_err(|e| e.to_string())?;

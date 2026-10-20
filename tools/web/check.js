@@ -1,6 +1,7 @@
 import init, { WebGame, WebAssets } from './pkg/lemmings_web.js';
 import { FramePump, present } from './host.js';
 import { checkDom } from './dom_check.js';
+import { checkSoundCommands } from './sound_check.js';
 
 const assert = (condition, label) => { if (!condition) throw new Error(label); };
 const throws = (fn, label) => { let did = false; try { fn(); } catch { did = true; } assert(did, label); };
@@ -95,9 +96,10 @@ try {
     assert(JSON.parse(frozen).completion.phase==='Won','synthetic win did not finish');
     assert(game.step(1000)===0,'finished ticked');throws(()=>game.command('Nuke',0),'finished accepted input');assert(game.state()===frozen,'finished changed');
     game.free();pumpGame.free();
+    const sound_commands = checkSoundCommands(WebGame,assert,throws);
     const dom = await checkDom(assert,throws,bank);
     bank.free();originals.free();
-    const result={dom,status:'PASS',cases:expected.cases.length,runs:rows.length,states,frames,canvas_readbacks:readbacks,boundary_checks:true,refresh_rates:[60,120,144],runs_detail:rows};
+    const result={dom,sound_commands,status:'PASS',cases:expected.cases.length,runs:rows.length,states,frames,canvas_readbacks:readbacks,boundary_checks:true,refresh_rates:[60,120,144],runs_detail:rows};
     report.textContent=JSON.stringify(result);await fetch('/__result',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(result)});
 } catch (error) {
     const result={status:'FAIL',error:String(error),stack:error.stack};report.textContent=JSON.stringify(result);

@@ -22,6 +22,16 @@ impl Actor {
     /// Consume a Miner only after current action, front object and foot steel
     /// accept it. Selection priority remains the caller's stable-ID decision.
     pub fn assign_miner(&mut self, remaining: &mut u16, context: MiningContext<'_>) -> bool {
+        self.assign_miner_with_cues(remaining, context, |_| {})
+    }
+    /// See assign_basher_with_cues; foot steel is checked before front steel,
+    /// and therefore remains silent even if both cached cells are steel.
+    pub fn assign_miner_with_cues(
+        &mut self,
+        remaining: &mut u16,
+        context: MiningContext<'_>,
+        mut emit: impl FnMut(crate::SoundCue),
+    ) -> bool {
         let s = self.state;
         if *remaining == 0
             || s.removed.is_some()
@@ -34,8 +44,15 @@ impl Actor {
                     | MotionAction::Shrugging
             )
             || context.objects.assignment_steel(s)
-            || context.objects.assignment_blocked(s)
         {
+            return false;
+        }
+        if context.objects.assignment_blocked(s) {
+            if context.objects.assignment_front_steel(s) {
+                emit(crate::SoundCue::AssignmentBlocked(
+                    crate::AssignmentSkill::Miner,
+                ));
+            }
             return false;
         }
         let Some(y) = s.y.checked_add(1) else {
@@ -44,6 +61,7 @@ impl Actor {
         transition(&mut self.state, MotionAction::Mining, self.rules);
         self.state.y = y;
         *remaining -= 1;
+        emit(crate::SoundCue::AssignSkill(crate::AssignmentSkill::Miner));
         true
     }
 
@@ -126,6 +144,9 @@ impl Actor {
                         |map| map.read(i64::from(s.x), i64::from(s.y)) == 136,
                     ))
             {
+                if context.objects.is_steel(s.x, s.y) {
+                    out.sound(crate::SoundCue::HitsSteel);
+                }
                 transition(&mut s, MotionAction::Walking, self.rules);
                 s.direction = s.direction.reverse();
             }

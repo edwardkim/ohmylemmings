@@ -106,6 +106,7 @@ impl Actor {
                 if !row(y) {
                     transition(&mut s, MotionAction::Falling, self.rules);
                 } else if steel(s.x, s.y) {
+                    out.sound(crate::SoundCue::HitsSteel);
                     transition(&mut s, MotionAction::Walking, self.rules);
                 }
                 out.check_objects = true;

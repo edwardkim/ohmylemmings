@@ -34,6 +34,9 @@ def observe(directory,dosbox,xdotool,cycles=3000):
     observation=json.loads((directory/'memory.json').read_text())
     if observation['error'] or not observation['location']:raise ValueError('failed RAM observation')
     result=cadence(observation['samples']);result.update(status='PASS',command='VGALEMMI /v -o',cycles=cycles,dosbox=identity(dosbox),xdotool=identity(xdotool),original_files=len(before),runtime_seed_sha256=sha(runtime),changed_runtime_offsets=[0],exe_or_original_dat_modified=False,generated_runtime_sha256=sha(generated),historical_generated_sha256=expected,runtime_seed_limitation='Newly generated original DS window; mutable trailing bytes differ from historical machine. Only byte0 disk-check counter is seeded; original key disk remains unverified.')
+    music_ids=sorted({s['audio_music_driver_id_u8'] for s in observation['samples'] if 1<=s['released_u8']<=10})
+    if music_ids != [6]:raise ValueError('actual Fun01 music selection differs from original normal table')
+    result['selected_music_driver_ids']=music_ids
     import av
     rates=[]
     for path in sorted((directory/'run/capture').glob('*.avi')):
