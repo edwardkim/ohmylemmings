@@ -106,6 +106,8 @@ jobs:
           echo "CARGO_HOME=$RUNNER_TEMP/cargo-home" >> "$GITHUB_ENV"
       - name: Prepare pinned web build tools
         run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y libsdl2-dev
           rustup show active-toolchain
           rustup target add wasm32-unknown-unknown
           cargo fetch --locked

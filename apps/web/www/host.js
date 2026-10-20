@@ -1,9 +1,11 @@
 // Browser time/Canvas adapter. All game updates and drawing stay in Rust.
 export class FramePump {
-    constructor(game, budget = 64) {
+    constructor(game, budget = 64, observer = null) {
         if (!Number.isInteger(budget) || budget < 1 || budget > 1000) {
             throw new Error('tick budget must be in 1..=1000');
         }
+        if (observer !== null && typeof observer !== 'function') throw new Error('invalid tick observer');
+        this.observer = observer;
         this.game = game;
         this.budget = budget;
         this.lastUs = null;
@@ -26,7 +28,15 @@ export class FramePump {
         this.lastUs = now;
         this.pending += due;
         const requested = Math.min(this.pending, this.budget);
-        const executed = this.game.step(requested);
+        let executed = 0;
+        if (this.observer === null) executed = this.game.step(requested);
+        else for (let i=0;i<requested;i++) {
+            this.observer('before',this.game);
+            const count=this.game.step(1);
+            if (!count) break;
+            executed+=count;
+            this.observer('after',this.game);
+        }
         this.pending = executed < requested ? 0 : this.pending - executed;
         return executed;
     }

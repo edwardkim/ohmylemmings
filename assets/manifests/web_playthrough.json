@@ -1,0 +1,1125 @@
+{
+  "format": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/70",
+  "baseline_main": "3b69590173ca1f4d549f9ca32586faa34a4d835e",
+  "scope": "G09-05 actual original Fun01 full browser win/restart/early-Nuke loss/retry/full win/next Fun02 ID0; complete control-boundary state/maps, raw-event native and independent stable-ID SDL replay; no new DOS/full120-level certification/audio/deployment",
+  "original_provenance": "assets/manifests/dos_original.json; all pinned local files verified by size/SHA-256 before and after original native replays; raw original evidence only in ignored assets/local",
+  "dependencies": {
+    "status": "PASS",
+    "registry_dependencies_changed": false,
+    "lockfile_changed": false,
+    "unchanged": [
+      "Cargo.toml",
+      "Cargo.lock",
+      "apps/desktop",
+      "crates/lemmings-core",
+      "crates/lemmings-resources",
+      "crates/lemmings-session",
+      "crates/lemmings-game"
+    ],
+    "notes": "No package installation or new dependency; Web CI prepares existing SDL2 native replay prerequisite"
+  },
+  "self_review": {
+    "status": "PASS",
+    "method": "author self-review",
+    "findings": [
+      {
+        "topic": "Nuke diagnostic completeness",
+        "resolution": "Added scan progress/maximum population to WebGame state; TDD and full native trace agree"
+      },
+      {
+        "topic": "Attempt/control boundary ownership",
+        "resolution": "Record pristine reset before release, queue all same-boundary events before row, freeze final maps before replacement"
+      },
+      {
+        "topic": "Independent platform replay",
+        "resolution": "Serialize ordered stable-ID commands; 12 separate SDL runs compare complete normalized state/deltas/final maps"
+      },
+      {
+        "topic": "Actual Canvas and original media",
+        "resolution": "Exact raw-event Frame markers compare native state/view/RGB; opaque Canvas bytes checked; original output restricted to ignored assets/local"
+      },
+      {
+        "topic": "Clock/render determinism and default behavior",
+        "resolution": "Observer is opt-in; default batching retained, low-budget replay at 60/120/144Hz checks all map bytes/states"
+      },
+      {
+        "topic": "Public artifacts and shared sources",
+        "resolution": "Only synthetic screenshot public; original hashes verified before/after; common core/resources/session/game and lockfile unchanged"
+      }
+    ],
+    "unresolved": []
+  },
+  "local_validation": {
+    "status": "PASS",
+    "exit_code": 0,
+    "rust": 526,
+    "doc": 28,
+    "python": 115,
+    "sha256": "5fcd1ac2f4d16b1a1b7967ce7fe1542df38f019abd9d196f9482441974b46220",
+    "bytes": 89020,
+    "elapsed_seconds": 708.69,
+    "scope": "Complete make check: fmt/Clippy/offline Rust/test/state replay, Python fixtures, WASM libraries, all SDL skill/result/pointer suites and old/new actual browser suites"
+  },
+  "synthetic": {
+    "status": "PASS",
+    "attempts": 4,
+    "states": 656,
+    "attempt_states": [
+      169,
+      240,
+      166,
+      81
+    ],
+    "frames": 57,
+    "native_states": 656,
+    "native_frames": 57,
+    "independent_desktop_replays": 12,
+    "attempts_detail": [
+      {
+        "attempt": 0,
+        "level": 1,
+        "states": 169,
+        "frames": 14,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 3,
+          "lemming_count": 3,
+          "required": 2,
+          "rescued": 3,
+          "target_percent": 66,
+          "rescued_percent": 100
+        },
+        "inputs": "75 0 AssignClimber 0\n75 1 Pause\n76 0 SetReleaseRate 51\n76 1 SetReleaseRate 52\n77 0 SetReleaseRate 53\n78 0 SetReleaseRate 54\n79 0 SetReleaseRate 55\n80 0 SetReleaseRate 56\n81 0 Resume\n",
+        "desktop_replays": [
+          {
+            "render_every": 1,
+            "states": 169,
+            "pixel_exact_readbacks": 42
+          },
+          {
+            "render_every": 7,
+            "states": 169,
+            "pixel_exact_readbacks": 42
+          },
+          {
+            "render_every": 13,
+            "states": 169,
+            "pixel_exact_readbacks": 42
+          }
+        ]
+      },
+      {
+        "attempt": 1,
+        "level": 1,
+        "states": 240,
+        "frames": 21,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 3,
+          "lemming_count": 2,
+          "required": 2,
+          "rescued": 1,
+          "target_percent": 66,
+          "rescued_percent": 50
+        },
+        "inputs": "80 0 AssignDigger 0\n90 0 Nuke\n",
+        "desktop_replays": [
+          {
+            "render_every": 1,
+            "states": 240,
+            "pixel_exact_readbacks": 131
+          },
+          {
+            "render_every": 7,
+            "states": 240,
+            "pixel_exact_readbacks": 131
+          },
+          {
+            "render_every": 13,
+            "states": 240,
+            "pixel_exact_readbacks": 131
+          }
+        ]
+      },
+      {
+        "attempt": 2,
+        "level": 1,
+        "states": 166,
+        "frames": 15,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 3,
+          "lemming_count": 3,
+          "required": 2,
+          "rescued": 3,
+          "target_percent": 66,
+          "rescued_percent": 100
+        },
+        "inputs": "75 0 AssignClimber 0\n",
+        "desktop_replays": [
+          {
+            "render_every": 1,
+            "states": 166,
+            "pixel_exact_readbacks": 36
+          },
+          {
+            "render_every": 7,
+            "states": 166,
+            "pixel_exact_readbacks": 36
+          },
+          {
+            "render_every": 13,
+            "states": 166,
+            "pixel_exact_readbacks": 36
+          }
+        ]
+      },
+      {
+        "attempt": 3,
+        "level": 2,
+        "states": 81,
+        "frames": 7,
+        "final": {
+          "phase": "Playing",
+          "reason": null,
+          "original_total": 3,
+          "lemming_count": 3,
+          "required": 2,
+          "rescued": 0,
+          "target_percent": 66,
+          "rescued_percent": 0
+        },
+        "inputs": "",
+        "desktop_replays": [
+          {
+            "render_every": 1,
+            "states": 81,
+            "pixel_exact_readbacks": 8
+          },
+          {
+            "render_every": 7,
+            "states": 81,
+            "pixel_exact_readbacks": 8
+          },
+          {
+            "render_every": 13,
+            "states": 81,
+            "pixel_exact_readbacks": 8
+          }
+        ]
+      }
+    ],
+    "browser_replays": {
+      "runs": 12,
+      "states": 1968,
+      "frames": 127,
+      "render_intervals": [
+        1,
+        7,
+        13
+      ],
+      "refresh_rates": [
+        60,
+        120,
+        144
+      ]
+    },
+    "browser": "Chromium 152.0.7977.82 Arch Linux",
+    "scope": "actual product DOM with controlled rAF timestamps; full WASM/native raw-input replay and three independent stable-ID desktop replays per attempt; synthetic only"
+  },
+  "original": {
+    "status": "PASS",
+    "attempts": 4,
+    "states": 1695,
+    "attempt_states": [
+      666,
+      287,
+      661,
+      81
+    ],
+    "frames": 137,
+    "native_states": 1695,
+    "native_frames": 137,
+    "independent_desktop_replays": 12,
+    "attempts_detail": [
+      {
+        "attempt": 0,
+        "level": 1,
+        "states": 666,
+        "frames": 53,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 10,
+          "required": 1,
+          "rescued": 10,
+          "target_percent": 10,
+          "rescued_percent": 100
+        },
+        "inputs": "61 0 AssignDigger 0\n63 0 Pause\n64 0 SetReleaseRate 51\n65 0 SetReleaseRate 52\n66 0 SetReleaseRate 53\n67 0 SetReleaseRate 54\n68 0 SetReleaseRate 55\n74 0 Resume\n",
+        "desktop_replays": [
+          {
+            "render_every": 1,
+            "states": 666,
+            "pixel_exact_readbacks": 92
+          },
+          {
+            "render_every": 7,
+            "states": 666,
+            "pixel_exact_readbacks": 92
+          },
+          {
+            "render_every": 13,
+            "states": 666,
+            "pixel_exact_readbacks": 92
+          }
+        ]
+      },
+      {
+        "attempt": 1,
+        "level": 1,
+        "states": 287,
+        "frames": 24,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 3,
+          "required": 1,
+          "rescued": 0,
+          "target_percent": 10,
+          "rescued_percent": 0
+        },
+        "inputs": "135 0 Nuke\n",
+        "desktop_replays": [
+          {
+            "render_every": 1,
+            "states": 287,
+            "pixel_exact_readbacks": 43
+          },
+          {
+            "render_every": 7,
+            "states": 287,
+            "pixel_exact_readbacks": 43
+          },
+          {
+            "render_every": 13,
+            "states": 287,
+            "pixel_exact_readbacks": 43
+          }
+        ]
+      },
+      {
+        "attempt": 2,
+        "level": 1,
+        "states": 661,
+        "frames": 53,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 10,
+          "required": 1,
+          "rescued": 10,
+          "target_percent": 10,
+          "rescued_percent": 100
+        },
+        "inputs": "63 0 AssignDigger 0\n",
+        "desktop_replays": [
+          {
+            "render_every": 1,
+            "states": 661,
+            "pixel_exact_readbacks": 85
+          },
+          {
+            "render_every": 7,
+            "states": 661,
+            "pixel_exact_readbacks": 85
+          },
+          {
+            "render_every": 13,
+            "states": 661,
+            "pixel_exact_readbacks": 85
+          }
+        ]
+      },
+      {
+        "attempt": 3,
+        "level": 2,
+        "states": 81,
+        "frames": 7,
+        "final": {
+          "phase": "Playing",
+          "reason": null,
+          "original_total": 10,
+          "lemming_count": 10,
+          "required": 1,
+          "rescued": 0,
+          "target_percent": 10,
+          "rescued_percent": 0
+        },
+        "inputs": "",
+        "desktop_replays": [
+          {
+            "render_every": 1,
+            "states": 81,
+            "pixel_exact_readbacks": 8
+          },
+          {
+            "render_every": 7,
+            "states": 81,
+            "pixel_exact_readbacks": 8
+          },
+          {
+            "render_every": 13,
+            "states": 81,
+            "pixel_exact_readbacks": 8
+          }
+        ]
+      }
+    ]
+  },
+  "trusted_browser": {
+    "status": "PASS",
+    "browser": "Chrome/152.0.7977.82",
+    "port": 19222,
+    "target": "72EAA69E6D2FC55AF1209D2629970BEB",
+    "url": "http://192.168.2.146:8080/?journey=70",
+    "original": true,
+    "attempts": [
+      {
+        "level": 1,
+        "states": 666,
+        "frames": 53,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 10,
+          "required": 1,
+          "rescued": 10,
+          "target_percent": 10,
+          "rescued_percent": 100
+        },
+        "inputs": "61 0 AssignDigger 0\n63 0 Pause\n64 0 SetReleaseRate 51\n65 0 SetReleaseRate 52\n66 0 SetReleaseRate 53\n67 0 SetReleaseRate 54\n68 0 SetReleaseRate 55\n74 0 Resume\n"
+      },
+      {
+        "level": 1,
+        "states": 287,
+        "frames": 24,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 3,
+          "required": 1,
+          "rescued": 0,
+          "target_percent": 10,
+          "rescued_percent": 0
+        },
+        "inputs": "135 0 Nuke\n"
+      },
+      {
+        "level": 1,
+        "states": 661,
+        "frames": 53,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 10,
+          "required": 1,
+          "rescued": 10,
+          "target_percent": 10,
+          "rescued_percent": 100
+        },
+        "inputs": "63 0 AssignDigger 0\n"
+      },
+      {
+        "level": 2,
+        "states": 81,
+        "frames": 7,
+        "final": {
+          "phase": "Playing",
+          "reason": null,
+          "original_total": 10,
+          "lemming_count": 10,
+          "required": 1,
+          "rescued": 0,
+          "target_percent": 10,
+          "rescued_percent": 0
+        },
+        "inputs": ""
+      }
+    ],
+    "trusted_input": true,
+    "hidden_resume": true,
+    "resize_outside": true,
+    "uncaught_exceptions": 0
+  },
+  "original_browser_partitions": {
+    "status": "PASS",
+    "browser": "Chrome/152.0.7977.82",
+    "port": 19222,
+    "target": "72EAA69E6D2FC55AF1209D2629970BEB",
+    "runs": 12,
+    "states": 5085,
+    "frames": 300,
+    "render_intervals": [
+      1,
+      7,
+      13
+    ],
+    "refresh_rates": [
+      60,
+      120,
+      144
+    ],
+    "uncaught_exceptions": 0
+  },
+  "existing_dos_proof": "Issue60/assets/manifests/native_playthrough.json: existing three successes/one failure and56 reference functions; not rerun or counted as new browser evidence",
+  "sources": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 3369,
+      "sha256": "a184b9692417f90711fff70bc1ae8864e90e4b8293fddb55c74a4e5610b573d3"
+    },
+    {
+      "path": "Cargo.lock",
+      "bytes": 4890,
+      "sha256": "d8c6a748167e636f4600aec73cd3a43788674e6c8ab0867cfa088ec5056e7edb"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 370,
+      "sha256": "fe8a13bb135c1f9f517a5a5555ae45ec0c235ea21ec64d5310024a8f1b70a7b2"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 2098,
+      "sha256": "dbe14092847254e4c2b776cba7013167d2b4407b03f7dc222dd2e7bc1b9c5ff6"
+    },
+    {
+      "path": "apps/desktop/Cargo.toml",
+      "bytes": 592,
+      "sha256": "fb98a890c1c3f80c4c909bf34d60be2debdb6fa4ed8cd47a44945e3e4c209861"
+    },
+    {
+      "path": "apps/desktop/src/input.rs",
+      "bytes": 38966,
+      "sha256": "5c1dd82f5d6e3bdf97f470663ae1358f5f4396c29612fcc3e5888a5ba1025eca"
+    },
+    {
+      "path": "apps/web/Cargo.toml",
+      "bytes": 605,
+      "sha256": "4d1cc1d350120d13df52934301607a01af228cf34f1526667eab795a31851c37"
+    },
+    {
+      "path": "apps/web/src/bin/web_trace.rs",
+      "bytes": 4214,
+      "sha256": "4cb04be1cebdf6e42bcd42ba6dfec96a55cb831d3e570a12e17acc93255638f4"
+    },
+    {
+      "path": "apps/web/src/bytes.rs",
+      "bytes": 1609,
+      "sha256": "d15ad9b6d0b6db8585f1dacdda15b078ef657a871e61a1a7cd8c920461787a46"
+    },
+    {
+      "path": "apps/web/src/input.rs",
+      "bytes": 6980,
+      "sha256": "fefe59f9d3044701596d7865c6f806ededd5b5c6c778c0402098cd6fe6f4355c"
+    },
+    {
+      "path": "apps/web/src/lib.rs",
+      "bytes": 14814,
+      "sha256": "53742863a194b3b6c2c5ee6647ad8a63aac1f7e4df46e0de956a20d9dac0f817"
+    },
+    {
+      "path": "apps/web/tests/host_contract.rs",
+      "bytes": 6216,
+      "sha256": "225ef84c3fc9849ce8f9508910e35e9d79b418611a5bf01c832ad8929cf8e417"
+    },
+    {
+      "path": "apps/web/tests/input_assets.rs",
+      "bytes": 7493,
+      "sha256": "a76eef683bbdd29599ce12609c3bd75aea1c52f2797598707edc3167cb758eac"
+    },
+    {
+      "path": "apps/web/tests/support/mod.rs",
+      "bytes": 3084,
+      "sha256": "cd6d78a37e8e7ce7837514e57de4b4690c6bf65a414cedddf7e16c9029fe0885"
+    },
+    {
+      "path": "apps/web/www/app.js",
+      "bytes": 6291,
+      "sha256": "dd68e015ee02f0a54e35be5924fcc8e1806135bf851e31204feee2a32620246d"
+    },
+    {
+      "path": "apps/web/www/controls.js",
+      "bytes": 4740,
+      "sha256": "e54f235e7cf09dac1a301651bced60bace9b06e2d541bbc7dfa769bb2179ab40"
+    },
+    {
+      "path": "apps/web/www/host.js",
+      "bytes": 2308,
+      "sha256": "e0b1430ff18410ea21a0283beceb6328652bcc5fa1991f9dfb608227e7a254e6"
+    },
+    {
+      "path": "apps/web/www/index.html",
+      "bytes": 3631,
+      "sha256": "71eb92747673e499958adb4c079ddf8dce18ed8839e51525896eacd75f99fb97"
+    },
+    {
+      "path": "apps/web/www/style.css",
+      "bytes": 3886,
+      "sha256": "bb9191e4216af82ab3d49ca0d094ce04fda4d81bdc62e0aeb03174c5aee7c48d"
+    },
+    {
+      "path": "assets/manifests/dos_original.json",
+      "bytes": 12573,
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "assets/manifests/web_tools.json",
+      "bytes": 787,
+      "sha256": "13bfd168cc421f68956a7e3bda785ce94c3f471e3e77c6de41b1c0446e13d9f5"
+    },
+    {
+      "path": "crates/lemmings-core/Cargo.toml",
+      "bytes": 355,
+      "sha256": "fda80e247255d40f3ff97b0f8f883abca7044c3de20b87b79e33b21a7ed6c253"
+    },
+    {
+      "path": "crates/lemmings-core/src/level.rs",
+      "bytes": 3322,
+      "sha256": "c832a8049fcd98c00dbd18e2c2ade1d6c83a38f517594f0044c07a5f61d59643"
+    },
+    {
+      "path": "crates/lemmings-core/src/lib.rs",
+      "bytes": 1927,
+      "sha256": "4913e68c02b5115608002bafe3b884d34ce1d516b6ca80aa60e8478c2c76bd3e"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation.rs",
+      "bytes": 1519,
+      "sha256": "be0a7e5898dca0c79657682bb455696a194f25d33ce18db8b5840c3786c4f65a"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/clock.rs",
+      "bytes": 5264,
+      "sha256": "5f2d94121235b7bdefa75372339cffc961285aa8a39f29383da15ef0684f4cc6"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/completion.rs",
+      "bytes": 3932,
+      "sha256": "8353d3872d130f319279942da3e1e23093a3d33016b6ef4b3d75b4b0107a1243"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/input.rs",
+      "bytes": 5561,
+      "sha256": "29bd3e760a35d04ee0f22170b828761b8a38a2a9c25d372c2f1ab91dc3537aa9"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion.rs",
+      "bytes": 27938,
+      "sha256": "ecdcc9de52f8382e38a2d158320141900381bd71ab8b8e584bb45af3a4e9bacb"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/basher.rs",
+      "bytes": 8775,
+      "sha256": "14b3009a424fcced00575e291e1b403e99bdedc247d71b0731bd32cb4379190b"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/blocker.rs",
+      "bytes": 7595,
+      "sha256": "c4d56c777c74a0297d774a270e476b2143f55c29f2680fdce7f9f8bdf5592ff5"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/bomber.rs",
+      "bytes": 7854,
+      "sha256": "15a2d4630e907a0dd263d1663fdde7d67ea8d488236ff8cb7eb29ff86fbc4532"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/builder.rs",
+      "bytes": 4549,
+      "sha256": "41cc899175e4cfeee7ae73f40cd0eeb94463bc48631107a353eb683021f785ea"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/climber.rs",
+      "bytes": 2151,
+      "sha256": "4d980955e83780358d9f8c181ef06cc2932d2788a33f179985d70cfc86faa90a"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/digger.rs",
+      "bytes": 5929,
+      "sha256": "4783974e7649ce4f6ec1a78913eec061aa2406d978dd93cda72b958fed46bb16"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/floater.rs",
+      "bytes": 1691,
+      "sha256": "d25bfb886138f4a4018cc57556311dfd3684c093bf51647624860bd78010ee2b"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/golden.rs",
+      "bytes": 24867,
+      "sha256": "09308318e247c7c9c702b534e718ee5e278d88b0ec1603e8b15356586d6aed97"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/hazards.rs",
+      "bytes": 3866,
+      "sha256": "c60b30e31b234f5e321f870586cb8bd52a4df89ea52011a3a1af5d1486e8cf0e"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/miner.rs",
+      "bytes": 5953,
+      "sha256": "969a48d926217e80c9e1dca1183fe0670ef8b7bc0f5a2da649ccfc2e948a8a05"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/tests.rs",
+      "bytes": 35480,
+      "sha256": "d0092eea6f1f942974eccb102e6b23c45abf5aa8ac32b290fe3103c69c3e5e6a"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/nuke.rs",
+      "bytes": 2613,
+      "sha256": "f670d417edffcf07818a7dd97fe9000630a2b35b04284ee5cf7747d8a39d7e37"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/objects.rs",
+      "bytes": 4442,
+      "sha256": "347b660e54753a701480b0cc3c0390a2bdad46ca7d8b73ef3a8540e3b334e2f1"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/selection.rs",
+      "bytes": 10999,
+      "sha256": "0ba07e048e90d584e97183265b710bf065fb7ac8680055bd4625b5c5b8201e31"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/startup.rs",
+      "bytes": 13155,
+      "sha256": "e681aef7109cb51e782960be1fc935086f27f0df0c9bd147df9ee814a7015826"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/startup/tests.rs",
+      "bytes": 23015,
+      "sha256": "ce82102b83de1c41329dde05eca3159588d5be02575e438695f4bbecfe75f403"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/stepper.rs",
+      "bytes": 17877,
+      "sha256": "c84499865a88f6ef6a082d384285be433c0d870c1967ef120698d5a083932c43"
+    },
+    {
+      "path": "crates/lemmings-core/src/terrain.rs",
+      "bytes": 27264,
+      "sha256": "c5deac5341a5679dc322ba70e6ed8df5f51249709746ea5d6b8e52a485f529d1"
+    },
+    {
+      "path": "crates/lemmings-core/src/terrain/bulk.rs",
+      "bytes": 19000,
+      "sha256": "f17522325d42bf3eb63bbf96a656ced30f13f9065baf36d81f3fbaa2d9172c40"
+    },
+    {
+      "path": "crates/lemmings-game/Cargo.toml",
+      "bytes": 452,
+      "sha256": "40e395eb49f6f9c0652cf570850fe19f0fe0573c296273a391fff1eda539b2cf"
+    },
+    {
+      "path": "crates/lemmings-game/src/assets.rs",
+      "bytes": 31851,
+      "sha256": "0ec03f0928efe748f36d72c135bfbe597832eed2490b868fd0e52e0265d7e34a"
+    },
+    {
+      "path": "crates/lemmings-game/src/lib.rs",
+      "bytes": 676,
+      "sha256": "8d0ed2af28352a8bd8f535e9751eb382850f32c8b843154ff0cd93628221b39c"
+    },
+    {
+      "path": "crates/lemmings-game/src/lifecycle.rs",
+      "bytes": 11058,
+      "sha256": "405e8eb336141b268d6493d444d8911d9af232c8281516ab8937dae70ae7799d"
+    },
+    {
+      "path": "crates/lemmings-game/src/panel.rs",
+      "bytes": 16256,
+      "sha256": "545f4a757d3ec7fe751b87a4f8cdf9ed35d4a92d567e12bdf268cacca70d5204"
+    },
+    {
+      "path": "crates/lemmings-game/src/pointer.rs",
+      "bytes": 2584,
+      "sha256": "6af0225717036307888ca0c38f150991a3c4b8c76dc4be6417e1cca7ef540df8"
+    },
+    {
+      "path": "crates/lemmings-game/src/render.rs",
+      "bytes": 24917,
+      "sha256": "53709ee0c87ecdd05b68b8c766d484a334cf0f38cc09d0c435f26f19963a7ba4"
+    },
+    {
+      "path": "crates/lemmings-resources/Cargo.toml",
+      "bytes": 321,
+      "sha256": "c430e2a3913de2bd874e5d03657142c7ba6e262a7179d3f5593f495980099b82"
+    },
+    {
+      "path": "crates/lemmings-resources/src/catalog.rs",
+      "bytes": 20391,
+      "sha256": "482e6e19efb152ea111b4037eaba3f8d9ec0d55ced02508638fa72394b66182f"
+    },
+    {
+      "path": "crates/lemmings-resources/src/dat.rs",
+      "bytes": 15857,
+      "sha256": "e2b26f994f33b87c7a1fad7e9f7411f5d971d74ceb3163a0607f1e2e77b074fd"
+    },
+    {
+      "path": "crates/lemmings-resources/src/decompress.rs",
+      "bytes": 22421,
+      "sha256": "70671fd5a88211a121aebc110c63cb997d03432694a9db18c593f8c1442c32f2"
+    },
+    {
+      "path": "crates/lemmings-resources/src/ground.rs",
+      "bytes": 17041,
+      "sha256": "b8d6fc8335de563b7465450a02bc3789850344258a51ece148d2965a6053f651"
+    },
+    {
+      "path": "crates/lemmings-resources/src/level.rs",
+      "bytes": 28391,
+      "sha256": "7c4d5b6c02c5442dc0fa30706bc8956c11b3384e01b6e93646d55d76ce7f4331"
+    },
+    {
+      "path": "crates/lemmings-resources/src/lib.rs",
+      "bytes": 2511,
+      "sha256": "3149b3dfd7a21d7422442347590c015b81d969563fa80d6f626c997b94e29303"
+    },
+    {
+      "path": "crates/lemmings-resources/src/masks.rs",
+      "bytes": 20832,
+      "sha256": "06dcc3d9cf648af8327ef3fac2df7ab7f08f364f12c6b6f5f7454736af340911"
+    },
+    {
+      "path": "crates/lemmings-resources/src/objects.rs",
+      "bytes": 29931,
+      "sha256": "2fcbfc27434943f0a3c25e18758dbfcd9b6212c935ad76f1d1e00b39280893fd"
+    },
+    {
+      "path": "crates/lemmings-resources/src/odd.rs",
+      "bytes": 8421,
+      "sha256": "e4cb0a0cd73c3bbf1619a0c8eac79514649406695b6f5e8416e697b301020e7e"
+    },
+    {
+      "path": "crates/lemmings-resources/src/particles.rs",
+      "bytes": 2699,
+      "sha256": "ef9a7b86b4ba4daf3ac7c5d13e0a14757fdfa2c98cb361b7aff5115fb727283b"
+    },
+    {
+      "path": "crates/lemmings-resources/src/reader.rs",
+      "bytes": 3984,
+      "sha256": "8ff493a5db815d33deb25b21a4c27db9ab529328357bc1382f0514a518cd77f7"
+    },
+    {
+      "path": "crates/lemmings-resources/src/sprites.rs",
+      "bytes": 33838,
+      "sha256": "88d0375463113ae34f3c412a5d9f0338ccee048b499501f60faf5e69c5e0d05e"
+    },
+    {
+      "path": "crates/lemmings-resources/src/terrain.rs",
+      "bytes": 29099,
+      "sha256": "e2a086dc3df9f4c3d1486ba8a9fe1c6e7504a0f15206b896c3604316efa0c4ff"
+    },
+    {
+      "path": "crates/lemmings-resources/src/ui.rs",
+      "bytes": 38527,
+      "sha256": "2ea7041f0388f7f60216a892d48f42f2dea3b03b5790715dbfb01b5f10b39e8d"
+    },
+    {
+      "path": "crates/lemmings-resources/src/vgagr.rs",
+      "bytes": 33687,
+      "sha256": "f973cbfd6e1d6ce87b3430b2c8a6053d1a209b773859afb3095a2fd0cc1dbdf0"
+    },
+    {
+      "path": "crates/lemmings-resources/src/vgaspec.rs",
+      "bytes": 27891,
+      "sha256": "680ae409742e6e8cb2c98477ec1607289ee30314a94120d40f0639c2c141cb56"
+    },
+    {
+      "path": "crates/lemmings-session/Cargo.toml",
+      "bytes": 338,
+      "sha256": "137e5b6db8113cec8b0f4e930956f36339da2e63ba0d0eab2bbacc7ebe01f67f"
+    },
+    {
+      "path": "crates/lemmings-session/src/fixtures.rs",
+      "bytes": 4370,
+      "sha256": "fe6da73a4698b3436fa5239dcf38f49bf441ca656a82b5702945537750873a00"
+    },
+    {
+      "path": "crates/lemmings-session/src/lib.rs",
+      "bytes": 1395,
+      "sha256": "97af4161463cf9f6cae5c2d1d1c83f33f35625da99e144c9b2c7c1f03f40e268"
+    },
+    {
+      "path": "crates/lemmings-session/src/pacing.rs",
+      "bytes": 3750,
+      "sha256": "476b1fd985ab59a3299e800bbb7d823184ecd6d56f1efcbd82ca659f344745ac"
+    },
+    {
+      "path": "crates/lemmings-session/src/session.rs",
+      "bytes": 54223,
+      "sha256": "e2da5be93644e90fdf5b41e069961836962afc596e440165d8e4829dbd7ebe5a"
+    },
+    {
+      "path": "tools/check_completion.py",
+      "bytes": 9789,
+      "sha256": "c74cdaf29b0576acd81509875f7d61dfe1df1c4c2e4ca68ef4b631d312093f3b"
+    },
+    {
+      "path": "tools/check_desktop.py",
+      "bytes": 5484,
+      "sha256": "eb6cc74bfbe21bb7f3dfe62869f1ab12fc9839c2f1b5af74d3cb91e8dc4b86fa"
+    },
+    {
+      "path": "tools/check_web.py",
+      "bytes": 10322,
+      "sha256": "361963e3c53bd8621feddb6c9e239b54cb32c6638ee500b9c5e1e8523c5c8063"
+    },
+    {
+      "path": "tools/check_web_journey.py",
+      "bytes": 11225,
+      "sha256": "4e073a43c1617ded271515fbc4fcf1be75033f4ab96903e430dec56c71a78528"
+    },
+    {
+      "path": "tools/state_replay.py",
+      "bytes": 16162,
+      "sha256": "f9485c7f9e97ec385ede05755e64d2cfb96ec7cf3e056b285e535ff1016c80fa"
+    },
+    {
+      "path": "tools/tests/test_web_journey.py",
+      "bytes": 5834,
+      "sha256": "bf757ad7464a38d6fce838ad76ea4191ab11e69eb11d677befade12034181219"
+    },
+    {
+      "path": "tools/web/check.html",
+      "bytes": 229,
+      "sha256": "7a8c0b2ec89897ab640ef4f09015222005f08dfac73f1f0de5940932370ab34b"
+    },
+    {
+      "path": "tools/web/check.js",
+      "bytes": 7604,
+      "sha256": "2ca28cfe526f980c0a72c4c4178e8ea6ca6e0219e1184fd376652d492ca8b158"
+    },
+    {
+      "path": "tools/web/dom_check.js",
+      "bytes": 5824,
+      "sha256": "a82dfb7a502bea030d6e9c19d5e99ffa4e68850199bd023c4578e95d4309f67c"
+    },
+    {
+      "path": "tools/web/journey_check.js",
+      "bytes": 4322,
+      "sha256": "4c336dc029c307bee86d907193bffe5071dcde95f89000e751c13ff0c8a7d4af"
+    },
+    {
+      "path": "tools/web/journey_recorder.js",
+      "bytes": 3514,
+      "sha256": "97136d27e8e7f5485b954b9c3dc24bfe7465c2e82d405b8150292efa5bf02fa3"
+    },
+    {
+      "path": "tools/web/journey_replay.js",
+      "bytes": 2996,
+      "sha256": "634d5e7e70b54334935c692d1e9be98f991303d4d0b517e117a236ea4170755e"
+    },
+    {
+      "path": "tools/web_build.py",
+      "bytes": 3762,
+      "sha256": "e5db3262c473aaf662c4b206d50a6949df9a52419a81f4816d7fbb5b03309d98"
+    },
+    {
+      "path": "tools/web_journey.py",
+      "bytes": 5430,
+      "sha256": "58b28062e6f81a1bc8b4160a53ca448d12db48fa2ec1dd67f61ba896450ad936"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/rust-red.log",
+      "bytes": 1170,
+      "sha256": "6689325f793d5eb65ce0b6d581ec1d7e396f37b632c4e5bb4501c9d72db7d621"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/rust-green.log",
+      "bytes": 1026,
+      "sha256": "920a534abf97b23f223742ff657706ba8b33b9af64a63af434cb2c43c5e16da7"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/python-red.log",
+      "bytes": 828,
+      "sha256": "913bc4866b61c30d79583077f196bb5ae4785eb8f1a646478e077483f1772533"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/python-final.log",
+      "bytes": 1624,
+      "sha256": "9564e3bbca7d7371dccc95cd8c8bb6007d9df913cfd707d29104ad62946e22f1"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/clippy.log",
+      "bytes": 230,
+      "sha256": "f09440e455d2607dc12f4d008947aeeeec990788c052ee4835ea08ea0d2576f3"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/journey-matrix.log",
+      "bytes": 2893,
+      "sha256": "43da895abd69255abcc5d01fea20664d1292f717a270a9fb88c269eab078c521"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/original-journey.json",
+      "bytes": 96282761,
+      "sha256": "6a9182f75166bb2bfeb1491a6896a5fb1087601f330ee64a6568da422f86a7a2"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/cdp-original.mjs",
+      "bytes": 10946,
+      "sha256": "82104c1f4d30e2c9c066bd15866a479688ef55f26fe871b76844166fa87aaffc"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/cdp-original.log",
+      "bytes": 1358,
+      "sha256": "51823b1936ddab50d552e4607194531578112c3c31bfdd3c3e0c8edde1e76ba2"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/cdp-original.json",
+      "bytes": 1889,
+      "sha256": "efdd808c3f69ebf3dae3ccb7e528069a254ddb5352b451ff96ac5e48b06cd194"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/original-win.png",
+      "bytes": 182287,
+      "sha256": "29fa845dc772bcbce7380912845f9fbf5810ecb686119fa1d5243ab097766815"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/original-loss.png",
+      "bytes": 182096,
+      "sha256": "ac658e7572e3e4c5f5906d9f1aa78dfefe13772b11d526854961f8043249ba81"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/cdp-partitions.mjs",
+      "bytes": 9322,
+      "sha256": "a60569b836cfffc518476651151d4953c83f95efa470d912c90fc2250f9d51b2"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/cdp-partitions.log",
+      "bytes": 226,
+      "sha256": "a8ab1bfcf664638db61dfa7cabfb3fb8f399bddcf5eaea5afb0c971da56cdf54"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/cdp-partitions.json",
+      "bytes": 303,
+      "sha256": "aeb7e16df92a63491fed85917dc044ec17788fed6bb1e8679d0f48f1f70b22a3"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/preview.mjs",
+      "bytes": 8301,
+      "sha256": "c2d53c0eaf370b8476519a7272b51eb1bdf671a81e3457e30da45d2cf933e8d4"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/preview.log",
+      "bytes": 143,
+      "sha256": "803a908e61b302ad3fc13fa176dd27fcd61eab382ac40a1d6c31f5ddc8255c2d"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/preview.json",
+      "bytes": 168,
+      "sha256": "bd2afda3286fa10d09ca568b46574bff093c67ae528484fc5c48114dd6bf4d70"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/self-review.json",
+      "bytes": 1321,
+      "sha256": "4d2ea28d0236281acd651468fb67ffe9a39a46a943ae9d1598ca73c8b41403a1"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/dependency-audit.json",
+      "bytes": 405,
+      "sha256": "73e6c2cb5819bc8de44005d79d53481477948ddd26a39632f9d784bb38f5f483"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/served-source.json",
+      "bytes": 897,
+      "sha256": "920d69ce85ad16fb5296c9807f4a7c3f505b4d62124b04dd3e9956db1e467207"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/make-check.log",
+      "bytes": 89020,
+      "sha256": "5fcd1ac2f4d16b1a1b7967ce7fe1542df38f019abd9d196f9482441974b46220"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/local-validation.json",
+      "bytes": 394,
+      "sha256": "8da62229c6f74cfa150c3ce1a9e2907ee0d2c3a26c6fadc4ec90c3cd3c8fcba9"
+    },
+    {
+      "path": "mydocs/reports/issue-70_web_playthrough.png",
+      "bytes": 183440,
+      "sha256": "d329c4b7133b712b83deb1a4b8c030bb6416f765fc6e93e8f5c0d87b26c91fe5"
+    },
+    {
+      "path": "target/release/web_trace",
+      "bytes": 1005048,
+      "sha256": "6d211e1ec3466b29c70b8b7beb71e1b6c415982e018c4bbd88dfe3ac939c64c9"
+    },
+    {
+      "path": "target/release/lemmings-desktop",
+      "bytes": 1067160,
+      "sha256": "71cadf14da86e1f17164e6ea4098261d229acf274949183fc4b917a155c5f1d1"
+    },
+    {
+      "path": "target/wasm32-unknown-unknown/release/lemmings_web.wasm",
+      "bytes": 466734,
+      "sha256": "ef4ea216e55b981b99b30f09aaeed23429ed1a553a948630090229b0d3d00462"
+    },
+    {
+      "path": "assets/local/web/pkg/lemmings_web_bg.wasm",
+      "bytes": 410906,
+      "sha256": "01b308e6666d7e9ab8637bcc4348d12e1e12dc3a0113942c52650d2154e93b95"
+    },
+    {
+      "path": "assets/local/web/pkg/lemmings_web.js",
+      "bytes": 18928,
+      "sha256": "6d7b977f32ad9134063c8eb6d8ae97c3dfecdb301ffd3fa8e1b7eddf25ce80eb"
+    },
+    {
+      "path": "assets/local/web/pkg/lemmings_web.d.ts",
+      "bytes": 6131,
+      "sha256": "b3c298238457133c44ec16257e18d273cc5bab4ca837bae816417d78d42beb4f"
+    },
+    {
+      "path": "assets/local/web/pkg/lemmings_web_bg.wasm.d.ts",
+      "bytes": 2759,
+      "sha256": "df2efa67170c1a745ef9b6db6694887217cf83d5a426b3d0d8937411ce64e0e5"
+    }
+  ],
+  "evidence_trees": [
+    {
+      "directory": "assets/local/issue-70-synthetic-matrix",
+      "files": 396,
+      "bytes": 48147800,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/issue-70-synthetic-matrix-index.json",
+        "bytes": 69565,
+        "sha256": "6f59dda6849eccdcda2ec359f4313eb3e635248f193a12c238864240c88486e4"
+      }
+    },
+    {
+      "directory": "assets/local/issue-70-original-replay",
+      "files": 381,
+      "bytes": 27912643,
+      "index": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-70-review/issue-70-original-replay-index.json",
+        "bytes": 66922,
+        "sha256": "a7b28cd7e7b6bb599f62018be2a355c243ed4c278b41ce442b7ccea6094fa565"
+      }
+    }
+  ],
+  "index_algorithm": "POSIX relative-path lexicographic order; compact sorted-key JSON array and final newline; each entry exact file size/SHA-256",
+  "publication": "Exact reviewed head, push/PR/main four-job CI and actual full ZIP checkout logs, merge-tree and remote mode/blob identities recorded in issue70 before closure; G09 whole completion and next G10 audio in parent issue1",
+  "preview": "User-authorized HTTP0.0.0.0:8080 and UFW TCP8080 retained; CDP19222 remains loopback"
+}

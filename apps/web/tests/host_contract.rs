@@ -138,3 +138,25 @@ fn all_eight_commands_share_direct_core_ids_and_native_frames() {
         }
     }
 }
+
+#[test]
+fn journey_diagnostics_include_nuke_scan_and_replayable_ordered_inputs() {
+    let mut game = WebGame::new("win", "reference").unwrap();
+    assert!(game.state().contains(
+        "\"nuke\":{\"is_nuked\":false,\"assigning\":false,\"next_index\":0,\"max_lemmings\":3}"
+    ));
+    game.command("Pause", 0.0).unwrap();
+    game.command("SetReleaseRate", 51.0).unwrap();
+    game.command("Resume", 0.0).unwrap();
+    assert_eq!(
+        game.input_log(),
+        "0 0 Pause\n0 1 SetReleaseRate 51\n0 2 Resume\n"
+    );
+    game.step(80.0).unwrap();
+    game.command("Nuke", 0.0).unwrap();
+    game.step(1.0).unwrap();
+    assert!(game.state().contains("\"nuke\":{\"is_nuked\":true"));
+    assert!(game.input_log().ends_with("80 0 Nuke\n"));
+    game.restart_level().unwrap();
+    assert!(game.input_log().is_empty());
+}

@@ -44,3 +44,4 @@ serve-web:
 
 check-web:
 	python3 tools/check_web.py
+	python3 tools/check_web_journey.py

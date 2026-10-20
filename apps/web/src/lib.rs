@@ -269,6 +269,41 @@ impl WebGame {
         self.run.session.queue(command).map_err(|e| e.to_string())
     }
 
+    /// Stable, ordered text accepted by the independent desktop replay adapter.
+    pub fn input_log(&self) -> String {
+        let mut text = String::new();
+        for input in &self.run.session.inputs {
+            let command = match input.command {
+                InputCommand::Pause => "Pause".into(),
+                InputCommand::Resume => "Resume".into(),
+                InputCommand::Custom(command) => match command {
+                    StartupCommand::Nuke => "Nuke".into(),
+                    StartupCommand::SetReleaseRate(rate) => format!("SetReleaseRate {rate}"),
+                    StartupCommand::AssignDigger(id) => format!("AssignDigger {id}"),
+                    StartupCommand::AssignBasher(id) => format!("AssignBasher {id}"),
+                    StartupCommand::AssignMiner(id) => format!("AssignMiner {id}"),
+                    StartupCommand::AssignBuilder(id) => format!("AssignBuilder {id}"),
+                    StartupCommand::AssignBlocker(id) => format!("AssignBlocker {id}"),
+                    StartupCommand::AssignBomber(id) => format!("AssignBomber {id}"),
+                    StartupCommand::AssignClimber(id) => format!("AssignClimber {id}"),
+                    StartupCommand::AssignFloater(id) => format!("AssignFloater {id}"),
+                    StartupCommand::AssignPointer(r) => format!(
+                        "AssignPointer {:?} {} {} {}",
+                        r.skill,
+                        r.primary,
+                        r.secondary.map_or_else(|| "-".into(), |id| id.to_string()),
+                        r.right_click
+                    ),
+                },
+            };
+            text.push_str(&format!(
+                "{} {} {command}\n",
+                input.control_step, input.sequence
+            ));
+        }
+        text
+    }
+
     /// Versioned diagnostic JSON; includes every actor field and queued input.
     /// Terrain, brick and raw object-map bytes are exposed separately as copies.
     pub fn state(&self) -> String {
@@ -280,8 +315,13 @@ impl WebGame {
             s.actors.iter().map(|a| a.state()).collect::<Vec<_>>()
         );
         let inputs = format!("{:?}", s.inputs);
+        let n = s.scheduler.nuke_state();
+        let nuke = format!(
+            "{{\"is_nuked\":{},\"assigning\":{},\"next_index\":{},\"max_lemmings\":{}}}",
+            n.is_nuked, n.assigning, n.next_index, n.max_lemmings
+        );
         format!(
-            "{{\"version\":1,\"session\":{},\"digger\":{},\"builder\":{},\"blocker\":{},\"bomber\":{},\"climber\":{},\"floater\":{},\"exit\":{},\"hazards\":{},\"completion\":{},\"remaining_bashers\":{},\"remaining_miners\":{},\"actor_details\":{actors:?},\"inputs\":{inputs:?}}}",
+            "{{\"version\":1,\"nuke\":{nuke},\"session\":{},\"digger\":{},\"builder\":{},\"blocker\":{},\"bomber\":{},\"climber\":{},\"floater\":{},\"exit\":{},\"hazards\":{},\"completion\":{},\"remaining_bashers\":{},\"remaining_miners\":{},\"actor_details\":{actors:?},\"inputs\":{inputs:?}}}",
             s.snapshot(),
             s.digger_snapshot(),
             s.builder_snapshot(),

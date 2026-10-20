@@ -6,7 +6,7 @@
 
 ## 현재 상태
 
-현재 G00~G08을 완료했습니다. [#60 한 레벨 통합 완주](mydocs/reports/issue-60_native_playthrough.md)의 병합·main CI를 확인했고, [G09-01 / #62](mydocs/tech_insights/issue-62_shared_session.md)의 공유 세션을 완료했습니다. [G09-02 / #64](mydocs/tech_insights/issue-64_shared_game.md)의 자산 바이트·공통 장면/패널도 완료했습니다. [G09-03 / #66](mydocs/tech_insights/issue-66_wasm_browser.md)에서 실제 JS/WASM 합성 브라우저 진입을 연결합니다.
+G00~G08을 완료했고, G09-01~04의 공유 세션·자산·WASM·브라우저 입력에 이어 [G09-05 / #70](mydocs/reports/issue-70_web_playthrough.md)에서 원본 Fun01 전원 구출·실패·재시작/다음 레벨과 네이티브 전체 상태·맵·화면 일치를 검증했습니다. 정확한 게시 CI와 G09 완료 처리는 #70/상위 #1에서 추적하며 다음은 G10 사운드 통합입니다.
 
 G00 기준 정의·G01 개발 기반·G02 DAT 언패킹을 완료했습니다. `no_std` 코어 자료형과 DAT 구간 검증·압축 해제를 도입했습니다. 원작 파일 50개·소스 46개와 120개 레벨·8직업·음악 21개·효과음 18개의 검증 범위를 고정했습니다. [G02-02 압축 해제](mydocs/tech_insights/issue-9_dat_decompression.md)는 합성 테스트, 원본 21개 파일·102개 구간의 해시 대조와 실제 Rust·Python·WASM CI를 통과했습니다.
 
