@@ -1,6 +1,29 @@
 //! Native diagnostic producer for browser equivalence. Optional local bytes stay local.
 use lemmings_web::{WebAssets, WebGame};
 use std::io::{self, Read, Write};
+fn record(
+    out: &mut impl Write,
+    game: &mut WebGame,
+    capture: Option<u32>,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let tag = capture.map_or_else(String::new, |n| format!(",\"capture\":{n}"));
+    let state = format!(
+        "{{\"state\":{},\"view\":{}{tag}}}",
+        game.state(),
+        game.view_state()
+    );
+    for bytes in [
+        state.into_bytes(),
+        game.terrain(),
+        game.bricks(),
+        game.objects(),
+        game.frame()?,
+    ] {
+        out.write_all(&u32::try_from(bytes.len())?.to_le_bytes())?;
+        out.write_all(&bytes)?;
+    }
+    Ok(())
+}
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Vec<_> = std::env::args().collect();
@@ -8,13 +31,21 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         return Err("expected scene, pacing, maximum steps [--interactive | asset directory --interactive]; stdin: step operation arguments".into());
     }
     let mut game = WebGame::new(
-        if args[1].starts_with("original:") {
+        if args[1] == "win:2" {
+            "win"
+        } else if args[1].starts_with("original:") {
             "builder"
         } else {
             &args[1]
         },
         &args[2],
     )?;
+    if args[1] == "win:2" {
+        game.step(1000.0)?;
+        if !game.transition("continue")? {
+            return Err("missing synthetic next level".into());
+        }
+    }
     if let Some(level) = args[1].strip_prefix("original:") {
         let directory = std::path::Path::new(args.get(4).ok_or("asset directory required")?);
         let mut bank = WebAssets::new();
@@ -62,6 +93,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     )?;
                 }
                 ["Release"] => game.release_input(),
+                ["Frame", index] => record(&mut out, &mut game, Some(index.parse()?))?,
                 ["Restart"] => game.restart_level()?,
                 ["Continue"] => {
                     game.transition("continue")?;
@@ -71,21 +103,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 _ => return Err("invalid diagnostic operation".into()),
             }
         }
-        let state = format!(
-            "{{\"state\":{},\"view\":{}}}",
-            game.state(),
-            game.view_state()
-        );
-        for bytes in [
-            state.as_bytes().to_vec(),
-            game.terrain(),
-            game.bricks(),
-            game.objects(),
-            game.frame()?,
-        ] {
-            out.write_all(&u32::try_from(bytes.len())?.to_le_bytes())?;
-            out.write_all(&bytes)?;
-        }
+        record(&mut out, &mut game, None)?;
+        let state = game.state();
         if step == steps
             || (!interactive
                 && (state.contains("\"phase\":\"Won\"") || state.contains("\"phase\":\"Lost\"")))

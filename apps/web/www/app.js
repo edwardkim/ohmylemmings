@@ -21,6 +21,24 @@ let input;
 let request = null;
 let loading = false;
 let exited = false;
+let observer = null;
+function notify(type, detail = {}) { if (observer) observer(type, game, detail); }
+const tickObserver = phase => notify(phase);
+function newPump() { return new FramePump(game,64,observer ? tickObserver : null); }
+// Optional developer observation. It has no UI and sends no data anywhere.
+export function observe(listener) {
+    if (listener !== null && typeof listener !== 'function') throw new Error('invalid observer');
+    observer=listener;
+    if (pump) pump.observer=listener ? tickObserver : null;
+    if (listener && game) notify('attach');
+    return () => { if (observer===listener) {observer=null;if(pump)pump.observer=null;} };
+}
+function invoke(op,args,fn) { notify('input',{op,args});return fn(); }
+const inputGame={
+    key:(...args)=>invoke('Key',[args[0],Number(args[1])],()=>game.key(...args)),
+    pointer:(...args)=>invoke('Pointer',args,()=>game.pointer(...args)),
+    release_input:()=>invoke('Release',[],()=>game.release_input()),
+};
 for (let n = 1; n <= 30; n++) level.add(new Option(`Fun ${String(n).padStart(2,'0')}`, n));
 
 function stop() {
@@ -53,6 +71,7 @@ function draw() {
     status.textContent = loading ? '파일을 읽는 중…' : exited ? '게임 중단' : finished ? (state.completion.phase === 'Won' ? '구출 완료' : '다시 도전') : paused ? '일시 정지' : '진행 중';
     population.textContent = `활동 중 ${state.session.alive} · 구출 ${state.exit.saved}`;
     source.textContent = game.original() ? `원본 파일 · Fun ${String(game.level()).padStart(2,'0')}` : '직접 만든 자산으로 기술과 구출을 연습합니다.';
+    notify('present',{canvas});
     if (finished || exited) stop();
     return !finished && !exited;
 }
@@ -67,29 +86,30 @@ function frame(timestamp) {
         if (draw()) schedule();
     } catch (error) { fail(error); }
 }
-function replaced() {
+function replaced(reason) {
+    notify('reset',{reason});
     input.release();
     exited = false;
     errorText.textContent = '';
     if (game.original()) { level.value = game.level(); scene.value = ''; }
-    pump = new FramePump(game);
+    pump = newPump();
     stop(); draw(); schedule();
 }
 function action(name) {
     if (name === 'exit') { exited = true; input.release(); pump.suspend(); stop(); }
-    else if ((name === 'restart' || name === 'continue') && game.transition(name)) replaced();
+    else if ((name === 'restart' || name === 'continue') && game.transition(name)) replaced(name);
 }
 function attempt(fn) {
     try { fn(); draw(); } catch (error) { recover(error); draw(); }
 }
 pause.addEventListener('click', () => attempt(() => {
     if (exited) { exited = false; pump.suspend(); schedule(); }
-    else game.command(game.paused() ? 'Resume' : 'Pause', 0);
+    else {const command=game.paused() ? 'Resume' : 'Pause';invoke(command,[0],()=>game.command(command,0));}
 }));
-restart.addEventListener('click', () => attempt(() => { game.restart_level(); replaced(); }));
+restart.addEventListener('click', () => attempt(() => { game.restart_level(); replaced('restart'); }));
 proceed.addEventListener('click', () => attempt(() => action('continue')));
-scene.addEventListener('change', () => attempt(() => { game.reset(scene.value, 'reference'); replaced(); }));
-openLevel.addEventListener('click', () => attempt(() => { game.start_level(Number(level.value)); replaced(); }));
+scene.addEventListener('change', () => attempt(() => { game.reset(scene.value, 'reference'); replaced('synthetic'); }));
+openLevel.addEventListener('click', () => attempt(() => { game.start_level(Number(level.value)); replaced('level'); }));
 files.addEventListener('change', async () => {
     if (!files.files.length || loading) return;
     loading = true;
@@ -99,7 +119,7 @@ files.addEventListener('change', async () => {
     try {
         bank = await readFiles(Array.from(files.files));
         game.load_original(bank, Number(level.value));
-        replaced();
+        replaced('load');
     } catch (error) { recover(error); }
     finally { bank?.free(); loading = false; files.value = ''; draw(); }
 });
@@ -112,7 +132,7 @@ document.addEventListener('visibilitychange', () => {
 try {
     await init();
     game = new WebGame(scene.value, 'reference');
-    pump = new FramePump(game);
-    input = new GameInput(canvas, () => game, action, draw, recover, () => !loading && !exited);
+    pump = newPump();
+    input = new GameInput(canvas, () => inputGame, action, draw, recover, () => !loading && !exited);
     draw(); schedule();
 } catch (error) { fail(error); }
