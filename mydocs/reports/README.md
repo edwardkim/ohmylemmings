@@ -76,3 +76,5 @@
 - [#80 SDL/Web 오디오 출력](issue-80_audio_output.md)
 
 - [#82 G10-06 통합 사운드 검증](issue-82_audio_playthrough.md)
+
+- [#89 G11-03 특수4개 장면 연결 결과](issue-89_special_scenes.md)

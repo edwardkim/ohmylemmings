@@ -1,5 +1,7 @@
 # 진행 중 작업
 
+- [#89 G11-03 특수 장면 연결](issue-89_special_scenes.md)
+
 - [#87 G11-02 네 난이도 레벨 선택·전환](issue-87_rank_selection.md)
 
 - [#85 G11-01 전체 호환성·성능 검증 준비](issue-85_compatibility_validation.md)

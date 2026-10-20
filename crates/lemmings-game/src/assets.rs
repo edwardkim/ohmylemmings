@@ -45,6 +45,7 @@ struct Original {
     ground: Vec<u8>,
     terrain_images: Vec<u8>,
     object_images: Vec<u8>,
+    special_record: Option<Vec<u8>>,
 }
 /// Host-supplied, case-sensitive logical asset names, independent of paths or URLs.
 ///
@@ -113,12 +114,12 @@ impl Assets {
     /// Backward-compatible Fun 1..=30 entry point.
     ///
     /// Parses the same resources used by native rendering, without filesystem,
-    /// SDL or browser access. Special graphics levels remain unsupported.
+    /// SDL or browser access, including the four special backgrounds.
     pub fn from_source(source: &mut dyn AssetSource, number: u8) -> Result<Self, Box<dyn Error>> {
         Self::from_level_source(source, LevelId::new(Difficulty::Fun, number)?)
     }
 
-    /// Assemble a catalog level from named bytes. Special scenes remain unsupported.
+    /// Assemble a standard or special catalog level from named bytes.
     pub fn from_level_source(
         source: &mut dyn AssetSource,
         level: LevelId,
@@ -138,9 +139,15 @@ impl Assets {
             &mut record,
         )?;
         let header = resolved.header();
-        if header.special_graphic_set().is_some() {
-            return Err("scene assembly currently requires a standard graphics level".into());
-        }
+        let special_record = if let Some(index) = header.special_graphic_set() {
+            let bytes = read(source, &format!("VGASPEC{index}.DAT"))?;
+            let file = VgaSpecFile::parse(&bytes)?;
+            let mut record = vec![0; file.decoded_size()];
+            file.decode_into(&mut record)?;
+            Some(record)
+        } else {
+            None
+        };
         let ground_bytes = read(source, &format!("GROUND{}O.DAT", header.graphics))?;
         let ground = GroundRecord::parse(&ground_bytes)?;
         let dat = read(source, &format!("VGAGR{}.DAT", header.graphics))?;
@@ -151,12 +158,10 @@ impl Assets {
         graphics.decode_into(ground, &mut terrain_images, &mut object_images)?;
         let images = VgagrImages::new(ground, &terrain_images, &object_images)?;
         let mut canvas = vec![IndexedPixel::default(); LEVEL_TERRAIN_PIXEL_COUNT];
-        let terrain = compose_terrain(
+        let terrain = compose_level_terrain(
             resolved.base_record(),
-            TerrainSource::Standard(TerrainGraphics::new(
-                u8::try_from(header.graphics)?,
-                images,
-            )?),
+            images,
+            special_record.as_deref(),
             &mut canvas,
         )?;
         let mask = terrain
@@ -269,6 +274,7 @@ impl Assets {
                 ground: ground_bytes,
                 terrain_images,
                 object_images,
+                special_record,
             }),
         })
     }
@@ -525,9 +531,10 @@ impl Assets {
         let ground = GroundRecord::parse(&original.ground)?;
         let images = VgagrImages::new(ground, &original.terrain_images, &original.object_images)?;
         let mut terrain = vec![IndexedPixel::default(); self.width * self.height];
-        let terrain = compose_terrain(
+        let terrain = compose_level_terrain(
             level,
-            TerrainSource::Standard(TerrainGraphics::new(original.graphics, images)?),
+            images,
+            original.special_record.as_deref(),
             &mut terrain,
         )?;
         let mut edited = terrain.pixels().to_vec();
@@ -536,8 +543,8 @@ impl Assets {
                 *pixel = IndexedPixel::default();
             } else if brick == 1 {
                 *pixel = IndexedPixel {
-                    // Terrain colors are local0..7, then shifted to8..15.
-                    // Custom0 is also copied to combined palette7 for bridges.
+                    // Preserve terrain provenance for object clipping. The final
+                    // visible brick uses palette7, including on special backgrounds.
                     color: 0,
                     opaque: true,
                 };
@@ -581,10 +588,48 @@ impl Assets {
             &mut output,
         )?;
         Ok((0..self.width * self.height)
-            .map(|i| scene.rgba(i % self.width, i / self.width).unwrap())
+            .map(|i| {
+                let pixel = scene.pixels()[i];
+                if pixel.terrain && !pixel.object && brick_mask[i] == 1 {
+                    // Special terrain RGB differs from the game/object palette.
+                    let [r, g, b] = scene.palette()[7];
+                    [r, g, b, 255]
+                } else {
+                    scene.rgba(i % self.width, i / self.width).unwrap()
+                }
+            })
             .collect())
     }
 }
+// The returned terrain borrows only the caller canvas. Keep initial collision
+// assembly and later terrain/object rendering on the same source/palette path.
+fn compose_level_terrain<'a>(
+    level: LevelRecord<'_>,
+    images: VgagrImages<'_>,
+    special_record: Option<&[u8]>,
+    canvas: &'a mut [IndexedPixel],
+) -> Result<LevelTerrain<'a>, Box<dyn Error>> {
+    if let Some(index) = level.header().special_graphic_set() {
+        let record = VgaSpecRecord::parse(special_record.ok_or("special record missing")?)?;
+        let mut planes = vec![0; VGASPEC_PLANAR_SIZE];
+        let special = SpecialTerrain::decode_into(index, record, &mut planes)?;
+        Ok(compose_terrain(
+            level,
+            TerrainSource::Special(special),
+            canvas,
+        )?)
+    } else {
+        Ok(compose_terrain(
+            level,
+            TerrainSource::Standard(TerrainGraphics::new(
+                u8::try_from(level.header().graphics)?,
+                images,
+            )?),
+            canvas,
+        )?)
+    }
+}
+
 fn build_object_map(
     level: LevelRecord<'_>,
     ground: GroundRecord<'_>,
@@ -881,6 +926,7 @@ mod tests {
             ground,
             terrain_images: Vec::new(),
             object_images: Vec::new(),
+            special_record: None,
         });
         let mut mask = vec![0; a.width * a.height];
         let mut bricks = mask.clone();

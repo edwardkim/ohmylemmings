@@ -1,6 +1,6 @@
 # Desktop preview
 
-Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder·Blocker·Bomber·Climber·Floater 할당과 Nuke를 지원합니다. 출구·위험물·승패·결과 화면·재시작과 SDL 음향을 지원합니다. `--difficulty fun|tricky|taxing|mayhem --level 1..30`으로 일반 레벨을 선택합니다. 생략하면 Fun1입니다. 특수4장면과 전수 완주 인증은 후속입니다.
+Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder·Blocker·Bomber·Climber·Floater 할당과 Nuke를 지원합니다. 출구·위험물·승패·결과 화면·재시작과 SDL 음향을 지원합니다. `--difficulty fun|tricky|taxing|mayhem --level 1..30`으로 특수4개를 포함한 레벨을 선택합니다. 생략하면 Fun1입니다. 전수 완주 인증은 후속입니다.
 
 ## 준비와 실행
 
@@ -143,7 +143,7 @@ python3 tools/check_completion.py
 
 ## 결과 화면·재시작 / #54
 
-재시작은 원래 자산에서 지형·개체·수량·시계·Nuke·카메라를 다시 구성합니다. 성공 시 다음 번호로 이동하며 Fun30→Tricky1, Tricky30→Taxing1, Taxing30→Mayhem1로 이어집니다. Mayhem30 성공 뒤에는 R/종료를 선택합니다. 다음 파일이 없거나 지원하지 않는 특수 그래픽이면 결과 화면에서 오류를 표시합니다.
+재시작은 원래 자산에서 지형·개체·수량·시계·Nuke·카메라를 다시 구성합니다. 성공 시 다음 번호로 이동하며 Fun30→Tricky1, Tricky30→Taxing1, Taxing30→Mayhem1로 이어집니다. Mayhem30 성공 뒤에는 R/종료를 선택합니다. 다음 파일이 없거나 손상되었으면 결과 화면에서 오류를 표시합니다.
 
 ```sh
 cargo run --offline --release -p lemmings-desktop -- --synthetic-outcome win

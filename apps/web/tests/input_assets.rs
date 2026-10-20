@@ -18,7 +18,7 @@ fn named_bytes_validate_before_mutation_and_game_retains_immutable_snapshot() {
         "dir/MAIN.DAT",
         "MAIN.DAT ",
         "",
-        "VGASPEC0.DAT",
+        "VGASPEC4.DAT",
         "LEVEL010.DAT",
     ] {
         assert!(files.insert(name, &[1]).is_err(), "{name}");
@@ -203,4 +203,60 @@ fn original_bytes_match_direct_native_game_and_level_switch_resets_clock_and_vie
         (game.state(), game.view_state(), game.frame().unwrap()),
         before
     );
+}
+
+#[test]
+fn special_asset_names_are_bounded_and_missing_or_damaged_replacement_is_atomic() {
+    let mut game = WebGame::new("builder", "reference").unwrap();
+    for (index, music) in [(0, 0), (1, 8), (2, 2), (3, 1)] {
+        let mut files = WebAssets::new();
+        let bytes = support::special_bank(index);
+        for (name, data) in &bytes {
+            files.insert(name, data).unwrap();
+        }
+        game.load_original(&files, 1.0).unwrap();
+        assert!(game.sound_state().contains(&format!("\"music\":{music}")));
+        game.step(80.0).unwrap();
+        game.key("KeyU", false).unwrap();
+        game.due(69999.0).unwrap();
+        let before = (
+            game.state(),
+            game.view_state(),
+            game.frame().unwrap(),
+            game.sound_state(),
+        );
+        for replacement in [None, Some(vec![0; 4])] {
+            let mut broken = WebAssets::new();
+            for (name, data) in &bytes {
+                if name == &format!("VGASPEC{index}.DAT") {
+                    if let Some(data) = &replacement {
+                        broken.insert(name, data).unwrap();
+                    }
+                } else {
+                    broken.insert(name, data).unwrap();
+                }
+            }
+            assert!(game.load_original(&broken, 1.0).is_err());
+            assert_eq!(
+                (
+                    game.state(),
+                    game.view_state(),
+                    game.frame().unwrap(),
+                    game.sound_state()
+                ),
+                before
+            );
+        }
+        assert_eq!(game.due(1428.0).unwrap(), 1); // failed loads kept fractional clock
+        let generation = game.sound_state();
+        game.restart_level().unwrap();
+        assert_ne!(game.sound_state(), generation);
+        assert!(game.sound_state().contains(&format!("\"music\":{music}")));
+        assert_eq!(
+            game.terrain(),
+            lemmings_game::Assets::from_source(&mut |n: &str| Ok(bytes.get(n).cloned()), 1)
+                .unwrap()
+                .terrain
+        );
+    }
 }

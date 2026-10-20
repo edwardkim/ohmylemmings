@@ -32,6 +32,8 @@ def cases():
     rows.append(dict(name='byte-bank-ranks',scene='original:tricky:30',pacing='dos',steps=100,interactive=True,commands=[[10,'Level','taxing',1],[20,'Level','taxing',30],[30,'Level','mayhem',1],[40,'Level','mayhem',30],[50,'Restart'],[60,'Level','fun',1],[70,'Level','fun',30]]))
     for rank in ['fun','tricky','taxing','mayhem']:
         rows.append(dict(name=f'byte-bank-{rank}-boundary',scene=f'original:{rank}:30',pacing='dos',steps=350,interactive=True,winning=True,commands=[[250,'Continue'],[300,'Restart']]))
+    for rank,number in [('fun',22),('tricky',14),('taxing',15),('mayhem',22)]:
+        rows.append(dict(name=f'byte-bank-special-{rank}',scene=f'original:{rank}:{number}',pacing='dos',steps=150,interactive=True,special=True,commands=[[60,'Restart'],[80,'Level',rank,number-1],[130,'Continue']]))
     return rows
 
 
@@ -86,8 +88,10 @@ def check(directory, browser=None, original_assets=None):
     for name,data in bank().items(): (fixture/name).write_bytes(data)
     winning=directory/'winning';winning.mkdir(exist_ok=True)
     for name,data in bank(win=True).items(): (winning/name).write_bytes(data)
+    special=directory/'special';special.mkdir(exist_ok=True)
+    for name,data in bank(win=True,special=True).items(): (special/name).write_bytes(data)
     for test in tests:
-        if test['scene'].startswith('original:'): test['asset_directory']=winning if test.get('winning') else fixture
+        if test['scene'].startswith('original:'): test['asset_directory']=special if test.get('special') else winning if test.get('winning') else fixture
         test['rows']=native_rows(binary,test)
         test.pop('asset_directory',None)
     selected=[]
@@ -96,13 +100,16 @@ def check(directory, browser=None, original_assets=None):
         original=directory/'original';original.mkdir(exist_ok=True)
         for entry in original_files:
             name=entry['name']
-            if re.fullmatch(r'(MAIN|ODDTABLE|LEVEL00[0-9]|GROUND[0-4]O|VGAGR[0-4])\.DAT|VGALEMMI\.EXE',name):
+            if re.fullmatch(r'(MAIN|ODDTABLE|LEVEL00[0-9]|GROUND[0-4]O|VGAGR[0-4]|VGASPEC[0-3])\.DAT|VGALEMMI\.EXE',name):
                 shutil.copyfile(original_assets/name,original/name);selected.append(name)
         for rank,level,code in [('fun',1,'KeyD'),('fun',2,'KeyU'),('fun',3,'KeyC'),('tricky',1,'KeyC'),('taxing',1,'KeyU'),('mayhem',1,'KeyB')]:
             test=dict(name=f'original-{rank}{level:02}',scene=f'original:{rank}:{level}',pacing='dos',steps=150,asset_directory=original,original=True,interactive=True,commands=[[10,'Key',code,0],[20,'Key','ArrowUp',0],[40,'Key','ArrowRight',0],[50,'Key','Home',0],[70,'Key','Space',0],[72,'Key','Space',0],[100,'Pointer','down',280,185,0,1,1],[110,'Release'],[120,'Restart']])
             probe=native_rows(binary,test)[80];actor=probe['state']['session']['actors'][0]
             map_x=max(208,min(310,208+(actor['x']+16)//16));camera=max(0,min(1280,(map_x-208)*16-176))
             test['commands'] += [[79,'Pointer','down',map_x,185,0,1,1],[79,'Release'],[80,'Pointer','move',actor['x']-camera,actor['y']-5,0,0,0],[80,'Pointer','down',actor['x']-camera,actor['y']-5,0,1,1],[81,'Release']]
+            test['rows']=native_rows(binary,test);test.pop('asset_directory');tests.append(test)
+        for rank,level in [('fun',22),('tricky',14),('taxing',15),('mayhem',22)]:
+            test=dict(name=f'original-special-{rank}{level:02}',scene=f'original:{rank}:{level}',pacing='dos',steps=150,asset_directory=original,original=True,interactive=True,commands=[[10,'Key','Space',0],[12,'Key','Space',0],[40,'Key','ArrowRight',0],[60,'Key','Home',0],[120,'Restart']])
             test['rows']=native_rows(binary,test);test.pop('asset_directory');tests.append(test)
     expected=directory/'expected.json';expected.write_text(json.dumps(dict(cases=tests,original_files=selected),separators=(',',':'))+'\n')
     for name in ['check.html','check.js','dom_check.js','sound_check.js']: shutil.copyfile(ROOT/'tools/web'/name,directory/name)
