@@ -1,0 +1,21 @@
+[package]
+name = "lemmings-web"
+description = "WASM host boundary and browser entry for shared Lemmings sessions"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+lemmings-core = { path = "../../crates/lemmings-core" }
+lemmings-game = { path = "../../crates/lemmings-game" }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "=0.2.129"
+
+[lints]
+workspace = true

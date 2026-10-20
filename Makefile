@@ -1,6 +1,6 @@
-.PHONY: check check-rust check-python check-wasm check-desktop
+.PHONY: check check-rust check-python check-wasm check-desktop check-web web serve-web
 
-check: check-rust check-python check-wasm check-desktop
+check: check-rust check-python check-wasm check-desktop check-web
 
 check-rust:
 	cargo fmt --all -- --check
@@ -35,3 +35,12 @@ check-desktop:
 	python3 tools/check_results.py --binary target/release/lemmings-desktop
 	python3 tools/check_panel.py --binary target/release/lemmings-desktop
 	python3 tools/check_pointer.py --binary target/release/lemmings-desktop
+
+web:
+	python3 tools/web_build.py build
+
+serve-web:
+	python3 tools/web_build.py serve
+
+check-web:
+	python3 tools/check_web.py

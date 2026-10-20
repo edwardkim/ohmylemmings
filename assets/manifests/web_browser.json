@@ -1,0 +1,699 @@
+{
+  "format": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/66",
+  "baseline_main": "bdbed5c053ca19cd84fd2e9cbe238bd6dd4a104e",
+  "scope": "G09-03 actual JS/WASM synthetic browser entry; native/browser full diagnostics/maps/rendered pixels; no original browser playthrough, DOS execution, audio or deployment",
+  "tools": {
+    "version": "0.2.129",
+    "platform": "x86_64-unknown-linux-musl",
+    "release": "https://github.com/wasm-bindgen/wasm-bindgen/releases/tag/0.2.129",
+    "archive": {
+      "url": "https://github.com/wasm-bindgen/wasm-bindgen/releases/download/0.2.129/wasm-bindgen-0.2.129-x86_64-unknown-linux-musl.tar.gz",
+      "size": 11695824,
+      "sha256": "82d12bb940e2d4e72e0d5605387fc1b8ca179044e012b620f0ce4e7440e8320e"
+    },
+    "binary": {
+      "member": "wasm-bindgen-0.2.129-x86_64-unknown-linux-musl/wasm-bindgen",
+      "size": 8014800,
+      "sha256": "fb59da714982a04273e9e4b09a85e523e5dd04de35b1a4a8b1641785ee7a71cf"
+    },
+    "source": "Official wasm-bindgen GitHub release asset; archive SHA-256 matches GitHub release API digest; exact binary extracted in memory without unpacking other members"
+  },
+  "dependencies": {
+    "status": "PASS",
+    "existing_packages_unchanged": true,
+    "shared_and_desktop_sources_unchanged": true,
+    "new_registry_packages": 11,
+    "added": [
+      {
+        "name": "bumpalo",
+        "version": "3.20.3",
+        "checksum": "72f5acc6cb2ba439de613abc23857ec3d78374d8ed5ac84e9d11336e87da8649"
+      },
+      {
+        "name": "lemmings-web",
+        "version": "0.1.0",
+        "checksum": null
+      },
+      {
+        "name": "once_cell",
+        "version": "1.21.4",
+        "checksum": "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50"
+      },
+      {
+        "name": "proc-macro2",
+        "version": "1.0.107",
+        "checksum": "985e7ec9bb745e6ce6535b544d84d6cd6f7ad8bd711c398938ae983b91a766d9"
+      },
+      {
+        "name": "quote",
+        "version": "1.0.47",
+        "checksum": "1fbf4db142a473a8d80c26bbf18454ed458bf8d26c8219c331daecfdbd079001"
+      },
+      {
+        "name": "rustversion",
+        "version": "1.0.23",
+        "checksum": "cf54715a573b99ac80df0bc206da022bcd442c974952c7b9720069370852e21f"
+      },
+      {
+        "name": "syn",
+        "version": "3.0.9",
+        "checksum": "d78c8dee4c7bf0e14673097256fed6142ce9d3b85a408189d07482442145823b"
+      },
+      {
+        "name": "unicode-ident",
+        "version": "1.0.27",
+        "checksum": "a2c754d6c33795a1c324727428e5a7dedb5b06195f9890bdbcba760d3e246563"
+      },
+      {
+        "name": "wasm-bindgen",
+        "version": "0.2.129",
+        "checksum": "9bb54f33acc68fd454578d9820b0bde1a1a3d17aa17bb7b6595806d02886d409"
+      },
+      {
+        "name": "wasm-bindgen-macro",
+        "version": "0.2.129",
+        "checksum": "2e29d0c35b16e224a7eeb5cd2d25e3e1968fbd65604117b44d3b789d00ee8535"
+      },
+      {
+        "name": "wasm-bindgen-macro-support",
+        "version": "0.2.129",
+        "checksum": "6f501a8bc3719dba86ef8ae4728879c08001bea749eb1333ac5b91e040e2a6b7"
+      },
+      {
+        "name": "wasm-bindgen-shared",
+        "version": "0.2.129",
+        "checksum": "23f0c9c52aa7cd7d77769a4cfe2a9adb1b331f489a41d912ce14513d5ab995c6"
+      }
+    ]
+  },
+  "browser": {
+    "status": "PASS",
+    "cases": 13,
+    "runs": 26,
+    "states": 4100,
+    "frames": 2357,
+    "canvas_readbacks": 2357,
+    "boundary_checks": true,
+    "refresh_rates": [
+      60,
+      120,
+      144
+    ],
+    "runs_detail": [
+      {
+        "name": "win",
+        "render": 1,
+        "states": 166
+      },
+      {
+        "name": "win",
+        "render": 7,
+        "states": 166
+      },
+      {
+        "name": "loss",
+        "render": 1,
+        "states": 174
+      },
+      {
+        "name": "loss",
+        "render": 7,
+        "states": 174
+      },
+      {
+        "name": "mixed",
+        "render": 1,
+        "states": 211
+      },
+      {
+        "name": "mixed",
+        "render": 7,
+        "states": 211
+      },
+      {
+        "name": "particles",
+        "render": 1,
+        "states": 209
+      },
+      {
+        "name": "particles",
+        "render": 7,
+        "states": 209
+      },
+      {
+        "name": "zero",
+        "render": 1,
+        "states": 2
+      },
+      {
+        "name": "zero",
+        "render": 7,
+        "states": 2
+      },
+      {
+        "name": "Climber",
+        "render": 1,
+        "states": 161
+      },
+      {
+        "name": "Climber",
+        "render": 7,
+        "states": 161
+      },
+      {
+        "name": "Floater",
+        "render": 1,
+        "states": 161
+      },
+      {
+        "name": "Floater",
+        "render": 7,
+        "states": 161
+      },
+      {
+        "name": "Bomber",
+        "render": 1,
+        "states": 161
+      },
+      {
+        "name": "Bomber",
+        "render": 7,
+        "states": 161
+      },
+      {
+        "name": "Blocker",
+        "render": 1,
+        "states": 161
+      },
+      {
+        "name": "Blocker",
+        "render": 7,
+        "states": 161
+      },
+      {
+        "name": "Builder",
+        "render": 1,
+        "states": 161
+      },
+      {
+        "name": "Builder",
+        "render": 7,
+        "states": 161
+      },
+      {
+        "name": "Basher",
+        "render": 1,
+        "states": 161
+      },
+      {
+        "name": "Basher",
+        "render": 7,
+        "states": 161
+      },
+      {
+        "name": "Miner",
+        "render": 1,
+        "states": 161
+      },
+      {
+        "name": "Miner",
+        "render": 7,
+        "states": 161
+      },
+      {
+        "name": "Digger",
+        "render": 1,
+        "states": 161
+      },
+      {
+        "name": "Digger",
+        "render": 7,
+        "states": 161
+      }
+    ],
+    "browser": "Chromium 152.0.7977.82 Arch Linux",
+    "expected_sha256": "b76fe20032138f5a07e91818e734221d6e4f8eb85bf88ac892cdd5bc130069b6",
+    "scope": "real WASM versus native wrapper: every full diagnostic state and all terrain/brick/object bytes by SHA-256; all rendered RGB and opaque Canvas readback; synthetic only"
+  },
+  "cdp": {
+    "browser": "Chrome/152.0.7977.82",
+    "port": 19222,
+    "cases": 13,
+    "runs": 26,
+    "states": 4100,
+    "frames": 2357,
+    "canvas_readbacks": 2357
+  },
+  "ui": {
+    "status": "PASS",
+    "browser": "Chrome/152.0.7977.82",
+    "port": 19222,
+    "target": "D7182223C159C52267C0CE42E869B90A",
+    "url": "http://127.0.0.1:8080/",
+    "pause_resume": true,
+    "rapid_toggles": true,
+    "synthetic_win": {
+      "status": "구출 완료",
+      "population": "활동 중 0 · 구출 3",
+      "pauseDisabled": true
+    },
+    "restart": true,
+    "uncaught_exceptions": 0,
+    "preview": "mydocs/reports/issue-66_web_browser.png"
+  },
+  "self_review": {
+    "status": "PASS",
+    "reviewer": "self-review authorized by user",
+    "resolved": [
+      {
+        "finding": "JS wasm u32 conversion can truncate fractional step counts before Rust validation",
+        "resolution": "accept f64 and validate finite integer 0..1000 before cast; native failing test and real WASM invalid-number regression"
+      },
+      {
+        "finding": "quick pause toggles can read stale last-tick state",
+        "resolution": "export queued pause intent and use it in UI; failing native test and actual CDP rapid-toggle verification"
+      }
+    ],
+    "checked": [
+      "core/resources/session/game and desktop Rust sources unchanged; no unsafe code authored",
+      "native and WASM build/lint; owned arrays; atomic bad input/reset; due independent of step; frozen result",
+      "all eight stable-ID commands versus direct core/game in native contract",
+      "real browser versus native full state/maps/all rendered RGB and Canvas; no original data needed",
+      "rAF absolute microsecond quantization; first frame anchor; bounded work with admitted debt preserved; hidden wall time excluded",
+      "official CLI archive and exact member SHA-256 before install; no whole tar unpack; lockfile additions only; no NPM/bundler",
+      "clean Web browser CI job; local-only static server serves generated folder; synthetic screenshot visually inspected"
+    ],
+    "open_findings": [],
+    "validation": "final native host contract6 + Python acquisition5, native/WASM clippy and actual browser/CDP passed; full make check and exact CI tracked in issue66"
+  },
+  "sources": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 3269,
+      "sha256": "438c85461f584bee21aa8cbd75a399c56c7dfe01c20be01b1f288a332cec2bda"
+    },
+    {
+      "path": "Cargo.lock",
+      "bytes": 4850,
+      "sha256": "e2c82f45230c3aeb8c7b12ffe3129e870a63c56e9c77dce0324de16bafad8a3f"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 370,
+      "sha256": "fe8a13bb135c1f9f517a5a5555ae45ec0c235ea21ec64d5310024a8f1b70a7b2"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 2062,
+      "sha256": "1699c0fd5ad9266b1d77327baea1f5e3348571aa598c2c3c13cb0a069fe65569"
+    },
+    {
+      "path": "apps/web/Cargo.toml",
+      "bytes": 519,
+      "sha256": "5a7956f4ad21f374f7e542d63521782614e057e9e4fcef05981938d70334bb0f"
+    },
+    {
+      "path": "apps/web/src/bin/web_trace.rs",
+      "bytes": 1812,
+      "sha256": "206aac501b36a3396d2b97901d43f0cd34a768e9f011d687e9d39578d36c5113"
+    },
+    {
+      "path": "apps/web/src/lib.rs",
+      "bytes": 7290,
+      "sha256": "9cd2a8db9f53a4301dc0aca79b362a54cf86f2e2d5dda1cd6644d1ae106472bf"
+    },
+    {
+      "path": "apps/web/tests/host_contract.rs",
+      "bytes": 5390,
+      "sha256": "20a9f2843f21d64aeec35d86eae02614a0fe550497610ed28bafb7684f5a5af1"
+    },
+    {
+      "path": "apps/web/www/app.js",
+      "bytes": 2597,
+      "sha256": "00fc9579664282cdb65a231a642e84e5ef46a076de513f4d4007fd26121a541f"
+    },
+    {
+      "path": "apps/web/www/host.js",
+      "bytes": 1851,
+      "sha256": "2f865852d38c846641819bf3acdb986111ccd60a7aff6ce875182241b82f28a5"
+    },
+    {
+      "path": "apps/web/www/index.html",
+      "bytes": 1763,
+      "sha256": "07f44f1ebef711dee3c228799a3012d43a088e1178eb54577b3c4ce3b1c7ad84"
+    },
+    {
+      "path": "apps/web/www/style.css",
+      "bytes": 2727,
+      "sha256": "d99fb83dd4b49f704a2139dfb82c1bd1d4a2ab16aad1fb880ec26554b27f2740"
+    },
+    {
+      "path": "assets/manifests/web_tools.json",
+      "bytes": 787,
+      "sha256": "13bfd168cc421f68956a7e3bda785ce94c3f471e3e77c6de41b1c0446e13d9f5"
+    },
+    {
+      "path": "crates/lemmings-core/Cargo.toml",
+      "bytes": 355,
+      "sha256": "fda80e247255d40f3ff97b0f8f883abca7044c3de20b87b79e33b21a7ed6c253"
+    },
+    {
+      "path": "crates/lemmings-core/src/level.rs",
+      "bytes": 3322,
+      "sha256": "c832a8049fcd98c00dbd18e2c2ade1d6c83a38f517594f0044c07a5f61d59643"
+    },
+    {
+      "path": "crates/lemmings-core/src/lib.rs",
+      "bytes": 1927,
+      "sha256": "4913e68c02b5115608002bafe3b884d34ce1d516b6ca80aa60e8478c2c76bd3e"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation.rs",
+      "bytes": 1519,
+      "sha256": "be0a7e5898dca0c79657682bb455696a194f25d33ce18db8b5840c3786c4f65a"
+    },
+    {
+      "path": "crates/lemmings-core/src/terrain.rs",
+      "bytes": 27264,
+      "sha256": "c5deac5341a5679dc322ba70e6ed8df5f51249709746ea5d6b8e52a485f529d1"
+    },
+    {
+      "path": "crates/lemmings-game/Cargo.toml",
+      "bytes": 452,
+      "sha256": "40e395eb49f6f9c0652cf570850fe19f0fe0573c296273a391fff1eda539b2cf"
+    },
+    {
+      "path": "crates/lemmings-game/src/assets.rs",
+      "bytes": 31851,
+      "sha256": "0ec03f0928efe748f36d72c135bfbe597832eed2490b868fd0e52e0265d7e34a"
+    },
+    {
+      "path": "crates/lemmings-game/src/lib.rs",
+      "bytes": 676,
+      "sha256": "8d0ed2af28352a8bd8f535e9751eb382850f32c8b843154ff0cd93628221b39c"
+    },
+    {
+      "path": "crates/lemmings-game/src/lifecycle.rs",
+      "bytes": 11058,
+      "sha256": "405e8eb336141b268d6493d444d8911d9af232c8281516ab8937dae70ae7799d"
+    },
+    {
+      "path": "crates/lemmings-game/src/panel.rs",
+      "bytes": 16256,
+      "sha256": "545f4a757d3ec7fe751b87a4f8cdf9ed35d4a92d567e12bdf268cacca70d5204"
+    },
+    {
+      "path": "crates/lemmings-game/src/pointer.rs",
+      "bytes": 2584,
+      "sha256": "6af0225717036307888ca0c38f150991a3c4b8c76dc4be6417e1cca7ef540df8"
+    },
+    {
+      "path": "crates/lemmings-game/src/render.rs",
+      "bytes": 24917,
+      "sha256": "53709ee0c87ecdd05b68b8c766d484a334cf0f38cc09d0c435f26f19963a7ba4"
+    },
+    {
+      "path": "crates/lemmings-resources/Cargo.toml",
+      "bytes": 321,
+      "sha256": "c430e2a3913de2bd874e5d03657142c7ba6e262a7179d3f5593f495980099b82"
+    },
+    {
+      "path": "crates/lemmings-resources/src/catalog.rs",
+      "bytes": 20391,
+      "sha256": "482e6e19efb152ea111b4037eaba3f8d9ec0d55ced02508638fa72394b66182f"
+    },
+    {
+      "path": "crates/lemmings-resources/src/dat.rs",
+      "bytes": 15857,
+      "sha256": "e2b26f994f33b87c7a1fad7e9f7411f5d971d74ceb3163a0607f1e2e77b074fd"
+    },
+    {
+      "path": "crates/lemmings-resources/src/decompress.rs",
+      "bytes": 22421,
+      "sha256": "70671fd5a88211a121aebc110c63cb997d03432694a9db18c593f8c1442c32f2"
+    },
+    {
+      "path": "crates/lemmings-resources/src/ground.rs",
+      "bytes": 17041,
+      "sha256": "b8d6fc8335de563b7465450a02bc3789850344258a51ece148d2965a6053f651"
+    },
+    {
+      "path": "crates/lemmings-resources/src/level.rs",
+      "bytes": 28391,
+      "sha256": "7c4d5b6c02c5442dc0fa30706bc8956c11b3384e01b6e93646d55d76ce7f4331"
+    },
+    {
+      "path": "crates/lemmings-resources/src/lib.rs",
+      "bytes": 2511,
+      "sha256": "3149b3dfd7a21d7422442347590c015b81d969563fa80d6f626c997b94e29303"
+    },
+    {
+      "path": "crates/lemmings-resources/src/masks.rs",
+      "bytes": 20832,
+      "sha256": "06dcc3d9cf648af8327ef3fac2df7ab7f08f364f12c6b6f5f7454736af340911"
+    },
+    {
+      "path": "crates/lemmings-resources/src/objects.rs",
+      "bytes": 29931,
+      "sha256": "2fcbfc27434943f0a3c25e18758dbfcd9b6212c935ad76f1d1e00b39280893fd"
+    },
+    {
+      "path": "crates/lemmings-resources/src/odd.rs",
+      "bytes": 8421,
+      "sha256": "e4cb0a0cd73c3bbf1619a0c8eac79514649406695b6f5e8416e697b301020e7e"
+    },
+    {
+      "path": "crates/lemmings-resources/src/particles.rs",
+      "bytes": 2699,
+      "sha256": "ef9a7b86b4ba4daf3ac7c5d13e0a14757fdfa2c98cb361b7aff5115fb727283b"
+    },
+    {
+      "path": "crates/lemmings-resources/src/reader.rs",
+      "bytes": 3984,
+      "sha256": "8ff493a5db815d33deb25b21a4c27db9ab529328357bc1382f0514a518cd77f7"
+    },
+    {
+      "path": "crates/lemmings-resources/src/sprites.rs",
+      "bytes": 33838,
+      "sha256": "88d0375463113ae34f3c412a5d9f0338ccee048b499501f60faf5e69c5e0d05e"
+    },
+    {
+      "path": "crates/lemmings-resources/src/terrain.rs",
+      "bytes": 29099,
+      "sha256": "e2a086dc3df9f4c3d1486ba8a9fe1c6e7504a0f15206b896c3604316efa0c4ff"
+    },
+    {
+      "path": "crates/lemmings-resources/src/ui.rs",
+      "bytes": 38527,
+      "sha256": "2ea7041f0388f7f60216a892d48f42f2dea3b03b5790715dbfb01b5f10b39e8d"
+    },
+    {
+      "path": "crates/lemmings-resources/src/vgagr.rs",
+      "bytes": 33687,
+      "sha256": "f973cbfd6e1d6ce87b3430b2c8a6053d1a209b773859afb3095a2fd0cc1dbdf0"
+    },
+    {
+      "path": "crates/lemmings-resources/src/vgaspec.rs",
+      "bytes": 27891,
+      "sha256": "680ae409742e6e8cb2c98477ec1607289ee30314a94120d40f0639c2c141cb56"
+    },
+    {
+      "path": "crates/lemmings-session/Cargo.toml",
+      "bytes": 338,
+      "sha256": "137e5b6db8113cec8b0f4e930956f36339da2e63ba0d0eab2bbacc7ebe01f67f"
+    },
+    {
+      "path": "crates/lemmings-session/src/fixtures.rs",
+      "bytes": 4370,
+      "sha256": "fe6da73a4698b3436fa5239dcf38f49bf441ca656a82b5702945537750873a00"
+    },
+    {
+      "path": "crates/lemmings-session/src/lib.rs",
+      "bytes": 1395,
+      "sha256": "97af4161463cf9f6cae5c2d1d1c83f33f35625da99e144c9b2c7c1f03f40e268"
+    },
+    {
+      "path": "crates/lemmings-session/src/pacing.rs",
+      "bytes": 3750,
+      "sha256": "476b1fd985ab59a3299e800bbb7d823184ecd6d56f1efcbd82ca659f344745ac"
+    },
+    {
+      "path": "crates/lemmings-session/src/session.rs",
+      "bytes": 54223,
+      "sha256": "e2da5be93644e90fdf5b41e069961836962afc596e440165d8e4829dbd7ebe5a"
+    },
+    {
+      "path": "tools/check_web.py",
+      "bytes": 6199,
+      "sha256": "97493da5038970d835fef31d3943b7a4f88bcc8aa1cc86fb26043ffae0f8a2ba"
+    },
+    {
+      "path": "tools/tests/test_web_build.py",
+      "bytes": 2965,
+      "sha256": "63ad4d05896c7622c38fb832125687be141477962b4797e0c1f1738fcb22afaf"
+    },
+    {
+      "path": "tools/web/check.html",
+      "bytes": 229,
+      "sha256": "7a8c0b2ec89897ab640ef4f09015222005f08dfac73f1f0de5940932370ab34b"
+    },
+    {
+      "path": "tools/web/check.js",
+      "bytes": 6084,
+      "sha256": "bc2f1a2b2f11fc3d1172092defae13ba454e9643e85b6b2979a23f8678efb8a2"
+    },
+    {
+      "path": "tools/web_build.py",
+      "bytes": 3762,
+      "sha256": "e5db3262c473aaf662c4b206d50a6949df9a52419a81f4816d7fbb5b03309d98"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "assets/local/issue-66-review/tdd-red.log",
+      "bytes": 506,
+      "sha256": "dfb53006b7ff5bc5a224356be38c0deb1d5c4d353a194b9175bdb97df3951437"
+    },
+    {
+      "path": "assets/local/issue-66-review/tdd-numeric-red.log",
+      "bytes": 3332,
+      "sha256": "9ddf1d1d43a5a77ba5e3afadc71c6ee744e8ce8db320a9d0ed90021f2d5bf086"
+    },
+    {
+      "path": "assets/local/issue-66-review/tdd-toggle-red.log",
+      "bytes": 920,
+      "sha256": "607a8d0e79a858ffd83135545d473818fec0420148c2fd583ff35a3896e6df7e"
+    },
+    {
+      "path": "assets/local/issue-66-review/python-red.log",
+      "bytes": 744,
+      "sha256": "441a146711cd73f19a7b892c0db6a512ded570762fc93cc3030b40a13f182ea6"
+    },
+    {
+      "path": "assets/local/issue-66-review/python-green.log",
+      "bytes": 866,
+      "sha256": "61e6cb6c84bc045b33ed4a9885db25b203785b2b20d89940aa7e317d1f7bd2b9"
+    },
+    {
+      "path": "assets/local/issue-66-review/rust-final.log",
+      "bytes": 1332,
+      "sha256": "a2505ced8234bca04abf8d68f09919a364f37a545ded682c1f72f9dd4e81bddb"
+    },
+    {
+      "path": "assets/local/issue-66-review/clippy-final.log",
+      "bytes": 147,
+      "sha256": "e725ec7eacebbc189dac18494caa44de1a00a0f489a59055014612901c4e7ff5"
+    },
+    {
+      "path": "assets/local/issue-66-review/wasm-clippy-final.log",
+      "bytes": 147,
+      "sha256": "996c3ecb0fb36e9ccad70c7fe361869e7ab7bac67c2f8ad39221480588f2fdd3"
+    },
+    {
+      "path": "assets/local/issue-66-review/browser-final.log",
+      "bytes": 883,
+      "sha256": "0661f1a6f2c61d33e0d47f352f34ffe3c710dc3080bca37b477a5151126cf15c"
+    },
+    {
+      "path": "assets/local/issue-66-review/cdp-final.log",
+      "bytes": 375,
+      "sha256": "4201740292c0035b771ed9988d97261032a7ba7c361d0c7f79b7091296809fa6"
+    },
+    {
+      "path": "assets/local/issue-66-review/cdp-ui.json",
+      "bytes": 441,
+      "sha256": "ee2a09ff406a9a5e692465546d3bb1ed111eb3924d66250c0d57e6d8d7a7308e"
+    },
+    {
+      "path": "assets/local/issue-66-review/cdp-check.json",
+      "bytes": 2270,
+      "sha256": "52dfb72a55a0745d858301dee388896761d692f0b4e4c0a5051eef7e3347ddbc"
+    },
+    {
+      "path": "assets/local/issue-66-review/cdp-browser-result.json",
+      "bytes": 2185,
+      "sha256": "172d5ac80e45b9c71b7ac5a12bae3e9dc904d56def7e6a0eab9386ed2a06ac01"
+    },
+    {
+      "path": "assets/local/issue-66-review/cdp.mjs",
+      "bytes": 5744,
+      "sha256": "0781dc43e6143a629d3839241457046d2c4b2e2bd7eb1adc24e4ddba4276f803"
+    },
+    {
+      "path": "assets/local/issue-66-review/serve-review.py",
+      "bytes": 778,
+      "sha256": "812b3dd08f026f2f2d63e6e927c0e9d3bf2742531f2a06bdca1c70a7a5e139ce"
+    },
+    {
+      "path": "assets/local/issue-66-review/self-review.json",
+      "bytes": 1547,
+      "sha256": "1816fb6875b556fa0936c8b276911a2182b770f9e5d829ec71ac9c10d7d7c812"
+    },
+    {
+      "path": "assets/local/issue-66-review/dependency-audit.json",
+      "bytes": 1961,
+      "sha256": "62e2f4873378f013669a05164adf87273b50b23c5be76bdcc639a797282e5b5c"
+    },
+    {
+      "path": "assets/local/issue-66-review/release.json",
+      "bytes": 35969,
+      "sha256": "7f9d7b7ab58c3e00832cffd0b662da9f0c5e832de4ddeecd7f143170ce3e288b"
+    },
+    {
+      "path": "assets/local/issue-66-review/web-preview-final.log",
+      "bytes": 177,
+      "sha256": "958cc0096441cad9843ce518aee4d979919c83b5005779b2d706af06ccc6929b"
+    },
+    {
+      "path": "mydocs/reports/issue-66_web_browser.png",
+      "bytes": 148420,
+      "sha256": "ae357a6b3fa363612130576babe188d647affb35c5800e9ed31764f1807c6c52"
+    },
+    {
+      "path": "target/release/web_trace",
+      "bytes": 829592,
+      "sha256": "c3245992ac56fc36314bb8a42b6988fb1fd84044fdb4192a70972e6b50ae5d31"
+    },
+    {
+      "path": "target/wasm32-unknown-unknown/release/lemmings_web.wasm",
+      "bytes": 326862,
+      "sha256": "d89e778b7762127e8410588c7ddb6a373e69b681976c55a46f494389c9734484"
+    },
+    {
+      "path": "assets/local/web/pkg/lemmings_web.d.ts",
+      "bytes": 3680,
+      "sha256": "94be242d17d4ce06c818b617f8b99410ccf0aad309684584c281ffe378e6ce23"
+    },
+    {
+      "path": "assets/local/web/pkg/lemmings_web.js",
+      "bytes": 12131,
+      "sha256": "a948157e05e274221593dc289794294fd87deda0c82a384496a65ac2120e9975"
+    },
+    {
+      "path": "assets/local/web/pkg/lemmings_web_bg.wasm",
+      "bytes": 285361,
+      "sha256": "698f0d2643cc3b893056342260e28893c3079bf76fb5c844b42a3d78216333ab"
+    },
+    {
+      "path": "assets/local/web/pkg/lemmings_web_bg.wasm.d.ts",
+      "bytes": 1474,
+      "sha256": "b21edd3b666072ace3aa53d25e28ccdd9e71ca97b5f034a30e29b1a00d69318e"
+    }
+  ],
+  "evidence_trees": [
+    {
+      "directory": "assets/local/issue-66-browser-final",
+      "files": 13,
+      "bytes": 7544405,
+      "index": {
+        "path": "assets/local/issue-66-review/browser-index.json",
+        "bytes": 1966,
+        "sha256": "36c3e4ea956f3e555667be24768e6a7eefc2a4cde76da7bd9e5ba832e55a38f7"
+      }
+    }
+  ],
+  "index_algorithm": "POSIX relative-path lexicographic order; compact JSON array with sorted keys and final newline; path/bytes/SHA-256 entries",
+  "validation": "Rust519/doc28/Python106 expected with added host6/acquisition5; final make check exit result, exact four-job push/PR/main CI and full ZIP logs recorded in issue66 before closure.",
+  "next": "G09-04 full browser input/original asset supply/scene UX; G09-05 original same-level browser completion. G09 remains in progress; CDP19222."
+}
