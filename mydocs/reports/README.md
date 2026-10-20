@@ -62,3 +62,5 @@
 - [#70 G09-05 브라우저 통합 완주](issue-70_web_playthrough.md)
 
 - [#72 AdLib 자원·통합 계약](issue-72_adlib_catalog.md)
+
+- [#74 ADLIB 명령·레지스터 스트림](issue-74_adlib_stream.md)

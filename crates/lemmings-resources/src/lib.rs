@@ -85,3 +85,8 @@ pub use adlib::{
     ADLIB_EFFECT_COUNT, ADLIB_IMAGE_SIZE, ADLIB_MUSIC_COUNT, AdlibChannel, AdlibError, AdlibFile,
     AdlibImage, AdlibMusic,
 };
+
+mod adlib_stream;
+pub use adlib_stream::{
+    ADLIB_COMMAND_BUDGET, AdlibPlayer, AdlibState, AdlibStreamError, AdlibWrite,
+};
