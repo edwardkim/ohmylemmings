@@ -1,5 +1,7 @@
 # 진행 중 작업
 
+- [#85 G11-01 전체 호환성·성능 검증 준비](issue-85_compatibility_validation.md)
+
 - [#82 G10-06 통합 사운드 검증](issue-82_audio_playthrough.md)
 
 - [#56 G08-05 원본 기술 패널·미니맵](issue-56_skill_panel.md)

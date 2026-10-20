@@ -1,5 +1,7 @@
 # 계획 문서
 
+- [#85 G11 전체 호환성 점검·성능 측정 계획](issue-85_compatibility_validation.md)
+
 마일스톤과 시스템 아키텍처를 관리합니다. 전체 기획서는 이 폴더의 [프로젝트 기획서 / #1](issue-1_rusty_lemmings.md)에 있습니다.
 
 분할정복 기반 목표와 의존관계·완료 기준은 [전체 구현 계획](issue-1_implementation_plan.md)에서 관리합니다.
