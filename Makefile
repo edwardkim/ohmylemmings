@@ -40,6 +40,7 @@ check-desktop:
 	python3 tools/check_results.py --binary target/release/lemmings-desktop
 	python3 tools/check_panel.py --binary target/release/lemmings-desktop
 	python3 tools/check_pointer.py --binary target/release/lemmings-desktop
+	python3 tools/check_audio_output.py --binary target/release/lemmings-desktop
 
 web:
 	python3 tools/web_build.py build
@@ -52,3 +53,4 @@ check-web:
 	python3 tools/check_web_journey.py
 	python3 tools/check_audio.py --wasm
 	python3 tools/check_game_sound.py --wasm
+	python3 tools/check_audio_output.py --wasm

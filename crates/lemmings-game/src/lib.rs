@@ -5,6 +5,7 @@
 //! filesystem, window, system-clock or browser access. Resource parsing remains
 //! in `lemmings-resources`; simulation remains in `lemmings-session`/`lemmings-core`.
 pub mod assets;
+pub mod audio;
 pub mod lifecycle;
 pub mod panel;
 pub mod pointer;

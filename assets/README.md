@@ -103,3 +103,5 @@ ADLIB 명령/레지스터 스트림의 합성877호출과 원본 드라이버 �
 [#76 OPL/PCM 시간 계약](../mydocs/tech_insights/issue-76_opl_pcm.md)과 [출처/해시](manifests/adlib_pcm.json): `python3 tools/check_opl_reference.py`는 고정 LGPL C 소스를 별도 host 프로세스로 빌드해 합성 PCM을 전수 비교합니다(`cc` 필요). `python3 tools/check_audio.py --wasm`는 고정 합성 fixture·native·실제 WASM/두 분할을 비교합니다. 원본 없는 검사는 make check-rust/check-web에 포함됩니다. 선택적 원본 PCM·실제 DOS 관측은 계약의 명령과 새 ignored 경로를 사용합니다. 원본/파생 음원·영상은 배포하지 않습니다. 실제 장치 출력/청취는 후속입니다.
 
 [#78 게임 사운드 계약](../mydocs/tech_insights/issue-78_game_sound.md)·[출처/해시](manifests/game_sound.json): `python3 tools/check_game_sound.py --wasm`는 원본 없는 고정 메타데이터 oracle·합성 게임 경로와 실제 WASM/PCM을 대조합니다. `tools/dos_sound_reference.py`는 선택적 Unicorn2.1.4/검증 원본의 무수정 x86 분기를 실행합니다. 기본 CI에는 원본/Unicorn 의존성을 추가하지 않습니다. 장치 출력은 G10-05입니다.
+
+[#80 출력 계약](../mydocs/tech_insights/issue-80_audio_output.md)·[출처/해시](manifests/audio_output.json): 원본 사운드는 ADLIB.DAT도 공급합니다. 연습 모드는 독립 작성한 음원을 사용합니다. `python3 tools/check_audio_output.py`/`--wasm`는 원본 없는 SDL/실제 Web Audio와 native/WASM PCM을 검사합니다. 선택적 원본/LAN 증거는 새 ignored 경로를 사용합니다. 웹 빌드는 LGPL 전문·대응 소스 묶음/해시를 함께 생성하며 원본/로컬 자료는 제외합니다.

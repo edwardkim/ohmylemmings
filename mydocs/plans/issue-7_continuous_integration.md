@@ -79,3 +79,7 @@ Rustup의 최초 도구 체인·타깃 설치에는 네트워크가 필요할 �
 ## G10-04 게임 명령·PCM / #78
 
 [#78](../reports/issue-78_game_sound.md)에서 `make check-rust`에 합성98경로·고정 원본 x86 메타데이터97분기/170음악조합과 typed 명령→PCM 검사를, `make check-web`에 같은 경로의 실제 WASM/PCM 검사를 추가했습니다. 기존 Web 검사도 WebGame의 사운드 API/큐/세대를 직접 실행합니다. 새로운 네트워크·외부 패키지·원본/Unicorn·장치 요구 사항은 없습니다.
+
+## G10-05 장치·라이선스 배포 / #80
+
+[#80](../reports/issue-80_audio_output.md)에서 check-desktop에 생산 SDL service의 dummy 큐 소비·음소거/숨김/세대·없는 장치/게임 불변 검사와 fixed6조합249492프레임을 추가했습니다. check-web은 실제 WASM/OfflineAudioContext·실시간 AudioContext graph와 bounded scheduling/활성화 오류·소스/라이선스/WASM 해시 배포를 검사합니다. headless graph만 autoplay 테스트 플래그를 사용하고 trusted gesture/LAN은 별도 실제 로컬 증거입니다. Python은 source archive의 private/symlink 배제·재현성·Git 없는 수정/재빌드를 검사합니다. 새 외부 패키지/원본/물리 장치 의존성은 없습니다.

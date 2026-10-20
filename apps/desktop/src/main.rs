@@ -1,4 +1,5 @@
 mod assets;
+mod audio;
 mod input;
 mod lifecycle;
 mod pacing;
@@ -25,9 +26,11 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--result-actions restart,continue]\nF/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR --level FUN_NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--result-actions restart,continue]\nS: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
     assets: PathBuf,
+    mute: bool,
+    volume: u8,
     synthetic: bool,
     basher_scene: bool,
     builder_scene: bool,
@@ -52,6 +55,8 @@ impl Options {
         let mut args = args.peekable();
         let mut o = Self {
             assets: "assets/local/dos-original".into(),
+            mute: false,
+            volume: 40,
             synthetic: false,
             basher_scene: false,
             builder_scene: false,
@@ -156,6 +161,13 @@ impl Options {
                         .next()
                         .ok_or("--level requires Fun number 1..30")?
                         .parse()?
+                }
+                "--mute" => o.mute = true,
+                "--volume" => {
+                    o.volume = args.next().ok_or("--volume requires 0..100")?.parse()?;
+                    if o.volume > 100 {
+                        return Err("--volume requires 0..100".into());
+                    }
                 }
                 "--fast" => o.fast = true,
                 "--demo-input" => o.demo_input = true,
@@ -790,6 +802,8 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     }
     let sdl = sdl2::init()?;
     let video = sdl.video()?;
+    let mut audio = audio::AudioService::new(&sdl, &options);
+    let mut audio_visible = true;
     sdl2::hint::set("SDL_RENDER_SCALE_QUALITY", "0");
     let window = video
         .window(
@@ -856,6 +870,17 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
         let mut action = None;
         for event in pump.poll_iter() {
             observed_events += 1;
+            if let Event::Window { win_event, .. } = &event {
+                use sdl2::event::WindowEvent;
+                match win_event {
+                    WindowEvent::Hidden | WindowEvent::Minimized => audio_visible = false,
+                    WindowEvent::Shown | WindowEvent::Restored => audio_visible = true,
+                    _ => {}
+                }
+            }
+            if audio.input(&event, &sdl, &options) {
+                continue;
+            }
             if game.session.result().is_some() {
                 if let Some(request) = input::result_action(&event) {
                     action.get_or_insert(request);
@@ -1014,6 +1039,13 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                 }
             }
         }
+        audio.service(&mut game, audio_visible);
+        if !options.fast {
+            let title = format!("Oh My Lemmings - {} · {}", game.assets.title, audio.label());
+            if canvas.window().title() != title {
+                canvas.window_mut().set_title(&title)?;
+            }
+        }
         let step = game.session.scheduler.step_state().control_step;
         let finished = options.steps.is_some_and(|end| {
             if game.session.result().is_some() {
@@ -1124,6 +1156,10 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 fn main() -> Result<(), Box<dyn Error>> {
+    if std::env::args().skip(1).eq(["--audio-probe"]) {
+        println!("{}", audio::probe()?);
+        return Ok(());
+    }
     match Options::parse(std::env::args().skip(1))? {
         Some(options) => run(options),
         None => {

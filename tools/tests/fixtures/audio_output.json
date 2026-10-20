@@ -1,0 +1,71 @@
+{
+  "scope": "Original-free composed practice tones through owned output/continuations; fixed native PCM/state/map/RGB",
+  "cases": [
+    {
+      "name": "44100-0",
+      "frames": 41582,
+      "pcm_sha256": "87222651f4b6676153324a8669121a6b4375686cafd35ec52046a686b616d9c1",
+      "peak": 0,
+      "nonzero": 0,
+      "state_sha256": "57ecc60548d4e76ab782dc7fcbddb8f3581fc9c6fa6bd8bc674979c98780cb1e",
+      "rgb_sha256": "227dff6ca48be1775e00718a5e0a9909a003d74b6f7dbf9d221b856f13b36e1a",
+      "terrain_sha256": "daced2db27e22d0ce50a2be895f037d57e7d4b4d1369c50432bd253c14eaeaed",
+      "objects_sha256": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc"
+    },
+    {
+      "name": "44100-33",
+      "frames": 41582,
+      "pcm_sha256": "715e9230f527c4914e5d1db7b6c5d7bf8acf2b29171503c37fe7efa925f5742b",
+      "peak": 2637,
+      "nonzero": 32703,
+      "state_sha256": "57ecc60548d4e76ab782dc7fcbddb8f3581fc9c6fa6bd8bc674979c98780cb1e",
+      "rgb_sha256": "227dff6ca48be1775e00718a5e0a9909a003d74b6f7dbf9d221b856f13b36e1a",
+      "terrain_sha256": "daced2db27e22d0ce50a2be895f037d57e7d4b4d1369c50432bd253c14eaeaed",
+      "objects_sha256": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc"
+    },
+    {
+      "name": "44100-100",
+      "frames": 41582,
+      "pcm_sha256": "0f531c2067377dc205ba0d1d5ea64103c56ee371c41b293297d0e7cae17a3aae",
+      "peak": 7992,
+      "nonzero": 32741,
+      "state_sha256": "57ecc60548d4e76ab782dc7fcbddb8f3581fc9c6fa6bd8bc674979c98780cb1e",
+      "rgb_sha256": "227dff6ca48be1775e00718a5e0a9909a003d74b6f7dbf9d221b856f13b36e1a",
+      "terrain_sha256": "daced2db27e22d0ce50a2be895f037d57e7d4b4d1369c50432bd253c14eaeaed",
+      "objects_sha256": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc"
+    },
+    {
+      "name": "48000-0",
+      "frames": 41582,
+      "pcm_sha256": "87222651f4b6676153324a8669121a6b4375686cafd35ec52046a686b616d9c1",
+      "peak": 0,
+      "nonzero": 0,
+      "state_sha256": "57ecc60548d4e76ab782dc7fcbddb8f3581fc9c6fa6bd8bc674979c98780cb1e",
+      "rgb_sha256": "227dff6ca48be1775e00718a5e0a9909a003d74b6f7dbf9d221b856f13b36e1a",
+      "terrain_sha256": "daced2db27e22d0ce50a2be895f037d57e7d4b4d1369c50432bd253c14eaeaed",
+      "objects_sha256": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc"
+    },
+    {
+      "name": "48000-33",
+      "frames": 41582,
+      "pcm_sha256": "828460b7cd7e3a2b48174bc3e53bbbd0983417310e12abb732408521e4027830",
+      "peak": 2587,
+      "nonzero": 32723,
+      "state_sha256": "57ecc60548d4e76ab782dc7fcbddb8f3581fc9c6fa6bd8bc674979c98780cb1e",
+      "rgb_sha256": "227dff6ca48be1775e00718a5e0a9909a003d74b6f7dbf9d221b856f13b36e1a",
+      "terrain_sha256": "daced2db27e22d0ce50a2be895f037d57e7d4b4d1369c50432bd253c14eaeaed",
+      "objects_sha256": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc"
+    },
+    {
+      "name": "48000-100",
+      "frames": 41582,
+      "pcm_sha256": "7dd998615f19156ea5aaca6ef6630a311fcc789ad0f2827ead24c8a8ff62f330",
+      "peak": 7841,
+      "nonzero": 32752,
+      "state_sha256": "57ecc60548d4e76ab782dc7fcbddb8f3581fc9c6fa6bd8bc674979c98780cb1e",
+      "rgb_sha256": "227dff6ca48be1775e00718a5e0a9909a003d74b6f7dbf9d221b856f13b36e1a",
+      "terrain_sha256": "daced2db27e22d0ce50a2be895f037d57e7d4b4d1369c50432bd253c14eaeaed",
+      "objects_sha256": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc"
+    }
+  ]
+}

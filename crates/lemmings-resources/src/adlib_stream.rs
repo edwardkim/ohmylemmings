@@ -72,6 +72,11 @@ pub struct AdlibPlayer<'a> {
     image: AdlibImage<'a>,
     state: AdlibState,
 }
+/// Opaque VM continuation without an asset borrow. Resume against the same
+/// immutable image bytes (the owning adapter may relocate their allocation).
+pub struct AdlibContinuation {
+    state: AdlibState,
+}
 struct Output<'a> {
     target: Option<&'a mut [AdlibWrite]>,
     count: usize,
@@ -91,6 +96,15 @@ impl Output<'_> {
     }
 }
 impl<'a> AdlibPlayer<'a> {
+    pub fn into_continuation(self) -> AdlibContinuation {
+        AdlibContinuation { state: self.state }
+    }
+    pub fn resume(image: AdlibImage<'a>, saved: AdlibContinuation) -> Self {
+        Self {
+            image,
+            state: saved.state,
+        }
+    }
     pub fn new(image: AdlibImage<'a>) -> Self {
         let mut channels = [[0; 20]; CHANNELS];
         for (i, c) in channels.iter_mut().enumerate() {

@@ -64,3 +64,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 [G10-03 / #76 OPL·결정론 PCM](reports/issue-76_opl_pcm.md): 엔진/라이선스 고정·원본 호출 시계·유리수 샘플/청크·native/WASM 및 독립 C 비교를 검증합니다. 다음 G10-04 게임 이벤트/DOS ID, G10 전체는 진행 중입니다.
 
 [G10-04 / #78 게임 사운드·DOS ID](reports/issue-78_game_sound.md): typed 사건·시작/종료/음악 cursor·함정 raw ID·세대 큐와 native/실제 WASM PCM 연결을 검증합니다. 다음은 G10-05 장치 출력이며 G10 전체는 진행 중입니다.
+
+[G10-05 / #80 SDL/Web 오디오 출력](reports/issue-80_audio_output.md): 장치·사용자 활성화·음소거/볼륨·숨김/재개·원본/연습 음원과 LAN HTTP, 라이선스/재빌드 소스 배포를 연결합니다. 다음은 G10-06 통합 대조·청취/마감입니다.

@@ -2,6 +2,8 @@
 use lemmings_core::{AssignmentSkill, InputCommand, StartupCommand};
 use lemmings_game::{Assets, LevelRun, lifecycle::ResultAction, pacing::Pacing};
 use std::{collections::BTreeMap, error::Error, rc::Rc};
+mod audio;
+pub use audio::WebAudio;
 mod bytes;
 mod input;
 pub use bytes::WebAssets;

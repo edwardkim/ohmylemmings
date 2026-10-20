@@ -64,3 +64,9 @@ python3 tools/check_web.py --evidence assets/local/web-original-check --original
 `check-web`은 추가로 `tools/check_web_journey.py`를 실행합니다. 실제 제품 DOM과 WASM의 합성 성공→재시작→Nuke 실패→재도전→전원 구출→다음 레벨 새 ID0을656개 전체 상태/57Canvas에서 네이티브와 비교하고, 독립 SDL12회와 WASM12회 시간/렌더 재생을 검사합니다. 원본/CDP 없이 실행됩니다. 증거를 남기려면 `python3 tools/check_web_journey.py --evidence assets/local/web-journey-check`를 사용합니다.
 
 로컬 개발 관측은 `app.js`의 `observe(listener)`로 attach/reset/input/before/after/present를 받으며 반환 함수로 해제합니다. 기본 실행에는 관측자가 없습니다. `tools/web/journey_recorder.js`는 전체 시도/순서 입력/매 경계 맵 변형과 실제 Canvas를 기록하고 `journey_replay.js`는 같은 입력의 시간/렌더 분할을 검증합니다. 자세한 초기/최종 경계·독립 재생·원본 보관 계약은 [#70 계약](../../mydocs/tech_insights/issue-70_web_playthrough.md)을 따릅니다.
+
+## 사운드 / #80
+
+새로고침 후 소리 켜기 버튼 또는 S로 활성화합니다. 음량 slider/PageUp/PageDown, 명시적 음소거·숨김/복귀·결과/재시작을 처리합니다. 음악은 Pause 중에도 계속되며 음소거/숨김 후 현재 곡을 처음부터 재개합니다. 원본 파일 선택에 ADLIB.DAT를 포함합니다. API/자원/장치 오류는 음향 상태에 표시하고 게임을 유지합니다. 연습 모드는 새로 만든 음원입니다. AudioBufferSource 예약 경로로 LAN HTTP를 지원합니다.
+
+`WebAudio`의 prepare/render는 게임을 tick하지 않는 owned PCM API입니다. `AudioHost`가 사용자 활성화와 bounded node/큐를 담당합니다. Footer의 라이선스 페이지에서 LGPL 전문과 이 빌드의 소스 묶음·WASM/소스 해시를 제공합니다. 추출본은 Git 없이 수정/재링크할 수 있습니다. [상세 계약](../../mydocs/tech_insights/issue-80_audio_output.md).

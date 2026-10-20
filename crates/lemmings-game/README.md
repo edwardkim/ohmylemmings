@@ -14,3 +14,7 @@ cargo build -p lemmings-game --lib --target wasm32-unknown-unknown --locked --of
 ```
 
 `tests/`의 합성 DAT/GROUND/MAIN 바이트는 자체 작성한 fixture이며 원본 파일 없이 실행됩니다. JS/WASM 바인딩·Canvas·브라우저 입력은 G09 후속 단계입니다.
+
+## 오디오 소유 경계 / #80
+
+`audio::AudioOutput`은 불변 음원 bytes·opaque VM/PCM continuation을 소유하고 장치 없이 typed batch→bounded mono PCM을 제공합니다. decode_adlib는 선택적 호스트 bytes를 읽고 demo_image는 독립 작성한 연습 데이터를 만듭니다. 게임 tick/렌더·장치 시간/I/O는 호출하지 않습니다. [계약](../../mydocs/tech_insights/issue-80_audio_output.md).
