@@ -87,3 +87,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#78 게임 사운드 이벤트·DOS 숫자 ID](issue-78_game_sound.md)
 
 - [#80 SDL/Web 오디오 출력](issue-80_audio_output.md)
+
+- [#82 실제 DOS OPL·SDL·WASM 통합 사운드](issue-82_audio_playthrough.md)

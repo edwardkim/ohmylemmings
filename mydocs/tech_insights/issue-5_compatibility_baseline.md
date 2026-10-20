@@ -67,7 +67,7 @@ Fun·Tricky·Taxing·Mayhem 각 30개를 모두 지원합니다. DAT 10개에 �
 - 모든 ID·주소·음악 채널은 기계 판독용 목록에 열거했습니다. 곡명과 효과음 번호의 의미를 추정해서 붙이지 않습니다.
 - 논리 효과음 이벤트 목록: BuilderWarning, AssignSkill, Yippee, Splat, LetsGo, EntranceOpening, Vaporizing, Drowning, Explosion, HitsSteel, Ohno, SkillButtonSelect, RopeTrap, TenTonTrap, BearTrap, ElectroTrap, SpinningTrap, SquishingTrap. 이 목록과 원본 숫자 ID의 대응은 G10에서 DOS 재생으로 검증합니다.
 
-TS 설정의 `audio.numberOfTracks=20`은 21번째 헤더를 누락합니다. [Lemmix의 1..21 음악 순환](https://github.com/ericlangedijk/Lemmix/blob/40e9bc34451f0e9127fd53b290a3877e700d143d/src/Styles.Dos.pas#L214)과 데이터 구조를 채택해 표시 전체 레벨 순번(0부터)을 21로 나눈 나머지를 음악 ID로 정합니다. 이 순서와 실제 재생 타이밍은 G10의 DOS 검증 항목입니다. [TS 음악·효과음 초기화](https://github.com/tomsoftware/Lemmings.ts/blob/10c7c8b9167258503d02589cf048e2d83a43dd0a/src/game/resources/sound/sound-image-player.ts#L51)는 형식 해석 참고용입니다.
+TS 설정의 `audio.numberOfTracks=20`은 21번째 헤더를 누락합니다. [Lemmix의 1..21 음악 순환](https://github.com/ericlangedijk/Lemmix/blob/40e9bc34451f0e9127fd53b290a3877e700d143d/src/Styles.Dos.pas#L214)과 데이터 구조를 채택해 표시 전체 레벨 순번(0부터)을 21로 나눈 나머지를 음악 ID로 정합니다. 이는 G00의 초기 메타데이터 계약입니다. G10의 실제 재생은 [#78 원본 DOS 검증](issue-78_game_sound.md)의 일반17곡 cursor·특수4곡·실패/재시작 첫곡6 정책을 따르며 전역 레벨 mod21을 사용하지 않습니다. 실제 OPL/타이밍 대조와 청취 범위는 [#82](issue-82_audio_playthrough.md)를 따릅니다. [TS 음악·효과음 초기화](https://github.com/tomsoftware/Lemmings.ts/blob/10c7c8b9167258503d02589cf048e2d83a43dd0a/src/game/resources/sound/sound-image-player.ts#L51)는 형식 해석 참고용입니다.
 
 G10은 21곡·18효과음의 명령 해석·반복·중단·동시 발생·음소거·볼륨·재시작을 검증합니다. 먼저 같은 합성기에 전달하는 `(audio_step, register, value)` 스트림을 정확히 비교하고, 고정 OPL 구현·샘플률·초기 상태에서 PCM 해시를 비교합니다. 원본 장치 녹음은 장치 차이를 고려한 청취·타이밍 증거로 기록합니다. TS의 경험적 오디오 속도 상수를 원작 타이밍 증거로 취급하지 않습니다.
 

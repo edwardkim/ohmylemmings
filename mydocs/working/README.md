@@ -1,5 +1,7 @@
 # 진행 중 작업
 
+- [#82 G10-06 통합 사운드 검증](issue-82_audio_playthrough.md)
+
 - [#56 G08-05 원본 기술 패널·미니맵](issue-56_skill_panel.md)
 
 - [#48 G08-01 객체·출구/구출](issue-48_exit_rescue.md)
