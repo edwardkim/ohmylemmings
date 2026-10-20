@@ -1181,3 +1181,6 @@ mod tests {
         );
     }
 }
+
+#[cfg(test)]
+mod playthrough_tests;
