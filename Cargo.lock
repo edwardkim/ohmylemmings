@@ -30,11 +30,19 @@ version = "0.1.0"
 dependencies = [
  "lemmings-core",
  "lemmings-resources",
+ "lemmings-session",
  "sdl2",
 ]
 
 [[package]]
 name = "lemmings-resources"
+version = "0.1.0"
+dependencies = [
+ "lemmings-core",
+]
+
+[[package]]
+name = "lemmings-session"
 version = "0.1.0"
 dependencies = [
  "lemmings-core",

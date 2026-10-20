@@ -67,3 +67,8 @@ WASM 표준 라이브러리 설치에는 최초 네트워크 접근이 필요할
 ## G06-01 어댑터 도입 / #27
 
 [#27 네이티브 화면](../tech_insights/issue-27_native_view.md)에서 workspace에 apps/desktop 바이너리를 추가했습니다. 기존 두 라이브러리의 no_std/외부 의존 0개·resources→core 방향은 유지합니다. 앱만 두 로컬 라이브러리와 sdl2=0.38.0/7개 잠금 레지스트리 패키지를 사용합니다. SDL2 SDK와 최초 cargo fetch 후 오프라인 검사합니다. WASM --lib 빌드는 네이티브 바이너리를 제외합니다.
+
+
+## G09-01 공유 세션 / #62
+
+[#62](../tech_insights/issue-62_shared_session.md)에서 workspace에 `crates/lemmings-session`을 추가했습니다. 기존 desktop의 소유 Session/Pacing을 std 라이브러리로 옮기고 core만 의존합니다. core/resources는 그대로 no_std이며 새 외부 패키지는 없습니다. 파일/SDL/시스템 시계는 desktop에 남기고 웹의 바이트 공급·WASM/Canvas 어댑터는 후속 절편으로 진행합니다. WASM --lib 빌드는 세 라이브러리를 컴파일하며 실제 브라우저 실행과 구분합니다.
