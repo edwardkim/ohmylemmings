@@ -753,9 +753,9 @@ fn load_assets(options: &Options, level: u8) -> Result<(Assets, Option<u8>), Box
     } else if options.synthetic {
         Assets::synthetic()
     } else if level == 1 {
-        Assets::load(&options.assets)?
+        assets::load(&options.assets)?
     } else {
-        Assets::load_level(&options.assets, level)?
+        assets::load_level(&options.assets, level)?
     };
     let next = if options.synthetic {
         (options.outcome_scene.as_deref() == Some("win") && level == 1).then_some(2)

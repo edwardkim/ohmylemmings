@@ -29,9 +29,19 @@ name = "lemmings-desktop"
 version = "0.1.0"
 dependencies = [
  "lemmings-core",
+ "lemmings-game",
  "lemmings-resources",
  "lemmings-session",
  "sdl2",
+]
+
+[[package]]
+name = "lemmings-game"
+version = "0.1.0"
+dependencies = [
+ "lemmings-core",
+ "lemmings-resources",
+ "lemmings-session",
 ]
 
 [[package]]

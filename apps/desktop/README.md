@@ -53,7 +53,7 @@ cargo run --release --locked --offline -p lemmings-desktop -- --assets assets/lo
 make check
 ```
 
-`make check-desktop`은 앱을 오프라인 빌드한 뒤 `target/release/lemmings-desktop`으로 실제 SDL dummy/software 창·입력 루프·화면 readback을 원본 없이 검사합니다. 전체 SDL 합성 검사는 release 실행 파일을 사용합니다. WASM 검사는 기존 두 라이브러리만 빌드합니다.
+`make check-desktop`은 앱을 오프라인 빌드한 뒤 `target/release/lemmings-desktop`으로 실제 SDL dummy/software 창·입력 루프·화면 readback을 원본 없이 검사합니다. 전체 SDL 합성 검사는 release 실행 파일을 사용합니다. WASM 검사는 core/resources/session/game 라이브러리를 빌드합니다.
 
 [구현 계약·참조·X11 재현](../../mydocs/tech_insights/issue-27_native_view.md), [검증 보고서](../../mydocs/reports/issue-27_native_view.md).
 
@@ -169,3 +169,7 @@ OUT/IN/TIME·직업 수량과 현재 지형/개체·카메라가 표시됩니다
 DOS RightClickGlitch도 적용합니다. 일반 개체를 가리킨 뒤 우클릭을 누른 채 작업 중인 개체 위에서 왼쪽을 누르면 이전 대상에 기술을 할당합니다. 기억한 대상이 함정으로 제거된 경우에도 원래 행동이 허용하면 Blocker 수량과 필드가 적용됩니다. FocusLost/재시작은 선택 기억을 초기화합니다.
 
 기존 안정 ID 재생에 `105 0 AssignPointer Builder 0 1 false`(우선/일반 ID)와 `105 0 AssignPointer Blocker 0 - true`(원격)를 추가했습니다. `pointer.jsonl`은 원시 논리 좌표/우클릭·선택 ID·문구를 기록합니다. [상세 계약·검증·원문 충돌 차이](../../mydocs/tech_insights/issue-58_pointer_selection.md)를 참고합니다. `make check-desktop`의 `check_pointer.py`는 원본/FPC 없이 선택 golden과8개 SDL 재생을 검사합니다.
+
+## 공통 게임 경계
+
+[#64](../../mydocs/tech_insights/issue-64_shared_game.md)에서 자산 해석·CPU 화면·패널·포인터 표현·레벨 전환을 [lemmings-game](../../crates/lemmings-game/README.md)으로 옮겼습니다. 데스크톱은 파일 읽기·경로 오류·SDL 입력/표시·캡처/재생을 담당합니다. 기존 CLI와 조작은 같습니다.

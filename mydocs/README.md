@@ -48,3 +48,5 @@ G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/issue-2_dos_origin
 [#33 Miner](reports/issue-33_miner.md)의 구현·기준/원본/네이티브·전체 회귀·게시/실제 CI를 완료했습니다. G07 직업·지형 회귀를 완료했으며 G08 객체·완주는 후속입니다.
 
 G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 공유 세션·웹 이식 경계](tech_insights/issue-62_shared_session.md)에서 후속 웹 작업을 분할합니다.
+
+[G09-02 / #64 자산 바이트·공통 장면과 패널](tech_insights/issue-64_shared_game.md)을 진행합니다. JS/WASM·Canvas·브라우저 완주는 후속 단계입니다.

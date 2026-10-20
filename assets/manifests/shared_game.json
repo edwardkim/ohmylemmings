@@ -1,0 +1,963 @@
+{
+  "format": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/64",
+  "baseline_main": "eb442214d7edaca99bf49948037414a112fe4790",
+  "scope": "G09-02 shared named-byte asset assembly and CPU scene/panel; native migration and memory/file equality; no JS binding/browser execution/new DOS recording",
+  "comparison": {
+    "status": "PASS",
+    "baseline_commit": "eb442214d7edaca99bf49948037414a112fe4790",
+    "cases": 6,
+    "baseline_runs": 6,
+    "post_runs": 12,
+    "post_states": 3824,
+    "post_captures": 826,
+    "runs": [
+      {
+        "name": "win",
+        "render": 1,
+        "states": 162,
+        "sha256": "a8df929a8c2bcd573c143f37cf1275f6c52cf588906463aab305bda8f674aec2",
+        "captures": 34,
+        "binary_files": 10,
+        "rgb_frames": 34,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 3,
+          "lemming_count": 3,
+          "required": 2,
+          "rescued": 3,
+          "target_percent": 66,
+          "rescued_percent": 100
+        }
+      },
+      {
+        "name": "win",
+        "render": 7,
+        "states": 162,
+        "sha256": "a8df929a8c2bcd573c143f37cf1275f6c52cf588906463aab305bda8f674aec2",
+        "captures": 34,
+        "binary_files": 10,
+        "rgb_frames": 34,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 3,
+          "lemming_count": 3,
+          "required": 2,
+          "rescued": 3,
+          "target_percent": 66,
+          "rescued_percent": 100
+        }
+      },
+      {
+        "name": "loss",
+        "render": 1,
+        "states": 272,
+        "sha256": "c5b207825e568a17a495a8dd749a2a7fc408e40ef7ff7c15aa0e9073118443ce",
+        "captures": 56,
+        "binary_files": 10,
+        "rgb_frames": 56,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 3,
+          "lemming_count": 3,
+          "required": 2,
+          "rescued": 1,
+          "target_percent": 66,
+          "rescued_percent": 33
+        }
+      },
+      {
+        "name": "loss",
+        "render": 7,
+        "states": 272,
+        "sha256": "c5b207825e568a17a495a8dd749a2a7fc408e40ef7ff7c15aa0e9073118443ce",
+        "captures": 56,
+        "binary_files": 10,
+        "rgb_frames": 56,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 3,
+          "lemming_count": 3,
+          "required": 2,
+          "rescued": 1,
+          "target_percent": 66,
+          "rescued_percent": 33
+        }
+      },
+      {
+        "name": "mixed",
+        "render": 1,
+        "states": 316,
+        "sha256": "033a6abf7b4aebeb75e1bbda88c90cdeccf17681c23d19611c7c5695f3fad484",
+        "captures": 170,
+        "binary_files": 10,
+        "rgb_frames": 170,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 80,
+          "lemming_count": 25,
+          "required": 40,
+          "rescued": 13,
+          "target_percent": 50,
+          "rescued_percent": 52
+        }
+      },
+      {
+        "name": "mixed",
+        "render": 7,
+        "states": 316,
+        "sha256": "033a6abf7b4aebeb75e1bbda88c90cdeccf17681c23d19611c7c5695f3fad484",
+        "captures": 170,
+        "binary_files": 10,
+        "rgb_frames": 170,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 80,
+          "lemming_count": 25,
+          "required": 40,
+          "rescued": 13,
+          "target_percent": 50,
+          "rescued_percent": 52
+        }
+      },
+      {
+        "name": "particles",
+        "render": 1,
+        "states": 229,
+        "sha256": "ddcece3ff6fcd12df261a7ab09a69b345da08699438e1c1b85514ae019c894c3",
+        "captures": 27,
+        "binary_files": 10,
+        "rgb_frames": 27,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 1,
+          "lemming_count": 1,
+          "required": 1,
+          "rescued": 0,
+          "target_percent": 100,
+          "rescued_percent": 0
+        }
+      },
+      {
+        "name": "particles",
+        "render": 7,
+        "states": 229,
+        "sha256": "ddcece3ff6fcd12df261a7ab09a69b345da08699438e1c1b85514ae019c894c3",
+        "captures": 27,
+        "binary_files": 10,
+        "rgb_frames": 27,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 1,
+          "lemming_count": 1,
+          "required": 1,
+          "rescued": 0,
+          "target_percent": 100,
+          "rescued_percent": 0
+        }
+      },
+      {
+        "name": "Fun01-win",
+        "render": 1,
+        "states": 661,
+        "sha256": "0abec0f5f6cb2261e8ae0d6beaa7536ed0eecd53ba14a738d8b7dfc28c5ce37b",
+        "captures": 84,
+        "binary_files": 10,
+        "rgb_frames": 84,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 10,
+          "required": 1,
+          "rescued": 10,
+          "target_percent": 10,
+          "rescued_percent": 100
+        }
+      },
+      {
+        "name": "Fun01-win",
+        "render": 7,
+        "states": 661,
+        "sha256": "0abec0f5f6cb2261e8ae0d6beaa7536ed0eecd53ba14a738d8b7dfc28c5ce37b",
+        "captures": 84,
+        "binary_files": 10,
+        "rgb_frames": 84,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 10,
+          "required": 1,
+          "rescued": 10,
+          "target_percent": 10,
+          "rescued_percent": 100
+        }
+      },
+      {
+        "name": "Fun01-loss",
+        "render": 1,
+        "states": 272,
+        "sha256": "9e167a7004982d2daab45ac58b1ecfca03a1b52c768b3962360a8fc71bac28b8",
+        "captures": 42,
+        "binary_files": 10,
+        "rgb_frames": 42,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 3,
+          "required": 1,
+          "rescued": 0,
+          "target_percent": 10,
+          "rescued_percent": 0
+        }
+      },
+      {
+        "name": "Fun01-loss",
+        "render": 7,
+        "states": 272,
+        "sha256": "9e167a7004982d2daab45ac58b1ecfca03a1b52c768b3962360a8fc71bac28b8",
+        "captures": 42,
+        "binary_files": 10,
+        "rgb_frames": 42,
+        "final": {
+          "phase": "Lost",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 3,
+          "required": 1,
+          "rescued": 0,
+          "target_percent": 10,
+          "rescued_percent": 0
+        }
+      }
+    ],
+    "scope": "unchanged normalized full state and ordered terrain/object history; every initial/final binary and all logical RGB captures; not browser or new DOS execution"
+  },
+  "memory_source": {
+    "status": "PASS",
+    "supported": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "rejected": [
+      22
+    ],
+    "compared_states": 1929,
+    "compared_frames": 1929,
+    "stored_rgb": 144
+  },
+  "source_preservation": {
+    "status": "PASS",
+    "modules": {
+      "render": "byte-identical excluding module description/trailing whitespace; pointer SDL tests retained in desktop",
+      "panel": "byte-identical excluding module description/trailing whitespace; pointer SDL tests retained in desktop",
+      "lifecycle": "byte-identical excluding module description/trailing whitespace; pointer SDL tests retained in desktop",
+      "pointer": "byte-identical excluding module description/trailing whitespace; pointer SDL tests retained in desktop",
+      "assets": "assembly and scene/synthetic bodies preserved; byte interface/optional EXE and filesystem tests replaced"
+    },
+    "no_platform_calls": true,
+    "no_std_unchanged": true,
+    "session_unchanged": true
+  },
+  "sources": [
+    {
+      "path": "Cargo.lock",
+      "bytes": 2124,
+      "sha256": "1fabb72e97fa4881dee6eb1b378b23001ed71e01467349435bae9a71a7528180"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 358,
+      "sha256": "e68f47e57c5a14ac070c543902c659a2977e62eafe6150a4884dd3673ab476bb"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 1902,
+      "sha256": "d742163bf0e829c9b3af5bc14f5d10fa172a1b2f7425e669d0bf167b8a023a1e"
+    },
+    {
+      "path": "apps/desktop/Cargo.toml",
+      "bytes": 537,
+      "sha256": "5d1a3db6750b93cb304c6cf5dbe2c4b90558f955631971f527b97cf06e6ff306"
+    },
+    {
+      "path": "apps/desktop/src/assets.rs",
+      "bytes": 1758,
+      "sha256": "e36451cddd7238ce10c203ff42f3df7eb2ad511f447794ab72bdb3d962b7b13a"
+    },
+    {
+      "path": "apps/desktop/src/input.rs",
+      "bytes": 32833,
+      "sha256": "103d1bc90a92a9cedce8f3830e35a8d09dbf8bd947551a7fec38692ee57dec17"
+    },
+    {
+      "path": "apps/desktop/src/lifecycle.rs",
+      "bytes": 115,
+      "sha256": "40d5caf9779b0fa2e55a7d368512511b395553a3766feb30e48c9afc9ed68d42"
+    },
+    {
+      "path": "apps/desktop/src/main.rs",
+      "bytes": 45715,
+      "sha256": "497089e3ea809a9b6b026f9369d4d312f943bb7411e87963c14bfeb1ff8304a9"
+    },
+    {
+      "path": "apps/desktop/src/panel.rs",
+      "bytes": 111,
+      "sha256": "020f7eca9f9906e82d596ec72e940d743c3feb8cf5cda4113c29a1b12b30aba1"
+    },
+    {
+      "path": "apps/desktop/src/pointer.rs",
+      "bytes": 5632,
+      "sha256": "a07826bdcf410d7f5bc3926941e75be289845a5ffd0628247fe72e0a56ddde5c"
+    },
+    {
+      "path": "apps/desktop/src/render.rs",
+      "bytes": 112,
+      "sha256": "b76e9c36edf393f094a0f3fb11e860a7782d23b63cad313b1fa3057baed43a8a"
+    },
+    {
+      "path": "crates/lemmings-core/Cargo.toml",
+      "bytes": 355,
+      "sha256": "fda80e247255d40f3ff97b0f8f883abca7044c3de20b87b79e33b21a7ed6c253"
+    },
+    {
+      "path": "crates/lemmings-core/examples/pointer_probe.rs",
+      "bytes": 7031,
+      "sha256": "49fcd9ca4d26f7c36020b807bfe26c952d87ec360f791d5e7d43acdd7024d346"
+    },
+    {
+      "path": "crates/lemmings-core/examples/skill_matrix.rs",
+      "bytes": 11304,
+      "sha256": "55595d53a97a218d95c78e1ede06d33e7f4b6f8bf0df9850e584824a23686fe5"
+    },
+    {
+      "path": "crates/lemmings-core/examples/trace_replay.rs",
+      "bytes": 9591,
+      "sha256": "419a45d78c1794262ed125044b6c38d9c59587cc2d9b06d1a120d3f9e9fd39e8"
+    },
+    {
+      "path": "crates/lemmings-core/src/level.rs",
+      "bytes": 3322,
+      "sha256": "c832a8049fcd98c00dbd18e2c2ade1d6c83a38f517594f0044c07a5f61d59643"
+    },
+    {
+      "path": "crates/lemmings-core/src/lib.rs",
+      "bytes": 1927,
+      "sha256": "4913e68c02b5115608002bafe3b884d34ce1d516b6ca80aa60e8478c2c76bd3e"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/clock.rs",
+      "bytes": 5264,
+      "sha256": "5f2d94121235b7bdefa75372339cffc961285aa8a39f29383da15ef0684f4cc6"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/completion.rs",
+      "bytes": 3932,
+      "sha256": "8353d3872d130f319279942da3e1e23093a3d33016b6ef4b3d75b4b0107a1243"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/input.rs",
+      "bytes": 5561,
+      "sha256": "29bd3e760a35d04ee0f22170b828761b8a38a2a9c25d372c2f1ab91dc3537aa9"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/basher.rs",
+      "bytes": 8775,
+      "sha256": "14b3009a424fcced00575e291e1b403e99bdedc247d71b0731bd32cb4379190b"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/blocker.rs",
+      "bytes": 7595,
+      "sha256": "c4d56c777c74a0297d774a270e476b2143f55c29f2680fdce7f9f8bdf5592ff5"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/bomber.rs",
+      "bytes": 7854,
+      "sha256": "15a2d4630e907a0dd263d1663fdde7d67ea8d488236ff8cb7eb29ff86fbc4532"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/builder.rs",
+      "bytes": 4549,
+      "sha256": "41cc899175e4cfeee7ae73f40cd0eeb94463bc48631107a353eb683021f785ea"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/climber.rs",
+      "bytes": 2151,
+      "sha256": "4d980955e83780358d9f8c181ef06cc2932d2788a33f179985d70cfc86faa90a"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/digger.rs",
+      "bytes": 5929,
+      "sha256": "4783974e7649ce4f6ec1a78913eec061aa2406d978dd93cda72b958fed46bb16"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/floater.rs",
+      "bytes": 1691,
+      "sha256": "d25bfb886138f4a4018cc57556311dfd3684c093bf51647624860bd78010ee2b"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/golden.rs",
+      "bytes": 24867,
+      "sha256": "09308318e247c7c9c702b534e718ee5e278d88b0ec1603e8b15356586d6aed97"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/hazards.rs",
+      "bytes": 3866,
+      "sha256": "c60b30e31b234f5e321f870586cb8bd52a4df89ea52011a3a1af5d1486e8cf0e"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/miner.rs",
+      "bytes": 5953,
+      "sha256": "969a48d926217e80c9e1dca1183fe0670ef8b7bc0f5a2da649ccfc2e948a8a05"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion/tests.rs",
+      "bytes": 35480,
+      "sha256": "d0092eea6f1f942974eccb102e6b23c45abf5aa8ac32b290fe3103c69c3e5e6a"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/motion.rs",
+      "bytes": 27938,
+      "sha256": "ecdcc9de52f8382e38a2d158320141900381bd71ab8b8e584bb45af3a4e9bacb"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/nuke.rs",
+      "bytes": 2613,
+      "sha256": "f670d417edffcf07818a7dd97fe9000630a2b35b04284ee5cf7747d8a39d7e37"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/objects.rs",
+      "bytes": 4442,
+      "sha256": "347b660e54753a701480b0cc3c0390a2bdad46ca7d8b73ef3a8540e3b334e2f1"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/selection.rs",
+      "bytes": 10999,
+      "sha256": "0ba07e048e90d584e97183265b710bf065fb7ac8680055bd4625b5c5b8201e31"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/startup/tests.rs",
+      "bytes": 23015,
+      "sha256": "ce82102b83de1c41329dde05eca3159588d5be02575e438695f4bbecfe75f403"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/startup.rs",
+      "bytes": 13155,
+      "sha256": "e681aef7109cb51e782960be1fc935086f27f0df0c9bd147df9ee814a7015826"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation/stepper.rs",
+      "bytes": 17877,
+      "sha256": "c84499865a88f6ef6a082d384285be433c0d870c1967ef120698d5a083932c43"
+    },
+    {
+      "path": "crates/lemmings-core/src/simulation.rs",
+      "bytes": 1519,
+      "sha256": "be0a7e5898dca0c79657682bb455696a194f25d33ce18db8b5840c3786c4f65a"
+    },
+    {
+      "path": "crates/lemmings-core/src/terrain/bulk.rs",
+      "bytes": 19000,
+      "sha256": "f17522325d42bf3eb63bbf96a656ced30f13f9065baf36d81f3fbaa2d9172c40"
+    },
+    {
+      "path": "crates/lemmings-core/src/terrain.rs",
+      "bytes": 27264,
+      "sha256": "c5deac5341a5679dc322ba70e6ed8df5f51249709746ea5d6b8e52a485f529d1"
+    },
+    {
+      "path": "crates/lemmings-core/tests/basher.rs",
+      "bytes": 13484,
+      "sha256": "f2dbd8b8d50dab958353b5636bd469ce9f82d0925b7a1b55d68a228d345edb08"
+    },
+    {
+      "path": "crates/lemmings-core/tests/blocker.rs",
+      "bytes": 16851,
+      "sha256": "f563ec112058c2d7bc4135c2350b30c9b311d0687b4c828a7bb1902ca72dbea9"
+    },
+    {
+      "path": "crates/lemmings-core/tests/bomber.rs",
+      "bytes": 13415,
+      "sha256": "6283e836bc8c97929d920ce923131ca0465516618d8ff3895c3ab71176ec644b"
+    },
+    {
+      "path": "crates/lemmings-core/tests/builder.rs",
+      "bytes": 12910,
+      "sha256": "7f3c61ba8716a9c615621c504645c1f33d1925745cc0831345cf0ce66501ed22"
+    },
+    {
+      "path": "crates/lemmings-core/tests/climber.rs",
+      "bytes": 10173,
+      "sha256": "6a134ea78dbee9d863f581ce58fdd626184d2f00eaa25d4a69efcd67ad0abb89"
+    },
+    {
+      "path": "crates/lemmings-core/tests/digger.rs",
+      "bytes": 11697,
+      "sha256": "a20dbd1764330c1962191fbf6949f464e436aff565b75f49b72ad3b15708e828"
+    },
+    {
+      "path": "crates/lemmings-core/tests/exit_rescue.rs",
+      "bytes": 10489,
+      "sha256": "7b3a491537d60f895c64c02d79d0c7243d9e709e86f185c2ca09e184fe81f59f"
+    },
+    {
+      "path": "crates/lemmings-core/tests/floater.rs",
+      "bytes": 11269,
+      "sha256": "b20cd9a3d4b365aa98d58ae5ed6b2fc0d899f92bd5083dade2d0d24f40bb4d64"
+    },
+    {
+      "path": "crates/lemmings-core/tests/hazards.rs",
+      "bytes": 14886,
+      "sha256": "83db68532e2caf9f7403c15d25dd5a416e5198582b3a19500768dd31dbb1e223"
+    },
+    {
+      "path": "crates/lemmings-core/tests/level_outcome.rs",
+      "bytes": 7707,
+      "sha256": "7cf2a4aee350bd781c5de590bd5c3909d1f9e2adf6a03db626bf1c7db1182a48"
+    },
+    {
+      "path": "crates/lemmings-core/tests/miner.rs",
+      "bytes": 12621,
+      "sha256": "8938b5ae3f6f275b3eb89613192245894b03f631ea7897b9842307ecc6c4bc42"
+    },
+    {
+      "path": "crates/lemmings-core/tests/nuke.rs",
+      "bytes": 9305,
+      "sha256": "35a69ff6fdefdddf3c8fd18a569b1b4429bdc8981e353cb13694f9611271be9e"
+    },
+    {
+      "path": "crates/lemmings-game/Cargo.toml",
+      "bytes": 452,
+      "sha256": "40e395eb49f6f9c0652cf570850fe19f0fe0573c296273a391fff1eda539b2cf"
+    },
+    {
+      "path": "crates/lemmings-game/src/assets.rs",
+      "bytes": 31851,
+      "sha256": "0ec03f0928efe748f36d72c135bfbe597832eed2490b868fd0e52e0265d7e34a"
+    },
+    {
+      "path": "crates/lemmings-game/src/lib.rs",
+      "bytes": 676,
+      "sha256": "8d0ed2af28352a8bd8f535e9751eb382850f32c8b843154ff0cd93628221b39c"
+    },
+    {
+      "path": "crates/lemmings-game/src/lifecycle.rs",
+      "bytes": 11058,
+      "sha256": "405e8eb336141b268d6493d444d8911d9af232c8281516ab8937dae70ae7799d"
+    },
+    {
+      "path": "crates/lemmings-game/src/panel.rs",
+      "bytes": 16256,
+      "sha256": "545f4a757d3ec7fe751b87a4f8cdf9ed35d4a92d567e12bdf268cacca70d5204"
+    },
+    {
+      "path": "crates/lemmings-game/src/pointer.rs",
+      "bytes": 2584,
+      "sha256": "6af0225717036307888ca0c38f150991a3c4b8c76dc4be6417e1cca7ef540df8"
+    },
+    {
+      "path": "crates/lemmings-game/src/render.rs",
+      "bytes": 24917,
+      "sha256": "53709ee0c87ecdd05b68b8c766d484a334cf0f38cc09d0c435f26f19963a7ba4"
+    },
+    {
+      "path": "crates/lemmings-game/tests/byte_source.rs",
+      "bytes": 7266,
+      "sha256": "89ab5f2bf457ce18606bd6d7ae64f1860bc3e8d6acae242f76b203774192c700"
+    },
+    {
+      "path": "crates/lemmings-game/tests/support/mod.rs",
+      "bytes": 3084,
+      "sha256": "cd6d78a37e8e7ce7837514e57de4b4690c6bf65a414cedddf7e16c9029fe0885"
+    },
+    {
+      "path": "crates/lemmings-resources/Cargo.toml",
+      "bytes": 321,
+      "sha256": "c430e2a3913de2bd874e5d03657142c7ba6e262a7179d3f5593f495980099b82"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_catalog.rs",
+      "bytes": 3215,
+      "sha256": "31f65ee4dc4acece1c73415bb2d7804766d12143f24d0de6a45f8a56e234d1cc"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_dat.rs",
+      "bytes": 1476,
+      "sha256": "cd4d72b847ea224cc559d52c2b08ea61033424aa30c60d2c16da5541ced42272"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_ground.rs",
+      "bytes": 3492,
+      "sha256": "4bfdde54fc63b358c0ce50442b4c24b8987f7847ab55e984fccb2156206187a0"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_levels.rs",
+      "bytes": 3731,
+      "sha256": "f5dae139b0740a0e55c3b4eb12aee617ef11793d273f8a50543ac1643063e6ff"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_masks.rs",
+      "bytes": 2886,
+      "sha256": "d00131830322407995c2adaf08e1a0db6c7745fcafde7a7ac214e5f691e8c275"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_objects.rs",
+      "bytes": 9307,
+      "sha256": "5a61fc4c3acd2a3f8e5ff0d34b8fd8d23edee3a8eefdd3358e4752047f3a45f2"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_sprites.rs",
+      "bytes": 3203,
+      "sha256": "58dbd3cf7d25fdbf4039c75a1b773b90db546aac2fadf4db02dac3279c4a8100"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_terrain.rs",
+      "bytes": 6652,
+      "sha256": "e3ef215bb3f530567bb4057e7d4c0b3c1cb6699ed9346a097f589a7b24b922f2"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_ui.rs",
+      "bytes": 3973,
+      "sha256": "b5813ff7008c2b46df225d296c8a2b4f77d01c09afeb91d950dce2e62fd84e1e"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_vgagr.rs",
+      "bytes": 3438,
+      "sha256": "8c20a2dddff5601bee7ffdd1abf95a6dcae7197f2c1ef762f50815bec634622d"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/inspect_vgaspec.rs",
+      "bytes": 2588,
+      "sha256": "72f76237832dc2f9e2fd16a257ae2e10d32ca16e9fd26ec27faf10054c2c66af"
+    },
+    {
+      "path": "crates/lemmings-resources/examples/unpack_dat.rs",
+      "bytes": 1679,
+      "sha256": "6cf37ccaa403baf80d1a0c3d06946dbc7ac54914555430b938f2da8db7b26315"
+    },
+    {
+      "path": "crates/lemmings-resources/src/catalog.rs",
+      "bytes": 20391,
+      "sha256": "482e6e19efb152ea111b4037eaba3f8d9ec0d55ced02508638fa72394b66182f"
+    },
+    {
+      "path": "crates/lemmings-resources/src/dat.rs",
+      "bytes": 15857,
+      "sha256": "e2b26f994f33b87c7a1fad7e9f7411f5d971d74ceb3163a0607f1e2e77b074fd"
+    },
+    {
+      "path": "crates/lemmings-resources/src/decompress.rs",
+      "bytes": 22421,
+      "sha256": "70671fd5a88211a121aebc110c63cb997d03432694a9db18c593f8c1442c32f2"
+    },
+    {
+      "path": "crates/lemmings-resources/src/ground.rs",
+      "bytes": 17041,
+      "sha256": "b8d6fc8335de563b7465450a02bc3789850344258a51ece148d2965a6053f651"
+    },
+    {
+      "path": "crates/lemmings-resources/src/level.rs",
+      "bytes": 28391,
+      "sha256": "7c4d5b6c02c5442dc0fa30706bc8956c11b3384e01b6e93646d55d76ce7f4331"
+    },
+    {
+      "path": "crates/lemmings-resources/src/lib.rs",
+      "bytes": 2511,
+      "sha256": "3149b3dfd7a21d7422442347590c015b81d969563fa80d6f626c997b94e29303"
+    },
+    {
+      "path": "crates/lemmings-resources/src/masks.rs",
+      "bytes": 20832,
+      "sha256": "06dcc3d9cf648af8327ef3fac2df7ab7f08f364f12c6b6f5f7454736af340911"
+    },
+    {
+      "path": "crates/lemmings-resources/src/objects.rs",
+      "bytes": 29931,
+      "sha256": "2fcbfc27434943f0a3c25e18758dbfcd9b6212c935ad76f1d1e00b39280893fd"
+    },
+    {
+      "path": "crates/lemmings-resources/src/odd.rs",
+      "bytes": 8421,
+      "sha256": "e4cb0a0cd73c3bbf1619a0c8eac79514649406695b6f5e8416e697b301020e7e"
+    },
+    {
+      "path": "crates/lemmings-resources/src/particles.rs",
+      "bytes": 2699,
+      "sha256": "ef9a7b86b4ba4daf3ac7c5d13e0a14757fdfa2c98cb361b7aff5115fb727283b"
+    },
+    {
+      "path": "crates/lemmings-resources/src/reader.rs",
+      "bytes": 3984,
+      "sha256": "8ff493a5db815d33deb25b21a4c27db9ab529328357bc1382f0514a518cd77f7"
+    },
+    {
+      "path": "crates/lemmings-resources/src/sprites.rs",
+      "bytes": 33838,
+      "sha256": "88d0375463113ae34f3c412a5d9f0338ccee048b499501f60faf5e69c5e0d05e"
+    },
+    {
+      "path": "crates/lemmings-resources/src/terrain.rs",
+      "bytes": 29099,
+      "sha256": "e2a086dc3df9f4c3d1486ba8a9fe1c6e7504a0f15206b896c3604316efa0c4ff"
+    },
+    {
+      "path": "crates/lemmings-resources/src/ui.rs",
+      "bytes": 38527,
+      "sha256": "2ea7041f0388f7f60216a892d48f42f2dea3b03b5790715dbfb01b5f10b39e8d"
+    },
+    {
+      "path": "crates/lemmings-resources/src/vgagr.rs",
+      "bytes": 33687,
+      "sha256": "f973cbfd6e1d6ce87b3430b2c8a6053d1a209b773859afb3095a2fd0cc1dbdf0"
+    },
+    {
+      "path": "crates/lemmings-resources/src/vgaspec.rs",
+      "bytes": 27891,
+      "sha256": "680ae409742e6e8cb2c98477ec1607289ee30314a94120d40f0639c2c141cb56"
+    },
+    {
+      "path": "crates/lemmings-session/Cargo.toml",
+      "bytes": 338,
+      "sha256": "137e5b6db8113cec8b0f4e930956f36339da2e63ba0d0eab2bbacc7ebe01f67f"
+    },
+    {
+      "path": "crates/lemmings-session/src/fixtures.rs",
+      "bytes": 4370,
+      "sha256": "fe6da73a4698b3436fa5239dcf38f49bf441ca656a82b5702945537750873a00"
+    },
+    {
+      "path": "crates/lemmings-session/src/lib.rs",
+      "bytes": 1395,
+      "sha256": "97af4161463cf9f6cae5c2d1d1c83f33f35625da99e144c9b2c7c1f03f40e268"
+    },
+    {
+      "path": "crates/lemmings-session/src/pacing.rs",
+      "bytes": 3750,
+      "sha256": "476b1fd985ab59a3299e800bbb7d823184ecd6d56f1efcbd82ca659f344745ac"
+    },
+    {
+      "path": "crates/lemmings-session/src/session.rs",
+      "bytes": 54223,
+      "sha256": "e2da5be93644e90fdf5b41e069961836962afc596e440165d8e4829dbd7ebe5a"
+    },
+    {
+      "path": "crates/lemmings-session/tests/host_contract.rs",
+      "bytes": 5164,
+      "sha256": "02e006ce49955653b9189a7c0e8fde8ff821481300d663e8c95b69c5be8d44f0"
+    },
+    {
+      "path": "tools/check_completion.py",
+      "bytes": 9789,
+      "sha256": "c74cdaf29b0576acd81509875f7d61dfe1df1c4c2e4ca68ef4b631d312093f3b"
+    },
+    {
+      "path": "tools/check_desktop.py",
+      "bytes": 5484,
+      "sha256": "eb6cc74bfbe21bb7f3dfe62869f1ab12fc9839c2f1b5af74d3cb91e8dc4b86fa"
+    },
+    {
+      "path": "tools/check_hazards.py",
+      "bytes": 11077,
+      "sha256": "fe3e11d98e86d3bcd425f384efcdb763d109d0805168dd9f33252f841d18cc5e"
+    },
+    {
+      "path": "tools/check_skill_interactions.py",
+      "bytes": 12915,
+      "sha256": "5bf70afbda5b83b8e49926968a585e6f605005f45a9cc062b433e5ca9d60d742"
+    },
+    {
+      "path": "tools/state_replay.py",
+      "bytes": 16162,
+      "sha256": "f9485c7f9e97ec385ede05755e64d2cfb96ec7cf3e056b285e535ff1016c80fa"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "assets/local/issue-64-review/baseline-desktop",
+      "bytes": 1067056,
+      "sha256": "f5d21b9e11273548750e90971c8d72cb0f42953e136d2df04c2467e5fe3bcdbf"
+    },
+    {
+      "path": "assets/local/issue-64-review/baseline.py",
+      "bytes": 990,
+      "sha256": "8f49a420acdc676197d7ac5b14efd56660d216f6633ed9b4fd5ff8f859eebcf5"
+    },
+    {
+      "path": "assets/local/issue-64-review/compare-migration.py",
+      "bytes": 1923,
+      "sha256": "c3747e8154cec17d90720db57a3bfce2edd9768518c3a83ff4c1398393bd7a0b"
+    },
+    {
+      "path": "assets/local/issue-64-review/comparison.log",
+      "bytes": 4284,
+      "sha256": "e79e81370099f7fc9a9585d50412e534f60a9f8e2cdf34c8ac1f6772d793273f"
+    },
+    {
+      "path": "assets/local/issue-64-review/tdd-red.log",
+      "bytes": 861,
+      "sha256": "a5bf0546764baf9609de1f1eeb3ee9a2cae592671474f442b658a75d63f8694c"
+    },
+    {
+      "path": "assets/local/issue-64-review/tdd-green.log",
+      "bytes": 6075,
+      "sha256": "cf544146d42f9e2791716ee920bcb788fc84ac09da2da7029ae93a358ae3b891"
+    },
+    {
+      "path": "assets/local/issue-64-review/clippy.log",
+      "bytes": 523,
+      "sha256": "73662938d6ffc56cbfeb833fd019b963b3e598259fa4304b968b61ce7fc17d9b"
+    },
+    {
+      "path": "assets/local/issue-64-review/isolated-wasm.log",
+      "bytes": 440,
+      "sha256": "a47493707e253b74eb4847f362d069ae7ab2b54d8130ffba970617c45e1053f8"
+    },
+    {
+      "path": "assets/local/issue-64-review/dependency-tree.txt",
+      "bytes": 526,
+      "sha256": "576ee0c6e8a66cafadb53f00f99ec905c5644ba475f144cf73fd85946dc98c63"
+    },
+    {
+      "path": "assets/local/issue-64-review/source-audit.py",
+      "bytes": 2386,
+      "sha256": "c1d3697a83270eee46057ba36fbd46825372ce84f7001252ec1acbe6cb751e50"
+    },
+    {
+      "path": "assets/local/issue-64-review/source-preservation.json",
+      "bytes": 733,
+      "sha256": "0c00ab307d008e2595b3e7a1867f75c01bb89fb1a482a157755d1a7c22d4dacf"
+    },
+    {
+      "path": "assets/local/issue-64-review/self-review.json",
+      "bytes": 928,
+      "sha256": "6923493bf3601bf3c5a96580bd8ff4b50d49f50ff650f4d48292aa8a39727272"
+    },
+    {
+      "path": "assets/local/issue-64-review/memory-probe/src/main.rs",
+      "bytes": 2936,
+      "sha256": "8948b926611cca9e4a6817ee74f0f9424b9955b549b70a2bc6bf335876aae933"
+    },
+    {
+      "path": "assets/local/issue-64-review/memory-probe/Cargo.toml",
+      "bytes": 256,
+      "sha256": "f127ea0edad8e354905a1ad290080268dd49a036eab347055b8210de911619c6"
+    },
+    {
+      "path": "assets/local/issue-64-review/memory-probe/Cargo.lock",
+      "bytes": 590,
+      "sha256": "de88f9f89c82c3c99b6ed9a6d962f84fd07ab200310137f92cea21f9a32baa29"
+    },
+    {
+      "path": "assets/local/issue-64-review/memory-probe.log",
+      "bytes": 806,
+      "sha256": "db8c984e46ddd5ec357066957fda093b888baf8ee6c6d928a45c673c8fe606df"
+    },
+    {
+      "path": "target/release/lemmings-desktop",
+      "bytes": 1067160,
+      "sha256": "c1e20e2215df306dba70bd85c6cdceb6458f5dd0d21c8cb9627dabf24401800f"
+    },
+    {
+      "path": "assets/local/issue-64-review/old-assets.rs",
+      "bytes": 32376,
+      "sha256": "d40e42ab7948db2cc6083c778736a788ae3beed13808377609b43b593b4ed5dd"
+    },
+    {
+      "path": "assets/local/issue-64-review/old-lifecycle.rs",
+      "bytes": 11060,
+      "sha256": "73f8dd2be8d713bdc8206e913937f18274aa54766e0569d0089b29bad09856cf"
+    },
+    {
+      "path": "assets/local/issue-64-review/old-panel.rs",
+      "bytes": 16256,
+      "sha256": "8d67dafc082a9e47d92f18d1c4f430683091a9739f3deebe7d6cf41ef545259e"
+    },
+    {
+      "path": "assets/local/issue-64-review/old-pointer.rs",
+      "bytes": 8103,
+      "sha256": "814a42f3a9157bc5cd58cf43d48ae3eb0d45f89df8b4628f592357f7d5e1992e"
+    },
+    {
+      "path": "assets/local/issue-64-review/old-render.rs",
+      "bytes": 24917,
+      "sha256": "53709ee0c87ecdd05b68b8c766d484a334cf0f38cc09d0c435f26f19963a7ba4"
+    },
+    {
+      "path": "assets/local/issue-64-wasm-target/wasm32-unknown-unknown/debug/liblemmings_game.rlib",
+      "bytes": 2578476,
+      "sha256": "996221725df3972a1bcdbf7109e975009852a2734c2913289e866eda2478ffe9"
+    }
+  ],
+  "evidence_trees": [
+    {
+      "directory": "assets/local/issue-64-baseline",
+      "files": 1001,
+      "bytes": 801019257,
+      "index": {
+        "path": "assets/local/issue-64-review/baseline-index.json",
+        "bytes": 157092,
+        "sha256": "2ab06c72eaec9e031825d63413265ebb2691fbc41737ca5e0cdd9065cfacc3f0"
+      }
+    },
+    {
+      "directory": "assets/local/issue-64-after",
+      "files": 1989,
+      "bytes": 1602038990,
+      "index": {
+        "path": "assets/local/issue-64-review/after-index.json",
+        "bytes": 310359,
+        "sha256": "f543bb4f4121ddb5ba64d2a1ea709024706ac0b11fd19415d0df3824781cd119"
+      }
+    },
+    {
+      "directory": "assets/local/issue-64-memory",
+      "files": 203,
+      "bytes": 43996894,
+      "index": {
+        "path": "assets/local/issue-64-review/memory-index.json",
+        "bytes": 29682,
+        "sha256": "1ac3ffcb686fc4582e511ab2e79a644a748e4eaf9575ec1458ae9e1e410bb91b"
+      }
+    }
+  ],
+  "index_algorithm": "POSIX relative-path lexicographic order; compact JSON array with sorted keys and final newline; entries path/bytes/SHA-256",
+  "validation": "game unit24/public7 + desktop27; workspace Rust513/doc28/Python101; clippy and isolated WASM passed. Final make check exit result and exact push/PR/main CI/logs recorded in issue64 before closure.",
+  "next": "G09-03 JS/WASM and synthetic browser entry; CDP19222. G09 remains in progress."
+}

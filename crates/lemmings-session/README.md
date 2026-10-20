@@ -9,4 +9,4 @@ cargo test -p lemmings-session --locked --offline
 cargo build -p lemmings-session --lib --target wasm32-unknown-unknown --locked --offline
 ```
 
-WASM 라이브러리 컴파일은 JS 바인딩이나 실제 브라우저 실행 검증과 별도입니다. 웹의 자산 공급·공유 장면·WASM/Canvas 어댑터는 G09 후속 절편에서 연결합니다.
+WASM 라이브러리 컴파일은 JS 바인딩이나 실제 브라우저 실행 검증과 별도입니다. 자산 공급·공유 장면은 [lemmings-game / #64](../lemmings-game/README.md)에서 연결합니다. WASM/Canvas 어댑터는 G09 후속 절편입니다.
