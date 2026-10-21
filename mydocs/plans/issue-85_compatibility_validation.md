@@ -112,3 +112,7 @@ G11-01 종료는 G11 전체 통과가 아니다. 다음 착수 범위는 **G11-0
 [G11-04 #91](../tech_insights/issue-91_initial_replay.md)에서120개 초기 재생 도구/실행을 추적합니다. 플랫폼별3회·341probe의 실행은 초기 관측이고 해법 완주/성능과 분리합니다. 최종 실행/CI 판정은 #91에 기록하며 후속은 G11-05입니다.
 
 G11-05는 [#93](../working/issue-93_solution_validation.md)에서 추적하며 첫 절편 [#94](../reports/issue-94_solution_replay.md)는8직업 튜토리얼 Fun01~07의 성공/실패·반복/재시작 호스트 검증입니다. 나머지113개와 COMP 전체는 미완료로 유지합니다.
+
+## G11-07 검토 / #110
+
+[#110 결과](../reports/issue-110_g11_closure.md)는 기존120개·COMP70개와380행/Native 표시 보정 증거를 확인했지만, Web callback3개 예산 초과·완료 마감/구간 메모리 관측 부족으로 G11/G12 미완료다. #85의 요구를 면제하지 않고 [#111](https://github.com/edwardkim/ohmylemmings/issues/111)에서 보완한 뒤 전체 마감을 재판정한다.
