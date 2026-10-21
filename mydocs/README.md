@@ -80,3 +80,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 [G11-05 #93](working/issue-93_solution_validation.md)의 첫 절편 [#94](reports/issue-94_solution_replay.md)은 Fun01~07 유효 입력·실제 SDL/WASM 반복/재시작을 검증합니다. 전수120개·COMP 마감은 #93에서 계속하며 최종 실행/CI는 각 이슈 기록을 따릅니다.
 
 [G11-05b #96 Fun08~30](reports/issue-96_fun_solutions.md)은 성공23개/실패23개 저장 입력과 실제 SDL/WASM 반복·Restart를 검증합니다. 최종 실행/CI/병합은 #96, 다른90개와 COMP/성능은 #93에서 추적합니다.
+
+[G11-05c #98 Tricky01~30](reports/issue-98_tricky_solutions.md)은 성공30개/실패30개 입력(자체 작성·공개 리플레이 변환 출처 구분)과 실제 SDL/WASM 반복·Restart를 검증합니다. 최종 실행/CI/병합은 #98, 다른60개와 COMP/성능은 #93에서 추적합니다.
