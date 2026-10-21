@@ -97,3 +97,5 @@ Lemmix와 Lemmings.ts 분석, DAT/VGASPEC 구조, 상태 머신과 틱 동작 �
 - [#89 G11-03 특수4개 장면 연결 계약](issue-89_special_scenes.md)
 
 - [#91 G11-04 전체120레벨 초기 재생 계약](issue-91_initial_replay.md)
+
+- [#94 튜토리얼7개 해법 비교 계약](issue-94_solution_replay.md)

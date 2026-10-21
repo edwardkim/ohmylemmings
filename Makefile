@@ -56,3 +56,4 @@ check-web:
 	python3 tools/check_audio_output.py --wasm
 	python3 tools/sound_playthrough.py
 	python3 tools/initial_replay.py --smoke
+	python3 tools/solution_replay.py --smoke

@@ -80,3 +80,5 @@
 - [#89 G11-03 특수4개 장면 연결 결과](issue-89_special_scenes.md)
 
 - [#91 G11-04 전체120레벨 초기 재생 결과 기록](issue-91_initial_replay.md)
+
+- [#94 튜토리얼7개 해법 결과](issue-94_solution_replay.md)

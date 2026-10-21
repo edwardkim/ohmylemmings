@@ -109,3 +109,5 @@ ADLIB 명령/레지스터 스트림의 합성877호출과 원본 드라이버 �
 [#89 특수4개 장면](../mydocs/reports/issue-89_special_scenes.md)의 현재 소스 범위·원본4개 SDL/WASM 진입·기존 정적 독립 해시 대조와 합성 UI/오류 보존 증거는 [special_scenes.json](manifests/special_scenes.json)에 기록합니다. 전체120개 완주·성능 인증과 구분하며 원본/파생물은 ignored assets/local에 둡니다.
 
 [#91 초기 전수 재생](../mydocs/tech_insights/issue-91_initial_replay.md)의 소스/창작 증거와 실행 계약은 [initial_replay.json](manifests/initial_replay.json), 원본120개 최종 판정·레벨별 해시·CI는 [GitHub #91](https://github.com/edwardkim/ohmylemmings/issues/91)에서 추적합니다. 원본 파생 실행은 ignored assets/local에 보존합니다.
+
+[#94 해법 검증](../mydocs/tech_insights/issue-94_solution_replay.md)과 [solution_replay.json](manifests/solution_replay.json)은 직접 작성한 Fun01~07 입력14개·해시와 재현 계약입니다. 원본 없는 `python3 tools/solution_replay.py --smoke`를 CI에 포함합니다. 원본 실행/맵/이미지는 ignored 경로에 두고 최종 호스트 판정·CI는 GitHub #94에 기록합니다.
