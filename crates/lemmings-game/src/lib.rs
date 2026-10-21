@@ -6,6 +6,7 @@
 //! in `lemmings-resources`; simulation remains in `lemmings-session`/`lemmings-core`.
 pub mod assets;
 pub mod audio;
+pub mod diagnostics;
 pub mod lifecycle;
 pub mod panel;
 pub mod pointer;

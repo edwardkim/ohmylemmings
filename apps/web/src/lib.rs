@@ -354,35 +354,16 @@ impl WebGame {
     /// Versioned diagnostic JSON; includes every actor field and queued input.
     /// Terrain, brick and raw object-map bytes are exposed separately as copies.
     pub fn state(&self) -> String {
-        let s = &self.run.session;
-        // Debug values below contain only fixed ASCII field/enum names, numbers,
-        // booleans and punctuation, so Rust's quoted String output is valid JSON.
-        let actors = format!(
-            "{:?}",
-            s.actors.iter().map(|a| a.state()).collect::<Vec<_>>()
-        );
-        let inputs = format!("{:?}", s.inputs);
-        let n = s.scheduler.nuke_state();
-        let nuke = format!(
-            "{{\"is_nuked\":{},\"assigning\":{},\"next_index\":{},\"max_lemmings\":{}}}",
-            n.is_nuked, n.assigning, n.next_index, n.max_lemmings
-        );
-        format!(
-            "{{\"version\":1,\"nuke\":{nuke},\"session\":{},\"digger\":{},\"builder\":{},\"blocker\":{},\"bomber\":{},\"climber\":{},\"floater\":{},\"exit\":{},\"hazards\":{},\"completion\":{},\"remaining_bashers\":{},\"remaining_miners\":{},\"actor_details\":{actors:?},\"inputs\":{inputs:?}}}",
-            s.snapshot(),
-            s.digger_snapshot(),
-            s.builder_snapshot(),
-            s.blocker_snapshot(),
-            s.bomber_snapshot(),
-            s.climber_snapshot(),
-            s.floater_snapshot(),
-            s.exit_snapshot(),
-            s.hazards_snapshot(),
-            s.completion_snapshot(),
-            s.remaining_bashers,
-            s.remaining_miners,
-        )
+        lemmings_game::diagnostics::state(&self.run.session)
     }
+    /// Immutable initial header, inventories, palette and material flags.
+    pub fn asset_info(&self) -> String {
+        lemmings_game::diagnostics::asset_info(&self.run.assets)
+    }
+    pub fn materials(&self) -> Vec<u8> {
+        lemmings_game::diagnostics::materials(&self.run.assets)
+    }
+
     pub fn terrain(&self) -> Vec<u8> {
         self.run.session.terrain().to_vec()
     }

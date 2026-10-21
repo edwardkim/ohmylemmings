@@ -74,3 +74,5 @@ python3 tools/check_web.py --evidence assets/local/web-original-check --original
 통합 사운드 검사는 `python3 tools/sound_playthrough.py`이며 `make check-web`에도 포함합니다. 선택적 실제 DOS/원본 검증과 남은 청취 범위는 [#82](../../mydocs/tech_insights/issue-82_audio_playthrough.md)를 따릅니다.
 
 [#87 난이도 계약](../../mydocs/tech_insights/issue-87_rank_selection.md): UI 난이도/번호 선택·동일 ID 재시작·성공 시 난이도 경계 전환과 Mayhem30 종료를 처리합니다. 창작 바이트의 실제 제품 DOM8개 선택/재시작·3개 경계 Continue·파일 교체 실패를 검사합니다. 새 journey 기록은 difficulty를 포함하며 과거 누락 필드는 Fun으로 읽습니다.
+
+초기 진단 `asset_info()`·`materials()`는 현재 실행의 불변 초기 수치/팔레트와 강철/일방향 셀 복사본을 제공합니다. 실제 SDL/시간 분할/WASM/Canvas 전수 재현은 [#91 계약](../../mydocs/tech_insights/issue-91_initial_replay.md)을 따릅니다.

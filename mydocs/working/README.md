@@ -1,5 +1,7 @@
 # 진행 중 작업
 
+- [#91 G11-04 전체120레벨 초기 재생](issue-91_initial_replay.md)
+
 - [#89 G11-03 특수 장면 연결](issue-89_special_scenes.md)
 
 - [#87 G11-02 네 난이도 레벨 선택·전환](issue-87_rank_selection.md)

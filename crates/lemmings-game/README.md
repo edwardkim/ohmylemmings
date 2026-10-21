@@ -20,3 +20,5 @@ cargo build -p lemmings-game --lib --target wasm32-unknown-unknown --locked --of
 `audio::AudioOutput`은 불변 음원 bytes·opaque VM/PCM continuation을 소유하고 장치 없이 typed batch→bounded mono PCM을 제공합니다. decode_adlib는 선택적 호스트 bytes를 읽고 demo_image는 독립 작성한 연습 데이터를 만듭니다. 게임 tick/렌더·장치 시간/I/O는 호출하지 않습니다. [계약](../../mydocs/tech_insights/issue-80_audio_output.md).
 
 `LevelRun::new_for_level`은 typed 현재/다음 LevelId를 유지합니다. Fun30→Tricky1→Taxing1→Mayhem1의 난이도 경계도 성공 Continue로 이동하며 Mayhem30이 끝입니다. [#87 계약](../../mydocs/tech_insights/issue-87_rank_selection.md).
+
+`diagnostics`는 기존 v1 전체 세션 문자열과 불변 초기 자산 메타데이터를 제공해 SDL/Web 검증이 같은 경계를 기록하도록 합니다. I/O와 실행/비교 도구는 호스트와 tools에 둡니다. [#91](../../mydocs/tech_insights/issue-91_initial_replay.md).
