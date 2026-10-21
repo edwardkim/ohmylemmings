@@ -16,6 +16,7 @@ check-rust:
 
 check-python:
 	python3 -m unittest discover -s tools/tests -v
+	python3 tools/compatibility_audit.py
 	python3 crates/lemmings-core/tests/fixtures/motion_reference.py
 
 check-wasm:
