@@ -13,7 +13,7 @@ pub struct Recorder {
     limit: Duration,
     period_ns: u128,
     ticks: Vec<[u128; 5]>,
-    frames: Vec<[u128; 5]>,
+    frames: Vec<[u128; 9]>,
     audio: Vec<[u128; 6]>,
     last_frame: Option<u128>,
     underruns: u64,
@@ -54,11 +54,35 @@ impl Recorder {
             alive as u128,
         ]);
     }
-    pub fn frame(&mut self, begin: Instant, cpu: u128, upload: u128, present: u128) {
+    pub fn frame(
+        &mut self,
+        begin: Instant,
+        cpu: u128,
+        upload: u128,
+        present: u128,
+        budget: Option<crate::frame_clock::FrameBudget>,
+        skipped: u128,
+    ) {
         let at = begin.duration_since(self.started).as_nanos();
         let gap = self.last_frame.map_or(0, |p| at - p);
         self.last_frame = Some(at);
-        self.frames.push([at, gap, cpu, upload, present]);
+        self.frames.push([
+            at,
+            gap,
+            cpu,
+            upload,
+            present,
+            budget.map_or(0, |b| {
+                begin.saturating_duration_since(b.scheduled).as_nanos()
+            }),
+            budget.map_or(0, |b| {
+                Instant::now()
+                    .saturating_duration_since(b.deadline)
+                    .as_nanos()
+            }),
+            skipped,
+            u128::from(budget.is_some()),
+        ]);
     }
     pub fn audio(&mut self, sample: Option<(i32, u16, u32, bool)>, cost: u128) {
         if let Some((rate, quantum, queued, playing)) = sample {
@@ -89,7 +113,7 @@ impl Recorder {
             .and_then(|l| l.split_whitespace().nth(1))
             .unwrap_or("0");
         let observer_bytes =
-            (self.ticks.capacity() * 5 + self.frames.capacity() * 5 + self.audio.capacity() * 6)
+            (self.ticks.capacity() * 5 + self.frames.capacity() * 9 + self.audio.capacity() * 6)
                 * std::mem::size_of::<u128>();
         let mut file = OpenOptions::new()
             .write(true)

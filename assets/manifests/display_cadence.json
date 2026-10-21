@@ -1,0 +1,1625 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/107",
+  "baseline_main": "213d50c761db515f71aa51231f9a2357b70e7083",
+  "baseline_performance": "assets/manifests/performance_baseline.json",
+  "status": "PASS-SCOPED",
+  "scope": "Native display cadence correction on the measured host; not G11/G12 or every physical display/DAC certification",
+  "method": {
+    "order": [
+      "baseline1",
+      "candidate1",
+      "baseline2",
+      "candidate2",
+      "baseline3",
+      "candidate3"
+    ],
+    "minimum_seconds": 60,
+    "logical_frame": "320x200 RGB24",
+    "window": "960x600, scale3",
+    "renderer": "Wayland/software, no requested vsync",
+    "pacing": "DOS2190197/156250 updates per second, unchanged",
+    "display_rate": "fixed60Hz/every; rational absolute deadlines rounded up only at individual Instant conversion",
+    "input": {
+      "path": "assets/local/issue-106-review/inputs/mayhem-22.txt",
+      "bytes": 612,
+      "sha256": "08c3c63d99ba2725506c4f3f0536d0307537f7c112f01369f0732b32a69ae0f0"
+    },
+    "budget": "scheduled slot starts on60Hz grid; present must complete before following slot. Missed starts are skipped once. Forced endpoint frames are counted separately. Physical scanout not instrumented.",
+    "frame_columns": [
+      "at_ns",
+      "gap_ns",
+      "cpu_ns",
+      "upload_ns",
+      "present_ns",
+      "scheduled_start_late_ns",
+      "present_deadline_late_ns",
+      "skipped_slots_after",
+      "scheduled_flag"
+    ],
+    "limits": [
+      "Baseline had no explicit slot deadline observer, so only its actual frame count/gap distribution is compared.",
+      "Gap greater than16.667ms alone is not a physical dropped frame count. Monotonic scheduling lateness and completion deadline are separate.",
+      "Native VmHWM includes setup and observer; candidate observer adds four u128 values per reserved frame, reported separately.",
+      "No simulation, resource, rasterizer or PCM engine algorithm changed.30algorithm pairs are not applicable to this host-only scheduling correction. Existing algorithm380rows remain historical evidence, not rerun results.",
+      "Web timing observations from106 remain unchanged; this correction does not certify all Web/physical deadlines."
+    ]
+  },
+  "runs": [
+    {
+      "kind": "baseline",
+      "pair": 1,
+      "raw": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/baseline-1.json",
+        "bytes": 2181860,
+        "sha256": "2d5575b54a5ed0048421047fac30d9950383e576bc5a102de983e3c5be915e71"
+      },
+      "seconds": 60.005882564,
+      "frames": 3160,
+      "ticks": 841,
+      "state_sha256": "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+      "final_control_step": 841,
+      "binary_sha256": "261be94258e6c14c9c2e7d34c28181770b76d20e441d3598436d44b396f02f0b",
+      "load_before": [
+        1.9951171875,
+        1.94189453125,
+        1.8271484375
+      ],
+      "load_after": [
+        1.90869140625,
+        1.95849609375,
+        1.84228515625
+      ],
+      "fps": 52.66150358891337,
+      "frame_gap_ms": {
+        "count": 3159,
+        "min": 12.643466,
+        "median": 18.031459,
+        "p95": 22.506406,
+        "max": 25.12489
+      },
+      "cpu_frame_ms": {
+        "count": 3160,
+        "min": 0.13654,
+        "median": 0.3408955,
+        "p95": 4.510135,
+        "max": 7.234042
+      },
+      "upload_ms": {
+        "count": 3160,
+        "min": 0.300005,
+        "median": 0.3525825,
+        "p95": 0.574895,
+        "max": 2.684081
+      },
+      "present_ms": {
+        "count": 3160,
+        "min": 0.354157,
+        "median": 0.464793,
+        "p95": 0.998158,
+        "max": 4.485481
+      },
+      "tick_ms": {
+        "count": 841,
+        "min": 0.815419,
+        "median": 0.953779,
+        "p95": 1.107169,
+        "max": 1.285981
+      },
+      "tick_late_ms": {
+        "count": 841,
+        "min": 0.110577,
+        "median": 0.714427,
+        "p95": 1.473186,
+        "max": 2.884776
+      },
+      "queue_frames": {
+        "count": 46055,
+        "min": 1536,
+        "median": 2048,
+        "p95": 2048,
+        "max": 2048
+      },
+      "audio_service_ms": {
+        "count": 46056,
+        "min": 0.001167,
+        "median": 0.0066695,
+        "p95": 0.282761,
+        "max": 1.351765
+      },
+      "underruns": 0,
+      "peak_rss_kib": 76516,
+      "observer_capacity_bytes": 7584000,
+      "audio_rate": 44100,
+      "audio_quantum": 512,
+      "not_playing_polls": 1,
+      "driver": "wayland",
+      "renderer": "software"
+    },
+    {
+      "kind": "candidate",
+      "pair": 1,
+      "raw": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/candidate-1.json",
+        "bytes": 2253946,
+        "sha256": "999c3f2fe06d3605c6c6bac5c72f63323c509dc81e9a032e86d4a4697b77d61a"
+      },
+      "seconds": 60.005471618,
+      "frames": 3601,
+      "ticks": 841,
+      "state_sha256": "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+      "final_control_step": 841,
+      "binary_sha256": "c0c34526c078868ffde248de8374d868304c9a805a1549e86386539e78c8c560",
+      "load_before": [
+        1.90869140625,
+        1.95849609375,
+        1.84228515625
+      ],
+      "load_after": [
+        2.5615234375,
+        2.134765625,
+        1.9130859375
+      ],
+      "fps": 60.01119402784259,
+      "frame_gap_ms": {
+        "count": 3600,
+        "min": 14.6903,
+        "median": 16.6878155,
+        "p95": 17.428413,
+        "max": 18.670637
+      },
+      "cpu_frame_ms": {
+        "count": 3601,
+        "min": 0.130147,
+        "median": 0.364981,
+        "p95": 4.19291,
+        "max": 6.4664
+      },
+      "upload_ms": {
+        "count": 3601,
+        "min": 0.30194,
+        "median": 0.362261,
+        "p95": 0.473552,
+        "max": 3.117875
+      },
+      "present_ms": {
+        "count": 3601,
+        "min": 0.356577,
+        "median": 0.476324,
+        "p95": 0.654511,
+        "max": 4.123753
+      },
+      "tick_ms": {
+        "count": 841,
+        "min": 0.767066,
+        "median": 0.890244,
+        "p95": 1.00482,
+        "max": 1.652566
+      },
+      "tick_late_ms": {
+        "count": 841,
+        "min": 0.119618,
+        "median": 0.698981,
+        "p95": 1.603379,
+        "max": 2.738469
+      },
+      "queue_frames": {
+        "count": 45805,
+        "min": 1536,
+        "median": 2048,
+        "p95": 2048,
+        "max": 2048
+      },
+      "audio_service_ms": {
+        "count": 45806,
+        "min": 0.001148,
+        "median": 0.006761,
+        "p95": 0.277828,
+        "max": 1.957891
+      },
+      "underruns": 0,
+      "peak_rss_kib": 76888,
+      "observer_capacity_bytes": 8044800,
+      "audio_rate": 44100,
+      "audio_quantum": 512,
+      "not_playing_polls": 1,
+      "driver": "wayland",
+      "renderer": "software",
+      "scheduled_frames": 3601,
+      "forced_frames": 0,
+      "start_late_ms": {
+        "count": 3601,
+        "min": 0.002036,
+        "median": 0.619226,
+        "p95": 1.086146,
+        "max": 2.180815
+      },
+      "deadline_late_ms": {
+        "count": 3601,
+        "min": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "deadline_misses": 0,
+      "skipped_slots": 0
+    },
+    {
+      "kind": "baseline",
+      "pair": 2,
+      "raw": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/baseline-2.json",
+        "bytes": 2185138,
+        "sha256": "a9b72029617763b3c8d0a0f325e12053028e51f54ad8ecc6ed433186710847e9"
+      },
+      "seconds": 60.005573406,
+      "frames": 3161,
+      "ticks": 841,
+      "state_sha256": "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+      "final_control_step": 841,
+      "binary_sha256": "261be94258e6c14c9c2e7d34c28181770b76d20e441d3598436d44b396f02f0b",
+      "load_before": [
+        2.5615234375,
+        2.134765625,
+        1.9130859375
+      ],
+      "load_after": [
+        2.24853515625,
+        2.08740234375,
+        1.91015625
+      ],
+      "fps": 52.67844002777131,
+      "frame_gap_ms": {
+        "count": 3160,
+        "min": 7.583988,
+        "median": 18.0468045,
+        "p95": 22.476657,
+        "max": 24.779939
+      },
+      "cpu_frame_ms": {
+        "count": 3161,
+        "min": 0.137544,
+        "median": 0.338282,
+        "p95": 4.496202,
+        "max": 6.527361
+      },
+      "upload_ms": {
+        "count": 3161,
+        "min": 0.295802,
+        "median": 0.352072,
+        "p95": 0.5671,
+        "max": 3.429105
+      },
+      "present_ms": {
+        "count": 3161,
+        "min": 0.355788,
+        "median": 0.470479,
+        "p95": 0.993937,
+        "max": 4.484515
+      },
+      "tick_ms": {
+        "count": 841,
+        "min": 0.819086,
+        "median": 0.936247,
+        "p95": 1.103237,
+        "max": 1.445748
+      },
+      "tick_late_ms": {
+        "count": 841,
+        "min": 0.105945,
+        "median": 0.711919,
+        "p95": 1.456306,
+        "max": 3.049519
+      },
+      "queue_frames": {
+        "count": 46143,
+        "min": 1536,
+        "median": 2048,
+        "p95": 2048,
+        "max": 2048
+      },
+      "audio_service_ms": {
+        "count": 46144,
+        "min": 0.001114,
+        "median": 0.006292,
+        "p95": 0.277774,
+        "max": 1.34577
+      },
+      "underruns": 0,
+      "peak_rss_kib": 76500,
+      "observer_capacity_bytes": 7584000,
+      "audio_rate": 44100,
+      "audio_quantum": 512,
+      "not_playing_polls": 1,
+      "driver": "wayland",
+      "renderer": "software"
+    },
+    {
+      "kind": "candidate",
+      "pair": 2,
+      "raw": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/candidate-2.json",
+        "bytes": 2269156,
+        "sha256": "f489b7db5baeb18a2bd112afb7155c97c658db38ee789f99fb54b07993e44ea0"
+      },
+      "seconds": 60.005839002,
+      "frames": 3601,
+      "ticks": 841,
+      "state_sha256": "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+      "final_control_step": 841,
+      "binary_sha256": "c0c34526c078868ffde248de8374d868304c9a805a1549e86386539e78c8c560",
+      "load_before": [
+        2.24853515625,
+        2.08740234375,
+        1.91015625
+      ],
+      "load_after": [
+        1.84375,
+        2.005859375,
+        1.8955078125
+      ],
+      "fps": 60.01082661105661,
+      "frame_gap_ms": {
+        "count": 3600,
+        "min": 14.868579,
+        "median": 16.673707,
+        "p95": 17.446812,
+        "max": 18.459867
+      },
+      "cpu_frame_ms": {
+        "count": 3601,
+        "min": 0.133652,
+        "median": 0.331941,
+        "p95": 4.12942,
+        "max": 6.154981
+      },
+      "upload_ms": {
+        "count": 3601,
+        "min": 0.301758,
+        "median": 0.346121,
+        "p95": 0.413802,
+        "max": 2.766429
+      },
+      "present_ms": {
+        "count": 3601,
+        "min": 0.363224,
+        "median": 0.459364,
+        "p95": 0.610577,
+        "max": 4.047766
+      },
+      "tick_ms": {
+        "count": 841,
+        "min": 0.773375,
+        "median": 0.888671,
+        "p95": 0.993475,
+        "max": 1.140615
+      },
+      "tick_late_ms": {
+        "count": 841,
+        "min": 0.120147,
+        "median": 0.73333,
+        "p95": 1.502612,
+        "max": 2.648873
+      },
+      "queue_frames": {
+        "count": 46181,
+        "min": 1536,
+        "median": 2048,
+        "p95": 2048,
+        "max": 2048
+      },
+      "audio_service_ms": {
+        "count": 46182,
+        "min": 0.001191,
+        "median": 0.006747,
+        "p95": 0.27581,
+        "max": 1.309804
+      },
+      "underruns": 0,
+      "peak_rss_kib": 77908,
+      "observer_capacity_bytes": 8044800,
+      "audio_rate": 44100,
+      "audio_quantum": 512,
+      "not_playing_polls": 1,
+      "driver": "wayland",
+      "renderer": "software",
+      "scheduled_frames": 3601,
+      "forced_frames": 0,
+      "start_late_ms": {
+        "count": 3601,
+        "min": 0.000778,
+        "median": 0.579517,
+        "p95": 1.081563,
+        "max": 2.069155
+      },
+      "deadline_late_ms": {
+        "count": 3601,
+        "min": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "deadline_misses": 0,
+      "skipped_slots": 0
+    },
+    {
+      "kind": "baseline",
+      "pair": 3,
+      "raw": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/baseline-3.json",
+        "bytes": 2184696,
+        "sha256": "4234c08ca848ecc51e240d82ef92d8228f421f30cdcccf87d213b0c680f1d4bf"
+      },
+      "seconds": 60.0058912,
+      "frames": 3159,
+      "ticks": 841,
+      "state_sha256": "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+      "final_control_step": 841,
+      "binary_sha256": "261be94258e6c14c9c2e7d34c28181770b76d20e441d3598436d44b396f02f0b",
+      "load_before": [
+        1.84375,
+        2.005859375,
+        1.8955078125
+      ],
+      "load_after": [
+        2.36962890625,
+        2.12646484375,
+        1.94580078125
+      ],
+      "fps": 52.64483097952889,
+      "frame_gap_ms": {
+        "count": 3158,
+        "min": 9.247681,
+        "median": 18.043178500000003,
+        "p95": 22.488527,
+        "max": 24.160096
+      },
+      "cpu_frame_ms": {
+        "count": 3159,
+        "min": 0.135056,
+        "median": 0.342262,
+        "p95": 4.482367,
+        "max": 6.63339
+      },
+      "upload_ms": {
+        "count": 3159,
+        "min": 0.297016,
+        "median": 0.355016,
+        "p95": 0.566123,
+        "max": 2.761258
+      },
+      "present_ms": {
+        "count": 3159,
+        "min": 0.348673,
+        "median": 0.470749,
+        "p95": 0.957016,
+        "max": 3.981543
+      },
+      "tick_ms": {
+        "count": 841,
+        "min": 0.817492,
+        "median": 0.948529,
+        "p95": 1.102597,
+        "max": 1.27527
+      },
+      "tick_late_ms": {
+        "count": 841,
+        "min": 0.086567,
+        "median": 0.690983,
+        "p95": 1.410219,
+        "max": 3.003998
+      },
+      "queue_frames": {
+        "count": 46136,
+        "min": 1536,
+        "median": 2048.0,
+        "p95": 2048,
+        "max": 2048
+      },
+      "audio_service_ms": {
+        "count": 46137,
+        "min": 0.001117,
+        "median": 0.006435,
+        "p95": 0.280105,
+        "max": 1.355757
+      },
+      "underruns": 0,
+      "peak_rss_kib": 76680,
+      "observer_capacity_bytes": 7584000,
+      "audio_rate": 44100,
+      "audio_quantum": 512,
+      "not_playing_polls": 1,
+      "driver": "wayland",
+      "renderer": "software"
+    },
+    {
+      "kind": "candidate",
+      "pair": 3,
+      "raw": {
+        "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/candidate-3.json",
+        "bytes": 2242384,
+        "sha256": "c7ecfac7a6d29d26dcfe76952433be8e928c122a55da0607d9a52e8235c73c8a"
+      },
+      "seconds": 60.006224644,
+      "frames": 3601,
+      "ticks": 841,
+      "state_sha256": "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+      "final_control_step": 841,
+      "binary_sha256": "c0c34526c078868ffde248de8374d868304c9a805a1549e86386539e78c8c560",
+      "load_before": [
+        2.36962890625,
+        2.12646484375,
+        1.94580078125
+      ],
+      "load_after": [
+        3.0361328125,
+        2.3369140625,
+        2.02978515625
+      ],
+      "fps": 60.01044093948114,
+      "frame_gap_ms": {
+        "count": 3600,
+        "min": 14.805388,
+        "median": 16.667505,
+        "p95": 17.492967,
+        "max": 18.747046
+      },
+      "cpu_frame_ms": {
+        "count": 3601,
+        "min": 0.126988,
+        "median": 0.33001,
+        "p95": 4.425048,
+        "max": 6.549369
+      },
+      "upload_ms": {
+        "count": 3601,
+        "min": 0.297141,
+        "median": 0.354483,
+        "p95": 0.613233,
+        "max": 2.508398
+      },
+      "present_ms": {
+        "count": 3601,
+        "min": 0.346377,
+        "median": 0.442926,
+        "p95": 1.150659,
+        "max": 5.388262
+      },
+      "tick_ms": {
+        "count": 841,
+        "min": 0.766225,
+        "median": 0.902513,
+        "p95": 1.005016,
+        "max": 1.206112
+      },
+      "tick_late_ms": {
+        "count": 841,
+        "min": 0.095687,
+        "median": 0.688558,
+        "p95": 1.513571,
+        "max": 2.718641
+      },
+      "queue_frames": {
+        "count": 45527,
+        "min": 1536,
+        "median": 2048,
+        "p95": 2048,
+        "max": 2048
+      },
+      "audio_service_ms": {
+        "count": 45528,
+        "min": 0.001188,
+        "median": 0.006622,
+        "p95": 0.277448,
+        "max": 1.528944
+      },
+      "underruns": 0,
+      "peak_rss_kib": 77012,
+      "observer_capacity_bytes": 8044800,
+      "audio_rate": 44100,
+      "audio_quantum": 512,
+      "not_playing_polls": 1,
+      "driver": "wayland",
+      "renderer": "software",
+      "scheduled_frames": 3601,
+      "forced_frames": 0,
+      "start_late_ms": {
+        "count": 3601,
+        "min": 0.000687,
+        "median": 0.584774,
+        "p95": 1.093115,
+        "max": 2.097026
+      },
+      "deadline_late_ms": {
+        "count": 3601,
+        "min": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "deadline_misses": 0,
+      "skipped_slots": 0
+    }
+  ],
+  "pairs": [
+    {
+      "pair": 1,
+      "fps_improvement_percent": 13.956476625320914,
+      "frame_p95_improvement_percent": 22.562434002123666,
+      "state_equal": true
+    },
+    {
+      "pair": 2,
+      "fps_improvement_percent": 13.919141454112482,
+      "frame_p95_improvement_percent": 22.378083182031915,
+      "state_equal": true
+    },
+    {
+      "pair": 3,
+      "fps_improvement_percent": 13.991136115179836,
+      "frame_p95_improvement_percent": 22.213815960467308,
+      "state_equal": true
+    }
+  ],
+  "environment": {
+    "os": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44",
+    "kernel": "7.2.5-3-omarchy",
+    "logical_cpus": 4,
+    "load": [
+      1.29345703125,
+      1.17578125,
+      1.18896484375
+    ],
+    "environment": {
+      "DISPLAY": ":0",
+      "WAYLAND_DISPLAY": "wayland-1",
+      "SDL_VIDEODRIVER": null,
+      "SDL_AUDIODRIVER": null,
+      "RUSTFLAGS": null
+    },
+    "memory": "MemTotal:       16134124 kB\nMemFree:          825120 kB\nMemAvailable:   12200544 kB\nBuffers:              76 kB\nCached:         12479632 kB\nSwapCached:            0 kB\nActive:          1960128 kB\nInactive:       12384568 kB\nActive(anon):    1455244 kB\nInactive(anon):   849852 kB\nActive(file):     504884 kB\nInactive(file): 11534716 kB\nUnevictable:       78900 kB\nMlocked:              16 kB\nSwapTotal:      32266792 kB\nSwapFree:       31711440 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:              1404 kB\nWriteback:             0 kB\nAnonPages:       1901768 kB\nMapped:          1052624 kB\nShmem:            440300 kB\nKReclaimable:     294068 kB\nSlab:             506792 kB\nSReclaimable:     294068 kB\nSUnreclaim:       212724 kB\nKernelStack:       10120 kB\nPageTables:        34504 kB\nSecPageTables:      4040 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    40333852 kB\nCommitted_AS:    8967192 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:      114352 kB\nVmallocChunk:          0 kB\nPercpu:             3632 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:   1067008 kB\nShmemHugePages:   290816 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nCmaTotal:              0 kB\nCmaFree:               0 kB\nUnaccepted:            0 kB\nBalloon:               0 kB\nGPUActive:             0 kB\nGPUReclaim:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      169784 kB\nDirectMap2M:     6940672 kB\nDirectMap1G:     9437184 kB\n",
+    "cpu": "processor\t: 0\nvendor_id\t: GenuineIntel\ncpu family\t: 6\nmodel\t\t: 190\nmodel name\t: Intel(R) N100\nstepping\t: 0\nmicrocode\t: 0x21\ncpu MHz\t\t: 3041.996\ncache size\t: 6144 KB\nphysical id\t: 0\nsiblings\t: 4\ncore id\t\t: 0\ncpu cores\t: 4\napicid\t\t: 0\ninitial apicid\t: 0\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 32\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l2 cdp_l2 ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdt_a rdseed adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsavec xgetbv1 xsaves split_lock_detect user_shstk avx_vnni dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req vnmi umip pku ospke waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize arch_lbr ibt flush_l1d arch_capabilities\nvmx flags\t: vnmi preemption_timer posted_intr invvpid ept_x_only ept_ad ept_1gb flexpriority apicv tsc_offset vtpr mtf vapic ept vpid unrestricted_guest vapic_reg vid ple shadow_vmcs ept_violation_ve ept_mode_based_exec tsc_scaling usr_wait_pause\nbugs\t\t: spectre_v1 spectre_v2 spec_store_bypass swapgs rfds bhi spectre_v2_user vmscape\nbogomips\t: 1612.80\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 39 bits physical, 48 bits virtual\npower management:",
+    "governors": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave"
+    },
+    "lscpu": {
+      "returncode": 0,
+      "stdout": "{\n   \"lscpu\": [\n      {\n         \"field\": \"Architecture:\",\n         \"data\": \"x86_64\"\n      },{\n         \"field\": \"CPU op-mode(s):\",\n         \"data\": \"32-bit, 64-bit\"\n      },{\n         \"field\": \"Address sizes:\",\n         \"data\": \"39 bits physical, 48 bits virtual\"\n      },{\n         \"field\": \"Byte Order:\",\n         \"data\": \"Little Endian\"\n      },{\n         \"field\": \"CPU(s):\",\n         \"data\": \"4\"\n      },{\n         \"field\": \"On-line CPU(s) list:\",\n         \"data\": \"0-3\"\n      },{\n         \"field\": \"Vendor ID:\",\n         \"data\": \"GenuineIntel\"\n      },{\n         \"field\": \"Model name:\",\n         \"data\": \"Intel(R) N100\"\n      },{\n         \"field\": \"CPU family:\",\n         \"data\": \"6\"\n      },{\n         \"field\": \"Model:\",\n         \"data\": \"190\"\n      },{\n         \"field\": \"Thread(s) per core:\",\n         \"data\": \"1\"\n      },{\n         \"field\": \"Core(s) per socket:\",\n         \"data\": \"4\"\n      },{\n         \"field\": \"Socket(s):\",\n         \"data\": \"1\"\n      },{\n         \"field\": \"Stepping:\",\n         \"data\": \"0\"\n      },{\n         \"field\": \"Microcode version:\",\n         \"data\": \"0x21\"\n      },{\n         \"field\": \"CPU(s) scaling MHz:\",\n         \"data\": \"91%\"\n      },{\n         \"field\": \"CPU max MHz:\",\n         \"data\": \"3400.0000\"\n      },{\n         \"field\": \"CPU min MHz:\",\n         \"data\": \"700.0000\"\n      },{\n         \"field\": \"BogoMIPS:\",\n         \"data\": \"1612.80\"\n      },{\n         \"field\": \"Flags:\",\n         \"data\": \"fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l2 cdp_l2 ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdt_a rdseed adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsavec xgetbv1 xsaves split_lock_detect user_shstk avx_vnni dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req vnmi umip pku ospke waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize arch_lbr ibt flush_l1d arch_capabilities\"\n      },{\n         \"field\": \"Virtualization:\",\n         \"data\": \"VT-x\"\n      },{\n         \"field\": \"L1d cache:\",\n         \"data\": \"128 KiB (4 instances)\"\n      },{\n         \"field\": \"L1i cache:\",\n         \"data\": \"256 KiB (4 instances)\"\n      },{\n         \"field\": \"L2 cache:\",\n         \"data\": \"2 MiB (1 instance)\"\n      },{\n         \"field\": \"L3 cache:\",\n         \"data\": \"6 MiB (1 instance)\"\n      },{\n         \"field\": \"NUMA node(s):\",\n         \"data\": \"1\"\n      },{\n         \"field\": \"NUMA node0 CPU(s):\",\n         \"data\": \"0-3\"\n      },{\n         \"field\": \"Vulnerability Gather data sampling:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Ghostwrite:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Indirect target selection:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Itlb multihit:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability L1tf:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Mds:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Meltdown:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Mmio stale data:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Old microcode:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Reg file data sampling:\",\n         \"data\": \"Mitigation; Clear Register File\"\n      },{\n         \"field\": \"Vulnerability Retbleed:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Spec rstack overflow:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Spec store bypass:\",\n         \"data\": \"Mitigation; Speculative Store Bypass disabled via prctl\"\n      },{\n         \"field\": \"Vulnerability Spectre v1:\",\n         \"data\": \"Mitigation; usercopy/swapgs barriers and __user pointer sanitization\"\n      },{\n         \"field\": \"Vulnerability Spectre v2:\",\n         \"data\": \"Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS Not affected; BHI BHI_DIS_S\"\n      },{\n         \"field\": \"Vulnerability Srbds:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Tsa:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Tsx async abort:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Vmscape:\",\n         \"data\": \"Mitigation; IBPB before exit to userspace\"\n      }\n   ]\n}\n",
+      "stderr": ""
+    },
+    "display": {
+      "returncode": 0,
+      "stdout": "[{\n    \"id\": 0,\n    \"name\": \"HDMI-A-1\",\n    \"description\": \"LG Electronics LG IPS FULLHD 0x01010101\",\n    \"make\": \"LG Electronics\",\n    \"model\": \"LG IPS FULLHD\",\n    \"serial\": \"0x01010101\",\n    \"width\": 1920,\n    \"height\": 1080,\n    \"physicalWidth\": 480,\n    \"physicalHeight\": 270,\n    \"refreshRate\": 60.00000,\n    \"x\": 0,\n    \"y\": 0,\n    \"activeWorkspace\": {\n        \"id\": 1,\n        \"name\": \"1\"\n    },\n    \"specialWorkspace\": {\n        \"id\": 0,\n        \"name\": \"\"\n    },\n    \"reserved\": [0, 26, 0, 0],\n    \"scale\": 1,\n    \"transform\": 0,\n    \"focused\": true,\n    \"dpmsStatus\": true,\n    \"vrr\": false,\n    \"solitary\": \"0\",\n    \"solitaryBlockedBy\": [\"WINDOWED\",\"CANDIDATE\"],\n    \"activelyTearing\": false,\n    \"tearingBlockedBy\": [\"NOT_TORN\",\"USER\",\"CANDIDATE\",\"HW_CURSOR\"],\n    \"directScanoutTo\": \"0\",\n    \"directScanoutBlockedBy\": [\"USER\",\"RECORD\",\"CANDIDATE\"],\n    \"disabled\": false,\n    \"currentFormat\": \"XRGB8888\",\n    \"mirrorOf\": \"none\",\n    \"availableModes\": [\"1920x1080@60.00Hz\",\"1920x1080@60.00Hz\",\"1920x1080@59.94Hz\",\"1920x1080@50.00Hz\",\"1680x1050@59.88Hz\",\"1400x1050@59.95Hz\",\"1600x900@60.00Hz\",\"1280x1024@75.03Hz\",\"1280x1024@60.02Hz\",\"1440x900@59.90Hz\",\"1280x800@59.91Hz\",\"1152x864@75.00Hz\",\"1280x720@60.00Hz\",\"1280x720@60.00Hz\",\"1280x720@59.94Hz\",\"1280x720@50.00Hz\",\"1024x768@75.03Hz\",\"1024x768@60.00Hz\",\"800x600@75.00Hz\",\"800x600@60.32Hz\",\"720x576@50.00Hz\",\"720x480@60.00Hz\",\"720x480@60.00Hz\",\"720x480@59.94Hz\",\"720x480@59.94Hz\",\"640x480@75.00Hz\",\"640x480@60.00Hz\",\"640x480@59.94Hz\",\"640x480@59.94Hz\",\"720x400@70.08Hz\"],\n    \"colorManagementPreset\": \"srgb\",\n    \"sdrBrightness\": 1,\n    \"sdrSaturation\": 1,\n    \"sdrMinLuminance\": 0.2,\n    \"sdrMaxLuminance\": 80,\n    \"hardwareCursorsInUse\": true\n}]\n",
+      "stderr": ""
+    },
+    "power": {
+      "returncode": 0,
+      "stdout": "performance\n",
+      "stderr": ""
+    },
+    "rust": {
+      "returncode": 0,
+      "stdout": "rustc 1.93.1 (01f6ddf75 2026-02-11)\n",
+      "stderr": ""
+    },
+    "python": {
+      "returncode": 0,
+      "stdout": "Python 3.14.7\n",
+      "stderr": ""
+    },
+    "measurement_start_utc": "2026-10-21T14:02:00.068810+00:00",
+    "load_before_pairs": [
+      1.9951171875,
+      1.94189453125,
+      1.8271484375
+    ],
+    "power_now": "performance",
+    "monitor_now": [
+      {
+        "id": 0,
+        "name": "HDMI-A-1",
+        "description": "LG Electronics LG IPS FULLHD 0x01010101",
+        "make": "LG Electronics",
+        "model": "LG IPS FULLHD",
+        "serial": "0x01010101",
+        "width": 1920,
+        "height": 1080,
+        "physicalWidth": 480,
+        "physicalHeight": 270,
+        "refreshRate": 60.0,
+        "x": 0,
+        "y": 0,
+        "activeWorkspace": {
+          "id": 1,
+          "name": "1"
+        },
+        "specialWorkspace": {
+          "id": 0,
+          "name": ""
+        },
+        "reserved": [
+          0,
+          26,
+          0,
+          0
+        ],
+        "scale": 1,
+        "transform": 0,
+        "focused": true,
+        "dpmsStatus": true,
+        "vrr": false,
+        "solitary": "0",
+        "solitaryBlockedBy": [
+          "WINDOWED",
+          "CANDIDATE"
+        ],
+        "activelyTearing": false,
+        "tearingBlockedBy": [
+          "NOT_TORN",
+          "USER",
+          "CANDIDATE",
+          "HW_CURSOR"
+        ],
+        "directScanoutTo": "0",
+        "directScanoutBlockedBy": [
+          "USER",
+          "RECORD",
+          "CANDIDATE"
+        ],
+        "disabled": false,
+        "currentFormat": "XRGB8888",
+        "mirrorOf": "none",
+        "availableModes": [
+          "1920x1080@60.00Hz",
+          "1920x1080@60.00Hz",
+          "1920x1080@59.94Hz",
+          "1920x1080@50.00Hz",
+          "1680x1050@59.88Hz",
+          "1400x1050@59.95Hz",
+          "1600x900@60.00Hz",
+          "1280x1024@75.03Hz",
+          "1280x1024@60.02Hz",
+          "1440x900@59.90Hz",
+          "1280x800@59.91Hz",
+          "1152x864@75.00Hz",
+          "1280x720@60.00Hz",
+          "1280x720@60.00Hz",
+          "1280x720@59.94Hz",
+          "1280x720@50.00Hz",
+          "1024x768@75.03Hz",
+          "1024x768@60.00Hz",
+          "800x600@75.00Hz",
+          "800x600@60.32Hz",
+          "720x576@50.00Hz",
+          "720x480@60.00Hz",
+          "720x480@60.00Hz",
+          "720x480@59.94Hz",
+          "720x480@59.94Hz",
+          "640x480@75.00Hz",
+          "640x480@60.00Hz",
+          "640x480@59.94Hz",
+          "640x480@59.94Hz",
+          "720x400@70.08Hz"
+        ],
+        "colorManagementPreset": "srgb",
+        "sdrBrightness": 1,
+        "sdrSaturation": 1,
+        "sdrMinLuminance": 0.2,
+        "sdrMaxLuminance": 80,
+        "hardwareCursorsInUse": true
+      }
+    ],
+    "governors_now": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave"
+    }
+  },
+  "artifacts": [
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/host-runs.json",
+      "bytes": 6429,
+      "sha256": "64222eecc399b94d9a88af8529dabb5f3066e1eb28038ba480230df841500edc"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/environment.json",
+      "bytes": 14698,
+      "sha256": "d59a19534fb3b98dafe39efcfa51389e2ba271acb64c0dcfb2d8ff32750fbd1d"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/binaries/audio.rs",
+      "bytes": 8216,
+      "sha256": "e97552314cfd3769eed20e611ab17aca9e9034dd755f637f570cb5b9091f71f0"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/binaries/baseline",
+      "bytes": 1338784,
+      "sha256": "261be94258e6c14c9c2e7d34c28181770b76d20e441d3598436d44b396f02f0b"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/binaries/candidate",
+      "bytes": 1343184,
+      "sha256": "c0c34526c078868ffde248de8374d868304c9a805a1549e86386539e78c8c560"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/binaries/frame_clock.rs",
+      "bytes": 4752,
+      "sha256": "1c3db05122cd596c243f9b8403b623813fc5880722c2db75454cb09a69f326e4"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/binaries/main.rs",
+      "bytes": 58448,
+      "sha256": "7b41010a0e0c2cb3512f3134f37843b26e20fc0eab92dae34a4a6f285fa6b871"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/binaries/performance.rs",
+      "bytes": 5317,
+      "sha256": "8596aef98702f858afea5d90b5d397f6354cad60b00f4f903a9128625059d29d"
+    },
+    {
+      "path": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/identity.json",
+      "bytes": 51006,
+      "sha256": "7577af82ff5cab44035289965d3510266278f3945d69eb794c3f042e916cf7b9"
+    }
+  ],
+  "source": [
+    {
+      "path": "apps/desktop/src/main.rs",
+      "bytes": 58448,
+      "sha256": "7b41010a0e0c2cb3512f3134f37843b26e20fc0eab92dae34a4a6f285fa6b871"
+    },
+    {
+      "path": "apps/desktop/src/frame_clock.rs",
+      "bytes": 4752,
+      "sha256": "1c3db05122cd596c243f9b8403b623813fc5880722c2db75454cb09a69f326e4"
+    },
+    {
+      "path": "apps/desktop/src/performance.rs",
+      "bytes": 5317,
+      "sha256": "8596aef98702f858afea5d90b5d397f6354cad60b00f4f903a9128625059d29d"
+    },
+    {
+      "path": "apps/desktop/src/audio.rs",
+      "bytes": 8216,
+      "sha256": "e97552314cfd3769eed20e611ab17aca9e9034dd755f637f570cb5b9091f71f0"
+    }
+  ],
+  "identity": {
+    "status": "PASS",
+    "original_and_synthetic": [
+      {
+        "name": "synthetic",
+        "steps": 64,
+        "render_every": 7,
+        "files": 43,
+        "same": true,
+        "digests": {
+          "trace.jsonl": "07f47d5aa4e104d6b16a5cd4416fd7ed2d7717defac042d039fc50f3b65b9920",
+          "full.jsonl": "2c72aba2902c8dd27b4fa4321f2ed5ab1579a0edac1fe65164bdcb42905f1fcb",
+          "pointer.jsonl": "e8a1600b17842caa792f6ed96d762f4997a6ff05097437ca8eb9a5a559dad831",
+          "completion.jsonl": "4573fe31abe15efeb23836b22d3e7daa35311914df5dbab3a711e452dee6b6de",
+          "hazards.jsonl": "12da798dbf5de9dd8bf1c988f0f7327a455d72e4c002df5c756f800209793dc6",
+          "exit.jsonl": "c1ebbb9c37c57adeb4fefa008097acca0a5c6f440da811cc29bd53e10d747d46",
+          "nuke.jsonl": "d00beefbc03948146494b07480ca1e3d1577d3b7cb3ee5b2b88130e00abe84c9",
+          "floater.jsonl": "1c77bad1d895494a11e1cc0b5375cc2a064099ee2cf76624e580a720c5788534",
+          "climber.jsonl": "31ce386ab8961d8a45def727e3c1a152ed24e6509da8a58248ee746af1d8d062",
+          "bomber.jsonl": "ca26e3a9a801276853d5a9acd2eda692f052ca80c29f3416c17706d9bffcf970",
+          "blocker.jsonl": "3324bdba0bdf66f5f93ce8e6ba55860092e4904cbf99309974b9b67458dadc8d",
+          "builder.jsonl": "c91115e8c65a3d008cb27c75d6d5ab45eb7d4f6cd6ae5168c94ad2c6e26e5336",
+          "miner.jsonl": "ef268f72a422bcecab5ecd47f965afe29f5b4c4969ada7e998e81a1b4a924f52",
+          "basher.jsonl": "ef268f72a422bcecab5ecd47f965afe29f5b4c4969ada7e998e81a1b4a924f52",
+          "digger.jsonl": "a19b01b51a7274ce095134f5f6efc2902e10cdc0bff7d6a78e3287e561804bd6",
+          "terrain-initial.bin": "daced2db27e22d0ce50a2be895f037d57e7d4b4d1369c50432bd253c14eaeaed",
+          "bash-masks.bin": "19cb414cb760df2b27bc0c0316db82a35042929e268d6b41551779c8c85d4988",
+          "mine-masks.bin": "f71c209c8df8eeb07005a11966d0300bd86d153006ba2e05302caf822246d90f",
+          "objects.bin": "f627ca4c2c322f15db26152df306bd4f983f0146409b81a4341b9b340c365a16",
+          "object-map-initial.bin": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc",
+          "explosion-mask.bin": "463d5921a6bfd5c98f6047f561495800372e627c07ce458c23b7ac164a22be51",
+          "traps.bin": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1",
+          "transitions.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "frame-000000.rgb": "227dff6ca48be1775e00718a5e0a9909a003d74b6f7dbf9d221b856f13b36e1a",
+          "frame-000000.ppm": "85847c4e603c858d68040eced8dd28c199950d048b3c0a3b7b97b1748eb20f5a",
+          "frame-000016.rgb": "227dff6ca48be1775e00718a5e0a9909a003d74b6f7dbf9d221b856f13b36e1a",
+          "frame-000016.ppm": "85847c4e603c858d68040eced8dd28c199950d048b3c0a3b7b97b1748eb20f5a",
+          "frame-000017.rgb": "b4067aa6af70983a55615d6a7943ff86d3a1f914d9ec10a248d5defad32dc52c",
+          "frame-000017.ppm": "c4678560c28defe2203c07331428943c8e54f8f5ad99c8f325e459c3fd6e4ea6",
+          "frame-000034.rgb": "f90adfbaea017b1373ebefb7ed9b74e313de6d9867808c82f71131a5b266678b",
+          "frame-000034.ppm": "f512745dd32f3568e35d2952dd08318639e17e1de85f9e4bbf6c88b1022358ad",
+          "frame-000035.rgb": "f90adfbaea017b1373ebefb7ed9b74e313de6d9867808c82f71131a5b266678b",
+          "frame-000035.ppm": "f512745dd32f3568e35d2952dd08318639e17e1de85f9e4bbf6c88b1022358ad",
+          "frame-000054.rgb": "0a3b4df114f75233c733a962d0b0863e85acfb55373d353281fd6d834074a2f7",
+          "frame-000054.ppm": "80215269883265542fdfee71127ac374fafa75be7690dcb4815abd13cf8bb3f0",
+          "frame-000060.rgb": "a36c3a690b186c6fb615eb658e9577edf42344c920dfbebf5882de2e5476fc70",
+          "frame-000060.ppm": "fdbb30311c1f91c9f094ca32a83e2c979d62ed6ea3cad2f3cc9d9ff80e1778c3",
+          "frame-000064.rgb": "fd7c66e08fa107fb4020034910032ff11a865a870f3c7b42407682b82cf9e654",
+          "frame-000064.ppm": "0cbd38fa62587943ee7fd62b5d363057430582fd2b6a6050f30cedd9ff969d72",
+          "object-map-final.bin": "ca4f1529bc9e391d5352203381aaa10e3d7305c381b998ac6bcd590341adedcc",
+          "terrain-final.bin": "daced2db27e22d0ce50a2be895f037d57e7d4b4d1369c50432bd253c14eaeaed",
+          "brick-final.bin": "f627ca4c2c322f15db26152df306bd4f983f0146409b81a4341b9b340c365a16",
+          "inputs.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "fun-01",
+        "steps": 660,
+        "render_every": 7,
+        "files": 195,
+        "same": true,
+        "digests": {
+          "trace.jsonl": "9fcee2a080ba005629c581c8c263e30e9c10b20bc75c115fff272387217e9172",
+          "full.jsonl": "ea2928b414411969e486c3d775731ba9b73f2f55198d935a086ba3715428fdad",
+          "pointer.jsonl": "7f616ad3fcbd4fb312a783934c7fad0907dd8bd1ed9540d996d7db48e4ded878",
+          "completion.jsonl": "4e1f88f8583abab571d014d131fc94297bdb875586384b4bcdc4b9a98f59b5a3",
+          "hazards.jsonl": "87ec10b3a8cf278ff876b91a97aff9870751515f921f45af624182f5beecebe0",
+          "exit.jsonl": "e8f69386e320eaa5831c0d51553a3d3a7cdd1165051befc623209e8d6b7d5831",
+          "nuke.jsonl": "bd33fc5ca2b0265d04546f325419fa5cc9d32e82a9f8c8ef1e84e69f3ac2aca7",
+          "floater.jsonl": "118f574b2d524396a9fd4637d1fb515fc83582fe3dc5f873b2335c4f4710e585",
+          "climber.jsonl": "36d8983a11c3a6f042ad7742088fe5dfb450270e9bb2fc6703567da64cc3ccca",
+          "bomber.jsonl": "2a3a768e6a7f4e16ca9f759995eada971d0f2dddd9c9407f46ce3b76af463018",
+          "blocker.jsonl": "66d34dca7fae062144e493990ed1aaad58b54e21ca533389dd8e2480d496009a",
+          "builder.jsonl": "3abac60bda7713f3dc857a59c7ba47e38b13dae8144ec0d9d8534c1a9324ff8f",
+          "miner.jsonl": "3eca2b87cd85574a72ee9eb4f790498cf0b867631f653c235cc34235e5e6137a",
+          "basher.jsonl": "3eca2b87cd85574a72ee9eb4f790498cf0b867631f653c235cc34235e5e6137a",
+          "digger.jsonl": "319dd4891ba32b515486b189173eb9b8d8728923d5f7eedfa8d25d7d1f7bf5ee",
+          "terrain-initial.bin": "a5311ef0436ca29a5fe4f6feee89baa0b82afce87baaf799f59c813deb5686d7",
+          "bash-masks.bin": "307270fc371d4ce7dd55cf58c264e1e6e700550ef89ff089ee121c99fa9d0945",
+          "mine-masks.bin": "b6f1ea53a5d97dc539274789f2853e2ec4032fd50b030b2cdfe2471b50fa6d51",
+          "objects.bin": "3b7e83a686ac0e2c229796c28b81f7086d81ee57fd09f4eeb7a1fcf4726cb54d",
+          "object-map-initial.bin": "30df0608a2d4cc24e80a5ebddee68120d7c3c1e0a222e52cb933cc04f64c5cf3",
+          "explosion-mask.bin": "b6e6eb9c1ddd66db1b2d1d073383f6dd6a9f775bdccfd399f2ddc94f595055ab",
+          "traps.bin": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1",
+          "transitions.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "frame-000000.rgb": "1539ca2afdcc9cfbe4fa5de51036c45b881014ec14a0ab030c191ca41f988c4d",
+          "frame-000000.ppm": "3e7540b64ebfbb71c26d4dc63802ad3f163aa80e7434ec5004ab6e8eee459139",
+          "frame-000016.rgb": "5a13bded152ca466d593ede55141d1f851373f5c595b86609238ccfa7719f3e5",
+          "frame-000016.ppm": "c7e4792c9ed0c1431cb8d897987edb48acf37a74270bdb7c9c63c963b10780cd",
+          "frame-000017.rgb": "0f60d356a8a35bf68d0be6d7bbcd1a4468b8da7f22781813a318dc8fa45c8f79",
+          "frame-000017.ppm": "074c048afae1d7ebe15371a2adf26b3aa44a5fa4c28a570c110efa3945a2303d",
+          "frame-000034.rgb": "efc35d17182b7a7392086533a2fb9c5eb8998d46ad4833f8b6efb4281e14a105",
+          "frame-000034.ppm": "9cada6e8376031349d283d1082bb392228b125c793d591a2badd965853ece11b",
+          "frame-000035.rgb": "143a9d840a0a9808e1c14d6de266a76d1b4cbe20dbbb9b7c76071f24eb809db5",
+          "frame-000035.ppm": "f2780ee113f86866f58bb2b812e7e8f95a4d1e2917405282f19de38e94352c20",
+          "frame-000054.rgb": "deae9268621c9fa448577ab289c8a39e1dc4c329b768dc7ee7ed9cc2f00e49f0",
+          "frame-000054.ppm": "264ba9f59ea429e259fd7dea8e982ff835c4bdcef7da044cad400d6b969c30d8",
+          "frame-000060.rgb": "994ca1e87a049e94a2260d574580181eed4643a54fb293e541e226a21d15a9a1",
+          "frame-000060.ppm": "dd0706c0adac2c65ca2eee2dbcc3dca9a1157389da24c50e80018735384ed7ce",
+          "frame-000061.rgb": "6a590dd48a6b06f3e7c3a22c558a758bed6754fa21ca346c6e6a2d6adbbdd2ad",
+          "frame-000061.ppm": "e24b84f1f40b5ef5c6e75583190ca24f21e7986c5e50b30d0f7a0ceccadfffd6",
+          "frame-000069.rgb": "35659afb3552c1b609ad08deebf371c9f4fc47875d8584925fc4efd444c02298",
+          "frame-000069.ppm": "6d042c6d343a218256bb605df90662ba8ef0ec8d65f0861ce10866c0867013e7",
+          "frame-000077.rgb": "7dae9d7a1d2b8025ca755ea7254a468792bb26e035e69f4b552e3a4d24f838e3",
+          "frame-000077.ppm": "8360916128ae61dba0c11990085e50c3ff0a53722e9f56b26553ee09b80ab835",
+          "frame-000085.rgb": "517cefc9c3c8c072a59c6aa7d039ab9d23cffe029b1bbbd1c346f6865ca9ca0c",
+          "frame-000085.ppm": "fb10b5f5f6f027e21ae57f0b703160a2d5bd7693fdfdd7dfe746c25495eae3e5",
+          "frame-000093.rgb": "32fed9fc6d55b1bea26b1e757a5e22b15ea2fc57415eea582a3357f2ccb122d4",
+          "frame-000093.ppm": "bf56c7b834e171349937cdd582f775bceb0b46199a613baee12bb8f34271d980",
+          "frame-000100.rgb": "7b452a23286ad52a6fa316a088cb3c6bd7f6ee6f94440d942814caaeea016740",
+          "frame-000100.ppm": "66e0db5f553e2b9595da7003eb074c2ca6ff19645a7447e5e78a0b14619d54be",
+          "frame-000101.rgb": "31cfef8ace4d54f4f90420b4787fc16734d3f2f5fbe75cec2fec1509e945f671",
+          "frame-000101.ppm": "7ce1a8f535bf142da22cd8f17eaf4aa561a52a652b1c6b9927d71099dca97dcd",
+          "frame-000109.rgb": "d86786650c299e2a2eace0a74e237a88acd4114ac5300711594d47f297441fd8",
+          "frame-000109.ppm": "0388ec21d84d3d4f5b805365438e1d99bb91637714081440c0fab46c7b9ab2f4",
+          "frame-000117.rgb": "ae66bcd4b7ee7c72a6bf4495ba4cdb8678e53b6874a45fb93e6a81330190114b",
+          "frame-000117.ppm": "08420a691bc6ba6467634f37d4799dc3ed48a4d9b7411e01fc14ce5824b7a398",
+          "frame-000125.rgb": "cba4fbc911243ca34df0c9ff4a930e83dda4297c7f6bd545a5ac0ea90e755724",
+          "frame-000125.ppm": "a5cb6912875b20178a9bb1b55ac0c8b9a6ec90826c8e9a2a9f2305eb53308452",
+          "frame-000133.rgb": "fc1e1dca813e97d10acabd30b307c98df0f4712c7e4adb970c18bc0680e6df60",
+          "frame-000133.ppm": "62d881ecaaac43c89c1c3b29b80749e8a1a04ab18b480cef57001fc75901d652",
+          "frame-000141.rgb": "023b5d95157461daa0bfb1c7ba639d416d7ab3bfa1c9fbd8bc7d926221c58156",
+          "frame-000141.ppm": "97f905cf0497ac40501a3c430e3b90f1d467d5e630f2e89c9c42fab4644bae2b",
+          "frame-000149.rgb": "a7a6712b9c7c3b1167b9f04194e4e27ffffeaab0a06fb71bd4d1cdff6b839eb6",
+          "frame-000149.ppm": "550e4ec17c726c9c45bbf690f1d6207385fb042a029d770159ff55a07b3ecc56",
+          "frame-000157.rgb": "d931dc11ac82673020ea1cbb654547cf9af6af4391cb6485974098cf1d2cf0bf",
+          "frame-000157.ppm": "ddf615c278b5a0bfea80b4f1b37cf6dd99f045eee57ef882e08247154b7ffff5",
+          "frame-000165.rgb": "e9094f3f74b23d427ef52033e7714b6523a58af3cb20d74db488e7a022ca0309",
+          "frame-000165.ppm": "9d5b0bd1ac84c6763bb9135a20d9330083b3763030c91304b3a77fb89afe9687",
+          "frame-000170.rgb": "1ab39521a862a64b5ac8afea5ffdb21c764514eb5c84d3025684133838451bc6",
+          "frame-000170.ppm": "6410842c1852ac6919ec550cd5dd3addbf6cdf5b946cf10dac6cb3aae90e0c08",
+          "frame-000173.rgb": "84e57bb6d0f0c2c6794ee4d00da776f7ec58673f2b436f8cba1aeac87cf5c9e6",
+          "frame-000173.ppm": "ad3ab1f55212ce00c9e0ee66efe2d3f67be5957f5fe385c6b6f13085caf36635",
+          "frame-000181.rgb": "00b551f94f0dc5d7da6cc3def1261d0c8ce131f732b06fec0aa3711c76ef6dd4",
+          "frame-000181.ppm": "c3bf53406f64f30286144c2276fd65b7ddc516eee0e202cf9dc18dd2c2b82f71",
+          "frame-000189.rgb": "84cdc2c72f0275a5749cb53e6a64905fe545188856bb66a7b821de61052bf3d4",
+          "frame-000189.ppm": "a26f12f2301275ccfa87d46b804dcd5ab81a980841f9a3fe6550d98b0d52559a",
+          "frame-000197.rgb": "97154efc6d898d05cbb9fb634252b5d42b2c75b53a7b070ec5b79fdc7c1ad2ba",
+          "frame-000197.ppm": "465d4d6711518bd84cfd3473afa09a12a29155f2138da38d639adc34ace5e625",
+          "frame-000205.rgb": "4059e2a90066154b77619b26e38d4184132d71df9a65ee1b9bb8c45aaeb72d88",
+          "frame-000205.ppm": "fb6f80f99c7cf8349e193fb81e81a57b2e9435e32a4e56cd74d25f741e633fc8",
+          "frame-000213.rgb": "351744abd7b57aee747e1cab3c23a9ddb21a339fc5ce84419ecbda09ca641f52",
+          "frame-000213.ppm": "729c1056d9d70787770011e47ec74a5f51cf3e3dad73a8f2c3539754cf0f517e",
+          "frame-000221.rgb": "f53d1f6bbd92da1adb5dd1a76909984bd3deddac681611cc034420736ee10916",
+          "frame-000221.ppm": "a25311682cab89a5d92f0872da63449471f0625a04dc6e3c0608dd30d1e3537d",
+          "frame-000229.rgb": "8ae93f4a69ef7521b3d9444e0f9642dd77893b66eba9c1e4c68207c12523c3b0",
+          "frame-000229.ppm": "d7e94d36c504461f11fa17015284788963a018c7274d3d0600ed1032495732a0",
+          "frame-000237.rgb": "7b7e63d92305996b14d29b5184d225200bb6bce96b8237cce873884d2a5707e7",
+          "frame-000237.ppm": "2801f458ab2777a6843d22a5e201c5cb0a7facaa36690456ee8262473e1efdcb",
+          "frame-000245.rgb": "32d7bdd5b7a0cd0d3d92b0fb9378327eda42c9d3a26eef4bea4dea49d3f695df",
+          "frame-000245.ppm": "4722ee86c2ee3874d8f9da91d573acc1ebb68632fe70902631f96a796301e02f",
+          "frame-000253.rgb": "94d6b0f424196420cc15299669fc725c1adbdec331ae83fb8a64514a546a474a",
+          "frame-000253.ppm": "7200344e00ec446f012d70eae6d95070487fa26005f28286d0836d9696749511",
+          "frame-000261.rgb": "dea8804a0fbf566ed6596b21df58385b7874fc558f564dd651ddf8af800047f0",
+          "frame-000261.ppm": "54dab7eace18f5e8182871b279e8511bead55b76d868d3f17f0319ae9bd001a9",
+          "frame-000269.rgb": "8027d55497af942cec779a954e6e4212048603b0d7f446034d2efa8f47768f48",
+          "frame-000269.ppm": "1274458b51156b99137a9c88567bc2e053c82a77345fd552de42d86bf00ac33e",
+          "frame-000277.rgb": "9e43257b3c94affde61265d634595848c677431c7a7e22e52ef7f6db0e2e9f49",
+          "frame-000277.ppm": "facfbb7527983cb58e3f84038c7b5d3b194f37c03229ca91da6f0158ac5cc576",
+          "frame-000285.rgb": "86c2ad28717d8f9a838bbe41dca287101203a79cb27f7b22107c9e13e835c16a",
+          "frame-000285.ppm": "8f5c19c78524b7467384dd9d18ed58a1033842095b7ac52899929c4546d9bffc",
+          "frame-000293.rgb": "5a1a61a72994806d6e8aa1a58d34074f4da8a59e490d49456e86f6dbb5381473",
+          "frame-000293.ppm": "8f0d0fa66644abaf7d6e72bb664dcf94a622084ccd697269ded68eabf9566c8c",
+          "frame-000301.rgb": "a4086fb73094b8c6687a4d9eaacb38418e7ff1de8292ee9b4cdc623a9e76519c",
+          "frame-000301.ppm": "40aa7ce8002496f9cb0c4dcc999d9a48035549a8e57856a86525e81c9a492f30",
+          "frame-000309.rgb": "96ef6d1e582a83c9ff42b619d9038fb6f69a7d5ca703487cc1aba8b04de8da1c",
+          "frame-000309.ppm": "f1358154be898395143895937ee5f53c6d0ecf06f755ea40f851d7f116b55469",
+          "frame-000317.rgb": "a028beafe1b636c2856170dc3da8190fc52c3ae7dfd575df1c93c04a0855fd3b",
+          "frame-000317.ppm": "b6883fb0fe951182d4058c193e307936d2aa2567d72911af60fb0ab0c52a7707",
+          "frame-000325.rgb": "75473d823c3118950de197e70053694c172524c7a0cf760d0c9bcbc4f70e7423",
+          "frame-000325.ppm": "0b4013461806df784630b55412ea06c10774b98853802977665b06ea9216aea6",
+          "frame-000333.rgb": "75a045380559a19d26adb2c1a1914972e2767fc06493a98e6b6353fbe231cd23",
+          "frame-000333.ppm": "8b354e52724b47b4a2da270245f14eb77b27c1518fd3c58e6fbaebb65c19ffd5",
+          "frame-000340.rgb": "0cd680304c18c603867f7410c0fbaea0dce703627806406bf7643a16912c95a1",
+          "frame-000340.ppm": "dc8b1d8382c570ad20e7c09cd2be19e2bd45d05ebf5f8e2c62258cf227cd23af",
+          "frame-000478.rgb": "0e5104e56fb3c15db2fd20e90fc6994d4f405de33e7cf8859350e8bfba13cd4f",
+          "frame-000478.ppm": "0b8737e0ff9df0392ad96ee68192d1c13b14599baa267a2a3beab22dc6df86e5",
+          "frame-000479.rgb": "362fc290fddec5250019a8251d9266b7faff797e2c92ba8bdf6c8228e2603f16",
+          "frame-000479.ppm": "7d514ed86254c50bf7c506ebe718266d5fcb09de1c84bfbf04f4e897641a96b3",
+          "frame-000480.rgb": "22ae0829c6f93cbe9f9c4dbead1b3a64c38685241e290bd10817375e6cf353d7",
+          "frame-000480.ppm": "e552adf17dfe728676298335ff1ee1e4c61001e84ae100002aff3b7122c6c17d",
+          "frame-000481.rgb": "52b0b625e9352b4be3a3b77b4040062d8eaac94c0c93b89b1871ea83004f8fc1",
+          "frame-000481.ppm": "bc56c15ea418e36fb52350ec85adba37a9ee43d2bb9ec27c53de74b107ceeb29",
+          "frame-000482.rgb": "1082aa8d5fe04cdf68154f41ed4c6f7a7ea7197756ab331138e05e15063505b0",
+          "frame-000482.ppm": "2222d4f204f2967e303daa7b0d2d744c1fc8a0126e3acc13555808dd7397eedc",
+          "frame-000483.rgb": "ac4fcaa7ce39b4b0b60cad33c8092632fafa00f03688504e1be4c6a95d5bf105",
+          "frame-000483.ppm": "b0ce0d1187a5f45b11eff492a16e027aa61ff0745bb588f67f9e6735c9a85d2d",
+          "frame-000484.rgb": "381d5cc5eca62938001eb7d6ed6acb9fc5cb724400cf20c3de67f017bedd1952",
+          "frame-000484.ppm": "a66f60e67191b537c93f93fd473bd1b3852a5e7151eb25f8b2ed8d4425364c47",
+          "frame-000485.rgb": "ef2c80d25ceb6a526a9e57d8282ea2d4a73bd71d3c4e2e991138abee0d17b5e1",
+          "frame-000485.ppm": "74b20a8fc4121e7c54cc0f838f6081a74e0cddfb9be04e80b58d07bb35e6f9af",
+          "frame-000486.rgb": "d91213893d7f66b82aa15b3ddcab78da26d6fada4d9398ca046b2e631c4602fa",
+          "frame-000486.ppm": "de8c7c6289abe64054b08e7e3d5e227537fd4e7d7d9058aa9fa2be9df82a53b7",
+          "frame-000487.rgb": "df1b6a832782eb0f11601cb8a7b5d04e51a86611d5159734f5c6b1fecd77aa77",
+          "frame-000487.ppm": "9bc98a3db5009a614772635b8936f92a991bab05f9609a675f858eed570b9cae",
+          "frame-000493.rgb": "29564de0fc5d2ac1c0b2848e071b450be1bacd254e584b25c41aee0d4a138f3f",
+          "frame-000493.ppm": "e757a4387ec474351561f29e533ff57c3cf4020af6276368800cf8f4518af08f",
+          "frame-000494.rgb": "565d3c69048d933fd77fa0c07cac0449ab9cd8c338d55d978b0d8fd2aa0c794d",
+          "frame-000494.ppm": "d60b2e9580cfe923fc8d31a7e7e58b44ecb04d83f5cf3a07216121e3f3fa4d65",
+          "frame-000495.rgb": "8ea0d6544df6c9e4c41f3bae8b932c7733f0025e87589cd75ac9306846a099d0",
+          "frame-000495.ppm": "f3940d21b6640aa062474ccf8f397fcd4305a2d1e57c8eed7dacf819196c57a7",
+          "frame-000496.rgb": "008f555b78f359715e02cf9324f327f1e0e36ac6b8734f3dedacab8c8b4393ed",
+          "frame-000496.ppm": "49eddc7227e1a9f6020c89581f327cfe41ef3e401762f8324d1aafd831e0d67e",
+          "frame-000497.rgb": "410c12bef42974f3bd5e90df7cbd045b69421630dde245dbc4a18db20f775ceb",
+          "frame-000497.ppm": "6ab747eae5cccc4da2a0906b654ec6fa44670085933f050b79ccf3c918e73c31",
+          "frame-000498.rgb": "bc0cc462c0dc2aba62b43062343d9d7d6e468ea011fffa93b3d63248871bd42f",
+          "frame-000498.ppm": "2051452bfce9b7277e7c8cd4a995906f923a0dd2e177bf7353b8f552c7b8488a",
+          "frame-000499.rgb": "0991180a9fbf182090202b156fa54882c8fdc352bca15af7f251d9ec250e8a70",
+          "frame-000499.ppm": "ef7852da81b5383ff0f9495b480fcd70f7b3a30aeb788f0c278afc4226b57984",
+          "frame-000500.rgb": "07a6bc28d7ef65247b2ed733dfbad3ed66a7cc8485906d16b69b4de45cf689db",
+          "frame-000500.ppm": "c8dc60dc34dd2da14201fd9442d45af6d780112289fca73fb974d551fadd5d07",
+          "frame-000501.rgb": "1c153d7c680d32fd57e39810521d21b7f6736c51313cd80130f09059cbc8b7cb",
+          "frame-000501.ppm": "dedcac2f0fe0350fec998e63f5801ab9873f18d2dea7141202354f0602a3b745",
+          "frame-000641.rgb": "b0f5fc25ca8eadc69efdb3377a40b456cd81b9d35908cd8e71fb448e3033b6e5",
+          "frame-000641.ppm": "3781d5927b6eaa8122d218f3e9a26c63aa1067b4b67f7221253585e585d8bac7",
+          "frame-000642.rgb": "c63dcfaba8511b3da18a46ee80ceed1f007046fee41363f159f1843591e8795d",
+          "frame-000642.ppm": "085bdf472418fd95af3f925f7e73eff9153a951d6039afe458fc20a15f24eef3",
+          "frame-000643.rgb": "610e18f18cbc4dad0f716fc3b6b7213f0977a1af694080206a85d2352f6c89cf",
+          "frame-000643.ppm": "8718bbf8a474081b71781157a630ac017c13501a0920aad52455cf087840b869",
+          "frame-000644.rgb": "95bf0eb24f043a3431509a55f2c415b869c944c4e121d6b23468df49bb02621c",
+          "frame-000644.ppm": "5448f01a2a77ab32e39a170431bf36116786579e0c4d45c29a0f1085645b064f",
+          "frame-000645.rgb": "7b5323ed428fc332c8f8b01ae88fb82731f9ddad33f77fa69dbabae4107c04d1",
+          "frame-000645.ppm": "71f47224a69dd04ec0863e6705203c8aef38fe9cd8d4ddf036a5d532bf144656",
+          "frame-000646.rgb": "12932f0e1abd2ea0a909f0f833befcc2e21bf9edd23648f37b0b817882929a31",
+          "frame-000646.ppm": "1cd684acd6ecaefccc32f625e2d033b616047f1177109630947e659b6e5aa19c",
+          "frame-000647.rgb": "7b44182cd36eee760176b70dd36c3f1bbc2a144859ccac23de6a1b0c06ed6295",
+          "frame-000647.ppm": "d87ac359a9a41fdb9047a99510de514874ce0a375ea1627baadd63b273545866",
+          "frame-000648.rgb": "82b3c5d2a9a9f959879e304c45b3080bf19f45a9dc2ce63047ecd356d8186aa9",
+          "frame-000648.ppm": "352afe73b5a6e75d5573eb1147c267eea23f5131992c18560c13ad326c7fa213",
+          "frame-000649.rgb": "5da085c6ac9036277dab9d3cce4351b11363196e68a587b15bdaeff5aa878a5d",
+          "frame-000649.ppm": "f3bf658f3e4acecdca8f2683d9ce15ced7497fe87898b33adbcc9ab12fe99a12",
+          "frame-000650.rgb": "fa9c05bdd1ae053125df1692ce9e082f6aa137acea43d692ba1ce3b730e67508",
+          "frame-000650.ppm": "e18170cb5ad3b47d615fe159256a4f69dc2cbfecaccbcd5259c3f7b6c7a765de",
+          "frame-000651.rgb": "29c9bc544a4932343938a740d93d6f1b8c5063239f9ce7a95053a79b84f34636",
+          "frame-000651.ppm": "0a97c7d583f444adb8387c4745a096ada4daa26e9fdb995a3f9384bace16cbb8",
+          "frame-000652.rgb": "6850da3fb821b31273f4a23e23e2ca9f18866b46e482661574533f38edd739f6",
+          "frame-000652.ppm": "d5dc8b7ec837ac9bf064d8f9262024287773d6c6ec0084213e404c0e4b45d451",
+          "frame-000653.rgb": "1ed8930115a19fa18d26e88bdfca6880ca68b8286afe917c0a64d86955b76259",
+          "frame-000653.ppm": "be89e33706ab35a535b97ce0a83173e694241930f8bc3535cb3d4b1f8e20d892",
+          "frame-000654.rgb": "2c062ed9a7c3bc80f153d73d662acf0fbea5251e47d9a5482498bef1b42092ee",
+          "frame-000654.ppm": "351e491c45fa20c54516ad322583953eca6396f58537b6651c1da936ff40c92e",
+          "frame-000655.rgb": "2bb55eecd4bd2955151848ba4c4feccce9b1a2ed16115f26aa23da4740fc8fc1",
+          "frame-000655.ppm": "73b8da21e35e04e66a4078d0ab23e0f50a55834787e4c5c8f1fbe3d9baa18bb7",
+          "frame-000656.rgb": "c303cce877b257cb633001ccb02eaf5a31607742c3873f918abb09a04dd9c3e6",
+          "frame-000656.ppm": "e2f5b5353241ab0fc4d8783c84ae4f82c28664e2de71b20189cf01e9b20a600c",
+          "frame-000657.rgb": "182afe7f584bd97992e76739f61badb34258720e943ac2851a4ac39874a781a1",
+          "frame-000657.ppm": "480a67ea81c9e54cbb63e1ae88747be141e99435700a63708619eccb7013ce3e",
+          "frame-000658.rgb": "581eb56c79dae8ff5d008a26371daaa462fe567847fd1183fbc2937b05a6f409",
+          "frame-000658.ppm": "937fb76ee402517ba099675a373d55bcff3e3f03875d5a2d3a439835e4ee1a78",
+          "frame-000659.rgb": "49c7299ccf3be9ff2721d9908045aeacb51372ab90ad9ca89ac377d4d942759f",
+          "frame-000659.ppm": "559d5bf40765cae80dfff518db0e3207204da68f75cf292ea2405f41143aedc9",
+          "frame-000660.rgb": "1509d88fcd3f06086a8c59d64ec78c3e038dd107b71959bc96305a0a46f6ba87",
+          "frame-000660.ppm": "d3b20be3d67844a12524d30811f5c7a7625110f01277cd1fb57ef869fbe007bd",
+          "object-map-final.bin": "30df0608a2d4cc24e80a5ebddee68120d7c3c1e0a222e52cb933cc04f64c5cf3",
+          "terrain-final.bin": "47376cde8b3ab90dbc2bb884cf46e7f2b61687deb8e9251756f04dfda822e710",
+          "brick-final.bin": "3b7e83a686ac0e2c229796c28b81f7086d81ee57fd09f4eeb7a1fcf4726cb54d",
+          "inputs.txt": "87e508bbc1b98f4fd5562b5c322c7caac3d9695ba2cc914a1c2c90ec76cb9a85"
+        }
+      },
+      {
+        "name": "mayhem-22",
+        "steps": 841,
+        "render_every": 7,
+        "files": 213,
+        "same": true,
+        "digests": {
+          "trace.jsonl": "b15c099f04c14f87fdc360289fa7f47bb1cc3098a038324dff6f16c5f9f8b589",
+          "full.jsonl": "2373fb28e0efccb321a17f4d39512363382194e6a5e028e11ba7f5d2dc6cdd4f",
+          "pointer.jsonl": "899350bede016937d81994788b088d1073c1f901bf4f894332d0f977534617b7",
+          "completion.jsonl": "5954ba951aaeadfc6af33557ddf30092d1368a3fd8068dd27b2f256d5fbbe40d",
+          "hazards.jsonl": "a6bdf18fef1f2afcc9bd20560007d061af180006b074ae6a52a817b1b92cf528",
+          "exit.jsonl": "f469052af757ee9dee496922a167fcf757e520b0352bd99659050e82196eb87d",
+          "nuke.jsonl": "588c9ccf37ed43d358bd876ed2b1472ec2d331c061da4709ef8371f87cae7156",
+          "floater.jsonl": "54b8e8dce9ddc670af3e8c6475ef81e0826cfead5b20fcf475d2f2db91330a7c",
+          "climber.jsonl": "d14a8edefa849b20d65bdc6e51f6e4ade267080ea8866c2152c63c7d9e407912",
+          "bomber.jsonl": "33a6a901911f4f005c2f8e00cfa7837c0dd0cfa513e4a3d369fab19c2649f5ca",
+          "blocker.jsonl": "d83c29802401d799042727680430838e0f9527514102297fb421dadc1d459f85",
+          "builder.jsonl": "ec3140f4d7cadd57e316e1847d72f3a5bfad8bf8adaea09e49d3a655d6b35eed",
+          "miner.jsonl": "e427c7e28426f94a8be0b89f68ffaab45ba2c66fea9dece7f6f2eca3876afa5f",
+          "basher.jsonl": "8a8ac103f66966a05aa1cfcd32f967b233a102d7e48d54b7dace2a985eac5748",
+          "digger.jsonl": "eaedb543a0ff6f8df82d80243ce90b85e0c40d4d16552f8ffd61a9cb0890cf34",
+          "terrain-initial.bin": "0e9f9c439420da942ad2b7462bd7f94a299b1c3cc172839674a8da41033fa0a1",
+          "bash-masks.bin": "307270fc371d4ce7dd55cf58c264e1e6e700550ef89ff089ee121c99fa9d0945",
+          "mine-masks.bin": "b6f1ea53a5d97dc539274789f2853e2ec4032fd50b030b2cdfe2471b50fa6d51",
+          "objects.bin": "3b7e83a686ac0e2c229796c28b81f7086d81ee57fd09f4eeb7a1fcf4726cb54d",
+          "object-map-initial.bin": "9f21c832eb9434022f89d06e8544bf46c4a5602e1fd0ca56981f84c02f3fa442",
+          "explosion-mask.bin": "b6e6eb9c1ddd66db1b2d1d073383f6dd6a9f775bdccfd399f2ddc94f595055ab",
+          "traps.bin": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1",
+          "transitions.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "frame-000000.rgb": "76e2d158b4b2320a7e2bea7a91203e4ab22ee4fceb108570a9f1d2798924f87d",
+          "frame-000000.ppm": "9dcc242d8ae4f28185ed23351d6511f8817176c24cad26e6b09612dfb1fd0a6e",
+          "frame-000016.rgb": "76e2d158b4b2320a7e2bea7a91203e4ab22ee4fceb108570a9f1d2798924f87d",
+          "frame-000016.ppm": "9dcc242d8ae4f28185ed23351d6511f8817176c24cad26e6b09612dfb1fd0a6e",
+          "frame-000017.rgb": "937e1326075db0da4c6f822408f5d382e3110b1deaa93f55414c23e7e5b8e9ec",
+          "frame-000017.ppm": "1bce52242821d3a6437a8db7b587eb95eb53dc23dfc4ad275c16bb8070fcbd98",
+          "frame-000034.rgb": "b396a70c0ce013917712d205eac71194c6c1b78f1df7faa9a9e0c9318e12f07a",
+          "frame-000034.ppm": "fa883950d4da9818df46c5dc9289be5f6211f99467324405a6b878545ca7acbe",
+          "frame-000035.rgb": "b2c96e314c49c587c2d79b82e00f14e28ef4eed38ba7356e6d031746f418729a",
+          "frame-000035.ppm": "5765e865a4c0c7b53a54836aa9bf3095ca9fb3191e24ecacd378cb725693c6e7",
+          "frame-000054.rgb": "5fdea08ccef647b7d5ac45a4d1be3aa6710d90c96a2701eb1d81364b103ba797",
+          "frame-000054.ppm": "54d1dd05816f7ad9f358112f02ad0a70c7acf129d1a0f7ffb8357e23e1791a56",
+          "frame-000060.rgb": "f3fbecea25ad3600401e9cace83f98e6a482912795790cd87ca388d08b9b7e54",
+          "frame-000060.ppm": "b8cdaaf1ef123142bac47c1a91620a49de91261b1c8817c1cab617d0e0da3168",
+          "frame-000100.rgb": "8d6979c96c94bb81c8ee3c915c59b44677de42c416c91e326cb7ecba1fdb12ad",
+          "frame-000100.ppm": "60d1fb8d65700c134cb045b0e24f6e20b479ff5699eb3750af8fbfbba14824fd",
+          "frame-000107.rgb": "4bb6f7a34c7b052f7ed882db0b5870d62a045247d233cf1f7970fab845e805ba",
+          "frame-000107.ppm": "559b58eb7e1de1e246446df762ba97338b59a96b1ff202230786049549c2657f",
+          "frame-000165.rgb": "e158c2217784b84c0beb6213788ab948cdb91c1c8fa84848eb5379d0c0b3a10c",
+          "frame-000165.ppm": "6cbafd1b952f5d20e242c9e04902ab8ca5ba22096917730f64bb4a211dffac77",
+          "frame-000170.rgb": "ef2e9ff4c56ec3efae4b8b5051ca22cf3542af9f1a846530747cb75dd5723108",
+          "frame-000170.ppm": "b44eb0ffb7163b9ab0b2a6a21a334c1213d04a6f956662bf3eea4249a533bdb3",
+          "frame-000211.rgb": "198be800469304a5e780676f6a23e3d78076c0c9a9f0c5e444b3da4276e8052a",
+          "frame-000211.ppm": "e5a23a60aa78e8193a2bbd5cff47c2126dbe5ad5c92f896c9215d982b70002b9",
+          "frame-000219.rgb": "145c818335ba4e47b0a0e9720f3ed8657150bfd9a807b72534e55b0e8910109e",
+          "frame-000219.ppm": "5a80ff9596918b859cd86a8665151bdc9c235b3747c9ac937ee777b3cb4443ab",
+          "frame-000220.rgb": "0fb84b1e50c41608bd12497354762183a055cc8e5dadc06245712d982795b5d6",
+          "frame-000220.ppm": "5c7983397d80aef886a4f19110a2b5e57e14a71d2b56ce798d32cfd606438fff",
+          "frame-000226.rgb": "6fa98ca50563fd0f617b61bcc5183bd2e8af30f3efcd586194edb18ec9d5569a",
+          "frame-000226.ppm": "4232be08274c34e52c0fcba943e33008ec1e7874f9d876e2365f5921d32a44df",
+          "frame-000235.rgb": "937b6da1637f54938f0614fdb8df8ffab458bf3f9f4f65b2bf085c997522ae77",
+          "frame-000235.ppm": "7c58140595b2fcd9ec33ab3a1a41234445ba52f2aa99e9026af3f21424716b5a",
+          "frame-000242.rgb": "2b96610ae3cbdaba86164ff3ee0d7a28fa66102ec0027954024a39234cfe64fc",
+          "frame-000242.ppm": "6b274c633872ff50d0bf167fd313c7f8af05ca31a9be73416af5ca27dba32057",
+          "frame-000251.rgb": "d00840c9354d1726670465afa13bfb587223d93873bbe0ee876efdb7ec77d53a",
+          "frame-000251.ppm": "7fcab401821dfd9d1eb72a9d0d4292477e10cde86583aabbd8c526ad1810c81b",
+          "frame-000258.rgb": "08a7500884703ee77a13c5aaa823e6ee701deed096b773a6ca02a53e5487d6e9",
+          "frame-000258.ppm": "3750920507d365099c3d1b8d48e20d414f758323ca1e321618b32929c9bcbda2",
+          "frame-000260.rgb": "f835631ff9fe9d7ed384d9061468fc8fe846c3c2dc4fe21b1f4f94d870a66f29",
+          "frame-000260.ppm": "1dbf55ba6fb1e75d1bbe7ba8950284f47fce0332aaceeee08ad074951ba75182",
+          "frame-000267.rgb": "edb18110da5e8a17803814dda520c11e692727c8032cb3a1b74441dd15c7aec6",
+          "frame-000267.ppm": "581d1395481e9e62873f0f58183b58ab20d55c8c8ea1c417f63143ea0e640d7e",
+          "frame-000274.rgb": "5a134499f9297c238f08e183d6b8a04929eee80a7317bdbfa2a64b44fc05e089",
+          "frame-000274.ppm": "e5494c8d7ef0c7fd7cec88bcf080d65a2de582ea960b703a194f199d66297c9c",
+          "frame-000283.rgb": "928564477dcc831cd8cd6d57ba5fe7a197daba045d530297a2235c24b0f0778e",
+          "frame-000283.ppm": "60b48c61fde41c2561c7a7077b6e9718406d7bbb7f2d0adde23daa8014f8280c",
+          "frame-000290.rgb": "3c3e310ee212c5564b73451588ac04731fb1d26ef9bd86228d359bb9836dcffb",
+          "frame-000290.ppm": "179817ffca81af2fb2e78cb018f20dfa3adb8dc633d875fb03933872ed1453f7",
+          "frame-000299.rgb": "a6d71f9d824410d83544ea16a79b7271c299ab8f285773d2d12aa3e699079de3",
+          "frame-000299.ppm": "b5494a7612e6827a95125b5c557130083040b8be88d4931f28bf052ac3dc0456",
+          "frame-000300.rgb": "378e7b12946fbce4cc1df783dc9c21a7234b57b19bcf51cf84f5bf3620afd62c",
+          "frame-000300.ppm": "e483f8ae7fedcde8272ef85a0796a75b466904f780ff647bbcecdd218cdf71a2",
+          "frame-000306.rgb": "24a618dfe012b452f8560582d7b797b871ddab49637a5568b66603a14360f027",
+          "frame-000306.ppm": "f91c12eb7fc094d88ffc39f9252d170d10a6aae1885e5a46518f1ce3c2710a89",
+          "frame-000315.rgb": "49c23c0dc234bb55a1ba5ac491bd6e91d78fd9075f9c30acee7bbc6ed59b646b",
+          "frame-000315.ppm": "2b792a3c2959e1019620d58d47d7e983d3e6e90ac69caa1bfe1bcce24106685a",
+          "frame-000322.rgb": "365031076a4419074525523a9c2e513ae6f02a10f940e5517b9ba7142db9525a",
+          "frame-000322.ppm": "aa773772f8fec072816c253fbb8668ea309e879d92fc11b25786e3d0dff76957",
+          "frame-000331.rgb": "6a367a58e23753241d2b301860fa43106ae67643db35fb8bc05831a4ba735288",
+          "frame-000331.ppm": "55af04c0dcffe038d91dd763f02b6d784133246517c0fee5dad883b79ffa88d6",
+          "frame-000338.rgb": "c06270e7d9ffbaa9e0ed5b4f42adf84be186383ddf4176993fae7264d6e5e691",
+          "frame-000338.ppm": "16149dec71a6f9e807e561804ad30add900b24bfe8cf0dbe5607584af082ede0",
+          "frame-000340.rgb": "fb8f5d3d77bb8fac0093f800eb483ffc80673eb22ee89521ea0b3e837d6efe0d",
+          "frame-000340.ppm": "e2ce5bccf1ea57bcb73e5893ffa97d409c556a3d8122e6cb5ebf2015ae0c4d53",
+          "frame-000347.rgb": "ba67d90de3bbd5797970535b9c5c165371ed598fdad51542e582e9ef91e379f1",
+          "frame-000347.ppm": "fb2d0ff192882d6fc5b836eab9453fadb961113ba6340d4da32022bfef53524d",
+          "frame-000354.rgb": "4a4f4f00ce1fe2e6d599a73f705a96ce063b6bd66903d88aa856e6e8585626de",
+          "frame-000354.ppm": "f22d8822258051a69c0ae78d8ea04f2bcc43cd7b1d3bc7b2dae08b0cdfa31392",
+          "frame-000363.rgb": "fed3357ec0d2e0d72169fc3863a1433d0020685e1be56fa33fe61e0d1725dde2",
+          "frame-000363.ppm": "fa0f6f41145aae7b6ac995a7e2422494f95d68000013978ef81880aeec60e6be",
+          "frame-000370.rgb": "3d890b5d735fa329dc5f8cb797a00d7d761ba19dbba9ffb23371da9998af0753",
+          "frame-000370.ppm": "a3898b395383c5de9a01478b587e5bcb761ff6d9057743d25758043405594323",
+          "frame-000379.rgb": "8af7e7651e968cad033df2d37754a9bc3565c7a9241e2ef5d0460799ca6c1b70",
+          "frame-000379.ppm": "288404c6ed34d1d5ae491055d80570c4b79f12a4822c4e95d5458ee36b270e57",
+          "frame-000386.rgb": "a801e7e79845ff71c85f0bdbea858435e94cc6e6a5a22d1b4fa2879716764701",
+          "frame-000386.ppm": "787f99d48bffbd3f86e2e6d88bbebbdc01b4a58867e187cc695eeb89c2a58f01",
+          "frame-000395.rgb": "5746fe4d788949816caafa9b3a37567077593cc551393d7b94518e8f24aee0ae",
+          "frame-000395.ppm": "e00e7dc65c2d00024119069dec1d0952343b24d792048adc62fe8787a8e7591c",
+          "frame-000403.rgb": "28f645396c2f79c6344c6c5d30897115d786b65036b9dbe74e0a090dc06657a2",
+          "frame-000403.ppm": "ca0c6147c288475db98e252635697d3034788c26c55de73dc241797ba53a39a1",
+          "frame-000411.rgb": "4930381a7fb60a54c726a5b588448129259a7f392d51af384463875633ce0254",
+          "frame-000411.ppm": "92820fc58df14aa3ce49894dc875511aaf60c9a0b4f6bc7d3f6209865694ea52",
+          "frame-000418.rgb": "f54f42b70d77d2326762d5e5507204cb0bc5b1bf17115999bd6945e67c35b084",
+          "frame-000418.ppm": "65924ee7317e206a3bfe758d2f79b76952ca4c702e0a35ad6265595b60542d96",
+          "frame-000427.rgb": "0465e9e67f3732b4722fb562a95015f5b8a293a48169a6002e7bc15f366b6d8d",
+          "frame-000427.ppm": "743471e9c724ad7a34c54b1d0b7dfbe87d374ddf30257a766969ad34b57bf57c",
+          "frame-000434.rgb": "229bca484ab5201b3841417fe900315878915a8681530d4148beb4013f6194dc",
+          "frame-000434.ppm": "2160a18dfe26c9a9f81c4ac56b160fc46ca5646540759b266e47e011573e3989",
+          "frame-000443.rgb": "730be24734b9f8229138b879aca90069efd6bd03c5ae0fe0f6cf0c183d5cb39b",
+          "frame-000443.ppm": "1c316de9519f4286de138fd2cb5d5e70292dda96fbfd02c14902aedc17ba1e10",
+          "frame-000450.rgb": "6cee741643b5a392c7b8e790ff9f040af6abcd57f5661a6d13c80508635d96b8",
+          "frame-000450.ppm": "5b27e8b100b209d274d46d57fecf68332d723e5685d367ae350beea83ec59de9",
+          "frame-000459.rgb": "ba3ba5461f29ba7439ad0f9eb79cee284a939e9754a0082bf592ada0c02431b5",
+          "frame-000459.ppm": "d325f3205d95030e8f3e010bb4825ef17138fb187e5e9c281811a48e6997d2a4",
+          "frame-000466.rgb": "22be7c7f587f4811fec1caa03349ad1df9ae01167ffb9743f1d537525e36f9ee",
+          "frame-000466.ppm": "c7cf4bda0581a39c1269e8af6efb1e75becdb496ec44fb34c857610a400735ab",
+          "frame-000475.rgb": "4f58e3091758b382b5136f82f1b848225d9adb2461d53aa22e2713d128a15555",
+          "frame-000475.ppm": "de9df9b5a0222cf35f1963ee910a9514f1b24498e045959028530c79a0b7a2f3",
+          "frame-000482.rgb": "b58492c104090d6ce59a8e66540250c77997e265f6472639f0fa8bc4d15161c8",
+          "frame-000482.ppm": "52af1c835fa62f367d4477b4cee54777219140a5517b28969c16a21493b0464e",
+          "frame-000491.rgb": "e1d50d7d607f131d07576fb526c0ccbe4e07546bc4b61e96408a7189244abded",
+          "frame-000491.ppm": "852e02f64e44f9b8643bcaa94c895264eadbb3c51ff979e29781ba0bfe7793d8",
+          "frame-000498.rgb": "b785b9a1255688448d7d3ceda4382c4a4e1b45b8b34918bebb312a379662099a",
+          "frame-000498.ppm": "a161867d5fee720efc2e47447f8d6ca7405ef1605f461bd49bf4ab5082212cec",
+          "frame-000507.rgb": "8825a851271607d10c895f188caa06ca03d1110916ead6f00de04ddb7eca7a68",
+          "frame-000507.ppm": "ce195ca4a4a181a441280bd048415dc69c6ebcd330724666878149cb02af5557",
+          "frame-000514.rgb": "1354a0d16d33b5d035432f95b33666bdc27d307ca6794b44dd2181fdb7051da7",
+          "frame-000514.ppm": "a22edf001e81ee15cc07149f017077f0f8058c3676a4e210fae2285f873c8fab",
+          "frame-000523.rgb": "d2416cb63f129eebe0416d4398de1dddb20c13c0c67ced7c9ffd1c1262fee029",
+          "frame-000523.ppm": "8934fd34147e5971f919a39d0216190a4a7cb013f30fb0dabc1f325accad358c",
+          "frame-000530.rgb": "d95de52098ede2f498185b29813347986b2a29d9f0d0cc754eb6033a559d97b2",
+          "frame-000530.ppm": "04bda4d3cd7d213b11f98fdcb33c9985a6ddb54ac75242a51765a8d34ea78cfb",
+          "frame-000539.rgb": "e716938ba41de22e7d6566a7e5fc5a290bc6481198959a622ede995a23aaa08e",
+          "frame-000539.ppm": "f1a1d09c728855709840beab8153961d4b142cd824c2fbb56fa3f32c9313aff3",
+          "frame-000546.rgb": "6c2a3dcac8d78f383e3d2bdb567c17f11f844e4507b83ba0371d46d9d592f366",
+          "frame-000546.ppm": "1773e938716fae5dbb384675f1c0ee19980ebd3101933c86ef3e065ac78744cd",
+          "frame-000547.rgb": "5463ff9fdb787d61f1d1a929f8e92c1e9c561af56a1be20bc69edef91915aa74",
+          "frame-000547.ppm": "3789b37ddf243bbefbabd07d69887cc83aed5c3285359f507d5399181e68c54e",
+          "frame-000578.rgb": "707383b1f7cff88cfdb7f759c69844ad50b3388928bc5269252ba918897a2225",
+          "frame-000578.ppm": "b778e17cae03d118dde46cec034986326aab116a71c41de962283116f74378e9",
+          "frame-000586.rgb": "eb7219dfbfc49370576913a54a493a6fd05a0831116d1e58ef8ff0f488e53b08",
+          "frame-000586.ppm": "40dfdde2008abbef4767a0869d281d7e155fedacb9505dfd480c141b82088f8a",
+          "frame-000593.rgb": "ecac812b19533ca3934da9d31d4db95a86d2404d780f1c687400ac4ccf0f0ba4",
+          "frame-000593.ppm": "17d413b9a811eca622685f4fb6eb7d4f7fe63fbfd34f92e6b76401e78eafcc1f",
+          "frame-000602.rgb": "813e1c214100960d113e58f8d541bf50e249c14d7c9268b0ffb5b84a6d39fdc6",
+          "frame-000602.ppm": "b81c35919e0d544cc85b0daaa5d136fcc416f4711f5f0ae1dac7e920096a7f10",
+          "frame-000609.rgb": "f88c29bc2d6be73a19dd5dcef2ee020cd9fb5e06a0bbbfb9548aaf09064acf8e",
+          "frame-000609.ppm": "b0c50f988c4f88b88bda0fd5fa924610efa0c5a082ad6af95ef75037a5d473e0",
+          "frame-000618.rgb": "4dd77af12e883bc701f1329f81c2e34d879805854152a63125aa471395e5a84f",
+          "frame-000618.ppm": "76d5a1278d5108c120eb7473727fb27686625beb5b05801310adc2ad45329fb0",
+          "frame-000625.rgb": "b02fa38f3b11d7d816be9b449811a000400cb10b1f79ce0e39077c7fb4c70fde",
+          "frame-000625.ppm": "ffc6ac519623f67111727ef4085dcc0f159459dbd9e27ec14e884f840994550c",
+          "frame-000634.rgb": "32b8cd914840a213d9a856a694ef1b75d1ebf4fd6c5c1b55600dddccffcdf632",
+          "frame-000634.ppm": "1d0e778bd4deec5c49e194009ac8364131a07cb28b2a0f078f3ebd2fc8c4019b",
+          "frame-000641.rgb": "cb238e0246b18d54913c77760a2263fab8de6c4957b31a8b6163efb3574604e5",
+          "frame-000641.ppm": "69eab7320950c60af9943b45709ac3fd6b1625b6776eb59956ef3c465cde0efd",
+          "frame-000650.rgb": "32367a99cbe6d25060b8d3023b7f81ab2923fc5c895631fd64483f2c1fe0aade",
+          "frame-000650.ppm": "9920a933c47a336d4b7791b4c521b9dbedaeb0416c5bf2e0c8c73552140e43f9",
+          "frame-000657.rgb": "f903b5fee9399e4c31e999de2ff4dc964b8c1160f175ff55cd6f94b4e6508c43",
+          "frame-000657.ppm": "8f9403ed26d2866389763e50a48c95c57de11a8aeaf7077ef7812225b4483f4a",
+          "frame-000666.rgb": "15b3fc2524cc0270012f478fbe6b19904abeadc27f7eaf521a58901f81d92833",
+          "frame-000666.ppm": "0175a5b1ff11541f6bdec4377366cdf9998ddaaf3f7e1aecf43ace0b80eb332c",
+          "frame-000673.rgb": "dff83b4c04039f7171cc3d655c1a8fd7d678c55a264e92777e1c367d1701e8eb",
+          "frame-000673.ppm": "10b0197e34c0a5c459bb729a26a7575da343179de53942ff2ee01eee17d46577",
+          "frame-000682.rgb": "82b24290504f0f13ff75804e5b08fb64b36118f64baada35e6bbac18e8051ec3",
+          "frame-000682.ppm": "851ac1170d4fa95f307901969867f930b06f319a4327761c9c9632ce452b0b3a",
+          "frame-000689.rgb": "bb58085cb77ea0485c60792ae0d897c9cb620df1b0e79b5d17dd27a9418de754",
+          "frame-000689.ppm": "094f4b225359ff0047cca5babb1bfe50f5a625dde1517567b0e0342fcfbe78cb",
+          "frame-000698.rgb": "a51005dbeb6871cb57df415fc00b3f0324f6ebab4fed709b548053df39929c8b",
+          "frame-000698.ppm": "698fd7188507bab744eb45ec90ec4f1105fe19ce095deb360c9b8ade4c8bae4e",
+          "frame-000705.rgb": "4a2ac8fbe4fda65025da29210c1a6f0ffb533384a8c1fc6073c7e72e0efc53dd",
+          "frame-000705.ppm": "d17e952c1b574bdddc41109bed087a56c26c51f18c1dad68cad00d477e7c4906",
+          "frame-000714.rgb": "d5d6969ffb2a636a448d33576af4d07c4ef2c84343696c6f014e550e0ef0c895",
+          "frame-000714.ppm": "237d834d9bbc3be8a47e65838311ef5dc2aed49378e63e73e76d30977886cde0",
+          "frame-000721.rgb": "274b0fba8c6688b0e2a25ba8005b53010cec87f81a83a16998eadf07e9a99c8f",
+          "frame-000721.ppm": "9148745a0053b42c474cdc2d0f24b734722467adca4156c3a32b9ad7ad46b6a0",
+          "frame-000730.rgb": "cfc545df393fdcf1bd4f931c70737fa21248bc5a31b8a1d448f2d1149fabcd77",
+          "frame-000730.ppm": "8e1faf5812304f8cb0b3aafbe3057511660bcab471feb2a1a33301c541db2dc9",
+          "frame-000737.rgb": "2ec5f62e80e5357432cf5249fd0ee72dccf7b7dbeec47d5da7e4c90824c63523",
+          "frame-000737.ppm": "1ebc2e11a665ae5b01a85c7e94c7180e3ac7a3f79f89f2c8d93c8fddaa441681",
+          "frame-000746.rgb": "cb81516d472bccc0f51d49d6ec7c077b04ecf00ec4dcc308ebda560fb02d5c90",
+          "frame-000746.ppm": "4d46ced437389a9c30cd56c0ece881fdae48a920419fdb75a5cbf6cca6448d34",
+          "frame-000753.rgb": "afd07317c8376876e2280e81247db2b01ed519fb8be393bf5274b8798591663b",
+          "frame-000753.ppm": "6c0530ce8e1ba5bd2be8cdb36573cb16099ad2ef791d9707e581fad2d326e044",
+          "frame-000762.rgb": "61e722ba21f887c4711afd107fd35b19cecf8fdc4282539fda58892ab8c7d5ef",
+          "frame-000762.ppm": "5c37cd4d18b5d82cb786a3281609f43b7ff0dc8af778b0c0fcc0d5b11f68f749",
+          "frame-000770.rgb": "a8a1314376d49f35a0d5be9fdf63746e87ea29a825fe393e6de6e8ffdb5fcb6c",
+          "frame-000770.ppm": "2e3d059ff87d4059b8aa6e03106eb4bba8a7ce8ddd4f1c0d241b724a29121133",
+          "frame-000778.rgb": "907814b3e8527184685b333433058f7382317021421f3a4324a9f3105a1209ff",
+          "frame-000778.ppm": "fb2fea7b3429468fc7288dba2665a4d1eaf9730589d244a0c7ec1a614780f6da",
+          "frame-000785.rgb": "da8b03840998c4b07f4d603a33c57b803c2441e8e51219fe5e660639d8727e4b",
+          "frame-000785.ppm": "3dc35df8b4a2b7593903fc105b4098c886746a905e473c7e0538cf62047e79d3",
+          "frame-000794.rgb": "7d052fcd7eda345985af7d1da302c74da66fd7091ec1a8b3a68ea783970d775f",
+          "frame-000794.ppm": "33a270bf7cfbb8d14e0f411e40feab2a9a15cd1bb5ce7c52ef4e947ce37c0733",
+          "frame-000801.rgb": "642078b9f61551eda8ae78c49544ba06cbab1b61e783fa166b3356536e05a240",
+          "frame-000801.ppm": "25a2e79c8f5a746accd4dea747689697dd7d86ea87eddfacfedf7b59c01e66c5",
+          "frame-000810.rgb": "78ef9cb72c77ecd460f523d5fc3579b55dd01340c858cdfd102aa50469930999",
+          "frame-000810.ppm": "6a33729a91d10372243024f990f4ff370f9161caf1ceffe6b7a2ec0ec87e3f7c",
+          "frame-000817.rgb": "f40d0a82e8ef20352ae75829fd620936990681fab6700294bd2ba6f4d8027c4b",
+          "frame-000817.ppm": "f614239e260ad50ffe738f0d7b8418b5cd4b888ecf0c385cdf5affc3060e8d5a",
+          "frame-000826.rgb": "4c9a46a68a4f1897f571f6433f630a13b426b88cdead9f6526ebca9543f96c35",
+          "frame-000826.ppm": "1ff466605aebcc3cc07f1519eaffa5bc60d906d960558aef242404fd6cf10b7e",
+          "frame-000833.rgb": "8af3d220edaa4c6267d7351d7585eafd9099745b5ad747b531e23ded09100779",
+          "frame-000833.ppm": "4496dd805ef31a984f899f62a3b80c40aec14d95e5e56a709ea95d9e46645b00",
+          "frame-000841.rgb": "22f1ea609603761974e3d3511cc41559f90d4d3b028daadf8f246444c3d8a928",
+          "frame-000841.ppm": "8479df113d254e6674855f9e8c7a093d9243afc29ceb465dc67c90d111138746",
+          "object-map-final.bin": "5078181b8327feb96aef70ff0cbfbeb890e478871f8e86deb119043bca032077",
+          "terrain-final.bin": "20e486a4380d335013b5e82eb0af00a7163f286e91f2131278a3f94c9e9ab43c",
+          "brick-final.bin": "2ebf2bc9431e562d12984a2b69cbee322971b69447facc61dd148891524cc9a9",
+          "inputs.txt": "ff3a8000a28d377b4233e16924c736f4c4bb6e4b700f13494dc313ecbe4ff368"
+        }
+      }
+    ],
+    "pcm": [
+      {
+        "id": "combined",
+        "frames": 44100,
+        "sha256": "0d19c3d3029790ea2205f6bd8bb7ae8d840a7e63ffe383b93aa8970a3b908ffa",
+        "same_as_106": true
+      },
+      {
+        "id": "music-00",
+        "frames": 44100,
+        "sha256": "285d616de77da25b48cc0e4c5af39c1e99e1e5aa5a9969c04e7a63a65dcc3229",
+        "same_as_106": true
+      },
+      {
+        "id": "music-01",
+        "frames": 44100,
+        "sha256": "de442d17a4c311630aadb241db904de3f2a6c47da8bf315e08f390a2499bbbd7",
+        "same_as_106": true
+      },
+      {
+        "id": "music-02",
+        "frames": 44100,
+        "sha256": "b04d6389903608704ec3c51c7f28211621b8b9d9937cd2a7678415cc65630702",
+        "same_as_106": true
+      },
+      {
+        "id": "music-03",
+        "frames": 44100,
+        "sha256": "de1d5642f7ec03e9afdc5806e272264bb37384c17d1df1d2e666c8555b6acd88",
+        "same_as_106": true
+      },
+      {
+        "id": "music-04",
+        "frames": 44100,
+        "sha256": "94f9ab1d75e21fe7387bdb0c52fb42ec8729f41be602c2f4b514c510ac7f79a6",
+        "same_as_106": true
+      },
+      {
+        "id": "music-05",
+        "frames": 44100,
+        "sha256": "d400357736e655e14a9fd30ea157f15e77eb02559ecce869a4de33b81b9d5e2d",
+        "same_as_106": true
+      },
+      {
+        "id": "music-06",
+        "frames": 44100,
+        "sha256": "9c034effe2e7fc49402a3b6289eeee85317909518dccd8a9b352c423ea0025ab",
+        "same_as_106": true
+      },
+      {
+        "id": "music-07",
+        "frames": 44100,
+        "sha256": "145ba8756bfde7381359511a8710bc2afaaed381f7843bd74b77a3b693327299",
+        "same_as_106": true
+      },
+      {
+        "id": "music-08",
+        "frames": 44100,
+        "sha256": "666bd5c68d1398e6d5a6e6d29408013dc2075a053766d09af18980eb522dd896",
+        "same_as_106": true
+      },
+      {
+        "id": "music-09",
+        "frames": 44100,
+        "sha256": "4f6c220d1a8e36ccf51150b998d8b2a8b9695e613d7330e3cca96b0fcb68f9bf",
+        "same_as_106": true
+      },
+      {
+        "id": "music-10",
+        "frames": 44100,
+        "sha256": "c3dd6c9a5008da93f309c4c3f0a25babc37b0cc287be5cdaf54812e59044fa5c",
+        "same_as_106": true
+      },
+      {
+        "id": "music-11",
+        "frames": 44100,
+        "sha256": "ab4277e554aafaa2c4417248b0ffb5dd4645aca247ad48656987264ce1dda9f3",
+        "same_as_106": true
+      },
+      {
+        "id": "music-12",
+        "frames": 44100,
+        "sha256": "fc6e304fee32bd19563edf2cba7a28922a6239753650c17d3a246c2130bf3f88",
+        "same_as_106": true
+      },
+      {
+        "id": "music-13",
+        "frames": 44100,
+        "sha256": "0ac521115615746986e6fac867e262754e8c2a7c03beb1dbd7fbe31afc74ab96",
+        "same_as_106": true
+      },
+      {
+        "id": "music-14",
+        "frames": 44100,
+        "sha256": "a98e05f68d9d1e54710fd7bc80054b38959400d7eef8bd333ca895f27d64611a",
+        "same_as_106": true
+      },
+      {
+        "id": "music-15",
+        "frames": 44100,
+        "sha256": "6341b9409bd5c423ca865828bd624c5c98fa7814909459fbfb39e9664787cb11",
+        "same_as_106": true
+      },
+      {
+        "id": "music-16",
+        "frames": 44100,
+        "sha256": "001fb2b61c5c37267ddecbd534c31319671382182b929f5db99482eefa7ce556",
+        "same_as_106": true
+      },
+      {
+        "id": "music-17",
+        "frames": 44100,
+        "sha256": "d67ea425c93d0c356fe13ec912aa1cd8577f830198b55f0510970989a07311c4",
+        "same_as_106": true
+      },
+      {
+        "id": "music-18",
+        "frames": 44100,
+        "sha256": "18f34b6d6dc9213c4ffe84abfe6d53fc38c1db1e387da0dad83cc44aaf3287dc",
+        "same_as_106": true
+      },
+      {
+        "id": "music-19",
+        "frames": 44100,
+        "sha256": "a205fd512ede6e22e44d2155165cf7560a2a7318cb1f07eb4c6ea6e57a266dca",
+        "same_as_106": true
+      },
+      {
+        "id": "music-20",
+        "frames": 44100,
+        "sha256": "3d0b1980672d136fa0026c2599669fdea9e83bacd7e79dba1eac4d1e6bfd7442",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-00",
+        "frames": 44100,
+        "sha256": "267fbd784af430816866014d052bbb08961215e17900e20697466e676763fa5d",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-01",
+        "frames": 44100,
+        "sha256": "b746419d249e88adb5a80abc493b0281fcc4158ec9c6200d08abc55343240bd8",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-02",
+        "frames": 44100,
+        "sha256": "aa52e49231c0902cf6ee195fb80322e46d833e63b060ffe3f66eccc6d2d1c1d6",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-03",
+        "frames": 44100,
+        "sha256": "50bc1215f77fab95cd53df65a448e57953217f1e099744951e1af784c1ae011c",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-04",
+        "frames": 44100,
+        "sha256": "5a9f29cf74b0ecd5df9e9ccd175096ac94c909f01d0c5996ca859eec550f531f",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-05",
+        "frames": 44100,
+        "sha256": "f37c58504c421134c3bed6800c9b7a15e778e2d949b6091e1bc314685b2db6b0",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-06",
+        "frames": 44100,
+        "sha256": "c13747084f1f44659df0127dca47934c149b33066c60f3b94feb455d09cda06f",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-07",
+        "frames": 44100,
+        "sha256": "a8438f03cde857c5143a797c1fa214291f9071c257eeb0c3ef49b8e913f15957",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-08",
+        "frames": 44100,
+        "sha256": "d140bb6450f26a11c3f56f3f4573142a732b1cab4d1400a1b46f04af46b159ad",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-09",
+        "frames": 44100,
+        "sha256": "0c8ee3c78db525006de8b8576f577dda037b0accf8d311058392ba2562643193",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-10",
+        "frames": 44100,
+        "sha256": "7136f2fc6a073bc39529b433ce063d4fc7e8b87366a72294f13d5735b115533d",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-11",
+        "frames": 44100,
+        "sha256": "2a0f0d2888fca355b9eec6c2bc1d05cd37acd36e63f589db8c319f5c5ce0e8d1",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-12",
+        "frames": 44100,
+        "sha256": "0ed0347e8386e689d65608971f43e9ddeec3ee201b06c6661ed99f5e22cfee0e",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-13",
+        "frames": 44100,
+        "sha256": "a2284aa365b13e03791105869fcb6b78405fd90fa368ba980df3397d136b6ea1",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-14",
+        "frames": 44100,
+        "sha256": "b9988812a1fb2863627f56d4a56f5627ebfb7ded0d34d599b37c9a35670231c7",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-15",
+        "frames": 44100,
+        "sha256": "ffe34d067ced7d7fd55e3bb4bbcba88dd1c38646bef8aab6f2ba8f371a52251f",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-16",
+        "frames": 44100,
+        "sha256": "d851b8e0183304c814ae5262f0cce0f614b228bf33805db53a792fea7667a1f8",
+        "same_as_106": true
+      },
+      {
+        "id": "effect-17",
+        "frames": 44100,
+        "sha256": "3b5434edcc1a72561637097e21157391db9f9c7a6f103087781065be48544905",
+        "same_as_106": true
+      }
+    ],
+    "engine_sources_unchanged": true,
+    "scope": "Fixed fast captures/state/maps/logical RGB/SDL scaled readback and40fresh original PCM outputs; live state additionally checked at841 in all six real runs.",
+    "screenshot": {
+      "source": "/home/edward/Work/ohmylemmings/assets/local/issue-107-review/identity-synthetic-candidate/frame-000064.ppm",
+      "width": 960,
+      "height": 600,
+      "sha256": "702349bbf7147c27216e593079c4381f81e3b9597e5f1475b2fe0cf99f0300ee",
+      "scope": "original-free synthetic Builder scene; identical baseline/candidate readback"
+    }
+  }
+}
