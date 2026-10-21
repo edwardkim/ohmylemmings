@@ -1,0 +1,1711 @@
+{
+  "format": "g11-solution-replay-v1",
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/100",
+  "parent": "https://github.com/edwardkim/ohmylemmings/issues/93",
+  "baseline_main": "1d4f977f5c8a028f67164249cbcc1473cf6d807a",
+  "scope": "Taxing01..30 original goals/inventories:7 project-authored successes,23 attributed converted public DOS Lemmix replays,30 authored losses. No original/derived binary/image/map/audio or original replay/text redistributed. Final certification in issue100; remaining Mayhem30, whole COMP audit/performance in issue93.",
+  "review_stage": "Input/source snapshot; final runtime/CI/merge proof posted in issue100",
+  "variants": [
+    [
+      1,
+      30
+    ],
+    [
+      7,
+      60
+    ],
+    [
+      13,
+      144
+    ]
+  ],
+  "native_restart_render_intervals": [
+    37,
+    101,
+    257
+  ],
+  "sources": [
+    {
+      "path": "tools/solution_replay.py",
+      "bytes": 12563,
+      "sha256": "b5847fb9a3ffdfc5be6897af9c5abb19da303372bcb7d9c3407e841be74fe03a"
+    },
+    {
+      "path": "tools/initial_replay.py",
+      "bytes": 17298,
+      "sha256": "9649834526b9d5ae11e3624bc06fa9eda5af2f9e7afdf458508970773ca091ea"
+    },
+    {
+      "path": "tools/web/initial_replay.js",
+      "bytes": 6941,
+      "sha256": "dd3621ca40ae1463a803dc3fffa9da41b7f415e8cb6cc547b3c5d5a215113506"
+    },
+    {
+      "path": "tools/tests/test_initial_replay.py",
+      "bytes": 3071,
+      "sha256": "8201dabd7a3e54cfbb755c7b21960ce0690453682039e33f6a5ef3360d4bc01a"
+    },
+    {
+      "path": "tools/tests/test_solution_replay.py",
+      "bytes": 2961,
+      "sha256": "019e6554e786175993538f950cea57d8a011bcb705c1b8706c3938d0ef47454d"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 2588,
+      "sha256": "9ea06eb0f93009df449b4c34016d978a405b7fb999d047144550f183123f01f6"
+    }
+  ],
+  "replay_sources": [
+    {
+      "level": "taxing-02",
+      "author": "namida",
+      "posted": "September 15, 2009, 07:29:54 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=29874",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13684",
+      "accessed": "2026-10-21",
+      "artifact": "13684-Taxing02_2.lrb",
+      "bytes": 1120,
+      "sha256": "73c61262a32ecf04908fcc5a1764a9a44740aca9be6abfd37a5ece6a88fd51e0",
+      "selected_replay": {
+        "name": "Taxing02_2.lrb",
+        "bytes": 1120,
+        "sha256": "73c61262a32ecf04908fcc5a1764a9a44740aca9be6abfd37a5ece6a88fd51e0"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-03",
+      "author": "Proxima",
+      "posted": "July 21, 2012, 11:40:42 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=38634",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1490.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=645",
+      "accessed": "2026-10-21",
+      "artifact": "645-Taxing3-undamaged.lrb",
+      "bytes": 3520,
+      "sha256": "c621ef5962a43a25f7580eb631ef72e58d9b0c7637bee8fba91e3129e7d928c7",
+      "selected_replay": {
+        "name": "Taxing3-undamaged.lrb",
+        "bytes": 3520,
+        "sha256": "c621ef5962a43a25f7580eb631ef72e58d9b0c7637bee8fba91e3129e7d928c7"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-04",
+      "author": "Clam",
+      "posted": "September 15, 2009, 10:31:08 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=29897",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13703",
+      "accessed": "2026-10-21",
+      "artifact": "13703-taxing4_1build.lrb",
+      "bytes": 672,
+      "sha256": "d1ef8b0e68dae363e83947b01686cae3fce0a5629a8ac497678902cb4d0b1336",
+      "selected_replay": {
+        "name": "taxing4_1build.lrb",
+        "bytes": 672,
+        "sha256": "d1ef8b0e68dae363e83947b01686cae3fce0a5629a8ac497678902cb4d0b1336"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 30 of 40 rescued at control_step 2215; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "taxing-05",
+      "author": "namida",
+      "posted": "September 15, 2009, 08:02:29 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=29881",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13685",
+      "accessed": "2026-10-21",
+      "artifact": "13685-Taxing05_nobash.lrb",
+      "bytes": 5312,
+      "sha256": "db80cad4d53f70f4838683ef6b5d3538f8f6be39793c840a51964c5e4f919866",
+      "selected_replay": {
+        "name": "Taxing05_nobash.lrb",
+        "bytes": 5312,
+        "sha256": "db80cad4d53f70f4838683ef6b5d3538f8f6be39793c840a51964c5e4f919866"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 45 of 60 rescued at control_step 3775; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "taxing-06",
+      "author": "ccexplore",
+      "posted": "August 29, 2009, 01:10:28 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=28802",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=11963",
+      "accessed": "2026-10-21",
+      "artifact": "11963-Taxing6_100_B.lrb",
+      "bytes": 1120,
+      "sha256": "0b85768bca932528b3543a1714c7b9455d386c43818e0ff42a3cabd439310a6d",
+      "selected_replay": {
+        "name": "Taxing6_100_B.lrb",
+        "bytes": 1120,
+        "sha256": "0b85768bca932528b3543a1714c7b9455d386c43818e0ff42a3cabd439310a6d"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 30 of 50 rescued at control_step 1472; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "taxing-07",
+      "author": "namida",
+      "posted": "September 17, 2009, 07:50:09 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=29980",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13689",
+      "accessed": "2026-10-21",
+      "artifact": "13689-Taxing07_noclimber.lrb",
+      "bytes": 1184,
+      "sha256": "1d40608c0ab61117caea0613c9422b3a1062a31edc916edcaca439a6d5f271f7",
+      "selected_replay": {
+        "name": "Taxing07_noclimber.lrb",
+        "bytes": 1184,
+        "sha256": "1d40608c0ab61117caea0613c9422b3a1062a31edc916edcaca439a6d5f271f7"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-08",
+      "author": "Clam",
+      "posted": "September 17, 2009, 09:33:51 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=29985",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13692",
+      "accessed": "2026-10-21",
+      "artifact": "13692-taxing8_3bash.lrb",
+      "bytes": 704,
+      "sha256": "0983026629c2b2cec91f73ccb9932a7afd6cd75bfe3d983a5598056c9a5c43f3",
+      "selected_replay": {
+        "name": "taxing8_3bash.lrb",
+        "bytes": 704,
+        "sha256": "0983026629c2b2cec91f73ccb9932a7afd6cd75bfe3d983a5598056c9a5c43f3"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-09",
+      "author": "namida",
+      "posted": "August 12, 2009, 11:32:41 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=28032",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1050.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=265",
+      "accessed": "2026-10-21",
+      "artifact": "265-Taxing09_1skillperlem.zip",
+      "bytes": 1429,
+      "sha256": "8854d949ab67fe76b6f478db2b6001b5b76ad53b70365825351264e44c464b0f",
+      "selected_replay": {
+        "name": "Taxing09_1skillperlem.lrb",
+        "bytes": 1344,
+        "sha256": "84c1fd9e68ed34014faa33f8b28c98b674532a14ea63f7791ff4d103a33371fd"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [],
+      "members": [
+        {
+          "name": "Taxing09_1skillperlem.lrb",
+          "bytes": 1344,
+          "sha256": "84c1fd9e68ed34014faa33f8b28c98b674532a14ea63f7791ff4d103a33371fd"
+        },
+        {
+          "name": "Taxing09_1skillperlem.txt",
+          "bytes": 4271,
+          "sha256": "958abf5bdc2ec912dc8e23c1ea3fb4e02bb1fc7a7309c0d99a2b57addf7aa561"
+        }
+      ]
+    },
+    {
+      "level": "taxing-10",
+      "author": "Pooty",
+      "posted": "October 25, 2009, 02:34:50 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=31562",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13696",
+      "accessed": "2026-10-21",
+      "artifact": "13696-Taxing 10 - 2 Builders.lrb",
+      "bytes": 6656,
+      "sha256": "432ab66b2bbbb17c52a386cb384b81e7e19228f811c3d0baf5be4f7144ce85e8",
+      "selected_replay": {
+        "name": "Taxing 10 - 2 Builders.lrb",
+        "bytes": 6656,
+        "sha256": "432ab66b2bbbb17c52a386cb384b81e7e19228f811c3d0baf5be4f7144ce85e8"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-11",
+      "author": "Clam",
+      "posted": "July 23, 2012, 09:59:37 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=38648",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1490.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=649",
+      "accessed": "2026-10-21",
+      "artifact": "649-taxing11-undamaged.lrb",
+      "bytes": 2496,
+      "sha256": "9659527111727f18192123c458711f1ddb7fb9d5601700bd75f0c56d60679266",
+      "selected_replay": {
+        "name": "taxing11-undamaged.lrb",
+        "bytes": 2496,
+        "sha256": "9659527111727f18192123c458711f1ddb7fb9d5601700bd75f0c56d60679266"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-12",
+      "author": "Pooty",
+      "posted": "October 11, 2009, 11:16:10 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=31097",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13694",
+      "accessed": "2026-10-21",
+      "artifact": "13694-Taxing 12 - 2 Builders.lrb",
+      "bytes": 7392,
+      "sha256": "0bea56d3f8aed1eea20e5076a41835b1e014e6b5caf140f30e869c6d5b1f05db",
+      "selected_replay": {
+        "name": "Taxing 12 - 2 Builders.lrb",
+        "bytes": 7392,
+        "sha256": "0bea56d3f8aed1eea20e5076a41835b1e014e6b5caf140f30e869c6d5b1f05db"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 8 of 10 rescued at control_step 2896; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "taxing-13",
+      "author": "Clam",
+      "posted": "November 13, 2011, 11:16:30 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=36497",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=9",
+      "accessed": "2026-10-21",
+      "artifact": "9-taxing13-10skills-100%.lrb",
+      "bytes": 736,
+      "sha256": "20eab68f4868f02f92540744a4f7b10bdfa8f6108a409955fb975f50c0718894",
+      "selected_replay": {
+        "name": "taxing13-10skills-100%.lrb",
+        "bytes": 736,
+        "sha256": "20eab68f4868f02f92540744a4f7b10bdfa8f6108a409955fb975f50c0718894"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-14",
+      "author": "ccexplore",
+      "posted": "October 24, 2009, 04:58:17 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=31544",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13695",
+      "accessed": "2026-10-21",
+      "artifact": "13695-Taxing14_17builders.lrb",
+      "bytes": 4416,
+      "sha256": "dac3ba98d66a0c876d7cf2a4becdf73cfab5185e90f8a1ff84ccf68eb5a920b1",
+      "selected_replay": {
+        "name": "Taxing14_17builders.lrb",
+        "bytes": 4416,
+        "sha256": "dac3ba98d66a0c876d7cf2a4becdf73cfab5185e90f8a1ff84ccf68eb5a920b1"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-15",
+      "author": "Clam",
+      "posted": "November 13, 2011, 11:16:30 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=36497",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=10",
+      "accessed": "2026-10-21",
+      "artifact": "10-taxing15-11skills-100%.lrb",
+      "bytes": 6912,
+      "sha256": "26250e211d1369784471522ce661613332ac5e96a8d0c1c11c288443db4b38d1",
+      "selected_replay": {
+        "name": "taxing15-11skills-100%.lrb",
+        "bytes": 6912,
+        "sha256": "26250e211d1369784471522ce661613332ac5e96a8d0c1c11c288443db4b38d1"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-16",
+      "author": "ccexplore",
+      "posted": "September 14, 2009, 09:36:55 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=29852",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13670",
+      "accessed": "2026-10-21",
+      "artifact": "13670-Taxing16_7builders.lrb",
+      "bytes": 3328,
+      "sha256": "785cec9553fd1e368573c6f2cf838a84783a220b37942f59bbf70dcbe90f6f18",
+      "selected_replay": {
+        "name": "Taxing16_7builders.lrb",
+        "bytes": 3328,
+        "sha256": "785cec9553fd1e368573c6f2cf838a84783a220b37942f59bbf70dcbe90f6f18"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-17",
+      "author": "ccexplore",
+      "posted": "December 08, 2019, 12:21:34 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=78664",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=12058",
+      "accessed": "2026-10-21",
+      "artifact": "12058-Taxing17_6skills_saveall.lrb",
+      "bytes": 1184,
+      "sha256": "cb12e27cff6fced8c893afa3696344d18e346271a7aa1db9a9fa0393e66eedfc",
+      "selected_replay": {
+        "name": "Taxing17_6skills_saveall.lrb",
+        "bytes": 1184,
+        "sha256": "cb12e27cff6fced8c893afa3696344d18e346271a7aa1db9a9fa0393e66eedfc"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 72 of 80 rescued at control_step 5864; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "taxing-20",
+      "author": "ccexplore",
+      "posted": "July 26, 2012, 12:09:09 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=38671",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1490.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=651",
+      "accessed": "2026-10-21",
+      "artifact": "651-taxing20-undamaged.lrb",
+      "bytes": 9632,
+      "sha256": "fbbc289a3f96c03a2d1515f9e3396afef51487ba37d6c3b253ae5c21627b944d",
+      "selected_replay": {
+        "name": "taxing20-undamaged.lrb",
+        "bytes": 9632,
+        "sha256": "fbbc289a3f96c03a2d1515f9e3396afef51487ba37d6c3b253ae5c21627b944d"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 70 of 80 rescued at control_step 4236; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "taxing-21",
+      "author": "ccexplore",
+      "posted": "September 14, 2009, 10:41:32 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=29853",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13671",
+      "accessed": "2026-10-21",
+      "artifact": "13671-Taxing21_noclimbersnominers.lrb",
+      "bytes": 4640,
+      "sha256": "410cceb86b9a6a88935df8aa89a8759129170d928b8b625dbd0d0571802e130f",
+      "selected_replay": {
+        "name": "Taxing21_noclimbersnominers.lrb",
+        "bytes": 4640,
+        "sha256": "410cceb86b9a6a88935df8aa89a8759129170d928b8b625dbd0d0571802e130f"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-22",
+      "author": "ccexplore",
+      "posted": "August 29, 2009, 12:05:29 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=28829",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=11967",
+      "accessed": "2026-10-21",
+      "artifact": "11967-Taxing22_5skills_saveall.lrb",
+      "bytes": 1952,
+      "sha256": "48286a8752819b6d70a90fa97e2d570ec73dd01b6619656e0de53a20af962447",
+      "selected_replay": {
+        "name": "Taxing22_5skills_saveall.lrb",
+        "bytes": 1952,
+        "sha256": "48286a8752819b6d70a90fa97e2d570ec73dd01b6619656e0de53a20af962447"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-23",
+      "author": "namida",
+      "posted": "August 12, 2009, 11:32:41 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=28032",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1050.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=266",
+      "accessed": "2026-10-21",
+      "artifact": "266-Taxing23_1skillperlem.zip",
+      "bytes": 2134,
+      "sha256": "ceee272a85cf3c1e0c5e8f1e2eb105c1ca852edb04928f982ecf59bcfb125546",
+      "selected_replay": {
+        "name": "Taxing23_1skillperlem.lrb",
+        "bytes": 3040,
+        "sha256": "dd93b702d34e39103575d4be229c501baa98ca861d63336e175e982f49b68af3"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [],
+      "members": [
+        {
+          "name": "Taxing23_1skillperlem.lrb",
+          "bytes": 3040,
+          "sha256": "dd93b702d34e39103575d4be229c501baa98ca861d63336e175e982f49b68af3"
+        },
+        {
+          "name": "Taxing23_1skillperlem.txt",
+          "bytes": 8835,
+          "sha256": "6941b0d404d6be2f7d5d8fed9a657586ab13aa689149d211c3afb25be880b1a8"
+        }
+      ]
+    },
+    {
+      "level": "taxing-25",
+      "author": "Clam",
+      "posted": "October 28, 2009, 01:37:27 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=31677",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13698",
+      "accessed": "2026-10-21",
+      "artifact": "13698-taxing25_3build.lrb",
+      "bytes": 896,
+      "sha256": "917aeb85e22984aba5c28c784afcff7969dbc0bac4ceb041f3361506f2f606dd",
+      "selected_replay": {
+        "name": "taxing25_3build.lrb",
+        "bytes": 896,
+        "sha256": "917aeb85e22984aba5c28c784afcff7969dbc0bac4ceb041f3361506f2f606dd"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-26",
+      "author": "Proxima",
+      "posted": "June 24, 2012, 12:50:06 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=38498",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=12815",
+      "accessed": "2026-10-21",
+      "artifact": "12815-Taxing26-12skills.lrb",
+      "bytes": 896,
+      "sha256": "dafb6f5adfbcd64bdd8fc73be1950f7a57745df0b1855dc843f5450e376b77a6",
+      "selected_replay": {
+        "name": "Taxing26-12skills.lrb",
+        "bytes": 896,
+        "sha256": "dafb6f5adfbcd64bdd8fc73be1950f7a57745df0b1855dc843f5450e376b77a6"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "taxing-29",
+      "author": "ccexplore",
+      "posted": "September 01, 2009, 11:14:45 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=28982",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=11975",
+      "accessed": "2026-10-21",
+      "artifact": "11975-Taxing29_8skills_saveall.lrb",
+      "bytes": 1728,
+      "sha256": "19d11b4c8c0d4849ec2dd51cc86e446b7f8ceb110e73d1a732b25eb0c72fb86b",
+      "selected_replay": {
+        "name": "Taxing29_8skills_saveall.lrb",
+        "bytes": 1728,
+        "sha256": "19d11b4c8c0d4849ec2dd51cc86e446b7f8ceb110e73d1a732b25eb0c72fb86b"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 76 of 80 rescued at control_step 2780; no goal/inventory changes."
+      ]
+    }
+  ],
+  "strategy_sources": [
+    {
+      "url": "https://lemmings.fandom.com/wiki/If_at_first_you_don%27t_succeed..",
+      "accessed": "2026-10-21",
+      "use": "High-level route ideas only; own actor IDs/timing/traffic control; no walkthrough prose copied."
+    },
+    {
+      "url": "https://strategywiki.org/wiki/Lemmings/Taxing_Levels_16-20",
+      "accessed": "2026-10-21",
+      "use": "High-level route ideas only; own actor IDs/timing/traffic control; no walkthrough prose copied."
+    },
+    {
+      "url": "https://strategywiki.org/wiki/Lemmings/Taxing_Levels_21-25",
+      "accessed": "2026-10-21",
+      "use": "High-level route ideas only; own actor IDs/timing/traffic control; no walkthrough prose copied."
+    },
+    {
+      "url": "https://strategywiki.org/wiki/Lemmings/Taxing_Levels_26-30",
+      "accessed": "2026-10-21",
+      "use": "High-level route ideas only; own actor IDs/timing/traffic control; no walkthrough prose copied."
+    },
+    {
+      "url": "https://www.lemmingsforums.net/index.php?msg=38691",
+      "author": "ccexplore",
+      "posted": "2012-07-28",
+      "accessed": "2026-10-21",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=652",
+      "artifact": "Taxing28-undamaged-DOS.zip",
+      "bytes": 25653,
+      "sha256": "f46f95b1ebaa652fc6d78224b1b2f26cba1fd3e3ca723c5409bfe2007b087a01",
+      "use": "Landing-ramp layout idea from screenshot, not functional replay conversion. Own Miner/Builder cancellation, timings, basher route and blocker-held crowd. Original screenshot is not redistributed."
+    }
+  ],
+  "cases": [
+    {
+      "id": "taxing-01",
+      "phase": "Won",
+      "steps": 3993,
+      "input_text": "242 0 AssignBlocker 1\n242 1 SetReleaseRate 99\n329 0 AssignDigger 0\n394 0 AssignBasher 0\n2009 0 AssignBuilder 0\n2201 0 AssignBuilder 0\n2393 0 AssignBuilder 0\n2585 0 AssignBuilder 0\n2777 0 AssignBomber 1\n2909 0 AssignBuilder 0\n3101 0 AssignBuilder 0\n3293 0 AssignBuilder 0\n",
+      "input_sha256": "bb55ec7763f538f89e0ac7564db8a9ee2496e5904756481749ac4fb61ae89185",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 79,
+        "rescued": 79,
+        "target_percent": 98,
+        "rescued_percent": 98
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-01",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 79,
+        "rescued": 0,
+        "target_percent": 98,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-02",
+      "phase": "Won",
+      "steps": 2524,
+      "input_text": "102 0 AssignDigger 0\n105 0 AssignDigger 1\n108 0 SetReleaseRate 99\n699 0 AssignBasher 78\n910 0 AssignClimber 37\n913 0 AssignClimber 66\n1229 0 AssignBuilder 66\n1680 0 AssignBasher 78\n",
+      "input_sha256": "d2387cbf5a47f0c0a6a04356575466e2e73a05eb4304aef179674fdb38a8f7fd",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 64,
+        "rescued": 67,
+        "target_percent": 80,
+        "rescued_percent": 83
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-02",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 4,
+        "required": 64,
+        "rescued": 0,
+        "target_percent": 80,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-03",
+      "phase": "Won",
+      "steps": 2030,
+      "input_text": "3 0 SetReleaseRate 88\n57 0 SetReleaseRate 1\n71 0 SetReleaseRate 88\n119 0 SetReleaseRate 1\n189 0 AssignBuilder 0\n195 0 AssignBuilder 4\n204 0 AssignBuilder 1\n207 0 AssignBuilder 2\n222 0 AssignBuilder 3\n242 0 AssignBuilder 5\n243 0 AssignBuilder 3\n265 0 AssignBuilder 1\n291 0 AssignBuilder 6\n388 0 AssignBuilder 0\n431 0 AssignBuilder 7\n450 0 AssignBuilder 4\n463 0 AssignBuilder 2\n504 0 SetReleaseRate 99\n589 0 AssignBuilder 0\n662 0 AssignBuilder 2\n792 0 AssignBuilder 0\n994 0 AssignBuilder 0\n1196 0 AssignBuilder 0\n1397 0 AssignBuilder 0\n1413 0 AssignBuilder 77\n",
+      "input_sha256": "63550d5016ce19f8f410385c5fdd64bec302eb468a58f94fbdc6530641ee5945",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 80,
+        "rescued": 80,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-03",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 80,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-04",
+      "phase": "Won",
+      "steps": 2370,
+      "input_text": "62 0 AssignDigger 0\n149 0 AssignDigger 1\n153 0 AssignBlocker 0\n280 0 AssignMiner 1\n304 0 AssignBlocker 1\n1213 0 AssignBasher 39\n1778 0 AssignBlocker 38\n1932 0 AssignBomber 5\n2008 0 AssignBasher 5\n2015 0 AssignBuilder 2\n2215 0 Nuke\n",
+      "input_sha256": "9ca8cfe08dc3838697aa9c6a29463d47e8e4ee7d7f63f3fba5ea218d8ff64346",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 40,
+        "lemming_count": 40,
+        "required": 30,
+        "rescued": 34,
+        "target_percent": 75,
+        "rescued_percent": 85
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-04",
+      "phase": "Lost",
+      "steps": 273,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 40,
+        "lemming_count": 3,
+        "required": 30,
+        "rescued": 0,
+        "target_percent": 75,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-05",
+      "phase": "Won",
+      "steps": 3929,
+      "input_text": "102 0 AssignDigger 0\n109 0 AssignBlocker 1\n192 0 AssignBuilder 0\n384 0 AssignBuilder 0\n586 0 AssignDigger 0\n645 0 AssignBuilder 0\n678 0 AssignBuilder 0\n752 0 AssignDigger 0\n770 0 AssignBuilder 0\n824 0 AssignBuilder 0\n884 0 AssignBomber 1\n970 0 AssignBlocker 0\n975 0 AssignBomber 0\n1004 0 AssignBlocker 26\n1023 0 AssignBuilder 10\n1245 0 AssignBuilder 10\n1545 0 AssignBuilder 10\n1738 0 AssignBuilder 10\n1960 0 AssignBuilder 10\n2158 0 AssignBlocker 10\n2217 0 AssignBuilder 59\n2589 0 AssignBuilder 42\n2791 0 AssignBomber 59\n2938 0 AssignBuilder 54\n2987 0 AssignBomber 54\n3146 0 AssignBuilder 52\n3193 0 AssignBuilder 6\n3261 0 AssignBuilder 45\n3331 0 AssignBuilder 42\n3402 0 AssignBuilder 28\n3428 0 AssignBuilder 34\n3475 0 AssignBomber 58\n3775 0 Nuke\n",
+      "input_sha256": "9da992e6d806031ce3e684006cd1f12302c321913739cae0bc949c99d9edd953",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 60,
+        "lemming_count": 60,
+        "required": 45,
+        "rescued": 53,
+        "target_percent": 75,
+        "rescued_percent": 88
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-05",
+      "phase": "Lost",
+      "steps": 176,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 60,
+        "lemming_count": 3,
+        "required": 45,
+        "rescued": 0,
+        "target_percent": 75,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-06",
+      "phase": "Won",
+      "steps": 1635,
+      "input_text": "82 0 AssignDigger 3\n97 0 AssignBasher 7\n141 0 AssignBasher 3\n972 0 AssignBasher 27\n1472 0 Nuke\n",
+      "input_sha256": "925b11635e72d2f693d906bd235a188eef4905c2b4edf707f42c895d0f081a0c",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 30,
+        "rescued": 39,
+        "target_percent": 60,
+        "rescued_percent": 78
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-06",
+      "phase": "Lost",
+      "steps": 289,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 17,
+        "required": 30,
+        "rescued": 0,
+        "target_percent": 60,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-07",
+      "phase": "Won",
+      "steps": 2983,
+      "input_text": "20 0 SetReleaseRate 99\n294 0 AssignBomber 0\n375 0 AssignBlocker 1\n413 0 AssignBuilder 16\n591 0 AssignBasher 52\n919 0 AssignBuilder 52\n1115 0 AssignBuilder 52\n1343 0 AssignBuilder 52\n1545 0 AssignBuilder 52\n1780 0 AssignBuilder 52\n2020 0 AssignBomber 25\n",
+      "input_sha256": "59b32d2caf74a04a509d3c83963ac346229719d8b204700a6f1ef422ff54320c",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 78,
+        "rescued": 78,
+        "target_percent": 97,
+        "rescued_percent": 97
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-07",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 78,
+        "rescued": 0,
+        "target_percent": 97,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-08",
+      "phase": "Won",
+      "steps": 2218,
+      "input_text": "346 0 AssignBasher 0\n351 0 SetReleaseRate 99\n379 0 AssignBasher 0\n460 0 AssignBuilder 1\n518 0 AssignBuilder 0\n964 0 AssignBasher 71\n967 0 AssignBuilder 62\n1053 0 AssignBuilder 63\n1063 0 AssignBuilder 41\n1197 0 AssignBuilder 71\n1400 0 AssignBuilder 71\n1687 0 AssignBuilder 71\n",
+      "input_sha256": "1eed85b8ccf465fff9cb67a203689cc99b06f837e92fe5bcdf7af58de251dd53",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 80,
+        "rescued": 80,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-08",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 80,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-09",
+      "phase": "Won",
+      "steps": 813,
+      "input_text": "78 0 AssignDigger 0\n91 0 AssignMiner 1\n163 0 AssignFloater 2\n173 0 AssignDigger 3\n244 0 SetReleaseRate 99\n511 0 AssignBasher 16\n519 0 AssignBuilder 15\n523 0 AssignBuilder 19\n",
+      "input_sha256": "2baf5038386d1aa44e73ca235a55b0edcf92a3d1e579097e1728748d03379185",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 20,
+        "lemming_count": 20,
+        "required": 20,
+        "rescued": 20,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-09",
+      "phase": "Lost",
+      "steps": 193,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 20,
+        "lemming_count": 3,
+        "required": 20,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-10",
+      "phase": "Won",
+      "steps": 1260,
+      "input_text": "24 0 SetReleaseRate 97\n25 0 SetReleaseRate 96\n56 0 SetReleaseRate 50\n77 0 AssignMiner 0\n78 0 AssignBlocker 0\n79 0 AssignDigger 1\n92 0 AssignBasher 1\n249 0 AssignBasher 2\n252 0 AssignBlocker 2\n281 0 AssignBuilder 4\n488 0 AssignDigger 4\n491 0 AssignBasher 4\n640 0 AssignMiner 2\n641 0 AssignBlocker 2\n643 0 AssignDigger 4\n655 0 AssignBasher 4\n682 0 AssignDigger 2\n719 0 AssignMiner 2\n794 0 AssignMiner 4\n795 0 AssignBlocker 4\n825 0 AssignDigger 2\n867 0 AssignBuilder 2\n1014 0 AssignMiner 2\n1112 0 AssignBasher 2\n",
+      "input_sha256": "4d2edda35e97964533184d7df41fc19c0c0f45d5433033d6f58feeecceef85cc",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 5,
+        "lemming_count": 5,
+        "required": 5,
+        "rescued": 5,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-10",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 5,
+        "lemming_count": 3,
+        "required": 5,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-11",
+      "phase": "Won",
+      "steps": 2606,
+      "input_text": "12 0 SetReleaseRate 88\n83 0 SetReleaseRate 20\n91 0 AssignBuilder 0\n100 0 AssignBuilder 1\n109 0 AssignBuilder 2\n119 0 AssignBuilder 3\n129 0 AssignBuilder 4\n133 0 AssignFloater 5\n142 0 AssignBuilder 2\n160 0 AssignBasher 3\n171 0 AssignBuilder 0\n184 0 AssignBuilder 1\n189 0 AssignDigger 4\n191 0 AssignBasher 3\n196 0 AssignBasher 3\n203 0 AssignBasher 3\n208 0 AssignBuilder 4\n219 0 AssignClimber 5\n280 0 AssignBuilder 5\n514 0 AssignBuilder 5\n754 0 AssignBuilder 5\n987 0 AssignBuilder 5\n1223 0 AssignBuilder 5\n1474 0 AssignBuilder 5\n1492 0 AssignBasher 5\n1560 0 AssignBuilder 5\n1747 0 AssignMiner 5\n1748 0 AssignBuilder 5\n1767 0 AssignBuilder 5\n1961 0 AssignBuilder 5\n1996 0 AssignBuilder 41\n",
+      "input_sha256": "7be4b22c64812908536d971afdefad67965118880e2779c549f67bf147eb9543",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 50,
+        "rescued": 50,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-11",
+      "phase": "Lost",
+      "steps": 153,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 2,
+        "required": 50,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-12",
+      "phase": "Won",
+      "steps": 3049,
+      "input_text": "90 0 AssignBuilder 0\n118 0 AssignDigger 1\n150 0 SetReleaseRate 95\n170 0 AssignBlocker 1\n328 0 AssignDigger 0\n371 0 AssignMiner 0\n430 0 AssignBasher 0\n465 0 AssignDigger 0\n473 0 AssignBasher 0\n481 0 AssignBasher 1\n550 0 AssignMiner 1\n589 0 AssignBasher 1\n673 0 AssignMiner 0\n713 0 AssignBasher 0\n834 0 AssignBasher 9\n837 0 AssignDigger 9\n838 0 AssignBlocker 1\n937 0 AssignClimber 8\n1567 0 AssignDigger 8\n1580 0 AssignMiner 8\n1591 0 AssignBasher 8\n1921 0 AssignClimber 7\n1931 0 AssignClimber 6\n1937 0 AssignClimber 5\n1943 0 AssignClimber 4\n1953 0 AssignClimber 3\n1963 0 AssignClimber 2\n1969 0 AssignClimber 0\n2210 0 AssignBasher 8\n2304 0 AssignBuilder 8\n2896 0 Nuke\n2896 1 Nuke\n",
+      "input_sha256": "683336ad215e16c898b82593e77a9e864b587f5eb2c6c4f48410f95fda148624",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 10,
+        "lemming_count": 10,
+        "required": 8,
+        "rescued": 8,
+        "target_percent": 80,
+        "rescued_percent": 80
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-12",
+      "phase": "Lost",
+      "steps": 159,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 10,
+        "lemming_count": 2,
+        "required": 8,
+        "rescued": 0,
+        "target_percent": 80,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-13",
+      "phase": "Won",
+      "steps": 3346,
+      "input_text": "72 0 SetReleaseRate 99\n79 0 AssignBlocker 0\n231 0 AssignMiner 1\n599 0 AssignMiner 61\n656 0 AssignMiner 56\n865 0 AssignBuilder 56\n1159 0 AssignBasher 61\n1753 0 AssignClimber 44\n2025 0 AssignBuilder 44\n2045 0 AssignMiner 44\n2350 0 AssignBasher 44\n",
+      "input_sha256": "478b0045d64359140d0ed8d3d1924199cb23f5c77e1cdba694b950028fea8583",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 79,
+        "rescued": 80,
+        "target_percent": 98,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-13",
+      "phase": "Lost",
+      "steps": 186,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 79,
+        "rescued": 0,
+        "target_percent": 98,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-14",
+      "phase": "Won",
+      "steps": 6256,
+      "input_text": "106 0 AssignBlocker 1\n158 0 AssignBlocker 2\n174 0 AssignBuilder 0\n436 0 AssignBuilder 0\n632 0 AssignBuilder 0\n979 0 AssignBuilder 0\n1239 0 AssignBuilder 0\n1436 0 AssignBuilder 0\n1770 0 AssignBuilder 0\n2025 0 AssignBuilder 0\n2221 0 AssignBuilder 0\n2478 0 AssignBuilder 0\n2681 0 AssignBuilder 0\n2883 0 AssignBuilder 0\n3085 0 AssignBuilder 0\n3287 0 AssignBuilder 0\n3493 0 AssignBasher 0\n3824 0 AssignMiner 0\n3904 0 AssignBuilder 0\n4102 0 AssignBuilder 0\n4299 0 AssignBuilder 0\n4595 0 AssignBasher 0\n4615 0 AssignBlocker 0\n4623 0 AssignBomber 0\n4732 0 AssignBomber 2\n4762 0 AssignBomber 1\n",
+      "input_sha256": "959fb03d212d163192d5db789da7dd7107e895655a08304290e8d5930ca89ccf",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 76,
+        "rescued": 77,
+        "target_percent": 95,
+        "rescued_percent": 96
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-14",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 76,
+        "rescued": 0,
+        "target_percent": 95,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-15",
+      "phase": "Won",
+      "steps": 5196,
+      "input_text": "17 0 SetReleaseRate 50\n25 0 SetReleaseRate 58\n64 0 SetReleaseRate 57\n84 0 SetReleaseRate 58\n111 0 SetReleaseRate 57\n135 0 SetReleaseRate 58\n158 0 SetReleaseRate 57\n182 0 SetReleaseRate 58\n207 0 SetReleaseRate 57\n241 0 SetReleaseRate 58\n262 0 SetReleaseRate 57\n280 0 SetReleaseRate 58\n306 0 SetReleaseRate 56\n322 0 SetReleaseRate 57\n338 0 SetReleaseRate 58\n353 0 SetReleaseRate 57\n378 0 SetReleaseRate 58\n402 0 SetReleaseRate 57\n427 0 SetReleaseRate 58\n456 0 SetReleaseRate 57\n482 0 SetReleaseRate 58\n505 0 SetReleaseRate 57\n532 0 SetReleaseRate 58\n555 0 SetReleaseRate 57\n574 0 SetReleaseRate 58\n598 0 SetReleaseRate 57\n622 0 SetReleaseRate 58\n647 0 SetReleaseRate 56\n672 0 SetReleaseRate 57\n686 0 SetReleaseRate 58\n699 0 SetReleaseRate 57\n719 0 SetReleaseRate 58\n745 0 SetReleaseRate 57\n779 0 SetReleaseRate 58\n796 0 SetReleaseRate 57\n819 0 SetReleaseRate 58\n843 0 SetReleaseRate 57\n868 0 SetReleaseRate 58\n897 0 SetReleaseRate 57\n923 0 SetReleaseRate 58\n943 0 SetReleaseRate 57\n966 0 SetReleaseRate 58\n992 0 SetReleaseRate 57\n1021 0 SetReleaseRate 58\n1041 0 SetReleaseRate 57\n1063 0 SetReleaseRate 58\n1088 0 SetReleaseRate 57\n1112 0 SetReleaseRate 58\n1138 0 SetReleaseRate 57\n1161 0 SetReleaseRate 58\n1188 0 SetReleaseRate 57\n1221 0 SetReleaseRate 58\n1238 0 SetReleaseRate 56\n1261 0 SetReleaseRate 57\n1268 0 SetReleaseRate 58\n1286 0 SetReleaseRate 57\n1308 0 SetReleaseRate 58\n1333 0 SetReleaseRate 57\n1357 0 SetReleaseRate 58\n1383 0 SetReleaseRate 57\n1407 0 SetReleaseRate 58\n1437 0 SetReleaseRate 57\n1457 0 SetReleaseRate 58\n1481 0 SetReleaseRate 57\n1505 0 SetReleaseRate 58\n1529 0 SetReleaseRate 57\n1553 0 SetReleaseRate 58\n1579 0 SetReleaseRate 57\n1603 0 SetReleaseRate 58\n1629 0 SetReleaseRate 57\n1653 0 SetReleaseRate 58\n1677 0 SetReleaseRate 57\n1701 0 SetReleaseRate 58\n1725 0 SetReleaseRate 57\n1755 0 SetReleaseRate 58\n1778 0 SetReleaseRate 57\n1800 0 SetReleaseRate 58\n1823 0 SetReleaseRate 57\n1849 0 SetReleaseRate 58\n1880 0 SetReleaseRate 57\n1897 0 SetReleaseRate 58\n1921 0 SetReleaseRate 57\n1945 0 SetReleaseRate 58\n2104 0 AssignBasher 79\n2498 0 AssignBuilder 79\n2681 0 AssignClimber 77\n2886 0 AssignBuilder 77\n3089 0 AssignBuilder 77\n3322 0 AssignBasher 77\n3635 0 AssignBuilder 77\n3837 0 AssignBuilder 77\n4032 0 AssignBuilder 77\n4226 0 AssignBuilder 77\n4451 0 AssignBuilder 78\n",
+      "input_sha256": "d83fbf6b4149dc9a16714d570ad53ab8f21dffc7c3df02f2444206e81b7e4daf",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 64,
+        "rescued": 80,
+        "target_percent": 80,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-15",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 64,
+        "rescued": 0,
+        "target_percent": 80,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-16",
+      "phase": "Won",
+      "steps": 2746,
+      "input_text": "40 0 SetReleaseRate 99\n59 0 SetReleaseRate 50\n70 0 AssignFloater 2\n116 0 AssignBlocker 3\n126 0 AssignFloater 0\n140 0 AssignFloater 1\n176 0 SetReleaseRate 99\n222 0 AssignBomber 1\n301 0 AssignBlocker 0\n347 0 AssignBuilder 2\n515 0 AssignBlocker 0\n544 0 AssignBuilder 2\n741 0 AssignBuilder 2\n1373 0 AssignBuilder 2\n1400 0 AssignBomber 0\n1570 0 AssignBuilder 2\n1768 0 AssignBuilder 2\n1968 0 AssignBuilder 2\n1996 0 AssignBomber 3\n",
+      "input_sha256": "7e5806a809711f64327d225fb9a00b2f44f91657e6199b38a28662944b5921bf",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 77,
+        "rescued": 77,
+        "target_percent": 96,
+        "rescued_percent": 96
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-16",
+      "phase": "Lost",
+      "steps": 215,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 77,
+        "rescued": 0,
+        "target_percent": 96,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-17",
+      "phase": "Won",
+      "steps": 5943,
+      "input_text": "57 0 SetReleaseRate 56\n134 0 AssignMiner 0\n172 0 AssignMiner 1\n2036 0 AssignMiner 74\n2198 0 AssignBasher 74\n3963 0 AssignBuilder 74\n4264 0 AssignBasher 2\n5864 0 Nuke\n",
+      "input_sha256": "973ce41eea3d829b67b88b0d8b704f65e9f9fe62d541a2977efd785926dfe4fe",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 72,
+        "rescued": 80,
+        "target_percent": 90,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-17",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 72,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-18",
+      "phase": "Won",
+      "steps": 1667,
+      "input_text": "110 0 AssignBuilder 0\n302 0 AssignBuilder 0\n494 0 AssignBuilder 0\n574 0 AssignBuilder 0\n766 0 AssignBuilder 0\n958 0 AssignBuilder 0\n1121 0 AssignBomber 5\n1231 0 SetReleaseRate 99\n1631 0 Nuke\n",
+      "input_sha256": "6c9d141e8b44e8f78a058df39c0430d1f4793901e34be0f56f4c00a6571d83b0",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 75,
+        "lemming_count": 75,
+        "required": 65,
+        "rescued": 73,
+        "target_percent": 86,
+        "rescued_percent": 97
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-18",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 75,
+        "lemming_count": 3,
+        "required": 65,
+        "rescued": 0,
+        "target_percent": 86,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-19",
+      "phase": "Won",
+      "steps": 1475,
+      "input_text": "186 0 AssignBomber 0\n245 0 AssignBomber 3\n290 0 AssignBomber 5\n328 0 AssignBomber 8\n448 0 AssignBomber 11\n",
+      "input_sha256": "b8174eb032f058261bff6c2f5cda6d58c05b35c34c23d5c0bc22ef51bafeb883",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 70,
+        "lemming_count": 70,
+        "required": 64,
+        "rescued": 64,
+        "target_percent": 91,
+        "rescued_percent": 91
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-19",
+      "phase": "Lost",
+      "steps": 278,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 70,
+        "lemming_count": 6,
+        "required": 64,
+        "rescued": 0,
+        "target_percent": 91,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-20",
+      "phase": "Won",
+      "steps": 4398,
+      "input_text": "59 0 SetReleaseRate 56\n111 0 AssignBuilder 0\n130 0 AssignBlocker 0\n2083 0 AssignBuilder 78\n2102 0 AssignBlocker 78\n2121 0 AssignBuilder 79\n2165 0 AssignBuilder 79\n2228 0 AssignBuilder 79\n2260 0 AssignBuilder 79\n2339 0 AssignDigger 79\n2353 0 AssignBlocker 79\n2381 0 AssignBuilder 79\n2403 0 AssignBlocker 79\n2466 0 AssignBlocker 77\n2505 0 AssignBlocker 76\n3205 0 AssignBlocker 75\n3241 0 AssignBuilder 74\n3317 0 AssignBuilder 74\n3394 0 AssignBuilder 74\n3417 0 AssignBuilder 73\n3473 0 AssignBuilder 74\n3527 0 AssignBuilder 72\n3564 0 AssignMiner 72\n3617 0 AssignBlocker 74\n3679 0 AssignBuilder 72\n3704 0 AssignBuilder 73\n3756 0 AssignBuilder 73\n3797 0 AssignBuilder 73\n3834 0 AssignBlocker 73\n3878 0 AssignBuilder 72\n3896 0 AssignBasher 72\n4068 0 AssignBlocker 72\n4075 0 AssignBuilder 71\n4136 0 AssignBlocker 71\n4236 0 Nuke\n",
+      "input_sha256": "35445f0f18d4c3a3a7018bb3eb2daf5cf0f6a14913e767636e4dc4a24cf1718f",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 70,
+        "rescued": 70,
+        "target_percent": 87,
+        "rescued_percent": 87
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-20",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 70,
+        "rescued": 0,
+        "target_percent": 87,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-21",
+      "phase": "Won",
+      "steps": 1397,
+      "input_text": "91 0 SetReleaseRate 78\n153 0 AssignBuilder 0\n364 0 AssignBuilder 5\n540 0 AssignBasher 16\n638 0 AssignDigger 9\n774 0 AssignBlocker 16\n786 0 AssignBuilder 15\n1027 0 AssignDigger 12\n1062 0 AssignBasher 15\n1124 0 AssignBasher 16\n1142 0 AssignBuilder 16\n",
+      "input_sha256": "0902fe65d4837a56cadd793f20f19156eb2d0d54e9091d60fcc168b3d04d2628",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 20,
+        "lemming_count": 20,
+        "required": 20,
+        "rescued": 20,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-21",
+      "phase": "Lost",
+      "steps": 276,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 20,
+        "lemming_count": 4,
+        "required": 20,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-22",
+      "phase": "Won",
+      "steps": 809,
+      "input_text": "57 0 SetReleaseRate 19\n91 0 AssignDigger 0\n116 0 AssignBuilder 1\n135 0 SetReleaseRate 1\n187 0 AssignBuilder 2\n255 0 AssignBuilder 0\n337 0 AssignBasher 0\n363 0 SetReleaseRate 99\n",
+      "input_sha256": "4664d7403b979d571af6dd6a834510640c330b6c47279fdd72d591b4c4677e70",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 40,
+        "rescued": 50,
+        "target_percent": 80,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-22",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 2,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 80,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-23",
+      "phase": "Won",
+      "steps": 4867,
+      "input_text": "225 0 AssignBuilder 0\n257 0 AssignBuilder 1\n290 0 AssignBuilder 2\n324 0 AssignBuilder 3\n358 0 AssignBuilder 4\n391 0 AssignBuilder 5\n452 0 AssignBuilder 6\n491 0 AssignBuilder 8\n705 0 AssignBuilder 7\n1225 0 AssignBuilder 31\n1576 0 AssignBuilder 27\n1825 0 AssignBuilder 25\n2193 0 AssignBuilder 47\n2398 0 AssignBuilder 52\n2841 0 AssignBuilder 57\n2921 0 AssignBuilder 59\n3145 0 AssignBuilder 65\n3528 0 AssignBuilder 69\n3649 0 AssignBuilder 71\n3902 0 AssignBuilder 78\n",
+      "input_sha256": "cf39916a5bbcd5ef10ee9c91f4c25416245e88f1f532efd6f867b065c3a0d628",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 76,
+        "rescued": 76,
+        "target_percent": 95,
+        "rescued_percent": 95
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-23",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 76,
+        "rescued": 0,
+        "target_percent": 95,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-24",
+      "phase": "Won",
+      "steps": 3025,
+      "input_text": "331 0 AssignBuilder 0\n359 0 AssignBuilder 1\n387 0 AssignBuilder 2\n416 0 AssignBuilder 3\n445 0 AssignBuilder 4\n473 0 AssignBuilder 5\n704 0 AssignBuilder 0\n896 0 AssignBuilder 0\n1088 0 AssignBuilder 0\n1280 0 AssignBuilder 0\n1472 0 SetReleaseRate 99\n1565 0 AssignBuilder 6\n1622 0 AssignBuilder 8\n1680 0 AssignBuilder 10\n1738 0 AssignBuilder 12\n1797 0 AssignBuilder 8\n1854 0 AssignBuilder 16\n1912 0 AssignBuilder 18\n1934 0 AssignBuilder 19\n1969 0 AssignBuilder 20\n",
+      "input_sha256": "47c87f9c7bde148766db41b990f453a6906a9a3278e6c621191e34a3ae0d5251",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 79,
+        "rescued": 80,
+        "target_percent": 98,
+        "rescued_percent": 100
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-24",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 79,
+        "rescued": 0,
+        "target_percent": 98,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-25",
+      "phase": "Won",
+      "steps": 3844,
+      "input_text": "30 0 SetReleaseRate 99\n58 0 SetReleaseRate 34\n783 0 AssignBomber 0\n788 0 AssignBomber 1\n922 0 AssignBuilder 2\n1124 0 AssignBuilder 2\n2747 0 SetReleaseRate 54\n2772 0 SetReleaseRate 34\n3620 0 AssignBasher 2\n3658 0 AssignBomber 79\n3734 0 AssignBasher 79\n3743 0 AssignBuilder 78\n",
+      "input_sha256": "cd57d7f641dcf919657c417283cf3cda1e4063849f0d3ae96d87cce93f4cd21d",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 72,
+        "rescued": 75,
+        "target_percent": 90,
+        "rescued_percent": 93
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-25",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 72,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-26",
+      "phase": "Won",
+      "steps": 2112,
+      "input_text": "92 0 AssignDigger 2\n116 0 AssignClimber 1\n166 0 AssignBuilder 1\n362 0 AssignBuilder 1\n555 0 AssignBuilder 1\n821 0 AssignClimber 36\n857 0 AssignBuilder 36\n876 0 AssignBasher 1\n1059 0 AssignBuilder 36\n1293 0 AssignBuilder 36\n1321 0 AssignBuilder 76\n1461 0 AssignBuilder 75\n",
+      "input_sha256": "f134352026244efba03665d2876a0d1057eb8e5bc8ecab6e987482bf1c636ab0",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 79,
+        "rescued": 80,
+        "target_percent": 98,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-26",
+      "phase": "Lost",
+      "steps": 278,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 6,
+        "required": 79,
+        "rescued": 0,
+        "target_percent": 98,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-27",
+      "phase": "Won",
+      "steps": 2829,
+      "input_text": "179 0 AssignBlocker 0\n191 0 AssignBuilder 1\n383 0 AssignBuilder 1\n387 0 AssignBlocker 2\n399 0 AssignBlocker 1\n399 1 AssignBomber 1\n522 0 AssignBuilder 3\n650 0 AssignBlocker 3\n650 1 AssignBomber 3\n766 0 AssignBuilder 8\n894 0 AssignBlocker 8\n894 1 AssignBomber 8\n1012 0 AssignBuilder 13\n1140 0 AssignBlocker 13\n1140 1 AssignBomber 13\n1253 0 AssignBuilder 4\n1381 0 AssignBlocker 4\n1381 1 AssignBomber 4\n1517 0 AssignBuilder 28\n1645 0 AssignBlocker 28\n1645 1 AssignBomber 28\n1761 0 AssignBuilder 33\n1889 0 AssignBlocker 33\n1889 1 AssignBomber 33\n2005 0 AssignBuilder 38\n2165 0 AssignBlocker 38\n2165 1 AssignBomber 38\n2275 0 SetReleaseRate 99\n2675 0 Nuke\n",
+      "input_sha256": "094c2971ebe58d6f7f82729fbef37b8bd72ff3aefd8d1190d3b2ca85edbf6ae2",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 48,
+        "rescued": 48,
+        "target_percent": 60,
+        "rescued_percent": 60
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-27",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 48,
+        "rescued": 0,
+        "target_percent": 60,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-28",
+      "phase": "Won",
+      "steps": 3117,
+      "input_text": "87 0 AssignFloater 0\n87 1 AssignClimber 0\n371 0 AssignMiner 0\n395 0 AssignBuilder 0\n436 0 AssignBuilder 0\n727 0 AssignBasher 0\n771 0 AssignBuilder 0\n822 0 AssignBuilder 0\n1014 0 AssignBuilder 0\n1206 0 AssignBuilder 0\n1366 0 SetReleaseRate 99\n1479 0 AssignBlocker 25\n1601 0 AssignBasher 24\n1947 0 AssignBuilder 24\n2139 0 AssignBomber 25\n",
+      "input_sha256": "a76072e1b4505e922c3c7b8e1af46a8ac6265841ee52a591c6145a6b4b56dc08",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 56,
+        "rescued": 56,
+        "target_percent": 70,
+        "rescued_percent": 70
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-28",
+      "phase": "Lost",
+      "steps": 162,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 56,
+        "rescued": 0,
+        "target_percent": 70,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-29",
+      "phase": "Won",
+      "steps": 2786,
+      "input_text": "94 0 AssignDigger 0\n138 0 SetReleaseRate 99\n167 0 AssignFloater 1\n309 0 AssignBuilder 1\n661 0 AssignBuilder 1\n727 0 AssignBasher 0\n791 0 AssignClimber 1\n1162 0 AssignBuilder 1\n1180 0 AssignMiner 1\n2780 0 Nuke\n",
+      "input_sha256": "10e24b88ea09db772cd18a36cd2ae2f9f03710890413efabdd802d31eaeadfd5",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 76,
+        "rescued": 80,
+        "target_percent": 95,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-29",
+      "phase": "Lost",
+      "steps": 278,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 6,
+        "required": 76,
+        "rescued": 0,
+        "target_percent": 95,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-30",
+      "phase": "Won",
+      "steps": 984,
+      "input_text": "0 0 SetReleaseRate 99\n359 0 AssignDigger 59\n363 0 AssignDigger 58\n367 0 AssignDigger 57\n371 0 AssignDigger 56\n375 0 AssignDigger 55\n379 0 AssignDigger 54\n383 0 AssignDigger 53\n387 0 AssignDigger 52\n391 0 AssignDigger 51\n395 0 AssignDigger 50\n399 0 AssignDigger 49\n403 0 AssignDigger 48\n407 0 AssignDigger 47\n411 0 AssignDigger 46\n415 0 AssignDigger 45\n419 0 AssignDigger 44\n423 0 AssignDigger 43\n427 0 AssignDigger 42\n431 0 AssignDigger 41\n435 0 AssignDigger 40\n439 0 AssignDigger 39\n443 0 AssignDigger 38\n447 0 AssignDigger 37\n451 0 AssignDigger 36\n455 0 AssignDigger 35\n459 0 AssignDigger 34\n463 0 AssignDigger 33\n467 0 AssignDigger 32\n471 0 AssignDigger 31\n475 0 AssignDigger 30\n479 0 AssignDigger 29\n483 0 AssignDigger 28\n487 0 AssignDigger 27\n491 0 AssignDigger 26\n495 0 AssignDigger 25\n499 0 AssignDigger 24\n503 0 AssignDigger 23\n507 0 AssignDigger 22\n511 0 AssignDigger 21\n515 0 AssignDigger 20\n519 0 AssignDigger 19\n523 0 AssignDigger 18\n527 0 AssignDigger 17\n531 0 AssignDigger 16\n535 0 AssignDigger 15\n539 0 AssignDigger 14\n543 0 AssignDigger 13\n547 0 AssignDigger 12\n551 0 AssignDigger 11\n555 0 AssignDigger 10\n559 0 AssignDigger 9\n563 0 AssignDigger 8\n567 0 AssignDigger 7\n571 0 AssignDigger 6\n575 0 AssignDigger 5\n579 0 AssignDigger 4\n583 0 AssignDigger 3\n587 0 AssignDigger 2\n591 0 AssignDigger 1\n595 0 AssignDigger 0\n",
+      "input_sha256": "0a2b5886052a0f3bcece4433961e84704069833c501412713ecb3d098208a1b3",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 60,
+        "lemming_count": 60,
+        "required": 60,
+        "rescued": 60,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    },
+    {
+      "id": "taxing-30",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 60,
+        "lemming_count": 2,
+        "required": 60,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue100"
+    }
+  ]
+}
