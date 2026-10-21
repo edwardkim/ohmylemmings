@@ -69,7 +69,12 @@ try {
                     if(!hidden&&probe>=Math.min(100,Math.floor(steps/2))) {
                         const before=game.state();pump.suspend();time+=3_600_000;pump.frame(time);assert(game.state()===before,'hidden time advanced session');hidden=true;
                     }
-                    if(deliveries%100===0)await new Promise(resolve=>setTimeout(resolve,0));
+                    if(deliveries%100===0) {
+                        // Sent only after state/map/RGB checks; this is activity,
+                        // never a completed variant or a successful result.
+                        await post('heartbeat',{id,render,attempt,checked});
+                        await new Promise(resolve=>setTimeout(resolve,0));
+                    }
                 }
                 assert(probe===steps&&checked===steps+1,'missing boundary');assert(game.input_log()===(expected.input_text||''),'saved input differs');
                 assert(commandIndex===(expected.commands||[]).length,'saved command was not consumed');

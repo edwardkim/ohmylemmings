@@ -2,10 +2,24 @@ import copy
 import io
 import struct
 import unittest
-from tools.initial_replay import catalog_ids, first_difference, frame_stream, validate_rows
+from tools.initial_replay import BrowserActivity, catalog_ids, first_difference, frame_stream, validate_rows
 
 
 class InitialReplayTests(unittest.TestCase):
+    def test_checked_heartbeats_keep_long_runs_alive_without_extending_total_deadline(self):
+        activity=BrowserActivity(0)
+        for now in [100,200,300]:
+            self.assertTrue(activity.note('/__initial/heartbeat',now))
+            self.assertFalse(activity.timed_out(now+100,450))
+        self.assertTrue(activity.note('/__initial/heartbeat',400))
+        self.assertTrue(activity.timed_out(451,450))
+        self.assertTrue(activity.timed_out(521,1000))
+
+    def test_unknown_browser_requests_do_not_reset_stall_deadline(self):
+        activity=BrowserActivity(0)
+        self.assertFalse(activity.note('/unknown',110))
+        self.assertTrue(activity.timed_out(121,1000))
+
     def catalog(self):
         return [{'id':f'{rank}-{n:02}'} for rank in ['fun','tricky','taxing','mayhem'] for n in range(1,31)]
 
