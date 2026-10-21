@@ -86,3 +86,5 @@
 - [#96 Fun08~30 해법·반복·재시작 검증](issue-96_fun_solutions.md)
 
 - [#98 Tricky01~30 해법·반복·재시작 검증](issue-98_tricky_solutions.md)
+
+- [#100 Taxing01~30 해법·반복·재시작 검증](issue-100_taxing_solutions.md)
