@@ -79,3 +79,7 @@
 - [#78 게임 사운드 이벤트·DOS 숫자 ID](issue-78_game_sound.md)
 
 - [#80 SDL/Web 오디오 출력](issue-80_audio_output.md)
+
+- [#93 유효 해법 완주·COMP 재감사](issue-93_solution_validation.md)
+
+- [#94 튜토리얼7개 해법 진행](issue-94_solution_replay.md)

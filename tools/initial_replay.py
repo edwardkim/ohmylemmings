@@ -107,12 +107,13 @@ def elapsed_chunks(rate,steps):
     return [((i+1)*1_000_000//rate)-(i*1_000_000//rate) for i in range(count)]
 
 
-def native_case(root,assets,entry,steps):
+def native_case(root,assets,entry,steps,replay=None):
     level_id=entry['id'];rank,number=level_id.split('-');runs=[];baseline=None;frames=None;initial=None
+    replay=replay or root/'inputs.txt';input_text=replay.read_text()
     for render,rate in VARIANTS:
         dest=root/f'{level_id}-r{render}';elapsed=root/f'{level_id}-r{render}.us'
         elapsed.write_text(''.join(f'{n}\n' for n in elapsed_chunks(rate,steps)))
-        command=[str(ROOT/'target/release/lemmings-desktop'),'--assets',str(assets),'--difficulty',rank,'--level',str(int(number)),'--steps',str(steps),'--fast','--render-every',str(render),'--capture',str(dest),'--replay',str(root/'inputs.txt'),'--elapsed-replay',str(elapsed),'--capture-stream']
+        command=[str(ROOT/'target/release/lemmings-desktop'),'--assets',str(assets),'--difficulty',rank,'--level',str(int(number)),'--steps',str(steps),'--fast','--render-every',str(render),'--capture',str(dest),'--replay',str(replay),'--elapsed-replay',str(elapsed),'--capture-stream']
         frame_hashes={}
         with (root/f'{level_id}-r{render}.stderr').open('wb') as error:
             process=subprocess.Popen(command,stdout=subprocess.PIPE,stderr=error,env=dict(os.environ,SDL_VIDEODRIVER='dummy'))
@@ -149,10 +150,10 @@ def native_case(root,assets,entry,steps):
             if difference:raise ValueError(f'{level_id}/render{render}: state/maps differ {difference}')
             for probe,value in frame_hashes.items():
                 if frames.get(probe)!=value:raise ValueError(f'{level_id}/render{render}/probe{probe}: RGB differs')
-        if (dest/'inputs.txt').read_bytes()!=b'':raise ValueError('initial replay unexpectedly queued input')
+        if (dest/'inputs.txt').read_text()!=input_text:raise ValueError('replay input was changed, dropped or queued after result')
         runs.append(dict(render_every=render,elapsed_rate=rate,probes=len(rows),frames=len(frame_hashes),state_map_sha256=sha(canonical(compact).encode()),frames_sha256=sha(canonical(frame_hashes).encode()),summary=summary,files=[file_identity(p) for p in sorted(dest.iterdir()) if p.is_file()]))
         print(f'SDL {level_id} r{render}: PASS {len(rows)} probes/{len(frame_hashes)} readbacks',flush=True)
-    expected=dict(id=level_id,steps=steps,initial=initial,rows=baseline,frames=frames)
+    expected=dict(id=level_id,steps=steps,initial=initial,rows=baseline,frames=frames,input_text=input_text)
     (root/f'{level_id}.json').write_text(json.dumps(expected,separators=(',',':'))+'\n')
     return dict(id=level_id,runs=runs,initial=initial,expected=file_identity(root/f'{level_id}.json'))
 
