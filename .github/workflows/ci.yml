@@ -45,7 +45,7 @@ jobs:
           sudo apt-get install --no-install-recommends -y libsdl2-dev
           cargo fetch --locked
       - name: Check Rust
-        run: make check-rust check-desktop
+        run: make SHELL=python3 ".SHELLFLAGS=tools/performance/ci_shell.py -c" check-rust check-desktop
 
   python:
     name: Python tooling

@@ -4,6 +4,7 @@ mod input;
 mod lifecycle;
 mod pacing;
 mod panel;
+mod performance;
 mod pointer;
 mod render;
 mod replay_capture;
@@ -27,8 +28,10 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nS: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--performance NEW_JSON --performance-seconds 60] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nS: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
+    performance: Option<PathBuf>,
+    performance_seconds: f64,
     assets: PathBuf,
     mute: bool,
     volume: u8,
@@ -58,6 +61,8 @@ impl Options {
     fn parse(args: impl Iterator<Item = String>) -> Result<Option<Self>, Box<dyn Error>> {
         let mut args = args.peekable();
         let mut o = Self {
+            performance: None,
+            performance_seconds: 60.0,
             assets: "assets/local/dos-original".into(),
             mute: false,
             volume: 40,
@@ -172,6 +177,19 @@ impl Options {
                         .ok_or("--level requires number 1..30")?
                         .parse()?
                 }
+                "--performance" => {
+                    o.performance = Some(
+                        args.next()
+                            .ok_or("--performance requires a new JSON file")?
+                            .into(),
+                    )
+                }
+                "--performance-seconds" => {
+                    o.performance_seconds = args
+                        .next()
+                        .ok_or("--performance-seconds requires duration")?
+                        .parse()?
+                }
                 "--mute" => o.mute = true,
                 "--volume" => {
                     o.volume = args.next().ok_or("--volume requires 0..100")?.parse()?;
@@ -221,6 +239,16 @@ impl Options {
                 }
                 _ => return Err(format!("unknown option {flag}\n{USAGE}").into()),
             }
+        }
+        if o.performance.is_some()
+            && (o.fast
+                || o.mute
+                || o.capture.is_some()
+                || o.steps.is_some()
+                || !o.performance_seconds.is_finite()
+                || !(0.1..=600.0).contains(&o.performance_seconds))
+        {
+            return Err("performance requires visible/audio-on real-time execution, no capture/steps, 0.1..600 seconds".into());
         }
         if o.synthetic && specified_assets {
             return Err("choose --assets or --synthetic".into());
@@ -902,6 +930,27 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     let selected_cursor = sdl2::mouse::Cursor::from_system(sdl2::mouse::SystemCursor::Hand).ok();
     let events = sdl.event()?;
     let mut pump = sdl.event_pump()?;
+    let mut upload_samples = Vec::new();
+    if options.performance.is_some() {
+        let frame = game.view.frame(&game.assets, &game.session)?;
+        for _ in 0..33 {
+            let now = Instant::now();
+            for _ in 0..32 {
+                texture.update(None, &frame, WIDTH * 3)?;
+                canvas.clear();
+                canvas.copy(&texture, None, None)?;
+            }
+            upload_samples.push(now.elapsed().as_nanos());
+        }
+    }
+    let mut performance = options
+        .performance
+        .as_ref()
+        .map(|p| performance::Recorder::new(p, options.performance_seconds, pacing))
+        .transpose()?;
+    if let Some(p) = &mut performance {
+        p.upload_samples = upload_samples;
+    }
     let mut previous = Instant::now();
     let mut last_render = previous;
     let mut rendered = 0u64;
@@ -1094,11 +1143,23 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             if game.session.result().is_some() {
                 break;
             }
+            let tick_begin = performance.as_ref().map(|_| Instant::now());
             apply_replay_boundary(&mut game.session, &mut replay);
             panel::advance_input(&mut game.session, &mut game.view, options.replay.is_some())?;
             pointer::refresh(&game.session, &mut game.view);
             game.tick()?;
             pointer::refresh(&game.session, &mut game.view);
+            if let (Some(p), Some(begin)) = (&mut performance, tick_begin) {
+                p.tick(
+                    begin,
+                    game.session.scheduler.step_state().control_step,
+                    game.session
+                        .actors
+                        .iter()
+                        .filter(|a| a.state().removed.is_none())
+                        .count(),
+                );
+            }
             pending_due -= 1;
             advanced = true;
             if let Some(c) = &mut capture {
@@ -1125,7 +1186,12 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                 }
             }
         }
+        let audio_begin = performance.as_ref().map(|_| Instant::now());
+        let audio_state = performance.as_ref().and_then(|_| audio.performance_state());
         audio.service(&mut game, audio_visible);
+        if let (Some(p), Some(begin)) = (&mut performance, audio_begin) {
+            p.audio(audio_state, begin.elapsed().as_nanos());
+        }
         if !options.fast {
             let title = format!("Oh My Lemmings - {} · {}", game.assets.title, audio.label());
             if canvas.window().title() != title {
@@ -1133,13 +1199,14 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             }
         }
         let step = game.session.scheduler.step_state().control_step;
-        let finished = options.steps.is_some_and(|end| {
-            if game.session.result().is_some() {
-                options.result_actions.is_empty()
-            } else {
-                step >= end
-            }
-        });
+        let finished = performance.as_ref().is_some_and(|p| p.done())
+            || options.steps.is_some_and(|end| {
+                if game.session.result().is_some() {
+                    options.result_actions.is_empty()
+                } else {
+                    step >= end
+                }
+            });
         let milestone = game.view.panel.capture_pending
             || game.session.result().is_some()
             || matches!(step, 0 | 16 | 17 | 34 | 35 | 54 | 60 | 100 | 170 | 340)
@@ -1190,7 +1257,10 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                 last_render.elapsed() >= Duration::from_millis(16 * options.render_every)
             };
         if render {
+            let frame_begin = performance.as_ref().map(|_| Instant::now());
             let frame = game.view.frame(&game.assets, &game.session)?;
+            let cpu_ns = frame_begin.map_or(0, |t| t.elapsed().as_nanos());
+            let upload_begin = performance.as_ref().map(|_| Instant::now());
             texture.update(None, &frame, WIDTH * 3)?;
             canvas.set_draw_color(sdl2::pixels::Color::RGB(0, 0, 0));
             canvas.clear();
@@ -1209,7 +1279,17 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                 last_captured = Some(step);
                 game.view.panel.capture_pending = false;
             }
+            let upload_ns = upload_begin.map_or(0, |t| t.elapsed().as_nanos());
+            let present_begin = performance.as_ref().map(|_| Instant::now());
             canvas.present();
+            if let (Some(p), Some(begin)) = (&mut performance, frame_begin) {
+                p.frame(
+                    begin,
+                    cpu_ns,
+                    upload_ns,
+                    present_begin.unwrap().elapsed().as_nanos(),
+                );
+            }
             result_rendered = game.session.result().is_some();
             rendered += 1;
             last_render = Instant::now();
@@ -1250,7 +1330,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     if !options.result_actions.is_empty() {
         return Err("run ended before all result actions were applied".into());
     }
-    if replay.peek().is_some() && game.session.result().is_none() {
+    if performance.is_none() && replay.peek().is_some() && game.session.result().is_none() {
         return Err("run ended before all replay commands were applied".into());
     }
     let summary = run_summary(
@@ -1262,6 +1342,9 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     );
     if let Some(c) = &mut capture {
         c.finish(&game.session, &summary)?;
+    }
+    if let Some(p) = &performance {
+        p.finish(&game, video.current_video_driver(), canvas.info().name)?;
     }
     println!("{summary}");
     Ok(())

@@ -88,3 +88,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 [G11-05e #102 Mayhem01~30](reports/issue-102_mayhem_solutions.md)은 성공30개/실패30개 입력(자체8·공개 변환22)과 실제 SDL/WASM 반복·Restart를 검증합니다. 최종 판정은 #102, COMP 전체 재감사·성능/G11/G12는 #93에서 추적합니다.
 
 [G11-05f #104 COMP 재감사](reports/issue-104_comp_reaudit.md)는 기존 경계 증거의 현재 소스 연결·빠진 원시 자료 보충·초기120개와 성공/실패240사례의 집계를 수행합니다. 최종 판정·정확한 CI/병합은 #104 기록을 따르며 성능은 G11-06 후속입니다.
+
+[G11-06 #106 성능 기준 측정](reports/issue-106_performance.md)은 알고리즘380행과 실제 SDL/Web 각60초×3을 기록했습니다. SDL 약53.2fps의60Hz 목표 미달은 [#107](https://github.com/edwardkim/ohmylemmings/issues/107)에서 보정하며 G11 전체 마감/G12는 후속입니다.

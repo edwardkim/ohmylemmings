@@ -93,3 +93,5 @@
 - [#102 Mayhem01~30 완주 검증](issue-102_mayhem_solutions.md)
 
 - [#104 COMP-01~18 증거 재감사](issue-104_comp_reaudit.md)
+
+- [#106 로딩·틱·렌더·오디오 성능 측정](issue-106_performance.md)

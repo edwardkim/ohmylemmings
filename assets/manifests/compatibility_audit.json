@@ -16,8 +16,8 @@
   "product_snapshot": [
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 3369,
-      "sha256": "a184b9692417f90711fff70bc1ae8864e90e4b8293fddb55c74a4e5610b573d3"
+      "bytes": 3430,
+      "sha256": "5a6ac2b38ea94fa0e2f67f8e768dd67936d1be8658536a9f64086e525e6d7eac"
     },
     {
       "path": "Cargo.lock",
@@ -31,8 +31,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 2626,
-      "sha256": "31813f8842c133864fe6b5aad1356dfd0ef46fb1a908e4edf44d7b7753c7bf62"
+      "bytes": 2740,
+      "sha256": "f84e9ef0030e817112e5d7a01ba31f6d8d1ab657a7916cb1e7e240dababe2703"
     },
     {
       "path": "apps/audio-probe/Cargo.toml",
@@ -46,8 +46,8 @@
     },
     {
       "path": "apps/audio-probe/src/lib.rs",
-      "bytes": 5923,
-      "sha256": "0ba5abe37bf0bdc571b32e0a82eff84d5c314a9635e7e304c546026568b191a0"
+      "bytes": 5975,
+      "sha256": "f5ef3c6f1c148abf6c6dddebf81789f05f7d591d4842b37152faa376a4193c94"
     },
     {
       "path": "apps/audio-probe/src/main.rs",
@@ -66,8 +66,8 @@
     },
     {
       "path": "apps/desktop/src/audio.rs",
-      "bytes": 7824,
-      "sha256": "a14436546911b5fb5c87768b9418d7bad61c20bb85bca4465815651cd43478cf"
+      "bytes": 8216,
+      "sha256": "e97552314cfd3769eed20e611ab17aca9e9034dd755f637f570cb5b9091f71f0"
     },
     {
       "path": "apps/desktop/src/input.rs",
@@ -81,8 +81,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 54300,
-      "sha256": "d45e6853a2ecbd9e34f07879fc5c42d2a8f69bd89c142df2d4c6304c96267720"
+      "bytes": 57905,
+      "sha256": "530a7b5fad65f98cb25877ddf6d65d720d102b5b0b474414f8b6661dd33c3e22"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -1703,6 +1703,51 @@
       "path": "tools/web_journey.py",
       "bytes": 5636,
       "sha256": "3f9834c056b886939ae46831390958880835a147b0b6c01320a514bb73018e06"
+    },
+    {
+      "path": "apps/desktop/src/performance.rs",
+      "bytes": 4760,
+      "sha256": "5d0dabb116e1a8b47097c30e999303536369dcb298b1e36026075168f1d6d2dd"
+    },
+    {
+      "path": "apps/audio-probe/src/performance.rs",
+      "bytes": 3076,
+      "sha256": "70ee850598030f6c39c4c4b0412e076c8bcb4c30a9283b01dfd50142d964f28e"
+    },
+    {
+      "path": "crates/lemmings-game/examples/performance_probe.rs",
+      "bytes": 13286,
+      "sha256": "7974fe49d7524c0ed593924e682a50d1ddc0a52b4f44c5f276ded1e94df4f2cf"
+    },
+    {
+      "path": "tools/performance.py",
+      "bytes": 5877,
+      "sha256": "2bb73eb1c0ea02eb820fc436f57f33a09d79d505d13b6d5db5af252522fc1670"
+    },
+    {
+      "path": "tools/tests/test_performance.py",
+      "bytes": 3251,
+      "sha256": "a91afae0df445fa8075c7d9eb0bdc429d018d40c2d7ff522e4b6dd127cfd9038"
+    },
+    {
+      "path": "tools/performance/algorithm.js",
+      "bytes": 4676,
+      "sha256": "3fbdfef9dd3f1dce5ab7d35607aa36a626ce3d09eb7c153fc6d3e9ed76a6b2aa"
+    },
+    {
+      "path": "tools/performance/live.js",
+      "bytes": 3952,
+      "sha256": "5a1f64c9582cd4543e67b8fa5bfb2ea3267588234d97d5366c651fb1c4e412a0"
+    },
+    {
+      "path": "tools/performance/cdp.cjs",
+      "bytes": 5780,
+      "sha256": "3eaf7787e003ea034afa5242076240002f151ea54764fd6ca9c8cb5e183598b0"
+    },
+    {
+      "path": "tools/performance/ci_shell.py",
+      "bytes": 877,
+      "sha256": "f4be31f90a09fef38971c4b3ac057081a3be5947700a461fd587154eeb3e425c"
     }
   ],
   "evidence": [
@@ -1988,9 +2033,10 @@
       "sha256": "4d7ff9519a1347160fefee062d2b70e70396e51e090c4ae0b48e3319345281c2"
     },
     {
-      "path": "target/release/lemmings-desktop",
+      "path": "assets/local/issue-106-review/binaries/sdl-104-reconstructed",
       "bytes": 1269408,
-      "sha256": "66b680d91cbfb1eeaa7072cfac8794b8d51b9e663aec50a94ed11687a52af344"
+      "sha256": "66b680d91cbfb1eeaa7072cfac8794b8d51b9e663aec50a94ed11687a52af344",
+      "previous_path": "target/release/lemmings-desktop"
     },
     {
       "path": "assets/local/issue-96-review/runtime-proof.json",
@@ -4149,5 +4195,64 @@
     "rust": 611,
     "doctests": 29,
     "python": 178
+  },
+  "source_impact_106": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/106",
+    "baseline_main": "973fa7868fd436844205435857e89e205b2cf908",
+    "changed_existing": [
+      {
+        "previous": {
+          "path": ".github/workflows/ci.yml",
+          "bytes": 3369,
+          "sha256": "a184b9692417f90711fff70bc1ae8864e90e4b8293fddb55c74a4e5610b573d3"
+        },
+        "reason": "issue106 opt-in diagnostic/CI measurement, no simulation or audio-engine rules changed"
+      },
+      {
+        "previous": {
+          "path": "Makefile",
+          "bytes": 2626,
+          "sha256": "31813f8842c133864fe6b5aad1356dfd0ef46fb1a908e4edf44d7b7753c7bf62"
+        },
+        "reason": "issue106 opt-in diagnostic/CI measurement, no simulation or audio-engine rules changed"
+      },
+      {
+        "previous": {
+          "path": "apps/audio-probe/src/lib.rs",
+          "bytes": 5923,
+          "sha256": "0ba5abe37bf0bdc571b32e0a82eff84d5c314a9635e7e304c546026568b191a0"
+        },
+        "reason": "issue106 opt-in diagnostic/CI measurement, no simulation or audio-engine rules changed"
+      },
+      {
+        "previous": {
+          "path": "apps/desktop/src/audio.rs",
+          "bytes": 7824,
+          "sha256": "a14436546911b5fb5c87768b9418d7bad61c20bb85bca4465815651cd43478cf"
+        },
+        "reason": "issue106 opt-in diagnostic/CI measurement, no simulation or audio-engine rules changed"
+      },
+      {
+        "previous": {
+          "path": "apps/desktop/src/main.rs",
+          "bytes": 54300,
+          "sha256": "d45e6853a2ecbd9e34f07879fc5c42d2a8f69bd89c142df2d4c6304c96267720"
+        },
+        "reason": "issue106 opt-in diagnostic/CI measurement, no simulation or audio-engine rules changed"
+      }
+    ],
+    "added": [
+      "apps/desktop/src/performance.rs",
+      "apps/audio-probe/src/performance.rs",
+      "crates/lemmings-game/examples/performance_probe.rs",
+      "tools/performance.py",
+      "tools/tests/test_performance.py",
+      "tools/performance/algorithm.js",
+      "tools/performance/live.js",
+      "tools/performance/cdp.cjs",
+      "tools/performance/ci_shell.py"
+    ],
+    "scope": "Existing104 pins and product_ci refer to historical base; current snapshot updates only diagnostic/CI boundaries. Core/resources/game/audio engine and production WebGame WASM unchanged. Twelve native/WASM fixed segments each33repeats match prior state/maps/RGB;40PCM cases match native/WASM. Default path tested in publication CI, exact head/logs in issue106. No new full120 solution replay claimed.",
+    "historical_binary": "Same workspace/path rebuilt104 source; exact old SHA/bytes match, moved to immutable ignored evidence path."
   }
 }
