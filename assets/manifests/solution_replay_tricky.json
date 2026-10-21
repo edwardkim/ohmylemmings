@@ -1,0 +1,1425 @@
+{
+  "format": "g11-solution-replay-v1",
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/98",
+  "parent": "https://github.com/edwardkim/ohmylemmings/issues/93",
+  "baseline_main": "1ac6ddc57cb32688d9a1c44aba83e5fe06391194",
+  "scope": "Tricky01..30 original goals/inventories:20 project-authored success inputs and10 converted community replays, plus30 authored loss inputs. No original or derived binary/image/map/audio and no source replay/text redistributed. Final certification in issue98; remaining60/whole COMP/performance in issue93.",
+  "review_stage": "Input/source snapshot; final runtime/CI/merge proof posted in issue98",
+  "variants": [
+    [
+      1,
+      30
+    ],
+    [
+      7,
+      60
+    ],
+    [
+      13,
+      144
+    ]
+  ],
+  "native_restart_render_intervals": [
+    37,
+    101,
+    257
+  ],
+  "sources": [
+    {
+      "path": "tools/solution_replay.py",
+      "bytes": 12563,
+      "sha256": "b5847fb9a3ffdfc5be6897af9c5abb19da303372bcb7d9c3407e841be74fe03a"
+    },
+    {
+      "path": "tools/initial_replay.py",
+      "bytes": 17298,
+      "sha256": "9649834526b9d5ae11e3624bc06fa9eda5af2f9e7afdf458508970773ca091ea"
+    },
+    {
+      "path": "tools/web/initial_replay.js",
+      "bytes": 6941,
+      "sha256": "dd3621ca40ae1463a803dc3fffa9da41b7f415e8cb6cc547b3c5d5a215113506"
+    },
+    {
+      "path": "tools/tests/test_initial_replay.py",
+      "bytes": 3071,
+      "sha256": "8201dabd7a3e54cfbb755c7b21960ce0690453682039e33f6a5ef3360d4bc01a"
+    },
+    {
+      "path": "tools/tests/test_solution_replay.py",
+      "bytes": 2961,
+      "sha256": "019e6554e786175993538f950cea57d8a011bcb705c1b8706c3938d0ef47454d"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 2588,
+      "sha256": "9ea06eb0f93009df449b4c34016d978a405b7fb999d047144550f183123f01f6"
+    }
+  ],
+  "replay_sources": [
+    {
+      "level": "tricky-07",
+      "author": "ccexplore",
+      "post": "https://www.lemmingsforums.net/index.php?topic=1050.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=253",
+      "accessed": "2026-10-21",
+      "artifact": "tricky7.zip",
+      "bytes": 1987,
+      "sha256": "485b900b4e05ca9314734363f874d638f92eac2481e2bf512d45f4a6ed2af078",
+      "use": "Functional skill/RR/nuke records converted to stable-actor input; UI selection and pause records omitted. Actual original-goal outcomes independently verified. Original replay/text/assets are not redistributed.",
+      "members": [
+        {
+          "name": "Tricky7_1skillperlem.txt",
+          "bytes": 8392,
+          "sha256": "7a70fa221b79f49ad9ada8bed2182c375f312b24f56d20e495afbc7cb76bf398"
+        },
+        {
+          "name": "Tricky7_1skillperlem.lrb",
+          "bytes": 2880,
+          "sha256": "d465005b2a2f8f1a14f09e7ebdc6f1a7e164319bd510654721bc425b0ef7c5a3"
+        }
+      ]
+    },
+    {
+      "level": "tricky-08",
+      "author": "Clam",
+      "post": "https://www.lemmingsforums.net/index.php?topic=1084.30",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13667",
+      "accessed": "2026-10-21",
+      "artifact": "tricky8-13667.lrb",
+      "bytes": 992,
+      "sha256": "66400ec9ac2b27370d986a80c865ac524c0e28cdfd27cb6939371b32233de131",
+      "use": "Functional skill/RR/nuke records converted to stable-actor input; UI selection and pause records omitted. Actual original-goal outcomes independently verified. Original replay/text/assets are not redistributed.",
+      "adaptation": "Append Nuke only after at least48 of original80 rescued; original required48 retained. Avoid waiting for timer after the route has completed."
+    },
+    {
+      "level": "tricky-09",
+      "author": "ccexplore",
+      "post": "https://www.lemmingsforums.net/index.php?topic=1050.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=254",
+      "accessed": "2026-10-21",
+      "artifact": "tricky9.zip",
+      "bytes": 2486,
+      "sha256": "5e4350fc65d66953d7352dcc60302adf458e6a83c0b479de7f0f9406ed5f9c38",
+      "use": "Functional skill/RR/nuke records converted to stable-actor input; UI selection and pause records omitted. Actual original-goal outcomes independently verified. Original replay/text/assets are not redistributed.",
+      "members": [
+        {
+          "name": "Tricky9_1skillperlem.lrb",
+          "bytes": 4544,
+          "sha256": "3aa5f1ddda07cb3f509d5fecb187f9838d3cfcb78740e3887c286a219eff662e"
+        },
+        {
+          "name": "Tricky9_1skillperlem.txt",
+          "bytes": 12861,
+          "sha256": "76fdfccabff8e0d2f6afe47cbb2c87674a56cef8a5c342c94430708eb4042ef9"
+        }
+      ]
+    },
+    {
+      "level": "tricky-10",
+      "author": "ccexplore",
+      "post": "https://www.lemmingsforums.net/index.php?topic=1050.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=255",
+      "accessed": "2026-10-21",
+      "artifact": "tricky10.zip",
+      "bytes": 3711,
+      "sha256": "673123f36b38c1a4aed5bfa8c7fd62eddda91b509ff76fe512b6dd12f83ddbe5",
+      "use": "Functional skill/RR/nuke records converted to stable-actor input; UI selection and pause records omitted. Actual original-goal outcomes independently verified. Original replay/text/assets are not redistributed.",
+      "members": [
+        {
+          "name": "Tricky10_1skillperlem.txt",
+          "bytes": 21808,
+          "sha256": "44311d937c43fd3e5d31a2077da2371269d0c7b8cd9a2db711f560f040162a46"
+        },
+        {
+          "name": "Tricky10_1skillperlem.lrb",
+          "bytes": 7872,
+          "sha256": "2add4280de243ba1bc8c1ebf8226dbd015bed245b2424823829ee4a3e6e3b17d"
+        }
+      ]
+    },
+    {
+      "level": "tricky-14",
+      "author": "ccexplore",
+      "post": "https://www.lemmingsforums.net/index.php?topic=1050.15",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=259",
+      "accessed": "2026-10-21",
+      "artifact": "attach-259.zip",
+      "bytes": 5037,
+      "sha256": "692f3dca56cecc7215f19e9eef3b7a664499325292c5917b8f03fe5ac8113b6b",
+      "use": "Functional skill/RR/nuke records converted to stable-actor input; UI selection and pause records omitted. Actual original-goal outcomes independently verified. Original replay/text/assets are not redistributed.",
+      "members": [
+        {
+          "name": "Tricky14_1skillperlem.txt",
+          "bytes": 33402,
+          "sha256": "733ef6e36548bef13619260df996d2e088bf6d2fbaad019ffdcff20386de3469"
+        },
+        {
+          "name": "Tricky14_1skillperlem.lrb",
+          "bytes": 12192,
+          "sha256": "51f8581622a69c3bc21d4354133453984a63dafc042ec400a5f3e546693b2ee8"
+        }
+      ]
+    },
+    {
+      "level": "tricky-16",
+      "author": "Clam",
+      "post": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13658",
+      "accessed": "2026-10-21",
+      "artifact": "tricky16-13658.lrb",
+      "bytes": 1920,
+      "sha256": "6079c7ba5801001d9ac399b78dd0181c9a9f1ccdddaa87237412e572879021f4",
+      "use": "Functional skill/RR/nuke records converted to stable-actor input; UI selection and pause records omitted. Actual original-goal outcomes independently verified. Original replay/text/assets are not redistributed."
+    },
+    {
+      "level": "tricky-23",
+      "author": "ccexplore",
+      "post": "https://www.lemmingsforums.net/index.php?topic=1084.30",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13662",
+      "accessed": "2026-10-21",
+      "artifact": "tricky23-13662.lrb",
+      "bytes": 4320,
+      "sha256": "3afdc8bfdd55c0c9b65f26a34d6561fbae5f378bb7f74645ab66573f5ef88fd1",
+      "use": "Functional skill/RR/nuke records converted to stable-actor input; UI selection and pause records omitted. Actual original-goal outcomes independently verified. Original replay/text/assets are not redistributed."
+    },
+    {
+      "level": "tricky-27",
+      "author": "ccexplore",
+      "post": "https://www.lemmingsforums.net/index.php?topic=1050.15",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=260",
+      "accessed": "2026-10-21",
+      "artifact": "attach-260.zip",
+      "bytes": 3125,
+      "sha256": "2bd4624deb4307929bce19eee866932776aebacc2319f41ac4002b1b98edb897",
+      "use": "Functional skill/RR/nuke records converted to stable-actor input; UI selection and pause records omitted. Actual original-goal outcomes independently verified. Original replay/text/assets are not redistributed.",
+      "members": [
+        {
+          "name": "Tricky27_1skillperlem.txt",
+          "bytes": 18802,
+          "sha256": "b276322ecbca445ccd40c0c2fefb427b8420e3956f93ec77fb6a82b83b568ab8"
+        },
+        {
+          "name": "Tricky27_1skillperlem.lrb",
+          "bytes": 6752,
+          "sha256": "cda097dbd972007e2de55ee7287a06c01fd774b71ea4e91347bfa3eccbfbc827"
+        }
+      ]
+    },
+    {
+      "level": "tricky-29",
+      "author": "namida",
+      "post": "https://www.lemmingsforums.net/index.php?topic=1084.15",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13659",
+      "accessed": "2026-10-21",
+      "artifact": "tricky29-13659.lrb",
+      "bytes": 2368,
+      "sha256": "1ffe7b951671570829a21bd75fb185d3393b29ee9243b4bf82f3f3fc28a2483a",
+      "use": "Functional skill/RR/nuke records converted to stable-actor input; UI selection and pause records omitted. Actual original-goal outcomes independently verified. Original replay/text/assets are not redistributed."
+    },
+    {
+      "level": "tricky-30",
+      "author": "ccexplore",
+      "post": "https://www.lemmingsforums.net/index.php?topic=1050.15",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=261",
+      "accessed": "2026-10-21",
+      "artifact": "attach-261.zip",
+      "bytes": 4459,
+      "sha256": "9ac1fbe52f388ec0faf1f9188e6a93e08cb94c3efb11cc40f790c39472f61d50",
+      "use": "Functional skill/RR/nuke records converted to stable-actor input; UI selection and pause records omitted. Actual original-goal outcomes independently verified. Original replay/text/assets are not redistributed.",
+      "members": [
+        {
+          "name": "Tricky30_1skillperlem.txt",
+          "bytes": 28847,
+          "sha256": "2d48c5855cecf1839b3918f4cbe8b13026d526c4695c644480318bc8caf936ed"
+        },
+        {
+          "name": "Tricky30_1skillperlem.lrb",
+          "bytes": 10496,
+          "sha256": "d67202124a4b421f6422857116639edfd9c1dd2bd7a50d0d92d51ac6baa3d1eb"
+        }
+      ]
+    }
+  ],
+  "strategy_sources": [
+    {
+      "url": "https://strategywiki.org/wiki/Lemmings/Tricky_Levels_1-5",
+      "accessed": "2026-10-21",
+      "use": "High-level route ideas; no walkthrough prose copied; project-authored timings and actor IDs."
+    },
+    {
+      "url": "https://strategywiki.org/wiki/Lemmings/Tricky_Levels_6-10",
+      "accessed": "2026-10-21",
+      "use": "High-level route ideas; no walkthrough prose copied; project-authored timings and actor IDs."
+    },
+    {
+      "url": "https://strategywiki.org/wiki/Lemmings/Tricky_Levels_11-15",
+      "accessed": "2026-10-21",
+      "use": "High-level route ideas; no walkthrough prose copied; project-authored timings and actor IDs."
+    },
+    {
+      "url": "https://strategywiki.org/wiki/Lemmings/Tricky_Levels_16-20",
+      "accessed": "2026-10-21",
+      "use": "High-level route ideas; no walkthrough prose copied; project-authored timings and actor IDs."
+    },
+    {
+      "url": "https://strategywiki.org/wiki/Lemmings/Tricky_Levels_21-25",
+      "accessed": "2026-10-21",
+      "use": "High-level route ideas; no walkthrough prose copied; project-authored timings and actor IDs."
+    },
+    {
+      "url": "https://strategywiki.org/wiki/Lemmings/Tricky_Levels_26-30",
+      "accessed": "2026-10-21",
+      "use": "High-level route ideas; no walkthrough prose copied; project-authored timings and actor IDs."
+    },
+    {
+      "url": "https://www.lemmingsforums.net/index.php?topic=1068.75",
+      "author": "LemSteven",
+      "posted": "2019-12-14",
+      "accessed": "2026-10-21",
+      "use": "Tricky13 steel-edge route idea only; own timing/actor IDs, return paths and blocker bypass. Screenshot is not redistributed."
+    }
+  ],
+  "cases": [
+    {
+      "id": "tricky-01",
+      "phase": "Won",
+      "steps": 2280,
+      "input_text": "325 0 AssignBuilder 0\n517 0 AssignBuilder 0\n709 0 AssignBuilder 0\n901 0 AssignBuilder 0\n1258 0 AssignBasher 0\n1469 0 SetReleaseRate 99\n2269 0 Nuke\n",
+      "input_sha256": "74efedf742e3f216db75ca40644349487cd2fb07efdeadc0634b12d666f9fd79",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 40,
+        "rescued": 54,
+        "target_percent": 50,
+        "rescued_percent": 67
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-01",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 50,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-02",
+      "phase": "Won",
+      "steps": 2815,
+      "input_text": "605 0 AssignDigger 0\n646 0 AssignDigger 1\n687 0 AssignDigger 2\n728 0 AssignDigger 3\n769 0 AssignDigger 4\n810 0 AssignDigger 5\n851 0 AssignDigger 6\n892 0 AssignDigger 7\n933 0 AssignDigger 8\n974 0 AssignDigger 9\n1015 0 AssignDigger 10\n1056 0 AssignDigger 11\n1097 0 AssignDigger 12\n1138 0 AssignDigger 13\n1179 0 AssignDigger 14\n1220 0 AssignDigger 15\n1261 0 AssignDigger 16\n1302 0 AssignDigger 17\n1343 0 AssignDigger 18\n1384 0 AssignDigger 19\n1425 0 AssignDigger 20\n1466 0 AssignDigger 21\n1507 0 AssignDigger 22\n1548 0 AssignDigger 23\n1589 0 AssignDigger 24\n1630 0 AssignDigger 25\n1671 0 AssignDigger 26\n1712 0 AssignDigger 27\n1753 0 AssignDigger 28\n1794 0 AssignDigger 29\n1835 0 AssignDigger 30\n1876 0 AssignDigger 31\n1917 0 AssignDigger 32\n1958 0 AssignDigger 33\n1999 0 AssignDigger 34\n2040 0 AssignDigger 35\n2081 0 AssignDigger 36\n2122 0 AssignDigger 37\n2163 0 AssignDigger 38\n2204 0 AssignDigger 39\n",
+      "input_sha256": "bb12d8418695269f6add3f39287adc77d1ad408d7a32c34a186f4cd121bbdaf9",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 40,
+        "lemming_count": 40,
+        "required": 40,
+        "rescued": 40,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-02",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 40,
+        "lemming_count": 2,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-03",
+      "phase": "Won",
+      "steps": 2828,
+      "input_text": "165 0 AssignDigger 0\n177 0 AssignBlocker 1\n317 0 AssignBlocker 2\n542 0 AssignBasher 0\n639 0 AssignBuilder 0\n831 0 AssignBuilder 0\n1023 0 AssignBuilder 0\n1215 0 AssignBuilder 0\n1407 0 AssignBuilder 0\n1599 0 AssignBuilder 0\n1791 0 AssignBuilder 0\n1983 0 AssignBuilder 0\n1999 0 AssignBomber 1\n1999 1 SetReleaseRate 99\n2649 0 Nuke\n",
+      "input_sha256": "f22a871152d00d008edc9b9ac5e7da9803e6b9fd3875f7c20b33f7485aadcb31",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 40,
+        "rescued": 75,
+        "target_percent": 50,
+        "rescued_percent": 93
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-03",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 50,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-04",
+      "phase": "Won",
+      "steps": 3175,
+      "input_text": "54 0 AssignFloater 0\n54 1 AssignClimber 0\n109 0 AssignFloater 1\n109 1 AssignClimber 1\n109 2 AssignFloater 2\n109 3 AssignClimber 2\n132 0 AssignFloater 3\n132 1 AssignClimber 3\n141 0 AssignBlocker 2\n158 0 AssignFloater 4\n158 1 AssignClimber 4\n183 0 AssignBlocker 3\n184 0 AssignFloater 5\n184 1 AssignClimber 5\n210 0 AssignFloater 6\n210 1 AssignClimber 6\n236 0 AssignFloater 7\n236 1 AssignClimber 7\n262 0 AssignFloater 8\n262 1 AssignClimber 8\n288 0 AssignFloater 9\n288 1 AssignClimber 9\n314 0 AssignFloater 10\n314 1 AssignClimber 10\n340 0 AssignFloater 11\n340 1 AssignClimber 11\n366 0 AssignFloater 12\n366 1 AssignClimber 12\n382 0 AssignBasher 0\n392 0 AssignFloater 13\n392 1 AssignClimber 13\n418 0 AssignFloater 14\n418 1 AssignClimber 14\n444 0 AssignFloater 15\n444 1 AssignClimber 15\n470 0 AssignFloater 16\n470 1 AssignClimber 16\n496 0 AssignFloater 17\n496 1 AssignClimber 17\n522 0 AssignFloater 18\n522 1 AssignClimber 18\n548 0 AssignFloater 19\n548 1 AssignClimber 19\n742 0 AssignBuilder 0\n945 0 AssignBuilder 0\n1172 0 AssignBuilder 0\n1375 0 AssignBuilder 0\n1609 0 AssignBuilder 0\n1912 0 AssignBomber 2\n1912 1 SetReleaseRate 99\n2962 0 Nuke\n",
+      "input_sha256": "f8318a96f4b1c389bc4d182ecd6cdcf8a9957b514e305077d58d3fbbcd154c50",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 16,
+        "rescued": 17,
+        "target_percent": 20,
+        "rescued_percent": 21
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-04",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 16,
+        "rescued": 0,
+        "target_percent": 20,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-05",
+      "phase": "Won",
+      "steps": 2488,
+      "input_text": "54 0 AssignFloater 0\n54 1 AssignClimber 0\n97 0 AssignFloater 1\n97 1 AssignClimber 1\n123 0 AssignBlocker 1\n140 0 AssignFloater 2\n140 1 AssignClimber 2\n173 0 AssignBlocker 2\n183 0 AssignFloater 3\n183 1 AssignClimber 3\n226 0 AssignFloater 4\n226 1 AssignClimber 4\n269 0 AssignFloater 5\n269 1 AssignClimber 5\n312 0 AssignFloater 6\n312 1 AssignClimber 6\n348 0 AssignBasher 0\n355 0 AssignFloater 7\n355 1 AssignClimber 7\n382 0 AssignBasher 0\n398 0 AssignFloater 8\n398 1 AssignClimber 8\n441 0 AssignFloater 9\n441 1 AssignClimber 9\n472 0 AssignBasher 0\n484 0 AssignFloater 10\n484 1 AssignClimber 10\n527 0 AssignFloater 11\n527 1 AssignClimber 11\n570 0 AssignFloater 12\n570 1 AssignClimber 12\n581 0 AssignBasher 0\n599 0 AssignBasher 0\n613 0 AssignFloater 13\n613 1 AssignClimber 13\n652 0 AssignBuilder 0\n656 0 AssignFloater 14\n656 1 AssignClimber 14\n699 0 AssignFloater 15\n699 1 AssignClimber 15\n742 0 AssignFloater 16\n742 1 AssignClimber 16\n785 0 AssignFloater 17\n785 1 AssignClimber 17\n828 0 AssignFloater 18\n828 1 AssignClimber 18\n855 0 AssignBuilder 0\n871 0 AssignFloater 19\n871 1 AssignClimber 19\n1112 0 AssignClimber 0\n1147 0 AssignBuilder 0\n1339 0 AssignBuilder 0\n1531 0 SetReleaseRate 99\n1531 1 AssignBomber 1\n2331 0 Nuke\n",
+      "input_sha256": "294ddbebf65e9d160e176b780e4789cd7db07838ff0376f7e3515a7a307a0bc7",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 16,
+        "rescued": 74,
+        "target_percent": 20,
+        "rescued_percent": 92
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-05",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 16,
+        "rescued": 0,
+        "target_percent": 20,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-06",
+      "phase": "Won",
+      "steps": 1164,
+      "input_text": "54 0 AssignClimber 0\n54 1 AssignFloater 0\n82 0 AssignClimber 1\n82 1 AssignFloater 1\n110 0 AssignClimber 2\n110 1 AssignFloater 2\n138 0 AssignClimber 3\n138 1 AssignFloater 3\n166 0 AssignClimber 4\n166 1 AssignFloater 4\n218 0 AssignBuilder 0\n246 0 AssignBuilder 1\n274 0 AssignBuilder 2\n303 0 AssignBuilder 3\n332 0 AssignBuilder 4\n410 0 AssignBuilder 0\n438 0 AssignBuilder 1\n466 0 AssignBuilder 2\n495 0 AssignBuilder 3\n524 0 AssignBuilder 4\n802 0 AssignBuilder 0\n830 0 AssignBuilder 1\n858 0 AssignBuilder 2\n889 0 AssignBuilder 3\n919 0 AssignBuilder 4\n",
+      "input_sha256": "ea1b6ddc404d25e4045171e41cebf099315d98c9c689135d5971bd714cc0cab0",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 5,
+        "lemming_count": 5,
+        "required": 4,
+        "rescued": 5,
+        "target_percent": 80,
+        "rescued_percent": 100
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-06",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 5,
+        "lemming_count": 3,
+        "required": 4,
+        "rescued": 0,
+        "target_percent": 80,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-07",
+      "phase": "Won",
+      "steps": 2529,
+      "input_text": "84 0 AssignBlocker 0\n151 0 AssignBuilder 1\n299 0 AssignBuilder 3\n447 0 AssignBuilder 5\n600 0 AssignBuilder 7\n702 0 AssignBuilder 8\n849 0 AssignBuilder 10\n992 0 AssignDigger 12\n1022 0 AssignBlocker 13\n1217 0 AssignBuilder 18\n1393 0 AssignBuilder 21\n1604 0 SetReleaseRate 99\n2375 0 Nuke\n",
+      "input_sha256": "275c82cd6b6e4482152c2f96c67576734bab44553fe1f34dbc09e0c3ca04a130",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 75,
+        "lemming_count": 75,
+        "required": 55,
+        "rescued": 63,
+        "target_percent": 73,
+        "rescued_percent": 84
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-07",
+      "phase": "Lost",
+      "steps": 153,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 75,
+        "lemming_count": 2,
+        "required": 55,
+        "rescued": 0,
+        "target_percent": 73,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-08",
+      "phase": "Won",
+      "steps": 3800,
+      "input_text": "226 0 AssignBuilder 0\n555 0 AssignBuilder 5\n696 0 SetReleaseRate 86\n748 0 AssignBuilder 5\n1151 0 AssignBlocker 15\n1188 0 AssignBuilder 16\n1267 0 AssignBlocker 18\n1366 0 AssignBlocker 16\n1935 0 AssignBuilder 79\n2398 0 AssignBlocker 79\n2894 0 AssignBuilder 20\n3089 0 AssignBuilder 20\n3368 0 AssignBlocker 20\n3473 0 AssignBuilder 5\n3606 0 AssignBlocker 78\n3640 0 Nuke\n",
+      "input_sha256": "6271a7fe55747683756df330d35bb47451e2306d6b46514e94888c8f013fb1ce",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 48,
+        "rescued": 58,
+        "target_percent": 60,
+        "rescued_percent": 72
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-08",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 48,
+        "rescued": 0,
+        "target_percent": 60,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-09",
+      "phase": "Won",
+      "steps": 3383,
+      "input_text": "382 0 AssignBuilder 0\n564 0 AssignBuilder 9\n810 0 AssignBuilder 17\n1105 0 AssignBuilder 3\n1266 0 AssignMiner 32\n1406 0 AssignBlocker 25\n1433 0 AssignBasher 31\n1710 0 AssignBuilder 26\n1833 0 AssignBuilder 41\n1883 0 AssignMiner 54\n2298 0 AssignBuilder 48\n2375 0 AssignBuilder 49\n3230 0 Nuke\n",
+      "input_sha256": "05c90180473176a70bc7bb754797f21219a96764030c1effe690f3e163881eb1",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 75,
+        "lemming_count": 75,
+        "required": 70,
+        "rescued": 72,
+        "target_percent": 93,
+        "rescued_percent": 96
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-09",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 75,
+        "lemming_count": 3,
+        "required": 70,
+        "rescued": 0,
+        "target_percent": 93,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-10",
+      "phase": "Won",
+      "steps": 2295,
+      "input_text": "111 0 AssignBasher 0\n123 0 AssignBlocker 1\n213 0 AssignBasher 2\n317 0 AssignBlocker 3\n413 0 AssignBlocker 8\n440 0 AssignBuilder 7\n488 0 AssignBlocker 10\n539 0 AssignBuilder 9\n593 0 AssignBasher 16\n693 0 AssignBuilder 19\n758 0 AssignBasher 22\n884 0 AssignBuilder 25\n902 0 AssignBuilder 27\n1092 0 AssignBuilder 33\n1099 0 AssignMiner 36\n1135 0 AssignBuilder 35\n1288 0 AssignMiner 42\n1326 0 AssignBuilder 41\n1352 0 AssignBuilder 47\n1464 0 AssignBuilder 13\n1472 0 SetReleaseRate 99\n2141 0 Nuke\n",
+      "input_sha256": "7401478940ddbdb46a3a9c30fc9edfa96ca807d70994bc55710859fdcd16e1bd",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 74,
+        "rescued": 74,
+        "target_percent": 92,
+        "rescued_percent": 92
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-10",
+      "phase": "Lost",
+      "steps": 273,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 74,
+        "rescued": 0,
+        "target_percent": 92,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-11",
+      "phase": "Won",
+      "steps": 2763,
+      "input_text": "327 0 AssignBlocker 0\n327 1 AssignFloater 3\n327 2 AssignFloater 4\n416 0 AssignBuilder 1\n483 0 AssignBuilder 2\n581 0 AssignFloater 12\n608 0 AssignBuilder 1\n624 0 AssignFloater 13\n667 0 AssignFloater 14\n675 0 AssignBuilder 2\n710 0 AssignFloater 15\n800 0 AssignBuilder 1\n867 0 AssignBuilder 2\n992 0 AssignBuilder 1\n1054 0 AssignFloater 23\n1059 0 AssignBuilder 2\n1097 0 AssignFloater 24\n1140 0 AssignFloater 25\n1183 0 AssignFloater 26\n1184 0 AssignBuilder 1\n1251 0 AssignBuilder 2\n1376 0 AssignBuilder 1\n1443 0 AssignBuilder 2\n1568 0 AssignBuilder 1\n1635 0 AssignBuilder 2\n1760 0 AssignBuilder 1\n1808 0 AssignBasher 1\n1925 0 AssignBasher 1\n2024 0 SetReleaseRate 99\n2603 0 Nuke\n",
+      "input_sha256": "178b3802291f52f2dd228febf048d312f04e6e6a7ae0706120319b3f24906025",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 42,
+        "rescued": 47,
+        "target_percent": 84,
+        "rescued_percent": 94
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-11",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 2,
+        "required": 42,
+        "rescued": 0,
+        "target_percent": 84,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-12",
+      "phase": "Won",
+      "steps": 1931,
+      "input_text": "54 0 AssignClimber 0\n54 1 AssignFloater 0\n107 0 AssignFloater 1\n140 0 AssignBlocker 1\n160 0 AssignFloater 2\n213 0 AssignFloater 3\n266 0 AssignFloater 4\n319 0 AssignFloater 5\n372 0 AssignFloater 6\n379 0 AssignDigger 0\n425 0 AssignFloater 7\n478 0 AssignFloater 8\n531 0 AssignFloater 9\n584 0 AssignFloater 10\n637 0 AssignFloater 11\n690 0 AssignFloater 12\n743 0 AssignFloater 13\n796 0 AssignFloater 14\n828 0 AssignBasher 0\n849 0 AssignFloater 15\n867 0 AssignBuilder 0\n902 0 AssignFloater 16\n955 0 AssignFloater 17\n1008 0 AssignFloater 18\n1059 0 AssignBuilder 0\n1061 0 AssignFloater 19\n1114 0 AssignFloater 20\n1167 0 AssignFloater 21\n1187 0 AssignDigger 0\n1220 0 AssignFloater 22\n1249 0 AssignClimber 1\n1249 1 AssignFloater 1\n1249 2 AssignClimber 2\n1249 3 AssignFloater 2\n1249 4 AssignClimber 3\n1249 5 AssignFloater 3\n1249 6 AssignClimber 4\n1249 7 AssignFloater 4\n1249 8 AssignClimber 5\n1249 9 AssignFloater 5\n1249 10 AssignClimber 6\n1249 11 AssignFloater 6\n1249 12 AssignClimber 7\n1249 13 AssignFloater 7\n1249 14 AssignClimber 8\n1249 15 AssignFloater 8\n1249 16 AssignClimber 9\n1249 17 AssignFloater 9\n1249 18 AssignClimber 10\n1249 19 AssignFloater 10\n1249 20 AssignClimber 11\n1249 21 AssignFloater 11\n1249 22 AssignClimber 12\n1249 23 AssignFloater 12\n1249 24 AssignClimber 13\n1249 25 AssignFloater 13\n1249 26 AssignClimber 14\n1249 27 AssignFloater 14\n1249 28 AssignClimber 15\n1249 29 AssignFloater 15\n1249 30 AssignClimber 16\n1249 31 AssignFloater 16\n1249 32 AssignClimber 17\n1249 33 AssignFloater 17\n1249 34 AssignClimber 18\n1249 35 AssignFloater 18\n1249 36 AssignClimber 19\n1249 37 AssignFloater 19\n1249 38 AssignClimber 20\n1249 39 AssignFloater 20\n1249 40 AssignClimber 21\n1249 41 AssignFloater 21\n1249 42 AssignClimber 22\n1249 43 AssignFloater 22\n1253 0 AssignDigger 22\n1262 0 AssignBuilder 22\n1262 1 SetReleaseRate 99\n1273 0 AssignClimber 23\n1273 1 AssignFloater 23\n1277 0 AssignClimber 24\n1277 1 AssignFloater 24\n1281 0 AssignClimber 25\n1281 1 AssignFloater 25\n1285 0 AssignClimber 26\n1285 1 AssignFloater 26\n1289 0 AssignClimber 27\n1289 1 AssignFloater 27\n1293 0 AssignClimber 28\n1293 1 AssignFloater 28\n1297 0 AssignClimber 29\n1297 1 AssignFloater 29\n1301 0 AssignClimber 30\n1301 1 AssignFloater 30\n1305 0 AssignClimber 31\n1305 1 AssignFloater 31\n1309 0 AssignClimber 32\n1309 1 AssignFloater 32\n1313 0 AssignClimber 33\n1313 1 AssignFloater 33\n1317 0 AssignClimber 34\n1317 1 AssignFloater 34\n1321 0 AssignClimber 35\n1321 1 AssignFloater 35\n1325 0 AssignClimber 36\n1325 1 AssignFloater 36\n1329 0 AssignClimber 37\n1329 1 AssignFloater 37\n1333 0 AssignClimber 38\n1333 1 AssignFloater 38\n1337 0 AssignClimber 39\n1337 1 AssignFloater 39\n1341 0 AssignClimber 40\n1341 1 AssignFloater 40\n1345 0 AssignClimber 41\n1345 1 AssignFloater 41\n1349 0 AssignClimber 42\n1349 1 AssignFloater 42\n1353 0 AssignClimber 43\n1353 1 AssignFloater 43\n1357 0 AssignClimber 44\n1357 1 AssignFloater 44\n1361 0 AssignClimber 45\n1361 1 AssignFloater 45\n1365 0 AssignClimber 46\n1365 1 AssignFloater 46\n1369 0 AssignClimber 47\n1369 1 AssignFloater 47\n1373 0 AssignClimber 48\n1373 1 AssignFloater 48\n1377 0 AssignClimber 49\n1377 1 AssignFloater 49\n1778 0 Nuke\n",
+      "input_sha256": "a814eb26935330820517e52d139cccd303a9a5c561d79ba02c1ce7e21948a71d",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 40,
+        "rescued": 49,
+        "target_percent": 80,
+        "rescued_percent": 98
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-12",
+      "phase": "Lost",
+      "steps": 149,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 2,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 80,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-13",
+      "phase": "Won",
+      "steps": 2829,
+      "input_text": "72 0 AssignBuilder 0\n244 0 AssignDigger 0\n469 0 AssignBuilder 0\n505 0 AssignBuilder 0\n721 0 AssignBuilder 0\n1011 0 AssignBuilder 0\n1032 0 AssignBlocker 15\n1140 0 AssignBuilder 16\n1214 0 AssignBuilder 0\n1325 0 AssignBuilder 0\n1343 0 AssignBuilder 19\n1414 0 AssignBuilder 0\n1513 0 AssignBuilder 0\n1622 0 AssignBuilder 0\n1741 0 AssignBuilder 0\n1984 0 AssignBuilder 28\n2176 0 SetReleaseRate 99\n2676 0 Nuke\n",
+      "input_sha256": "cc420a3a0282db214f4774b012306b779764a0f22fb000108ad1527ce81d6c40",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 56,
+        "rescued": 62,
+        "target_percent": 70,
+        "rescued_percent": 77
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-13",
+      "phase": "Lost",
+      "steps": 176,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 56,
+        "rescued": 0,
+        "target_percent": 70,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-14",
+      "phase": "Won",
+      "steps": 3823,
+      "input_text": "96 0 AssignBlocker 1\n178 0 AssignBasher 0\n274 0 AssignBasher 2\n720 0 AssignBasher 9\n798 0 AssignBasher 11\n873 0 AssignBasher 13\n934 0 AssignBuilder 14\n979 0 AssignBlocker 3\n1128 0 AssignMiner 6\n1156 0 AssignBuilder 20\n1285 0 AssignBuilder 26\n1367 0 AssignMiner 29\n1407 0 AssignBuilder 28\n1509 0 AssignBuilder 34\n1563 0 AssignMiner 36\n1632 0 AssignBuilder 35\n1788 0 AssignBuilder 44\n1939 0 AssignBuilder 45\n1986 0 AssignBlocker 46\n2097 0 AssignBuilder 47\n2185 0 AssignBasher 48\n2303 0 AssignBuilder 18\n2521 0 AssignBuilder 25\n2753 0 AssignBuilder 55\n2905 0 AssignBlocker 57\n2971 0 AssignBasher 70\n2991 0 AssignBuilder 50\n3667 0 Nuke\n",
+      "input_sha256": "4c819ac20ac2efea87fae1dc96b750ad174add09a92a4eeababc1e0768cc032b",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 70,
+        "rescued": 71,
+        "target_percent": 87,
+        "rescued_percent": 88
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-14",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 70,
+        "rescued": 0,
+        "target_percent": 87,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-15",
+      "phase": "Won",
+      "steps": 484,
+      "input_text": "60 0 AssignBomber 0\n88 0 AssignBomber 1\n116 0 AssignBomber 2\n144 0 AssignBomber 3\n",
+      "input_sha256": "e4f4679765fd6b972498434d3716127c733f6bb96c1a3b3efa0bc1d21fbe33a8",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 10,
+        "lemming_count": 10,
+        "required": 6,
+        "rescued": 6,
+        "target_percent": 60,
+        "rescued_percent": 60
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-15",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 10,
+        "lemming_count": 3,
+        "required": 6,
+        "rescued": 0,
+        "target_percent": 60,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-16",
+      "phase": "Won",
+      "steps": 2236,
+      "input_text": "93 0 AssignBomber 0\n107 0 SetReleaseRate 99\n117 0 SetReleaseRate 76\n132 0 AssignBomber 2\n231 0 AssignBomber 4\n261 0 AssignBomber 6\n297 0 AssignBomber 8\n412 0 AssignMiner 10\n745 0 AssignBomber 32\n1019 0 AssignBomber 33\n1479 0 AssignBomber 16\n1516 0 AssignBomber 17\n1550 0 AssignBomber 18\n",
+      "input_sha256": "8ce925ee8dd9f3404e00b97e3461433ff1b886dd3a3768f550bec8f182e0a8d1",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 40,
+        "rescued": 40,
+        "target_percent": 80,
+        "rescued_percent": 80
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-16",
+      "phase": "Lost",
+      "steps": 277,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 5,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 80,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-17",
+      "phase": "Won",
+      "steps": 1694,
+      "input_text": "74 0 AssignBomber 0\n210 0 AssignBomber 1\n",
+      "input_sha256": "13442ce7ff26436a0a4f5cc59b7e2206284793d7a68d24597e8d1ba091ae313c",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 48,
+        "rescued": 48,
+        "target_percent": 96,
+        "rescued_percent": 96
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-17",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 3,
+        "required": 48,
+        "rescued": 0,
+        "target_percent": 96,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-18",
+      "phase": "Won",
+      "steps": 595,
+      "input_text": "82 0 AssignFloater 1\n171 0 AssignDigger 0\n268 0 AssignBomber 0\n",
+      "input_sha256": "f1df7b27c42a2c125dcb238fb4ce8322a55f0ba765c273390b8440ecb19a991d",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 10,
+        "lemming_count": 10,
+        "required": 9,
+        "rescued": 9,
+        "target_percent": 90,
+        "rescued_percent": 90
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-18",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 10,
+        "lemming_count": 3,
+        "required": 9,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-19",
+      "phase": "Won",
+      "steps": 2983,
+      "input_text": "249 0 AssignBasher 0\n249 1 AssignClimber 0\n249 2 AssignFloater 0\n1202 0 AssignDigger 0\n1259 0 AssignBuilder 0\n1341 0 AssignMiner 0\n",
+      "input_sha256": "c819b09069dffc267da239a407a0173007bd82e863962f5e1f2b90ba01538628",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 50,
+        "rescued": 50,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-19",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 3,
+        "required": 50,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-20",
+      "phase": "Won",
+      "steps": 1924,
+      "input_text": "202 0 AssignBasher 0\n361 0 AssignClimber 2\n361 1 AssignFloater 2\n384 0 AssignClimber 3\n384 1 AssignFloater 3\n406 0 AssignBlocker 1\n654 0 AssignBlocker 2\n705 0 AssignBasher 3\n870 0 AssignBomber 2\n870 1 SetReleaseRate 99\n1770 0 Nuke\n",
+      "input_sha256": "c0bcc1e55e377b2289c2ccfca0107c28dad85c7a1f5652a6c210a9d8fba21516",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 76,
+        "rescued": 77,
+        "target_percent": 95,
+        "rescued_percent": 96
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-20",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 76,
+        "rescued": 0,
+        "target_percent": 95,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-21",
+      "phase": "Won",
+      "steps": 1888,
+      "input_text": "66 0 AssignBuilder 0\n86 0 AssignBlocker 1\n210 0 AssignBasher 0\n313 0 AssignBuilder 0\n505 0 AssignBuilder 0\n585 0 AssignBasher 0\n751 0 AssignBasher 0\n822 0 AssignBasher 0\n827 0 AssignBuilder 0\n1003 0 AssignBasher 0\n1013 0 AssignBuilder 0\n1029 0 AssignBasher 0\n1257 0 AssignBasher 0\n1374 0 AssignDigger 18\n1383 0 AssignBuilder 18\n1383 1 SetReleaseRate 99\n1733 0 Nuke\n",
+      "input_sha256": "2bf896e3efc143e48e8d61871d900176c9c88a6ee90db348bb5587e8587feda4",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 66,
+        "lemming_count": 66,
+        "required": 44,
+        "rescued": 65,
+        "target_percent": 66,
+        "rescued_percent": 98
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-21",
+      "phase": "Lost",
+      "steps": 276,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 66,
+        "lemming_count": 4,
+        "required": 44,
+        "rescued": 0,
+        "target_percent": 66,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-22",
+      "phase": "Won",
+      "steps": 1227,
+      "input_text": "187 0 AssignBomber 0\n196 0 AssignBomber 1\n294 0 AssignBuilder 2\n1169 0 Nuke\n",
+      "input_sha256": "0f2df25c43742de83b29bc3ea7bc0cdad9c19d022de6a988af050ce80bb33f6b",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 72,
+        "rescued": 78,
+        "target_percent": 90,
+        "rescued_percent": 97
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-22",
+      "phase": "Lost",
+      "steps": 280,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 8,
+        "required": 72,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-23",
+      "phase": "Won",
+      "steps": 885,
+      "input_text": "178 0 AssignBasher 0\n183 0 AssignClimber 32\n186 0 AssignClimber 33\n242 0 AssignClimber 47\n247 0 AssignClimber 48\n302 0 AssignClimber 62\n307 0 AssignClimber 63\n366 0 AssignClimber 77\n369 0 AssignClimber 78\n374 0 AssignBuilder 31\n538 0 AssignClimber 66\n581 0 AssignBasher 76\n590 0 AssignMiner 66\n732 0 Nuke\n",
+      "input_sha256": "e4c88c915045e1c3ce75bcc6a9f883d19fc51b7e93979b10dab1b7e732132f1e",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 48,
+        "rescued": 50,
+        "target_percent": 60,
+        "rescued_percent": 62
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-23",
+      "phase": "Lost",
+      "steps": 289,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 17,
+        "required": 48,
+        "rescued": 0,
+        "target_percent": 60,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-24",
+      "phase": "Won",
+      "steps": 2033,
+      "input_text": "66 0 AssignBlocker 0\n557 0 AssignBuilder 1\n567 0 AssignBlocker 3\n749 0 AssignBuilder 1\n756 0 AssignBuilder 22\n1879 0 Nuke\n",
+      "input_sha256": "c955ce26d3fd94c43fdb05f216df4a73cf0d3d09fd5dc75543b1977bbd551d92",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 75,
+        "rescued": 77,
+        "target_percent": 93,
+        "rescued_percent": 96
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-24",
+      "phase": "Lost",
+      "steps": 279,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 7,
+        "required": 75,
+        "rescued": 0,
+        "target_percent": 93,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-25",
+      "phase": "Won",
+      "steps": 1221,
+      "input_text": "54 0 AssignFloater 0\n58 0 AssignFloater 1\n342 0 AssignFloater 72\n346 0 AssignFloater 73\n350 0 AssignFloater 74\n354 0 AssignFloater 75\n358 0 AssignFloater 76\n362 0 AssignFloater 77\n366 0 AssignFloater 78\n370 0 AssignFloater 79\n513 0 AssignDigger 0\n543 0 AssignBuilder 1\n602 0 AssignBuilder 0\n729 0 AssignMiner 1\n816 0 AssignBuilder 1\n834 0 AssignBasher 0\n939 0 AssignBuilder 0\n",
+      "input_sha256": "e97186c6da77553341a24ebc88379fc49d21494f82ef300aef4149acbedf2a9b",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 10,
+        "rescued": 10,
+        "target_percent": 12,
+        "rescued_percent": 12
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-25",
+      "phase": "Lost",
+      "steps": 289,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 17,
+        "required": 10,
+        "rescued": 0,
+        "target_percent": 12,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-26",
+      "phase": "Won",
+      "steps": 712,
+      "input_text": "64 0 AssignBlocker 0\n127 0 AssignBasher 1\n372 0 AssignDigger 76\n381 0 AssignBuilder 76\n",
+      "input_sha256": "4eee8596ca99880b7177f74ddb8a87063e0973c1d0d9f677a4236aac7f3d25a1",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 80,
+        "rescued": 80,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-26",
+      "phase": "Lost",
+      "steps": 289,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 17,
+        "required": 80,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-27",
+      "phase": "Won",
+      "steps": 4358,
+      "input_text": "77 0 AssignDigger 0\n323 0 AssignBomber 11\n424 0 AssignBasher 10\n601 0 AssignBlocker 16\n666 0 AssignBasher 7\n937 0 AssignBlocker 29\n2036 0 AssignBuilder 28\n2141 0 AssignBomber 75\n2528 0 AssignBlocker 22\n2658 0 AssignBuilder 79\n2883 0 AssignBuilder 54\n3514 0 AssignBuilder 65\n4204 0 Nuke\n",
+      "input_sha256": "e42ff9c22f20c69a32ab429c21e83c7ec39773808b1e113b4917c6a938854a0f",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 72,
+        "rescued": 73,
+        "target_percent": 90,
+        "rescued_percent": 91
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-27",
+      "phase": "Lost",
+      "steps": 259,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 72,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-28",
+      "phase": "Won",
+      "steps": 1714,
+      "input_text": "342 0 AssignBuilder 0\n534 0 AssignBuilder 0\n708 0 AssignBlocker 1\n726 0 AssignBuilder 0\n774 0 AssignBasher 0\n791 0 AssignBasher 0\n932 0 AssignDigger 0\n1061 0 AssignBasher 0\n1061 1 SetReleaseRate 99\n1561 0 Nuke\n",
+      "input_sha256": "cacaadb91de006ca44e497505c0aa136da856520ca28917d90cb33e2adc4f52c",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 72,
+        "rescued": 79,
+        "target_percent": 90,
+        "rescued_percent": 98
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-28",
+      "phase": "Lost",
+      "steps": 276,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 4,
+        "required": 72,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-29",
+      "phase": "Won",
+      "steps": 2434,
+      "input_text": "244 0 AssignDigger 2\n428 0 AssignMiner 1\n454 0 AssignBuilder 1\n585 0 AssignDigger 0\n597 0 AssignDigger 5\n710 0 AssignDigger 10\n745 0 AssignMiner 10\n875 0 AssignMiner 10\n980 0 AssignMiner 16\n1034 0 AssignBuilder 16\n1103 0 AssignMiner 10\n1157 0 AssignBuilder 10\n",
+      "input_sha256": "d13128f737b6265bb66ec74248fa4b068ab26e8337493789b8ffe96310b5aef7",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 79,
+        "rescued": 80,
+        "target_percent": 98,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-29",
+      "phase": "Lost",
+      "steps": 276,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 4,
+        "required": 79,
+        "rescued": 0,
+        "target_percent": 98,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-30",
+      "phase": "Won",
+      "steps": 3710,
+      "input_text": "159 0 AssignMiner 0\n163 0 AssignMiner 1\n207 0 AssignBuilder 2\n454 0 AssignBuilder 6\n653 0 AssignBuilder 10\n852 0 AssignBuilder 14\n862 0 AssignBlocker 3\n871 0 AssignBlocker 11\n1076 0 AssignBuilder 4\n1089 0 AssignBomber 9\n1096 0 AssignBomber 18\n1505 0 AssignMiner 19\n1525 0 AssignMiner 22\n1540 0 AssignBuilder 7\n1800 0 AssignBuilder 31\n1998 0 AssignBuilder 35\n2197 0 AssignBuilder 39\n2211 0 AssignBlocker 36\n2407 0 AssignBlocker 47\n2522 0 AssignBuilder 46\n2538 0 AssignBomber 52\n2655 0 AssignBomber 41\n2837 0 SetReleaseRate 99\n2957 0 AssignMiner 49\n",
+      "input_sha256": "d0b9a0fe557ad78dfc9a87ef0d3b0c34d0713a325e2c3d32ff64fcbd2fe03ab2",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 72,
+        "rescued": 76,
+        "target_percent": 90,
+        "rescued_percent": 95
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    },
+    {
+      "id": "tricky-30",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 72,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes recorded in issue98"
+    }
+  ]
+}

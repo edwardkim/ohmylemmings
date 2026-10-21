@@ -85,3 +85,5 @@
 - [#94 튜토리얼7개 해법 진행](issue-94_solution_replay.md)
 
 - [#96 Fun08~30 완주 검증 진행](issue-96_fun_solutions.md)
+
+- [#98 Tricky01~30 완주 검증](issue-98_tricky_solutions.md)
