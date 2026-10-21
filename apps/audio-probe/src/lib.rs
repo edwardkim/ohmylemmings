@@ -1,4 +1,6 @@
-//! Verification adapter only: library PCM versus independent direct OPL delivery.
+mod performance;
+pub use performance::PerformancePcm;
+// Verification adapter: PCM, independent delivery and performance observations.
 mod game_sound;
 pub use game_sound::trace as game_sound_trace;
 use lemmings_audio::{AdlibPcm, AudioRate, MAX_PCM_FRAMES};

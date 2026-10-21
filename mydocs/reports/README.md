@@ -92,3 +92,5 @@
 - [#102 Mayhem01~30 해법·반복·재시작 검증](issue-102_mayhem_solutions.md)
 
 - [#104 COMP-01~18 증거 재감사](issue-104_comp_reaudit.md)
+
+- [#106 G11-06 성능 기준](issue-106_performance.md): 로딩/틱/렌더/PCM380행·실제 SDL/Web60초×3·CI 분석, SDL 표시 주기 #107 후속.

@@ -23,6 +23,7 @@ check-wasm:
 	cargo build --workspace --lib --target wasm32-unknown-unknown --locked --offline
 
 check-desktop:
+	cargo test -p lemmings-game --example performance_probe --locked --offline
 	cargo build -p lemmings-desktop --release --locked --offline
 	python3 tools/check_desktop.py --binary target/release/lemmings-desktop
 	python3 tools/check_digger.py --binary target/release/lemmings-desktop
@@ -42,6 +43,7 @@ check-desktop:
 	python3 tools/check_panel.py --binary target/release/lemmings-desktop
 	python3 tools/check_pointer.py --binary target/release/lemmings-desktop
 	python3 tools/check_audio_output.py --binary target/release/lemmings-desktop
+	python3 tools/performance.py --smoke
 
 web:
 	python3 tools/web_build.py build

@@ -137,6 +137,17 @@ impl AudioService {
         }
         false
     }
+    /// Opt-in measurement reads the real device queue before service/refill.
+    pub fn performance_state(&self) -> Option<(i32, u16, u32, bool)> {
+        self.queue.as_ref().map(|q| {
+            (
+                q.spec().freq,
+                q.spec().samples,
+                q.size() / 2,
+                q.status() == sdl2::audio::AudioStatus::Playing,
+            )
+        })
+    }
     pub fn service(&mut self, game: &mut LevelRun, visible: bool) {
         let batch = game.sound.drain();
         let active = self.enabled && visible && game.session.result().is_none();
