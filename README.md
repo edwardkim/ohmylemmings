@@ -1,5 +1,7 @@
 # Rusty Lemmings
 
+2026-10-22 개발 상태: G00~G10 완료, G11 진행 중입니다. [전체 증거 검토 #110](mydocs/reports/issue-110_g11_closure.md)에서 기능 호환성·Native 표시 보정 결과를 확인했으며, Web 표시 마감/메모리 보완 [#111](https://github.com/edwardkim/ohmylemmings/issues/111) 이후 G11 마감과 G12 배포를 검토합니다.
+
 [![CI](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml/badge.svg)](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml)
 
 고전 DOS 게임 레밍즈(Lemmings)의 데이터와 게임 동작을 Rust로 재현하는 프로젝트입니다. 렌더링·입출력과 분리된 코어 엔진을 만들고, SDL2 기반 데스크톱 환경과 WebAssembly 기반 웹 환경을 지원하는 것이 목표입니다.

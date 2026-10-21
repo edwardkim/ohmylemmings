@@ -31,8 +31,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 2740,
-      "sha256": "f84e9ef0030e817112e5d7a01ba31f6d8d1ab657a7916cb1e7e240dababe2703"
+      "bytes": 2769,
+      "sha256": "4e835aa3b850a1356896ea04aa6cc23fa46e4f0f702aee71db61c5fa282ca60d"
     },
     {
       "path": "apps/audio-probe/Cargo.toml",
@@ -1753,6 +1753,16 @@
       "path": "apps/desktop/src/frame_clock.rs",
       "bytes": 4752,
       "sha256": "1c3db05122cd596c243f9b8403b623813fc5880722c2db75454cb09a69f326e4"
+    },
+    {
+      "path": "tools/g11_review.py",
+      "bytes": 6847,
+      "sha256": "fbb030f94cf20641ef87a15e532d6960628d55683cf4ea456b2592cda259ef7f"
+    },
+    {
+      "path": "tools/tests/test_g11_review.py",
+      "bytes": 2403,
+      "sha256": "9468d6ba7d6c9c6a60f66e3e5ae50bed43ccbe1d91e3a12a778655770c371a17"
     }
   ],
   "evidence": [
@@ -4303,5 +4313,21 @@
         "name": "hide_restore_and_new_level_rebase_only_the_presentation_epoch"
       }
     ]
+  },
+  "source_impact_110": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/110",
+    "baseline_main": "2de60fd144ee664979f5e824993f4e1c9c3b2abd",
+    "previous_pins": [
+      {
+        "path": "Makefile",
+        "bytes": 2740,
+        "sha256": "f84e9ef0030e817112e5d7a01ba31f6d8d1ab657a7916cb1e7e240dababe2703"
+      }
+    ],
+    "added": [
+      "tools/g11_review.py",
+      "tools/tests/test_g11_review.py"
+    ],
+    "scope": "Review/statistics/CI only. No simulation, resource, renderer, audio or host code change; historical play/CI observations remain historical. G11 and G12 are not ready; unresolved Web evidence is tracked in #111."
   }
 }

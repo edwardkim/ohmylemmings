@@ -97,3 +97,5 @@
 - [#106 로딩·틱·렌더·오디오 성능 측정](issue-106_performance.md)
 
 - [#107 SDL 표시 주기 보정](issue-107_render_cadence.md): 절대60Hz·지연/복귀 테스트와 실제60초3쌍 비교.
+
+- [#110 G11 전체 결과·잔여 제약 검토](issue-110_g11_closure.md): 전수/COMP·성능 증거와 마감 조건 대조.
