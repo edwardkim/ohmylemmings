@@ -111,3 +111,5 @@ ADLIB 명령/레지스터 스트림의 합성877호출과 원본 드라이버 �
 [#91 초기 전수 재생](../mydocs/tech_insights/issue-91_initial_replay.md)의 소스/창작 증거와 실행 계약은 [initial_replay.json](manifests/initial_replay.json), 원본120개 최종 판정·레벨별 해시·CI는 [GitHub #91](https://github.com/edwardkim/ohmylemmings/issues/91)에서 추적합니다. 원본 파생 실행은 ignored assets/local에 보존합니다.
 
 [#94 해법 검증](../mydocs/tech_insights/issue-94_solution_replay.md)과 [solution_replay.json](manifests/solution_replay.json)은 직접 작성한 Fun01~07 입력14개·해시와 재현 계약입니다. 원본 없는 `python3 tools/solution_replay.py --smoke`를 CI에 포함합니다. 원본 실행/맵/이미지는 ignored 경로에 두고 최종 호스트 판정·CI는 GitHub #94에 기록합니다.
+
+- [#104 COMP 재감사 색인](manifests/compatibility_audit.json)과 [실제 기준 경계 재실행](manifests/compatibility_boundaries.json): 70개 세부 요구·현재 소스·초기120개/성공·실패240사례의 저장 증거입니다. `python3 tools/compatibility_audit.py`는 원본 없이 무결성과 집계를 확인하며 `--local`은 ignored 증거도 요구합니다. 게임/DOS 새 실행이나 성능 측정의 대체물이 아니며 fetch 입력이 아닙니다.

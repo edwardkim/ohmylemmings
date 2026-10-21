@@ -2,6 +2,12 @@
 
 이슈: [#85](https://github.com/edwardkim/ohmylemmings/issues/85) · [계획](../plans/issue-85_compatibility_validation.md) · [기계 판독 목록](../../assets/manifests/compatibility_plan.json).
 
+## 현재 실행 결과 / #104
+
+아래 표와 #85 manifest는 당시 계획을 보존한 기록이다. 이후 #87/#89에서 난이도·특수 장면을 연결했고 #91에서120개 초기 실행, #94/#96/#98/#100/#102에서120개 성공·실패·Restart의 양 플랫폼 반복을 검증했다. 현재 요구별 소스/테스트/증거 연결과 범위 판정은 [#104 재감사](../reports/issue-104_comp_reaudit.md)와 [별도 감사 manifest](../../assets/manifests/compatibility_audit.json)를 따른다. 성능과 G11 전체/G12는 후속이다.
+
+## #85 계획 수립 시점의 표
+
 기준 main `7b64dad34d90fa27249b9d76a6339dd1faed3aa2`와 [기준 목록](../../assets/manifests/dos_compatibility.json)을 대조했다. 이 표는 현재 실행 결과가 아닌 소스 지원 범위와 기존 증거의 색인이다.
 
 120개 모두 [지형](../../assets/manifests/level_terrain.json)·[객체](../../assets/manifests/level_objects.json)의 기존 정적 대조 대상이다. 동적 객체·직업·승패·플랫폼 실행의 전수 통과를 뜻하지 않는다. `범위 내` 29개도 실행 통과가 아니다. `난이도`는 Fun 외 선택/ID 연결 미구현 90개, `특수`는 공통 장면 거부 4개이며 3개가 중복되어 차단된 진입점은 91개다.

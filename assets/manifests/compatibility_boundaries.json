@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/104",
+  "baseline_main": "64dc383ad5da11eb9576aab7d2a3fe8391ee1e7f",
+  "scope": "Fresh actual pinned reference execution and SDL synthetic boundaries; not new DOS observations",
+  "runs": [
+    {
+      "name": "interactions",
+      "summary": {
+        "status": "PASS",
+        "matrix_cases": 2640,
+        "cases": 14,
+        "replays": 28,
+        "snapshots": 11788,
+        "pixel_exact_captures": 1400,
+        "matrix_sha256": "024682b7ffa11fcc00eff079464780e13d70d7e2b8806ba0cc1e3c57244dde78",
+        "reference_executed": true,
+        "scope": "single stable-ID assignments and mixed synthetic job/terrain/object/timer replay; not full DOS"
+      },
+      "provenance": {
+        "path": "assets/local/issue-104-review/interactions-reference/reference.provenance.json",
+        "bytes": 7564,
+        "sha256": "fc890717fc92a6497b46d23f8e21244fc9ca14d5581ca1e17e1c346af99bd281"
+      },
+      "summary_file": {
+        "path": "assets/local/issue-104-review/interactions-check/summary.json",
+        "bytes": 359,
+        "sha256": "6f40637030ca8797c11125093f001dfdcf14bb038f9b1cf85f8e14ecd8557608"
+      },
+      "commands": [
+        [
+          "python3",
+          "tools/lemmix/build_interactions_reference.py",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/interactions-reference",
+          "--compiler",
+          "/usr/bin/ppcx64",
+          "--units",
+          "/usr/lib/fpc/3.2.2/units/x86_64-linux/rtl"
+        ],
+        [
+          "python3",
+          "tools/check_skill_interactions.py",
+          "--reference",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/interactions-reference/reference",
+          "--evidence",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/interactions-check"
+        ]
+      ]
+    },
+    {
+      "name": "exit",
+      "summary": {
+        "status": "PASS",
+        "cases": 9,
+        "replays": 18,
+        "snapshots": 7578,
+        "pixel_exact_captures": 1770,
+        "reference_executed": true,
+        "scope": "exit/action ordering, Splat/Floating/Exiting, saved/removal counts, jobs/timers/Pause/Nuke; not whole DOS"
+      },
+      "provenance": {
+        "path": "assets/local/issue-104-review/exit-reference/reference.provenance.json",
+        "bytes": 7662,
+        "sha256": "1057d1c82c8fb3e3235f57c22c217b242b848ff65b95e3c72eefad7b7938e8c4"
+      },
+      "summary_file": {
+        "path": "assets/local/issue-104-review/exit-check/summary.json",
+        "bytes": 257,
+        "sha256": "c9b31610fb1f29d1ef3ea14d4f16b49b2b0792cac148a5d6817299eed3d1f130"
+      },
+      "commands": [
+        [
+          "python3",
+          "tools/lemmix/build_exit_reference.py",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/exit-reference",
+          "--compiler",
+          "/usr/bin/ppcx64",
+          "--units",
+          "/usr/lib/fpc/3.2.2/units/x86_64-linux/rtl"
+        ],
+        [
+          "python3",
+          "tools/check_exit.py",
+          "--reference",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/exit-reference/reference",
+          "--evidence",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/exit-check"
+        ]
+      ]
+    },
+    {
+      "name": "hazards",
+      "summary": {
+        "status": "PASS",
+        "cases": 14,
+        "replays": 28,
+        "snapshots": 11788,
+        "pixel_exact_captures": 1714,
+        "reference_executed": true,
+        "scope": "water/fire deaths, trap arbitration/reuse, jobs/timers/Pause/Nuke; not whole DOS"
+      },
+      "provenance": {
+        "path": "assets/local/issue-104-review/hazards-reference/reference.provenance.json",
+        "bytes": 8255,
+        "sha256": "7be9b3be6609e84c919f3ee3ddde0e57a33f56863e2b42a2cc0b229b066867b7"
+      },
+      "summary_file": {
+        "path": "assets/local/issue-104-review/hazards-check/summary.json",
+        "bytes": 234,
+        "sha256": "a8d07185a46eee0e309fb6f56396449e60f5411df632499420268168baf19617"
+      },
+      "commands": [
+        [
+          "python3",
+          "tools/lemmix/build_hazards_reference.py",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/hazards-reference",
+          "--compiler",
+          "/usr/bin/ppcx64",
+          "--units",
+          "/usr/lib/fpc/3.2.2/units/x86_64-linux/rtl"
+        ],
+        [
+          "python3",
+          "tools/check_hazards.py",
+          "--reference",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/hazards-reference/reference",
+          "--evidence",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/hazards-check"
+        ]
+      ]
+    },
+    {
+      "name": "completion",
+      "summary": {
+        "status": "PASS",
+        "cases": 11,
+        "replays": 22,
+        "snapshots": 6854,
+        "pixel_exact_captures": 526,
+        "reference_executed": true,
+        "scope": "time/percentages/results with DOS boundary adapter; not result screens or whole DOS"
+      },
+      "provenance": {
+        "path": "assets/local/issue-104-review/completion-reference/reference.provenance.json",
+        "bytes": 8823,
+        "sha256": "0e19e052e9ac6d40f0db3f9fdf912ebdb2f86b5cc1f9111d083fce8f2d96e236"
+      },
+      "summary_file": {
+        "path": "assets/local/issue-104-review/completion-check/summary.json",
+        "bytes": 235,
+        "sha256": "e732da78f6d2abf923e524571a2b56afb8d6b202a45bff8d1e1e6a1b48cb420c"
+      },
+      "commands": [
+        [
+          "python3",
+          "tools/lemmix/build_completion_reference.py",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/completion-reference",
+          "--compiler",
+          "/usr/bin/ppcx64",
+          "--units",
+          "/usr/lib/fpc/3.2.2/units/x86_64-linux/rtl"
+        ],
+        [
+          "python3",
+          "tools/check_completion.py",
+          "--reference",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/completion-reference/reference",
+          "--evidence",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/completion-check"
+        ]
+      ]
+    },
+    {
+      "name": "pointer",
+      "summary": {
+        "status": "PASS",
+        "reference_executed": true,
+        "adapter_sha256": {
+          "build_pointer_reference.py": "8d59845d51957c003b1459faa85f8e8be6d526db003ec419c0b1a582e866405c",
+          "pointer_probe.pas": "274280b2bf7d4304bdd010fa320f9e4f171c637eef9f999bf58ac42537ba5195",
+          "build_interactions_reference.py": "53faf496b55058a2429d449ea4a06f5ee4f5d58a326f437adfc60eeefc86627d",
+          "assignment_probe.pas": "e96f0d76d749986948b743eb3e745d98aebf444c702ea0aecbad78f1baae2c7c",
+          "build_nuke_reference.py": "08736fc4290c6e10bedade3bdc26e85977b0009cb16154d8185819888fdebc17",
+          "build_floater_reference.py": "f031fe8dfde1e4dbb787080c5c00027d5b62977bfdf9004aabf5dfb90dfec5bd",
+          "build_climber_reference.py": "c74e7336f2c330d409fc50a501c5ef7502bdf9bc8fb003f40b4ddf745a2070db",
+          "build_bomber_reference.py": "ae901a00df78b85cfcc160802da7a0ac75a2958e20d4388c2be05dc7dad89c14",
+          "build_blocker_reference.py": "130802f5c0ea3a566a55243620c3bf36c932f209e519bb518b391ad1c0f0d8bb",
+          "build_builder_reference.py": "eb0070c67518b432112d6cb6b73e84925949dfbe1c3a7aa33a03daa8e2df026d",
+          "build_miner_reference.py": "115e344bb9e9f9202ea8998b1a6c7a76be06b7adc6654fd011d17d9e4938fd91",
+          "build_basher_reference.py": "aa10744ce370a37e38d6c1a57a03d3a3311ca48f1241e69963bbe6eec788b622",
+          "build_digger_reference.py": "70e83e05310628c0be164398af3a02725f50b411458fe32b8b99c5beaf42d8bc",
+          "build_reference.py": "0448f50a3d4c5dd24918c12199000fa8a40e3ea0ac7ad164899dfdaa87c29ad1",
+          "harness.pas": "938571f2523d8055b4ba223e790934e2228d8f7a1ca7bf07c94319b559818f18",
+          "pointer_probe.rs": "49fcd9ca4d26f7c36020b807bfe26c952d87ec360f791d5e7d43acdd7024d346"
+        },
+        "probe_sha256": "1e3934d00794b303e4e61c591b258fa4a38af864f8923f9e1e0a068ac8183e1b",
+        "hit_cases": 44604,
+        "remote_cases": 2,
+        "fallback_cases": 3888,
+        "replay_scope": "selected-ID regression; independent reference comparison is the probe only",
+        "runs": [
+          {
+            "case": "fallback",
+            "render_every": 1,
+            "states": 341,
+            "sha256": "cee75c7ae256041026bd6e42a871f7f4452b9692afc86dce7e17b0f086a91144",
+            "captures": 51
+          },
+          {
+            "case": "fallback",
+            "render_every": 7,
+            "states": 341,
+            "sha256": "cee75c7ae256041026bd6e42a871f7f4452b9692afc86dce7e17b0f086a91144",
+            "captures": 51
+          },
+          {
+            "case": "remote",
+            "render_every": 1,
+            "states": 341,
+            "sha256": "05e3287cbdae35194ee28bbac943c2f8f42e5df91006fb47f9de01c164034859",
+            "captures": 38
+          },
+          {
+            "case": "remote",
+            "render_every": 7,
+            "states": 341,
+            "sha256": "05e3287cbdae35194ee28bbac943c2f8f42e5df91006fb47f9de01c164034859",
+            "captures": 38
+          },
+          {
+            "case": "trap_ghost",
+            "render_every": 1,
+            "states": 341,
+            "sha256": "bfb7088b8ddcb2b3f4a7cdb2f1f02ec4a99a5bc394f62ae504c97dcb60859cde",
+            "captures": 13
+          },
+          {
+            "case": "trap_ghost",
+            "render_every": 7,
+            "states": 341,
+            "sha256": "bfb7088b8ddcb2b3f4a7cdb2f1f02ec4a99a5bc394f62ae504c97dcb60859cde",
+            "captures": 13
+          },
+          {
+            "case": "pause_remote",
+            "render_every": 1,
+            "states": 341,
+            "sha256": "7c4b2d662a7d4b2eee7edac6c3702f3b236acb959b57455d1a39704483f8a25a",
+            "captures": 42
+          },
+          {
+            "case": "pause_remote",
+            "render_every": 7,
+            "states": 341,
+            "sha256": "7c4b2d662a7d4b2eee7edac6c3702f3b236acb959b57455d1a39704483f8a25a",
+            "captures": 42
+          }
+        ]
+      },
+      "provenance": {
+        "path": "assets/local/issue-104-review/pointer-reference/reference.provenance.json",
+        "bytes": 8190,
+        "sha256": "17da91ec5ee4e1f706e5e6503bfd2d6a9183eb9fda445d498e0ae306cc3a23b2"
+      },
+      "summary_file": {
+        "path": "assets/local/issue-104-review/pointer-check/summary.json",
+        "bytes": 3455,
+        "sha256": "203ed825b1ef362d68d448a945602610762c65350b5292dce71586fd804455fe"
+      },
+      "commands": [
+        [
+          "python3",
+          "tools/lemmix/build_pointer_reference.py",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/pointer-reference",
+          "--compiler",
+          "/usr/bin/ppcx64",
+          "--units",
+          "/usr/lib/fpc/3.2.2/units/x86_64-linux/rtl"
+        ],
+        [
+          "python3",
+          "tools/check_pointer.py",
+          "--reference",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/pointer-reference/reference",
+          "--evidence",
+          "/home/edward/Work/ohmylemmings/assets/local/issue-104-review/pointer-check"
+        ]
+      ]
+    }
+  ]
+}
