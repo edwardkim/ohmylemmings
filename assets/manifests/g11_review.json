@@ -8,8 +8,8 @@
     {
       "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 142702,
-      "sha256": "a3ebbe033ea53f2b49f9cacc68f673a3c41a28ad35bee6ce0c04d056c6e3de10"
+      "bytes": 144920,
+      "sha256": "07a791aeb215e25338e808978deec38795db49b4c2a01b568e49a7b3e0048ac7"
     },
     {
       "id": "performance",
@@ -10869,5 +10869,6 @@
     "Rebuild/package on clean supported targets, including unverified Windows.",
     "Verify licenses, source/relink materials, checksums and original-free archive contents.",
     "Document installation, user-owned asset import and smoke/restart/audio checks."
-  ]
+  ],
+  "index_maintenance_111": "Current functional index link updated for measurement tools only. #110 historical callback observations and NOT-READY verdict are preserved; new observations/follow-up are in web_deadlines.json/#113."
 }

@@ -1,0 +1,840 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/111",
+  "baseline_main": "c4e935f5000cf79c3e4d8c0c404fa409d07f9cff",
+  "status": "MEASURED-WITH-DISPATCH-FOLLOWUP",
+  "source": [
+    {
+      "path": "apps/web/www/app.js",
+      "bytes": 8577,
+      "sha256": "db8e52135fea78b358b2d3cf9560e55b18cc48e6bdc3d84a86e3c28a21d3952d"
+    },
+    {
+      "path": "apps/web/www/host.js",
+      "bytes": 2308,
+      "sha256": "e0b1430ff18410ea21a0283beceb6328652bcc5fa1991f9dfb608227e7a254e6"
+    },
+    {
+      "path": "apps/web/www/audio.js",
+      "bytes": 5537,
+      "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+    },
+    {
+      "path": "tools/performance/live.js",
+      "bytes": 6035,
+      "sha256": "0a55e410f323d16f5f2bcf90b6c26d9255ea36a66aae3367f0a1d3815b37548b"
+    },
+    {
+      "path": "tools/performance/measure.js",
+      "bytes": 1305,
+      "sha256": "026c63039b25050285fbb8f406222976c3bd7cda31f3aa625482f9f18fa5bf2a"
+    },
+    {
+      "path": "tools/performance/cdp.cjs",
+      "bytes": 7130,
+      "sha256": "6acd5e3af8b673acc658b256ecf68109ebbd32f870b1da0147ccf02e8596d00b"
+    },
+    {
+      "path": "tools/performance/check_measure.js",
+      "bytes": 1353,
+      "sha256": "8d5c668f109ca3c2379f8d10ddf7717d84ab393f5d554ece28f170e42f46a078"
+    },
+    {
+      "path": "tools/web_deadlines.py",
+      "bytes": 9334,
+      "sha256": "09bc81584aadb8aa60e4df5c5181d7a91dd81194097c682eef8bafd3f48d44b2"
+    },
+    {
+      "path": "tools/tests/test_web_deadlines.py",
+      "bytes": 2834,
+      "sha256": "90221a0d2c46d5cd95562ba3cac8be99afa0eed780476c0f8ad26bd7b25409a2"
+    }
+  ],
+  "recorded_producer": [
+    {
+      "original_path": "apps/web/www/app.js",
+      "path": "assets/local/issue-111-review/sources/apps/web/www/app.js",
+      "bytes": 8577,
+      "sha256": "db8e52135fea78b358b2d3cf9560e55b18cc48e6bdc3d84a86e3c28a21d3952d"
+    },
+    {
+      "original_path": "apps/web/www/host.js",
+      "path": "assets/local/issue-111-review/sources/apps/web/www/host.js",
+      "bytes": 2308,
+      "sha256": "e0b1430ff18410ea21a0283beceb6328652bcc5fa1991f9dfb608227e7a254e6"
+    },
+    {
+      "original_path": "apps/web/www/audio.js",
+      "path": "assets/local/issue-111-review/sources/apps/web/www/audio.js",
+      "bytes": 5537,
+      "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+    },
+    {
+      "original_path": "tools/performance/live.js",
+      "path": "assets/local/issue-111-review/sources/tools/performance/live.js",
+      "bytes": 6035,
+      "sha256": "0a55e410f323d16f5f2bcf90b6c26d9255ea36a66aae3367f0a1d3815b37548b"
+    },
+    {
+      "original_path": "tools/performance/measure.js",
+      "path": "assets/local/issue-111-review/sources/tools/performance/measure.js",
+      "bytes": 1305,
+      "sha256": "026c63039b25050285fbb8f406222976c3bd7cda31f3aa625482f9f18fa5bf2a"
+    },
+    {
+      "original_path": "tools/performance/cdp.cjs",
+      "path": "assets/local/issue-111-review/sources/tools/performance/cdp.cjs",
+      "bytes": 6766,
+      "sha256": "7095935eac86648e02993aac626eb4fd4f506538bbafa917b445fe5b1d083260"
+    },
+    {
+      "original_path": "assets/local/web/issue111-baseline/pkg/lemmings_web_bg.wasm",
+      "path": "assets/local/issue-111-review/sources/assets/local/web/issue111-baseline/pkg/lemmings_web_bg.wasm",
+      "bytes": 545607,
+      "sha256": "4d7ff9519a1347160fefee062d2b70e70396e51e090c4ae0b48e3319345281c2"
+    },
+    {
+      "original_path": "assets/local/web/issue111-baseline/plan.json",
+      "path": "assets/local/issue-111-review/sources/assets/local/web/issue111-baseline/plan.json",
+      "bytes": 57449,
+      "sha256": "325a85547329d55337c4b3dd49f4d1d22875dc7851b88de99a04718b2c7cfaa5"
+    }
+  ],
+  "reference": {
+    "path": "assets/manifests/performance_baseline.json",
+    "bytes": 689129,
+    "sha256": "a08fb43ba5be3ebabdddef118f566d27aabbe1ca41ac21fc2c15a142b03b52b2"
+  },
+  "observations": {
+    "path": "assets/manifests/web_deadline_observations.jsonl",
+    "bytes": 999474,
+    "sha256": "df95e5ba542f978d3372078cb78bbbcd16e2f57107a47f748445ae2d6f39f65c"
+  },
+  "runs": [
+    {
+      "id": "memory-1",
+      "profile": "memory",
+      "repeat": 1,
+      "raw": {
+        "path": "assets/local/issue-111-review/baseline/run-1.json",
+        "bytes": 1211591,
+        "sha256": "b6d96f27699d5045904e4fc91252f5d4460d82ced282184792a2e501e2355fa4"
+      },
+      "seconds": 60.01329999998212,
+      "ticks": 841,
+      "present_events": 3602,
+      "outside_raf_presents": 2,
+      "frame_summary": {
+        "frames": 3600,
+        "callback_ms": {
+          "count": 3600,
+          "median": 2.7999999999956344,
+          "p95": 8.5,
+          "max": 10.0
+        },
+        "callback_over_budget": 0,
+        "start_delay_ms": {
+          "count": 3600,
+          "median": 0.5,
+          "p95": 1.0999999999985448,
+          "max": 15.700000000000728
+        },
+        "completion_late_ms": {
+          "count": 3600,
+          "median": 0.0,
+          "p95": 0,
+          "max": 6.633333333333514
+        },
+        "completion_misses": 5,
+        "timestamp_gaps_over_two_periods": 0,
+        "scope": "60Hz contract: end <= rAF timestamp + 1000/60ms; not physical scanout"
+      },
+      "cost_ms": {
+        "rgb_ms": {
+          "count": 3600,
+          "median": 0.6000000238418579,
+          "p95": 5.4000000059604645,
+          "max": 6.5
+        },
+        "state_ms": {
+          "count": 3600,
+          "median": 0.800000011920929,
+          "p95": 1,
+          "max": 1.800000011920929
+        },
+        "audio_ms": {
+          "count": 3600,
+          "median": 0.4000000059604645,
+          "p95": 0.800000011920929,
+          "max": 1.5999999940395355
+        },
+        "put_image_ms": {
+          "count": 3600,
+          "median": 0.09999999403953552,
+          "p95": 0.19999998807907104,
+          "max": 0.800000011920929
+        },
+        "step_ms": {
+          "count": 3600,
+          "median": 0.0,
+          "p95": 1.0999999940395355,
+          "max": 2.0999999940395355
+        },
+        "observer_bookkeeping_ms": {
+          "count": 3600,
+          "median": 0.0,
+          "p95": 0.09999999403953552,
+          "max": 0.6000000238418579
+        }
+      },
+      "wasm_start": 9371648,
+      "wasm_end": 10420224,
+      "recorder_bytes": 4065600,
+      "heap_interval_ms": 500,
+      "output_sha256": [
+        "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+        "20e486a4380d335013b5e82eb0af00a7163f286e91f2131278a3f94c9e9ab43c",
+        "2ebf2bc9431e562d12984a2b69cbee322971b69447facc61dd148891524cc9a9",
+        "5078181b8327feb96aef70ff0cbfbeb890e478871f8e86deb119043bca032077",
+        "22f1ea609603761974e3d3511cc41559f90d4d3b028daadf8f246444c3d8a928"
+      ],
+      "underruns": 0,
+      "visibility_events": 0,
+      "pre_window_callbacks": 0,
+      "pre_window_completion_misses": 0,
+      "memory": {
+        "backingStorageSize_sampled_peak_bytes": 47717380,
+        "embedderHeapUsedSize_sampled_peak_bytes": 3258104,
+        "samples": 120,
+        "js_used_sampled_peak_bytes": 2645184,
+        "js_used_last_sample_bytes": 1856156,
+        "js_capacity_sampled_peak_bytes": 5505024,
+        "first_sample_at_ms": 17.799999982118607,
+        "last_sample_at_ms": 59594.59999999404,
+        "max_sample_gap_ms": 510.5,
+        "continuous_js_peak_observed": false,
+        "wasm_committed_start_bytes": 9371648,
+        "wasm_committed_peak_bytes": 10420224,
+        "recorder_reserved_bytes": 4065600,
+        "scope": "CDP isolate heap sampled maximum; misses between-sample peaks. WASM committed memory never shrinks. Do not sum overlapping backing storage/heap/WASM counters."
+      },
+      "heap_cdp_round_trip_ms": {
+        "count": 120,
+        "median": 0.720345,
+        "p95": 3.771494,
+        "max": 8.066944
+      }
+    },
+    {
+      "id": "memory-2",
+      "profile": "memory",
+      "repeat": 2,
+      "raw": {
+        "path": "assets/local/issue-111-review/baseline/run-2.json",
+        "bytes": 1202525,
+        "sha256": "c2e19cb3bf4cf5648b51307a5b053e9f9b0bbb1f91264d834b2baa7fcb83b09f"
+      },
+      "seconds": 60.01559999999404,
+      "ticks": 841,
+      "present_events": 3602,
+      "outside_raf_presents": 2,
+      "frame_summary": {
+        "frames": 3600,
+        "callback_ms": {
+          "count": 3600,
+          "median": 2.7000000000043656,
+          "p95": 8.299999999999272,
+          "max": 9.599999999998545
+        },
+        "callback_over_budget": 0,
+        "start_delay_ms": {
+          "count": 3600,
+          "median": 0.5,
+          "p95": 0.7000000000007276,
+          "max": 6.0
+        },
+        "completion_late_ms": {
+          "count": 3600,
+          "median": 0.0,
+          "p95": 0,
+          "max": 0
+        },
+        "completion_misses": 0,
+        "timestamp_gaps_over_two_periods": 1,
+        "scope": "60Hz contract: end <= rAF timestamp + 1000/60ms; not physical scanout"
+      },
+      "cost_ms": {
+        "rgb_ms": {
+          "count": 3600,
+          "median": 0.6000000238418579,
+          "p95": 5.200000017881393,
+          "max": 6.0999999940395355
+        },
+        "state_ms": {
+          "count": 3600,
+          "median": 0.7999999821186066,
+          "p95": 1,
+          "max": 1.5
+        },
+        "audio_ms": {
+          "count": 3600,
+          "median": 0.4000000059604645,
+          "p95": 0.800000011920929,
+          "max": 1.5
+        },
+        "put_image_ms": {
+          "count": 3600,
+          "median": 0.09999999403953552,
+          "p95": 0.20000001788139343,
+          "max": 0.800000011920929
+        },
+        "step_ms": {
+          "count": 3600,
+          "median": 0.0,
+          "p95": 1,
+          "max": 1.4000000059604645
+        },
+        "observer_bookkeeping_ms": {
+          "count": 3600,
+          "median": 0.0,
+          "p95": 0.09999999403953552,
+          "max": 0.20000004768371582
+        }
+      },
+      "wasm_start": 10420224,
+      "wasm_end": 10420224,
+      "recorder_bytes": 4065600,
+      "heap_interval_ms": 500,
+      "output_sha256": [
+        "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+        "20e486a4380d335013b5e82eb0af00a7163f286e91f2131278a3f94c9e9ab43c",
+        "2ebf2bc9431e562d12984a2b69cbee322971b69447facc61dd148891524cc9a9",
+        "5078181b8327feb96aef70ff0cbfbeb890e478871f8e86deb119043bca032077",
+        "22f1ea609603761974e3d3511cc41559f90d4d3b028daadf8f246444c3d8a928"
+      ],
+      "underruns": 0,
+      "visibility_events": 0,
+      "pre_window_callbacks": 0,
+      "pre_window_completion_misses": 0,
+      "memory": {
+        "backingStorageSize_sampled_peak_bytes": 49487618,
+        "embedderHeapUsedSize_sampled_peak_bytes": 4202472,
+        "samples": 120,
+        "js_used_sampled_peak_bytes": 3380792,
+        "js_used_last_sample_bytes": 1189940,
+        "js_capacity_sampled_peak_bytes": 8650752,
+        "first_sample_at_ms": 10.300000011920929,
+        "last_sample_at_ms": 59579.09999999404,
+        "max_sample_gap_ms": 510.10000002384186,
+        "continuous_js_peak_observed": false,
+        "wasm_committed_start_bytes": 10420224,
+        "wasm_committed_peak_bytes": 10420224,
+        "recorder_reserved_bytes": 4065600,
+        "scope": "CDP isolate heap sampled maximum; misses between-sample peaks. WASM committed memory never shrinks. Do not sum overlapping backing storage/heap/WASM counters."
+      },
+      "heap_cdp_round_trip_ms": {
+        "count": 120,
+        "median": 0.694056,
+        "p95": 4.059376,
+        "max": 8.840424
+      }
+    },
+    {
+      "id": "memory-3",
+      "profile": "memory",
+      "repeat": 3,
+      "raw": {
+        "path": "assets/local/issue-111-review/baseline/run-3.json",
+        "bytes": 1207105,
+        "sha256": "9cfcc6102728a01de2731c7115ef739ff74e033aee9471649837e659a81adfa0"
+      },
+      "seconds": 60.01659999999404,
+      "ticks": 841,
+      "present_events": 3599,
+      "outside_raf_presents": 2,
+      "frame_summary": {
+        "frames": 3597,
+        "callback_ms": {
+          "count": 3597,
+          "median": 2.7000000000043656,
+          "p95": 8.200000000000728,
+          "max": 9.299999999999272
+        },
+        "callback_over_budget": 0,
+        "start_delay_ms": {
+          "count": 3597,
+          "median": 0.5,
+          "p95": 0.7000000000007276,
+          "max": 15.599999999998545
+        },
+        "completion_late_ms": {
+          "count": 3597,
+          "median": 0.0,
+          "p95": 0,
+          "max": 8.133333333328967
+        },
+        "completion_misses": 3,
+        "timestamp_gaps_over_two_periods": 0,
+        "scope": "60Hz contract: end <= rAF timestamp + 1000/60ms; not physical scanout"
+      },
+      "cost_ms": {
+        "rgb_ms": {
+          "count": 3597,
+          "median": 0.6000000238418579,
+          "p95": 5.0999999940395355,
+          "max": 6.299999982118607
+        },
+        "state_ms": {
+          "count": 3597,
+          "median": 0.7999999821186066,
+          "p95": 1,
+          "max": 1.5
+        },
+        "audio_ms": {
+          "count": 3597,
+          "median": 0.4000000059604645,
+          "p95": 0.800000011920929,
+          "max": 1.4000000059604645
+        },
+        "put_image_ms": {
+          "count": 3597,
+          "median": 0.09999999403953552,
+          "p95": 0.20000001788139343,
+          "max": 0.699999988079071
+        },
+        "step_ms": {
+          "count": 3597,
+          "median": 0.0,
+          "p95": 1.0999999940395355,
+          "max": 1.300000011920929
+        },
+        "observer_bookkeeping_ms": {
+          "count": 3597,
+          "median": 0.0,
+          "p95": 0.09999999403953552,
+          "max": 0.20000001788139343
+        }
+      },
+      "wasm_start": 10420224,
+      "wasm_end": 10420224,
+      "recorder_bytes": 4065600,
+      "heap_interval_ms": 500,
+      "output_sha256": [
+        "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+        "20e486a4380d335013b5e82eb0af00a7163f286e91f2131278a3f94c9e9ab43c",
+        "2ebf2bc9431e562d12984a2b69cbee322971b69447facc61dd148891524cc9a9",
+        "5078181b8327feb96aef70ff0cbfbeb890e478871f8e86deb119043bca032077",
+        "22f1ea609603761974e3d3511cc41559f90d4d3b028daadf8f246444c3d8a928"
+      ],
+      "underruns": 0,
+      "visibility_events": 0,
+      "pre_window_callbacks": 0,
+      "pre_window_completion_misses": 0,
+      "memory": {
+        "backingStorageSize_sampled_peak_bytes": 59512466,
+        "embedderHeapUsedSize_sampled_peak_bytes": 3789784,
+        "samples": 120,
+        "js_used_sampled_peak_bytes": 2693060,
+        "js_used_last_sample_bytes": 2590272,
+        "js_capacity_sampled_peak_bytes": 9175040,
+        "first_sample_at_ms": 9.699999988079071,
+        "last_sample_at_ms": 59577.80000001192,
+        "max_sample_gap_ms": 509.7000000178814,
+        "continuous_js_peak_observed": false,
+        "wasm_committed_start_bytes": 10420224,
+        "wasm_committed_peak_bytes": 10420224,
+        "recorder_reserved_bytes": 4065600,
+        "scope": "CDP isolate heap sampled maximum; misses between-sample peaks. WASM committed memory never shrinks. Do not sum overlapping backing storage/heap/WASM counters."
+      },
+      "heap_cdp_round_trip_ms": {
+        "count": 120,
+        "median": 0.6415605,
+        "p95": 4.209311,
+        "max": 9.722214
+      }
+    },
+    {
+      "id": "control-1",
+      "profile": "control",
+      "repeat": 1,
+      "raw": {
+        "path": "assets/local/issue-111-review/timing-control/run-1.json",
+        "bytes": 1194712,
+        "sha256": "82399bd530cf63ce2f30decff5d1039773701eb1d339fc285712c9323e1f0c38"
+      },
+      "seconds": 60.0205,
+      "ticks": 841,
+      "present_events": 3603,
+      "outside_raf_presents": 2,
+      "frame_summary": {
+        "frames": 3601,
+        "callback_ms": {
+          "count": 3601,
+          "median": 2.7999999999992724,
+          "p95": 8.299999999995634,
+          "max": 10.299999999995634
+        },
+        "callback_over_budget": 0,
+        "start_delay_ms": {
+          "count": 3601,
+          "median": 0.4000000000014552,
+          "p95": 0.6000000000003638,
+          "max": 19.4
+        },
+        "completion_late_ms": {
+          "count": 3601,
+          "median": 0.0,
+          "p95": 0,
+          "max": 4.733333333333334
+        },
+        "completion_misses": 1,
+        "timestamp_gaps_over_two_periods": 1,
+        "scope": "60Hz contract: end <= rAF timestamp + 1000/60ms; not physical scanout"
+      },
+      "cost_ms": {
+        "rgb_ms": {
+          "count": 3601,
+          "median": 0.6000000238418579,
+          "p95": 5.0999999940395355,
+          "max": 6.5999999940395355
+        },
+        "state_ms": {
+          "count": 3601,
+          "median": 0.7999999821186066,
+          "p95": 1,
+          "max": 2.7000000178813934
+        },
+        "audio_ms": {
+          "count": 3601,
+          "median": 0.4000000059604645,
+          "p95": 0.800000011920929,
+          "max": 1.199999988079071
+        },
+        "put_image_ms": {
+          "count": 3601,
+          "median": 0.09999999403953552,
+          "p95": 0.20000001788139343,
+          "max": 0.7000000178813934
+        },
+        "step_ms": {
+          "count": 3601,
+          "median": 0.0,
+          "p95": 1.0999999940395355,
+          "max": 1.800000011920929
+        },
+        "observer_bookkeeping_ms": {
+          "count": 3601,
+          "median": 0.0,
+          "p95": 0.09999999403953552,
+          "max": 0.6000000238418579
+        }
+      },
+      "wasm_start": 9371648,
+      "wasm_end": 10420224,
+      "recorder_bytes": 4065600,
+      "heap_interval_ms": 0,
+      "output_sha256": [
+        "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+        "20e486a4380d335013b5e82eb0af00a7163f286e91f2131278a3f94c9e9ab43c",
+        "2ebf2bc9431e562d12984a2b69cbee322971b69447facc61dd148891524cc9a9",
+        "5078181b8327feb96aef70ff0cbfbeb890e478871f8e86deb119043bca032077",
+        "22f1ea609603761974e3d3511cc41559f90d4d3b028daadf8f246444c3d8a928"
+      ],
+      "underruns": 0,
+      "visibility_events": 0,
+      "pre_window_callbacks": 1,
+      "pre_window_completion_misses": 1
+    },
+    {
+      "id": "timing-1",
+      "profile": "timing",
+      "repeat": 1,
+      "raw": {
+        "path": "assets/local/issue-111-review/timing-only/run-1.json",
+        "bytes": 1188694,
+        "sha256": "f850e1226aaf7056340a19cb4e2a2962fd3443c850c4f88a31462378a64eb750"
+      },
+      "seconds": 60.01390000000596,
+      "ticks": 841,
+      "present_events": 3603,
+      "outside_raf_presents": 2,
+      "frame_summary": {
+        "frames": 3601,
+        "callback_ms": {
+          "count": 3601,
+          "median": 2.7000000000043656,
+          "p95": 8.299999999999272,
+          "max": 10.19999999999709
+        },
+        "callback_over_budget": 0,
+        "start_delay_ms": {
+          "count": 3601,
+          "median": 0.5,
+          "p95": 0.6000000000021828,
+          "max": 26.6
+        },
+        "completion_late_ms": {
+          "count": 3601,
+          "median": 0.0,
+          "p95": 0,
+          "max": 11.833333333333332
+        },
+        "completion_misses": 2,
+        "timestamp_gaps_over_two_periods": 1,
+        "scope": "60Hz contract: end <= rAF timestamp + 1000/60ms; not physical scanout"
+      },
+      "cost_ms": {
+        "rgb_ms": {
+          "count": 3601,
+          "median": 0.6000000238418579,
+          "p95": 5.0999999940395355,
+          "max": 6.5
+        },
+        "state_ms": {
+          "count": 3601,
+          "median": 0.7999999821186066,
+          "p95": 1,
+          "max": 1.5
+        },
+        "audio_ms": {
+          "count": 3601,
+          "median": 0.4000000059604645,
+          "p95": 0.800000011920929,
+          "max": 1.2000000178813934
+        },
+        "put_image_ms": {
+          "count": 3601,
+          "median": 0.09999999403953552,
+          "p95": 0.20000001788139343,
+          "max": 0.9000000059604645
+        },
+        "step_ms": {
+          "count": 3601,
+          "median": 0.0,
+          "p95": 1.0999999940395355,
+          "max": 2
+        },
+        "observer_bookkeeping_ms": {
+          "count": 3601,
+          "median": 0.0,
+          "p95": 0.09999999403953552,
+          "max": 0.5
+        }
+      },
+      "wasm_start": 9502720,
+      "wasm_end": 10551296,
+      "recorder_bytes": 4065600,
+      "heap_interval_ms": 0,
+      "output_sha256": [
+        "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+        "20e486a4380d335013b5e82eb0af00a7163f286e91f2131278a3f94c9e9ab43c",
+        "2ebf2bc9431e562d12984a2b69cbee322971b69447facc61dd148891524cc9a9",
+        "5078181b8327feb96aef70ff0cbfbeb890e478871f8e86deb119043bca032077",
+        "22f1ea609603761974e3d3511cc41559f90d4d3b028daadf8f246444c3d8a928"
+      ],
+      "underruns": 0,
+      "visibility_events": 0,
+      "pre_window_callbacks": 1,
+      "pre_window_completion_misses": 1
+    },
+    {
+      "id": "timing-2",
+      "profile": "timing",
+      "repeat": 2,
+      "raw": {
+        "path": "assets/local/issue-111-review/timing-only/run-2.json",
+        "bytes": 1189527,
+        "sha256": "88b45719865ed4e6afc1033dde84eed97220a6bb1b1df2c7dcfea7f0d99d60d9"
+      },
+      "seconds": 60.01290000000596,
+      "ticks": 841,
+      "present_events": 3623,
+      "outside_raf_presents": 23,
+      "frame_summary": {
+        "frames": 3600,
+        "callback_ms": {
+          "count": 3600,
+          "median": 2.7000000000043656,
+          "p95": 8.299999999999272,
+          "max": 11.099999999998545
+        },
+        "callback_over_budget": 0,
+        "start_delay_ms": {
+          "count": 3600,
+          "median": 0.4000000000014552,
+          "p95": 0.6000000000021828,
+          "max": 9.80000000000291
+        },
+        "completion_late_ms": {
+          "count": 3600,
+          "median": 0.0,
+          "p95": 0,
+          "max": 0
+        },
+        "completion_misses": 0,
+        "timestamp_gaps_over_two_periods": 0,
+        "scope": "60Hz contract: end <= rAF timestamp + 1000/60ms; not physical scanout"
+      },
+      "cost_ms": {
+        "rgb_ms": {
+          "count": 3600,
+          "median": 0.5999999940395355,
+          "p95": 5.100000023841858,
+          "max": 7.799999982118607
+        },
+        "state_ms": {
+          "count": 3600,
+          "median": 0.7999999821186066,
+          "p95": 1,
+          "max": 2.7000000178813934
+        },
+        "audio_ms": {
+          "count": 3600,
+          "median": 0.4000000059604645,
+          "p95": 0.800000011920929,
+          "max": 1.4000000059604645
+        },
+        "put_image_ms": {
+          "count": 3600,
+          "median": 0.09999999403953552,
+          "p95": 0.19999998807907104,
+          "max": 0.4000000059604645
+        },
+        "step_ms": {
+          "count": 3600,
+          "median": 0.0,
+          "p95": 1.0999999940395355,
+          "max": 1.2000000178813934
+        },
+        "observer_bookkeeping_ms": {
+          "count": 3600,
+          "median": 0.0,
+          "p95": 0.09999999403953552,
+          "max": 0.20000004768371582
+        }
+      },
+      "wasm_start": 10551296,
+      "wasm_end": 10551296,
+      "recorder_bytes": 4065600,
+      "heap_interval_ms": 0,
+      "output_sha256": [
+        "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+        "20e486a4380d335013b5e82eb0af00a7163f286e91f2131278a3f94c9e9ab43c",
+        "2ebf2bc9431e562d12984a2b69cbee322971b69447facc61dd148891524cc9a9",
+        "5078181b8327feb96aef70ff0cbfbeb890e478871f8e86deb119043bca032077",
+        "22f1ea609603761974e3d3511cc41559f90d4d3b028daadf8f246444c3d8a928"
+      ],
+      "underruns": 0,
+      "visibility_events": 0,
+      "pre_window_callbacks": 0,
+      "pre_window_completion_misses": 0
+    },
+    {
+      "id": "timing-3",
+      "profile": "timing",
+      "repeat": 3,
+      "raw": {
+        "path": "assets/local/issue-111-review/timing-only/run-3.json",
+        "bytes": 1194189,
+        "sha256": "8c6076ccfb9fe60501422ca2e687c2aa7115f968608b210426ee417433114b9f"
+      },
+      "seconds": 60.01329999998212,
+      "ticks": 841,
+      "present_events": 3605,
+      "outside_raf_presents": 6,
+      "frame_summary": {
+        "frames": 3599,
+        "callback_ms": {
+          "count": 3599,
+          "median": 2.7000000000007276,
+          "p95": 8.200000000004366,
+          "max": 11.0
+        },
+        "callback_over_budget": 0,
+        "start_delay_ms": {
+          "count": 3599,
+          "median": 0.4000000000014552,
+          "p95": 0.7000000000007276,
+          "max": 15.5
+        },
+        "completion_late_ms": {
+          "count": 3599,
+          "median": 0.0,
+          "p95": 0,
+          "max": 1.6333333333326046
+        },
+        "completion_misses": 1,
+        "timestamp_gaps_over_two_periods": 1,
+        "scope": "60Hz contract: end <= rAF timestamp + 1000/60ms; not physical scanout"
+      },
+      "cost_ms": {
+        "rgb_ms": {
+          "count": 3599,
+          "median": 0.5999999940395355,
+          "p95": 5.100000023841858,
+          "max": 7.800000011920929
+        },
+        "state_ms": {
+          "count": 3599,
+          "median": 0.7999999821186066,
+          "p95": 1,
+          "max": 1.4000000059604645
+        },
+        "audio_ms": {
+          "count": 3599,
+          "median": 0.4000000059604645,
+          "p95": 0.800000011920929,
+          "max": 1.9000000059604645
+        },
+        "put_image_ms": {
+          "count": 3599,
+          "median": 0.09999999403953552,
+          "p95": 0.20000001788139343,
+          "max": 0.6000000238418579
+        },
+        "step_ms": {
+          "count": 3599,
+          "median": 0.0,
+          "p95": 1.0999999940395355,
+          "max": 1.300000011920929
+        },
+        "observer_bookkeeping_ms": {
+          "count": 3599,
+          "median": 0.0,
+          "p95": 0.09999999403953552,
+          "max": 0.29999998211860657
+        }
+      },
+      "wasm_start": 10551296,
+      "wasm_end": 10551296,
+      "recorder_bytes": 4065600,
+      "heap_interval_ms": 0,
+      "output_sha256": [
+        "0e9be03ebfc224c1fc1836207a0b64c33deb88b9593b9e610488d75084ec880d",
+        "20e486a4380d335013b5e82eb0af00a7163f286e91f2131278a3f94c9e9ab43c",
+        "2ebf2bc9431e562d12984a2b69cbee322971b69447facc61dd148891524cc9a9",
+        "5078181b8327feb96aef70ff0cbfbeb890e478871f8e86deb119043bca032077",
+        "22f1ea609603761974e3d3511cc41559f90d4d3b028daadf8f246444c3d8a928"
+      ],
+      "underruns": 0,
+      "visibility_events": 0,
+      "pre_window_callbacks": 0,
+      "pre_window_completion_misses": 0
+    }
+  ],
+  "verdict": {
+    "web_deadline_ready": false,
+    "g11_ready": false,
+    "g12_entry_ready": false,
+    "followup": "https://github.com/edwardkim/ohmylemmings/issues/113"
+  },
+  "scope": "No product code change. Exact callback arguments/receiver/return/failure preserved; reserved Float64 buffers; endpoint serialization/hashing outside interval. All misses including pre-window timestamp boundary events retained. No physical scanout or OS/GC root-cause claim.",
+  "memory_scope": "CDP total corresponding-isolate usage, not Runtime-exclusive. Sampled maxima every500ms are lower bounds on continuous peak. WASM committed peak exact for the same non-shrinking instance, excludes endpoint diagnostics. Recorder reserved bytes explicit, counters overlap and must not be summed.",
+  "limitations": [
+    "Additional presents outside RAF are retained; input/forced draw cause not recorded and is a #113 target.",
+    "Memory queries and timing-only profiles differ; contrast is not randomized paired causal evidence.",
+    "All 7 full observations retained. A failed5s harness probe and corrected5s sanity run are local diagnostics; neither is a 60s performance pass.",
+    "Original21music/18effects PCM engine and host source unchanged; old #106/#107 PCM proof reused, no claim of fresh40original PCM executions.",
+    "#110 historical ready=false is preserved. #113 must resolve actual dispatch completion misses before whole G11/G12 readiness."
+  ]
+}

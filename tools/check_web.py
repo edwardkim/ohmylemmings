@@ -113,6 +113,7 @@ def check(directory, browser=None, original_assets=None):
             test['rows']=native_rows(binary,test);test.pop('asset_directory');tests.append(test)
     expected=directory/'expected.json';expected.write_text(json.dumps(dict(cases=tests,original_files=selected),separators=(',',':'))+'\n')
     for name in ['check.html','check.js','dom_check.js','sound_check.js']: shutil.copyfile(ROOT/'tools/web'/name,directory/name)
+    for name in ['measure.js','check_measure.js']: shutil.copyfile(ROOT/'tools/performance'/name,directory/name)
     ready=threading.Event();result={}
     class Handler(SimpleHTTPRequestHandler):
         def log_message(self, *args): pass

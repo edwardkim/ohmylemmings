@@ -4,7 +4,7 @@
 
 ## 목적과 현재 상태
 
-2026-10-22 현재 G00~G10을 완료했습니다. G11의120레벨/COMP 검증과 Native 표시 보정 증거는 유효하지만 [#110 검토](../reports/issue-110_g11_closure.md)에서 Web 표시 마감·구간 메모리 측정 보완이 남았습니다. 다음은 [#111](https://github.com/edwardkim/ohmylemmings/issues/111)이며 G11/G12는 미완료입니다. 아래 기록은 각 검증 시점의 결과입니다.
+2026-10-22 현재 G00~G10을 완료했습니다. G11의120레벨/COMP 검증과 Native 표시 보정 증거는 유효하지만 [#110 검토](../reports/issue-110_g11_closure.md)에서 Web 표시 마감·구간 메모리 측정 보완이 남았습니다. [#111 관측](../reports/issue-111_web_deadlines.md) 뒤에도 완료 마감 초과가 남아 다음은 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)이며 G11/G12는 미완료입니다. 아래 기록은 각 검증 시점의 결과입니다.
 
 [프로젝트 기획서](issue-1_rusty_lemmings.md)의 원본 호환 Rust 엔진을 작고 검증 가능한 목표로 나눕니다. 데스크톱과 웹에서 기준판의 레벨·직업·게임 규칙·사운드를 재현하는 것이 최종 목표입니다.
 
@@ -218,3 +218,7 @@ G09는 #70/PR #71·정확한 main CI까지 확인해 완료했습니다. [G10-01
 ## G11-07 증거·준비 검토 / #110
 
 [#110](../reports/issue-110_g11_closure.md)의 기능/COMP·Native 보정 증거 재검사는 유효하다. Web 콜백 비용 초과3건과 완료 마감/구간 메모리 관측이 부족해 G11/G12는 미완료로 유지한다. 다음은 [#111](https://github.com/edwardkim/ohmylemmings/issues/111)의 측정 보완과 필요한 보정이며 이후 G11 마감 판정을 다시 검토한다. Windows/Linux/웹 배포물은 G12의 별도 깨끗한 빌드·설치 증거가 필요하다.
+
+## Web 계측·마감 미충족 / #111
+
+[#111](../reports/issue-111_web_deadlines.md)의 계측/실제60초3회·메모리 관측을 완료했습니다. 콜백 실행 예산 초과는0/0/0이지만 완료 마감 초과2/0/1이 남아 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에서 원인·필요 보정을 추적합니다. G11/G12는 미완료이며 제품 코드 보정/배포를 완료로 계산하지 않습니다.

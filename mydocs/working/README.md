@@ -99,3 +99,5 @@
 - [#107 SDL 표시 주기 보정](issue-107_render_cadence.md): 절대60Hz·지연/복귀 테스트와 실제60초3쌍 비교.
 
 - [#110 G11 전체 결과·잔여 제약 검토](issue-110_g11_closure.md): 전수/COMP·성능 증거와 마감 조건 대조.
+
+- [#111 Web 표시 마감·메모리 보완](issue-111_web_deadlines.md)

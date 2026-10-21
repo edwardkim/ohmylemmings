@@ -94,3 +94,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 [#107 SDL 표시 주기 보정](reports/issue-107_render_cadence.md)은 렌더 처리 시간을 다음 대기에 더하던 방식을60Hz 절대 시각으로 바꿉니다. 실제 전후60초3쌍과 동일성·CI 결과는 보고서/#107에 고정하며 G11 전체/G12 마감은 후속입니다.
 
 [#110 전체 검토](reports/issue-110_g11_closure.md)에서120개/COMP·Native 보정 증거를 재확인했습니다. Web 콜백 예산 초과3건·완료 마감/구간 메모리 증거 부족은 [#111](https://github.com/edwardkim/ohmylemmings/issues/111)에서 보완하며 G11과G12는 미완료입니다.
+
+[#111 Web 관측 보완](reports/issue-111_web_deadlines.md)에서 rAF 시각/완료와 구간 메모리 표본을 확보했습니다. 무조회60초3회의 마감 초과2/0/1과 추가 draw는 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에서 진단하며 G11/G12는 미완료입니다.

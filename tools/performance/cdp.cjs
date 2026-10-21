@@ -2,8 +2,9 @@
 const fs=require('fs');const path=require('path');
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 (async()=>{
- const [mode,output,reuse,repeats='3']=process.argv.slice(2);if(!['algorithm','live','lifecycle'].includes(mode)||!output||!['1','3'].includes(repeats))throw Error('cdp.cjs algorithm|live|lifecycle NEW_OUTPUT_DIR [reuse|new] [1|3]');if(reuse!=="reuse")fs.mkdirSync(output);
- const url='http://127.0.0.1:8080/performance/'+(mode!=='algorithm'?'live.html':'algorithm.html');
+ const [mode,output,reuse,repeats='3']=process.argv.slice(2);if(!['algorithm','live','lifecycle'].includes(mode)||!output||!['1','3'].includes(repeats))throw Error('cdp.cjs algorithm|live|lifecycle NEW_OUTPUT_DIR [reuse|new] [1|3]');if(reuse==="reuse"&&mode!=='lifecycle')throw Error('only lifecycle can reuse an evidence directory');if(reuse!=="reuse")fs.mkdirSync(output);
+ const webPath=process.env.PERF_WEB_PATH||'performance';if(!/^[a-zA-Z0-9_/-]+$/.test(webPath)||webPath.includes('..'))throw Error('invalid web path');
+ const url='http://127.0.0.1:8080/'+webPath+'/' +(mode!=='algorithm'?'live.html':'algorithm.html');
  const target=reuse==='reuse'?JSON.parse(fs.readFileSync(path.join(output,'tab.json'))):await(await fetch('http://127.0.0.1:19222/json/new?'+encodeURIComponent(url),{method:'PUT'})).json();
  fs.writeFileSync(path.join(output,'tab.json'),JSON.stringify(target));const ws=new WebSocket(target.webSocketDebuggerUrl);await new Promise(r=>ws.addEventListener('open',r,{once:true}));let id=0;const pending=new Map();
  ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.id){const p=pending.get(m.id);pending.delete(m.id);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}};
@@ -18,7 +19,7 @@ const wait=ms=>new Promise(r=>setTimeout(r,ms));
   for(let n=0;!(await evaluate('Boolean(window.__perfLive)'));n++){if(n>60)throw Error('live page not ready');await wait(250);}
   await evaluate("document.querySelector('#difficulty').value='mayhem';document.querySelector('#level').value='22';");
   const d=await command('DOM.getDocument');const selector=await command('DOM.querySelector',{nodeId:d.root.nodeId,selector:'#files'});
-  const plan=JSON.parse(fs.readFileSync('assets/local/web/performance/plan.json'));const files=plan.files.map(n=>path.resolve('assets/local/dos-original',n));
+  const plan=JSON.parse(fs.readFileSync(path.join('assets/local/web',webPath,'plan.json')));const files=plan.files.map(n=>path.resolve('assets/local/dos-original',n));
   await command('DOM.setFileInputFiles',{nodeId:selector.nodeId,files});
   for(let n=0;!(await evaluate('window.__perfLive.state.original'));n++){if(n>120)throw Error('original load deadline');await wait(250);}
   await evaluate("document.querySelector('#sound').scrollIntoView({block:'center'})");
@@ -29,10 +30,16 @@ const wait=ms=>new Promise(r=>setTimeout(r,ms));
   const c=plan.cases.find(c=>c.id==='mayhem-22');
   for(let repeat=1;repeat<=Number(repeats);repeat++){
    console.log('live',repeat,'start');await command('Page.bringToFront');
-   const result=await evaluate('window.__perfLive.run('+JSON.stringify({...c,seconds:60})+')',{awaitPromise:true,userGesture:true});
-   fs.writeFileSync(path.join(output,'run-'+repeat+'.json'),JSON.stringify(result));
-   if(result.visibility.length||result.audio.state!=='running')throw Error('visible interval interrupted; raw run retained');
-   console.log('live',repeat,'PASS',result.ticks.length,'ticks',result.frames.length,'frames');await wait(1500);
+   const heapSamples=[];let sampling=null;
+   const sample=()=>{if(sampling)return;sampling=(async()=>{const state=await evaluate('window.__perfLive.state');if(!state.measuring)return;const begin=process.hrtime.bigint();const usage=await command('Runtime.getHeapUsage');heapSamples.push({at_ms:state.at_ms,...usage,cdp_round_trip_ms:Number(process.hrtime.bigint()-begin)/1e6});})().finally(()=>{sampling=null;});};
+   const measurement=evaluate('window.__perfLive.run('+JSON.stringify({...c,seconds:Number(process.env.PERF_SECONDS||60)})+')',{awaitPromise:true,userGesture:true});
+   const heapInterval=Number(process.env.PERF_HEAP_INTERVAL_MS??500);if(!Number.isFinite(heapInterval)||heapInterval<0)throw Error('invalid heap interval');
+   const timer=heapInterval?setInterval(sample,heapInterval):null;if(heapInterval)sample();let result;
+   try{result=await measurement;}finally{if(timer!==null)clearInterval(timer);if(sampling)await sampling;}
+   result.heapSamples=heapSamples;result.heapIntervalMs=heapInterval;result.memoryMethod='Runtime.getHeapUsage isolate samples every500ms; sampled maximum, not continuous exclusive peak; CDP round trip includes protocol/scheduling';
+   fs.writeFileSync(path.join(output,'run-'+repeat+'.json'),JSON.stringify(result),{flag:'wx'});
+   if(result.status==='FAIL'||result.visibility.length||result.audio.state!=='running')throw Error('visible interval interrupted; raw run retained');
+   console.log('live',repeat,'OBSERVED',result.ticks.length,'ticks',result.frames.length,'frames');await wait(1500);
   }
   }
   // Exercise the application's real hidden/resume handler separately from timed intervals.

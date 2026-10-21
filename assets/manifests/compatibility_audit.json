@@ -31,8 +31,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 2769,
-      "sha256": "4e835aa3b850a1356896ea04aa6cc23fa46e4f0f702aee71db61c5fa282ca60d"
+      "bytes": 2801,
+      "sha256": "4f5ae0c1291ae4260460a03586e2a2ce8b4abced90b155e4db356d46cfc5ead5"
     },
     {
       "path": "apps/audio-probe/Cargo.toml",
@@ -956,8 +956,8 @@
     },
     {
       "path": "tools/check_web.py",
-      "bytes": 12093,
-      "sha256": "af918ce5512c43381840d189c7d02c71490778017a5d4dc9c806ae0316778acd"
+      "bytes": 12206,
+      "sha256": "0323ece39d2a4d0ec82494f8933a14e5b5db7cb6ef3146d407e03bae46d82b13"
     },
     {
       "path": "tools/check_web_journey.py",
@@ -1651,8 +1651,8 @@
     },
     {
       "path": "tools/web/check.js",
-      "bytes": 8608,
-      "sha256": "95e67f0142c460149ccee06b5894eb1a798fed7fcff457cf74179b0360371927"
+      "bytes": 8730,
+      "sha256": "8bf8b5e1055bc02c36c84b97cf28c250b4a068aaf8d57a4245286a4dc19f86ac"
     },
     {
       "path": "tools/web/dom_check.js",
@@ -1736,13 +1736,13 @@
     },
     {
       "path": "tools/performance/live.js",
-      "bytes": 3952,
-      "sha256": "5a1f64c9582cd4543e67b8fa5bfb2ea3267588234d97d5366c651fb1c4e412a0"
+      "bytes": 6035,
+      "sha256": "0a55e410f323d16f5f2bcf90b6c26d9255ea36a66aae3367f0a1d3815b37548b"
     },
     {
       "path": "tools/performance/cdp.cjs",
-      "bytes": 5780,
-      "sha256": "3eaf7787e003ea034afa5242076240002f151ea54764fd6ca9c8cb5e183598b0"
+      "bytes": 7130,
+      "sha256": "6acd5e3af8b673acc658b256ecf68109ebbd32f870b1da0147ccf02e8596d00b"
     },
     {
       "path": "tools/performance/ci_shell.py",
@@ -1763,6 +1763,26 @@
       "path": "tools/tests/test_g11_review.py",
       "bytes": 2403,
       "sha256": "9468d6ba7d6c9c6a60f66e3e5ae50bed43ccbe1d91e3a12a778655770c371a17"
+    },
+    {
+      "path": "tools/web_deadlines.py",
+      "bytes": 9334,
+      "sha256": "09bc81584aadb8aa60e4df5c5181d7a91dd81194097c682eef8bafd3f48d44b2"
+    },
+    {
+      "path": "tools/tests/test_web_deadlines.py",
+      "bytes": 2834,
+      "sha256": "90221a0d2c46d5cd95562ba3cac8be99afa0eed780476c0f8ad26bd7b25409a2"
+    },
+    {
+      "path": "tools/performance/measure.js",
+      "bytes": 1305,
+      "sha256": "026c63039b25050285fbb8f406222976c3bd7cda31f3aa625482f9f18fa5bf2a"
+    },
+    {
+      "path": "tools/performance/check_measure.js",
+      "bytes": 1353,
+      "sha256": "8d5c668f109ca3c2379f8d10ddf7717d84ab393f5d554ece28f170e42f46a078"
     }
   ],
   "evidence": [
@@ -4329,5 +4349,43 @@
       "tools/tests/test_g11_review.py"
     ],
     "scope": "Review/statistics/CI only. No simulation, resource, renderer, audio or host code change; historical play/CI observations remain historical. G11 and G12 are not ready; unresolved Web evidence is tracked in #111."
+  },
+  "source_impact_111": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/111",
+    "baseline_main": "c4e935f5000cf79c3e4d8c0c404fa409d07f9cff",
+    "previous_pins": [
+      {
+        "path": "Makefile",
+        "bytes": 2769,
+        "sha256": "4e835aa3b850a1356896ea04aa6cc23fa46e4f0f702aee71db61c5fa282ca60d"
+      },
+      {
+        "path": "tools/check_web.py",
+        "bytes": 12093,
+        "sha256": "af918ce5512c43381840d189c7d02c71490778017a5d4dc9c806ae0316778acd"
+      },
+      {
+        "path": "tools/web/check.js",
+        "bytes": 8608,
+        "sha256": "95e67f0142c460149ccee06b5894eb1a798fed7fcff457cf74179b0360371927"
+      },
+      {
+        "path": "tools/performance/live.js",
+        "bytes": 3952,
+        "sha256": "5a1f64c9582cd4543e67b8fa5bfb2ea3267588234d97d5366c651fb1c4e412a0"
+      },
+      {
+        "path": "tools/performance/cdp.cjs",
+        "bytes": 5780,
+        "sha256": "3eaf7787e003ea034afa5242076240002f151ea54764fd6ca9c8cb5e183598b0"
+      }
+    ],
+    "added": [
+      "tools/web_deadlines.py",
+      "tools/tests/test_web_deadlines.py",
+      "tools/performance/measure.js",
+      "tools/performance/check_measure.js"
+    ],
+    "scope": "Measurement/validation tools only. Production game, simulation/resources, rasterizer, host pacing and PCM unchanged. Full120 replay remains historical. New observer arity/Canvas and original-free browser/native identity checks, measured raw pins and unresolved dispatch misses are recorded in web_deadlines.json. #113 remains open; G11/G12 are not ready."
   }
 }
