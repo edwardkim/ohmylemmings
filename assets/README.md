@@ -119,3 +119,5 @@ ADLIB 명령/레지스터 스트림의 합성877호출과 원본 드라이버 �
 [#107 네이티브 표시 주기 대조](manifests/display_cadence.json)는 고정 실행 파일·환경에서 실제 표시/오디오 ON60초3쌍과 상태/맵/RGB/PCM 동일성을 기록합니다. [보정·범위·재현](../mydocs/reports/issue-107_render_cadence.md).
 
 [#110 G11 검토](manifests/g11_review.json)는 공개 콜백 비용 벡터와 증거 pins를 담습니다. `python3 tools/g11_review.py`는 검토의 유효성과 G11/G12 미완료를 함께 출력하며 `--require-ready`는 현재 실패합니다. 원본 없이 재현하고 `--local`은 기존 원시 증거를 추가 확인합니다. 부족한 Web 측정은 #111이며 새 플레이/성능 통과 자료가 아닙니다.
+
+[#111 Web 관측](manifests/web_deadlines.json)과 [수치 벡터](manifests/web_deadline_observations.jsonl)는7개60초 구간의 시간/메모리·원시 pins와 미통과를 보존합니다. `python3 tools/web_deadlines.py`는 원본 없이 재계산하고 `--local`은7원시/원본50개를 확인합니다. 일반 CI 성공을 실제 표시 마감 합격으로 계산하지 않으며 #113이 후속입니다.

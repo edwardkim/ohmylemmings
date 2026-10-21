@@ -2,12 +2,14 @@ import init, { WebGame, WebAssets } from './pkg/lemmings_web.js';
 import { FramePump, present } from './host.js';
 import { checkDom } from './dom_check.js';
 import { checkSoundCommands } from './sound_check.js';
+import { checkMeasurement } from './check_measure.js';
 
 const assert = (condition, label) => { if (!condition) throw new Error(label); };
 const throws = (fn, label) => { let did = false; try { fn(); } catch { did = true; } assert(did, label); };
 const sha = async bytes => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), b => b.toString(16).padStart(2,'0')).join('');
 const report = document.querySelector('#result');
 try {
+    const measurement=checkMeasurement(assert,throws);
     await init();
     const expected = await (await fetch('./expected.json')).json();
     const context = document.querySelector('#screen').getContext('2d', { willReadFrequently: true });
@@ -106,7 +108,7 @@ try {
     const sound_commands = checkSoundCommands(WebGame,assert,throws);
     const dom = await checkDom(assert,throws,bank);
     bank.free();winning.free();special.free();originals.free();
-    const result={dom,sound_commands,status:'PASS',cases:expected.cases.length,runs:rows.length,states,frames,canvas_readbacks:readbacks,boundary_checks:true,refresh_rates:[60,120,144],runs_detail:rows};
+    const result={measurement,dom,sound_commands,status:'PASS',cases:expected.cases.length,runs:rows.length,states,frames,canvas_readbacks:readbacks,boundary_checks:true,refresh_rates:[60,120,144],runs_detail:rows};
     report.textContent=JSON.stringify(result);await fetch('/__result',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(result)});
 } catch (error) {
     const result={status:'FAIL',error:String(error),stack:error.stack};report.textContent=JSON.stringify(result);

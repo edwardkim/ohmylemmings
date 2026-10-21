@@ -116,3 +116,7 @@ G11-05는 [#93](../working/issue-93_solution_validation.md)에서 추적하며 �
 ## G11-07 검토 / #110
 
 [#110 결과](../reports/issue-110_g11_closure.md)는 기존120개·COMP70개와380행/Native 표시 보정 증거를 확인했지만, Web callback3개 예산 초과·완료 마감/구간 메모리 관측 부족으로 G11/G12 미완료다. #85의 요구를 면제하지 않고 [#111](https://github.com/edwardkim/ohmylemmings/issues/111)에서 보완한 뒤 전체 마감을 재판정한다.
+
+## G11-06 Web 관측 보완 / #111
+
+[#111](../reports/issue-111_web_deadlines.md)에서 rAF timestamp/진입/완료·구간 heap 표본과 WASM committed 최고를 확보했습니다. 게임 코드는 불변입니다. 메모리 조회 없는60초3회도 완료 마감 초과2/0/1이 남아 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에서 dispatch/추가 draw를 진단합니다. 초기 경계 초과도 합계에서 빼지 않으며 G11/G12를 미완료로 유지합니다.
