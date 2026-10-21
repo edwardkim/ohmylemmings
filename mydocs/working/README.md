@@ -89,3 +89,5 @@
 - [#98 Tricky01~30 완주 검증](issue-98_tricky_solutions.md)
 
 - [#100 Taxing01~30 완주 검증](issue-100_taxing_solutions.md)
+
+- [#102 Mayhem01~30 완주 검증](issue-102_mayhem_solutions.md)

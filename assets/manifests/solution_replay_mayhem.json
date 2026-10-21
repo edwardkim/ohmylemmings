@@ -1,0 +1,1676 @@
+{
+  "format": "g11-solution-replay-v1",
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/102",
+  "parent": "https://github.com/edwardkim/ohmylemmings/issues/93",
+  "baseline_main": "1a6419cf2d7a1527995ecc08b7ecdb8f2a50258f",
+  "scope": "Mayhem01..30 original goals/inventories:8 project-authored successes,22 attributed converted public DOS Lemmix replays,30 authored losses. No original/derived binary/image/map/audio or original replay/text redistributed. Final certification in issue102; whole COMP audit/performance remain in issue93.",
+  "review_stage": "Input/source snapshot; final runtime/CI/merge proof posted in issue102",
+  "variants": [
+    [
+      1,
+      30
+    ],
+    [
+      7,
+      60
+    ],
+    [
+      13,
+      144
+    ]
+  ],
+  "native_restart_render_intervals": [
+    37,
+    101,
+    257
+  ],
+  "sources": [
+    {
+      "path": "tools/solution_replay.py",
+      "bytes": 12563,
+      "sha256": "b5847fb9a3ffdfc5be6897af9c5abb19da303372bcb7d9c3407e841be74fe03a"
+    },
+    {
+      "path": "tools/initial_replay.py",
+      "bytes": 17298,
+      "sha256": "9649834526b9d5ae11e3624bc06fa9eda5af2f9e7afdf458508970773ca091ea"
+    },
+    {
+      "path": "tools/web/initial_replay.js",
+      "bytes": 6941,
+      "sha256": "dd3621ca40ae1463a803dc3fffa9da41b7f415e8cb6cc547b3c5d5a215113506"
+    },
+    {
+      "path": "tools/tests/test_initial_replay.py",
+      "bytes": 3071,
+      "sha256": "8201dabd7a3e54cfbb755c7b21960ce0690453682039e33f6a5ef3360d4bc01a"
+    },
+    {
+      "path": "tools/tests/test_solution_replay.py",
+      "bytes": 2961,
+      "sha256": "019e6554e786175993538f950cea57d8a011bcb705c1b8706c3938d0ef47454d"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 2588,
+      "sha256": "9ea06eb0f93009df449b4c34016d978a405b7fb999d047144550f183123f01f6"
+    }
+  ],
+  "replay_sources": [
+    {
+      "level": "mayhem-01",
+      "author": "Clam",
+      "posted": "November 16, 2009, 08:29:55 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=32276",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=345",
+      "accessed": "2026-10-21",
+      "artifact": "345-mayhem1_15build.lrb",
+      "bytes": 1440,
+      "sha256": "96e88caacde42046766ed18694fef625a42e45de5be895cad5b40572a3258dc3",
+      "selected_replay": {
+        "name": "mayhem1_15build.lrb",
+        "bytes": 1440,
+        "sha256": "96e88caacde42046766ed18694fef625a42e45de5be895cad5b40572a3258dc3"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 72 of 80 rescued at control_step 3888; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "mayhem-02",
+      "author": "namida",
+      "posted": "April 30, 2025, 09:12:53 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=106020",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=23272",
+      "accessed": "2026-10-21",
+      "artifact": "23272-Mayhem_02_5Bu.lrb",
+      "bytes": 4320,
+      "sha256": "8a9cef50456ce69f2d201dff5076400cea1c1a86965f29acfcc40abd875afff5",
+      "selected_replay": {
+        "name": "Mayhem_02_5Bu.lrb",
+        "bytes": 4320,
+        "sha256": "8a9cef50456ce69f2d201dff5076400cea1c1a86965f29acfcc40abd875afff5"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 72 of 80 rescued at control_step 2098; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "mayhem-03",
+      "author": "namida",
+      "posted": "September 14, 2009, 12:55:59 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=29831",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13668",
+      "accessed": "2026-10-21",
+      "artifact": "13668-Mayhem03_nobashers.lrb",
+      "bytes": 1536,
+      "sha256": "90a71f2e75ad5baf8007715331278f0464bbaf40cd014a9fef26832d925c635f",
+      "selected_replay": {
+        "name": "Mayhem03_nobashers.lrb",
+        "bytes": 1536,
+        "sha256": "90a71f2e75ad5baf8007715331278f0464bbaf40cd014a9fef26832d925c635f"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "mayhem-04",
+      "author": "ccexplore",
+      "posted": "August 29, 2009, 01:10:28 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=28802",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=11964",
+      "accessed": "2026-10-21",
+      "artifact": "11964-Mayhem4_4skills_saveall.lrb",
+      "bytes": 1824,
+      "sha256": "399eb699ed22e5226a158d6fd556a631c26492f2ad6b691790ce6408840e078c",
+      "selected_replay": {
+        "name": "Mayhem4_4skills_saveall.lrb",
+        "bytes": 1824,
+        "sha256": "399eb699ed22e5226a158d6fd556a631c26492f2ad6b691790ce6408840e078c"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "mayhem-05",
+      "author": "ccexplore",
+      "posted": "December 23, 2019, 02:24:11 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=78865",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=12175",
+      "accessed": "2026-10-21",
+      "artifact": "12175-Mayhem5_13skills_lose4_DOS.lrb",
+      "bytes": 2144,
+      "sha256": "e987f4daeb7f1c5dfc888e77389c6ce0109549a76eb6c3f5b5dbcb97b74121c4",
+      "selected_replay": {
+        "name": "Mayhem5_13skills_lose4_DOS.lrb",
+        "bytes": 2144,
+        "sha256": "e987f4daeb7f1c5dfc888e77389c6ce0109549a76eb6c3f5b5dbcb97b74121c4"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 60 of 80 rescued at control_step 2089; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "mayhem-06",
+      "author": "Clam",
+      "posted": "August 29, 2009, 11:15:09 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=28845",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=12173",
+      "accessed": "2026-10-21",
+      "artifact": "12173-mayhem6_9skills.lrb",
+      "bytes": 1344,
+      "sha256": "12372fd8a383d8d37402bf6664b7d65a66b65fdeedda6c88883c2b9385cf8559",
+      "selected_replay": {
+        "name": "mayhem6_9skills.lrb",
+        "bytes": 1344,
+        "sha256": "12372fd8a383d8d37402bf6664b7d65a66b65fdeedda6c88883c2b9385cf8559"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "mayhem-07",
+      "author": "ccexplore",
+      "posted": "December 27, 2019, 10:30:48 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=78886",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=12189",
+      "accessed": "2026-10-21",
+      "artifact": "12189-Mayhem7_13skills_saveall.lrb",
+      "bytes": 1664,
+      "sha256": "35fadad0b92a4026db7f4690a20c76c776ed1961e4774ef687c79b7263fb3d41",
+      "selected_replay": {
+        "name": "Mayhem7_13skills_saveall.lrb",
+        "bytes": 1664,
+        "sha256": "35fadad0b92a4026db7f4690a20c76c776ed1961e4774ef687c79b7263fb3d41"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 45 of 50 rescued at control_step 1732; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "mayhem-08",
+      "author": "ccexplore",
+      "posted": "September 30, 2009, 11:52:40 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=30640",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1050.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13775",
+      "accessed": "2026-10-21",
+      "artifact": "13775-Mayhem8_1skillperlem.lrb",
+      "bytes": 6144,
+      "sha256": "e216e9f2baac109c9ad07aaa4efda8d4bfe2859ba19955369513c36b5732ae82",
+      "selected_replay": {
+        "name": "Mayhem8_1skillperlem.lrb",
+        "bytes": 6144,
+        "sha256": "e216e9f2baac109c9ad07aaa4efda8d4bfe2859ba19955369513c36b5732ae82"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 72 of 80 rescued at control_step 1710; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "mayhem-09",
+      "author": "Clam",
+      "posted": "October 29, 2009, 09:06:16 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=31767",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=334",
+      "accessed": "2026-10-21",
+      "artifact": "334-mayhem9_1bash.lrb",
+      "bytes": 736,
+      "sha256": "b6a289ab740360519e828c69055d28976e8d46f9b270a686415cb127f3f079e1",
+      "selected_replay": {
+        "name": "mayhem9_1bash.lrb",
+        "bytes": 736,
+        "sha256": "b6a289ab740360519e828c69055d28976e8d46f9b270a686415cb127f3f079e1"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 79 of 80 rescued at control_step 3224; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "mayhem-10",
+      "author": "Clam",
+      "posted": "October 29, 2009, 09:06:16 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=31767",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=335",
+      "accessed": "2026-10-21",
+      "artifact": "335-mayhem10_5build.lrb",
+      "bytes": 2528,
+      "sha256": "9f6355e566b595119c649a1aa96cfa16874cfa693f98955d4fbb34efa12a064a",
+      "selected_replay": {
+        "name": "mayhem10_5build.lrb",
+        "bytes": 2528,
+        "sha256": "9f6355e566b595119c649a1aa96cfa16874cfa693f98955d4fbb34efa12a064a"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 50 of 75 rescued at control_step 2197; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "mayhem-12",
+      "author": "ccexplore",
+      "posted": "September 15, 2009, 12:28:36 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=29864",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13682",
+      "accessed": "2026-10-21",
+      "artifact": "13682-Mayhem12_nodigger.lrb",
+      "bytes": 6144,
+      "sha256": "d3606c661ea66452ded35b8857448bef1a1791d2b4f6f0e2d68ca8f00c72b5a8",
+      "selected_replay": {
+        "name": "Mayhem12_nodigger.lrb",
+        "bytes": 6144,
+        "sha256": "d3606c661ea66452ded35b8857448bef1a1791d2b4f6f0e2d68ca8f00c72b5a8"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "mayhem-14",
+      "author": "ccexplore",
+      "posted": "December 27, 2019, 10:30:48 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=78886",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=12190",
+      "accessed": "2026-10-21",
+      "artifact": "12190-Mayhem14_17skills_saveall.lrb",
+      "bytes": 736,
+      "sha256": "7ff0eb7b0814e0732dd5cab8570f552a52d7d5ded6aee77ccafeb77e17c2d44a",
+      "selected_replay": {
+        "name": "Mayhem14_17skills_saveall.lrb",
+        "bytes": 736,
+        "sha256": "7ff0eb7b0814e0732dd5cab8570f552a52d7d5ded6aee77ccafeb77e17c2d44a"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 75 of 80 rescued at control_step 4366; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "mayhem-16",
+      "author": "ccexplore",
+      "posted": "January 14, 2020, 08:12:12 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=79256",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=4539.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=12330",
+      "accessed": "2026-10-21",
+      "artifact": "12330-Mayhem27_3skills.lrb",
+      "bytes": 864,
+      "sha256": "32d360976179b975103e40754540d8e7364f6c6c01a0d8b399c8a155f910128c",
+      "selected_replay": {
+        "name": "Mayhem27_3skills.lrb",
+        "bytes": 864,
+        "sha256": "32d360976179b975103e40754540d8e7364f6c6c01a0d8b399c8a155f910128c"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Use ccexplore Mayhem27 three-skill functional replay on original Mayhem16; extra original lower ledge retained; no input changes."
+      ]
+    },
+    {
+      "level": "mayhem-17",
+      "author": "Pooty",
+      "posted": "October 25, 2009, 05:59:41 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=31575",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13697",
+      "accessed": "2026-10-21",
+      "artifact": "13697-Mayhem 17 - 1 Builder.lrb",
+      "bytes": 5696,
+      "sha256": "3a88e1c240b6fc11d0ba3796dd97f582bc806ccc5aa8b889359a58951c06123f",
+      "selected_replay": {
+        "name": "Mayhem 17 - 1 Builder.lrb",
+        "bytes": 5696,
+        "sha256": "3a88e1c240b6fc11d0ba3796dd97f582bc806ccc5aa8b889359a58951c06123f"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 70 of 80 rescued at control_step 2216; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "mayhem-18",
+      "author": "Clam",
+      "posted": "October 30, 2009, 09:05:03 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=31788",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=343",
+      "accessed": "2026-10-21",
+      "artifact": "343-mayhem18_8build.lrb",
+      "bytes": 1664,
+      "sha256": "b95b4dfad4777acf8ef17d54c39b3d1eb37044926719658937e56a6c1bfe4c8f",
+      "selected_replay": {
+        "name": "mayhem18_8build.lrb",
+        "bytes": 1664,
+        "sha256": "b95b4dfad4777acf8ef17d54c39b3d1eb37044926719658937e56a6c1bfe4c8f"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 72 of 80 rescued at control_step 2254; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "mayhem-19",
+      "author": "Clam",
+      "posted": "November 16, 2009, 08:29:55 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=32276",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=344",
+      "accessed": "2026-10-21",
+      "artifact": "344-mayhem19_7build.lrb",
+      "bytes": 768,
+      "sha256": "493893f3c218f9b969f93945b8b8553bf966645a4c8b691c5332aa691fb6fbf9",
+      "selected_replay": {
+        "name": "mayhem19_7build.lrb",
+        "bytes": 768,
+        "sha256": "493893f3c218f9b969f93945b8b8553bf966645a4c8b691c5332aa691fb6fbf9"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "mayhem-21",
+      "author": "ccexplore",
+      "posted": "October 10, 2011, 09:27:02 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=36152",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=352",
+      "accessed": "2026-10-21",
+      "artifact": "352-Mayhem21_noclimber.lrb",
+      "bytes": 4288,
+      "sha256": "d1ea8bdc527dc905287647c5452cac96cd7cd4a936464040a60bb90cbc539e7d",
+      "selected_replay": {
+        "name": "Mayhem21_noclimber.lrb",
+        "bytes": 4288,
+        "sha256": "d1ea8bdc527dc905287647c5452cac96cd7cd4a936464040a60bb90cbc539e7d"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "mayhem-23",
+      "author": "Pooty",
+      "posted": "October 28, 2009, 02:13:54 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=31681",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=13700",
+      "accessed": "2026-10-21",
+      "artifact": "13700-Mayhem 23 - 4 Builders.lrb",
+      "bytes": 4448,
+      "sha256": "89652e4e517c02209232300ad8b3e8dc04d775d20f2a0d2eb6406b1c5a4b1c28",
+      "selected_replay": {
+        "name": "Mayhem 23 - 4 Builders.lrb",
+        "bytes": 4448,
+        "sha256": "89652e4e517c02209232300ad8b3e8dc04d775d20f2a0d2eb6406b1c5a4b1c28"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 64 of 80 rescued at control_step 3812; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "mayhem-26",
+      "author": "Clam",
+      "posted": "June 24, 2012, 03:17:21 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=38494",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1068.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=12",
+      "accessed": "2026-10-21",
+      "artifact": "12-mayhem26-17skills-95%.lrb",
+      "bytes": 1376,
+      "sha256": "a80d7754ed1e8d33571f42799ba7c7977bbb87a0e4cbb8b5db58274fec5a23ed",
+      "selected_replay": {
+        "name": "mayhem26-17skills-95%.lrb",
+        "bytes": 1376,
+        "sha256": "a80d7754ed1e8d33571f42799ba7c7977bbb87a0e4cbb8b5db58274fec5a23ed"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "mayhem-27",
+      "author": "ccexplore",
+      "posted": "January 14, 2020, 08:12:12 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=79256",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=4539.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=12330",
+      "accessed": "2026-10-21",
+      "artifact": "12330-Mayhem27_3skills.lrb",
+      "bytes": 864,
+      "sha256": "32d360976179b975103e40754540d8e7364f6c6c01a0d8b399c8a155f910128c",
+      "selected_replay": {
+        "name": "Mayhem27_3skills.lrb",
+        "bytes": 864,
+        "sha256": "32d360976179b975103e40754540d8e7364f6c6c01a0d8b399c8a155f910128c"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": []
+    },
+    {
+      "level": "mayhem-29",
+      "author": "Clam",
+      "posted": "November 16, 2009, 08:29:55 PM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=32276",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1084.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=347",
+      "accessed": "2026-10-21",
+      "artifact": "347-mayhem29_nobash.lrb",
+      "bytes": 1088,
+      "sha256": "d9516d48b18a4c165623d0990cf325fb49065131f531bf19d3c97348d15d81f7",
+      "selected_replay": {
+        "name": "mayhem29_nobash.lrb",
+        "bytes": 1088,
+        "sha256": "d9516d48b18a4c165623d0990cf325fb49065131f531bf19d3c97348d15d81f7"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 64 of 80 rescued at control_step 4218; no goal/inventory changes."
+      ]
+    },
+    {
+      "level": "mayhem-30",
+      "author": "Clam",
+      "posted": "July 29, 2012, 12:00:58 AM",
+      "post": "https://www.lemmingsforums.net/index.php?msg=38699",
+      "topic": "https://www.lemmingsforums.net/index.php?topic=1490.0",
+      "download": "https://www.lemmingsforums.net/index.php?action=dlattach;attach=658",
+      "accessed": "2026-10-21",
+      "artifact": "658-mayhem30-undamaged.lrb",
+      "bytes": 1952,
+      "sha256": "08d74ef24ec261d6d01eb33a1146f85d1d96196bc0b4ba0ac36f16e02ec707fe",
+      "selected_replay": {
+        "name": "mayhem30-undamaged.lrb",
+        "bytes": 1952,
+        "sha256": "08d74ef24ec261d6d01eb33a1146f85d1d96196bc0b4ba0ac36f16e02ec707fe"
+      },
+      "use": "Functional skill/RR/nuke records converted to stable actor IDs; UI selection/pause records omitted. Original goals/inventories and actual outcome independently checked. Original replay/text/media are not redistributed.",
+      "adaptation": [
+        "Append Nuke after original required 60 of 80 rescued at control_step 7176; no goal/inventory changes."
+      ]
+    }
+  ],
+  "strategy_sources": [
+    {
+      "url": "https://www.justadventure.com/walkthrough/lemmings/2/",
+      "author": "Jim & Anita Vasey",
+      "accessed": "2026-10-21",
+      "use": "High-level route ideas for authored solutions, including13/20/22; actor IDs, timing and crowd control authored here; no walkthrough prose copied."
+    },
+    {
+      "url": "https://www.lemmingsforums.net/index.php?msg=82236",
+      "author": "LemSteven",
+      "posted": "2020-05-10 05:08:07",
+      "accessed": "2026-10-21",
+      "use": "Mayhem25: high-level digger/athlete/lower-stair/miner/blocker-release route. Own extra landing/traffic-delay builders and exact commands; no source prose/screenshot redistributed."
+    },
+    {
+      "url": "https://www.lemmingsforums.net/index.php?msg=31676",
+      "author": "Pooty",
+      "posted": "2009-10-28 01:26:41",
+      "accessed": "2026-10-21",
+      "use": "Mayhem28: high-level five-builder ceiling-route idea only. Own starting pixel, two-pixel walk before fifth Builder, Basher/Digger/final Basher commands; no source replay or prose copied."
+    },
+    {
+      "path": "assets/manifests/solution_replay_tricky.json",
+      "level": "tricky-10",
+      "use": "Mayhem15 reuses project-authored Tricky10 functional inputs, omitting premature Nuke and waiting for actual original Mayhem goal; no target/inventory changes."
+    }
+  ],
+  "cases": [
+    {
+      "id": "mayhem-01",
+      "phase": "Won",
+      "steps": 4044,
+      "input_text": "72 0 AssignFloater 0\n75 0 AssignBuilder 0\n147 0 AssignFloater 1\n161 0 AssignBlocker 0\n174 0 AssignBlocker 2\n181 0 SetReleaseRate 99\n335 0 AssignBuilder 1\n538 0 AssignBuilder 1\n732 0 AssignBuilder 1\n926 0 AssignBuilder 1\n1315 0 AssignBuilder 1\n1746 0 AssignBuilder 1\n2181 0 AssignBuilder 1\n2282 0 AssignBuilder 1\n2475 0 AssignBuilder 1\n2694 0 AssignBuilder 1\n2737 0 AssignBomber 0\n2887 0 AssignBuilder 1\n3081 0 AssignBuilder 1\n3361 0 AssignBlocker 1\n3423 0 AssignBlocker 79\n3424 0 AssignDigger 78\n3502 0 AssignBuilder 78\n3530 0 AssignDigger 78\n3537 0 AssignDigger 78\n3546 0 AssignDigger 78\n3588 0 AssignBuilder 78\n3888 0 Nuke\n",
+      "input_sha256": "596ba92d15ce3dd56309215e3f51aa00efdf4c3d489c13595f88ac58a2cf4db4",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 72,
+        "rescued": 75,
+        "target_percent": 90,
+        "rescued_percent": 93
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-01",
+      "phase": "Lost",
+      "steps": 140,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 72,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-02",
+      "phase": "Won",
+      "steps": 2251,
+      "input_text": "41 0 SetReleaseRate 99\n147 0 AssignBlocker 1\n188 0 AssignBuilder 0\n380 0 AssignBuilder 0\n385 0 AssignBomber 1\n772 0 AssignBomber 67\n784 0 AssignBlocker 0\n897 0 AssignBlocker 0\n900 0 AssignClimber 49\n996 0 AssignClimber 12\n1236 0 AssignBuilder 49\n1242 0 AssignBomber 12\n1257 0 AssignBomber 49\n1294 0 AssignBlocker 49\n1376 0 AssignClimber 79\n1408 0 AssignBlocker 79\n1413 0 AssignClimber 78\n1475 0 AssignBuilder 78\n1539 0 AssignBlocker 78\n1546 0 AssignBomber 79\n1555 0 AssignBomber 78\n1707 0 AssignBomber 77\n1833 0 AssignBuilder 76\n2098 0 Nuke\n2098 1 Nuke\n",
+      "input_sha256": "2cb67b85635ad672e8752507617a6af4c9110da6b654044525416c0a0601a0b8",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 72,
+        "rescued": 72,
+        "target_percent": 90,
+        "rescued_percent": 90
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-02",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 72,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-03",
+      "phase": "Won",
+      "steps": 875,
+      "input_text": "81 0 AssignMiner 0\n108 0 AssignFloater 0\n135 0 AssignDigger 1\n137 0 AssignBlocker 2\n376 0 AssignBuilder 0\n",
+      "input_sha256": "e87b854d4faf8a4ac27ceb80af4b620423fda172e0db2e6769f8480d0d4118b4",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 25,
+        "lemming_count": 25,
+        "required": 25,
+        "rescued": 25,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-03",
+      "phase": "Lost",
+      "steps": 289,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 25,
+        "lemming_count": 17,
+        "required": 25,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-04",
+      "phase": "Won",
+      "steps": 820,
+      "input_text": "359 0 AssignBasher 0\n436 0 AssignBasher 1\n493 0 AssignBasher 2\n735 0 AssignBasher 49\n",
+      "input_sha256": "5e002112881f2aa4a4ec9b2542da95b0c758f7cc5e2b2480fa3702f87b85f1ac",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 40,
+        "rescued": 50,
+        "target_percent": 80,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-04",
+      "phase": "Lost",
+      "steps": 289,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 17,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 80,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-05",
+      "phase": "Won",
+      "steps": 2242,
+      "input_text": "40 0 SetReleaseRate 99\n57 0 SetReleaseRate 80\n106 0 AssignBlocker 4\n290 0 AssignDigger 1\n496 0 AssignDigger 0\n869 0 AssignBuilder 1\n965 0 AssignDigger 70\n1085 0 AssignBuilder 0\n1101 0 AssignBlocker 1\n1340 0 AssignBlocker 0\n1362 0 AssignBuilder 68\n1532 0 AssignBuilder 79\n1603 0 AssignBlocker 77\n1748 0 AssignBlocker 73\n1817 0 AssignBuilder 79\n2086 0 Nuke\n2089 0 Nuke\n2089 1 Nuke\n",
+      "input_sha256": "7346966747409749963f55060aa5e5f9701d40ae3a6e233a79f20d755a079e57",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 60,
+        "rescued": 76,
+        "target_percent": 75,
+        "rescued_percent": 95
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-05",
+      "phase": "Lost",
+      "steps": 278,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 6,
+        "required": 60,
+        "rescued": 0,
+        "target_percent": 75,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-06",
+      "phase": "Won",
+      "steps": 3206,
+      "input_text": "1 0 SetReleaseRate 99\n119 0 SetReleaseRate 50\n126 0 SetReleaseRate 99\n214 0 SetReleaseRate 50\n223 0 SetReleaseRate 99\n312 0 SetReleaseRate 50\n326 0 SetReleaseRate 99\n408 0 SetReleaseRate 50\n419 0 SetReleaseRate 99\n763 0 AssignBuilder 72\n972 0 AssignBuilder 72\n1226 0 AssignBuilder 54\n1515 0 AssignBuilder 73\n1730 0 AssignDigger 17\n2050 0 AssignMiner 73\n2331 0 AssignBuilder 73\n2665 0 AssignBuilder 73\n2692 0 AssignBuilder 70\n",
+      "input_sha256": "27616d344d4286eabd95de8a2f333581ab173b3d3cd01e8ec8b679e863639c2c",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 75,
+        "lemming_count": 75,
+        "required": 75,
+        "rescued": 75,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-06",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 75,
+        "lemming_count": 3,
+        "required": 75,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-07",
+      "phase": "Won",
+      "steps": 1800,
+      "input_text": "83 0 AssignBuilder 0\n118 0 AssignBuilder 1\n248 0 AssignBasher 2\n284 0 AssignDigger 2\n289 0 AssignBuilder 2\n324 0 AssignBasher 3\n358 0 AssignBasher 3\n383 0 AssignBasher 3\n405 0 AssignClimber 3\n622 0 AssignDigger 3\n969 0 AssignBuilder 3\n1190 0 AssignDigger 31\n1198 0 AssignBuilder 31\n1432 0 SetReleaseRate 99\n1732 0 Nuke\n",
+      "input_sha256": "2d84ad1350a80b0046b54db217ae253c7f27e6a11b855b0b42dec0d0e36036d5",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 45,
+        "rescued": 50,
+        "target_percent": 90,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-07",
+      "phase": "Lost",
+      "steps": 176,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 3,
+        "required": 45,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-08",
+      "phase": "Won",
+      "steps": 1865,
+      "input_text": "147 0 AssignBuilder 0\n167 0 AssignBlocker 1\n271 0 AssignBuilder 6\n302 0 AssignBlocker 2\n452 0 AssignMiner 4\n485 0 AssignBuilder 12\n599 0 AssignBuilder 18\n647 0 AssignMiner 20\n705 0 AssignBuilder 11\n766 0 AssignBuilder 16\n801 0 AssignMiner 26\n819 0 AssignBomber 17\n932 0 AssignBuilder 31\n1073 0 AssignBlocker 32\n1077 0 AssignDigger 15\n1090 0 AssignDigger 7\n1096 0 AssignDigger 24\n1164 0 SetReleaseRate 99\n1710 0 Nuke\n1710 1 Nuke\n",
+      "input_sha256": "092daec0428c8ceed0448ef7401df662ac71d7a192a12fab277f2192945ddfb2",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 72,
+        "rescued": 72,
+        "target_percent": 90,
+        "rescued_percent": 90
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-08",
+      "phase": "Lost",
+      "steps": 259,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 72,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-09",
+      "phase": "Won",
+      "steps": 3377,
+      "input_text": "85 0 AssignBlocker 0\n104 0 AssignBuilder 1\n203 0 AssignDigger 12\n302 0 AssignBuilder 1\n497 0 AssignBuilder 1\n691 0 AssignBuilder 1\n884 0 AssignBuilder 1\n1226 0 AssignBuilder 1\n1428 0 AssignBuilder 1\n1622 0 AssignBuilder 1\n1908 0 AssignBasher 1\n2307 0 AssignBuilder 1\n2342 0 AssignBuilder 70\n2518 0 AssignBuilder 1\n2724 0 AssignBuilder 1\n3224 0 Nuke\n",
+      "input_sha256": "089fa887284c59150e76c6e2d0645b1d6ac2fede3c00739cb23f2b50f687270f",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 79,
+        "rescued": 79,
+        "target_percent": 98,
+        "rescued_percent": 98
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-09",
+      "phase": "Lost",
+      "steps": 194,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 9,
+        "required": 79,
+        "rescued": 0,
+        "target_percent": 98,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-10",
+      "phase": "Won",
+      "steps": 2351,
+      "input_text": "9 0 SetReleaseRate 96\n56 0 SetReleaseRate 1\n85 0 AssignFloater 0\n90 0 AssignFloater 1\n95 0 AssignClimber 0\n98 0 AssignClimber 1\n271 0 AssignBlocker 0\n284 0 AssignBuilder 1\n430 0 AssignBuilder 7\n485 0 AssignBlocker 1\n622 0 AssignBuilder 8\n651 0 SetReleaseRate 60\n656 0 SetReleaseRate 64\n699 0 SetReleaseRate 74\n704 0 SetReleaseRate 76\n738 0 SetReleaseRate 1\n760 0 AssignBasher 15\n776 0 AssignBasher 16\n795 0 AssignBasher 13\n836 0 AssignBasher 17\n1488 0 AssignDigger 17\n1561 0 AssignBuilder 17\n1685 0 AssignBuilder 19\n1697 0 SetReleaseRate 99\n2197 0 Nuke\n",
+      "input_sha256": "d1fb2836293486f3c8f19b54f5c79967715e6881c83f83ff5614a19932aa19f8",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 75,
+        "lemming_count": 75,
+        "required": 50,
+        "rescued": 51,
+        "target_percent": 66,
+        "rescued_percent": 68
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-10",
+      "phase": "Lost",
+      "steps": 160,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 75,
+        "lemming_count": 2,
+        "required": 50,
+        "rescued": 0,
+        "target_percent": 66,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-11",
+      "phase": "Won",
+      "steps": 1064,
+      "input_text": "0 0 SetReleaseRate 99\n450 0 AssignDigger 0\n450 1 AssignDigger 1\n450 2 AssignDigger 2\n450 3 AssignDigger 3\n450 4 AssignDigger 4\n450 5 AssignDigger 5\n450 6 AssignDigger 6\n450 7 AssignDigger 7\n450 8 AssignDigger 8\n450 9 AssignDigger 9\n450 10 AssignDigger 10\n450 11 AssignDigger 11\n450 12 AssignDigger 12\n450 13 AssignDigger 13\n450 14 AssignDigger 14\n450 15 AssignDigger 15\n450 16 AssignDigger 16\n450 17 AssignDigger 17\n450 18 AssignDigger 18\n450 19 AssignDigger 19\n450 20 AssignDigger 20\n450 21 AssignDigger 21\n450 22 AssignDigger 22\n450 23 AssignDigger 23\n450 24 AssignDigger 24\n450 25 AssignDigger 25\n450 26 AssignDigger 26\n450 27 AssignDigger 27\n450 28 AssignDigger 28\n450 29 AssignDigger 29\n450 30 AssignDigger 30\n450 31 AssignDigger 31\n450 32 AssignDigger 32\n450 33 AssignDigger 33\n450 34 AssignDigger 34\n450 35 AssignDigger 35\n450 36 AssignDigger 36\n450 37 AssignDigger 37\n450 38 AssignDigger 38\n450 39 AssignDigger 39\n450 40 AssignDigger 40\n450 41 AssignDigger 41\n450 42 AssignDigger 42\n450 43 AssignDigger 43\n450 44 AssignDigger 44\n450 45 AssignDigger 45\n450 46 AssignDigger 46\n450 47 AssignDigger 47\n450 48 AssignDigger 48\n450 49 AssignDigger 49\n450 50 AssignDigger 50\n450 51 AssignDigger 51\n450 52 AssignDigger 52\n450 53 AssignDigger 53\n450 54 AssignDigger 54\n450 55 AssignDigger 55\n450 56 AssignDigger 56\n450 57 AssignDigger 57\n450 58 AssignDigger 58\n450 59 AssignDigger 59\n450 60 AssignDigger 60\n450 61 AssignDigger 61\n450 62 AssignDigger 62\n450 63 AssignDigger 63\n450 64 AssignDigger 64\n450 65 AssignDigger 65\n450 66 AssignDigger 66\n450 67 AssignDigger 67\n450 68 AssignDigger 68\n450 69 AssignDigger 69\n450 70 AssignDigger 70\n450 71 AssignDigger 71\n450 72 AssignDigger 72\n450 73 AssignDigger 73\n450 74 AssignDigger 74\n450 75 AssignDigger 75\n450 76 AssignDigger 76\n450 77 AssignDigger 77\n450 78 AssignDigger 78\n450 79 AssignDigger 79\n",
+      "input_sha256": "f4a7b3d678e0bf77468ee75f12cf7bc8fb7f858df0e99d663a51b285b98711c7",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 80,
+        "rescued": 80,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-11",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 80,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-12",
+      "phase": "Won",
+      "steps": 3788,
+      "input_text": "119 0 AssignClimber 0\n147 0 AssignBuilder 1\n282 0 AssignMiner 0\n316 0 SetReleaseRate 99\n371 0 AssignMiner 0\n460 0 AssignMiner 0\n547 0 AssignBasher 0\n558 0 AssignBasher 0\n637 0 AssignMiner 0\n832 0 AssignMiner 0\n1038 0 AssignBuilder 0\n1234 0 AssignBuilder 0\n1431 0 AssignBuilder 0\n1667 0 AssignBasher 0\n2203 0 AssignBuilder 0\n2283 0 AssignBuilder 0\n2318 0 AssignBuilder 0\n2514 0 AssignBuilder 0\n2707 0 AssignBuilder 0\n2719 0 AssignBuilder 59\n2729 0 AssignBuilder 0\n2912 0 AssignBuilder 0\n3094 0 AssignBuilder 0\n",
+      "input_sha256": "cf203fb989bca0ce2a68193f19f7281fb6f2ce08869bc9f80012d6a1fe0d05c9",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 75,
+        "lemming_count": 75,
+        "required": 75,
+        "rescued": 75,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-12",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 75,
+        "lemming_count": 3,
+        "required": 75,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-13",
+      "phase": "Won",
+      "steps": 1212,
+      "input_text": "87 0 AssignBuilder 0\n101 0 AssignDigger 1\n414 0 AssignBuilder 0\n606 0 AssignBasher 0\n633 0 AssignDigger 0\n642 0 AssignBasher 0\n642 1 AssignClimber 1\n804 0 AssignBasher 1\n",
+      "input_sha256": "165ca941aee4295e975b3760d05abbcb748056b466f7703ba3131c222139bfcc",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 2,
+        "lemming_count": 2,
+        "required": 2,
+        "rescued": 2,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-13",
+      "phase": "Lost",
+      "steps": 172,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 2,
+        "lemming_count": 2,
+        "required": 2,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-14",
+      "phase": "Won",
+      "steps": 4519,
+      "input_text": "81 0 AssignBuilder 0\n154 0 SetReleaseRate 99\n281 0 AssignBuilder 23\n481 0 AssignBuilder 67\n969 0 AssignBuilder 79\n1064 0 AssignBuilder 4\n1260 0 AssignBuilder 4\n1458 0 AssignBuilder 4\n1677 0 AssignBuilder 4\n1888 0 AssignBuilder 4\n2090 0 AssignBuilder 4\n2292 0 AssignBuilder 4\n2488 0 AssignBuilder 4\n2720 0 AssignBuilder 4\n2918 0 AssignBuilder 4\n3116 0 AssignBuilder 4\n3313 0 AssignBuilder 4\n3566 0 AssignBuilder 24\n4366 0 Nuke\n",
+      "input_sha256": "3d8f44433cf05074b812f14ab7fa969ab2e74385509ef6d675cbbf96d4e622a1",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 75,
+        "rescued": 79,
+        "target_percent": 93,
+        "rescued_percent": 98
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-14",
+      "phase": "Lost",
+      "steps": 276,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 4,
+        "required": 75,
+        "rescued": 0,
+        "target_percent": 93,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-15",
+      "phase": "Won",
+      "steps": 3065,
+      "input_text": "111 0 AssignBasher 0\n123 0 AssignBlocker 1\n213 0 AssignBasher 2\n317 0 AssignBlocker 3\n413 0 AssignBlocker 8\n440 0 AssignBuilder 7\n488 0 AssignBlocker 10\n539 0 AssignBuilder 9\n593 0 AssignBasher 16\n693 0 AssignBuilder 19\n758 0 AssignBasher 22\n884 0 AssignBuilder 25\n902 0 AssignBuilder 27\n1092 0 AssignBuilder 33\n1099 0 AssignMiner 36\n1135 0 AssignBuilder 35\n1288 0 AssignMiner 42\n1326 0 AssignBuilder 41\n1352 0 AssignBuilder 47\n1464 0 AssignBuilder 13\n1472 0 SetReleaseRate 99\n",
+      "input_sha256": "ae59164a5faef49c441283e5d595e129268e0a5a843fed3b319b0d288f669e3f",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "TimeExpired",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 60,
+        "rescued": 74,
+        "target_percent": 75,
+        "rescued_percent": 92
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-15",
+      "phase": "Lost",
+      "steps": 273,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 60,
+        "rescued": 0,
+        "target_percent": 75,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-16",
+      "phase": "Won",
+      "steps": 974,
+      "input_text": "91 0 AssignBasher 0\n166 0 AssignDigger 1\n226 0 AssignBasher 1\n349 0 SetReleaseRate 66\n394 0 SetReleaseRate 10\n413 0 SetReleaseRate 99\n",
+      "input_sha256": "ce3c5156780dd751f050e66e578b8917ba20565c696826c8dc6c8e1a2b67d313",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 50,
+        "rescued": 50,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-16",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 2,
+        "required": 50,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-17",
+      "phase": "Won",
+      "steps": 2370,
+      "input_text": "68 0 AssignDigger 0\n117 0 AssignBlocker 0\n119 0 SetReleaseRate 99\n435 0 SetReleaseRate 92\n440 0 AssignClimber 78\n447 0 AssignClimber 79\n480 0 AssignDigger 78\n483 0 AssignBasher 78\n485 0 AssignBlocker 78\n486 0 AssignDigger 79\n489 0 AssignBasher 79\n522 0 AssignMiner 78\n750 0 AssignBuilder 79\n796 0 AssignDigger 77\n818 0 AssignBasher 77\n1900 0 AssignMiner 77\n2216 0 Nuke\n2216 1 Nuke\n",
+      "input_sha256": "1a398f45c81d95deedcf0584abd0da92c0299ecf98296377023164c85188c820",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 70,
+        "rescued": 77,
+        "target_percent": 87,
+        "rescued_percent": 96
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-17",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 70,
+        "rescued": 0,
+        "target_percent": 87,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-18",
+      "phase": "Won",
+      "steps": 2407,
+      "input_text": "109 0 AssignClimber 0\n137 0 AssignClimber 1\n195 0 AssignBuilder 0\n197 0 AssignBuilder 1\n227 0 AssignBlocker 3\n311 0 AssignMiner 2\n388 0 AssignBuilder 0\n396 0 AssignBuilder 1\n481 0 AssignBomber 7\n563 0 AssignBomber 3\n582 0 AssignBuilder 0\n622 0 AssignBasher 1\n656 0 AssignBlocker 11\n669 0 AssignBlocker 11\n686 0 AssignBlocker 2\n689 0 SetReleaseRate 99\n733 0 AssignBuilder 0\n763 0 AssignBomber 23\n837 0 AssignBuilder 6\n855 0 AssignBlocker 27\n863 0 AssignBomber 15\n951 0 AssignBomber 0\n955 0 AssignBlocker 19\n1177 0 AssignBuilder 1\n1213 0 AssignMiner 10\n1387 0 AssignBomber 34\n1455 0 AssignBlocker 34\n1462 0 AssignDigger 1\n2254 0 Nuke\n2254 1 Nuke\n",
+      "input_sha256": "342b2e27bae443ec348aa82f141f24292d2cadd8221abb9d5d9b2868be1c1cbd",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 72,
+        "rescued": 73,
+        "target_percent": 90,
+        "rescued_percent": 91
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-18",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 72,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-19",
+      "phase": "Won",
+      "steps": 2882,
+      "input_text": "101 0 AssignClimber 1\n144 0 AssignClimber 2\n271 0 AssignBomber 2\n313 0 AssignBomber 1\n330 0 AssignBuilder 0\n582 0 AssignBuilder 0\n776 0 AssignBuilder 0\n970 0 AssignBuilder 0\n1165 0 AssignBuilder 0\n1360 0 AssignBuilder 0\n1558 0 AssignBuilder 0\n1615 0 AssignBomber 25\n1743 0 AssignBomber 26\n",
+      "input_sha256": "7f88f3ed127982c91bae65207e75a36c2c8483a125aa1f36bac01af90be862fc",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 46,
+        "rescued": 46,
+        "target_percent": 92,
+        "rescued_percent": 92
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-19",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 2,
+        "required": 46,
+        "rescued": 0,
+        "target_percent": 92,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-20",
+      "phase": "Won",
+      "steps": 1249,
+      "input_text": "131 0 AssignBasher 0\n131 1 AssignBlocker 1\n244 0 AssignBuilder 0\n499 0 AssignMiner 0\n499 1 AssignClimber 0\n809 0 AssignMiner 23\n809 1 AssignClimber 23\n",
+      "input_sha256": "bdad0401416c064c6351171dd4948cf21168e5242c3b02808b76eb4ec8fb7337",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 50,
+        "rescued": 50,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-20",
+      "phase": "Lost",
+      "steps": 279,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 7,
+        "required": 50,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-21",
+      "phase": "Won",
+      "steps": 3869,
+      "input_text": "10 0 SetReleaseRate 39\n75 0 AssignFloater 0\n109 0 AssignFloater 1\n141 0 AssignFloater 2\n177 0 AssignFloater 3\n211 0 AssignFloater 4\n245 0 AssignFloater 5\n279 0 AssignFloater 6\n313 0 AssignFloater 7\n347 0 AssignFloater 8\n380 0 AssignFloater 9\n415 0 AssignFloater 10\n449 0 AssignFloater 11\n483 0 AssignFloater 12\n517 0 AssignFloater 13\n551 0 AssignFloater 14\n585 0 AssignFloater 15\n618 0 AssignFloater 16\n653 0 AssignFloater 17\n687 0 AssignFloater 18\n721 0 AssignFloater 19\n755 0 AssignFloater 20\n789 0 AssignFloater 21\n823 0 AssignFloater 22\n857 0 AssignFloater 23\n890 0 AssignFloater 24\n924 0 AssignFloater 25\n959 0 AssignFloater 26\n992 0 AssignFloater 27\n1027 0 AssignFloater 28\n1061 0 AssignFloater 29\n1094 0 AssignFloater 30\n1129 0 AssignFloater 31\n1162 0 AssignFloater 32\n1196 0 AssignFloater 33\n1231 0 AssignFloater 34\n1264 0 AssignFloater 35\n1299 0 AssignFloater 36\n1332 0 AssignFloater 37\n1367 0 AssignFloater 38\n1401 0 AssignFloater 39\n1435 0 AssignFloater 40\n1469 0 AssignFloater 41\n1502 0 AssignFloater 42\n1537 0 AssignFloater 43\n1571 0 AssignFloater 44\n1604 0 AssignFloater 45\n1638 0 AssignFloater 46\n1672 0 AssignFloater 47\n1706 0 AssignFloater 48\n1741 0 AssignFloater 49\n1747 0 AssignDigger 49\n2357 0 AssignBasher 49\n2799 0 AssignBuilder 49\n3217 0 AssignBuilder 49\n3345 0 AssignBuilder 49\n3636 0 AssignBuilder 49\n",
+      "input_sha256": "3bfd6d46455397c43f804dcf9ff58bd574cd9cdc7d70af1c34a078bfb84af93e",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 50,
+        "rescued": 50,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-21",
+      "phase": "Lost",
+      "steps": 149,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 2,
+        "required": 50,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-22",
+      "phase": "Won",
+      "steps": 4099,
+      "input_text": "106 0 AssignBlocker 1\n164 0 AssignBlocker 2\n164 1 SetReleaseRate 99\n210 0 AssignBuilder 0\n402 0 AssignBuilder 0\n546 0 AssignBasher 0\n546 1 AssignBasher 0\n577 0 AssignBuilder 0\n769 0 AssignBuilder 0\n913 0 AssignBasher 0\n964 0 AssignBasher 0\n974 0 AssignBuilder 0\n1166 0 AssignBasher 0\n1226 0 AssignBasher 0\n1238 0 AssignBasher 0\n1371 0 AssignBasher 0\n1401 0 AssignBasher 0\n1448 0 AssignBuilder 0\n1640 0 AssignBuilder 0\n1832 0 AssignBuilder 0\n2024 0 AssignBuilder 0\n2216 0 AssignBuilder 0\n2408 0 AssignBuilder 0\n2704 0 AssignBasher 0\n2884 0 AssignBasher 0\n3031 0 AssignMiner 21\n3082 0 AssignBuilder 21\n3946 0 Nuke\n",
+      "input_sha256": "08c3c63d99ba2725506c4f3f0536d0307537f7c112f01369f0732b32a69ae0f0",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 68,
+        "rescued": 79,
+        "target_percent": 85,
+        "rescued_percent": 98
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-22",
+      "phase": "Lost",
+      "steps": 277,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 5,
+        "required": 68,
+        "rescued": 0,
+        "target_percent": 85,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-23",
+      "phase": "Won",
+      "steps": 3882,
+      "input_text": "54 0 AssignBomber 0\n96 0 AssignBlocker 2\n120 0 AssignBlocker 3\n121 0 SetReleaseRate 90\n123 0 SetReleaseRate 86\n211 0 AssignBasher 1\n219 0 AssignBuilder 1\n413 0 AssignBuilder 1\n944 0 AssignBomber 79\n1047 0 AssignBomber 3\n1123 0 AssignBasher 3\n1130 0 AssignBuilder 1\n1151 0 AssignBomber 78\n1250 0 AssignBlocker 77\n1255 0 AssignBasher 76\n2667 0 AssignFloater 76\n2714 0 AssignBuilder 76\n2908 0 AssignBlocker 76\n3308 0 AssignBasher 75\n3712 0 Nuke\n3812 0 Nuke\n",
+      "input_sha256": "484d5d531559c7926b5f67b72be34b73d45c95dd311bb6db9b782b074f8e929d",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 64,
+        "rescued": 72,
+        "target_percent": 80,
+        "rescued_percent": 90
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-23",
+      "phase": "Lost",
+      "steps": 276,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 4,
+        "required": 64,
+        "rescued": 0,
+        "target_percent": 80,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-24",
+      "phase": "Won",
+      "steps": 410,
+      "input_text": "65 0 AssignBasher 0\n110 0 AssignBasher 0\n197 0 AssignBasher 0\n",
+      "input_sha256": "feb4159e2b5730b3d72e9845e2c1ce7fce6fec0b542ac256fe193858dcbf0e7d",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 50,
+        "rescued": 50,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-24",
+      "phase": "Lost",
+      "steps": 289,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 17,
+        "required": 50,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-25",
+      "phase": "Won",
+      "steps": 2042,
+      "input_text": "78 0 AssignBuilder 0\n160 0 AssignClimber 2\n160 1 AssignFloater 2\n201 0 AssignDigger 0\n336 0 AssignBuilder 2\n386 0 AssignBuilder 0\n422 0 AssignBuilder 0\n592 0 AssignBuilder 9\n629 0 AssignBuilder 2\n904 0 AssignBlocker 0\n991 0 AssignBlocker 2\n991 1 AssignClimber 17\n991 2 AssignFloater 17\n1325 0 AssignMiner 17\n1325 1 SetReleaseRate 99\n1540 0 AssignBasher 12\n1889 0 Nuke\n",
+      "input_sha256": "89a5d9f53dc5035c7dadb72e06aef147772ba3ce3ef5a3ae5a37ce28df42fb6a",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 72,
+        "rescued": 72,
+        "target_percent": 90,
+        "rescued_percent": 90
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-25",
+      "phase": "Lost",
+      "steps": 176,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 72,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-26",
+      "phase": "Won",
+      "steps": 4930,
+      "input_text": "7 0 SetReleaseRate 99\n290 0 SetReleaseRate 50\n358 0 SetReleaseRate 99\n757 0 AssignBlocker 62\n863 0 AssignBuilder 46\n869 0 AssignBomber 62\n1031 0 AssignBomber 60\n1044 0 AssignBlocker 61\n1127 0 AssignBuilder 46\n1167 0 AssignBuilder 61\n1361 0 AssignBuilder 61\n1522 0 AssignBomber 46\n1814 0 AssignBuilder 61\n2016 0 AssignBuilder 61\n2217 0 AssignBuilder 61\n2410 0 AssignBuilder 61\n2773 0 AssignBuilder 61\n2987 0 AssignBuilder 76\n3917 0 AssignBomber 77\n4243 0 AssignBuilder 76\n",
+      "input_sha256": "187b4056c076a0f7d8dca81fce38f735d6a482395f28b45dd5ec180a1aa0c90a",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 60,
+        "rescued": 76,
+        "target_percent": 75,
+        "rescued_percent": 95
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-26",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 60,
+        "rescued": 0,
+        "target_percent": 75,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-27",
+      "phase": "Won",
+      "steps": 974,
+      "input_text": "91 0 AssignBasher 0\n166 0 AssignDigger 1\n226 0 AssignBasher 1\n349 0 SetReleaseRate 66\n394 0 SetReleaseRate 10\n413 0 SetReleaseRate 99\n",
+      "input_sha256": "ce3c5156780dd751f050e66e578b8917ba20565c696826c8dc6c8e1a2b67d313",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 50,
+        "rescued": 50,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-27",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 2,
+        "required": 50,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-28",
+      "phase": "Won",
+      "steps": 3316,
+      "input_text": "360 0 AssignBuilder 0\n552 0 AssignBuilder 0\n744 0 AssignBuilder 0\n936 0 AssignBuilder 0\n1050 0 AssignBuilder 0\n1066 0 AssignBasher 0\n2457 0 AssignDigger 0\n3162 0 AssignBasher 0\n",
+      "input_sha256": "d8c3385bdcc415533206119240db157327d10efb46b4f4c156d71b54de84db3f",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 1,
+        "lemming_count": 1,
+        "required": 1,
+        "rescued": 1,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-28",
+      "phase": "Lost",
+      "steps": 273,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 1,
+        "lemming_count": 1,
+        "required": 1,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-29",
+      "phase": "Won",
+      "steps": 4375,
+      "input_text": "85 0 AssignBlocker 0\n123 0 AssignBlocker 2\n146 0 AssignBuilder 1\n180 0 AssignDigger 1\n302 0 AssignBuilder 1\n504 0 AssignBuilder 1\n706 0 AssignBuilder 1\n908 0 AssignBuilder 1\n1110 0 AssignBuilder 1\n1312 0 AssignBuilder 1\n1514 0 AssignBuilder 1\n1709 0 AssignBuilder 1\n1917 0 AssignBuilder 1\n2091 0 AssignBuilder 72\n2648 0 AssignDigger 1\n2704 0 AssignBlocker 72\n2823 0 AssignBuilder 78\n2884 0 AssignBuilder 1\n3687 0 AssignBuilder 79\n3786 0 AssignBlocker 79\n3935 0 AssignBuilder 1\n4018 0 AssignBlocker 1\n4218 0 Nuke\n",
+      "input_sha256": "2c46e39238aa35cc98a5c34b9a6ea9fddff1391d6ea2faa61cc21f1cd018d41d",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 64,
+        "rescued": 75,
+        "target_percent": 80,
+        "rescued_percent": 93
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-29",
+      "phase": "Lost",
+      "steps": 179,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 64,
+        "rescued": 0,
+        "target_percent": 80,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-30",
+      "phase": "Won",
+      "steps": 7336,
+      "input_text": "118 0 AssignBlocker 1\n148 0 AssignBuilder 0\n196 0 AssignBuilder 2\n312 0 AssignBlocker 5\n513 0 AssignBuilder 3\n584 0 AssignBlocker 8\n708 0 AssignBuilder 0\n902 0 AssignBlocker 11\n940 0 AssignBuilder 12\n1136 0 AssignBuilder 12\n1223 0 AssignClimber 16\n1366 0 AssignBuilder 16\n1558 0 AssignBuilder 16\n1751 0 AssignBuilder 16\n1944 0 AssignBuilder 16\n2137 0 AssignBuilder 16\n2329 0 AssignBuilder 16\n2521 0 AssignBuilder 16\n2798 0 AssignBuilder 16\n3015 0 AssignBuilder 16\n3061 0 AssignBuilder 52\n3168 0 AssignBuilder 2\n3361 0 AssignBuilder 2\n3554 0 AssignBuilder 2\n3747 0 AssignBuilder 2\n3942 0 AssignBuilder 2\n4395 0 AssignFloater 2\n4642 0 AssignBuilder 2\n4679 0 AssignBuilder 78\n5253 0 AssignBlocker 77\n5274 0 AssignClimber 74\n5390 0 AssignBuilder 74\n5583 0 AssignBuilder 74\n5776 0 AssignBuilder 74\n5968 0 AssignBuilder 74\n6296 0 AssignBuilder 74\n6361 0 AssignBuilder 73\n6444 0 AssignBlocker 70\n6715 0 AssignBlocker 69\n6839 0 AssignBuilder 66\n6876 0 AssignBlocker 73\n7176 0 Nuke\n",
+      "input_sha256": "4136a8d556513ffab7d3b671b3c5c4b8ab25042e925db3ab062a65bddae7d33e",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 60,
+        "rescued": 68,
+        "target_percent": 75,
+        "rescued_percent": 85
+      },
+      "origin": "converted-community-replay",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    },
+    {
+      "id": "mayhem-30",
+      "phase": "Lost",
+      "steps": 153,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 60,
+        "rescued": 0,
+        "target_percent": 75,
+        "rescued_percent": 0
+      },
+      "origin": "project-authored",
+      "validation": "Input snapshot; final SDL/WASM/reference/CI/merge status and case proof hashes in issue102"
+    }
+  ]
+}

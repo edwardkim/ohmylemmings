@@ -84,3 +84,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 [G11-05c #98 Tricky01~30](reports/issue-98_tricky_solutions.md)은 성공30개/실패30개 입력(자체 작성·공개 리플레이 변환 출처 구분)과 실제 SDL/WASM 반복·Restart를 검증합니다. 최종 실행/CI/병합은 #98, 다른60개와 COMP/성능은 #93에서 추적합니다.
 
 [G11-05d #100 Taxing01~30](reports/issue-100_taxing_solutions.md)은 성공30개/실패30개 입력(자체7·공개 변환23)과 실제 SDL/WASM 반복·Restart를 검증합니다. 최종 실행/CI/병합은 #100, Mayhem30개·COMP/성능은 #93에서 추적합니다.
+
+[G11-05e #102 Mayhem01~30](reports/issue-102_mayhem_solutions.md)은 성공30개/실패30개 입력(자체8·공개 변환22)과 실제 SDL/WASM 반복·Restart를 검증합니다. 최종 판정은 #102, COMP 전체 재감사·성능/G11/G12는 #93에서 추적합니다.
