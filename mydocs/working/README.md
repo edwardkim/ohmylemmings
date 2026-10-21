@@ -83,3 +83,5 @@
 - [#93 유효 해법 완주·COMP 재감사](issue-93_solution_validation.md)
 
 - [#94 튜토리얼7개 해법 진행](issue-94_solution_replay.md)
+
+- [#96 Fun08~30 완주 검증 진행](issue-96_fun_solutions.md)

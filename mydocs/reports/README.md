@@ -82,3 +82,5 @@
 - [#91 G11-04 전체120레벨 초기 재생 결과 기록](issue-91_initial_replay.md)
 
 - [#94 튜토리얼7개 해법 결과](issue-94_solution_replay.md)
+
+- [#96 Fun08~30 해법·반복·재시작 검증](issue-96_fun_solutions.md)

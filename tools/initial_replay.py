@@ -158,23 +158,40 @@ def native_case(root,assets,entry,steps,replay=None):
     return dict(id=level_id,runs=runs,initial=initial,expected=file_identity(root/f'{level_id}.json'))
 
 
+class BrowserActivity:
+    """Checked replay progress resets only the idle deadline, never the run limit."""
+    def __init__(self,now):
+        self.started=self.last=now
+
+    def note(self,path,now):
+        if path not in ['/__initial/progress','/__initial/heartbeat','/__initial/done','/__initial/fail']:return False
+        self.last=now
+        return True
+
+    def timed_out(self,now,timeout):
+        return now-self.started>timeout or now-self.last>120
+
+
 def browser_check(directory,ids,files,steps,timeout=1800):
     build(directory)
     for name in ['initial_replay.js','initial_replay.html']:shutil.copyfile(ROOT/'tools/web'/name,directory/name)
     (directory/'initial-index.json').write_text(json.dumps(dict(ids=ids,files=files,steps=steps,variants=VARIANTS))+'\n')
-    ready=threading.Event();results=[];failed=[];last=time.monotonic()
+    ready=threading.Event();results=[];failed=[];activity=BrowserActivity(time.monotonic());heartbeats=0
     class Handler(SimpleHTTPRequestHandler):
         def log_message(self,*args):pass
         def do_POST(self):
-            nonlocal last
+            nonlocal heartbeats
             size=int(self.headers.get('Content-Length','0'))
             if not 0<size<2_000_000:self.send_error(413);return
-            data=json.loads(self.rfile.read(size));last=time.monotonic()
+            data=json.loads(self.rfile.read(size))
+            if not activity.note(self.path,time.monotonic()):self.send_error(404);return
             if self.path=='/__initial/progress':
                 results.append(data);(directory/'browser-progress.json').write_text(json.dumps(results,indent=2)+'\n');print('WASM',data.get('id'),data.get('render'),'PASS',flush=True)
             elif self.path=='/__initial/done':ready.set()
             elif self.path=='/__initial/fail':failed.append(data);ready.set()
-            else:self.send_error(404);return
+            elif self.path=='/__initial/heartbeat':
+                heartbeats+=1
+                (directory/'browser-heartbeat.json').write_text(json.dumps(dict(count=heartbeats,last=data))+'\n')
             self.send_response(200);self.end_headers();self.wfile.write(b'OK')
     browser=next((shutil.which(n) for n in ['google-chrome','chromium','chromium-browser'] if shutil.which(n)),None)
     if not browser:raise ValueError('Chromium/Chrome required')
@@ -183,10 +200,10 @@ def browser_check(directory,ids,files,steps,timeout=1800):
         with tempfile.TemporaryDirectory(prefix='initial-replay-browser-') as profile,(directory/'browser.log').open('w') as log:
             process=subprocess.Popen([browser,'--headless','--disable-gpu','--no-first-run','--no-default-browser-check',f'--user-data-dir={profile}',f'http://127.0.0.1:{server.server_port}/initial_replay.html'],stdout=log,stderr=subprocess.STDOUT)
             try:
-                start=time.monotonic()
+                activity=BrowserActivity(time.monotonic())
                 while not ready.wait(1):
                     if process.poll() is not None:raise RuntimeError('browser exited')
-                    if time.monotonic()-start>timeout or time.monotonic()-last>120:raise TimeoutError('initial browser replay stalled/timed out')
+                    if activity.timed_out(time.monotonic(),timeout):raise TimeoutError('initial browser replay stalled/timed out')
             finally:
                 process.terminate()
                 try:process.wait(timeout=10)
@@ -196,7 +213,7 @@ def browser_check(directory,ids,files,steps,timeout=1800):
         (directory/'first-failure.json').write_text(json.dumps(failed[0],indent=2)+'\n');raise ValueError(failed[0])
     if len(results)!=len(ids)*3:raise ValueError('missing/duplicate browser runs')
     if {(r['id'],r['render']) for r in results}!={(i,v[0]) for i in ids for v in VARIANTS}:raise ValueError('browser run inventory differs')
-    return dict(status='PASS',browser=subprocess.check_output([browser,'--version'],text=True).strip(),runs=results)
+    return dict(status='PASS',browser=subprocess.check_output([browser,'--version'],text=True).strip(),runs=results,heartbeats=heartbeats)
 
 
 def run(directory,original_assets=None,workers=3,steps=340):

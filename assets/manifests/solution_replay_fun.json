@@ -1,0 +1,896 @@
+{
+  "format": "g11-solution-replay-v1",
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/96",
+  "parent": "https://github.com/edwardkim/ohmylemmings/issues/93",
+  "baseline_main": "e51739a139f0fd31b644a0d2c44893647c43fc07",
+  "scope": "Own authored Fun08..30 stable-actor inputs; original goals and inventories. No original or derived binary/image/map/audio. Final certification in issue96; remaining90 and whole COMP/performance in issue93.",
+  "review_stage": "Input/source snapshot; final runtime/CI/merge proof is posted in issue96",
+  "variants": [
+    [
+      1,
+      30
+    ],
+    [
+      7,
+      60
+    ],
+    [
+      13,
+      144
+    ]
+  ],
+  "native_restart_render_intervals": [
+    37,
+    101,
+    257
+  ],
+  "sources": [
+    {
+      "path": "tools/solution_replay.py",
+      "bytes": 12563,
+      "sha256": "b5847fb9a3ffdfc5be6897af9c5abb19da303372bcb7d9c3407e841be74fe03a"
+    },
+    {
+      "path": "tools/initial_replay.py",
+      "bytes": 17298,
+      "sha256": "9649834526b9d5ae11e3624bc06fa9eda5af2f9e7afdf458508970773ca091ea"
+    },
+    {
+      "path": "tools/web/initial_replay.js",
+      "bytes": 6941,
+      "sha256": "dd3621ca40ae1463a803dc3fffa9da41b7f415e8cb6cc547b3c5d5a215113506"
+    },
+    {
+      "path": "tools/tests/test_initial_replay.py",
+      "bytes": 3071,
+      "sha256": "8201dabd7a3e54cfbb755c7b21960ce0690453682039e33f6a5ef3360d4bc01a"
+    },
+    {
+      "path": "tools/tests/test_solution_replay.py",
+      "bytes": 2961,
+      "sha256": "019e6554e786175993538f950cea57d8a011bcb705c1b8706c3938d0ef47454d"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 2588,
+      "sha256": "9ea06eb0f93009df449b4c34016d978a405b7fb999d047144550f183123f01f6"
+    }
+  ],
+  "strategy_reference": {
+    "url": "https://asthalis.fr/fichiers/pc/lemmings/lemmings_solution.pdf",
+    "author": "Asthalis",
+    "revision": "1, 2025-01-23",
+    "accessed": "2026-10-21",
+    "use": "High-level route ideas only; timings, actor IDs and all serialized inputs authored and checked in this project. No walkthrough text or replay copied."
+  },
+  "cases": [
+    {
+      "id": "fun-08",
+      "phase": "Won",
+      "steps": 1425,
+      "input_text": "317 0 AssignBlocker 0\n1272 0 Nuke\n",
+      "input_sha256": "52ee5066332bb5bbe30a5a77cfed70c504d9cb995f0bc3cc419c740de151ac58",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 76,
+        "rescued": 79,
+        "target_percent": 95,
+        "rescued_percent": 98
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-08",
+      "phase": "Lost",
+      "steps": 280,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 8,
+        "required": 76,
+        "rescued": 0,
+        "target_percent": 95,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-09",
+      "phase": "Won",
+      "steps": 536,
+      "input_text": "123 0 AssignBasher 0\n528 0 Nuke\n",
+      "input_sha256": "a46ea92bc415819135210869e1de7335b0527a0ea1ad86c130ac65712f63ad87",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 72,
+        "rescued": 73,
+        "target_percent": 90,
+        "rescued_percent": 91
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-09",
+      "phase": "Lost",
+      "steps": 289,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 17,
+        "required": 72,
+        "rescued": 0,
+        "target_percent": 90,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-10",
+      "phase": "Won",
+      "steps": 713,
+      "input_text": "54 0 AssignFloater 0\n82 0 AssignFloater 1\n110 0 AssignFloater 2\n138 0 AssignFloater 3\n166 0 AssignFloater 4\n166 1 AssignBlocker 0\n194 0 AssignFloater 5\n222 0 AssignFloater 6\n250 0 AssignFloater 7\n278 0 AssignFloater 8\n306 0 AssignFloater 9\n334 0 AssignFloater 10\n362 0 AssignFloater 11\n390 0 AssignFloater 12\n418 0 AssignFloater 13\n446 0 AssignFloater 14\n474 0 AssignFloater 15\n502 0 AssignFloater 16\n530 0 AssignFloater 17\n553 0 Nuke\n",
+      "input_sha256": "607e78c22cdaab45d98a01b6910dba148213dbc319ce570e51b403cb2f7430ee",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 20,
+        "lemming_count": 18,
+        "required": 10,
+        "rescued": 13,
+        "target_percent": 50,
+        "rescued_percent": 72
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-10",
+      "phase": "Lost",
+      "steps": 193,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 20,
+        "lemming_count": 3,
+        "required": 10,
+        "rescued": 0,
+        "target_percent": 50,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-11",
+      "phase": "Won",
+      "steps": 2062,
+      "input_text": "54 0 AssignClimber 0\n54 1 AssignFloater 0\n82 0 AssignClimber 1\n82 1 AssignFloater 1\n401 0 AssignBlocker 0\n428 0 AssignBasher 1\n438 0 AssignBasher 1\n763 0 AssignBasher 1\n773 0 AssignBasher 1\n1500 0 AssignBomber 0\n1983 0 Nuke\n",
+      "input_sha256": "0067d545026e84f955fcf88bd96351bc321924400e756257067f920d59be424c",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 60,
+        "lemming_count": 60,
+        "required": 50,
+        "rescued": 59,
+        "target_percent": 83,
+        "rescued_percent": 98
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-11",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 60,
+        "lemming_count": 3,
+        "required": 50,
+        "rescued": 0,
+        "target_percent": 83,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-12",
+      "phase": "Won",
+      "steps": 943,
+      "input_text": "172 0 AssignBasher 0\n312 0 AssignBlocker 1\n389 0 AssignBuilder 0\n581 0 AssignBuilder 0\n597 0 AssignBuilder 0\n789 0 Nuke\n",
+      "input_sha256": "6782a3f02cdd05d9f2dbb93c437be7825c57746fec2efec8d977bdb6b939cd13",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 40,
+        "rescued": 77,
+        "target_percent": 50,
+        "rescued_percent": 96
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-12",
+      "phase": "Lost",
+      "steps": 289,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 17,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 50,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-13",
+      "phase": "Won",
+      "steps": 1755,
+      "input_text": "605 0 AssignDigger 0\n646 0 AssignDigger 1\n687 0 AssignDigger 2\n728 0 AssignDigger 3\n769 0 AssignDigger 4\n810 0 AssignDigger 5\n851 0 AssignDigger 6\n892 0 AssignDigger 7\n933 0 AssignDigger 8\n974 0 AssignDigger 9\n1015 0 AssignDigger 10\n1056 0 AssignDigger 11\n1097 0 AssignDigger 12\n1138 0 AssignDigger 13\n1179 0 AssignDigger 14\n1220 0 AssignDigger 15\n1261 0 AssignDigger 16\n1302 0 AssignDigger 17\n1343 0 AssignDigger 18\n1384 0 AssignDigger 19\n",
+      "input_sha256": "beab7e21b1ce63e1bd79c99ab1650ec9210e974afd714f390da268fa18865aac",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 20,
+        "lemming_count": 20,
+        "required": 20,
+        "rescued": 20,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-13",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 20,
+        "lemming_count": 2,
+        "required": 20,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-14",
+      "phase": "Won",
+      "steps": 3086,
+      "input_text": "155 0 AssignBasher 0\n326 0 AssignBuilder 0\n518 0 AssignBuilder 0\n710 0 AssignBuilder 0\n886 0 AssignBasher 0\n1434 0 AssignBuilder 0\n1626 0 AssignBuilder 0\n1818 0 AssignBuilder 0\n1978 0 AssignBasher 0\n1978 1 SetReleaseRate 99\n2928 0 Nuke\n",
+      "input_sha256": "648d1baa8357470c41467886c86ec63886a1d19a4ac2f6f4f3e7c9ba2f0e81af",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 60,
+        "rescued": 76,
+        "target_percent": 75,
+        "rescued_percent": 95
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-14",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 60,
+        "rescued": 0,
+        "target_percent": 75,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-15",
+      "phase": "Won",
+      "steps": 3866,
+      "input_text": "406 0 AssignBasher 0\n608 0 AssignBasher 0\n814 0 AssignBasher 0\n1132 0 AssignBuilder 0\n1324 0 AssignBuilder 0\n1516 0 AssignBuilder 0\n1708 0 AssignBuilder 0\n2032 0 AssignBuilder 0\n2224 0 AssignBuilder 0\n2416 0 AssignBuilder 0\n2608 0 SetReleaseRate 99\n3708 0 Nuke\n",
+      "input_sha256": "28c70ed3450ae622ab89126447117b19f29f210604d8ede9d8d6aac1a620fe14",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 40,
+        "rescued": 43,
+        "target_percent": 50,
+        "rescued_percent": 53
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-15",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 50,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-16",
+      "phase": "Won",
+      "steps": 2299,
+      "input_text": "188 0 AssignBuilder 0\n380 0 AssignBuilder 0\n572 0 AssignBuilder 0\n764 0 AssignBuilder 0\n956 0 AssignBuilder 0\n1148 0 AssignBuilder 0\n1340 0 AssignBuilder 0\n1532 0 AssignBuilder 0\n1724 0 SetReleaseRate 99\n2259 0 Nuke\n",
+      "input_sha256": "90cb4687ed5d3209719591ddbc65a33d293e27aff383787a202d71f2e2151094",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 50,
+        "rescued": 59,
+        "target_percent": 62,
+        "rescued_percent": 73
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-16",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 50,
+        "rescued": 0,
+        "target_percent": 62,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-17",
+      "phase": "Won",
+      "steps": 646,
+      "input_text": "70 0 AssignBasher 0\n74 0 AssignBasher 1\n78 0 AssignBasher 2\n82 0 AssignBasher 3\n229 0 AssignFloater 8\n238 0 AssignFloater 28\n240 0 AssignFloater 0\n253 0 AssignFloater 12\n253 1 AssignFloater 32\n269 0 AssignFloater 36\n279 0 AssignFloater 16\n285 0 AssignFloater 40\n296 0 AssignFloater 9\n301 0 AssignFloater 44\n305 0 AssignFloater 29\n308 0 AssignFloater 1\n317 0 AssignFloater 48\n321 0 AssignFloater 13\n321 1 AssignFloater 33\n337 0 AssignFloater 37\n347 0 AssignFloater 17\n353 0 AssignFloater 41\n366 0 AssignFloater 10\n369 0 AssignFloater 45\n489 0 Nuke\n",
+      "input_sha256": "a7b9ba51b9199f2404e4aec6fa58065e534602a0bfe525496b8c9e24317f858f",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 20,
+        "rescued": 20,
+        "target_percent": 40,
+        "rescued_percent": 40
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-17",
+      "phase": "Lost",
+      "steps": 289,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 17,
+        "required": 20,
+        "rescued": 0,
+        "target_percent": 40,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-18",
+      "phase": "Won",
+      "steps": 1461,
+      "input_text": "264 0 AssignBlocker 0\n264 1 AssignBomber 0\n386 0 AssignBlocker 8\n386 1 AssignBomber 8\n518 0 AssignBlocker 16\n518 1 AssignBomber 16\n639 0 AssignBlocker 24\n639 1 AssignBomber 24\n798 0 AssignBlocker 29\n798 1 AssignBomber 29\n1295 0 Nuke\n",
+      "input_sha256": "0f78e13f732afbbd07016a9be40409011df0a10189d57cd89e038ee8de3a27b8",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 70,
+        "lemming_count": 70,
+        "required": 50,
+        "rescued": 57,
+        "target_percent": 71,
+        "rescued_percent": 81
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-18",
+      "phase": "Lost",
+      "steps": 278,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 70,
+        "lemming_count": 6,
+        "required": 50,
+        "rescued": 0,
+        "target_percent": 71,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-19",
+      "phase": "Won",
+      "steps": 2996,
+      "input_text": "863 0 AssignBuilder 0\n1055 0 AssignBuilder 0\n1247 0 AssignBuilder 0\n1439 0 AssignBuilder 0\n1631 0 AssignBuilder 0\n1823 0 SetReleaseRate 99\n2948 0 Nuke\n",
+      "input_sha256": "660561ec1b45d3d44f8f6175d04a0eeee6219c59745053787121ed948870c1dd",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 56,
+        "rescued": 67,
+        "target_percent": 70,
+        "rescued_percent": 83
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-19",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 2,
+        "required": 56,
+        "rescued": 0,
+        "target_percent": 70,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-20",
+      "phase": "Won",
+      "steps": 1460,
+      "input_text": "78 0 AssignBuilder 0\n372 0 AssignBasher 0\n405 0 AssignBasher 0\n430 0 AssignBasher 0\n463 0 AssignBasher 0\n488 0 AssignBasher 0\n520 0 AssignBasher 0\n546 0 AssignBasher 0\n564 0 AssignBuilder 0\n756 0 AssignBuilder 0\n948 0 SetReleaseRate 99\n1448 0 Nuke\n",
+      "input_sha256": "fdfe76527c249da4e04a45e4d47566ccc8f6f5b985958389e234f5c85247367f",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 30,
+        "rescued": 44,
+        "target_percent": 60,
+        "rescued_percent": 88
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-20",
+      "phase": "Lost",
+      "steps": 168,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 2,
+        "required": 30,
+        "rescued": 0,
+        "target_percent": 60,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-21",
+      "phase": "Won",
+      "steps": 2467,
+      "input_text": "334 0 AssignBasher 0\n712 0 AssignBasher 0\n890 0 AssignBasher 0\n1030 0 AssignBuilder 0\n1191 0 AssignBasher 1\n1198 0 AssignBuilder 1\n1214 0 SetReleaseRate 99\n2364 0 Nuke\n",
+      "input_sha256": "4d7517e069cd1b1f3191bc182552f18504ac03d7560ce7876684a84517717391",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 48,
+        "rescued": 75,
+        "target_percent": 60,
+        "rescued_percent": 93
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-21",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 48,
+        "rescued": 0,
+        "target_percent": 60,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-22",
+      "phase": "Won",
+      "steps": 3327,
+      "input_text": "187 0 AssignBasher 0\n363 0 AssignBasher 0\n623 0 AssignBlocker 1\n672 0 AssignBasher 0\n921 0 AssignBasher 0\n1087 0 AssignBasher 0\n1194 0 AssignBasher 0\n1311 0 AssignBuilder 0\n1423 0 AssignBuilder 0\n1615 0 AssignBuilder 0\n1807 0 AssignBuilder 0\n1887 0 AssignBuilder 0\n2079 0 AssignBuilder 0\n2271 0 AssignBuilder 0\n2511 0 AssignBasher 0\n2511 1 SetReleaseRate 99\n3161 0 Nuke\n",
+      "input_sha256": "29948774583d15e60135da71a1b2f46c2ddde0367edfd05f3dabb82a230047a1",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 64,
+        "rescued": 72,
+        "target_percent": 80,
+        "rescued_percent": 90
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-22",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 64,
+        "rescued": 0,
+        "target_percent": 80,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-23",
+      "phase": "Won",
+      "steps": 3574,
+      "input_text": "192 0 AssignBlocker 0\n220 0 AssignBuilder 1\n412 0 AssignBuilder 1\n604 0 AssignBuilder 1\n796 0 AssignBuilder 1\n988 0 AssignBuilder 1\n1180 0 AssignBuilder 1\n1372 0 AssignBuilder 1\n1713 0 AssignBasher 1\n2100 0 AssignBasher 1\n2251 0 AssignBasher 1\n2345 0 AssignBasher 1\n2433 0 AssignBasher 1\n2520 0 AssignBasher 1\n3155 0 AssignBasher 1\n3395 0 Nuke\n",
+      "input_sha256": "25f9752f565ea4bf33569b59fc088a280212a61fa5c48dc38a6916aa65e11baf",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 20,
+        "rescued": 53,
+        "target_percent": 25,
+        "rescued_percent": 66
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-23",
+      "phase": "Lost",
+      "steps": 275,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 3,
+        "required": 20,
+        "rescued": 0,
+        "target_percent": 25,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-24",
+      "phase": "Won",
+      "steps": 956,
+      "input_text": "111 0 AssignDigger 0\n137 0 AssignBlocker 2\n561 0 AssignDigger 4\n562 0 AssignDigger 0\n803 0 Nuke\n",
+      "input_sha256": "28526e8fff59fb7709d386b3a71e4b0fcad86a41adb635047b54680c5817bb8a",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 30,
+        "lemming_count": 30,
+        "required": 20,
+        "rescued": 25,
+        "target_percent": 66,
+        "rescued_percent": 83
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-24",
+      "phase": "Lost",
+      "steps": 289,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 30,
+        "lemming_count": 17,
+        "required": 20,
+        "rescued": 0,
+        "target_percent": 66,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-25",
+      "phase": "Won",
+      "steps": 1532,
+      "input_text": "323 0 AssignDigger 0\n445 0 AssignDigger 0\n564 0 AssignDigger 0\n659 0 AssignDigger 0\n682 0 AssignBlocker 1\n931 0 AssignDigger 0\n1028 0 AssignBuilder 0\n1154 0 AssignBasher 21\n1174 0 AssignBasher 22\n1227 0 AssignDigger 24\n1379 0 Nuke\n",
+      "input_sha256": "56da311049f258ff775f85604520cfa676b97bf0addef932de4b0d41d1038339",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 40,
+        "rescued": 60,
+        "target_percent": 50,
+        "rescued_percent": 75
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-25",
+      "phase": "Lost",
+      "steps": 289,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 17,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 50,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-26",
+      "phase": "Won",
+      "steps": 934,
+      "input_text": "87 0 AssignBuilder 0\n101 0 AssignBuilder 1\n367 0 AssignBuilder 0\n389 0 AssignBuilder 1\n559 0 AssignBuilder 0\n581 0 AssignBuilder 1\n",
+      "input_sha256": "61faa1b779145e95105e6218bbe49cf87140aa2ad78bfa0c02e9346c464722e3",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 2,
+        "lemming_count": 2,
+        "required": 2,
+        "rescued": 2,
+        "target_percent": 100,
+        "rescued_percent": 100
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-26",
+      "phase": "Lost",
+      "steps": 182,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 2,
+        "lemming_count": 2,
+        "required": 2,
+        "rescued": 0,
+        "target_percent": 100,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-27",
+      "phase": "Won",
+      "steps": 1699,
+      "input_text": "54 0 AssignFloater 0\n107 0 AssignFloater 1\n160 0 AssignFloater 2\n253 0 AssignBlocker 0\n301 0 AssignBlocker 3\n320 0 AssignBuilder 1\n454 0 AssignBlocker 2\n512 0 AssignBuilder 1\n704 0 AssignBuilder 1\n896 0 AssignBomber 0\n1004 0 AssignBuilder 1\n1196 0 AssignBomber 3\n1196 1 SetReleaseRate 99\n1546 0 Nuke\n",
+      "input_sha256": "2fa8a3f37e25b12e32db4d1e5de2b55b7817afd16d5fc920a90834ff879eed5d",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 50,
+        "required": 25,
+        "rescued": 29,
+        "target_percent": 50,
+        "rescued_percent": 58
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-27",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 50,
+        "lemming_count": 2,
+        "required": 25,
+        "rescued": 0,
+        "target_percent": 50,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-28",
+      "phase": "Won",
+      "steps": 2817,
+      "input_text": "73 0 AssignDigger 0\n167 0 AssignDigger 0\n259 0 AssignDigger 0\n353 0 AssignDigger 0\n447 0 AssignBlocker 7\n507 0 AssignBlocker 8\n525 0 AssignBuilder 14\n717 0 AssignBuilder 14\n909 0 AssignBuilder 14\n1101 0 AssignBuilder 14\n1293 0 AssignBuilder 14\n1485 0 AssignBuilder 14\n1677 0 AssignBuilder 14\n2157 0 AssignBomber 8\n2157 1 AssignBuilder 40\n2157 2 SetReleaseRate 99\n2658 0 Nuke\n",
+      "input_sha256": "f795e16905d44f181ced82ea330776f4eca3fb70bec4377d0e045507edfd6407",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 48,
+        "rescued": 75,
+        "target_percent": 60,
+        "rescued_percent": 93
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-28",
+      "phase": "Lost",
+      "steps": 278,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 6,
+        "required": 48,
+        "rescued": 0,
+        "target_percent": 60,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-29",
+      "phase": "Won",
+      "steps": 4086,
+      "input_text": "83 0 AssignBlocker 0\n125 0 AssignBasher 1\n187 0 AssignBasher 1\n245 0 AssignBasher 1\n572 0 AssignBasher 1\n624 0 AssignBlocker 21\n806 0 AssignBuilder 1\n934 0 AssignBuilder 1\n1126 0 AssignBuilder 1\n1296 0 AssignBlocker 11\n1324 0 AssignBuilder 32\n1516 0 AssignBuilder 32\n1708 0 AssignBuilder 32\n1899 0 AssignBasher 32\n1973 0 AssignBasher 32\n2394 0 AssignBuilder 32\n2586 0 AssignBuilder 32\n2602 0 AssignBuilder 32\n2794 0 AssignBuilder 32\n2858 0 AssignBuilder 32\n2906 0 AssignBuilder 32\n2922 0 AssignBuilder 32\n2938 0 AssignBuilder 32\n2954 0 AssignBuilder 32\n3146 0 AssignBomber 21\n3254 0 AssignBuilder 45\n3350 0 AssignBuilder 45\n3382 0 SetReleaseRate 99\n3932 0 Nuke\n",
+      "input_sha256": "8ed42b25745a333887eeb59d3ccd08ef4e975ea63c401dda867fcc49d5185753",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 80,
+        "required": 48,
+        "rescued": 77,
+        "target_percent": 60,
+        "rescued_percent": 96
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-29",
+      "phase": "Lost",
+      "steps": 194,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 80,
+        "lemming_count": 9,
+        "required": 48,
+        "rescued": 0,
+        "target_percent": 60,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-30",
+      "phase": "Won",
+      "steps": 526,
+      "input_text": "64 0 AssignBasher 0\n109 0 AssignMiner 0\n171 0 AssignBasher 0\n196 0 AssignDigger 0\n196 1 SetReleaseRate 99\n496 0 Nuke\n",
+      "input_sha256": "958bfef0a27c93c646d758a81b30c7b92062fa78a2565750c869085fc73df9cc",
+      "discovery_result": {
+        "phase": "Won",
+        "reason": "PopulationExhausted",
+        "original_total": 60,
+        "lemming_count": 60,
+        "required": 40,
+        "rescued": 58,
+        "target_percent": 66,
+        "rescued_percent": 96
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    },
+    {
+      "id": "fun-30",
+      "phase": "Lost",
+      "steps": 274,
+      "input_text": "120 0 Nuke\n",
+      "input_sha256": "05a982f7bbd005b1777a28df43f4baf26a8f8ea05362c347ab724a7d7ae3e68e",
+      "discovery_result": {
+        "phase": "Lost",
+        "reason": "PopulationExhausted",
+        "original_total": 60,
+        "lemming_count": 2,
+        "required": 40,
+        "rescued": 0,
+        "target_percent": 66,
+        "rescued_percent": 0
+      },
+      "validation": "Review input snapshot; final SDL/WASM/reference and publication status recorded in issue96"
+    }
+  ]
+}

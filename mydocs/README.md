@@ -78,3 +78,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 [G11-04 / #91 전체120레벨 초기 재생](reports/issue-91_initial_replay.md): 실제 SDL·WASM의340경계·3회/시간 분할·맵/전체 프레임과 독립 초기 자원을 대조합니다. 전수 실행·정확한 CI/마감 상태는 #91에 기록하며 유효 해법 완주·성능은 후속입니다.
 
 [G11-05 #93](working/issue-93_solution_validation.md)의 첫 절편 [#94](reports/issue-94_solution_replay.md)은 Fun01~07 유효 입력·실제 SDL/WASM 반복/재시작을 검증합니다. 전수120개·COMP 마감은 #93에서 계속하며 최종 실행/CI는 각 이슈 기록을 따릅니다.
+
+[G11-05b #96 Fun08~30](reports/issue-96_fun_solutions.md)은 성공23개/실패23개 저장 입력과 실제 SDL/WASM 반복·Restart를 검증합니다. 최종 실행/CI/병합은 #96, 다른90개와 COMP/성능은 #93에서 추적합니다.
