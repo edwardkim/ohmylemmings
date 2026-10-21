@@ -95,3 +95,5 @@
 - [#104 COMP-01~18 증거 재감사](issue-104_comp_reaudit.md)
 
 - [#106 로딩·틱·렌더·오디오 성능 측정](issue-106_performance.md)
+
+- [#107 SDL 표시 주기 보정](issue-107_render_cadence.md): 절대60Hz·지연/복귀 테스트와 실제60초3쌍 비교.

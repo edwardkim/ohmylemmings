@@ -90,3 +90,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 [G11-05f #104 COMP 재감사](reports/issue-104_comp_reaudit.md)는 기존 경계 증거의 현재 소스 연결·빠진 원시 자료 보충·초기120개와 성공/실패240사례의 집계를 수행합니다. 최종 판정·정확한 CI/병합은 #104 기록을 따르며 성능은 G11-06 후속입니다.
 
 [G11-06 #106 성능 기준 측정](reports/issue-106_performance.md)은 알고리즘380행과 실제 SDL/Web 각60초×3을 기록했습니다. SDL 약53.2fps의60Hz 목표 미달은 [#107](https://github.com/edwardkim/ohmylemmings/issues/107)에서 보정하며 G11 전체 마감/G12는 후속입니다.
+
+[#107 SDL 표시 주기 보정](reports/issue-107_render_cadence.md)은 렌더 처리 시간을 다음 대기에 더하던 방식을60Hz 절대 시각으로 바꿉니다. 실제 전후60초3쌍과 동일성·CI 결과는 보고서/#107에 고정하며 G11 전체/G12 마감은 후속입니다.

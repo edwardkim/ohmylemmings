@@ -94,3 +94,5 @@
 - [#104 COMP-01~18 증거 재감사](issue-104_comp_reaudit.md)
 
 - [#106 G11-06 성능 기준](issue-106_performance.md): 로딩/틱/렌더/PCM380행·실제 SDL/Web60초×3·CI 분석, SDL 표시 주기 #107 후속.
+
+- [#107 SDL 표시 주기 보정](issue-107_render_cadence.md): 60Hz 절대 시각·지연/복귀 테스트, 같은 호스트60초3쌍과 동일성 대조.

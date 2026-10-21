@@ -115,3 +115,5 @@ ADLIB 명령/레지스터 스트림의 합성877호출과 원본 드라이버 �
 - [#104 COMP 재감사 색인](manifests/compatibility_audit.json)과 [실제 기준 경계 재실행](manifests/compatibility_boundaries.json): 70개 세부 요구·현재 소스·초기120개/성공·실패240사례의 저장 증거입니다. `python3 tools/compatibility_audit.py`는 원본 없이 무결성과 집계를 확인하며 `--local`은 ignored 증거도 요구합니다. 게임/DOS 새 실행이나 성능 측정의 대체물이 아니며 fetch 입력이 아닙니다.
 
 [G11-06 성능 기준](manifests/performance_baseline.json)은 원시30시간/초기화·median/p95/max·연산 수, 환경·입력/원본/실행 파일 해시와 실제 SDL/Web60초×3을 기록합니다. Native 약53.2fps의 표시 목표 미달은 #107 후속입니다. 원본 파생 PCM/맵/이미지와 실행 파일은 ignored `local/issue-106-review/`에만 보존합니다. [측정 결과·범위](../mydocs/reports/issue-106_performance.md), [재현](../tools/performance/README.md).
+
+[#107 네이티브 표시 주기 대조](manifests/display_cadence.json)는 고정 실행 파일·환경에서 실제 표시/오디오 ON60초3쌍과 상태/맵/RGB/PCM 동일성을 기록합니다. [보정·범위·재현](../mydocs/reports/issue-107_render_cadence.md).

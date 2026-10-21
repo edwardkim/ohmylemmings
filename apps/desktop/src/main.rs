@@ -1,5 +1,6 @@
 mod assets;
 mod audio;
+mod frame_clock;
 mod input;
 mod lifecycle;
 mod pacing;
@@ -952,7 +953,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
         p.upload_samples = upload_samples;
     }
     let mut previous = Instant::now();
-    let mut last_render = previous;
+    let mut frame_clock = frame_clock::FrameClock::new(previous, options.render_every);
     let mut rendered = 0u64;
     let mut observed_events = 0u64;
     let mut initial = true;
@@ -999,8 +1000,14 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             if let Event::Window { win_event, .. } = &event {
                 use sdl2::event::WindowEvent;
                 match win_event {
-                    WindowEvent::Hidden | WindowEvent::Minimized => audio_visible = false,
-                    WindowEvent::Shown | WindowEvent::Restored => audio_visible = true,
+                    WindowEvent::Hidden | WindowEvent::Minimized => {
+                        audio_visible = false;
+                        frame_clock.set_visible(false, Instant::now());
+                    }
+                    WindowEvent::Shown | WindowEvent::Restored => {
+                        audio_visible = true;
+                        frame_clock.set_visible(true, Instant::now());
+                    }
                     _ => {}
                 }
             }
@@ -1103,6 +1110,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                         }
                     }
                     previous = Instant::now();
+                    frame_clock.reset(previous);
                 }
                 Ok(None) if scripted => {
                     return Err("requested result transition is unavailable".into());
@@ -1254,9 +1262,14 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             || if options.fast {
                 advanced && step % options.render_every == 0
             } else {
-                last_render.elapsed() >= Duration::from_millis(16 * options.render_every)
+                frame_clock.due(Instant::now())
             };
         if render {
+            let budget = if options.fast {
+                None
+            } else {
+                frame_clock.begin(Instant::now())
+            };
             let frame_begin = performance.as_ref().map(|_| Instant::now());
             let frame = game.view.frame(&game.assets, &game.session)?;
             let cpu_ns = frame_begin.map_or(0, |t| t.elapsed().as_nanos());
@@ -1282,17 +1295,17 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             let upload_ns = upload_begin.map_or(0, |t| t.elapsed().as_nanos());
             let present_begin = performance.as_ref().map(|_| Instant::now());
             canvas.present();
+            let present_ns = present_begin.map_or(0, |t| t.elapsed().as_nanos());
+            let skipped = if budget.is_some() {
+                frame_clock.finish(Instant::now())
+            } else {
+                0
+            };
             if let (Some(p), Some(begin)) = (&mut performance, frame_begin) {
-                p.frame(
-                    begin,
-                    cpu_ns,
-                    upload_ns,
-                    present_begin.unwrap().elapsed().as_nanos(),
-                );
+                p.frame(begin, cpu_ns, upload_ns, present_ns, budget, skipped);
             }
             result_rendered = game.session.result().is_some();
             rendered += 1;
-            last_render = Instant::now();
         }
         initial = false;
         if finished {

@@ -81,8 +81,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 57905,
-      "sha256": "530a7b5fad65f98cb25877ddf6d65d720d102b5b0b474414f8b6661dd33c3e22"
+      "bytes": 58448,
+      "sha256": "7b41010a0e0c2cb3512f3134f37843b26e20fc0eab92dae34a4a6f285fa6b871"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -1706,8 +1706,8 @@
     },
     {
       "path": "apps/desktop/src/performance.rs",
-      "bytes": 4760,
-      "sha256": "5d0dabb116e1a8b47097c30e999303536369dcb298b1e36026075168f1d6d2dd"
+      "bytes": 5317,
+      "sha256": "8596aef98702f858afea5d90b5d397f6354cad60b00f4f903a9128625059d29d"
     },
     {
       "path": "apps/audio-probe/src/performance.rs",
@@ -1748,6 +1748,11 @@
       "path": "tools/performance/ci_shell.py",
       "bytes": 877,
       "sha256": "f4be31f90a09fef38971c4b3ac057081a3be5947700a461fd587154eeb3e425c"
+    },
+    {
+      "path": "apps/desktop/src/frame_clock.rs",
+      "bytes": 4752,
+      "sha256": "1c3db05122cd596c243f9b8403b623813fc5880722c2db75454cb09a69f326e4"
     }
   ],
   "evidence": [
@@ -2009,6 +2014,12 @@
       "sha256": "7e2d98f92050d9c7e6141b31685de7ff48c268705292500997d813925a2cb724",
       "id": "compatibility_initial",
       "kind": "recorded-host-proof-ledger"
+    },
+    {
+      "id": "g11-06-display-cadence",
+      "path": "assets/manifests/display_cadence.json",
+      "bytes": 87869,
+      "sha256": "85b6c1e0212c3cfa40638ddf0d4b161062a0909e8ceebbec7c2244e000787099"
     }
   ],
   "local_evidence": [
@@ -4254,5 +4265,43 @@
     ],
     "scope": "Existing104 pins and product_ci refer to historical base; current snapshot updates only diagnostic/CI boundaries. Core/resources/game/audio engine and production WebGame WASM unchanged. Twelve native/WASM fixed segments each33repeats match prior state/maps/RGB;40PCM cases match native/WASM. Default path tested in publication CI, exact head/logs in issue106. No new full120 solution replay claimed.",
     "historical_binary": "Same workspace/path rebuilt104 source; exact old SHA/bytes match, moved to immutable ignored evidence path."
+  },
+  "source_impact_107": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/107",
+    "baseline_main": "213d50c761db515f71aa51231f9a2357b70e7083",
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 57905,
+        "sha256": "530a7b5fad65f98cb25877ddf6d65d720d102b5b0b474414f8b6661dd33c3e22"
+      },
+      {
+        "path": "apps/desktop/src/performance.rs",
+        "bytes": 4760,
+        "sha256": "5d0dabb116e1a8b47097c30e999303536369dcb298b1e36026075168f1d6d2dd"
+      }
+    ],
+    "added": [
+      "apps/desktop/src/frame_clock.rs"
+    ],
+    "scope": "Native host display schedule now uses absolute60Hz grid, skips stale slots and rebases presentation only on visibility/level change. Simulation/resources/CPU rasterizer/PCM engine and fast replay/capture contracts unchanged. Existing120full replays and104 product_ci remain historical; they were not reexecuted. Current clock tests, real60s three paired runs, original/synthetic state/maps/RGB/readback and40fresh PCM equality plus default-path publication CI are recorded in display_cadence.json/report and issue107.",
+    "tests": [
+      {
+        "path": "apps/desktop/src/frame_clock.rs",
+        "name": "processing_time_does_not_accumulate_in_sixty_hz_deadlines"
+      },
+      {
+        "path": "apps/desktop/src/frame_clock.rs",
+        "name": "overdue_slots_are_skipped_once_without_a_catch_up_burst"
+      },
+      {
+        "path": "apps/desktop/src/frame_clock.rs",
+        "name": "forced_frames_do_not_postpone_grid_and_render_every_scales_sixty_hz"
+      },
+      {
+        "path": "apps/desktop/src/frame_clock.rs",
+        "name": "hide_restore_and_new_level_rebase_only_the_presentation_epoch"
+      }
+    ]
   }
 }
