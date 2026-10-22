@@ -110,6 +110,14 @@ impl Session {
     pub fn result(&self) -> Option<LevelResult> {
         self.result
     }
+    /// Validated logical terrain size, independent of any display resolution.
+    pub const fn dimensions(&self) -> (usize, usize) {
+        (self.width, self.height)
+    }
+    /// Immutable completion rules, including the original rescue denominator.
+    pub const fn completion_rules(&self) -> Option<CompletionRules> {
+        self.completion
+    }
     pub fn completion_snapshot(&self) -> String {
         let Some(rules) = self.completion else {
             return "null".into();

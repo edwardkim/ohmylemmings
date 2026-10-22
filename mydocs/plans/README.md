@@ -1,5 +1,7 @@
 # 계획 문서
 
+- [#140 HD 표시 snapshot·좌표/입력 구현](issue-140_hd_presentation.md).
+
 - [#137 2D HD 리마스터](issue-137_2d_remaster.md), [#138 Fun 01 HD 아트/표시 계약](issue-138_hd_art_contract.md).
 
 - [#85 G11 전체 호환성 점검·성능 측정 계획](issue-85_compatibility_validation.md)
