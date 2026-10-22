@@ -20,6 +20,75 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  windows:
+    name: Windows full game
+    runs-on: windows-2022
+    timeout-minutes: 15
+    env:
+      GIT_CONFIG_COUNT: '1'
+      GIT_CONFIG_KEY_0: core.autocrlf
+      GIT_CONFIG_VALUE_0: 'false'
+      PYTHONUTF8: '1'
+      RUSTFLAGS: '-C target-feature=+crt-static'
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Prepare pinned Windows dependencies and game data
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ((Test-Path assets/local) -or (Test-Path target)) { throw 'Expected clean checkout' }
+          $cargoCache = Join-Path $env:RUNNER_TEMP 'full-game-cargo-home'
+          if (Test-Path $cargoCache) { throw 'Expected fresh Cargo cache' }
+          "CARGO_HOME=$cargoCache" >> $env:GITHUB_ENV
+          $env:CARGO_HOME = $cargoCache
+          rustup show active-toolchain
+          if ($LASTEXITCODE -ne 0) { throw 'Pinned Rust unavailable' }
+          cargo fetch --locked
+          if ($LASTEXITCODE -ne 0) { throw 'Locked fetch failed' }
+          python tools/windows_package.py fetch-sdl
+          if ($LASTEXITCODE -ne 0) { throw 'SDL verification failed' }
+          python tools/reference_assets.py fetch
+          if ($LASTEXITCODE -ne 0) { throw 'Original data acquisition failed' }
+          python tools/reference_assets.py verify
+          if ($LASTEXITCODE -ne 0) { throw 'Original data verification failed' }
+      - name: Test and build Windows desktop with static CRT
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $sdlLib = (Resolve-Path assets/local/windows-sdl).Path
+          $env:LIB = "$sdlLib;$env:LIB"
+          $env:PATH = "$sdlLib;$env:PATH"
+          cargo test -p lemmings-desktop --locked --offline
+          if ($LASTEXITCODE -ne 0) { throw 'Windows desktop tests failed' }
+          cargo build -p lemmings-desktop --release --locked --offline
+          if ($LASTEXITCODE -ne 0) { throw 'Windows release build failed' }
+      - name: Package original game and verify fresh Windows installation
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python tools/windows_package.py create
+          if ($LASTEXITCODE -ne 0) { throw 'Full-game ZIP failed' }
+          python tools/check_windows_package.py --archive assets/local/dist/ohmylemmings-0.1.0-windows-x86_64.zip
+          if ($LASTEXITCODE -ne 0) { throw 'Fresh Windows installation failed' }
+      - name: Preserve full Windows game and validation evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: development-windows-x86_64
+          path: |
+            assets/local/dist/ohmylemmings-0.1.0-windows-x86_64.zip*
+            assets/local/windows-package-check/*.json
+            assets/local/windows-package-check/*.log
+            assets/local/windows-package-check/original-fun01.ppm
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
   rust:
     name: Rust native
     runs-on: ubuntu-24.04

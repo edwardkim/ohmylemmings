@@ -12,3 +12,5 @@
 - Linux TAR.GZ/Web ZIP 패키징을 TDD로 구현했다. 7개 오프라인 검사와 실제 압축 해제·SDL 결과/재시작/오디오·Web WASM/DOM/오디오/HTTP 소스 전달 pilot를 통과했다. 런타임 허용 목록·현재 Web 소스 일치·링크/누락/형식·전체 source inventory/해시·변조·덮어쓰기 거부와 입력별 결정성을 검사한다.
 - 기존 Ubuntu24.04 Native/Web CI에 패키지/설치 검사와 14일 artifact 보관을 추가한다. upload-artifact v7.0.2 tag/commit/action.yml의 Node24 및 input을 공식 API로 확인하고 SHA를 고정했다. CI의 깨끗한 빌드를 로컬 pilot와 구분한다.
 - #113 소스/측정과 NOT READY는 유지한다. #115 source index 변경은 빌드/패키징 도구에 한정하며 과거120레벨/PCM/성능을 새로 실행한 것으로 세지 않는다. Windows, 전체 프로젝트 라이선스 결정, 더 좋은 호스트 성능과 정식 릴리스가 남아 있어 #115 OPEN을 유지한다.
+
+- 최신 사용자 지시로 [#118](issue-118_windows_full_game.md)을 분리했다. Windows는 원본 그래픽·전체120개·음원을 포함하고 더블클릭으로 시작하는 게임 ZIP으로 변경한다. 이전 원본 제외/Windows 미구현 기술은 해당 변경 이전 기준이다.

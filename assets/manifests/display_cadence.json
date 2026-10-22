@@ -869,8 +869,8 @@
   "source": [
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 58448,
-      "sha256": "7b41010a0e0c2cb3512f3134f37843b26e20fc0eab92dae34a4a6f285fa6b871"
+      "bytes": 59945,
+      "sha256": "4451749d2fbff0f5e9d183877f582854d35e7a8f345b33491ca40f83fd165810"
     },
     {
       "path": "apps/desktop/src/frame_clock.rs",
@@ -1621,5 +1621,15 @@
       "sha256": "702349bbf7147c27216e593079c4381f81e3b9597e5f1475b2fe0cf99f0300ee",
       "scope": "original-free synthetic Builder scene; identical baseline/candidate readback"
     }
+  },
+  "source_maintenance_118": {
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 58448,
+        "sha256": "7b41010a0e0c2cb3512f3134f37843b26e20fc0eab92dae34a4a6f285fa6b871"
+      }
+    ],
+    "scope": "Windows-only executable-relative data default, GUI/log error handling and end-of-run PCM diagnostic. Clock, scheduling, renderer and audio implementation unchanged. Source list now identifies maintained code; measured #107 producers are the previous pins retained here, not a fresh performance run. User deferred 60fps qualification."
   }
 }

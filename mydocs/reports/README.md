@@ -104,3 +104,5 @@
 - [#113 Web 반복 그리기 보정·성능 검증 이월](issue-113_web_dispatch.md): 채택3쌍·trace/입력 진단, 사용자 승인으로 #115 G12 준비 착수.
 
 - [#115 개발용 Linux·Web 패키지](issue-115_release_preparation.md): 허용 목록·대응 소스/체크섬·결정성·실제 압축 해제 실행과 CI artifact, Windows/정식 릴리스 후속.
+
+- [#118 Windows 전체 게임 패키지](issue-118_windows_full_game.md): 원본 데이터 동봉·더블클릭 시작과 Windows 설치 검증.

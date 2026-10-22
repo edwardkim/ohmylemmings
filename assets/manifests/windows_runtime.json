@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "release": "https://github.com/libsdl-org/SDL/releases/tag/release-2.32.10",
+  "archive": {
+    "url": "https://github.com/libsdl-org/SDL/releases/download/release-2.32.10/SDL2-devel-2.32.10-VC.zip",
+    "size": 7172966,
+    "sha256": "af347939395a58b365846aaea27391e69f9ec9d4dd650d6ac40802159b418a6e"
+  },
+  "files": [
+    {
+      "name": "SDL2-LICENSE.txt",
+      "member": "SDL2-2.32.10/LICENSE.txt",
+      "size": 884,
+      "sha256": "97f35b302b361680ec1e891e95d2d52097bb95abff361434916d99dc1305f127"
+    },
+    {
+      "name": "SDL2.dll",
+      "member": "SDL2-2.32.10/lib/x64/SDL2.dll",
+      "size": 1586176,
+      "sha256": "b37740a72a7a9706216df9f0134894bb7a850b356fd149398c67d874cbcfacb4"
+    },
+    {
+      "name": "SDL2.lib",
+      "member": "SDL2-2.32.10/lib/x64/SDL2.lib",
+      "size": 183824,
+      "sha256": "361cceac30f75ee01e1aeeff5ce31a66b38eca037d03305d1202dd5b1d9355f0"
+    }
+  ]
+}

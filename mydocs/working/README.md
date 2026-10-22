@@ -105,3 +105,5 @@
 - [#113 Web rAF 지연·추가 그리기 진단](issue-113_web_dispatch.md): 입력·그리기·rAF 상관 관측부터 착수.
 
 - [#115 G12 배포 준비](issue-115_release_preparation.md): 사용자 승인으로 성능 재검증을 다른 호스트에 이월하고 패키징 계약부터 진행.
+
+- [#118 Windows 전체 게임 첫 실행](issue-118_windows_full_game.md): 사용자 지시로 원본 자산 동봉·exe 기본 실행과 오류 로그/전체 Windows ZIP을 구현.
