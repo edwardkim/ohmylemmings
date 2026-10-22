@@ -72,7 +72,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     async function ready() {
         for (let n = 0; n < 120; n++) {
             if (await evaluate(`(async()=>{if(!document.querySelector('#game'))return false;
-                const app=await import('./app.js');let game;app.observe((_,g)=>game=g);
+                const app=await import('./app.js');let game;const detach=app.observe((_,g)=>game=g);detach();
                 return Boolean(game?.original()&&!document.querySelector('#error').textContent);})()`)) return;
             await pause(250);
         }

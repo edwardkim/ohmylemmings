@@ -9,7 +9,7 @@
       "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
       "bytes": 162095,
-      "sha256": "dba2445909e132601a0a78755641cc9fa52fd9d5ef3a6570729e18f83eecd0b2"
+      "sha256": "5119762daa806392f2ad42612ed9bb75146f8402f245525c4fe34a4b66c04e55"
     },
     {
       "id": "performance",

@@ -991,8 +991,8 @@
     },
     {
       "path": "tools/check_pages.cjs",
-      "bytes": 10471,
-      "sha256": "44a5ce83e958747386a4d55dfc36a5fa3484c5c0d5e8488a37bc0a4e3b167b5e"
+      "bytes": 10493,
+      "sha256": "9de9166bc60707776ea6ebd95b6929bbefe346fbb98fe2188fc03b8ae59f47fd"
     },
     {
       "path": "tools/check_panel.py",
