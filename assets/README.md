@@ -125,3 +125,5 @@ ADLIB 명령/레지스터 스트림의 합성877호출과 원본 드라이버 �
 [#113 Web dispatch 기록](manifests/web_dispatch.json)은 전후3쌍의 숫자 벡터·trace 요약과 채택/이월 범위를 연결합니다. 원시 trace/원본 파생 자료는 ignored `assets/local/`에 유지하며 성능 합격을 선언하지 않습니다.
 
 [#118 Windows 전체 게임 패키지](../mydocs/reports/issue-118_windows_full_game.md)는 최신 사용자 지시에 따라 원본 제외 정책을 Windows 다운로드에 한해 변경합니다. 원본 고정 목록의 런타임28개(ADLIB 포함)를 ZIP의 `data/`에 넣으며 Git/공개 대응 소스 archive에는 원본 바이너리를 추가하지 않습니다. `GAME-DATA.json`은 원본50개 중 필요한28개의 출처·크기·SHA256을 연결합니다. SDL2 MSVC 입력과 라이선스 고정값은 [windows_runtime.json](manifests/windows_runtime.json)에서 확인합니다.
+
+[#120 macOS 패키지](../mydocs/reports/issue-120_macos_full_game.md)는 Windows와 동일한 원본28개를 앱 Resources/data에 포함합니다. SDL2 2.32.10 source/라이선스의 고정 입력은 [macos_runtime.json](manifests/macos_runtime.json)에 기록하며 빌드한 dylib/원본/화면은 Git에 추가하지 않습니다.

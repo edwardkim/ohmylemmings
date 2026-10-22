@@ -19,3 +19,7 @@
 ### #118 Windows 다운로드 계약 변경
 
 사용자가 시험 ZIP의 합성 장면만 실행되는 문제를 확인하고 원본을 포함한 온전한 게임 패키지를 지시했다. [#118](https://github.com/edwardkim/ohmylemmings/issues/118)에서 Windows 다운로드에 원본 그래픽·120개 레벨·음원을 포함하고 exe 더블클릭으로 시작하도록 변경한다. 앞선 원본 제외 방침은 Linux/Web 개발 패키지의 기존 계약이며 Windows에 대한 이 최신 지시로 대체한다. 성능 이월은 유지한다.
+
+### #120 macOS 추가
+
+Windows 실행을 확인한 사용자가 Mac 배포 준비를 요청했다. [#120](issue-120_macos_full_game.md)에서 Apple Silicon/Intel universal2 앱·원본28개·SDL을 동봉하고 실제 두 아키텍처에서 검증한다. 서명 자격이 없는 현재 시험판 ad-hoc와 정식 Developer ID/공증 단계를 구분하며 성능 이월은 유지한다.

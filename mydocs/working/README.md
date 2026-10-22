@@ -107,3 +107,5 @@
 - [#115 G12 배포 준비](issue-115_release_preparation.md): 사용자 승인으로 성능 재검증을 다른 호스트에 이월하고 패키징 계약부터 진행.
 
 - [#118 Windows 전체 게임 첫 실행](issue-118_windows_full_game.md): 사용자 지시로 원본 자산 동봉·exe 기본 실행과 오류 로그/전체 Windows ZIP을 구현.
+
+- [#120 macOS 전체 게임 앱](issue-120_macos_full_game.md): Apple Silicon/Intel universal2·원본 동봉·실제 Mac 검증과 서명/공증 조건.

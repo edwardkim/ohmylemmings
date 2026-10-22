@@ -68,6 +68,9 @@ impl Options {
             performance_seconds: 60.0,
             assets: if cfg!(windows) {
                 assets::bundled_directory(&std::env::current_exe()?)
+            } else if cfg!(target_os = "macos") {
+                assets::macos_bundle_directory(&std::env::current_exe()?)
+                    .unwrap_or_else(|| "assets/local/dos-original".into())
             } else {
                 "assets/local/dos-original".into()
             },
@@ -1365,7 +1368,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     if let Some(p) = &performance {
         p.finish(&game, video.current_video_driver(), canvas.info().name)?;
     }
-    #[cfg(windows)]
+    #[cfg(any(windows, target_os = "macos"))]
     eprintln!(
         "LEMMINGS_AUDIO submitted={} nonzero={} active={} original={}",
         audio.submitted,
@@ -1392,15 +1395,26 @@ fn entry() -> Result<(), Box<dyn Error>> {
 
 fn main() -> Result<(), Box<dyn Error>> {
     let result = entry();
-    #[cfg(windows)]
+    #[cfg(any(windows, target_os = "macos"))]
     if let Err(error) = &result {
+        #[cfg(windows)]
         let directory = std::env::var_os("LOCALAPPDATA")
             .map(PathBuf::from)
             .unwrap_or_else(std::env::temp_dir)
             .join("OhMyLemmings");
+        #[cfg(target_os = "macos")]
+        let directory = std::env::var_os("HOME")
+            .map(PathBuf::from)
+            .unwrap_or_else(std::env::temp_dir)
+            .join("Library/Logs/OhMyLemmings");
         let log = directory.join("last-error.log");
+        let hint = if cfg!(target_os = "macos") {
+            "Extract the complete ZIP and keep OhMyLemmings.app intact."
+        } else {
+            "Extract the complete ZIP, including the data folder and SDL2.dll."
+        };
         let message = format!(
-            "Could not start Oh My Lemmings.\n\n{error}\n\nExtract the complete ZIP, including the data folder and SDL2.dll.\nLog: {}",
+            "Could not start Oh My Lemmings.\n\n{error}\n\n{hint}\nLog: {}",
             log.display()
         );
         let _ = fs::create_dir_all(&directory);

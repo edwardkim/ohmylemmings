@@ -15,6 +15,16 @@ pub fn bundled_directory(executable: &Path) -> PathBuf {
         .join("data")
 }
 
+pub fn macos_bundle_directory(executable: &Path) -> Option<PathBuf> {
+    let directory = executable.parent()?;
+    let contents = directory.parent()?;
+    if directory.file_name()? == "MacOS" && contents.file_name()? == "Contents" {
+        Some(contents.join("Resources/data"))
+    } else {
+        None
+    }
+}
+
 pub fn load(root: &Path) -> Result<Assets, Box<dyn Error>> {
     load_level(root, 1)
 }
@@ -51,6 +61,24 @@ pub fn load_id(root: &Path, level: LevelId) -> Result<Assets, Box<dyn Error>> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn macos_bundle_uses_resources_and_development_keeps_its_default() {
+        let app = Path::new("한글 game/OhMyLemmings.app/Contents/MacOS/OhMyLemmings");
+        assert_eq!(
+            macos_bundle_directory(app),
+            Some(PathBuf::from(
+                "한글 game/OhMyLemmings.app/Contents/Resources/data"
+            ))
+        );
+        assert_eq!(
+            macos_bundle_directory(Path::new("target/release/lemmings-desktop")),
+            None
+        );
+        assert_eq!(
+            macos_bundle_directory(Path::new("other/MacOS/OhMyLemmings")),
+            None
+        );
+    }
     #[test]
     fn bundled_assets_resolve_beside_the_executable() {
         let executable = Path::new("installation folder")
