@@ -13,6 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 MAX_BYTES = 64 * 1024 * 1024
 MAX_PNG = 32 * 1024 * 1024
 MAX_DIM = 4096
+ICON_NAMES = ('climber', 'floater', 'bomber', 'blocker', 'builder', 'basher',
+              'miner', 'digger', 'slower', 'faster', 'pause', 'nuke', 'restart')
 
 
 class AssetError(ValueError):
@@ -136,6 +138,14 @@ def key_fields(key):
         slot,frame = numbers(key['actor'],2,0,65535)
         require(slot < len(source_counts()) and frame < source_counts()[slot], 'source slot/frame')
         return 0,slot,frame
+    if set(key) == {'object'}:
+        theme,id,frame = numbers(key['object'],3,0,65535)
+        count = {(0,0):1, (0,1):10}.get((theme,id))
+        require(count is not None and frame < count, 'unsupported object/frame')
+        return 2,theme*16+id,frame
+    if set(key) == {'icon'}:
+        require(isinstance(key['icon'],str) and key['icon'] in ICON_NAMES, 'unknown icon')
+        return 3,ICON_NAMES.index(key['icon']),0
     require(set(key) == {'material'} and type(key['material']) is int and key['material'] == 0, 'unknown material/key')
     return 1,0,0
 
@@ -170,7 +180,7 @@ def compile_pack(manifest, *, root=ROOT):
         cutoff = integer(atlas.get('alpha_cutoff',0),0,254)
         require(atlas.get('alpha') in ['sprite','opaque'], 'alpha policy')
         if atlas['alpha'] == 'opaque': require(all(a == 255 for a in alpha), 'opaque atlas has transparency')
-        else: require(min(alpha) <= cutoff and 255 in alpha, 'sprite atlas must have transparency and visible ink')
+        else: require(min(alpha) <= cutoff < max(alpha), 'sprite atlas must have transparency and visible ink')
         require(len(output) + 20 + len(rgba) + len(frames)*32 <= MAX_BYTES, 'pack size limit')
         output.extend(struct.pack('<IIIII',w,h,len(rgba),zlib.crc32(rgba),cutoff)); output.extend(rgba)
         images.append((w,h,rgba)); atlas_report.append(dict(width=w,height=h,alpha_cutoff=cutoff,rgba_sha256=hashlib.sha256(rgba).hexdigest()))

@@ -6,10 +6,10 @@
   "scope": "Evidence/readiness review, not G11 completion. Functional PASS-SCOPED and native display results retain their original contracts. Missing Web deadline/interval-memory evidence and callback budget excess must be resolved in #111 before G11/G12 readiness can be reassessed.",
   "evidence": [
     {
-      "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 181801,
-      "sha256": "c98b92266e160e04d2ff5e3507c6de014762ab9ecbf013ab6e38088bfc4d073d"
+      "bytes": 185919,
+      "sha256": "7d0321cbbb64aa1788d61f0f8cee2d84e95a79a172529b95e14927168e4e0d6a",
+      "id": "compatibility"
     },
     {
       "id": "performance",
@@ -11004,5 +11004,15 @@
       "sha256": "0083ea8bb78a21b82fee13bcf8cd7d43835562c66bca2c70943d45c4903f1cc4"
     },
     "scope": "Refresh compatibility source-index pin for optional HD asset pack. Historical G11 NOT READY/performance and deferred #113 remain unchanged; no new performance qualification."
+  },
+  "source_maintenance_147": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/147",
+    "previous_compatibility_pin": {
+      "id": "compatibility",
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 181801,
+      "sha256": "c98b92266e160e04d2ff5e3507c6de014762ab9ecbf013ab6e38088bfc4d073d"
+    },
+    "scope": "Refresh current HD asset source index; frozen observations/NOT READY and deferred #113 are unchanged. No new game/performance qualification."
   }
 }

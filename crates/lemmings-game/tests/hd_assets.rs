@@ -89,7 +89,7 @@ fn versions_counts_sizes_and_pixel_checksum_are_validated() {
 fn keys_indices_rectangles_display_and_reserved_bits_are_checked() {
     // Frame starts after the12-byte header and20-byte atlas header plus8 pixels.
     for (offset, bytes) in [
-        (0, vec![2]),
+        (0, vec![4]),
         (1, vec![28]),
         (2, 8u16.to_le_bytes().to_vec()),
         (4, 1u16.to_le_bytes().to_vec()),
@@ -151,4 +151,62 @@ fn alpha_cutoff_is_preserved_and_reserved_bits_are_rejected() {
     assert!(AssetPack::parse(&b).is_err());
     b[28..32].copy_from_slice(&256u32.to_le_bytes());
     assert!(AssetPack::parse(&b).is_err());
+}
+
+#[test]
+fn facility_frames_use_theme_and_id_without_aliasing_actors_or_materials() {
+    for (slot, count) in [(0u8, 1u16), (1, 10)] {
+        for frame in 0..count {
+            let mut b = fixture();
+            b[40] = 2;
+            b[41] = slot;
+            b[42..44].copy_from_slice(&frame.to_le_bytes());
+            let pack = AssetPack::parse(&b).unwrap();
+            assert!(
+                pack.frame(AssetKey::Object {
+                    set: 0,
+                    id: slot,
+                    frame
+                })
+                .is_some()
+            );
+            assert!(pack.frame(AssetKey::Actor { slot, frame }).is_none());
+        }
+        let mut b = fixture();
+        b[40] = 2;
+        b[41] = slot;
+        b[42..44].copy_from_slice(&count.to_le_bytes());
+        assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
+    }
+    for slot in [2, 15, 16, 255] {
+        let mut b = fixture();
+        b[40] = 2;
+        b[41] = slot;
+        assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
+    }
+}
+
+#[test]
+fn every_toolbar_icon_resolves_to_the_existing_control_and_minimap_has_no_icon() {
+    use lemmings_game::hd::assets::ICON_CONTROLS;
+    use lemmings_game::hd::{Control, control_regions};
+    let regions = control_regions();
+    for (id, control) in ICON_CONTROLS.into_iter().enumerate() {
+        assert!(regions.iter().any(|r| r.control == control));
+        let mut b = fixture();
+        b[40] = 3;
+        b[41] = id as u8;
+        let pack = AssetPack::parse(&b).unwrap();
+        assert!(pack.frame(AssetKey::Icon(control)).is_some());
+        assert!(pack.frame(AssetKey::Icon(Control::Minimap)).is_none());
+        b[42] = 1;
+        assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
+    }
+    assert_eq!(ICON_CONTROLS.len(), regions.len() - 1);
+    for id in [13, 14, 255] {
+        let mut b = fixture();
+        b[40] = 3;
+        b[41] = id;
+        assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
+    }
 }

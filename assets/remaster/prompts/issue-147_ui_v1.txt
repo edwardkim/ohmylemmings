@@ -1,0 +1,20 @@
+Use case: stylized-concept
+Asset type: production 2D HD game sprite atlas, actual transparent alpha background.
+Style: softly shaded hand-painted 2D gouache illustration, clean edges, readable tiny silhouette. Every character has bright grassy green swept hair, round pale face and small nose, blue tunic and trousers, dark shoes. Same proportions and outfit in every cell, no pixel blocks, no sticker outlines, no ground shadows. All artwork is newly drawn, not upscaled pixel art.
+Primary request: a game toolbar icon atlas, exactly4columns by4rows on1024x1024 canvas, cells256x256. Each icon isolated with at least24px transparent margin, no button backgrounds/borders, no text/numbers. Softly shaded clean hand-painted2D icon style, warm stone/blue/green palette, bold recognizable shapes displayed around64x64px. Use tiny green-haired blue-clothed character where specified, consistent identity. Read left-to-right top-to-bottom:
+0 CLIMBER: character gripping a short vertical rock edge, clearly climbing upward.
+1 FLOATER: open blue umbrella with green-haired character hanging beneath it.
+2 BOMBER: round dark cartoon bomb with short lit fuse, no lettering.
+3 BLOCKER: green-haired character with both arms straight out horizontally, stop pose.
+4 BUILDER: three ascending golden bricks with character placing top brick.
+5 BASHER: character punching into a short vertical stone wall horizontally.
+6 MINER: pickaxe digging diagonally down-right into small rock corner.
+7 DIGGER: character crouched digging straight down with both hands.
+8 SLOWER: one bold blue minus symbol.
+9 FASTER: one bold blue plus symbol.
+10 PAUSE: two bold blue vertical bars.
+11 NUKE: three small dark bombs together with lit fuses, readable group.
+12 RESTART: bold blue circular clockwise arrow with visible arrowhead.
+13,14,15 entirely empty transparent cells.
+No extra icons, cell count/order must be exact. No baked text, no decorations outside icons, all occupied icons wholly within own cell. Actual transparent background, never checkerboard.
+Background must be real transparency. No words, numbers, watermarks, grid, borders, or scene backdrop. Preserve generous transparent gutters, uniform grid and exact occupied cell counts.

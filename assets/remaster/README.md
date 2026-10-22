@@ -14,3 +14,7 @@
 선택 PNG는 수정 없이 보존한다. 걷기 atlas의alpha1 잔여는 팩의 명시적 cutoff1에 따라 표시 시 제외하며, 나머지 alpha와 픽셀은 유지한다. 보행/색 번짐의 실제 게임 검토와 암석의 반복 경계 인증은 후속이다. 팩 후보의2애니메이션/16프레임과 실제 게임 통합 완료를 구분한다. `runtime_ready=false`이며 실제 앱에 통합한 HD 애니메이션은0개다.
 
 [자산 미리보기 화면](previews/issue-144_assets.png)은 실제 브라우저의 PNG/발 기준점 검토 화면이다. 게임 플레이 캡처가 아니며, 재생 도구는 위 결과 보고서의 명령으로 만든다.
+
+[#147 HD-03b](https://github.com/edwardkim/ohmylemmings/issues/147)에서 [굴착](issue-147-dig-v1.png)·[계단 좌우](issue-147-build-v1.png)·[OhNo/폭발](issue-147-bomb-v1.png)·[입출구](issue-147-facilities-v1.png)·[13조작 아이콘](issue-147-ui-v1.png)을 추가했다. 정확한5개 프롬프트·실제 규격/해시·65개 새 캐릭터 프레임 대응은 [결과 보고서](../../mydocs/reports/issue-147_hd_actions.md)와 현재 팩 manifest를 따른다. 현재 후보는7애니메이션81캐릭터 프레임·11시설 프레임·13아이콘/7atlas106자산이다. 나머지21애니메이션256프레임/다른 테마·시설/효과·전체 UI는 후속이다.
+
+[동작/아이콘 미리보기](previews/issue-147_actions.png), [입구 미리보기](previews/issue-147_facilities.png)는 실제 PNG 검토 화면이다. 새 PNG도 원본 그대로 보존하며 일부 최대alpha254·여백 잔여cutoff1/4를 명시한다. 캐릭터 크기/위상과 출구 doorway·trigger 정합은 실제 게임 통합에서 검토한다. `runtime_ready=false`·실제 HD 앱 통합0개를 유지한다.

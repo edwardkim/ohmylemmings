@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "issue": "https://github.com/edwardkim/ohmylemmings/issues/144",
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/147",
   "parent": "https://github.com/edwardkim/ohmylemmings/issues/137",
   "status": "pack_candidate",
   "runtime_ready": false,
@@ -24,6 +24,51 @@
       "height": 1254,
       "alpha": "opaque",
       "alpha_cutoff": 0
+    },
+    {
+      "path": "assets/remaster/issue-147-dig-v1.png",
+      "bytes": 2092060,
+      "sha256": "05a1b254c08c34e8be448c6c895e8e8d42136799057a955caa722f7b70701bd2",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 1
+    },
+    {
+      "path": "assets/remaster/issue-147-build-v1.png",
+      "bytes": 1592573,
+      "sha256": "5b9ec08b5b372340e05fa43efd647d4f0acfc852d328ae138ba20e1610bd9f59",
+      "width": 1774,
+      "height": 887,
+      "alpha": "sprite",
+      "alpha_cutoff": 4
+    },
+    {
+      "path": "assets/remaster/issue-147-bomb-v1.png",
+      "bytes": 1236195,
+      "sha256": "98ea395b5bf6f15001f2b8a0fa157d2469c10bc1c10f3f66818e1bc0979c9131",
+      "width": 1122,
+      "height": 1402,
+      "alpha": "sprite",
+      "alpha_cutoff": 1
+    },
+    {
+      "path": "assets/remaster/issue-147-facilities-v1.png",
+      "bytes": 1562112,
+      "sha256": "a3beea2a58b8df958456aae58203cf44e3604aff2c28ff6cbdfc51991552df70",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 1
+    },
+    {
+      "path": "assets/remaster/issue-147-ui-v1.png",
+      "bytes": 1209440,
+      "sha256": "bd78475aa999c3fa1e0250b9fdebaa6a2a8d771a9449667b029bceac0a939633",
+      "width": 1254,
+      "height": 1254,
+      "alpha": "sprite",
+      "alpha_cutoff": 1
     }
   ],
   "provenance": [
@@ -46,6 +91,36 @@
       "path": "assets/remaster/prompts/issue-144_walk_v2.txt",
       "bytes": 952,
       "sha256": "74068363ab103390acc49ab5f1cb56dcd4c6ce697c2e38d48c3667d9b1ff0021"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-147_dig_v1.txt",
+      "bytes": 1550,
+      "sha256": "41b3a1431855b28eaf3a4b1bd3840949c8b5e54027f7abf5dd289c1e08b17de4"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-147_build_v1.txt",
+      "bytes": 1595,
+      "sha256": "404a2e42ecf3f48166dbd64d60dd06200d4811f2ba52a8a8282c21cc92939373"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-147_bomb_v1.txt",
+      "bytes": 1611,
+      "sha256": "9f88a60e45e5b2adcadd8481b89e467ffbc770a10d00ab4bbe2e1825aaefa87f"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-147_facilities_v1.txt",
+      "bytes": 1941,
+      "sha256": "d427a08fb97c197e1ae2eaa829e6c88a60715322b5549faeef800ecb1440fd2d"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-147_ui_v1.txt",
+      "bytes": 2217,
+      "sha256": "570c19fde3c0a0d554662cb5015fcaa77b4bc8d7e60c56a8491ebab35afb7eb1"
+    },
+    {
+      "path": "assets/manifests/dos_original.json",
+      "bytes": 12573,
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
     }
   ],
   "frames": [
@@ -436,6 +511,2025 @@
         0,
         0
       ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          0
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        0,
+        0,
+        384,
+        256
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          1
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        384,
+        0,
+        384,
+        256
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          2
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        768,
+        0,
+        384,
+        256
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          3
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        1152,
+        0,
+        384,
+        256
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          4
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        0,
+        256,
+        384,
+        259
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          5
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        384,
+        256,
+        384,
+        259
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          6
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        768,
+        256,
+        384,
+        259
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          7
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        1152,
+        256,
+        384,
+        259
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          8
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        0,
+        515,
+        384,
+        258
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          9
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        384,
+        515,
+        384,
+        258
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          10
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        768,
+        515,
+        384,
+        258
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          11
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        1152,
+        515,
+        384,
+        258
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          12
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        0,
+        773,
+        384,
+        251
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          13
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        384,
+        773,
+        384,
+        251
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          14
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        768,
+        773,
+        384,
+        251
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          4,
+          15
+        ]
+      },
+      "atlas": 2,
+      "rect": [
+        1152,
+        773,
+        384,
+        251
+      ],
+      "display": [
+        90,
+        60
+      ],
+      "anchor": [
+        34,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          0
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        0,
+        0,
+        222,
+        223
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        33,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          1
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        222,
+        0,
+        221,
+        223
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        32,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          2
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        443,
+        0,
+        222,
+        223
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        31,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          3
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        665,
+        0,
+        222,
+        223
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        30,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          4
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        887,
+        0,
+        222,
+        223
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        32,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          5
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        1109,
+        0,
+        221,
+        223
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        33,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          6
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        1330,
+        0,
+        222,
+        223
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        31,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          7
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        1552,
+        0,
+        222,
+        223
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        32,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          8
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        0,
+        223,
+        222,
+        220
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        31,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          9
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        222,
+        223,
+        221,
+        220
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        30,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          10
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        443,
+        223,
+        222,
+        220
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        30,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          11
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        665,
+        223,
+        222,
+        220
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        30,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          12
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        887,
+        223,
+        222,
+        220
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        31,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          13
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        1109,
+        223,
+        221,
+        220
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        31,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          14
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        1330,
+        223,
+        222,
+        220
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        31,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          10,
+          15
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        1552,
+        223,
+        222,
+        220
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        31,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          0
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        0,
+        443,
+        222,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        28,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          1
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        222,
+        443,
+        221,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        30,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          2
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        443,
+        443,
+        222,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        29,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          3
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        665,
+        443,
+        222,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        29,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          4
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        887,
+        443,
+        222,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        31,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          5
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        1109,
+        443,
+        221,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        33,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          6
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        1330,
+        443,
+        222,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        30,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          7
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        1552,
+        443,
+        222,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        29,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          8
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        0,
+        665,
+        222,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        32,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          9
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        222,
+        665,
+        221,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        31,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          10
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        443,
+        665,
+        222,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        31,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          11
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        665,
+        665,
+        222,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        30,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          12
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        887,
+        665,
+        222,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        30,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          13
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        1109,
+        665,
+        221,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        30,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          14
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        1330,
+        665,
+        222,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        30,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          11,
+          15
+        ]
+      },
+      "atlas": 3,
+      "rect": [
+        1552,
+        665,
+        222,
+        222
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        29,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          0
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        0,
+        0,
+        280,
+        280
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        31,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          1
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        280,
+        0,
+        281,
+        280
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        30,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          2
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        561,
+        0,
+        280,
+        280
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        32,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          3
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        841,
+        0,
+        281,
+        280
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        33,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          4
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        0,
+        280,
+        280,
+        286
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        32,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          5
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        280,
+        280,
+        281,
+        286
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        30,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          6
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        561,
+        280,
+        280,
+        286
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        32,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          7
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        841,
+        280,
+        281,
+        286
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        32,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          8
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        0,
+        566,
+        280,
+        275
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        32,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          9
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        280,
+        566,
+        281,
+        275
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        32,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          10
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        561,
+        566,
+        280,
+        275
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        34,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          11
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        841,
+        566,
+        281,
+        275
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        33,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          12
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        0,
+        841,
+        280,
+        281
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        33,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          13
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        280,
+        841,
+        281,
+        281
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        32,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          14
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        561,
+        841,
+        280,
+        281
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        33,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          26,
+          15
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        841,
+        841,
+        281,
+        281
+      ],
+      "display": [
+        60,
+        60
+      ],
+      "anchor": [
+        33,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          27,
+          0
+        ]
+      },
+      "atlas": 4,
+      "rect": [
+        0,
+        1122,
+        280,
+        280
+      ],
+      "display": [
+        192,
+        192
+      ],
+      "anchor": [
+        96,
+        150
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          1,
+          0
+        ]
+      },
+      "atlas": 5,
+      "rect": [
+        0,
+        0,
+        384,
+        256
+      ],
+      "display": [
+        288,
+        150
+      ],
+      "anchor": [
+        6,
+        47
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          1,
+          1
+        ]
+      },
+      "atlas": 5,
+      "rect": [
+        384,
+        0,
+        384,
+        256
+      ],
+      "display": [
+        288,
+        150
+      ],
+      "anchor": [
+        6,
+        46
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          1,
+          2
+        ]
+      },
+      "atlas": 5,
+      "rect": [
+        768,
+        0,
+        384,
+        256
+      ],
+      "display": [
+        288,
+        150
+      ],
+      "anchor": [
+        6,
+        43
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          1,
+          3
+        ]
+      },
+      "atlas": 5,
+      "rect": [
+        1152,
+        0,
+        384,
+        256
+      ],
+      "display": [
+        288,
+        150
+      ],
+      "anchor": [
+        6,
+        43
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          1,
+          4
+        ]
+      },
+      "atlas": 5,
+      "rect": [
+        0,
+        256,
+        384,
+        256
+      ],
+      "display": [
+        288,
+        150
+      ],
+      "anchor": [
+        6,
+        33
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          1,
+          5
+        ]
+      },
+      "atlas": 5,
+      "rect": [
+        384,
+        256,
+        384,
+        256
+      ],
+      "display": [
+        288,
+        150
+      ],
+      "anchor": [
+        6,
+        33
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          1,
+          6
+        ]
+      },
+      "atlas": 5,
+      "rect": [
+        768,
+        256,
+        384,
+        256
+      ],
+      "display": [
+        288,
+        150
+      ],
+      "anchor": [
+        6,
+        32
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          1,
+          7
+        ]
+      },
+      "atlas": 5,
+      "rect": [
+        1152,
+        256,
+        384,
+        256
+      ],
+      "display": [
+        288,
+        150
+      ],
+      "anchor": [
+        6,
+        32
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          1,
+          8
+        ]
+      },
+      "atlas": 5,
+      "rect": [
+        0,
+        512,
+        384,
+        256
+      ],
+      "display": [
+        288,
+        150
+      ],
+      "anchor": [
+        6,
+        32
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          1,
+          9
+        ]
+      },
+      "atlas": 5,
+      "rect": [
+        384,
+        512,
+        384,
+        256
+      ],
+      "display": [
+        288,
+        150
+      ],
+      "anchor": [
+        6,
+        30
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          0,
+          0
+        ]
+      },
+      "atlas": 5,
+      "rect": [
+        768,
+        512,
+        384,
+        256
+      ],
+      "display": [
+        288,
+        180
+      ],
+      "anchor": [
+        0,
+        78
+      ]
+    },
+    {
+      "key": {
+        "icon": "climber"
+      },
+      "atlas": 6,
+      "rect": [
+        0,
+        0,
+        313,
+        357
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
+    },
+    {
+      "key": {
+        "icon": "floater"
+      },
+      "atlas": 6,
+      "rect": [
+        313,
+        0,
+        314,
+        357
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
+    },
+    {
+      "key": {
+        "icon": "bomber"
+      },
+      "atlas": 6,
+      "rect": [
+        627,
+        0,
+        313,
+        357
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
+    },
+    {
+      "key": {
+        "icon": "blocker"
+      },
+      "atlas": 6,
+      "rect": [
+        940,
+        0,
+        314,
+        357
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
+    },
+    {
+      "key": {
+        "icon": "builder"
+      },
+      "atlas": 6,
+      "rect": [
+        0,
+        357,
+        313,
+        313
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
+    },
+    {
+      "key": {
+        "icon": "basher"
+      },
+      "atlas": 6,
+      "rect": [
+        313,
+        357,
+        314,
+        313
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
+    },
+    {
+      "key": {
+        "icon": "miner"
+      },
+      "atlas": 6,
+      "rect": [
+        627,
+        357,
+        313,
+        313
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
+    },
+    {
+      "key": {
+        "icon": "digger"
+      },
+      "atlas": 6,
+      "rect": [
+        940,
+        357,
+        314,
+        313
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
+    },
+    {
+      "key": {
+        "icon": "slower"
+      },
+      "atlas": 6,
+      "rect": [
+        0,
+        670,
+        313,
+        300
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
+    },
+    {
+      "key": {
+        "icon": "faster"
+      },
+      "atlas": 6,
+      "rect": [
+        313,
+        670,
+        314,
+        300
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
+    },
+    {
+      "key": {
+        "icon": "pause"
+      },
+      "atlas": 6,
+      "rect": [
+        627,
+        670,
+        313,
+        300
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
+    },
+    {
+      "key": {
+        "icon": "nuke"
+      },
+      "atlas": 6,
+      "rect": [
+        940,
+        670,
+        314,
+        300
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
+    },
+    {
+      "key": {
+        "icon": "restart"
+      },
+      "atlas": 6,
+      "rect": [
+        0,
+        970,
+        313,
+        284
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ]
     }
   ],
   "required": [
@@ -537,9 +2631,515 @@
     },
     {
       "material": 0
+    },
+    {
+      "actor": [
+        4,
+        0
+      ]
+    },
+    {
+      "actor": [
+        4,
+        1
+      ]
+    },
+    {
+      "actor": [
+        4,
+        2
+      ]
+    },
+    {
+      "actor": [
+        4,
+        3
+      ]
+    },
+    {
+      "actor": [
+        4,
+        4
+      ]
+    },
+    {
+      "actor": [
+        4,
+        5
+      ]
+    },
+    {
+      "actor": [
+        4,
+        6
+      ]
+    },
+    {
+      "actor": [
+        4,
+        7
+      ]
+    },
+    {
+      "actor": [
+        4,
+        8
+      ]
+    },
+    {
+      "actor": [
+        4,
+        9
+      ]
+    },
+    {
+      "actor": [
+        4,
+        10
+      ]
+    },
+    {
+      "actor": [
+        4,
+        11
+      ]
+    },
+    {
+      "actor": [
+        4,
+        12
+      ]
+    },
+    {
+      "actor": [
+        4,
+        13
+      ]
+    },
+    {
+      "actor": [
+        4,
+        14
+      ]
+    },
+    {
+      "actor": [
+        4,
+        15
+      ]
+    },
+    {
+      "actor": [
+        10,
+        0
+      ]
+    },
+    {
+      "actor": [
+        10,
+        1
+      ]
+    },
+    {
+      "actor": [
+        10,
+        2
+      ]
+    },
+    {
+      "actor": [
+        10,
+        3
+      ]
+    },
+    {
+      "actor": [
+        10,
+        4
+      ]
+    },
+    {
+      "actor": [
+        10,
+        5
+      ]
+    },
+    {
+      "actor": [
+        10,
+        6
+      ]
+    },
+    {
+      "actor": [
+        10,
+        7
+      ]
+    },
+    {
+      "actor": [
+        10,
+        8
+      ]
+    },
+    {
+      "actor": [
+        10,
+        9
+      ]
+    },
+    {
+      "actor": [
+        10,
+        10
+      ]
+    },
+    {
+      "actor": [
+        10,
+        11
+      ]
+    },
+    {
+      "actor": [
+        10,
+        12
+      ]
+    },
+    {
+      "actor": [
+        10,
+        13
+      ]
+    },
+    {
+      "actor": [
+        10,
+        14
+      ]
+    },
+    {
+      "actor": [
+        10,
+        15
+      ]
+    },
+    {
+      "actor": [
+        11,
+        0
+      ]
+    },
+    {
+      "actor": [
+        11,
+        1
+      ]
+    },
+    {
+      "actor": [
+        11,
+        2
+      ]
+    },
+    {
+      "actor": [
+        11,
+        3
+      ]
+    },
+    {
+      "actor": [
+        11,
+        4
+      ]
+    },
+    {
+      "actor": [
+        11,
+        5
+      ]
+    },
+    {
+      "actor": [
+        11,
+        6
+      ]
+    },
+    {
+      "actor": [
+        11,
+        7
+      ]
+    },
+    {
+      "actor": [
+        11,
+        8
+      ]
+    },
+    {
+      "actor": [
+        11,
+        9
+      ]
+    },
+    {
+      "actor": [
+        11,
+        10
+      ]
+    },
+    {
+      "actor": [
+        11,
+        11
+      ]
+    },
+    {
+      "actor": [
+        11,
+        12
+      ]
+    },
+    {
+      "actor": [
+        11,
+        13
+      ]
+    },
+    {
+      "actor": [
+        11,
+        14
+      ]
+    },
+    {
+      "actor": [
+        11,
+        15
+      ]
+    },
+    {
+      "actor": [
+        26,
+        0
+      ]
+    },
+    {
+      "actor": [
+        26,
+        1
+      ]
+    },
+    {
+      "actor": [
+        26,
+        2
+      ]
+    },
+    {
+      "actor": [
+        26,
+        3
+      ]
+    },
+    {
+      "actor": [
+        26,
+        4
+      ]
+    },
+    {
+      "actor": [
+        26,
+        5
+      ]
+    },
+    {
+      "actor": [
+        26,
+        6
+      ]
+    },
+    {
+      "actor": [
+        26,
+        7
+      ]
+    },
+    {
+      "actor": [
+        26,
+        8
+      ]
+    },
+    {
+      "actor": [
+        26,
+        9
+      ]
+    },
+    {
+      "actor": [
+        26,
+        10
+      ]
+    },
+    {
+      "actor": [
+        26,
+        11
+      ]
+    },
+    {
+      "actor": [
+        26,
+        12
+      ]
+    },
+    {
+      "actor": [
+        26,
+        13
+      ]
+    },
+    {
+      "actor": [
+        26,
+        14
+      ]
+    },
+    {
+      "actor": [
+        26,
+        15
+      ]
+    },
+    {
+      "actor": [
+        27,
+        0
+      ]
+    },
+    {
+      "object": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "object": [
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "object": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "object": [
+        0,
+        1,
+        3
+      ]
+    },
+    {
+      "object": [
+        0,
+        1,
+        4
+      ]
+    },
+    {
+      "object": [
+        0,
+        1,
+        5
+      ]
+    },
+    {
+      "object": [
+        0,
+        1,
+        6
+      ]
+    },
+    {
+      "object": [
+        0,
+        1,
+        7
+      ]
+    },
+    {
+      "object": [
+        0,
+        1,
+        8
+      ]
+    },
+    {
+      "object": [
+        0,
+        1,
+        9
+      ]
+    },
+    {
+      "object": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "icon": "climber"
+    },
+    {
+      "icon": "floater"
+    },
+    {
+      "icon": "bomber"
+    },
+    {
+      "icon": "blocker"
+    },
+    {
+      "icon": "builder"
+    },
+    {
+      "icon": "basher"
+    },
+    {
+      "icon": "miner"
+    },
+    {
+      "icon": "digger"
+    },
+    {
+      "icon": "slower"
+    },
+    {
+      "icon": "faster"
+    },
+    {
+      "icon": "pause"
+    },
+    {
+      "icon": "nuke"
+    },
+    {
+      "icon": "restart"
     }
   ],
-  "production": {
+  "production_144": {
     "generator": "built-in image_gen",
     "walk_requested": [
       1536,
@@ -575,6 +3175,170 @@
       "Generated poses are an integration candidate; gait and alpha-color fringes still require actual HD composition review.",
       "Rock is an opaque material patch; seamless tiling is not certified. This picture is never a collision mask.",
       "Other26 animations/321 frames, facilities/UI and actual HD game renderer/host input remain future work."
+    ]
+  },
+  "production": {
+    "generator": "built-in image_gen",
+    "pixels": "All five generated PNG files preserved byte-for-byte; pack RGBA samples unchanged. Alpha cutoff is a host compositing instruction, not source retouching.",
+    "issue147": {
+      "new_actor_slots": [
+        4,
+        10,
+        11,
+        26,
+        27
+      ],
+      "new_actor_frames": 65,
+      "object_frames": 11,
+      "icons": 13,
+      "atlas_selection": [
+        {
+          "name": "dig",
+          "width": 1536,
+          "height": 1024,
+          "x_boundaries": [
+            0,
+            384,
+            768,
+            1152,
+            1536
+          ],
+          "y_boundaries": [
+            0,
+            256,
+            515,
+            773,
+            1024
+          ],
+          "alpha_cutoff": 1
+        },
+        {
+          "name": "build",
+          "width": 1774,
+          "height": 887,
+          "x_boundaries": [
+            0,
+            222,
+            443,
+            665,
+            887,
+            1109,
+            1330,
+            1552,
+            1774
+          ],
+          "y_boundaries": [
+            0,
+            223,
+            443,
+            665,
+            887
+          ],
+          "alpha_cutoff": 4
+        },
+        {
+          "name": "bomb",
+          "width": 1122,
+          "height": 1402,
+          "x_boundaries": [
+            0,
+            280,
+            561,
+            841,
+            1122
+          ],
+          "y_boundaries": [
+            0,
+            280,
+            566,
+            841,
+            1122,
+            1402
+          ],
+          "alpha_cutoff": 1
+        },
+        {
+          "name": "facilities",
+          "width": 1536,
+          "height": 1024,
+          "x_boundaries": [
+            0,
+            384,
+            768,
+            1152,
+            1536
+          ],
+          "y_boundaries": [
+            0,
+            256,
+            512,
+            768,
+            1024
+          ],
+          "alpha_cutoff": 1
+        },
+        {
+          "name": "ui",
+          "width": 1254,
+          "height": 1254,
+          "x_boundaries": [
+            0,
+            313,
+            627,
+            940,
+            1254
+          ],
+          "y_boundaries": [
+            0,
+            357,
+            670,
+            970,
+            1254
+          ],
+          "alpha_cutoff": 1
+        }
+      ]
+    },
+    "source_objects": {
+      "path": "GROUND0O.DAT",
+      "bytes": 1056,
+      "sha256": "86ecce12dea563b97d07339028780a0a50fc2cc75a67f682bf4d9aff8cf4b24a",
+      "objects": [
+        {
+          "set": 0,
+          "id": 0,
+          "kind": "exit",
+          "frame_count": 1,
+          "first_frame": 0,
+          "width": 48,
+          "height": 17
+        },
+        {
+          "set": 0,
+          "id": 1,
+          "kind": "entrance",
+          "frame_count": 10,
+          "first_frame": 1,
+          "width": 48,
+          "height": 25
+        }
+      ]
+    },
+    "coverage": {
+      "available_pack_animations": 7,
+      "available_pack_actor_frames": 81,
+      "remaining_animations": 21,
+      "remaining_actor_frames": 256,
+      "integrated_runtime_hd_animations": 0
+    },
+    "findings": [
+      "Source grid size/spacing differs from prompt; explicit measured transparent-gutter rectangles are authoritative.",
+      "New partially opaque atlases may peak at alpha254; nonzero ink is valid and preserved. Cutoffs1/4 discard only low-alpha gutter noise.",
+      "Foot anchors follow observed silhouettes; hand-painted pose proportions/gait and exact action phases require actual HD-04 gameplay review.",
+      "Entrance maps absolute source frames0..9 (first_frame1 unchanged); exit has one static original frame. Only theme0 objects0/1 supported.",
+      "Object anchors reference the observed lintel top; display is presentation art and never changes original source trigger/placement geometry. Exit canvas may extend above its original 48x17 box; HD-04 must align doorway against trigger explicitly.",
+      "UI icons carry no labels/counters/state chrome; minimap/status remain dynamic UI. All13 controls have semantic keys.",
+      "No actual HD game renderer/GPU, new platform package or release/Pages deployment in this slice."
     ]
   }
 }

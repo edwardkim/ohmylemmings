@@ -151,5 +151,31 @@ class HdAssetsTests(unittest.TestCase):
             m['atlases'][0]['alpha_cutoff']=255
             with self.assertRaises(AssetError):compile_pack(m,root=root)
 
+    def test_facility_and_icon_keys_are_distinct_bounded_and_keep_legacy_encoding(self):
+        from tools.hd_assets import key_fields, ICON_NAMES
+        self.assertEqual(key_fields({'actor':[0,0]}),(0,0,0))
+        self.assertEqual(key_fields({'material':0}),(1,0,0))
+        for id,count in [(0,1),(1,10)]:
+            for frame in range(count):
+                self.assertEqual(key_fields({'object':[0,id,frame]}),(2,id,frame))
+        for id,name in enumerate(ICON_NAMES):
+            self.assertEqual(key_fields({'icon':name}),(3,id,0))
+        for key in [{'object':[0,0,1]},{'object':[0,1,10]},{'object':[1,0,0]},
+                    {'object':[0,2,0]},{'object':[False,0,0]},{'object':[0,1]},
+                    {'icon':'minimap'},{'icon':13},{'icon':False},{'icon':[]}]:
+            with self.assertRaises(AssetError): key_fields(key)
+
+    def test_partially_opaque_sprite_pixels_are_preserved_without_requiring_alpha255(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);m=self.fixture(root)
+            rgba=bytearray(4*4*4);rgba[20:24]=bytes([20,30,40,253])
+            p=root/'art.png';p.write_bytes(png(4,4,raw=b''.join(b'\0'+rgba[i:i+16] for i in range(0,64,16))))
+            m['atlases'][0].update(bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest(),width=4,height=4,alpha='sprite')
+            m['frames'][0]['rect']=[0,0,4,4]
+            packed,_=compile_pack(m,root=root)
+            self.assertEqual(packed[32:96],rgba)
+            m['atlases'][0]['alpha_cutoff']=253
+            with self.assertRaises(AssetError):compile_pack(m,root=root)
+
 
 if __name__=='__main__':unittest.main()
