@@ -106,3 +106,5 @@
 - [#115 개발용 Linux·Web 패키지](issue-115_release_preparation.md): 허용 목록·대응 소스/체크섬·결정성·실제 압축 해제 실행과 CI artifact, Windows/정식 릴리스 후속.
 
 - [#118 Windows 전체 게임 패키지](issue-118_windows_full_game.md): 원본 데이터 동봉·더블클릭 시작과 Windows 설치 검증.
+
+- [#120 macOS 전체 게임 앱](issue-120_macos_full_game.md): universal2·원본 동봉·실제 ARM/Intel 검사와 서명/공증 조건.

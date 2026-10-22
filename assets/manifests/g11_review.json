@@ -8,8 +8,8 @@
     {
       "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 152143,
-      "sha256": "15fb70ef29565fbb62c51e9b965b70381ab8ece25e562d916d1ec3062e47f51c"
+      "bytes": 154481,
+      "sha256": "588997ef6474536488732f8d26bb68fce746350968638deed7292d5bef2213b0"
     },
     {
       "id": "performance",
@@ -20,8 +20,8 @@
     {
       "id": "display",
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 88452,
-      "sha256": "9dc2d1fb86c135ebd1cdf7ab776f4e95baa6abef40a2b11142db3bbafab018c0"
+      "bytes": 88946,
+      "sha256": "050d0784d00335be07ff1e7121e5e2f61804a3f3f9eb09501e0994268aa92d8a"
     }
   ],
   "web": {
@@ -10915,5 +10915,22 @@
       }
     ],
     "scope": "Current Windows host/packaging source index; frozen review/observations and NOT READY retained. Latest user instruction authorizes original data in Windows download; faster-host performance remains deferred."
+  },
+  "source_maintenance_120": {
+    "previous_pins": [
+      {
+        "id": "compatibility",
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 152143,
+        "sha256": "15fb70ef29565fbb62c51e9b965b70381ab8ece25e562d916d1ec3062e47f51c"
+      },
+      {
+        "id": "display",
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 88452,
+        "sha256": "9dc2d1fb86c135ebd1cdf7ab776f4e95baa6abef40a2b11142db3bbafab018c0"
+      }
+    ],
+    "scope": "Current Mac host/packaging source index; frozen review/observations/NOT READY retained. User authorizes Mac preparation; faster-host performance remains deferred."
   }
 }

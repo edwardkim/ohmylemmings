@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "version": "2.32.10",
+  "release": "https://github.com/libsdl-org/SDL/releases/tag/release-2.32.10",
+  "archive": {
+    "url": "https://github.com/libsdl-org/SDL/releases/download/release-2.32.10/SDL2-2.32.10.tar.gz",
+    "size": 7630262,
+    "sha256": "5f5993c530f084535c65a6879e9b26ad441169b3e25d789d83287040a9ca5165"
+  },
+  "license": {
+    "size": 884,
+    "sha256": "97f35b302b361680ec1e891e95d2d52097bb95abff361434916d99dc1305f127"
+  }
+}

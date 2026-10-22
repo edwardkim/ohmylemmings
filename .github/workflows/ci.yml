@@ -20,6 +20,100 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  macos:
+    name: macOS universal app (Apple Silicon)
+    runs-on: macos-15
+    timeout-minutes: 20
+    env:
+      MACOSX_DEPLOYMENT_TARGET: '13.0'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Prepare pinned Mac SDK runtime and original game data
+        run: |
+          test ! -e assets/local
+          test ! -e target
+          test ! -e "$RUNNER_TEMP/macos-cargo-home"
+          export CARGO_HOME="$RUNNER_TEMP/macos-cargo-home"
+          echo "CARGO_HOME=$CARGO_HOME" >> "$GITHUB_ENV"
+          test "$(uname -m)" = arm64
+          rustup show active-toolchain
+          rustup target add aarch64-apple-darwin x86_64-apple-darwin
+          cargo fetch --locked
+          python3 tools/macos_package.py prepare-sdl
+          python3 tools/reference_assets.py fetch
+          python3 tools/reference_assets.py verify
+      - name: Test desktop and build both native Mach-O slices
+        run: |
+          export RUSTFLAGS="-L native=$PWD/assets/local/macos-sdl/install/lib -C link-arg=-Wl,-rpath,@executable_path/../Frameworks"
+          export DYLD_LIBRARY_PATH="$PWD/assets/local/macos-sdl/install/lib"
+          cargo test -p lemmings-desktop --locked --offline
+          cargo build -p lemmings-desktop --release --locked --offline --target aarch64-apple-darwin
+          cargo build -p lemmings-desktop --release --locked --offline --target x86_64-apple-darwin
+          mkdir -p target/universal
+          lipo -create target/aarch64-apple-darwin/release/lemmings-desktop target/x86_64-apple-darwin/release/lemmings-desktop -output target/universal/OhMyLemmings
+          lipo target/universal/OhMyLemmings -verify_arch arm64 x86_64
+      - name: Stage and sign the complete test application
+        run: |
+          python3 tools/macos_package.py stage
+          codesign --force --sign - --timestamp=none assets/local/macos-app/OhMyLemmings.app/Contents/Frameworks/libSDL2-2.0.0.dylib
+          codesign --force --sign - --timestamp=none assets/local/macos-app/OhMyLemmings.app
+          codesign --verify --deep --strict assets/local/macos-app/OhMyLemmings.app
+          python3 tools/macos_package.py create
+      - name: Verify fresh native Apple Silicon app installation
+        run: python3 tools/check_macos_package.py --archive assets/local/dist/ohmylemmings-0.1.0-macos-universal2.zip --expected-arch arm64
+      - name: Preserve Mac game and Apple Silicon evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: development-macos-universal2
+          path: |
+            assets/local/dist/ohmylemmings-0.1.0-macos-universal2.zip*
+            assets/local/macos-package-check/*.json
+            assets/local/macos-package-check/*.log
+            assets/local/macos-package-check/original-fun01.ppm
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+  macos-intel:
+    name: macOS universal app (Intel)
+    needs: macos
+    runs-on: macos-15-intel
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Get exactly the app built and tested on Apple Silicon
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: development-macos-universal2
+          path: assets/local/macos-download
+      - name: Verify the identical universal package on native Intel
+        run: |
+          test "$(uname -m)" = x86_64
+          python3 tools/check_macos_package.py --archive assets/local/macos-download/dist/ohmylemmings-0.1.0-macos-universal2.zip --expected-arch x86_64
+      - name: Preserve Intel execution evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: macos-intel-validation
+          path: |
+            assets/local/macos-package-check/*.json
+            assets/local/macos-package-check/*.log
+            assets/local/macos-package-check/original-fun01.ppm
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
   windows:
     name: Windows full game
     runs-on: windows-2022

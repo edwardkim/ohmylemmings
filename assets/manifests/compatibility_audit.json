@@ -16,8 +16,8 @@
   "product_snapshot": [
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 7553,
-      "sha256": "6ecfa3da6cc803ed6658bee387bb7bfd468ddbc0444b68d01e5b2bdf527e9e65"
+      "bytes": 12128,
+      "sha256": "150804da5d7a7d948674873acf2baa7ec3d40ca9bfff52d8bc208daab4ba88c1"
     },
     {
       "path": "Cargo.lock",
@@ -66,8 +66,8 @@
     },
     {
       "path": "apps/desktop/src/assets.rs",
-      "bytes": 2457,
-      "sha256": "5561309879eae5531e677b9bc36e7f502c98dd02001cfbe435863817bbfe7387"
+      "bytes": 3395,
+      "sha256": "c58fceaa2dd226c6b9ec309e8bc460db56e2995855d03386018f6aae4b7b2f51"
     },
     {
       "path": "apps/desktop/src/audio.rs",
@@ -91,8 +91,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 59945,
-      "sha256": "4451749d2fbff0f5e9d183877f582854d35e7a8f345b33491ca40f83fd165810"
+      "bytes": 60605,
+      "sha256": "19f8734bc04586cb751c976b877bd61ebd965e017f03d7d8f8bf87e58d74b7ec"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -243,6 +243,11 @@
       "path": "apps/web/www/style.css",
       "bytes": 4566,
       "sha256": "25b5a725ba90ceaa9366b9e5a80f5791bc82f9ef86ce859fdecc55d8910c8b85"
+    },
+    {
+      "path": "assets/manifests/macos_runtime.json",
+      "bytes": 471,
+      "sha256": "d01fe9a0f899b46fb28a5e6026b583385b3c2ac838c3b306d58cda0195d98a54"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -945,6 +950,11 @@
       "sha256": "fe3e11d98e86d3bcd425f384efcdb763d109d0805168dd9f33252f841d18cc5e"
     },
     {
+      "path": "tools/check_macos_package.py",
+      "bytes": 9326,
+      "sha256": "55135e419bc6ea0c5d5f6f6966b4f426cebf9dca36727286c655900752a4d579"
+    },
+    {
       "path": "tools/check_miner.py",
       "bytes": 7066,
       "sha256": "d87ea3a9a80e89296db3dd24d63b70acb887223553e5fb4bdee42e496e7cb742"
@@ -1280,6 +1290,16 @@
       "sha256": "274280b2bf7d4304bdd010fa320f9e4f171c637eef9f999bf58ac42537ba5195"
     },
     {
+      "path": "tools/macos_package.py",
+      "bytes": 13363,
+      "sha256": "23ec4a531fd8ace818d21a6ef9a2f8b89831a9862a98078237bebcfc5c13822e"
+    },
+    {
+      "path": "tools/macos_window.swift",
+      "bytes": 900,
+      "sha256": "b78294ed76f373b9608f21415b06afa7b32af4bad0b4896bd7a32307a9ccf3b1"
+    },
+    {
       "path": "tools/observe_audio_dos.py",
       "bytes": 5236,
       "sha256": "caf4bdc00d0b885d60de89cafea8e46aed409364233fbd8948388ea978c730a0"
@@ -1583,6 +1603,11 @@
       "path": "tools/tests/test_initial_replay.py",
       "bytes": 3071,
       "sha256": "8201dabd7a3e54cfbb755c7b21960ce0690453682039e33f6a5ef3360d4bc01a"
+    },
+    {
+      "path": "tools/tests/test_macos_package.py",
+      "bytes": 4379,
+      "sha256": "59c1647add67772bfbc0da5c3c2a02ba1f157184305450f6be624c77f2c66f8e"
     },
     {
       "path": "tools/tests/test_miner.py",
@@ -2128,8 +2153,8 @@
     {
       "id": "g11-06-display-cadence",
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 88452,
-      "sha256": "9dc2d1fb86c135ebd1cdf7ab776f4e95baa6abef40a2b11142db3bbafab018c0"
+      "bytes": 88946,
+      "sha256": "050d0784d00335be07ff1e7121e5e2f61804a3f3f9eb09501e0994268aa92d8a"
     }
   ],
   "local_evidence": [
@@ -4573,5 +4598,42 @@
         "sha256": "85b6c1e0212c3cfa40638ddf0d4b161062a0909e8ceebbec7c2244e000787099"
       }
     ]
+  },
+  "source_impact_120": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/120",
+    "baseline_source": "ef7226753def45b29dddef0f8057fbfd967d3e0a",
+    "previous_pins": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 7553,
+        "sha256": "6ecfa3da6cc803ed6658bee387bb7bfd468ddbc0444b68d01e5b2bdf527e9e65"
+      },
+      {
+        "path": "apps/desktop/src/assets.rs",
+        "bytes": 2457,
+        "sha256": "5561309879eae5531e677b9bc36e7f502c98dd02001cfbe435863817bbfe7387"
+      },
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 59945,
+        "sha256": "4451749d2fbff0f5e9d183877f582854d35e7a8f345b33491ca40f83fd165810"
+      }
+    ],
+    "previous_evidence_pins": [
+      {
+        "id": "g11-06-display-cadence",
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 88452,
+        "sha256": "9dc2d1fb86c135ebd1cdf7ab776f4e95baa6abef40a2b11142db3bbafab018c0"
+      }
+    ],
+    "added": [
+      "tools/macos_package.py",
+      "tools/check_macos_package.py",
+      "tools/macos_window.swift",
+      "tools/tests/test_macos_package.py",
+      "assets/manifests/macos_runtime.json"
+    ],
+    "scope": "User-requested full-game macOS universal2 app/data/SDL packaging and native ARM/Intel CI. Only Mac startup/error/end diagnostics change in the desktop adapter. Core/resources/renderer/PCM synthesis and historical full120/240/performance evidence unchanged. Ad-hoc preview and Developer ID/notarization qualification separated."
   }
 }
