@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-새 기능 [#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 시작했습니다. 첫 [#138 Fun 01 시안·계약과 한계](reports/issue-138_hd_art_direction.md)를 참고하세요. [#140 공통 표시 snapshot·좌표/입력](reports/issue-140_hd_presentation.md)은 PR #141·최종 CI7개 통과로 완료했습니다. 다음은 분리 HD 자산 제작이며, 실제 HD 모드는 아직 미구현입니다. 초기 개발 #1의 종료와 성능 #113의 독립 후속은 유지합니다.
+새 기능 [#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 시작했습니다. 첫 [#138 Fun 01 시안·계약과 한계](reports/issue-138_hd_art_direction.md)를 참고하세요. [#140 공통 표시 snapshot·좌표/입력](reports/issue-140_hd_presentation.md)은 PR #141·최종 CI7개 통과로 완료했습니다. [#144 분리 걷기·암석과 공통 팩](reports/issue-144_hd_assets.md)은 PR #145·CI7개 통과로 완료했습니다. 다음은 입출구·직업 동작·UI 자산 제작이며, 실제 HD 게임 모드는 아직 미구현입니다. 초기 개발 #1의 종료와 성능 #113의 독립 후속은 유지합니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 

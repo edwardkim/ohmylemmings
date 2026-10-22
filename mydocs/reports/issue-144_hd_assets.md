@@ -39,8 +39,16 @@ python3 -m http.server 19044 --bind 127.0.0.1 --directory assets/local/hd-assets
 
 TDD: API/도구 부재 실패 뒤 구현했다. 추가 검사에서 bool schema·PNG 순서/PLTE 실패를 확인하고 고쳤다. Rust8개와 Python12개가 통과했다. 실제 팩12,583,908바이트/SHA `96577145aa904f52dd24d08773ec0f1b81f1336743a072d827ff60015c7fe1c6`를 빌드해 Native probe의2atlas/17frame·16걷기·RGBA CRC를 확인했다. 실제 브라우저에서 PNG 미리보기의 로딩/HD 크기와 프레임을 확인했다. 워크스페이스·WASM/전체 Python·정확한 CI와 병합은 아래 완료 기록/이슈를 따른다.
 
+로컬 최종: Rust645/doc29·workspace Clippy/format·WASM library build·Python265/라이선스/기존 증거 감사 PASS. 변경 Markdown11개/상대 파일 링크272개·git diff --check·self-review PASS. 현재450개 source pin과 기존3개 이전 pin을 보존했고 과거 NOT READY/성능 관측을 변경하지 않았다. 새 HD 앱/JS 실행 검사가 아니라 공통 로더/WASM 컴파일·실제 PNG 팩/개발 미리보기 범위다. 정확한 PR/CI·병합은 GitHub #144와 완료 기록에 연결한다.
+
+## 완료 기록
+
+구현 [PR #145](https://github.com/edwardkim/ohmylemmings/pull/145)을 실제 merge `81daacbfb6b2d18115c6b01a96f1f6e7b86fa592`로 병합했다. 검토 head `dbff8d5354ce44d09921da7eb85cb06becccb0a2`와 merge의 전체 tree `dffbdea35b5594a1055ed7ae58c83e6a1f996c69`가 일치한다.
+
+동일 head의 [CI39800118020](https://github.com/edwardkim/ohmylemmings/actions/runs/39800118020)에서 Rust native·Python tooling·WASM libraries·Web browser·Windows full game·macOS Apple Silicon/Intel7개 검사 SUCCESS를 확인했다. 중복 push39800025581 취소는 성공으로 집계하지 않는다. 이 CI의 기존 게임/설치 회귀와 로컬 Native HD 팩/개발 미리보기·WASM 컴파일의 범위를 구분하며 실제 HD 앱/JS/GPU 실행으로 해석하지 않는다.
+
+완료 문서·상위 계획/진행·작업일지를 별도 문서 PR에 동기화했다. 완료 Markdown7개의 상대 파일 링크136개·git diff --check·self-review PASS. 게임 소스의 플랫폼 빌드를 반복하지 않는다. 실제 완료 문서 PR의 병합·#144 종료 근거는 GitHub 이슈에 연결한다. 실제 HD 게임·입출구/직업/UI와 다른26애니메이션321프레임은 #137 후속이며 #113 성능 이월/기존 NOT READY와 Chrome156 진단 #142를 유지한다.
+
 ## 후속
 
 이 절편은2걷기 슬롯/16프레임과 암석1종의 팩 후보이다. 전체28애니메이션337프레임 중 나머지26/321과 입출구·직업 동작·UI/전체 테마는 미제작이다. `runtime_ready=false`이며 실제 Native/Web HD 게임 화면·입력/GPU·새 배포는 #137 후속이다. #1 CLOSED·#113 OPEN/저사양60fps 반복 중단과 기존 공개 v0.1.0/Pages를 유지한다. Chrome156 CI 대기 진단은 #142에서 별도 추적한다.
-
-로컬 최종: Rust645/doc29·workspace Clippy/format·WASM library build·Python265/라이선스/기존 증거 감사 PASS. 변경 Markdown11개/상대 파일 링크272개·git diff --check·self-review PASS. 현재450개 source pin과 기존3개 이전 pin을 보존했고 과거 NOT READY/성능 관측을 변경하지 않았다. 새 HD 앱/JS 실행 검사가 아니라 공통 로더/WASM 컴파일·실제 PNG 팩/개발 미리보기 범위다. 정확한 PR/CI·병합은 GitHub #144와 완료 기록에 연결한다.
