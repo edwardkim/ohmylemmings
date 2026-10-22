@@ -173,7 +173,11 @@
       "origin_x": -8,
       "origin_y": -12,
       "hd_status": "pack_candidate_not_integrated",
-      "runtime_asset": "assets/manifests/remaster_pack.json"
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 4,
+        "frames": 16
+      }
     },
     {
       "slot": 5,
@@ -257,7 +261,11 @@
       "origin_x": -8,
       "origin_y": -13,
       "hd_status": "pack_candidate_not_integrated",
-      "runtime_asset": "assets/manifests/remaster_pack.json"
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 10,
+        "frames": 16
+      }
     },
     {
       "slot": 11,
@@ -271,7 +279,11 @@
       "origin_x": -8,
       "origin_y": -13,
       "hd_status": "pack_candidate_not_integrated",
-      "runtime_asset": "assets/manifests/remaster_pack.json"
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 11,
+        "frames": 16
+      }
     },
     {
       "slot": 12,
@@ -481,7 +493,11 @@
       "origin_x": -8,
       "origin_y": -10,
       "hd_status": "pack_candidate_not_integrated",
-      "runtime_asset": "assets/manifests/remaster_pack.json"
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 26,
+        "frames": 16
+      }
     },
     {
       "slot": 27,
@@ -495,7 +511,11 @@
       "origin_x": -16,
       "origin_y": -25,
       "hd_status": "pack_candidate_not_integrated",
-      "runtime_asset": "assets/manifests/remaster_pack.json"
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 27,
+        "frames": 1
+      }
     }
   ],
   "terrain_sets": [
