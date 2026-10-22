@@ -12,7 +12,7 @@
 | [#130](https://github.com/edwardkim/ohmylemmings/issues/130) | 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정. Windows 지원은 Windows 11 x64, Windows 10 지원 제외. [보고서](../reports/issue-130_maintainer_acceptance.md) |
 | [#113](https://github.com/edwardkim/ohmylemmings/issues/113) | 더 좋은 호스트의 성능·구간 메모리 재검증 |
 
-Mac의 ad-hoc/미공증은 현재 공개 플레이 배포의 안내 조건이다. Developer ID가 없는 상태에서 새 인증서 작업을 시작하지 않는다. #115 종료는 배포 준비의 완료이며 G11 성능 합격·G12 전체 완료나 라이선스 선택을 뜻하지 않는다.
+Mac의 ad-hoc/미공증은 현재 공개 플레이 배포의 안내 조건이다. Developer ID가 없는 상태에서 새 인증서 작업을 시작하지 않는다. #115 이후 MIT·메인테이너 인수를 완료했고, 메인테이너 지시에 따라 [#1 초기 개발과 G12 첫 플레이 배포를 종료](../reports/issue-1_initial_development_closure.md)한다. 남은 G11 성능·메모리는 #113에서 계속한다.
 
 ## 최초 계약과 변경 이력
 
