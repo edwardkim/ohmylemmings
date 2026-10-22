@@ -2,7 +2,7 @@
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 
-단계별 구현 목표와 작업 순서는 [전체 구현 계획](plans/issue-1_implementation_plan.md)을 참고합니다.
+단계별 구현 목표와 작업 순서는 [전체 구현 계획](plans/issue-1_implementation_plan.md)을 참고합니다. 2026-10-22 메인테이너 지시로 [#1 초기 구현·첫 플레이 배포를 종료](reports/issue-1_initial_development_closure.md)하고, 남은 성능·구간 메모리는 #113에서 계속합니다. 아래 단계별 기록은 각 검증 시점의 상태입니다.
 
 G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/issue-2_dos_original_baseline.md)를 완료했습니다. 로컬 데이터 준비는 [리소스 안내](../assets/README.md)를 참고합니다.
 

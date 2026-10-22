@@ -1,5 +1,7 @@
 # 작업 결과 보고서
 
+- [#1 초기 구현·플레이 배포 종료](issue-1_initial_development_closure.md): 메인테이너 지시에 따른 상위 추적 완료, 성능·메모리 #113 독립 후속.
+
 - [#87 네 난이도 선택·재시작·전환 검증](issue-87_rank_selection.md)
 
 - [#85 G11-01 전수 점검표·성능 측정 기준](issue-85_compatibility_validation.md)

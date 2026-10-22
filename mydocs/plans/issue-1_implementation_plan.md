@@ -4,7 +4,7 @@
 
 ## 목적과 현재 상태
 
-2026-10-22 현재 G00~G10과 [#115 배포 준비](../reports/issue-115_release_preparation.md)를 완료했습니다. 4플랫폼 v0.1.0 릴리즈와 Pages 플레이를 제공합니다. G11의120레벨/COMP·Native 보정 증거는 유효하며 남은 성능/메모리는 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)으로 이월했습니다. [#129](../reports/issue-129_project_license.md)에서 자체 코드 MIT·제3자 고지 정책을 적용했고, [#130](../reports/issue-130_maintainer_acceptance.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정을 받았습니다. Windows 지원 대상은 Windows 11 x64이며 Windows 10은 지원하지 않습니다. G11/G12 전체 완료 판정은 남아 있습니다. 아래 기록은 각 검증 시점의 결과입니다.
+2026-10-22 현재 G00~G10과 [#115 배포 준비](../reports/issue-115_release_preparation.md)를 완료했습니다. 4플랫폼 v0.1.0 릴리즈와 Pages 플레이를 제공합니다. G11의120레벨/COMP·Native 보정 증거는 유효하며 남은 성능/메모리는 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)으로 이월했습니다. [#129](../reports/issue-129_project_license.md)에서 자체 코드 MIT·제3자 고지 정책을 적용했고, [#130](../reports/issue-130_maintainer_acceptance.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정을 받았습니다. Windows 지원 대상은 Windows 11 x64이며 Windows 10은 지원하지 않습니다. 메인테이너 지시에 따라 [#1의 초기 구현·첫 플레이 배포 상위 추적을 종료](../reports/issue-1_initial_development_closure.md)합니다. G12는 현재 지원 범위의 첫 배포 완료로 정리하고, G11 전체 성능 합격은 미완료로 남겨 #113에서 계속합니다. 아래 기록은 각 검증 시점의 결과입니다.
 
 [프로젝트 기획서](issue-1_rusty_lemmings.md)의 원본 호환 Rust 엔진을 작고 검증 가능한 목표로 나눕니다. 데스크톱과 웹에서 기준판의 레벨·직업·게임 규칙·사운드를 재현하는 것이 최종 목표입니다.
 
@@ -234,3 +234,7 @@ G09는 #70/PR #71·정확한 main CI까지 확인해 완료했습니다. [G10-01
 ## 메인테이너 인수 / 2026-10-22
 
 [#130](../reports/issue-130_maintainer_acceptance.md)에 Windows 11·웹브라우저 직접 테스트 성공 판정을 기록하고 완료 처리했다. 메인테이너의 후속 결정에 따라 Windows 지원 대상은 Windows 11 x64로 정하고 Windows 10은 지원·수동 검증 완료 조건에서 제외한다. 개별 검사·환경·패키지 해시 정보가 제공되지 않았음을 보존하며, #113과 G11/G12 전체 완료 판정은 변경하지 않는다.
+
+## 초기 개발 상위 추적 종료 / 2026-10-22
+
+메인테이너의 명시적인 #1 종료 지시에 따라 [초기 구현·첫 플레이 배포를 완료 처리](../reports/issue-1_initial_development_closure.md)한다. G00~G10과 G11 기능/호환성 증거를 보존하고 G12는 4플랫폼 v0.1.0/Pages·MIT/제3자 고지·Windows 11/브라우저 인수와 지원 범위로 완료 정리한다. 남은 G11 성능·구간 메모리는 #113 OPEN에서 독립적으로 검증한다. 기존 미충족 수치를 통과로 바꾸지 않으며 과거 계획과 기록은 각 시점의 이력이다.
