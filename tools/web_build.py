@@ -21,6 +21,7 @@ MANIFEST = ROOT / 'assets/manifests/web_tools.json'
 TOOLS = ROOT / 'assets/local/web-tools'
 OUTPUT = ROOT / 'assets/local/web'
 SOURCE_REQUIRED = {
+    'LICENSE', 'THIRD_PARTY_NOTICES.txt',
     'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'Makefile',
     'apps/web/Cargo.toml', 'apps/web/src/lib.rs',
     'crates/lemmings-opl/Cargo.toml', 'crates/lemmings-opl/LICENSE',
@@ -43,7 +44,7 @@ def source_bundle(destination, root=ROOT):
     names = set(tracked)
     names.update(n for n in new if Path(n).suffix in {'.rs', '.toml', '.js', '.css', '.html', '.py'} or n.startswith('tools/tests/fixtures/') and n.endswith('.json'))
     files = {}; modes = {}
-    public_roots = {'AGENTS.md', 'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'Makefile', 'README.md', 'LICENSE', '.gitignore', '.github', 'apps', 'crates', 'tools', 'third_party', 'assets', 'mydocs'}
+    public_roots = {'AGENTS.md', 'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'Makefile', 'README.md', 'LICENSE', 'THIRD_PARTY_NOTICES.txt', '.gitignore', '.github', 'apps', 'crates', 'tools', 'third_party', 'assets', 'mydocs'}
     for name in sorted(names):
         p = Path(name)
         if not name or p.is_absolute() or '..' in p.parts or p.parts[0] not in public_roots or '.git' in p.parts:
@@ -74,6 +75,8 @@ def source_bundle(destination, root=ROOT):
 
 
 def audio_delivery(output, root=ROOT):
+    for name in ['LICENSE', 'THIRD_PARTY_NOTICES.txt']:
+        (output / name).write_bytes((root / name).read_bytes())
     row = source_bundle(output / 'audio-source.tar.gz', root)
     license_bytes = (root / 'crates/lemmings-opl/LICENSE').read_bytes()
     (output / 'LGPL-2.1-or-later.txt').write_bytes(license_bytes)

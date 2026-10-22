@@ -1,9 +1,11 @@
 # Rusty Lemmings
 
-2026-10-22 개발 상태: G00~G10과 [배포 준비 #115](mydocs/reports/issue-115_release_preparation.md)를 완료했고, v0.1.0의 Windows/macOS/Linux/Web 다운로드와 GitHub Pages 플레이를 제공합니다. G11 성능 재검증은 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에 이월했습니다. 자체 코드 라이선스 결정은 [#129](https://github.com/edwardkim/ohmylemmings/issues/129), Windows 10/11 수동 검증은 [#130](https://github.com/edwardkim/ohmylemmings/issues/130)에서 추적하며 G11/G12 전체 완료 판정은 남아 있습니다.
+2026-10-22 개발 상태: G00~G10과 [배포 준비 #115](mydocs/reports/issue-115_release_preparation.md)를 완료했고, v0.1.0의 Windows/macOS/Linux/Web 다운로드와 GitHub Pages 플레이를 제공합니다. G11 성능 재검증은 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에 이월했습니다. 자체 코드에는 [#129의 MIT 정책](mydocs/reports/issue-129_project_license.md)을 적용했고, Windows 10/11 수동 검증은 [#130](https://github.com/edwardkim/ohmylemmings/issues/130)에서 추적합니다. G11/G12 전체 완료 판정은 남아 있습니다.
 
 [![CI](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml/badge.svg)](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml)
 [![Play on GitHub Pages](https://github.com/edwardkim/ohmylemmings/actions/workflows/pages.yml/badge.svg)](https://edwardkim.github.io/ohmylemmings/)
+
+프로젝트 자체 작성 코드는 [MIT](LICENSE)로 제공합니다. [제3자 고지 전문](THIRD_PARTY_NOTICES.txt)과 [적용 범위](third_party/README.md)를 함께 확인하세요. OPL 합성기는 LGPL-2.1-or-later를 유지하며, 원본 DOS 그래픽·레벨·음악/효과음·상표에는 프로젝트 MIT 허가가 적용되지 않습니다.
 
 고전 DOS 게임 레밍즈(Lemmings)의 데이터와 게임 동작을 Rust로 재현하는 프로젝트입니다. 렌더링·입출력과 분리된 코어 엔진을 만들고, SDL2 기반 데스크톱 환경과 WebAssembly 기반 웹 환경을 지원하는 것이 목표입니다.
 
@@ -126,7 +128,7 @@ mydocs/
 
 사용자 승인으로 [G12 배포 준비 / #115](mydocs/plans/issue-115_release_preparation.md)를 완료했습니다. [#113 성능 결과](mydocs/reports/issue-113_web_dispatch.md)의 남은60fps 검증은 더 좋은 호스트에 이월하며, 현재 장비에서 추가 조정·반복하지 않습니다.
 
-Linux·Web 전체 게임 archive는 원본28개(그래픽·120레벨·음원)와 대응 소스·라이선스·해시를 포함합니다. `python3 tools/reference_assets.py fetch` 후 `make package-linux` 또는 `make package-web`으로 만들고 압축 해제 실행까지 검사합니다. Linux는 실행 파일 옆 data를 사용하고 Web은 HTTP에서 자동으로 Fun01을 엽니다. [사용·검증 안내](mydocs/reports/issue-122_linux_web_full_game.md). 자체 코드 라이선스 결정은 [#129](https://github.com/edwardkim/ohmylemmings/issues/129)에서 계속합니다.
+Linux·Web 전체 게임 archive는 원본28개(그래픽·120레벨·음원)와 대응 소스·라이선스·해시를 포함합니다. `python3 tools/reference_assets.py fetch` 후 `make package-linux` 또는 `make package-web`으로 만들고 압축 해제 실행까지 검사합니다. Linux는 실행 파일 옆 data를 사용하고 Web은 HTTP에서 자동으로 Fun01을 엽니다. [사용·검증 안내](mydocs/reports/issue-122_linux_web_full_game.md). MIT·제3자 고지는 이후 빌드부터 포함하며 기존 공개 v0.1.0 파일에는 소급 적용하지 않습니다.
 
 Windows 전체 게임 ZIP은 [#118 패키징 안내](mydocs/reports/issue-118_windows_full_game.md)를 따릅니다. 원본 그래픽·전체120레벨·음원을 포함하며 압축 해제 후 `OhMyLemmings.exe`를 더블클릭합니다. GitHub Actions의 `Windows full game` 검사는 실제 Windows에서 이 패키지의 첫 실행·120개 선택·음향·재시작을 검증하고 `development-windows-x86_64` artifact를 제공합니다.
 

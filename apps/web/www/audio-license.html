@@ -2,10 +2,11 @@
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>오디오 라이선스와 소스 · Rusty Lemmings</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./style.css"></head>
 <body><main class="license">
 <p><a href="./">게임으로 돌아가기</a></p><h1>오디오 라이선스와 소스</h1>
+<p>프로젝트 자체 작성 코드는 <a href="./LICENSE">MIT</a>입니다. <a href="./THIRD_PARTY_NOTICES.txt">제3자 라이선스·참조 고지 전문</a>을 함께 제공합니다. 원본 DOS 그래픽·레벨·음악/효과음·상표에는 프로젝트 MIT 허가가 적용되지 않습니다.</p>
 <p>이 게임의 OPL 오디오 합성기는 Nuked-OPL3 1.8을 Rust로 이식한 <code>nuked-opl3 0.1.0</code>의 정수 코어를 사용합니다. 라이선스는 <strong>LGPL-2.1-or-later</strong>입니다.</p>
 <p>Copyright (C) 2013–2020 Nuke.YKT<br>Copyright (C) 2026 Tony Gies (Rust port)</p>
 <p><a href="./LGPL-2.1-or-later.txt">라이선스 전문</a> · <a href="./audio-source.tar.gz">이 빌드의 재빌드용 소스 묶음</a> · <a href="./audio-source.json">파일 해시</a></p>
-<p>소스 묶음에는 라이브러리와 게임 어댑터의 소스, 고지, 수정 내역, 고정 빌드 파일과 재링크 안내가 들어 있습니다. 게임 데이터는 보유한 원본 파일을 사용합니다.</p>
+<p>소스 묶음에는 라이브러리와 게임 어댑터의 소스, 고지, 수정 내역, 고정 빌드 파일과 재링크 안내가 들어 있습니다. GAME-DATA의 출처·해시는 원본 게임 데이터에 새 라이선스를 부여하는 고지가 아닙니다.</p>
 <h2>수정과 재빌드</h2>
 <p>압축을 풀고 <code>crates/lemmings-opl/README.md</code>를 읽어주세요. 코어와 어댑터를 수정한 뒤 Rust 1.93.1과 Python 3으로 재빌드할 수 있습니다. 라이브러리 수정과 재링크, 해당 수정의 디버깅을 위한 역공학을 허용합니다.</p>
 <pre>cargo fetch --locked

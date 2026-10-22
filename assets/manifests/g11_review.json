@@ -8,8 +8,8 @@
     {
       "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 162095,
-      "sha256": "5119762daa806392f2ad42612ed9bb75146f8402f245525c4fe34a4b66c04e55"
+      "bytes": 175973,
+      "sha256": "af6599e315a9bc5e4d872e114bb2506eba33b3dce11483c51ad0bb1d314b76e4"
     },
     {
       "id": "performance",
@@ -10971,5 +10971,16 @@
       }
     ],
     "scope": "Pages hosting source index only; prior review/observations and NOT READY unchanged. Actual live release functionality is qualified separately; faster-host performance remains deferred."
+  },
+  "source_maintenance_129": {
+    "previous_pins": [
+      {
+        "id": "compatibility",
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 162095,
+        "sha256": "5119762daa806392f2ad42612ed9bb75146f8402f245525c4fe34a4b66c04e55"
+      }
+    ],
+    "scope": "License metadata/notice index only; prior observations and NOT READY unchanged. New package/source notice verification is separate from game/performance qualification."
   }
 }
