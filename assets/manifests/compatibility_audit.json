@@ -17,7 +17,7 @@
     {
       "path": ".github/workflows/ci.yml",
       "bytes": 12128,
-      "sha256": "86c0f9abf05df501fe49aa6f6a7f1ba8dc252027f316fe74e3f96edcaea91153"
+      "sha256": "150804da5d7a7d948674873acf2baa7ec3d40ca9bfff52d8bc208daab4ba88c1"
     },
     {
       "path": "Cargo.lock",

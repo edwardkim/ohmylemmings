@@ -56,7 +56,7 @@ jobs:
           cargo build -p lemmings-desktop --release --locked --offline --target x86_64-apple-darwin
           mkdir -p target/universal
           lipo -create target/aarch64-apple-darwin/release/lemmings-desktop target/x86_64-apple-darwin/release/lemmings-desktop -output target/universal/OhMyLemmings
-          lipo -verify_arch arm64 x86_64 target/universal/OhMyLemmings
+          lipo target/universal/OhMyLemmings -verify_arch arm64 x86_64
       - name: Stage and sign the complete test application
         run: |
           python3 tools/macos_package.py stage
