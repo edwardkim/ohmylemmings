@@ -117,4 +117,4 @@
 - [#126 GitHub Pages 플레이 배포](issue-126_github_pages.md)
 
 - [#129 자체 코드 라이선스 결정](issue-129_project_license.md): #115에서 이관한 정책 결정/고지 후속.
-- [#130 메인테이너 수동 검증](issue-130_windows_manual_validation.md): Windows 11·웹브라우저 직접 테스트 성공 판정, Windows 10 미검증.
+- [#130 메인테이너 수동 검증·지원 범위](issue-130_windows_manual_validation.md): Windows 11·웹브라우저 직접 테스트 성공 판정, Windows 10 지원 제외.

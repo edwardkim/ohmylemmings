@@ -2,6 +2,8 @@
 
 관리 정책: [#124 버전·태그·Releases](../plans/issue-124_release_policy.md).
 
+현재 Windows 지원 대상은 **Windows 11 x64**이며 **Windows 10은 지원하지 않습니다**. [#130의 메인테이너 결정](../reports/issue-130_maintainer_acceptance.md)을 따릅니다.
+
 버전별 사용자 변경 내역·실행 안내는 `issue-<번호>_v<version>.md`로 유지한다. 이 폴더의 버전 파일은 #124 정책에서 정한 배포 산출물이며 파일 상단에 담당 이슈를 연결한다. 출시 후 해당 버전의 내용·태그·파일을 고치지 않고 다음 버전에 변경 내역을 추가한다.
 
 - [0.1.0 첫 플레이 배포 / #124](issue-124_v0.1.0.md)

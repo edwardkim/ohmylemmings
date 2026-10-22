@@ -9,7 +9,7 @@
 | 후속 | 현재 상태·범위 |
 |---|---|
 | [#129](https://github.com/edwardkim/ohmylemmings/issues/129) | 자체 코드 MIT 선택·고지/metadata 정비 적용 완료. [보고서](../reports/issue-129_project_license.md) |
-| [#130](https://github.com/edwardkim/ohmylemmings/issues/130) | 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정. Windows 10 미검증. [보고서](../reports/issue-130_maintainer_acceptance.md) |
+| [#130](https://github.com/edwardkim/ohmylemmings/issues/130) | 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정. Windows 지원은 Windows 11 x64, Windows 10 지원 제외. [보고서](../reports/issue-130_maintainer_acceptance.md) |
 | [#113](https://github.com/edwardkim/ohmylemmings/issues/113) | 더 좋은 호스트의 성능·구간 메모리 재검증 |
 
 Mac의 ad-hoc/미공증은 현재 공개 플레이 배포의 안내 조건이다. Developer ID가 없는 상태에서 새 인증서 작업을 시작하지 않는다. #115 종료는 배포 준비의 완료이며 G11 성능 합격·G12 전체 완료나 라이선스 선택을 뜻하지 않는다.

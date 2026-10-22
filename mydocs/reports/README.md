@@ -117,4 +117,4 @@
 
 - [#129 MIT 정책·제3자 고지 전달](issue-129_project_license.md)
 
-- [#130 Windows 11·웹브라우저 메인테이너 인수](issue-130_maintainer_acceptance.md): 직접 테스트 성공 판정과 검증 범위.
+- [#130 Windows 11·웹브라우저 메인테이너 인수](issue-130_maintainer_acceptance.md): 직접 테스트 성공 판정과 Windows 11 x64 지원·Windows 10 지원 제외 결정.
