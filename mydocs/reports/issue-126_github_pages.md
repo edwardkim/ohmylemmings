@@ -17,7 +17,12 @@ pages.yml은 최신 정식 태그를 수동 배포하거나 Release 성공 후 �
 - actionlint1.7.12로 Pages/Release workflow 구문·context 검사 PASS. 공식 배포 digest와 고정 action commit은 assets/manifests/pages_tools.json에 기록했다.
 - 실제 공개 v0.1.0(4,919,566bytes) 다운로드/검증·추출 PASS. ZIP SHA256 03597c78dbf0a46ef3f2cdfe37636f658031032ab22f402b483da2d83cd044f5.
 - 새 headless 로컬 서버 /game/ 검사 PASS: 원본120개 선택, RGB 1539ca2afdcc9cfbe4fa5de51036c45b881014ec14a0ab030c191ca41f988c4d, 실제 Canvas·PCM3072샘플/비영3067, 저장 Fun01 입력 성공→Restart/Continue와 fresh 상태/화면 동일, refresh·원본 누락2개·loader 오류8개·소스/라이선스 HTTP. 자동 음향 허용 flag 사용한 기능 검사이며 물리 청취/성능 합격은 뜻하지 않는다.
-- 공개 HTTPS는 병합·배포 후 tools/check_pages.cjs로 실제 브라우저 입력 음향·동일 payload/MIME·120개 선택·재시작/전환·refresh를 확인한다. 공개 run/결과는 이슈 완료 기록에 추가한다.
+- [PR #127](https://github.com/edwardkim/ohmylemmings/pull/127) 실제 병합 3594bb0 이후 [Pages run 39766461582](https://github.com/edwardkim/ohmylemmings/actions/runs/39766461582) SUCCESS. 공개 주소: https://edwardkim.github.io/ohmylemmings/ . 배포 검증에 필요한 Python/WASM 검사와 로컬 기능 검사를 마친 후 게시했고, 전체 플랫폼 CI는 별도로 진행한다.
+- tools/check_pages.cjs 공개 검사 PASS: HTTPS payload46개+deployment.json의47개 전부 로컬 staging과 SHA 일치, WASM MIME application/wasm, 원본 RGB/Canvas,120개 레벨 선택, 실제 브라우저 클릭→AudioContext running/PCM3072·비영3067, Fun01 저장 입력 성공→재시작/다음 레벨의 fresh 상태/화면 동일, 새로고침 PASS. HTTP 소스/라이선스도 전체 바이트 대조에 포함했다. 검사 후 rAF/관측 hook을 제거한 정상 게임 탭을 남겼다.
+- [공개 증거 manifest](../../assets/manifests/pages_deployment.json)에 정확한 source/run/SHA와 ignored 결과·HTTP 벡터·화면 pins를 기록했다. 원본 화면을 직접 열어 원본 지형·출구·하단 패널을 확인했다.
+- 사용자 추가 요청으로 README 상단에 Pages workflow 배지를 넣고 클릭 대상을 게임 주소로 연결했다. badge.svg HTTP200/SVG의 GitHub Pages - passing 표시와 목적지의 실제 게임을 확인했다.
+
+재현: `python3 tools/pages_package.py --tag v0.1.0 --output assets/local/pages-new` 후 `node tools/check_pages.cjs https://edwardkim.github.io/ohmylemmings/ assets/local/pages-new assets/local/pages-public-new` (Node 내장 WebSocket/fetch·CDP19222, 비어 있는 새 출력 경로 사용). 이후 최신 정식 릴리즈가 바뀌면 그 태그를 사용한다.
 
 ## Self-review
 
