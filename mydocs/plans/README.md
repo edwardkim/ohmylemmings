@@ -32,3 +32,5 @@
 - [#126 GitHub Pages 플레이 배포](issue-126_github_pages.md)
 
 - [#129 자체 코드 라이선스 적용안](issue-129_project_license.md): 자체 코드 정책 결정과 기존 제3자/원본 범위 보존.
+
+- [#144 HD 자산·팩 계약](issue-144_hd_assets.md): HD-03a 걷기16프레임·암석과 공통 로더/검증.

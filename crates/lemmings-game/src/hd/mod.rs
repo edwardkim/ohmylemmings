@@ -6,6 +6,7 @@
 //! Pointer coordinates are local to the output surface's top-left. Subtract the
 //! browser/client offset first; do not scale already-logical SDL events twice.
 //! See `mydocs/plans/issue-140_hd_presentation.md` and issue #138's art contract.
+pub mod assets;
 mod layout;
 mod snapshot;
 

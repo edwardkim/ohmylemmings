@@ -5,7 +5,7 @@
 [![CI](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml/badge.svg)](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml)
 [![Play on GitHub Pages](https://github.com/edwardkim/ohmylemmings/actions/workflows/pages.yml/badge.svg)](https://edwardkim.github.io/ohmylemmings/)
 
-새 기능인 [2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)를 진행합니다. [Fun 01의 첫 HD 시안과 제작/표시 계약](mydocs/reports/issue-138_hd_art_direction.md)을 준비했으며 실제 HD 플레이 모드·분리 자산은 후속 구현입니다.
+새 기능인 [2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)를 진행합니다. [Fun 01의 첫 HD 시안과 제작/표시 계약](mydocs/reports/issue-138_hd_art_direction.md)에 이어 [#144 걷기·암석 분리 자산과 공통 팩](mydocs/reports/issue-144_hd_assets.md)을 준비했습니다. 실제 HD 플레이 모드와 다른 동작/시설·UI 자산은 후속 구현입니다.
 
 [#140 공통 HD 표시·입력 API](mydocs/reports/issue-140_hd_presentation.md)에서 읽기 전용 게임 상태·좌표/패널 계약과 합성 검증을 구현했습니다. 실제 화면과 앱 입력 연결은 다음 단계입니다.
 
