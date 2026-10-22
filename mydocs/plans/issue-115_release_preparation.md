@@ -2,6 +2,22 @@
 
 담당 [#115](https://github.com/edwardkim/ohmylemmings/issues/115), 상위 [#1](https://github.com/edwardkim/ohmylemmings/issues/1).
 
+## 현재 상태 — 배포 준비 완료 / 2026-10-22
+
+사용자가 #115의 완료 항목 정리와 잔여 작업 분리 권고안을 수용했다. Linux/Web 개발 패키징(#117), Windows 전체 게임(#118), macOS universal2(#120), Linux/Web 원본 동봉(#122), 버전·태그 정책/공개 v0.1.0(#124), GitHub Pages 플레이(#126)를 완료했다. [최종 정리·검증](../reports/issue-115_release_preparation.md#배포-준비-완료와-후속-이관--2026-10-22)을 따른다.
+
+| 후속 | 남은 범위 |
+|---|---|
+| [#129](https://github.com/edwardkim/ohmylemmings/issues/129) | 자체 코드의 라이선스 결정과 고지/metadata 정비 |
+| [#130](https://github.com/edwardkim/ohmylemmings/issues/130) | Windows 10/11 각각의 사용자 PC 화면·입력·실제 청취 기록 |
+| [#113](https://github.com/edwardkim/ohmylemmings/issues/113) | 더 좋은 호스트의 성능·구간 메모리 재검증 |
+
+Mac의 ad-hoc/미공증은 현재 공개 플레이 배포의 안내 조건이다. Developer ID가 없는 상태에서 새 인증서 작업을 시작하지 않는다. #115 종료는 배포 준비의 완료이며 G11 성능 합격·G12 전체 완료나 라이선스 선택을 뜻하지 않는다.
+
+## 최초 계약과 변경 이력
+
+아래는 첫 개발 패키지 계약이다. 원본 제외/Windows 미검증/공개 보류 상태는 뒤의 #118/#120/#122/#124 변경과 위 최신 상태로 갱신되었다.
+
 2026-10-22 사용자 승인으로 G12 준비를 시작한다. #113의 60fps 완료 마감 검증은 더 좋은 호스트로 이월하며 현재 장비에서 반복하지 않는다. G11 성능 합격과 G12 완성을 선언하지 않는다.
 
 | 대상 | 준비할 산출물 | 완료 증거 |

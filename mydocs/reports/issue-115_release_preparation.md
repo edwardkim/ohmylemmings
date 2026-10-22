@@ -2,6 +2,29 @@
 
 담당 [#115](https://github.com/edwardkim/ohmylemmings/issues/115), [배포 계약](../plans/issue-115_release_preparation.md), 성능 후속 [#113](issue-113_web_dispatch.md).
 
+## 배포 준비 완료와 후속 이관 / 2026-10-22
+
+사용자가 열린 이슈 검토의 권고안을 수용하여 완료된 배포 준비 #115를 정리하고 미결 항목을 분리한다.
+
+| 완료 항목 | 근거 |
+|---|---|
+| Linux/Web 개발 패키지·대응 소스·체크섬·설치 CI | PR #117 및 이 보고서의 초기 기록 |
+| Windows 전체 원본 게임·런처·정적 CRT/SDL·패키징/실행 CI | [#118](https://github.com/edwardkim/ohmylemmings/issues/118), PR #119, 사용자 실행 확인 |
+| macOS ARM/Intel universal2·원본/SDL·실제 양쪽 실행 | [#120](https://github.com/edwardkim/ohmylemmings/issues/120), PR #121 |
+| Linux/Web 전체 원본 게임·기본 Fun01·압축 해제 검사 | [#122](https://github.com/edwardkim/ohmylemmings/issues/122), PR #123 |
+| 버전·불변 태그/asset·4플랫폼 v0.1.0 공개 다운로드 | [#124](https://github.com/edwardkim/ohmylemmings/issues/124), PR #125, [릴리즈](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.1.0) |
+| Pages 원본 게임·동일 payload·실제 공개 기능 검사/플레이 배지 | [#126](https://github.com/edwardkim/ohmylemmings/issues/126), PR #127/#128, [플레이](https://edwardkim.github.io/ohmylemmings/) |
+
+[CI39766459833](https://github.com/edwardkim/ohmylemmings/actions/runs/39766459833) main3594bb0의7개 작업이 모두 SUCCESS임을 재확인했다. [Pages39766461582](https://github.com/edwardkim/ohmylemmings/actions/runs/39766461582)도 SUCCESS이다. 이 기록 확인은 새 전체 해법 실행·성능 측정이나 실제 사람의 Windows10/11 청취 검사로 계산하지 않는다.
+
+잔여 자체 코드 라이선스 결정/고지는 [#129](https://github.com/edwardkim/ohmylemmings/issues/129), Windows10/11별 사용자 PC의 화면·입력·물리 청취 기록은 [#130](https://github.com/edwardkim/ohmylemmings/issues/130)으로 이관했다. Windows packager/런처·CI의 완료와 아직 없는 OS별 수동 검증 기록을 분리했다. 성능/메모리는 기존 #113에서 계속하며 #1의 G11/G12 전체는 미완료로 유지한다. Mac ad-hoc/미공증은 안내한 현재 배포 조건이고 자격 확보 후의 정식 서명은 별도 단계다.
+
+이번 변경은 이슈/문서 정리이다. 자체 코드 라이선스를 선택하거나 기존 공개 태그/asset을 바꾸지 않는다. self-review에서 각 완료 항목의 이슈/PR·실제 CI·후속 링크를 대조하고, 과거 계약을 이력으로 구분했다. 추가한 로컬 문서 링크23개·git diff --check와 make check-python(Python243개/기존 증거 index 포함) PASS. 문서 전용 변경으로 전체 플랫폼 빌드 행렬은 반복하지 않는다. 정확한 PR/병합/완료 처리 결과는 GitHub #115 최종 기록에 남긴다.
+
+## 초기 개발 패키지 구현 기록
+
+이하 내용은 PR #117 당시의 범위와 한계이다. 이후 계약 변경과 현재 결과는 위 완료/이관 기록을 따른다.
+
 현재 호스트의 60fps 반복 조정을 중단하고 배포 준비로 이동한다는 사용자 지시에 따라 개발용 `0.1.0` Linux x86_64 TAR.GZ와 Web ZIP을 만든다. Windows와 더 좋은 호스트의 성능 판정은 미검증이며 정식 공개 릴리스나 G11/G12 완료를 선언하지 않는다.
 
 ## 사용

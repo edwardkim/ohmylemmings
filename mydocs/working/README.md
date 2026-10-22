@@ -115,3 +115,6 @@
 - [#124 버전·태그 정책과 Releases 배포](issue-124_release_policy.md)
 
 - [#126 GitHub Pages 플레이 배포](issue-126_github_pages.md)
+
+- [#129 자체 코드 라이선스 결정](issue-129_project_license.md): #115에서 이관한 정책 결정/고지 후속.
+- [#130 Windows 10/11 사용자 PC 수동 검증](issue-130_windows_manual_validation.md): #115에서 이관한 OS별 화면·입력·물리 청취 후속.

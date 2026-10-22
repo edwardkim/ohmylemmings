@@ -1,6 +1,6 @@
 # Rusty Lemmings
 
-2026-10-22 개발 상태: G00~G10 완료, G11 진행 중입니다. [전체 증거 검토 #110](mydocs/reports/issue-110_g11_closure.md)에서 기능 호환성·Native 표시 보정 결과를 확인했으며, Web 계측 보완 [#111](mydocs/reports/issue-111_web_deadlines.md) 이후 남은 dispatch 지연/마감 진단 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)을 진행합니다. G11/G12는 미완료입니다.
+2026-10-22 개발 상태: G00~G10과 [배포 준비 #115](mydocs/reports/issue-115_release_preparation.md)를 완료했고, v0.1.0의 Windows/macOS/Linux/Web 다운로드와 GitHub Pages 플레이를 제공합니다. G11 성능 재검증은 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에 이월했습니다. 자체 코드 라이선스 결정은 [#129](https://github.com/edwardkim/ohmylemmings/issues/129), Windows 10/11 수동 검증은 [#130](https://github.com/edwardkim/ohmylemmings/issues/130)에서 추적하며 G11/G12 전체 완료 판정은 남아 있습니다.
 
 [![CI](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml/badge.svg)](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml)
 [![Play on GitHub Pages](https://github.com/edwardkim/ohmylemmings/actions/workflows/pages.yml/badge.svg)](https://edwardkim.github.io/ohmylemmings/)
@@ -124,9 +124,9 @@ mydocs/
 
 [G10-05 SDL/Web 오디오 출력 / #80](mydocs/reports/issue-80_audio_output.md)에서 원본/연습 음원·장치 출력·활성화/음소거/볼륨·숨김/세대와 LAN HTTP를 연결합니다. 웹의 소리 켜기 버튼 또는 S, 양쪽 PageUp/PageDown으로 조절합니다. LGPL 라이선스와 재빌드 소스 묶음을 웹 footer에서 제공합니다. 다음은 G10-06 통합 대조·청취와 마감입니다.
 
-사용자 승인으로 [G12 배포 준비 / #115](mydocs/plans/issue-115_release_preparation.md)를 시작했습니다. [#113 성능 결과](mydocs/reports/issue-113_web_dispatch.md)의 남은60fps 검증은 더 좋은 호스트에 이월하며, 현재 장비에서 추가 조정·반복하지 않습니다.
+사용자 승인으로 [G12 배포 준비 / #115](mydocs/plans/issue-115_release_preparation.md)를 완료했습니다. [#113 성능 결과](mydocs/reports/issue-113_web_dispatch.md)의 남은60fps 검증은 더 좋은 호스트에 이월하며, 현재 장비에서 추가 조정·반복하지 않습니다.
 
-Linux·Web 전체 게임 archive는 원본28개(그래픽·120레벨·음원)와 대응 소스·라이선스·해시를 포함합니다. `python3 tools/reference_assets.py fetch` 후 `make package-linux` 또는 `make package-web`으로 만들고 압축 해제 실행까지 검사합니다. Linux는 실행 파일 옆 data를 사용하고 Web은 HTTP에서 자동으로 Fun01을 엽니다. [사용·검증 안내](mydocs/reports/issue-122_linux_web_full_game.md). 전체 라이선스 결정·최종 릴리스는 후속입니다.
+Linux·Web 전체 게임 archive는 원본28개(그래픽·120레벨·음원)와 대응 소스·라이선스·해시를 포함합니다. `python3 tools/reference_assets.py fetch` 후 `make package-linux` 또는 `make package-web`으로 만들고 압축 해제 실행까지 검사합니다. Linux는 실행 파일 옆 data를 사용하고 Web은 HTTP에서 자동으로 Fun01을 엽니다. [사용·검증 안내](mydocs/reports/issue-122_linux_web_full_game.md). 자체 코드 라이선스 결정은 [#129](https://github.com/edwardkim/ohmylemmings/issues/129)에서 계속합니다.
 
 Windows 전체 게임 ZIP은 [#118 패키징 안내](mydocs/reports/issue-118_windows_full_game.md)를 따릅니다. 원본 그래픽·전체120레벨·음원을 포함하며 압축 해제 후 `OhMyLemmings.exe`를 더블클릭합니다. GitHub Actions의 `Windows full game` 검사는 실제 Windows에서 이 패키지의 첫 실행·120개 선택·음향·재시작을 검증하고 `development-windows-x86_64` artifact를 제공합니다.
 
@@ -134,4 +134,4 @@ Windows 전체 게임 ZIP은 [#118 패키징 안내](mydocs/reports/issue-118_wi
 
 **게임 다운로드:** [Releases](https://github.com/edwardkim/ohmylemmings/releases). 운영 기준은 [버전·태그 정책](mydocs/plans/issue-124_release_policy.md), 버전별 안내는 [릴리즈 기록](mydocs/releases/README.md)을 참고하세요.
 
-macOS 전체 게임 앱은 [#120 배포 안내](mydocs/reports/issue-120_macos_full_game.md)를 따릅니다. 원본120개 레벨·음원을 포함한 Apple Silicon/Intel universal2 `.app` 시험 ZIP과 실제 양쪽 Mac CI를 준비합니다. 현재 ad-hoc 서명이며 Developer ID/Apple 공증은 별도 단계입니다.
+macOS 전체 게임 앱은 [#120 배포 안내](mydocs/reports/issue-120_macos_full_game.md)를 따릅니다. 원본120개 레벨·음원을 포함한 Apple Silicon/Intel universal2 `.app` ZIP과 실제 양쪽 Mac CI 검증 결과를 제공합니다. 현재 ad-hoc 서명이며 Developer ID/Apple 공증은 자격 확보 후의 별도 단계입니다.

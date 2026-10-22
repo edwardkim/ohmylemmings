@@ -98,8 +98,8 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 
 [#111 Web 관측 보완](reports/issue-111_web_deadlines.md)에서 rAF 시각/완료와 구간 메모리 표본을 확보했습니다. 무조회60초3회의 마감 초과2/0/1과 추가 draw는 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에서 진단하며 G11/G12는 미완료입니다.
 
-현재 [#113 Web 보정·측정](reports/issue-113_web_dispatch.md)은 남은 성능 검증을 더 좋은 호스트에 이월했다. 사용자 승인에 따라 [#115 배포 준비](plans/issue-115_release_preparation.md)에 착수한다. 성능 합격이나 G12 완료를 뜻하지 않는다.
+현재 [#113 Web 보정·측정](reports/issue-113_web_dispatch.md)은 남은 성능 검증을 더 좋은 호스트에 이월했다. 사용자 승인으로 [#115 배포 준비](plans/issue-115_release_preparation.md)와 v0.1.0/Pages 플레이 배포를 완료했다. 성능 합격이나 G12 전체 완료를 뜻하지 않는다.
 
-[#115 개발용 패키지](reports/issue-115_release_preparation.md)는 Linux·Web의 명시적 런타임/소스/라이선스/해시와 실제 압축 해제 검사를 제공한다. Windows·정식 릴리스·고성능 호스트 성능은 잔여 항목이다.
+[#115 배포 준비](reports/issue-115_release_preparation.md)는 Linux/Web 개발 패키지부터 Windows/macOS/Linux/Web 전체 게임·대응 소스/해시·공개 릴리즈와 Pages까지 완료했다. 잔여 자체 코드 라이선스는 [#129](working/issue-129_project_license.md), Windows10/11 수동 검증은 [#130](working/issue-130_windows_manual_validation.md), 고성능 호스트 성능은 #113에서 추적한다.
 
 버전·태그·게시 운영은 [#124 릴리즈 정책](plans/issue-124_release_policy.md)을 따릅니다.
