@@ -113,3 +113,5 @@
 - [#122 Linux·Web 전체 게임 다운로드](issue-122_linux_web_full_game.md)
 
 - [#124 버전·태그 정책과 Releases 배포](issue-124_release_policy.md)
+
+- [#126 GitHub Pages 플레이 배포](issue-126_github_pages.md)

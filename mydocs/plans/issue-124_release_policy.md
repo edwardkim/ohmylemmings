@@ -10,6 +10,8 @@ Cargo workspace version을 유일한 버전 기준으로 하고 SemVer 기반 �
 
 ## 버전 규칙
 
+웹 플레이는 [#126 Pages 배포 계약](issue-126_github_pages.md)에 따라 최신 공개 정식 릴리즈의 Web ZIP을 그대로 승격한다. 정식 Release 게시 성공 후 Pages 재사용 workflow를 호출하며 시험판은 갱신하지 않는다. 수동 복구도 최신 정식 태그만 허용한다. 호스팅 도구만 바꾸는 경우 기존 플레이 패키지/태그는 유지한다. 공개 deployment.json에서 실행 버전·릴리즈 소스 commit·Web ZIP SHA를 확인할 수 있다.
+
 - 단일 기준은 루트 Cargo.toml의 `[workspace.package].version`. 모든9개 crate가 이를 상속하고 Cargo.lock의 로컬 package 버전도 일치해야 한다. 변경 시 해당 값과 lock을 같은 PR에서 갱신하고 `python3 tools/release_version.py check`를 통과시킨다.
 - `X.Y.Z`는 정식 플레이 배포, `X.Y.Z-alpha.N`, `-beta.N`, `-rc.N`은 시험판이다. N은1부터 시작한다. 선행0/임의 접미사/빌드 메타데이터(+)는 파일명 혼동을 막기 위해 배포 버전에 사용하지 않는다.
 - 호환 버그 수정/작은 배포 수정은 patch, 기능/레벨·플랫폼 추가는 minor. 0.x에서 호환성이 바뀌어도 minor를 올리고 릴리즈 노트에 적는다. 1.0 이후 비호환 변경은 major. 태그를 만들기 전까지 개발 커밋마다 버전을 올리지는 않는다. 첫 배포는 기존0.1.0이다.

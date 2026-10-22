@@ -129,6 +129,8 @@ Linux·Web 전체 게임 archive는 원본28개(그래픽·120레벨·음원)와
 
 Windows 전체 게임 ZIP은 [#118 패키징 안내](mydocs/reports/issue-118_windows_full_game.md)를 따릅니다. 원본 그래픽·전체120레벨·음원을 포함하며 압축 해제 후 `OhMyLemmings.exe`를 더블클릭합니다. GitHub Actions의 `Windows full game` 검사는 실제 Windows에서 이 패키지의 첫 실행·120개 선택·음향·재시작을 검증하고 `development-windows-x86_64` artifact를 제공합니다.
 
+**브라우저에서 플레이:** [Oh My Lemmings](https://edwardkim.github.io/ohmylemmings/). 최신 정식 릴리즈의 원본 그래픽·120레벨·음원이 포함되어 있습니다. 소리는 화면의 «소리 켜기»를 눌러 활성화하세요.
+
 **게임 다운로드:** [Releases](https://github.com/edwardkim/ohmylemmings/releases). 운영 기준은 [버전·태그 정책](mydocs/plans/issue-124_release_policy.md), 버전별 안내는 [릴리즈 기록](mydocs/releases/README.md)을 참고하세요.
 
 macOS 전체 게임 앱은 [#120 배포 안내](mydocs/reports/issue-120_macos_full_game.md)를 따릅니다. 원본120개 레벨·음원을 포함한 Apple Silicon/Intel universal2 `.app` 시험 ZIP과 실제 양쪽 Mac CI를 준비합니다. 현재 ad-hoc 서명이며 Developer ID/Apple 공증은 별도 단계입니다.

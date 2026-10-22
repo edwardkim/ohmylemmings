@@ -1,0 +1,17 @@
+{
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/126",
+  "tools": [
+    {
+      "name": "actionlint",
+      "version": "1.7.12",
+      "url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz",
+      "sha256": "8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8",
+      "purpose": "Local syntax/context validation of the Pages and Release workflows; not a game dependency"
+    }
+  ],
+  "actions": [
+    {"repository": "actions/configure-pages", "tag": "v5", "commit": "983d7736d9b0ae728b81ab479565c72886d7745b"},
+    {"repository": "actions/upload-pages-artifact", "tag": "v4", "commit": "7b1f4a764d45c48632c6b24a0339c27f5614fb0b"},
+    {"repository": "actions/deploy-pages", "tag": "v4", "commit": "d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e"}
+  ]
+}
