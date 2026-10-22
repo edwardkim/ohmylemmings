@@ -7,7 +7,7 @@ import unittest
 import zipfile
 
 from tools.tests import test_windows_package as windows_fixture
-from tools.macos_package import APP, create, stage, verify
+from tools.macos_package import APP, create, stage, verify, app_info
 
 
 def universal(kind=2):
@@ -47,6 +47,12 @@ class MacPackageTests(unittest.TestCase):
             self.assertIn(APP+'/Contents/Resources/data/ADLIB.DAT',z.namelist())
             self.assertIn('source.tar.gz',z.namelist())
             self.assertIn('시험',z.read('README.txt').decode())
+
+    def test_preview_version_keeps_numeric_bundle_fields_and_full_version_notice(self):
+        info=app_info('0.2.0-rc.1')
+        self.assertEqual(info['CFBundleShortVersionString'],'0.2.0')
+        self.assertEqual(info['CFBundleVersion'],'0.2.0')
+        self.assertIn('0.2.0-rc.1',info['CFBundleGetInfoString'])
 
     def test_missing_corrupt_data_or_linked_binary_is_rejected(self):
         path=self.app/'Contents/Resources/data/MAIN.DAT';path.write_bytes(b'bad')

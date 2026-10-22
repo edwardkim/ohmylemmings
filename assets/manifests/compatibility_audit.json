@@ -16,8 +16,13 @@
   "product_snapshot": [
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 12633,
-      "sha256": "eece86ad9449d4c1e224a21b63ec02f864ba2ebe20c4eb8fa6b0425880c298b5"
+      "bytes": 12796,
+      "sha256": "25871f627d2ed4f50e2811e58af06769a90982fa5abb9adcc5fa5179d2f04184"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "bytes": 1597,
+      "sha256": "0e22d25a2407316892183b0c08aab9ebd38e06f621f3b6a6dd57b68a0836ff1b"
     },
     {
       "path": "Cargo.lock",
@@ -31,8 +36,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 3386,
-      "sha256": "469a16b7f5f25db3e166e9a7bba5e4d1377bf5dd01bbfe02a1aabc470990b990"
+      "bytes": 3447,
+      "sha256": "fa1d5abd544c9f980cb949e7a353d90d7749125c14d53e1c864c228af11b08cd"
     },
     {
       "path": "apps/audio-probe/Cargo.toml",
@@ -1301,8 +1306,8 @@
     },
     {
       "path": "tools/macos_package.py",
-      "bytes": 13363,
-      "sha256": "23ec4a531fd8ace818d21a6ef9a2f8b89831a9862a98078237bebcfc5c13822e"
+      "bytes": 13387,
+      "sha256": "c8a8c9e69fa2a35a6e903f1cbb64091002ffbc9d6a5d5d3438dbd724226ec402"
     },
     {
       "path": "tools/macos_window.swift",
@@ -1445,14 +1450,24 @@
       "sha256": "0a55e410f323d16f5f2bcf90b6c26d9255ea36a66aae3367f0a1d3815b37548b"
     },
     {
+      "path": "tools/publish_release.py",
+      "bytes": 12158,
+      "sha256": "05213855217dad00fb990265fa7acb26cec22b9c0b638a4d046ae12e5f8880d0"
+    },
+    {
       "path": "tools/reference_assets.py",
       "bytes": 4272,
       "sha256": "ee5ac0096b77bc27aed41d28434d49a1c03a6de5062aab71a9b84de8ce38f3db"
     },
     {
       "path": "tools/release_package.py",
-      "bytes": 15515,
-      "sha256": "ebff42cc313f8fdd282ee5fcc2522b4ac1d974cdf688e402e954d5c73ea887d7"
+      "bytes": 15374,
+      "sha256": "8a7fe290660f34ee6876c3f0949be89534e81c612086985f24689620832f92ee"
+    },
+    {
+      "path": "tools/release_version.py",
+      "bytes": 2764,
+      "sha256": "5161148d5c283c77d3c48445f7606c5973f5046d938150ca81f5056259de7a51"
     },
     {
       "path": "tools/solution_replay.py",
@@ -1626,8 +1641,8 @@
     },
     {
       "path": "tools/tests/test_macos_package.py",
-      "bytes": 4379,
-      "sha256": "59c1647add67772bfbc0da5c3c2a02ba1f157184305450f6be624c77f2c66f8e"
+      "bytes": 4707,
+      "sha256": "e7b483f95f955e8da82db1cb507a0061d0ecbaf1e09607e170032d2911cdd6f6"
     },
     {
       "path": "tools/tests/test_miner.py",
@@ -1665,6 +1680,11 @@
       "sha256": "fe05b031a8d693fe2dabbe23574e79c8e8325a248ee2b9693a1a874ae4f43258"
     },
     {
+      "path": "tools/tests/test_publish_release.py",
+      "bytes": 6393,
+      "sha256": "e33b209e9c6b88f28a82063697aadde8d8fa84a75a677c552a896a22e67c0827"
+    },
+    {
       "path": "tools/tests/test_reference_assets.py",
       "bytes": 4466,
       "sha256": "a11c4a06334b87b31db9007b19d11feed841dc8a7d73b1d6ecd665a12770d160"
@@ -1673,6 +1693,11 @@
       "path": "tools/tests/test_release_package.py",
       "bytes": 5786,
       "sha256": "7fb9dcb58110b2894525e060fce432053b624f603eb671c7d71f84cf42b45f9e"
+    },
+    {
+      "path": "tools/tests/test_release_version.py",
+      "bytes": 2932,
+      "sha256": "f974f9dbf895f5cda5e535a5d60ee797d27c9a36144964304502c564b2011142"
     },
     {
       "path": "tools/tests/test_skill_interactions.py",
@@ -1916,8 +1941,8 @@
     },
     {
       "path": "tools/windows_package.py",
-      "bytes": 11081,
-      "sha256": "9f6751f11cb837e91a279f6946c3ab670d946444c6eb14bd8f84f71a134200f3"
+      "bytes": 11065,
+      "sha256": "9defd597cb0b374b5247e7d751d3046406f2931db92d8eb386de5d12ca39ad99"
     }
   ],
   "evidence": [
@@ -4733,5 +4758,49 @@
       "tools/web/full_package_check.js"
     ],
     "scope": "User-requested Linux/Web original28 packaging and default original startup, original-free mode retained; shared packaging inventory and functional CI. Linux default directory/diagnostic and Web startup/UI only. Core/resources/renderer/PCM synthesis and historical full120/240/performance evidence unchanged. Homebrew Formula/Cask review documented; no tap or release published."
+  },
+  "source_impact_124": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/124",
+    "baseline_source": "3f6eecfd26ff2935bdb6a2326b3953f5fc2264a7",
+    "previous_pins": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 12633,
+        "sha256": "eece86ad9449d4c1e224a21b63ec02f864ba2ebe20c4eb8fa6b0425880c298b5"
+      },
+      {
+        "path": "Makefile",
+        "bytes": 3386,
+        "sha256": "469a16b7f5f25db3e166e9a7bba5e4d1377bf5dd01bbfe02a1aabc470990b990"
+      },
+      {
+        "path": "tools/macos_package.py",
+        "bytes": 13363,
+        "sha256": "23ec4a531fd8ace818d21a6ef9a2f8b89831a9862a98078237bebcfc5c13822e"
+      },
+      {
+        "path": "tools/release_package.py",
+        "bytes": 15515,
+        "sha256": "ebff42cc313f8fdd282ee5fcc2522b4ac1d974cdf688e402e954d5c73ea887d7"
+      },
+      {
+        "path": "tools/tests/test_macos_package.py",
+        "bytes": 4379,
+        "sha256": "59c1647add67772bfbc0da5c3c2a02ba1f157184305450f6be624c77f2c66f8e"
+      },
+      {
+        "path": "tools/windows_package.py",
+        "bytes": 11081,
+        "sha256": "9f6751f11cb837e91a279f6946c3ab670d946444c6eb14bd8f84f71a134200f3"
+      }
+    ],
+    "added": [
+      "tools/release_version.py",
+      "tools/publish_release.py",
+      "tools/tests/test_release_version.py",
+      "tools/tests/test_publish_release.py",
+      ".github/workflows/release.yml"
+    ],
+    "scope": "User-authorized version/tag policy and first public player Release. Shared SemVer/package paths, numeric Mac bundle metadata, CI checks and same-tree build promotion only. Core/resources/render/tick/PCM unchanged. No new historical full120/240 or performance run; #113 qualification deferred."
   }
 }

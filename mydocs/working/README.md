@@ -111,3 +111,5 @@
 - [#120 macOS 전체 게임 앱](issue-120_macos_full_game.md): Apple Silicon/Intel universal2·원본 동봉·실제 Mac 검증과 서명/공증 조건.
 
 - [#122 Linux·Web 전체 게임 다운로드](issue-122_linux_web_full_game.md)
+
+- [#124 버전·태그 정책과 Releases 배포](issue-124_release_policy.md)

@@ -2,6 +2,7 @@ name: CI
 
 on:
   push:
+    branches: ['**']
   pull_request:
   workflow_dispatch:
 
@@ -65,14 +66,14 @@ jobs:
           codesign --verify --deep --strict assets/local/macos-app/OhMyLemmings.app
           python3 tools/macos_package.py create
       - name: Verify fresh native Apple Silicon app installation
-        run: python3 tools/check_macos_package.py --archive assets/local/dist/ohmylemmings-0.1.0-macos-universal2.zip --expected-arch arm64
+        run: python3 tools/check_macos_package.py --archive "$(python3 tools/release_version.py path --target macos-universal2)" --expected-arch arm64
       - name: Preserve Mac game and Apple Silicon evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: development-macos-universal2
           path: |
-            assets/local/dist/ohmylemmings-0.1.0-macos-universal2.zip*
+            assets/local/dist/ohmylemmings-*-macos-universal2.zip*
             assets/local/macos-package-check/*.json
             assets/local/macos-package-check/*.log
             assets/local/macos-package-check/original-fun01.ppm
@@ -100,7 +101,7 @@ jobs:
       - name: Verify the identical universal package on native Intel
         run: |
           test "$(uname -m)" = x86_64
-          python3 tools/check_macos_package.py --archive assets/local/macos-download/dist/ohmylemmings-0.1.0-macos-universal2.zip --expected-arch x86_64
+          python3 tools/check_macos_package.py --archive "$(python3 tools/release_version.py path --target macos-universal2 --directory assets/local/macos-download/dist)" --expected-arch x86_64
       - name: Preserve Intel execution evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -167,7 +168,9 @@ jobs:
           $ErrorActionPreference = 'Stop'
           python tools/windows_package.py create
           if ($LASTEXITCODE -ne 0) { throw 'Full-game ZIP failed' }
-          python tools/check_windows_package.py --archive assets/local/dist/ohmylemmings-0.1.0-windows-x86_64.zip
+          $archive = python tools/release_version.py path --target windows-x86_64
+          if ($LASTEXITCODE -ne 0) { throw 'Invalid release version' }
+          python tools/check_windows_package.py --archive $archive
           if ($LASTEXITCODE -ne 0) { throw 'Fresh Windows installation failed' }
       - name: Preserve full Windows game and validation evidence
         if: always()
@@ -175,7 +178,7 @@ jobs:
         with:
           name: development-windows-x86_64
           path: |
-            assets/local/dist/ohmylemmings-0.1.0-windows-x86_64.zip*
+            assets/local/dist/ohmylemmings-*-windows-x86_64.zip*
             assets/local/windows-package-check/*.json
             assets/local/windows-package-check/*.log
             assets/local/windows-package-check/original-fun01.ppm
@@ -219,7 +222,7 @@ jobs:
         with:
           name: development-linux-x86_64
           path: |
-            assets/local/dist/ohmylemmings-0.1.0-linux-x86_64.tar.gz*
+            assets/local/dist/ohmylemmings-*-linux-x86_64.tar.gz*
             assets/local/linux-package-check/*.json
             assets/local/linux-package-check/*.log
             assets/local/linux-package-check/original-fun01.*
@@ -305,7 +308,7 @@ jobs:
         with:
           name: development-web
           path: |
-            assets/local/dist/ohmylemmings-0.1.0-web.zip*
+            assets/local/dist/ohmylemmings-*-web.zip*
             assets/local/web-package-check/*.json
             assets/local/web-package-check/original-fun01.*
           if-no-files-found: error

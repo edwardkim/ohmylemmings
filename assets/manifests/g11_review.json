@@ -8,8 +8,8 @@
     {
       "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 158083,
-      "sha256": "2210cc08f5331d2bf516d228f8cd77ccef2835f5c1075c33cae6effddb621f55"
+      "bytes": 160636,
+      "sha256": "efaadfa7b32c458f65c1e4e946a5ddf1493aa33360a649fb4a92db30a5191c88"
     },
     {
       "id": "performance",
@@ -10949,5 +10949,16 @@
       }
     ],
     "scope": "Current Linux/Web host/packaging source index; frozen review/observations/NOT READY retained. User authorizes Linux/Web complete game packaging; faster-host performance remains deferred."
+  },
+  "source_maintenance_124": {
+    "previous_pins": [
+      {
+        "id": "compatibility",
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 158083,
+        "sha256": "2210cc08f5331d2bf516d228f8cd77ccef2835f5c1075c33cae6effddb621f55"
+      }
+    ],
+    "scope": "Version/tag/release source index; prior review/observations and NOT READY unchanged. User authorizes playable Releases publication; faster-host performance still deferred."
   }
 }

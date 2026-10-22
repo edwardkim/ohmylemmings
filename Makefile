@@ -15,6 +15,7 @@ check-rust:
 	python3 tools/check_game_sound.py
 
 check-python:
+	python3 tools/release_version.py check
 	python3 -m unittest discover -s tools/tests -v
 	python3 tools/compatibility_audit.py
 	python3 tools/g11_review.py
@@ -58,11 +59,11 @@ serve-web:
 package-linux:
 	cargo build -p lemmings-desktop --release --locked --offline
 	python3 tools/release_package.py linux --runtime target/release/lemmings-desktop
-	python3 tools/check_release_package.py --archive assets/local/dist/ohmylemmings-0.1.0-linux-x86_64.tar.gz
+	python3 tools/check_release_package.py --archive "$$(python3 tools/release_version.py path --target linux-x86_64)"
 
 package-web: web
 	python3 tools/release_package.py web --runtime assets/local/web
-	python3 tools/check_release_package.py --archive assets/local/dist/ohmylemmings-0.1.0-web.zip
+	python3 tools/check_release_package.py --archive "$$(python3 tools/release_version.py path --target web)"
 
 check-web:
 	python3 tools/check_web.py

@@ -16,6 +16,7 @@ G00-01의 [DOS 기준판 식별·원본 확보](tech_insights/issue-2_dos_origin
 - [orders/](orders/README.md): 날짜별 작업일지와 이슈별 작업 목록
 - [working/](working/README.md): 진행 중 작업 상태와 이어서 작업할 컨텍스트
 - [reports/](reports/README.md): 작업 결과와 검증 보고서
+- [releases/](releases/README.md): 버전별 플레이 배포 변경 내역·실행 안내
 - [feedbacks/](feedbacks/README.md): 사용자 및 리뷰어의 피드백과 반영 결과
 - [tech_insights/](tech_insights/README.md): 레퍼런스 분석과 확인된 기술 지식
 - [troubleshootings/](troubleshootings/README.md): 문제 원인과 해결 이력
@@ -100,3 +101,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 현재 [#113 Web 보정·측정](reports/issue-113_web_dispatch.md)은 남은 성능 검증을 더 좋은 호스트에 이월했다. 사용자 승인에 따라 [#115 배포 준비](plans/issue-115_release_preparation.md)에 착수한다. 성능 합격이나 G12 완료를 뜻하지 않는다.
 
 [#115 개발용 패키지](reports/issue-115_release_preparation.md)는 Linux·Web의 명시적 런타임/소스/라이선스/해시와 실제 압축 해제 검사를 제공한다. Windows·정식 릴리스·고성능 호스트 성능은 잔여 항목이다.
+
+버전·태그·게시 운영은 [#124 릴리즈 정책](plans/issue-124_release_policy.md)을 따릅니다.

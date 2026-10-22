@@ -9,7 +9,6 @@ from pathlib import Path
 import sys
 import tarfile
 import tempfile
-import tomllib
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -18,6 +17,7 @@ if __package__ in (None, ''):
 from tools.web_build import source_bundle
 from tools.package_assets import GAME_FILES, game_pins
 from tools.reference_assets import checked_bytes
+from tools.release_version import workspace_version, package_name
 
 WEB_FILES = (
     'index.html', 'app.js', 'audio.js', 'audio-license.html', 'controls.js',
@@ -72,11 +72,10 @@ def archive_bytes(files, target):
 def create_package(kind, runtime, output, root=ROOT, assets=None):
     require(kind in ('linux', 'web'), 'Supported package targets: linux, web')
     target = 'linux-x86_64' if kind == 'linux' else 'web'
-    version = tomllib.loads((root / 'Cargo.toml').read_text())['workspace']['package']['version']
-    require(all(c.isalnum() or c in '.-' for c in version), 'Invalid package version')
-    suffix = '.zip' if kind == 'web' else '.tar.gz'
-    profile = '' if assets is not None else 'dev-'
-    path = output / f'ohmylemmings-{version}-{profile}{target}{suffix}'
+    version = workspace_version(root)
+    name = package_name(target, version)
+    if assets is None: name = name.replace(f'{version}-', f'{version}-dev-', 1)
+    path = output / name
     sidecar = Path(str(path) + '.sha256')
     if path.exists() or sidecar.exists():
         raise FileExistsError(f'Package evidence already exists: {path}')
@@ -140,9 +139,9 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
                    if assets is not None else
                    'Original DOS assets are not included. Practice graphics and music are synthetic.\n')
     files['README.md'] = (
-        f'# Oh My Lemmings {version} development package ({target})\n\n' + launch + '\n'
+        f'# Oh My Lemmings {version} package ({target})\n\n' + launch + '\n'
         + data_notice +
-        'Performance qualification on a faster host is pending (#113); this is not a final release.\n'
+        'Performance qualification on a faster host is pending (#113); 60fps is not guaranteed.\n'
         'A project-wide license has not yet been selected; this preparation does not grant one.\n'
         'The OPL synthesizer is LGPL-2.1-or-later: Copyright (C) 2013-2020 Nuke.YKT;\n'
         'Copyright (C) 2026 Tony Gies (Rust port). See LGPL-2.1-or-later.txt and REBUILD.md.\n'
