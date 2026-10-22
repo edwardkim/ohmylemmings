@@ -105,3 +105,5 @@
 - [#113 Web rAF 지연·추가 그리기 진단](issue-113_web_dispatch.md): 입력·그리기·rAF 상관 관측부터 착수.
 
 - [#115 G12 배포 준비](issue-115_release_preparation.md): 사용자 승인으로 성능 재검증을 다른 호스트에 이월하고 패키징 계약부터 진행.
+
+- [#115 Windows 패키징 검토](issue-115_windows_assessment.md): 기존 코드를 Windows MSVC로 빌드하고 시험 ZIP의 추출 실행·DLL 요구를 확인.

@@ -1,0 +1,71 @@
+name: Windows packaging assessment
+
+on:
+  push:
+    branches: [issue-115-windows-assessment]
+    paths:
+      - .github/workflows/windows_assessment.yml
+      - tools/windows_assessment.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    name: Windows MSVC build and ZIP assessment
+    runs-on: windows-2022
+    timeout-minutes: 15
+    env:
+      GIT_CONFIG_COUNT: '1'
+      GIT_CONFIG_KEY_0: core.autocrlf
+      GIT_CONFIG_VALUE_0: 'false'
+      PYTHONUTF8: '1'
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Prepare clean pinned Windows build
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ((Test-Path assets/local) -or (Test-Path target)) { throw 'Expected clean checkout' }
+          $cargoCache = Join-Path $env:RUNNER_TEMP 'assessment-cargo-home'
+          if (Test-Path $cargoCache) { throw 'Expected fresh Cargo cache' }
+          $env:CARGO_HOME = $cargoCache
+          "CARGO_HOME=$cargoCache" >> $env:GITHUB_ENV
+          rustup show active-toolchain
+          if ($LASTEXITCODE -ne 0) { throw 'Pinned Rust unavailable' }
+          rustc --version
+          cargo fetch --locked
+          if ($LASTEXITCODE -ne 0) { throw 'Locked dependency fetch failed' }
+          python tools/windows_assessment.py prepare
+          if ($LASTEXITCODE -ne 0) { throw 'SDL input verification failed' }
+      - name: Build unchanged desktop code with MSVC
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $sdlLib = (Resolve-Path assets/local/windows-assessment/sdl/SDL2-2.32.10/lib/x64).Path
+          $env:LIB = "$sdlLib;$env:LIB"
+          cargo build -p lemmings-desktop --release --locked --offline
+          if ($LASTEXITCODE -ne 0) { throw 'MSVC build failed' }
+      - name: Make trial ZIP and run extracted executable
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python tools/windows_assessment.py check
+          if ($LASTEXITCODE -ne 0) { throw 'Extracted Windows trial failed' }
+      - name: Preserve assessment evidence and corresponding source
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: windows-packaging-assessment
+          path: |
+            assets/local/windows-assessment/evidence/
+            assets/local/windows-assessment/ohmylemmings-windows-assessment.zip
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
