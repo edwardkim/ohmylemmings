@@ -2,6 +2,10 @@
 
 ## 현재 상태
 
+2026-10-22 최신: G00~G10과 #115 배포 준비, 4플랫폼 v0.1.0/Pages 플레이 배포를 완료했다. 사용자 승인으로 #115의 잔여 라이선스는 [#129](issue-129_project_license.md), Windows10/11 수동 검증은 [#130](issue-130_windows_manual_validation.md)으로 이관한다. 고성능 호스트 성능/메모리는 [#113](issue-113_web_dispatch.md)에서 계속한다. #1과 G11/G12 전체는 아직 미완료이며 최신 [전체 계획](../plans/issue-1_implementation_plan.md)과 GitHub 이슈 기록을 따른다.
+
+## 초기 계획 수립 기록
+
 계획 수립과 [상위 이슈 #1](https://github.com/edwardkim/ohmylemmings/issues/1) 등록을 완료했습니다. G00의 원작 확보(#2)·소스 고정(#3)·비교 계약(#5), [G01-01 / #6](issue-6_rust_workspace.md)의 개발 골격과 [G01-02 / #7](issue-7_continuous_integration.md)의 실제 CI 검증을 마쳤습니다. [G02-01 / #8](issue-8_dat_sections.md) 구간 읽기와 [G02-02 / #9](issue-9_dat_decompression.md) 압축 해제의 검증으로 G02도 완료했습니다. G00·G01·G02는 완료, G03는 [G03-01 / #10](issue-10_level_records.md) 이후 [G03-02 / #11](issue-11_level_catalog.md)도 마쳤습니다. [G03-03 / #12](issue-12_ground_metadata.md)도 합성 테스트·원본 5개 전체 필드 대조·실제 CI를 통과해 완료했습니다. [G03-04 / #13](issue-13_vgagr_images.md)도 합성 테스트·원본 전체 픽셀 대조·실제 CI를 통과해 완료했습니다. [G03-05 / #14](issue-14_vgaspec_backgrounds.md)도 합성 테스트·원본 전체 픽셀 대조·실제 CI를 통과해 완료했습니다. [G03-06 / #15](issue-15_level_terrain.md)도 전체 120개 지형·팔레트 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [G03-07 / #16](issue-16_lemming_sprites.md)도 전체 프레임 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [G03-08 / #17](issue-17_main_ui.md)도 지원 이미지/글리프 전체 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [G03-09 / #18](issue-18_main_masks.md)도 전체 비트 대조·로컬 검사·실제 CI를 통과해 완료했습니다. [G03-10 / #19](../tech_insights/issue-19_level_objects.md)의 객체 합성·전체 대조·게시·실제 CI까지 확인해 G03 전체를 완료했습니다. [G04-01 / #20](../tech_insights/issue-20_terrain_mask.md)의 읽기·경계 검증·게시·실제 CI까지 완료했습니다. [G04-02 / #21](../tech_insights/issue-21_terrain_edits.md)의 셀 쓰기·전수 대조·게시·실제 CI까지 완료했습니다. [G04-03 / #22](issue-22_terrain_bulk.md)의 영역/마스크 변형·전수 대조·게시·실제 CI까지 확인해 G04 전체를 완료했습니다. [G05-01 / #23](issue-23_fixed_ticks.md)의 고정 틱·입력 순서 골격과 전수 재생·게시·실제 CI까지 확인했습니다. [G05-02 / #24](issue-24_startup_schedule.md)의 시작 시계·입구·생성 스케줄과 전수 재생·게시·실제 CI까지 확인했습니다. [G05-03 / #25](issue-25_actor_motion.md)의 기본 개체 이동/제거·전수/통합 재생·게시·실제 CI까지 확인했습니다. G05 전체를 #26의 기준 함수 실행·상태 추적·재생·게시·실제 CI로 완료했습니다.
 
 ## 관련 문서
