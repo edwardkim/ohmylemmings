@@ -1,0 +1,96 @@
+{
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/129",
+  "project_license": "MIT",
+  "ci": "https://github.com/edwardkim/ohmylemmings/actions/runs/39772657853",
+  "reviewed_head": "2a74d90d40a6d13611921b10992e77114a407c9d",
+  "implementation_merge": "598de8057133298ff4d0731dae36dc92bc59e291",
+  "source_tree": "26ca84c1e40e755ac79f5e4fe0e41e39882ea768",
+  "jobs": [
+    {
+      "name": "WASM libraries",
+      "conclusion": "success"
+    },
+    {
+      "name": "Rust native",
+      "conclusion": "success"
+    },
+    {
+      "name": "Python tooling",
+      "conclusion": "success"
+    },
+    {
+      "name": "Windows full game",
+      "conclusion": "success"
+    },
+    {
+      "name": "macOS universal app (Apple Silicon)",
+      "conclusion": "success"
+    },
+    {
+      "name": "Web browser",
+      "conclusion": "success"
+    },
+    {
+      "name": "macOS universal app (Intel)",
+      "conclusion": "success"
+    }
+  ],
+  "packages": [
+    {
+      "status": "PASS",
+      "target": "linux-x86_64",
+      "development": true,
+      "performance_qualification_deferred": true,
+      "original_game_data": true,
+      "game_files": 28,
+      "archive_bytes": 5638068,
+      "sha256": "7861e873add9e4b791dd887a1c9efbd6dd43773502756b84c221c7becd5d7c0f",
+      "files": 38,
+      "source_files": 793,
+      "project_license": "MIT",
+      "source_git_blobs": "PASS"
+    },
+    {
+      "status": "PASS",
+      "target": "windows-x86_64",
+      "original_game_data": true,
+      "game_files": 28,
+      "source_files": 793,
+      "archive_bytes": 6142224,
+      "sha256": "40513d989320aa913bf04a2d17c82ed02897bf117d3aed21972532dc2a3bf0ae",
+      "project_license": "MIT",
+      "source_git_blobs": "PASS"
+    },
+    {
+      "status": "PASS",
+      "target": "macos-universal2",
+      "architectures": [
+        "arm64",
+        "x86_64"
+      ],
+      "game_files": 28,
+      "source_files": 793,
+      "notarized": false,
+      "archive_bytes": 7468583,
+      "sha256": "dcbbd2f5f0acd602d72e3c58d7996322b74de065fee34e89739ba65253a3cd34",
+      "project_license": "MIT",
+      "source_git_blobs": "PASS"
+    },
+    {
+      "status": "PASS",
+      "target": "web",
+      "development": true,
+      "performance_qualification_deferred": true,
+      "original_game_data": true,
+      "game_files": 28,
+      "archive_bytes": 5303091,
+      "sha256": "e28fa6f09594d2e6f14975362521e1deacf343de78948aa8d87a50cde124676c",
+      "files": 48,
+      "source_files": 793,
+      "project_license": "MIT",
+      "source_git_blobs": "PASS"
+    }
+  ],
+  "public_v0_1_0": "All four existing public archives verified unchanged with their original SHA256; not replaced.",
+  "scope": "CI development builds from the licensing change, not a new public Release. Each package preserves OPL LGPL/third-party notices; original DOS data/marks are outside MIT. No new all120 solution or performance qualification."
+}
