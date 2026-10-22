@@ -1,0 +1,56 @@
+{
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/126",
+  "url": "https://edwardkim.github.io/ohmylemmings/",
+  "checked_at": "2026-10-22T10:55:58.864120+00:00",
+  "workflow_run": "https://github.com/edwardkim/ohmylemmings/actions/runs/39766461582",
+  "hosting_commit": "3594bb087ff43795e9d575ccbc78facc8c3074eb",
+  "release_tag": "v0.1.0",
+  "release_commit": "75a432f2860815041a6e7f35ed27e161ed0283ca",
+  "archive_sha256": "03597c78dbf0a46ef3f2cdfe37636f658031032ab22f402b483da2d83cd044f5",
+  "result": {
+    "status": "PASS",
+    "url": "https://edwardkim.github.io/ohmylemmings/",
+    "public_files_verified": 47,
+    "first_frame_sha256": "1539ca2afdcc9cfbe4fa5de51036c45b881014ec14a0ab030c191ca41f988c4d",
+    "canvas": true,
+    "original_levels_loaded": 120,
+    "audio": {
+      "state": "running",
+      "submitted": 3072,
+      "nonzero": 3067,
+      "real_gesture": true
+    },
+    "transitions": [
+      {
+        "action": "restart",
+        "target": 1,
+        "status": "PASS"
+      },
+      {
+        "action": "continue",
+        "target": 2,
+        "status": "PASS"
+      }
+    ],
+    "refresh": true,
+    "scope": "Published HTTPS payload; actual WASM/DOM/Canvas, real sound gesture/nonzero PCM; no physical audibility or performance qualification"
+  },
+  "evidence": [
+    {
+      "path": "assets/local/issue-126-review/public/result.json",
+      "bytes": 715,
+      "sha256": "990270d618b27df5952d5d971a0d1b034c726954c9fa1f23ea45c1b875da5a3e"
+    },
+    {
+      "path": "assets/local/issue-126-review/public/http.json",
+      "bytes": 8587,
+      "sha256": "846d427d148f1bee97a95b1b52b2e7d02d6204217e5cad86d079a37f01ce8262"
+    },
+    {
+      "path": "assets/local/issue-126-review/public/original-fun01.png",
+      "bytes": 188377,
+      "sha256": "8b8e3abb33bf3aade7a639a085b833e8ef40482a83e3e49bffcc955361b19b47"
+    }
+  ],
+  "scope": "Initial Pages publication, functionality and exact released payload only. Source archive and original assets were not committed; no new all120 solution or performance qualification."
+}
