@@ -5,7 +5,7 @@
 ## 현재 상태 — 배포 준비 완료 / 2026-10-22
 
 - Windows/macOS/Linux/Web 전체 게임 패키지와 v0.1.0 공개 릴리즈, Pages 플레이를 제공한다. #118/#120/#122/#124/#126은 완료되었다.
-- 사용자 승인에 따라 잔여 라이선스 결정을 [#129](issue-129_project_license.md), Windows 10/11 수동 검증을 [#130](issue-130_windows_manual_validation.md)으로 이관한다. 각 이슈 번호/URL·OPEN을 확인한 뒤 문서를 작성했다.
+- #115에서 이관한 [#129](issue-129_project_license.md)는 자체 코드 MIT·제3자 고지 적용을 완료했고, [#130](issue-130_windows_manual_validation.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정으로 완료했다. 후속 지원 범위 결정에 따라 Windows 지원 대상은 Windows 11 x64이며 Windows 10은 지원하지 않는다.
 - #113의 고성능 호스트 재검증과 #1의 전체 완료 판정은 계속한다. Mac ad-hoc/미공증 상태는 기존 배포 안내에 유지한다.
 - [결과 보고서](../reports/issue-115_release_preparation.md)에 검증·이관 근거를 기록했다. 문서 PR을 실제 병합하고 최종 SHA를 GitHub #115에 기록한 뒤 완료 처리한다. 코드/릴리즈 파일 변경이나 새 성능 측정은 없다.
 

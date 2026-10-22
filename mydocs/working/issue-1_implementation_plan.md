@@ -2,7 +2,7 @@
 
 ## 현재 상태
 
-2026-10-22 최신: G00~G10과 #115 배포 준비, 4플랫폼 v0.1.0/Pages 플레이 배포를 완료했다. #115에서 이관한 [#129](issue-129_project_license.md)는 소유자 선택에 따라 자체 코드 MIT·제3자 고지 정책을 적용했다. [#130](../reports/issue-130_maintainer_acceptance.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정을 받았다(Windows 10 미검증). 남은 고성능 호스트 성능/메모리는 [#113](issue-113_web_dispatch.md)에서 계속한다. #1과 G11/G12 전체는 아직 미완료이며 최신 [전체 계획](../plans/issue-1_implementation_plan.md)과 GitHub 이슈 기록을 따른다.
+2026-10-22 최신: G00~G10과 #115 배포 준비, 4플랫폼 v0.1.0/Pages 플레이 배포를 완료했다. #115에서 이관한 [#129](issue-129_project_license.md)는 소유자 선택에 따라 자체 코드 MIT·제3자 고지 정책을 적용했다. [#130](../reports/issue-130_maintainer_acceptance.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정을 받았다. Windows 지원 대상은 Windows 11 x64이며 Windows 10은 지원하지 않는다. 남은 고성능 호스트 성능/메모리는 [#113](issue-113_web_dispatch.md)에서 계속한다. #1과 G11/G12 전체는 아직 미완료이며 최신 [전체 계획](../plans/issue-1_implementation_plan.md)과 GitHub 이슈 기록을 따른다.
 
 ## 초기 계획 수립 기록
 

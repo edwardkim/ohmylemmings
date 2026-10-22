@@ -100,6 +100,6 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 
 현재 [#113 Web 보정·측정](reports/issue-113_web_dispatch.md)은 남은 성능 검증을 더 좋은 호스트에 이월했다. 사용자 승인으로 [#115 배포 준비](plans/issue-115_release_preparation.md)와 v0.1.0/Pages 플레이 배포를 완료했다. 성능 합격이나 G12 전체 완료를 뜻하지 않는다.
 
-[#115 배포 준비](reports/issue-115_release_preparation.md)는 Linux/Web 개발 패키지부터 Windows/macOS/Linux/Web 전체 게임·대응 소스/해시·공개 릴리즈와 Pages까지 완료했다. [#129](reports/issue-129_project_license.md)에서 자체 코드 MIT·제3자 고지 정책을 적용했다. [#130](reports/issue-130_maintainer_acceptance.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정을 받았다(Windows 10 미검증). 남은 고성능 호스트 성능은 #113에서 추적한다.
+[#115 배포 준비](reports/issue-115_release_preparation.md)는 Linux/Web 개발 패키지부터 Windows/macOS/Linux/Web 전체 게임·대응 소스/해시·공개 릴리즈와 Pages까지 완료했다. [#129](reports/issue-129_project_license.md)에서 자체 코드 MIT·제3자 고지 정책을 적용했다. [#130](reports/issue-130_maintainer_acceptance.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정을 받았다. Windows 지원 대상은 Windows 11 x64이며 Windows 10은 지원하지 않는다. 남은 고성능 호스트 성능은 #113에서 추적한다.
 
 버전·태그·게시 운영은 [#124 릴리즈 정책](plans/issue-124_release_policy.md)을 따릅니다.

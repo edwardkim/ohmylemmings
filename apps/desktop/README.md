@@ -186,6 +186,8 @@ DOS RightClickGlitch도 적용합니다. 일반 개체를 가리킨 뒤 우클�
 
 ## Windows 전체 게임 패키지 (#118)
 
+Windows 지원 대상은 **Windows 11 x64**입니다. **Windows 10은 지원하지 않습니다.** [메인테이너의 지원 범위 결정 / #130](../../mydocs/reports/issue-130_maintainer_acceptance.md)을 따릅니다.
+
 ZIP을 모두 풀고 `OhMyLemmings.exe`를 더블클릭하면 원본 Fun01을 시작합니다. Windows 기본 자산 경로는 exe 옆 `data`이며 현재 폴더와 무관합니다. 명시적인 `--assets`와 합성 개발 옵션은 계속 사용할 수 있습니다. 오류는 `%LOCALAPPDATA%\OhMyLemmings\last-error.log`와 메시지로 남깁니다. `start-game.cmd`는 같은 게임을 실행하고 `last-run.log`를 남기며 실패 시 창을 유지합니다.
 
 빌드: Rust1.93.1/MSVC/Python3.12+, `cargo fetch --locked`, `python tools/windows_package.py fetch-sdl`, `python tools/reference_assets.py fetch`를 준비합니다. `LIB`에 `assets/local/windows-sdl` 절대 경로, `RUSTFLAGS=-C target-feature=+crt-static`을 설정한 뒤 `cargo build -p lemmings-desktop --release --locked --offline`, `python tools/windows_package.py create`를 실행합니다. 검증: `python tools/check_windows_package.py --archive assets/local/dist/ohmylemmings-0.1.0-windows-x86_64.zip`. 상세 범위는 [보고서](../../mydocs/reports/issue-118_windows_full_game.md)를 참고합니다.
