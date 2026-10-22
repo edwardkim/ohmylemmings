@@ -16,8 +16,8 @@
   "product_snapshot": [
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 3430,
-      "sha256": "5a6ac2b38ea94fa0e2f67f8e768dd67936d1be8658536a9f64086e525e6d7eac"
+      "bytes": 4331,
+      "sha256": "67bc5a08046f3760776e6cb0b52b1db0b46f750e00fe68ad481ae223ca4fae7e"
     },
     {
       "path": "Cargo.lock",
@@ -31,8 +31,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 2832,
-      "sha256": "8f053e62cbafa88f0ba56f356a4b3b93e5d750cd269be70b2428a0d1607b1ec8"
+      "bytes": 3394,
+      "sha256": "4c942c468c4369c654e31a841b9a79b8e92b5f1a21abcbcab5519843cc471889"
     },
     {
       "path": "apps/audio-probe/Cargo.toml",
@@ -960,6 +960,11 @@
       "sha256": "0b2b1d7885751774b8d9aa83564120e87a7a82fc7610c90a74af73a18141aa1a"
     },
     {
+      "path": "tools/check_release_package.py",
+      "bytes": 6081,
+      "sha256": "fd38189c7a4aa1f83d0b0ec80fe982d6539841b9ae75c9389b8ef58af3c044e9"
+    },
+    {
       "path": "tools/check_results.py",
       "bytes": 7787,
       "sha256": "741457509d83ddaa5209c5885ccfd432e2e94f66b8e9ea0ce9e0733b020aa640"
@@ -1395,6 +1400,11 @@
       "sha256": "ee5ac0096b77bc27aed41d28434d49a1c03a6de5062aab71a9b84de8ce38f3db"
     },
     {
+      "path": "tools/release_package.py",
+      "bytes": 12182,
+      "sha256": "39fdcfeb3d36671362700c3d01cf826abc5a815b5a9d77d7e940cabd82a8342c"
+    },
+    {
       "path": "tools/solution_replay.py",
       "bytes": 12563,
       "sha256": "b5847fb9a3ffdfc5be6897af9c5abb19da303372bcb7d9c3407e841be74fe03a"
@@ -1600,6 +1610,11 @@
       "sha256": "a11c4a06334b87b31db9007b19d11feed841dc8a7d73b1d6ecd665a12770d160"
     },
     {
+      "path": "tools/tests/test_release_package.py",
+      "bytes": 5786,
+      "sha256": "7fb9dcb58110b2894525e060fce432053b624f603eb671c7d71f84cf42b45f9e"
+    },
+    {
       "path": "tools/tests/test_skill_interactions.py",
       "bytes": 2278,
       "sha256": "6fa570fa308516e11c7b9641d6dabc0da6d30cf8e52d44986765b2251b309ba2"
@@ -1788,6 +1803,11 @@
       "path": "tools/web/journey_replay.js",
       "bytes": 3029,
       "sha256": "4f423b032c206a85d598e382e8328881e879b034dcb08fbd91ba229a34d2201f"
+    },
+    {
+      "path": "tools/web/package_check.js",
+      "bytes": 1699,
+      "sha256": "7ab518a0acfc90f001a8b93669b5402199cd00f97ec35061933adbd571c4f325"
     },
     {
       "path": "tools/web/sound_check.js",
@@ -4468,5 +4488,28 @@
       "tools/web/dispatch_check.js"
     ],
     "scope": "Web host reuses unchanged presented pixels between ticks and marks non-drawing input releases dirty; input remains synchronous, audio service runs every rAF, replaced scenes avoid duplicate attempt draw. Core/resources/pixel generation/PCM and native host unchanged. Historical full120 evidence remains historical. Actual43case/86run browser/native functional proof and normal60s three pairs are retained; deadline0/1/0 is NOT READY and user deferred better-host qualification while authorizing G12 preparation."
+  },
+  "source_impact_115": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/115",
+    "baseline_source": "ec226fe4fcb510766cd1b4379e31acde687af48d",
+    "previous_pins": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 3430,
+        "sha256": "5a6ac2b38ea94fa0e2f67f8e768dd67936d1be8658536a9f64086e525e6d7eac"
+      },
+      {
+        "path": "Makefile",
+        "bytes": 2832,
+        "sha256": "8f053e62cbafa88f0ba56f356a4b3b93e5d750cd269be70b2428a0d1607b1ec8"
+      }
+    ],
+    "added": [
+      "tools/release_package.py",
+      "tools/check_release_package.py",
+      "tools/tests/test_release_package.py",
+      "tools/web/package_check.js"
+    ],
+    "scope": "Development Linux/Web packaging and clean CI install/source/hash checks only. No core, assets, native/Web runtime or PCM change; historical full120/240 and #113 misses retained. User deferred faster-host performance qualification. Windows and final release remain pending."
   }
 }

@@ -124,3 +124,5 @@ mydocs/
 [G10-05 SDL/Web 오디오 출력 / #80](mydocs/reports/issue-80_audio_output.md)에서 원본/연습 음원·장치 출력·활성화/음소거/볼륨·숨김/세대와 LAN HTTP를 연결합니다. 웹의 소리 켜기 버튼 또는 S, 양쪽 PageUp/PageDown으로 조절합니다. LGPL 라이선스와 재빌드 소스 묶음을 웹 footer에서 제공합니다. 다음은 G10-06 통합 대조·청취와 마감입니다.
 
 사용자 승인으로 [G12 배포 준비 / #115](mydocs/plans/issue-115_release_preparation.md)를 시작했습니다. [#113 성능 결과](mydocs/reports/issue-113_web_dispatch.md)의 남은60fps 검증은 더 좋은 호스트에 이월하며, 현재 장비에서 추가 조정·반복하지 않습니다.
+
+개발용 Linux·Web archive는 `make package-linux`, `make package-web`으로 만들고 압축 해제 실행까지 검사합니다. 원본 자산은 제외하고 대응 소스·라이선스·해시를 포함합니다. [패키징 안내와 검증 범위](mydocs/reports/issue-115_release_preparation.md)를 참고하세요. Windows 검증·전체 라이선스 결정·최종 릴리스는 후속입니다.
