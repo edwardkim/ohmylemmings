@@ -7,6 +7,7 @@
 pub mod assets;
 pub mod audio;
 pub mod diagnostics;
+pub mod hd;
 pub mod lifecycle;
 pub mod panel;
 pub mod pointer;

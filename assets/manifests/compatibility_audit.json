@@ -17,7 +17,7 @@
     {
       "path": ".github/workflows/ci.yml",
       "bytes": 12796,
-      "sha256": "25871f627d2ed4f50e2811e58af06769a90982fa5abb9adcc5fa5179d2f04184"
+      "sha256": "0118fdc64c37cd819e4cb02dec7c12995b9a705519a54680602fed8b762e8b12"
     },
     {
       "path": ".github/workflows/pages.yml",
@@ -550,9 +550,24 @@
       "sha256": "f9994ad20de9121464ee54650229e717d7a29e3f78a7e8b646e8171fa834e2d9"
     },
     {
+      "path": "crates/lemmings-game/src/hd/layout.rs",
+      "bytes": 6920,
+      "sha256": "a97f8740a7ad20fc9395d51246384a4898870aa9ff2b8e7700f64ccc5794d0f1"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/mod.rs",
+      "bytes": 854,
+      "sha256": "27de153066f2ecb2517b27de0230fc41798e06faca75db0814751caa749b09b4"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/snapshot.rs",
+      "bytes": 6778,
+      "sha256": "89388fefd37d97da004fac93c4c5af6376e5f7538603b62d3264df8667b2f3d2"
+    },
+    {
       "path": "crates/lemmings-game/src/lib.rs",
-      "bytes": 727,
-      "sha256": "3d1a055b87eddb42c8548c063a0581f1a45346223e8c84cba7d454926d460ff9"
+      "bytes": 739,
+      "sha256": "5ca4eaa6ab0bdf120f0749fbc09b85fa7b0ce2402848cdb54966fceea92cbd9f"
     },
     {
       "path": "crates/lemmings-game/src/lifecycle.rs",
@@ -588,6 +603,11 @@
       "path": "crates/lemmings-game/tests/byte_source.rs",
       "bytes": 11500,
       "sha256": "41e76fd4ccd05e3e2dd209c1c1c05a219e29fe01969773ee942df7597b513a1a"
+    },
+    {
+      "path": "crates/lemmings-game/tests/hd_presentation.rs",
+      "bytes": 14302,
+      "sha256": "cddb7defad930f6c44e95e9c7a5c3262c91505947248868690aef7a2567e1da8"
     },
     {
       "path": "crates/lemmings-game/tests/sound.rs",
@@ -821,8 +841,8 @@
     },
     {
       "path": "crates/lemmings-session/src/session.rs",
-      "bytes": 59138,
-      "sha256": "1ffde5db70d9f28863beab317ff82fbcbe006a96aa8859ff3c64a5127ab54098"
+      "bytes": 59491,
+      "sha256": "9754abb105d2959d69b701d466bd7371ed0ec9fd1b3932d967ab9c92be9b5f66"
     },
     {
       "path": "crates/lemmings-session/src/sound.rs",
@@ -5203,5 +5223,33 @@
       "third_party/rust/wasm-bindgen-shared-0.2.129/LICENSE-MIT"
     ],
     "scope": "Owner explicitly selected MIT for project-authored contributions. License metadata/notices and package/source/Web delivery only. Existing LGPL, original DOS data exclusions and historical observations preserved. Simulation/rasterizer/PCM algorithms unchanged; no new full120/240 or performance certification. Published v0.1.0 is immutable."
+  },
+  "source_impact_140": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/140",
+    "baseline_source": "5a543b3405bb012e2e22e4fd0e35467873fb00dc",
+    "previous_pins": [
+      {
+        "path": "crates/lemmings-game/src/lib.rs",
+        "bytes": 727,
+        "sha256": "3d1a055b87eddb42c8548c063a0581f1a45346223e8c84cba7d454926d460ff9"
+      },
+      {
+        "path": "crates/lemmings-session/src/session.rs",
+        "bytes": 59138,
+        "sha256": "1ffde5db70d9f28863beab317ff82fbcbe006a96aa8859ff3c64a5127ab54098"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 12796,
+        "sha256": "25871f627d2ed4f50e2811e58af06769a90982fa5abb9adcc5fa5179d2f04184"
+      }
+    ],
+    "added": [
+      "crates/lemmings-game/src/hd/mod.rs",
+      "crates/lemmings-game/src/hd/layout.rs",
+      "crates/lemmings-game/src/hd/snapshot.rs",
+      "crates/lemmings-game/tests/hd_presentation.rs"
+    ],
+    "scope": "New optional typed HD presentation/coordinate API and tests; Session adds two read-only getters only. Original renderer, simulation algorithms, resource parsing, PCM and host paths unchanged. Historical COMP/replay/performance observations remain their original recordings; HD state/RGB/sound identity is separately tested with synthetic input. Native CI job limit changes from15 to25minutes after the first15minute timeout during existing audio checks; all checks and criteria retained."
   }
 }

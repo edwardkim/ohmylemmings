@@ -1,5 +1,7 @@
 # 진행 중 작업
 
+- [#140 HD 공통 표시·입력 계약](issue-140_hd_presentation.md): typed snapshot·좌표/패널과 읽기 전용 합성 검증.
+
 - [#137 2D HD 리마스터](issue-137_2d_remaster.md): 첫 Fun 01 디자인 후보·자산/표시 계약, 실제 HD 모드 후속.
 
 - [#91 G11-04 전체120레벨 초기 재생](issue-91_initial_replay.md)

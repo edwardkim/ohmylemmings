@@ -8,8 +8,8 @@
     {
       "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 175973,
-      "sha256": "af6599e315a9bc5e4d872e114bb2506eba33b3dce11483c51ad0bb1d314b76e4"
+      "bytes": 178111,
+      "sha256": "0083ea8bb78a21b82fee13bcf8cd7d43835562c66bca2c70943d45c4903f1cc4"
     },
     {
       "id": "performance",
@@ -10982,5 +10982,17 @@
       }
     ],
     "scope": "License metadata/notice index only; prior observations and NOT READY unchanged. New package/source notice verification is separate from game/performance qualification."
+  },
+  "source_maintenance_140": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/140",
+    "previous_pins": [
+      {
+        "id": "compatibility",
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 175973,
+        "sha256": "af6599e315a9bc5e4d872e114bb2506eba33b3dce11483c51ad0bb1d314b76e4"
+      }
+    ],
+    "scope": "Refresh the scoped compatibility source index for the optional HD typed API and read-only Session getters. Frozen observations, NOT READY and #113 performance follow-up are unchanged; no HD performance or full-mode certification."
   }
 }
