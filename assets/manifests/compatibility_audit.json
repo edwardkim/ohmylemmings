@@ -1671,8 +1671,8 @@
     },
     {
       "path": "tools/tests/test_windows_package.py",
-      "bytes": 5340,
-      "sha256": "80b15c64c467db31d5518e606b451be4871f72e04d796a086e456cdb368c2fa7"
+      "bytes": 5513,
+      "sha256": "0be9477da412756d3221d4e6f140a17aac740a9dfee2f912d1911f14a7ee0424"
     },
     {
       "path": "tools/verify_adlib_timing.py",
@@ -1861,8 +1861,8 @@
     },
     {
       "path": "tools/windows_package.py",
-      "bytes": 11643,
-      "sha256": "e30d2c437e26b197aee8d0522a8928bb9b845ec538429603a038fde2efc50f0c"
+      "bytes": 11660,
+      "sha256": "bdbf42a342e20caffdb5e968d3e35fe710c12e7cd81ac69bb028ea32ab93b46a"
     }
   ],
   "evidence": [

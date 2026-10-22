@@ -51,6 +51,8 @@ class WindowsPackageTests(unittest.TestCase):
         (self.assets/'INSTALL.EXE').write_bytes(b'unused DOS installer')
         (self.runtime/'secret.txt').write_bytes(b'private')
         path = self.package(); result = verify(path, root=self.root)
+        self.assertEqual(Path(str(path)+'.sha256').read_bytes(),
+                         f'{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.name}\n'.encode('ascii'))
         self.assertEqual(result['game_files'], 28)
         self.assertTrue(result['original_game_data'])
         with zipfile.ZipFile(path) as archive:

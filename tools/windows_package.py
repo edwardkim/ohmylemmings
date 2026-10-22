@@ -118,7 +118,7 @@ def create(runtime, assets, sdl, output, root=ROOT):
     files['SHA256SUMS'] = ''.join(f'{sha(b)}  {n}\n' for n,b in sorted(files.items())).encode()
     data = archive_bytes(files,'web'); output.mkdir(parents=True, exist_ok=True)
     with path.open('xb') as stream: stream.write(data)
-    with sidecar.open('x') as stream: stream.write(f'{sha(data)}  {path.name}\n')
+    with sidecar.open('xb') as stream: stream.write(f'{sha(data)}  {path.name}\n'.encode('ascii'))
     verify(path, root=root)
     return path
 
