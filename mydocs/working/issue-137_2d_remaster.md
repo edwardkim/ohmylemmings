@@ -17,3 +17,5 @@ HD-02 #140은 PR #141 실제 병합·동일 tree와 최종 CI7개 SUCCESS로 완
 사용자 다음 단계 승인으로 #144 HD-03a를 등록·확인하고 걷기 좌우16프레임·암석 분리 PNG와 RGBA 팩 로더/검증을 구현한다. 실제 HD 게임과 다른 동작/시설/UI는 후속으로 유지한다. [진행](issue-144_hd_assets.md), [결과](../reports/issue-144_hd_assets.md).
 
 HD-03a #144의 걷기16프레임·암석 후보와 공통 팩/검증은 PR #145 실제 병합·동일 tree/CI7개 SUCCESS로 완료했다. 통합된 HD 애니메이션은 여전히0개이며, 다음은 입출구·굴착/계단/폭발·UI 제작 후 실제 Fun01 HD 통합이다. #137은 OPEN으로 유지한다.
+
+HD-03b [#147](https://github.com/edwardkim/ohmylemmings/issues/147)의 직업65프레임·첫 테마 입출구11프레임·13조작 아이콘과 typed 팩 확장을 PR #149/merge `653762ff7383d87a5963fc2bc39c43d25983fdd2`로 실제 병합했다. 최종 head `3ff29f8df90f8bcad4c31eff84d9c11829f7bd25`/CI39866059128의7개 검사 SUCCESS·전체 tree 일치, 로컬 실제7atlas106자산/81캐릭터 프레임·브라우저 미리보기·기존 팩 호환성을 확인했다. [결과](../reports/issue-147_hd_actions.md)를 참고한다. 다음은 HD-04 실제 Fun01 Native/Web 합성·원본 모드 선택/입력 통합이며, 동작 크기/위상·출구 doorway/원본 trigger와 누락 상태 처리도 이 단계에서 검토한다. 전체 HD 게임/GPU·나머지21애니메이션256프레임/다른 테마·시설/효과·전체 UI·배포는 미완료, #137은 OPEN이다. #113 성능 이월/기존 NOT READY·#142 Chrome156 진단·#1 CLOSED/공개 v0.1.0/Pages를 유지한다.

@@ -52,3 +52,19 @@ python3 -m http.server 19047 --bind 127.0.0.1 --directory assets/local/hd-action
 변경 Markdown9개/상대 파일 링크185개·git diff --check와 self-review를 통과했다.
 
 게시/정확한 CI head·7개 검사와 실제 PR 병합 근거는 [#147 최종 기록](https://github.com/edwardkim/ohmylemmings/issues/147)에 연결한다. 로컬 통과만으로 이슈를 종료하지 않는다. 다음은 HD-04의 실제 Fun01 Native/Web 합성·원본 모드 선택과 입력 통합이다.
+
+## CI 설치 지연과 재검사
+
+CI39866059128 attempt1의 Web 잡120128578123은 SDL2 apt 의존성 설치/업그레이드 중 시간을 소모해10분 제한으로 cancelled되었다. Azure Ubuntu 미러에서22.5MB를 요청한 뒤 실제20.2MB 다운로드에9분26초가 기록됐다.22:46:01 Rust 도구 설치가 시작됐고22:46:08 취소됐다. 브라우저 equivalence/패키징은 skipped이므로 기능 실패/Chrome156 재현이나 PASS로 집계하지 않는다. 로그는 ignored assets/local/issue-147-review/web-ci-attempt1.log에 보존하고 같은 head의 Web 잡만 재실행했다. 최종7개 검사는 같은 run의 latest job 결과를 기준으로 한다.
+
+## 완료 기록
+
+구현 [PR #149](https://github.com/edwardkim/ohmylemmings/pull/149)을 실제 merge `653762ff7383d87a5963fc2bc39c43d25983fdd2`로 병합했다. 검토 head `3ff29f8df90f8bcad4c31eff84d9c11829f7bd25`와 merge의 전체 tree가 일치한다.
+
+같은 head의 [pull_request CI39866059128](https://github.com/edwardkim/ohmylemmings/actions/runs/39866059128)의 attempt2/latest job에서 Rust native·Python tooling·WASM libraries·Web browser·Windows full game·macOS Apple Silicon/Intel7개 검사 SUCCESS를 확인했다. 이전 head의39865871403/39865910861과 최종 head의 중복 push39866053572 취소는 PASS로 집계하지 않는다. 기존 게임/설치 회귀와 로컬 HD 팩/미리보기·WASM 컴파일 범위를 구분하며 실제 HD 앱/GPU 실행으로 해석하지 않는다.
+
+완료 문서·상위 계획/진행·일지를 동기화했다. 문서 전용 PR의 실제 merge와 #147 종료·root main 동기화는 GitHub 이슈의 최종 기록을 따른다. #137은 OPEN이며 다음은 HD-04 실제 Fun01 통합이다. 나머지21애니메이션256프레임 등 누락 자산과 새 동작/출구 기준점의 실제 합성 검토는 후속으로 유지한다.
+
+Web 재검사의 Chrome155.0.8059.39에서 동등성/여정/사운드·전체 Web 패키지 설치 PASS를 확인했다. 실패 원본 로그는72440바이트/SHA `ca9f25f0ee7ad268a431ae96679d4e2064e95fe88565d4d98bc72f77e38e9859`다. Chrome156 #142의 결과 대기 타임아웃 재현/해결을 주장하지 않는다.
+
+완료 Markdown6개/상대 파일 링크141개·공백·self-review PASS. 문서 변경만 포함하므로 기존 게임 소스의 전체 플랫폼 검사를 반복하지 않는다.
