@@ -1,5 +1,7 @@
 # 원본 검증 리소스
 
+새 2D HD 디자인 후보와 제작 규격은 [리마스터 자산 안내 / #137·#138](remaster/README.md)를 따릅니다. 원본 검증 자료와 새 생성 디자인의 출처/상태를 구분합니다.
+
 DOS 원작 VGA 데이터 프로필의 출처와 파일 식별값을 [매니페스트](manifests/dos_original.json)에 고정합니다. 원본 파일은 `assets/local/dos-original/`에 확보하며 이 폴더는 Git 추적에서 제외됩니다.
 
 ## 확보와 검증

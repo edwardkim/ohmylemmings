@@ -1,5 +1,7 @@
 # 계획 문서
 
+- [#137 2D HD 리마스터](issue-137_2d_remaster.md), [#138 Fun 01 HD 아트/표시 계약](issue-138_hd_art_contract.md).
+
 - [#85 G11 전체 호환성 점검·성능 측정 계획](issue-85_compatibility_validation.md)
 
 마일스톤과 시스템 아키텍처를 관리합니다. 전체 기획서는 이 폴더의 [프로젝트 기획서 / #1](issue-1_rusty_lemmings.md)에 있습니다.

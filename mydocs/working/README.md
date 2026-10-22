@@ -1,5 +1,7 @@
 # 진행 중 작업
 
+- [#137 2D HD 리마스터](issue-137_2d_remaster.md): 첫 Fun 01 디자인 후보·자산/표시 계약, 실제 HD 모드 후속.
+
 - [#91 G11-04 전체120레벨 초기 재생](issue-91_initial_replay.md)
 
 - [#89 G11-03 특수 장면 연결](issue-89_special_scenes.md)

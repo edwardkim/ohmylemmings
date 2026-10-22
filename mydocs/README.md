@@ -1,5 +1,7 @@
 # Hyper-Waterfall 문서 안내
 
+새 기능 [#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 시작했습니다. 첫 [#138 Fun 01 시안·계약과 한계](reports/issue-138_hd_art_direction.md)를 참고하세요. 실제 HD 모드는 아직 미구현이며 초기 개발 #1의 종료와 성능 #113의 독립 후속은 유지합니다.
+
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 
 단계별 구현 목표와 작업 순서는 [전체 구현 계획](plans/issue-1_implementation_plan.md)을 참고합니다. 2026-10-22 메인테이너 지시로 [#1 초기 구현·첫 플레이 배포를 종료](reports/issue-1_initial_development_closure.md)하고, 남은 성능·구간 메모리는 #113에서 계속합니다. 아래 단계별 기록은 각 검증 시점의 상태입니다.
