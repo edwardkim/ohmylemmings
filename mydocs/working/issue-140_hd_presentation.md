@@ -11,3 +11,5 @@
 Python253·라이선스/기존 증거 감사 PASS. 소스 영향은 새 HD 모듈/통합 테스트와 lib export, Session의 읽기 전용 getter2개다. 현재438개 source pin과 G11의 연결 pin을 갱신하고 이전 pin·NOT READY를 보존했다. 워크스페이스·WASM과 정확한 CI/병합은 [결과 보고서](../reports/issue-140_hd_presentation.md)와 GitHub #140에 기록한다.
 
 로컬 Rust637/doc29·workspace Clippy/format·WASM library build, Markdown10개/상대 파일 링크246개·공백/self-review PASS. PR을 게시해 실제 지원 플랫폼 CI를 확인한 뒤 병합/완료 처리한다.
+
+첫 CI39786747925는6개 SUCCESS, Native는15분 job 제한 초과로 취소됐다. annotation/로그에서 의존 설치 약4분·완료된 회귀 PASS와 오디오 출력 검사 중 취소를 확인했다. Native 제한만25분으로 늘려 새 head를 검증한다. 코드의 테스트 실패를 통과 처리하거나 검사 항목을 줄이지 않는다. 중복 push39786740844 취소도 성공으로 집계하지 않는다.

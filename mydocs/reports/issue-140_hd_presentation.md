@@ -26,6 +26,8 @@
 
 self-review에서 기존 경로의 변경이 lib export·Session getter2개에 한정되고 코어·자원 파서·기존 renderer/PCM·앱 입력 코드가 불변인지 대조했다. 변경 Markdown10개의 상대 파일 링크246개·git diff --check PASS. 정확한 CI/병합은 GitHub #140 최종 기록을 따른다.
 
+첫 PR CI39786747925는 Windows/Python/WASM/Web/Mac ARM/Intel6개가 SUCCESS였다. Linux Native는 의존 설치 약4분과 기존 회귀 검사를 진행한 뒤15분 job 제한으로 취소됐다. 새16개와 완료된 직업/위험물/결과/패널/포인터 회귀는 PASS였고 오디오 출력 검사 중 시간 초과했다. annotation의15m0s 제한 초과와 실제 로그를 확인해 Native 제한만25분으로 늘렸다. 검사 항목/기준은 유지하며 새 head의 전체 CI로 다시 확인한다. 첫 취소를 성공으로 집계하지 않는다.
+
 ## 후속
 
 이 단계는 읽기 전용 표시 자료와 입력 대상 계산의 구현이다. 새 JS wire/export·실제 Native/Web HD 렌더링/입력·PNG/atlas 검증·GPU 합성과 HD 자산은 #137의 다음 절편이다. 이 변경으로 새 HD 플레이 screenshot이나 성능 합격을 선언하지 않는다. 기존 v0.1.0/Pages·#1 CLOSED와 #113 OPEN/저사양 장비의 긴60fps 반복 중단을 유지한다.

@@ -8,8 +8,8 @@
     {
       "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 177798,
-      "sha256": "a624dfff37582a8619b9cf2e9080e7f73e5de366f9d81949c2d7ef1444d68e4c"
+      "bytes": 178111,
+      "sha256": "0083ea8bb78a21b82fee13bcf8cd7d43835562c66bca2c70943d45c4903f1cc4"
     },
     {
       "id": "performance",

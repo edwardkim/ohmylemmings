@@ -17,7 +17,7 @@
     {
       "path": ".github/workflows/ci.yml",
       "bytes": 12796,
-      "sha256": "25871f627d2ed4f50e2811e58af06769a90982fa5abb9adcc5fa5179d2f04184"
+      "sha256": "0118fdc64c37cd819e4cb02dec7c12995b9a705519a54680602fed8b762e8b12"
     },
     {
       "path": ".github/workflows/pages.yml",
@@ -5237,6 +5237,11 @@
         "path": "crates/lemmings-session/src/session.rs",
         "bytes": 59138,
         "sha256": "1ffde5db70d9f28863beab317ff82fbcbe006a96aa8859ff3c64a5127ab54098"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 12796,
+        "sha256": "25871f627d2ed4f50e2811e58af06769a90982fa5abb9adcc5fa5179d2f04184"
       }
     ],
     "added": [
@@ -5245,6 +5250,6 @@
       "crates/lemmings-game/src/hd/snapshot.rs",
       "crates/lemmings-game/tests/hd_presentation.rs"
     ],
-    "scope": "New optional typed HD presentation/coordinate API and tests; Session adds two read-only getters only. Original renderer, simulation algorithms, resource parsing, PCM and host paths unchanged. Historical COMP/replay/performance observations remain their original recordings; HD state/RGB/sound identity is separately tested with synthetic input."
+    "scope": "New optional typed HD presentation/coordinate API and tests; Session adds two read-only getters only. Original renderer, simulation algorithms, resource parsing, PCM and host paths unchanged. Historical COMP/replay/performance observations remain their original recordings; HD state/RGB/sound identity is separately tested with synthetic input. Native CI job limit changes from15 to25minutes after the first15minute timeout during existing audio checks; all checks and criteria retained."
   }
 }
