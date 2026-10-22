@@ -193,3 +193,9 @@ ZIP을 모두 풀고 `OhMyLemmings.exe`를 더블클릭하면 원본 Fun01을 �
 ## macOS 전체 게임 앱 (#120)
 
 `OhMyLemmings.app/Contents/MacOS/OhMyLemmings`는 앱 내부 `Contents/Resources/data`에서 기본 원본 Fun01을 읽습니다. 일반 cargo 개발 실행은 기존 assets/local 경로를 유지합니다. Apple Silicon/Intel universal2와 고정 SDL2 dylib를 앱 Frameworks에 동봉합니다. 오류는 `~/Library/Logs/OhMyLemmings/last-error.log`에 남습니다. [패키징/실행·서명/공증·검증 안내](../../mydocs/reports/issue-120_macos_full_game.md).
+
+## Linux 전체 게임 패키지 (#122)
+
+`python3 tools/reference_assets.py fetch` 후 `make package-linux`. Ubuntu24.04/glibc2.39+ x86_64용 tar.gz를 모두 풀고 SDL2 런타임(`sudo apt-get install libsdl2-2.0-0`)이 있는 환경에서 `./lemmings-desktop`을 실행합니다. 실행 파일 옆 data의 원본 Fun01을 기본으로 열며 현재 작업 폴더와 무관합니다. `--difficulty tricky --level 1` 등으로120개를 고릅니다. 일반 cargo 실행 파일 옆에 data가 없으면 기존 개발 assets/local 경로를 유지합니다. [검증 범위](../../mydocs/reports/issue-122_linux_web_full_game.md).
+
+Mac 인증서가 없는 현재 Homebrew 후속 경로는 자체 tap의 소스 빌드 Formula입니다. 기존 `.app` Cask는 격리/Gatekeeper를 우회하지 않으며 공식 Cask는 기본 보안 검사에 통과해야 합니다. [공식 신뢰 모델](https://docs.brew.sh/Homebrew-Security-and-Supply-Chain#casks-have-a-different-trust-model). 아직 tap은 게시하지 않았습니다.

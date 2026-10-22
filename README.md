@@ -125,7 +125,7 @@ mydocs/
 
 사용자 승인으로 [G12 배포 준비 / #115](mydocs/plans/issue-115_release_preparation.md)를 시작했습니다. [#113 성능 결과](mydocs/reports/issue-113_web_dispatch.md)의 남은60fps 검증은 더 좋은 호스트에 이월하며, 현재 장비에서 추가 조정·반복하지 않습니다.
 
-개발용 Linux·Web archive는 `make package-linux`, `make package-web`으로 만들고 압축 해제 실행까지 검사합니다. 원본 자산은 제외하고 대응 소스·라이선스·해시를 포함합니다. [패키징 안내와 검증 범위](mydocs/reports/issue-115_release_preparation.md)를 참고하세요. Windows 검증·전체 라이선스 결정·최종 릴리스는 후속입니다.
+Linux·Web 전체 게임 archive는 원본28개(그래픽·120레벨·음원)와 대응 소스·라이선스·해시를 포함합니다. `python3 tools/reference_assets.py fetch` 후 `make package-linux` 또는 `make package-web`으로 만들고 압축 해제 실행까지 검사합니다. Linux는 실행 파일 옆 data를 사용하고 Web은 HTTP에서 자동으로 Fun01을 엽니다. [사용·검증 안내](mydocs/reports/issue-122_linux_web_full_game.md). 전체 라이선스 결정·최종 릴리스는 후속입니다.
 
 Windows 전체 게임 ZIP은 [#118 패키징 안내](mydocs/reports/issue-118_windows_full_game.md)를 따릅니다. 원본 그래픽·전체120레벨·음원을 포함하며 압축 해제 후 `OhMyLemmings.exe`를 더블클릭합니다. GitHub Actions의 `Windows full game` 검사는 실제 Windows에서 이 패키지의 첫 실행·120개 선택·음향·재시작을 검증하고 `development-windows-x86_64` artifact를 제공합니다.
 

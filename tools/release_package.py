@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create original-free development packages from already built Linux/Web inputs."""
+"""Create verified full-game or original-free development packages from already built Linux/Web inputs."""
 import argparse
 import gzip
 import hashlib
@@ -16,10 +16,12 @@ ROOT = Path(__file__).resolve().parents[1]
 if __package__ in (None, ''):
     sys.path.insert(0, str(ROOT))
 from tools.web_build import source_bundle
+from tools.package_assets import GAME_FILES, game_pins
+from tools.reference_assets import checked_bytes
 
 WEB_FILES = (
     'index.html', 'app.js', 'audio.js', 'audio-license.html', 'controls.js',
-    'host.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
+    'host.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
 )
 COMMON_FILES = {'README.md', 'REBUILD.md', 'LGPL-2.1-or-later.txt'}
 
@@ -67,13 +69,14 @@ def archive_bytes(files, target):
     return output.getvalue()
 
 
-def create_package(kind, runtime, output, root=ROOT):
+def create_package(kind, runtime, output, root=ROOT, assets=None):
     require(kind in ('linux', 'web'), 'Supported package targets: linux, web')
     target = 'linux-x86_64' if kind == 'linux' else 'web'
     version = tomllib.loads((root / 'Cargo.toml').read_text())['workspace']['package']['version']
     require(all(c.isalnum() or c in '.-' for c in version), 'Invalid package version')
     suffix = '.zip' if kind == 'web' else '.tar.gz'
-    path = output / f'ohmylemmings-{version}-dev-{target}{suffix}'
+    profile = '' if assets is not None else 'dev-'
+    path = output / f'ohmylemmings-{version}-{profile}{target}{suffix}'
     sidecar = Path(str(path) + '.sha256')
     if path.exists() or sidecar.exists():
         raise FileExistsError(f'Package evidence already exists: {path}')
@@ -89,6 +92,15 @@ def create_package(kind, runtime, output, root=ROOT):
         require(len(binary) >= 64 and binary[:6] == b'\x7fELF\x02\x01'
                 and int.from_bytes(binary[18:20], 'little') == 62, 'Expected a Linux x86_64 ELF executable')
         files['lemmings-desktop'] = binary
+    if assets is not None:
+        if kind == 'web':
+            require(files['index.html'].count(b'<head>') == 1, 'Expected one Web document head')
+            files['index.html'] = files['index.html'].replace(b'<head>', b'<head>\n    <meta name="game-data" content="./GAME-DATA.json">', 1)
+        original, pins = game_pins(root)
+        for pin in pins:
+            files['data/' + pin['name']] = checked_bytes(regular(assets / pin['name']), pin, pin['name'])
+        files['GAME-DATA.json'] = encoded(dict(profile=original['profile'], original_game_data=True,
+            levels=120, files=pins, sources=original.get('sources', [])))
     files['LGPL-2.1-or-later.txt'] = regular(root / 'crates/lemmings-opl/LICENSE')
     source_name = 'audio-source.tar.gz' if kind == 'web' else 'source.tar.gz'
     with tempfile.TemporaryDirectory() as temporary:
@@ -109,9 +121,27 @@ def create_package(kind, runtime, output, root=ROOT):
               './lemmings-desktop --assets /path/to/owned/dos-files --difficulty fun --level 1\n'
               'Space pauses; R restarts on results; Enter continues; S toggles sound; Esc exits.\n'
               'Run ./lemmings-desktop --help for options.\n')
+    if assets is not None:
+        launch = (
+            'Serve the entire extracted folder over HTTP: python3 -m http.server 8080\n'
+            'Open http://localhost:8080/ (or your hosted subdirectory) in a WASM-capable browser.\n'
+            'Fun 01 loads automatically. Click the sound button to enable music/effects.\n'
+            'Choose any of four difficulties and levels 1-30. Keep data/ and GAME-DATA.json.\n'
+        ) if kind == 'web' else (
+            'Linux x86_64: built on Ubuntu 24.04; requires glibc 2.39+ and SDL2 runtime.\n'
+            'Ubuntu: sudo apt-get install libsdl2-2.0-0\n'
+            'Extract everything, keep data/ beside the executable, then run ./lemmings-desktop\n'
+            'Fun 01 starts automatically, including when launched from another directory.\n'
+            'Other levels: ./lemmings-desktop --difficulty tricky --level 1\n'
+            'Space pauses; R restarts on results; Enter continues; S toggles sound; Esc exits.\n'
+        )
+    data_notice = ('Original graphics, all 120 levels, music and effects are included in data/.\n'
+                   'GAME-DATA.json records original provenance and hashes; the project LGPL notice does not license DOS data.\n'
+                   if assets is not None else
+                   'Original DOS assets are not included. Practice graphics and music are synthetic.\n')
     files['README.md'] = (
         f'# Oh My Lemmings {version} development package ({target})\n\n' + launch + '\n'
-        'Original DOS assets are not included. Practice graphics and music are synthetic.\n'
+        + data_notice +
         'Performance qualification on a faster host is pending (#113); this is not a final release.\n'
         'A project-wide license has not yet been selected; this preparation does not grant one.\n'
         'The OPL synthesizer is LGPL-2.1-or-later: Copyright (C) 2013-2020 Nuke.YKT;\n'
@@ -131,7 +161,7 @@ def create_package(kind, runtime, output, root=ROOT):
         'No signing restriction or installation lock is applied by these development packages.\n'
     ).encode()
     files['PACKAGE-MANIFEST.json'] = encoded(dict(schema_version=1, version=version, target=target,
-        development=True, performance_qualification_deferred=True,
+        development=True, performance_qualification_deferred=True, original_game_data=assets is not None,
         source_archive=source_name, source=source,
         files=[dict(path=name, bytes=len(data), sha256=sha(data)) for name, data in sorted(files.items())]))
     files['SHA256SUMS'] = ''.join(f'{sha(data)}  {name}\n' for name, data in sorted(files.items())).encode()
@@ -139,13 +169,13 @@ def create_package(kind, runtime, output, root=ROOT):
     output.mkdir(parents=True, exist_ok=True)
     with path.open('xb') as stream:
         stream.write(data)
-    with sidecar.open('x') as stream:
-        stream.write(f'{sha(data)}  {path.name}\n')
-    verify_package(path)
+    with sidecar.open('xb') as stream:
+        stream.write(f'{sha(data)}  {path.name}\n'.encode())
+    verify_package(path, root=root)
     return path
 
 
-def verify_package(path):
+def verify_package(path, root=ROOT):
     data = regular(path)
     require(regular(Path(str(path) + '.sha256')).decode() == f'{sha(data)}  {path.name}\n', 'Archive checksum differs')
     if path.suffix == '.zip':
@@ -167,7 +197,20 @@ def verify_package(path):
     source_name = 'audio-source.tar.gz' if target == 'web' else 'source.tar.gz'
     allowed = COMMON_FILES | {source_name, 'PACKAGE-MANIFEST.json', 'SHA256SUMS'}
     allowed |= set(WEB_FILES) | {'audio-source.json'} if target == 'web' else {'lemmings-desktop'}
+    full = manifest.get('original_game_data', False)
+    require(type(full) is bool, 'Invalid original data marker')
+    if full:
+        allowed |= {'GAME-DATA.json'} | {'data/' + name for name in GAME_FILES}
     require(set(files) == allowed, 'Unexpected or missing package files')
+    if full:
+        if target == 'web':
+            require(b'<meta name="game-data" content="./GAME-DATA.json">' in files['index.html'], 'Missing required game-data marker')
+        original, game = game_pins(root)
+        info = json.loads(files['GAME-DATA.json'])
+        require(info == dict(profile=original['profile'], original_game_data=True, levels=120,
+                            files=game, sources=original.get('sources', [])), 'Original provenance differs')
+        for pin in game:
+            checked_bytes(files['data/' + pin['name']], pin, pin['name'])
     pins = manifest['files']
     require(len(pins) == len({pin['path'] for pin in pins})
             and {pin['path'] for pin in pins} == allowed - {'PACKAGE-MANIFEST.json', 'SHA256SUMS'}, 'Invalid manifest inventory')
@@ -193,6 +236,7 @@ def verify_package(path):
                 and info['wasm_sha256'] == sha(files['pkg/lemmings_web_bg.wasm'])
                 and info['license_sha256'] == sha(files['LGPL-2.1-or-later.txt']), 'Web source/license link differs')
     return dict(status='PASS', target=target, development=True, performance_qualification_deferred=True,
+                original_game_data=full, game_files=len(GAME_FILES) if full else 0,
                 archive_bytes=len(data), sha256=sha(data), files=len(files), source_files=len(pins))
 
 
@@ -202,6 +246,8 @@ def main():
     parser.add_argument('--runtime', type=Path)
     parser.add_argument('--output', type=Path, default=ROOT / 'assets/local/dist')
     parser.add_argument('--archive', type=Path)
+    parser.add_argument('--assets', type=Path, default=ROOT / 'assets/local/dos-original')
+    parser.add_argument('--development', action='store_true', help='Explicit original-free practice package')
     args = parser.parse_args()
     if args.command == 'verify':
         if args.archive is None:
@@ -210,7 +256,7 @@ def main():
     else:
         if args.runtime is None:
             parser.error('--runtime is required')
-        path = create_package(args.command, args.runtime, args.output)
+        path = create_package(args.command, args.runtime, args.output, assets=None if args.development else args.assets)
         print(json.dumps(dict(archive=str(path), **verify_package(path))))
 
 

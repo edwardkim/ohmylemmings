@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Install a verified development archive into a temporary folder and smoke-test it."""
 import argparse
+import base64
 import functools
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
@@ -43,13 +44,14 @@ def check_native(directory):
                 scope='extracted package; SDL dummy video/software and audio device; no human audibility or performance qualification')
 
 
-def check_web(directory, browser=None):
+def check_web(directory, browser=None, full=False):
     browser = browser or next((shutil.which(n) for n in ['google-chrome', 'chromium', 'chromium-browser'] if shutil.which(n)), None)
     require(browser is not None, 'Chrome/Chromium is required for package smoke')
     ready = threading.Event()
     result = {}
     helpers = {
-        '/__package_check.js': ROOT / 'tools/web/package_check.js',
+        '/__package_check.js': ROOT / ('tools/web/full_package_check.js' if full else 'tools/web/package_check.js'),
+        '/__bundled_check.js': ROOT / 'tools/web/bundled_check.js',
         '/__dispatch_check.js': ROOT / 'tools/web/dispatch_check.js',
         '/dispatch_events.js': ROOT / 'tools/performance/dispatch_events.js',
         '/measure.js': ROOT / 'tools/performance/measure.js',
@@ -59,7 +61,14 @@ def check_web(directory, browser=None):
         def log_message(self, *args):
             pass
 
+        def translate_path(self, path):
+            if full and path.startswith('/game/'):
+                path = '/' + path[len('/game/'):]
+            return super().translate_path(path)
+
         def do_GET(self):
+            if full and self.path.startswith('/game/'):
+                self.path = '/' + self.path[len('/game/'):]
             if self.path == '/__check.html':
                 body = b'<!doctype html><p id="result">Checking</p><script type="module" src="./__package_check.js"></script>'
             elif self.path in helpers:
@@ -73,7 +82,7 @@ def check_web(directory, browser=None):
 
         def do_POST(self):
             size = int(self.headers.get('Content-Length', '0'))
-            if self.path != '/__result' or not 0 < size < 100000:
+            if self.path != '/__result' or not 0 < size < 2000000:
                 self.send_error(400)
                 return
             result.update(json.loads(self.rfile.read(size)))
@@ -88,7 +97,7 @@ def check_web(directory, browser=None):
         with tempfile.TemporaryDirectory(prefix='lemmings-package-browser-') as profile:
             command = [browser, '--headless', '--no-first-run', '--no-default-browser-check', '--disable-gpu',
                        '--autoplay-policy=no-user-gesture-required', f'--user-data-dir={profile}',
-                       f'http://127.0.0.1:{server.server_port}/__check.html']
+                       f'http://127.0.0.1:{server.server_port}/{"game/" if full else ""}__check.html']
             with tempfile.TemporaryFile(mode='w+') as log:
                 process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT)
                 try:
@@ -109,17 +118,34 @@ def check_web(directory, browser=None):
 
 def check(path, browser=None):
     package = verify_package(path)
-    with tempfile.TemporaryDirectory(prefix='lemmings-package-install-') as temporary:
+    full = package.get('original_game_data', False)
+    evidence = ROOT / 'assets/local' / ('web-package-check' if package['target'] == 'web' else 'linux-package-check')
+    if full:
+        evidence.mkdir(parents=True)
+    with tempfile.TemporaryDirectory(prefix='lemmings-package-install-', dir=evidence if full else None) as temporary:
         directory = Path(temporary)
         if package['target'] == 'web':
             with zipfile.ZipFile(path) as archive:
                 archive.extractall(directory)
-            smoke = check_web(directory, browser)
+            smoke = check_web(directory, browser, full)
+            if full:
+                pixels = base64.b64decode(smoke.pop('frame_rgb'), validate=True)
+                require(len(pixels) == 320*200*3, 'Truncated browser capture')
+                (evidence / 'original-fun01.ppm').write_bytes(b'P6\n320 200\n255\n' + pixels)
         else:
             with tarfile.open(path) as archive:
                 archive.extractall(directory, filter='data')
-            smoke = check_native(directory)
-    return dict(package=package, smoke=smoke)
+            if full:
+                from tools.check_linux_game_package import check as check_game
+                smoke = check_game(directory, evidence)
+            else:
+                smoke = check_native(directory)
+    report = dict(package=package, smoke=smoke)
+    if full:
+        from tools.verify_native_view import png_from_ppm
+        png_from_ppm(evidence / 'original-fun01.ppm')
+        (evidence / 'summary.json').write_text(json.dumps(report, indent=2) + '\n')
+    return report
 
 
 if __name__ == '__main__':

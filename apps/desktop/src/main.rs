@@ -72,7 +72,7 @@ impl Options {
                 assets::macos_bundle_directory(&std::env::current_exe()?)
                     .unwrap_or_else(|| "assets/local/dos-original".into())
             } else {
-                "assets/local/dos-original".into()
+                assets::linux_directory(&std::env::current_exe()?)
             },
             mute: false,
             volume: 40,
@@ -1368,7 +1368,6 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     if let Some(p) = &performance {
         p.finish(&game, video.current_video_driver(), canvas.info().name)?;
     }
-    #[cfg(any(windows, target_os = "macos"))]
     eprintln!(
         "LEMMINGS_AUDIO submitted={} nonzero={} active={} original={}",
         audio.submitted,

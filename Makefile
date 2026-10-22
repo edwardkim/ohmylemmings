@@ -58,11 +58,11 @@ serve-web:
 package-linux:
 	cargo build -p lemmings-desktop --release --locked --offline
 	python3 tools/release_package.py linux --runtime target/release/lemmings-desktop
-	python3 tools/check_release_package.py --archive assets/local/dist/ohmylemmings-0.1.0-dev-linux-x86_64.tar.gz
+	python3 tools/check_release_package.py --archive assets/local/dist/ohmylemmings-0.1.0-linux-x86_64.tar.gz
 
 package-web: web
 	python3 tools/release_package.py web --runtime assets/local/web
-	python3 tools/check_release_package.py --archive assets/local/dist/ohmylemmings-0.1.0-dev-web.zip
+	python3 tools/check_release_package.py --archive assets/local/dist/ohmylemmings-0.1.0-web.zip
 
 check-web:
 	python3 tools/check_web.py

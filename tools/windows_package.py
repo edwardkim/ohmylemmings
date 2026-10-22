@@ -16,16 +16,11 @@ from tools.reference_assets import checked_bytes, download_bytes
 from tools.release_package import archive_bytes, encoded, regular, require, sha
 from tools.web_build import source_bundle
 
-GAME_FILES = tuple(sorted(['ADLIB.DAT', 'MAIN.DAT', 'ODDTABLE.DAT', 'VGALEMMI.EXE']
-    + [f'LEVEL{i:03}.DAT' for i in range(10)] + [f'GROUND{i}O.DAT' for i in range(5)]
-    + [f'VGAGR{i}.DAT' for i in range(5)] + [f'VGASPEC{i}.DAT' for i in range(4)]))
+from tools.package_assets import GAME_FILES, game_pins, manifest
+
 BASE_FILES = {'OhMyLemmings.exe', 'SDL2.dll', 'SDL2-LICENSE.txt', 'LGPL-2.1-or-later.txt',
               'source.tar.gz', 'README.txt', 'REBUILD.md', 'start-game.cmd',
               'GAME-DATA.json', 'PACKAGE-MANIFEST.json', 'SHA256SUMS'}
-
-
-def manifest(root, name):
-    return json.loads((root/'assets/manifests'/name).read_text(encoding='utf-8'))
 
 
 def pe64(data, dll=False):
@@ -49,13 +44,6 @@ def fetch_sdl(destination, root=ROOT):
     for name, content in pending.items():
         require(Path(name).name == name and '/' not in name and '\\' not in name, 'Invalid SDL filename')
         (destination/name).write_bytes(content)
-
-
-def game_pins(root):
-    data = manifest(root, 'dos_original.json')
-    by_name = {row['name']: row for row in data['files']}
-    require(all(name in by_name for name in GAME_FILES), 'Original-game manifest is incomplete')
-    return data, [by_name[name] for name in GAME_FILES]
 
 
 def create(runtime, assets, sdl, output, root=ROOT):

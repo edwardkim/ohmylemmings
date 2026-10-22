@@ -15,6 +15,15 @@ pub fn bundled_directory(executable: &Path) -> PathBuf {
         .join("data")
 }
 
+pub fn linux_directory(executable: &Path) -> PathBuf {
+    let bundled = bundled_directory(executable);
+    if bundled.exists() {
+        bundled
+    } else {
+        "assets/local/dos-original".into()
+    }
+}
+
 pub fn macos_bundle_directory(executable: &Path) -> Option<PathBuf> {
     let directory = executable.parent()?;
     let contents = directory.parent()?;
@@ -61,6 +70,19 @@ pub fn load_id(root: &Path, level: LevelId) -> Result<Assets, Box<dyn Error>> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn linux_bundle_uses_sibling_data_and_preserves_unbundled_development() {
+        let root = std::env::temp_dir().join(format!("lemmings-linux-{}", std::process::id()));
+        let executable = root.join("한글 game/lemmings-desktop");
+        let data = executable.parent().unwrap().join("data");
+        assert_eq!(
+            linux_directory(&executable),
+            PathBuf::from("assets/local/dos-original")
+        );
+        fs::create_dir_all(&data).unwrap();
+        assert_eq!(linux_directory(&executable), data);
+        fs::remove_dir_all(root).unwrap();
+    }
     #[test]
     fn macos_bundle_uses_resources_and_development_keeps_its_default() {
         let app = Path::new("한글 game/OhMyLemmings.app/Contents/MacOS/OhMyLemmings");

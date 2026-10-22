@@ -1,7 +1,8 @@
-import init, { WebGame, WebAudio } from './pkg/lemmings_web.js';
+import init, { WebGame, WebAudio, WebAssets } from './pkg/lemmings_web.js';
 import { FramePump, present } from './host.js';
 import { AudioHost } from './audio.js';
 import { GameInput, readFiles } from './controls.js';
+import { loadBundled } from './bundled.js';
 
 const canvas = document.querySelector('#game');
 const context = canvas.getContext('2d', { alpha: false });
@@ -58,7 +59,8 @@ function fail(error) {
     stop();
     audio?.mute();
     console.error(error);
-    errorText.textContent = '게임을 실행하지 못했습니다. 새로고침해주세요.';
+    status.textContent = '시작 실패';
+    errorText.textContent = `게임을 실행하지 못했습니다: ${String(error)} 파일을 모두 압축 해제했는지 확인하고 새로고침해주세요.`;
     for (const control of document.querySelectorAll('button,select,input')) control.disabled = true;
 }
 function draw() {
@@ -141,7 +143,7 @@ files.addEventListener('change', async () => {
     finally { bank?.free(); loading = false; files.value = ''; draw(); }
 });
 document.addEventListener('visibilitychange', () => {
-    if (!game) return;
+    if (!input) return;
     input.release(); pump.suspend(); stop();
     audio?.hold(document.hidden||audioHeld);
     if (!document.hidden && draw()) schedule();
@@ -150,6 +152,12 @@ document.addEventListener('visibilitychange', () => {
 try {
     await init();
     game = new WebGame(scene.value, 'reference');
+    const bundled = await loadBundled(WebAssets, fetch, Boolean(document.querySelector('meta[name="game-data"]')));
+    if (bundled) {
+        try { game.load_original_rank(bundled, 'fun', 1); } finally { bundled.free(); }
+        difficulty.value = 'fun'; level.value = '1'; scene.value = '';
+        document.querySelector('#asset-help').textContent = '원본 그래픽·120개 레벨·음원이 준비되어 있습니다. 난이도와 레벨을 골라 플레이하세요. 다른 파일을 직접 선택할 수도 있습니다.';
+    }
     pump = newPump();
     const sound=document.querySelector('#sound'),volume=document.querySelector('#volume'),audioStatus=document.querySelector('#audio-status');
     const audioSupported=typeof globalThis.AudioContext==='function';
