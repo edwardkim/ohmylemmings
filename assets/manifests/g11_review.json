@@ -8,8 +8,8 @@
     {
       "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 178111,
-      "sha256": "0083ea8bb78a21b82fee13bcf8cd7d43835562c66bca2c70943d45c4903f1cc4"
+      "bytes": 181801,
+      "sha256": "c98b92266e160e04d2ff5e3507c6de014762ab9ecbf013ab6e38088bfc4d073d"
     },
     {
       "id": "performance",
@@ -10994,5 +10994,15 @@
       }
     ],
     "scope": "Refresh the scoped compatibility source index for the optional HD typed API and read-only Session getters. Frozen observations, NOT READY and #113 performance follow-up are unchanged; no HD performance or full-mode certification."
+  },
+  "source_maintenance_144": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/144",
+    "previous_compatibility_pin": {
+      "id": "compatibility",
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 178111,
+      "sha256": "0083ea8bb78a21b82fee13bcf8cd7d43835562c66bca2c70943d45c4903f1cc4"
+    },
+    "scope": "Refresh compatibility source-index pin for optional HD asset pack. Historical G11 NOT READY/performance and deferred #113 remain unchanged; no new performance qualification."
   }
 }

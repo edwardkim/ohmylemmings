@@ -76,6 +76,11 @@ pub struct LemmingAnimationInfo {
     pub foot_y: u8,
 }
 impl LemmingAnimationInfo {
+    /// Fixed source metadata, available without loading original image bytes.
+    pub fn for_slot(slot: usize) -> Option<Self> {
+        ANIMATIONS.get(slot).copied()
+    }
+
     pub fn origin_offset(self) -> (i16, i16) {
         (-i16::from(self.foot_x), -i16::from(self.foot_y))
     }

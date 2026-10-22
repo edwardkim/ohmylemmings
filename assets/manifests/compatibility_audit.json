@@ -46,8 +46,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 3480,
-      "sha256": "05c42acbfa0c6833e4e089aeae2876bdfc58ae4ef7f2fc89f4880ba6ba1eb395"
+      "bytes": 3514,
+      "sha256": "89d5ed2cd5dafb94dd5e71b4eb697173edf217cbeed4f20a37c745438f00a026"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -280,9 +280,39 @@
       "sha256": "d01fe9a0f899b46fb28a5e6026b583385b3c2ac838c3b306d58cda0195d98a54"
     },
     {
+      "path": "assets/manifests/remaster_pack.json",
+      "bytes": 8842,
+      "sha256": "4fa9678af9841a46ae73d6a27b8c61750e0b0ffe8e60710409119cafc21d9d3e"
+    },
+    {
       "path": "assets/manifests/windows_runtime.json",
       "bytes": 932,
       "sha256": "d3cf8bc1dd53c54238de57115dd056ae648ff86d59bf74522e2f491a445fa3e1"
+    },
+    {
+      "path": "assets/remaster/issue-144-rock-v1.png",
+      "bytes": 2800649,
+      "sha256": "bc3827ea867384c62fe5f9c8f75f6ca724770d817d8749167131a9d17bbbfe32"
+    },
+    {
+      "path": "assets/remaster/issue-144-walk-v1.png",
+      "bytes": 907552,
+      "sha256": "a85552bb91740695545f01c4c8a20366a5028965d1c906cfe6ce09e8da1d0dff"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-144_rock_v1.txt",
+      "bytes": 1016,
+      "sha256": "2383ed99f50d226371e0d720bf382905b83aa0121db23bd32071ab1ba9eb68bb"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-144_walk_v1.txt",
+      "bytes": 1999,
+      "sha256": "ae031e222f2a922da4d5db22797050d3eec5ce875bfe852677e78d508b789fbc"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-144_walk_v2.txt",
+      "bytes": 952,
+      "sha256": "74068363ab103390acc49ab5f1cb56dcd4c6ce697c2e38d48c3667d9b1ff0021"
     },
     {
       "path": "crates/lemmings-audio/Cargo.toml",
@@ -530,6 +560,11 @@
       "sha256": "caac4781cc44cf70ad544d9a67d30427eadcf5b49846edb71b9906ff9d1fa562"
     },
     {
+      "path": "crates/lemmings-game/examples/hd_asset_probe.rs",
+      "bytes": 1217,
+      "sha256": "9825f19b3b044836b3910299819c727e56141c8dd56699712c464413233da93f"
+    },
+    {
       "path": "crates/lemmings-game/examples/performance_probe.rs",
       "bytes": 13286,
       "sha256": "7974fe49d7524c0ed593924e682a50d1ddc0a52b4f44c5f276ded1e94df4f2cf"
@@ -550,14 +585,19 @@
       "sha256": "f9994ad20de9121464ee54650229e717d7a29e3f78a7e8b646e8171fa834e2d9"
     },
     {
+      "path": "crates/lemmings-game/src/hd/assets.rs",
+      "bytes": 7608,
+      "sha256": "b99405c53603f8b5925df19d9fcafe472e7571d5f3c890290a65b0aa21eaec02"
+    },
+    {
       "path": "crates/lemmings-game/src/hd/layout.rs",
       "bytes": 6920,
       "sha256": "a97f8740a7ad20fc9395d51246384a4898870aa9ff2b8e7700f64ccc5794d0f1"
     },
     {
       "path": "crates/lemmings-game/src/hd/mod.rs",
-      "bytes": 854,
-      "sha256": "27de153066f2ecb2517b27de0230fc41798e06faca75db0814751caa749b09b4"
+      "bytes": 870,
+      "sha256": "22752bdfac7465504cdab635dc72bf99845e4272a2add3ec1c16470ffa63a56c"
     },
     {
       "path": "crates/lemmings-game/src/hd/snapshot.rs",
@@ -603,6 +643,11 @@
       "path": "crates/lemmings-game/tests/byte_source.rs",
       "bytes": 11500,
       "sha256": "41e76fd4ccd05e3e2dd209c1c1c05a219e29fe01969773ee942df7597b513a1a"
+    },
+    {
+      "path": "crates/lemmings-game/tests/hd_assets.rs",
+      "bytes": 4807,
+      "sha256": "6666996b0438336917285560bd4abbfce8ee3aa5bd30bbc0d0a49b92348f561e"
     },
     {
       "path": "crates/lemmings-game/tests/hd_presentation.rs",
@@ -781,8 +826,8 @@
     },
     {
       "path": "crates/lemmings-resources/src/sprites.rs",
-      "bytes": 33838,
-      "sha256": "88d0375463113ae34f3c412a5d9f0338ccee048b499501f60faf5e69c5e0d05e"
+      "bytes": 34013,
+      "sha256": "9ef61960c017129dde432ab95309676a349e26d601a71a090b34991cd32b8380"
     },
     {
       "path": "crates/lemmings-resources/src/terrain.rs",
@@ -1445,6 +1490,16 @@
       "sha256": "fbb030f94cf20641ef87a15e532d6960628d55683cf4ea456b2592cda259ef7f"
     },
     {
+      "path": "tools/hd_assets.py",
+      "bytes": 10990,
+      "sha256": "fc5976032649fc15f3538cf5430531a390105159f4fb85f1b6fff272368558b9"
+    },
+    {
+      "path": "tools/hd_assets_preview.html",
+      "bytes": 5836,
+      "sha256": "3217dfe5275c008003d69cb07c5d689f1f7ed703125bb9e580f2648ef6f6487d"
+    },
+    {
       "path": "tools/initial_reference.py",
       "bytes": 9394,
       "sha256": "bb4441fbe71564431b0d053247f3e3d769992eac42e7ec4b1694de90e4eab0e7"
@@ -1878,6 +1933,11 @@
       "path": "tools/tests/test_hazards.py",
       "bytes": 2439,
       "sha256": "f8eadc886c35156ebf60c86c4627600ded36e201b5c58a442d0350dddf586549"
+    },
+    {
+      "path": "tools/tests/test_hd_assets.py",
+      "bytes": 8274,
+      "sha256": "fee12ca7a0fc0fbe9d877a3678822d0058a246fa5aff71c24c0f031f87380cbc"
     },
     {
       "path": "tools/tests/test_initial_reference.py",
@@ -5251,5 +5311,41 @@
       "crates/lemmings-game/tests/hd_presentation.rs"
     ],
     "scope": "New optional typed HD presentation/coordinate API and tests; Session adds two read-only getters only. Original renderer, simulation algorithms, resource parsing, PCM and host paths unchanged. Historical COMP/replay/performance observations remain their original recordings; HD state/RGB/sound identity is separately tested with synthetic input. Native CI job limit changes from15 to25minutes after the first15minute timeout during existing audio checks; all checks and criteria retained."
+  },
+  "source_impact_144": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/144",
+    "baseline": "abd5fc8560597c9098c68ab7e9011ca2c216c8e8",
+    "previous_pins": [
+      {
+        "path": "Makefile",
+        "bytes": 3480,
+        "sha256": "05c42acbfa0c6833e4e089aeae2876bdfc58ae4ef7f2fc89f4880ba6ba1eb395"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/mod.rs",
+        "bytes": 854,
+        "sha256": "27de153066f2ecb2517b27de0230fc41798e06faca75db0814751caa749b09b4"
+      },
+      {
+        "path": "crates/lemmings-resources/src/sprites.rs",
+        "bytes": 33838,
+        "sha256": "88d0375463113ae34f3c412a5d9f0338ccee048b499501f60faf5e69c5e0d05e"
+      }
+    ],
+    "added": [
+      "crates/lemmings-game/src/hd/assets.rs",
+      "crates/lemmings-game/tests/hd_assets.rs",
+      "crates/lemmings-game/examples/hd_asset_probe.rs",
+      "tools/hd_assets.py",
+      "tools/hd_assets_preview.html",
+      "tools/tests/test_hd_assets.py",
+      "assets/manifests/remaster_pack.json",
+      "assets/remaster/issue-144-rock-v1.png",
+      "assets/remaster/issue-144-walk-v1.png",
+      "assets/remaster/prompts/issue-144_rock_v1.txt",
+      "assets/remaster/prompts/issue-144_walk_v1.txt",
+      "assets/remaster/prompts/issue-144_walk_v2.txt"
+    ],
+    "scope": "Optional HD RGBA pack loader/assets/tooling. Resources adds fixed animation metadata getter; simulation, original renderer/PCM and host input unchanged. Python CI validates new PNGs/pack; historical COMP/replays/performance remain original observations. Alpha cutoff1 is explicit and packed source samples are unedited."
   }
 }

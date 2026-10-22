@@ -9,4 +9,8 @@
 
 이 폴더에는 새로 생성한 디자인 후보를 보관한다. 원본 캡처/바이너리는 Git에 넣지 않으며 ignored assets/local에서만 참조한다. 원본 데이터·캐릭터/상표의 권리와 기존 제3자 고지에 새 허가를 부여하지 않는다. 게임 글자·숫자·배치·물리 경계는 생성 그림 대신 명시한 계약과 실제 세션을 따른다.
 
-런타임용 리소스가 추가되면 분리된 상태/방향/frame·발 기준점·내부 사각형·hash·제작/검증 상태를 manifest에 연결한다. 현재 runtime_ready는 false이며 실제 HD 애니메이션 자산은0개다.
+[#144 HD-03a](https://github.com/edwardkim/ohmylemmings/issues/144)에서 [걷기16프레임](issue-144-walk-v1.png)과 [암석 재질](issue-144-rock-v1.png)을 별도 PNG로 제작했다. [팩 manifest](../manifests/remaster_pack.json)에 원본 slot/frame·실제 사각형·표시 크기/발 기준점과 hash를 연결한다. [걷기 프롬프트](prompts/issue-144_walk_v1.txt), [암석 프롬프트](prompts/issue-144_rock_v1.txt), [결과/재현 명령](../../mydocs/reports/issue-144_hd_assets.md)을 참고한다.
+
+선택 PNG는 수정 없이 보존한다. 걷기 atlas의alpha1 잔여는 팩의 명시적 cutoff1에 따라 표시 시 제외하며, 나머지 alpha와 픽셀은 유지한다. 보행/색 번짐의 실제 게임 검토와 암석의 반복 경계 인증은 후속이다. 팩 후보의2애니메이션/16프레임과 실제 게임 통합 완료를 구분한다. `runtime_ready=false`이며 실제 앱에 통합한 HD 애니메이션은0개다.
+
+[자산 미리보기 화면](previews/issue-144_assets.png)은 실제 브라우저의 PNG/발 기준점 검토 화면이다. 게임 플레이 캡처가 아니며, 재생 도구는 위 결과 보고서의 명령으로 만든다.

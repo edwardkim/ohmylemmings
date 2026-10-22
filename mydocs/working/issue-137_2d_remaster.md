@@ -13,3 +13,5 @@ built-in image_gen으로 부드러운 손그림풍2D의1672×941 시안을 제�
 HD-01은 PR #139/merge5a543b3로 병합하고 #138을 완료했다. 메인테이너 다음 진행 승인으로 [HD-02 / #140](issue-140_hd_presentation.md)을 등록·확인하고 typed HD snapshot·좌표/입력 계약과 합성16개 테스트를 구현했다. 정확한 로컬/CI·병합은 [#140 결과](../reports/issue-140_hd_presentation.md)를 따른다. 실제 HD 자산/표시·한 레벨/전체 확장·지원 플랫폼/패키지는 [상위 계획](../plans/issue-137_2d_remaster.md)의 후속이다.
 
 HD-02 #140은 PR #141 실제 병합·동일 tree와 최종 CI7개 SUCCESS로 완료했다. Web180초 대기 실패는 같은 head의 해당 job 재실행으로 통과했고 Native15분 취소/설치 지연·실패 이력은 #140 보고서에 보존했다. 다음은 HD-03 분리 캐릭터/애니메이션·지형·시설/UI 자산 제작/로딩·검증이다. 실제 HD 플레이 화면·전체 자산은 미구현이므로 #137은 OPEN을 유지한다.
+
+사용자 다음 단계 승인으로 #144 HD-03a를 등록·확인하고 걷기 좌우16프레임·암석 분리 PNG와 RGBA 팩 로더/검증을 구현한다. 실제 HD 게임과 다른 동작/시설/UI는 후속으로 유지한다. [진행](issue-144_hd_assets.md), [결과](../reports/issue-144_hd_assets.md).

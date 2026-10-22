@@ -90,7 +90,9 @@
     "special_scenes": 4,
     "ui_families": 19,
     "ui_images": 200,
-    "available_runtime_hd_animations": 0
+    "available_runtime_hd_animations": 0,
+    "available_hd_pack_candidate_animations": 2,
+    "available_hd_pack_candidate_frames": 16
   },
   "animations": [
     {
@@ -104,8 +106,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "pack_candidate_not_integrated",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 0,
+        "frames": 8
+      }
     },
     {
       "slot": 1,
@@ -132,8 +138,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "pack_candidate_not_integrated",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 2,
+        "frames": 8
+      }
     },
     {
       "slot": 3,
@@ -653,9 +663,8 @@
     "Generated panel omits release-rate and Nuke controls; production must implement every specified panel command."
   ],
   "next_implementation": [
-    "HD render snapshot/viewport/input contract and synthetic tests",
-    "Layered character/terrain/facility/UI production assets and checks",
-    "Fun01 actual Native/Web integration using unchanged core",
+    "HD-03 remaining facilities/skill animation/UI production and checks",
+    "Fun01 actual Native/Web HD integration using unchanged core",
     "Full theme/state/level expansion and packaging"
   ],
   "validation": {
@@ -678,5 +687,12 @@
     "missing_links": 0,
     "runtime_code_unchanged": true,
     "runtime_ready": false
-  }
+  },
+  "followup_144": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/144",
+    "manifest": "assets/manifests/remaster_pack.json",
+    "scope": "2 walking slots/16 frames and rock material; alpha cutoff1 explicit; candidate, not actual HD game integration",
+    "runtime_ready": false
+  },
+  "validation_scope": "The validation object records original #138 concept checks. Current #144 pack validation is recorded separately in remaster_pack.json and the #144 report."
 }
