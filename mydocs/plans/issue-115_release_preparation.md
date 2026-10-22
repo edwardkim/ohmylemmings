@@ -6,10 +6,10 @@
 
 사용자가 #115의 완료 항목 정리와 잔여 작업 분리 권고안을 수용했다. Linux/Web 개발 패키징(#117), Windows 전체 게임(#118), macOS universal2(#120), Linux/Web 원본 동봉(#122), 버전·태그 정책/공개 v0.1.0(#124), GitHub Pages 플레이(#126)를 완료했다. [최종 정리·검증](../reports/issue-115_release_preparation.md#배포-준비-완료와-후속-이관--2026-10-22)을 따른다.
 
-| 후속 | 남은 범위 |
+| 후속 | 현재 상태·범위 |
 |---|---|
 | [#129](https://github.com/edwardkim/ohmylemmings/issues/129) | 자체 코드 MIT 선택·고지/metadata 정비 적용 완료. [보고서](../reports/issue-129_project_license.md) |
-| [#130](https://github.com/edwardkim/ohmylemmings/issues/130) | Windows 10/11 각각의 사용자 PC 화면·입력·실제 청취 기록 |
+| [#130](https://github.com/edwardkim/ohmylemmings/issues/130) | 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정. Windows 10 미검증. [보고서](../reports/issue-130_maintainer_acceptance.md) |
 | [#113](https://github.com/edwardkim/ohmylemmings/issues/113) | 더 좋은 호스트의 성능·구간 메모리 재검증 |
 
 Mac의 ad-hoc/미공증은 현재 공개 플레이 배포의 안내 조건이다. Developer ID가 없는 상태에서 새 인증서 작업을 시작하지 않는다. #115 종료는 배포 준비의 완료이며 G11 성능 합격·G12 전체 완료나 라이선스 선택을 뜻하지 않는다.
