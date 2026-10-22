@@ -5,9 +5,10 @@
   "status": "MEASURED-WITH-DISPATCH-FOLLOWUP",
   "source": [
     {
-      "path": "apps/web/www/app.js",
+      "path": "tools/performance/reference/issue111-app.js",
       "bytes": 8577,
-      "sha256": "db8e52135fea78b358b2d3cf9560e55b18cc48e6bdc3d84a86e3c28a21d3952d"
+      "sha256": "db8e52135fea78b358b2d3cf9560e55b18cc48e6bdc3d84a86e3c28a21d3952d",
+      "original_path": "apps/web/www/app.js"
     },
     {
       "path": "apps/web/www/host.js",
@@ -20,9 +21,10 @@
       "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
     },
     {
-      "path": "tools/performance/live.js",
+      "path": "tools/performance/reference/issue111-live.js",
       "bytes": 6035,
-      "sha256": "0a55e410f323d16f5f2bcf90b6c26d9255ea36a66aae3367f0a1d3815b37548b"
+      "sha256": "0a55e410f323d16f5f2bcf90b6c26d9255ea36a66aae3367f0a1d3815b37548b",
+      "original_path": "tools/performance/live.js"
     },
     {
       "path": "tools/performance/measure.js",
@@ -30,9 +32,10 @@
       "sha256": "026c63039b25050285fbb8f406222976c3bd7cda31f3aa625482f9f18fa5bf2a"
     },
     {
-      "path": "tools/performance/cdp.cjs",
+      "path": "tools/performance/reference/issue111-cdp.cjs",
       "bytes": 7130,
-      "sha256": "6acd5e3af8b673acc658b256ecf68109ebbd32f870b1da0147ccf02e8596d00b"
+      "sha256": "6acd5e3af8b673acc658b256ecf68109ebbd32f870b1da0147ccf02e8596d00b",
+      "original_path": "tools/performance/cdp.cjs"
     },
     {
       "path": "tools/performance/check_measure.js",
@@ -836,5 +839,26 @@
     "All 7 full observations retained. A failed5s harness probe and corrected5s sanity run are local diagnostics; neither is a 60s performance pass.",
     "Original21music/18effects PCM engine and host source unchanged; old #106/#107 PCM proof reused, no claim of fresh40original PCM executions.",
     "#110 historical ready=false is preserved. #113 must resolve actual dispatch completion misses before whole G11/G12 readiness."
-  ]
+  ],
+  "source_relocation_113": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/113",
+    "scope": "The #111 producer/final tool source bytes are preserved under reference paths after #113 changes current host/tool code. Historical observations, summaries and NOT READY verdict are unchanged.",
+    "files": [
+      {
+        "original_path": "apps/web/www/app.js",
+        "path": "tools/performance/reference/issue111-app.js",
+        "sha256": "db8e52135fea78b358b2d3cf9560e55b18cc48e6bdc3d84a86e3c28a21d3952d"
+      },
+      {
+        "original_path": "tools/performance/live.js",
+        "path": "tools/performance/reference/issue111-live.js",
+        "sha256": "0a55e410f323d16f5f2bcf90b6c26d9255ea36a66aae3367f0a1d3815b37548b"
+      },
+      {
+        "original_path": "tools/performance/cdp.cjs",
+        "path": "tools/performance/reference/issue111-cdp.cjs",
+        "sha256": "6acd5e3af8b673acc658b256ecf68109ebbd32f870b1da0147ccf02e8596d00b"
+      }
+    ]
+  }
 }

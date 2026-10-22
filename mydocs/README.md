@@ -96,3 +96,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 [#110 전체 검토](reports/issue-110_g11_closure.md)에서120개/COMP·Native 보정 증거를 재확인했습니다. Web 콜백 예산 초과3건·완료 마감/구간 메모리 증거 부족은 [#111](https://github.com/edwardkim/ohmylemmings/issues/111)에서 보완하며 G11과G12는 미완료입니다.
 
 [#111 Web 관측 보완](reports/issue-111_web_deadlines.md)에서 rAF 시각/완료와 구간 메모리 표본을 확보했습니다. 무조회60초3회의 마감 초과2/0/1과 추가 draw는 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에서 진단하며 G11/G12는 미완료입니다.
+
+현재 [#113 Web 보정·측정](reports/issue-113_web_dispatch.md)은 남은 성능 검증을 더 좋은 호스트에 이월했다. 사용자 승인에 따라 [#115 배포 준비](plans/issue-115_release_preparation.md)에 착수한다. 성능 합격이나 G12 완료를 뜻하지 않는다.

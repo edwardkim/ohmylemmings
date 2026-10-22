@@ -31,8 +31,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 2801,
-      "sha256": "4f5ae0c1291ae4260460a03586e2a2ce8b4abced90b155e4db356d46cfc5ead5"
+      "bytes": 2832,
+      "sha256": "8f053e62cbafa88f0ba56f356a4b3b93e5d750cd269be70b2428a0d1607b1ec8"
     },
     {
       "path": "apps/audio-probe/Cargo.toml",
@@ -55,6 +55,11 @@
       "sha256": "eafc737e49a872489a270a26e0f7d9f249c7cf13661752ea28c9ea0f7fa78296"
     },
     {
+      "path": "apps/audio-probe/src/performance.rs",
+      "bytes": 3076,
+      "sha256": "70ee850598030f6c39c4c4b0412e076c8bcb4c30a9283b01dfd50142d964f28e"
+    },
+    {
       "path": "apps/desktop/Cargo.toml",
       "bytes": 592,
       "sha256": "fb98a890c1c3f80c4c909bf34d60be2debdb6fa4ed8cd47a44945e3e4c209861"
@@ -68,6 +73,11 @@
       "path": "apps/desktop/src/audio.rs",
       "bytes": 8216,
       "sha256": "e97552314cfd3769eed20e611ab17aca9e9034dd755f637f570cb5b9091f71f0"
+    },
+    {
+      "path": "apps/desktop/src/frame_clock.rs",
+      "bytes": 4752,
+      "sha256": "1c3db05122cd596c243f9b8403b623813fc5880722c2db75454cb09a69f326e4"
     },
     {
       "path": "apps/desktop/src/input.rs",
@@ -93,6 +103,11 @@
       "path": "apps/desktop/src/panel.rs",
       "bytes": 111,
       "sha256": "020f7eca9f9906e82d596ec72e940d743c3feb8cf5cda4113c29a1b12b30aba1"
+    },
+    {
+      "path": "apps/desktop/src/performance.rs",
+      "bytes": 5317,
+      "sha256": "8596aef98702f858afea5d90b5d397f6354cad60b00f4f903a9128625059d29d"
     },
     {
       "path": "apps/desktop/src/playthrough_tests.rs",
@@ -191,8 +206,8 @@
     },
     {
       "path": "apps/web/www/app.js",
-      "bytes": 8577,
-      "sha256": "db8e52135fea78b358b2d3cf9560e55b18cc48e6bdc3d84a86e3c28a21d3952d"
+      "bytes": 8994,
+      "sha256": "5708479039abbee23d07a1a0ba4a1423969d680a73ef21ab98d1729273e4737c"
     },
     {
       "path": "apps/web/www/audio-license.html",
@@ -468,6 +483,11 @@
       "path": "crates/lemmings-game/Cargo.toml",
       "bytes": 500,
       "sha256": "b65fc4f245f60167271198e0138feee2708b60e34c6bff289d1bfc52f5a503b4"
+    },
+    {
+      "path": "crates/lemmings-game/examples/performance_probe.rs",
+      "bytes": 13286,
+      "sha256": "7974fe49d7524c0ed593924e682a50d1ddc0a52b4f44c5f276ded1e94df4f2cf"
     },
     {
       "path": "crates/lemmings-game/src/assets.rs",
@@ -956,8 +976,8 @@
     },
     {
       "path": "tools/check_web.py",
-      "bytes": 12206,
-      "sha256": "0323ece39d2a4d0ec82494f8933a14e5b5db7cb6ef3146d407e03bae46d82b13"
+      "bytes": 12247,
+      "sha256": "c52b46b3a9055c4005f437435c0004d67d5de4ca04576ab719c3b2fed9f8a55b"
     },
     {
       "path": "tools/check_web_journey.py",
@@ -1135,6 +1155,11 @@
       "sha256": "c75e62c739ae597ddd68373fab4e175f9dbba696b8aa14a88af37d95167d7e7a"
     },
     {
+      "path": "tools/g11_review.py",
+      "bytes": 6847,
+      "sha256": "fbb030f94cf20641ef87a15e532d6960628d55683cf4ea456b2592cda259ef7f"
+    },
+    {
       "path": "tools/initial_reference.py",
       "bytes": 9394,
       "sha256": "bb4441fbe71564431b0d053247f3e3d769992eac42e7ec4b1694de90e4eab0e7"
@@ -1310,6 +1335,61 @@
       "sha256": "c1cb15c64d1155893d30689216a4001c48bbb7b60406dac477066bd30fe23d2c"
     },
     {
+      "path": "tools/performance.py",
+      "bytes": 5877,
+      "sha256": "2bb73eb1c0ea02eb820fc436f57f33a09d79d505d13b6d5db5af252522fc1670"
+    },
+    {
+      "path": "tools/performance/algorithm.js",
+      "bytes": 4676,
+      "sha256": "3fbdfef9dd3f1dce5ab7d35607aa36a626ce3d09eb7c153fc6d3e9ed76a6b2aa"
+    },
+    {
+      "path": "tools/performance/cdp.cjs",
+      "bytes": 10058,
+      "sha256": "38037d724357a0c1fc53ad2649c0fe574ade6e6cf849b1a0148c387bd8828464"
+    },
+    {
+      "path": "tools/performance/check_measure.js",
+      "bytes": 1353,
+      "sha256": "8d5c668f109ca3c2379f8d10ddf7717d84ab393f5d554ece28f170e42f46a078"
+    },
+    {
+      "path": "tools/performance/ci_shell.py",
+      "bytes": 877,
+      "sha256": "f4be31f90a09fef38971c4b3ac057081a3be5947700a461fd587154eeb3e425c"
+    },
+    {
+      "path": "tools/performance/dispatch_events.js",
+      "bytes": 1530,
+      "sha256": "86c71f35f3fd4744ba65e77c97fd585e788b754fb53e60781961ef340091b9b5"
+    },
+    {
+      "path": "tools/performance/live.js",
+      "bytes": 6454,
+      "sha256": "7cb705e13069c01898e2dc6c19b0a50af82dc9bd712e960c44c62305c6f5613f"
+    },
+    {
+      "path": "tools/performance/measure.js",
+      "bytes": 1305,
+      "sha256": "026c63039b25050285fbb8f406222976c3bd7cda31f3aa625482f9f18fa5bf2a"
+    },
+    {
+      "path": "tools/performance/reference/issue111-app.js",
+      "bytes": 8577,
+      "sha256": "db8e52135fea78b358b2d3cf9560e55b18cc48e6bdc3d84a86e3c28a21d3952d"
+    },
+    {
+      "path": "tools/performance/reference/issue111-cdp.cjs",
+      "bytes": 7130,
+      "sha256": "6acd5e3af8b673acc658b256ecf68109ebbd32f870b1da0147ccf02e8596d00b"
+    },
+    {
+      "path": "tools/performance/reference/issue111-live.js",
+      "bytes": 6035,
+      "sha256": "0a55e410f323d16f5f2bcf90b6c26d9255ea36a66aae3367f0a1d3815b37548b"
+    },
+    {
       "path": "tools/reference_assets.py",
       "bytes": 4272,
       "sha256": "ee5ac0096b77bc27aed41d28434d49a1c03a6de5062aab71a9b84de8ce38f3db"
@@ -1455,6 +1535,11 @@
       "sha256": "a7108151a2e2bb7af8b26975507136a88b17008167ab7e6268d4b3bbbce5e19d"
     },
     {
+      "path": "tools/tests/test_g11_review.py",
+      "bytes": 2403,
+      "sha256": "9468d6ba7d6c9c6a60f66e3e5ae50bed43ccbe1d91e3a12a778655770c371a17"
+    },
+    {
       "path": "tools/tests/test_game_sound.py",
       "bytes": 2509,
       "sha256": "1f781ec9935f3b760673f026314ccd7daf9fa54a75f6ed6858cb922bb010902e"
@@ -1495,6 +1580,11 @@
       "sha256": "c4bc91c941e675a1156d6577190447dc43d608f5b37e4f3a888daac5b88ae0ab"
     },
     {
+      "path": "tools/tests/test_performance.py",
+      "bytes": 3251,
+      "sha256": "a91afae0df445fa8075c7d9eb0bdc429d018d40c2d7ff522e4b6dd127cfd9038"
+    },
+    {
       "path": "tools/tests/test_playthrough.py",
       "bytes": 2683,
       "sha256": "43244deb2785caf81996ab1a3c4689e686c708aac346d8cd3490bba0161b6f2b"
@@ -1533,6 +1623,16 @@
       "path": "tools/tests/test_web_build.py",
       "bytes": 7627,
       "sha256": "663bff1374f6e066242d29a87f304551825985c4b65c65c2ba34a2659aefbcd4"
+    },
+    {
+      "path": "tools/tests/test_web_deadlines.py",
+      "bytes": 2834,
+      "sha256": "90221a0d2c46d5cd95562ba3cac8be99afa0eed780476c0f8ad26bd7b25409a2"
+    },
+    {
+      "path": "tools/tests/test_web_dispatch.py",
+      "bytes": 2783,
+      "sha256": "2850aeb5d814c5438f1d77ff6f4d5233eb2fb6b4735d01ebc5315017b8bf69e3"
     },
     {
       "path": "tools/tests/test_web_journey.py",
@@ -1651,8 +1751,13 @@
     },
     {
       "path": "tools/web/check.js",
-      "bytes": 8730,
-      "sha256": "8bf8b5e1055bc02c36c84b97cf28c250b4a068aaf8d57a4245286a4dc19f86ac"
+      "bytes": 8840,
+      "sha256": "c638861cc3e60fe032328bd6324d572d8830967ee758c8b840ce3a3fb6a545f8"
+    },
+    {
+      "path": "tools/web/dispatch_check.js",
+      "bytes": 4687,
+      "sha256": "42c99dbd064f92e946a90ad4783e5f38b5b3986d568a46bbcf2e311eeb3ebb22"
     },
     {
       "path": "tools/web/dom_check.js",
@@ -1695,6 +1800,16 @@
       "sha256": "7b20c57acd011af968d80e94d2d62e370cbf6f4cf9b64f77e8e862cb654a1010"
     },
     {
+      "path": "tools/web_deadlines.py",
+      "bytes": 9334,
+      "sha256": "09bc81584aadb8aa60e4df5c5181d7a91dd81194097c682eef8bafd3f48d44b2"
+    },
+    {
+      "path": "tools/web_dispatch.py",
+      "bytes": 7987,
+      "sha256": "3cfdde625f57232065d3ea8bf8a5fb102dcbdbb6e49ab8c365fb1e516ff033cd"
+    },
+    {
       "path": "tools/web_fixture.py",
       "bytes": 3457,
       "sha256": "bff990ca6b763edb1e46c5d0203a5569d2ff1ee5cd2083fb18d700b8898b8ae1"
@@ -1703,86 +1818,6 @@
       "path": "tools/web_journey.py",
       "bytes": 5636,
       "sha256": "3f9834c056b886939ae46831390958880835a147b0b6c01320a514bb73018e06"
-    },
-    {
-      "path": "apps/desktop/src/performance.rs",
-      "bytes": 5317,
-      "sha256": "8596aef98702f858afea5d90b5d397f6354cad60b00f4f903a9128625059d29d"
-    },
-    {
-      "path": "apps/audio-probe/src/performance.rs",
-      "bytes": 3076,
-      "sha256": "70ee850598030f6c39c4c4b0412e076c8bcb4c30a9283b01dfd50142d964f28e"
-    },
-    {
-      "path": "crates/lemmings-game/examples/performance_probe.rs",
-      "bytes": 13286,
-      "sha256": "7974fe49d7524c0ed593924e682a50d1ddc0a52b4f44c5f276ded1e94df4f2cf"
-    },
-    {
-      "path": "tools/performance.py",
-      "bytes": 5877,
-      "sha256": "2bb73eb1c0ea02eb820fc436f57f33a09d79d505d13b6d5db5af252522fc1670"
-    },
-    {
-      "path": "tools/tests/test_performance.py",
-      "bytes": 3251,
-      "sha256": "a91afae0df445fa8075c7d9eb0bdc429d018d40c2d7ff522e4b6dd127cfd9038"
-    },
-    {
-      "path": "tools/performance/algorithm.js",
-      "bytes": 4676,
-      "sha256": "3fbdfef9dd3f1dce5ab7d35607aa36a626ce3d09eb7c153fc6d3e9ed76a6b2aa"
-    },
-    {
-      "path": "tools/performance/live.js",
-      "bytes": 6035,
-      "sha256": "0a55e410f323d16f5f2bcf90b6c26d9255ea36a66aae3367f0a1d3815b37548b"
-    },
-    {
-      "path": "tools/performance/cdp.cjs",
-      "bytes": 7130,
-      "sha256": "6acd5e3af8b673acc658b256ecf68109ebbd32f870b1da0147ccf02e8596d00b"
-    },
-    {
-      "path": "tools/performance/ci_shell.py",
-      "bytes": 877,
-      "sha256": "f4be31f90a09fef38971c4b3ac057081a3be5947700a461fd587154eeb3e425c"
-    },
-    {
-      "path": "apps/desktop/src/frame_clock.rs",
-      "bytes": 4752,
-      "sha256": "1c3db05122cd596c243f9b8403b623813fc5880722c2db75454cb09a69f326e4"
-    },
-    {
-      "path": "tools/g11_review.py",
-      "bytes": 6847,
-      "sha256": "fbb030f94cf20641ef87a15e532d6960628d55683cf4ea456b2592cda259ef7f"
-    },
-    {
-      "path": "tools/tests/test_g11_review.py",
-      "bytes": 2403,
-      "sha256": "9468d6ba7d6c9c6a60f66e3e5ae50bed43ccbe1d91e3a12a778655770c371a17"
-    },
-    {
-      "path": "tools/web_deadlines.py",
-      "bytes": 9334,
-      "sha256": "09bc81584aadb8aa60e4df5c5181d7a91dd81194097c682eef8bafd3f48d44b2"
-    },
-    {
-      "path": "tools/tests/test_web_deadlines.py",
-      "bytes": 2834,
-      "sha256": "90221a0d2c46d5cd95562ba3cac8be99afa0eed780476c0f8ad26bd7b25409a2"
-    },
-    {
-      "path": "tools/performance/measure.js",
-      "bytes": 1305,
-      "sha256": "026c63039b25050285fbb8f406222976c3bd7cda31f3aa625482f9f18fa5bf2a"
-    },
-    {
-      "path": "tools/performance/check_measure.js",
-      "bytes": 1353,
-      "sha256": "8d5c668f109ca3c2379f8d10ddf7717d84ab393f5d554ece28f170e42f46a078"
     }
   ],
   "evidence": [
@@ -4387,5 +4422,51 @@
       "tools/performance/check_measure.js"
     ],
     "scope": "Measurement/validation tools only. Production game, simulation/resources, rasterizer, host pacing and PCM unchanged. Full120 replay remains historical. New observer arity/Canvas and original-free browser/native identity checks, measured raw pins and unresolved dispatch misses are recorded in web_deadlines.json. #113 remains open; G11/G12 are not ready."
+  },
+  "source_impact_113": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/113",
+    "baseline_main": "3426212be0015d145b1e2f3ebdd1c726c6a1e250",
+    "previous_pins": [
+      {
+        "path": "Makefile",
+        "bytes": 2801,
+        "sha256": "4f5ae0c1291ae4260460a03586e2a2ce8b4abced90b155e4db356d46cfc5ead5"
+      },
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 8577,
+        "sha256": "db8e52135fea78b358b2d3cf9560e55b18cc48e6bdc3d84a86e3c28a21d3952d"
+      },
+      {
+        "path": "tools/check_web.py",
+        "bytes": 12206,
+        "sha256": "0323ece39d2a4d0ec82494f8933a14e5b5db7cb6ef3146d407e03bae46d82b13"
+      },
+      {
+        "path": "tools/web/check.js",
+        "bytes": 8730,
+        "sha256": "8bf8b5e1055bc02c36c84b97cf28c250b4a068aaf8d57a4245286a4dc19f86ac"
+      },
+      {
+        "path": "tools/performance/live.js",
+        "bytes": 6035,
+        "sha256": "0a55e410f323d16f5f2bcf90b6c26d9255ea36a66aae3367f0a1d3815b37548b"
+      },
+      {
+        "path": "tools/performance/cdp.cjs",
+        "bytes": 7130,
+        "sha256": "6acd5e3af8b673acc658b256ecf68109ebbd32f870b1da0147ccf02e8596d00b"
+      }
+    ],
+    "added": [
+      "tools/performance/dispatch_events.js",
+      "tools/performance/reference/issue111-app.js",
+      "tools/performance/reference/issue111-live.js",
+      "tools/performance/reference/issue111-cdp.cjs",
+      "tools/web_dispatch.py",
+      "tools/tests/test_web_dispatch.py",
+      "tools/web/dispatch_check.js"
+    ],
+    "scope": "Web host reuses unchanged presented pixels between ticks and marks non-drawing input releases dirty; input remains synchronous, audio service runs every rAF, replaced scenes avoid duplicate attempt draw. Core/resources/pixel generation/PCM and native host unchanged. Historical full120 evidence remains historical. Actual43case/86run browser/native functional proof and normal60s three pairs are retained; deadline0/1/0 is NOT READY and user deferred better-host qualification while authorizing G12 preparation."
   }
 }

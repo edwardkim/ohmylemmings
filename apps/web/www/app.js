@@ -26,6 +26,8 @@ let request = null;
 let loading = false;
 let exited = false;
 let observer = null;
+let presentations = 0;
+let needsDraw = false;
 function notify(type, detail = {}) { if (observer) observer(type, game, detail); }
 const tickObserver = phase => notify(phase);
 function newPump() { return new FramePump(game,64,observer ? tickObserver : null); }
@@ -37,7 +39,7 @@ export function observe(listener) {
     if (listener && game) notify('attach');
     return () => { if (observer===listener) {observer=null;if(pump)pump.observer=null;} };
 }
-function invoke(op,args,fn) { notify('input',{op,args});return fn(); }
+function invoke(op,args,fn) { needsDraw=true;notify('input',{op,args});return fn(); }
 const inputGame={
     key:(...args)=>invoke('Key',[args[0],Number(args[1])],()=>game.key(...args)),
     pointer:(...args)=>invoke('Pointer',args,()=>game.pointer(...args)),
@@ -60,6 +62,8 @@ function fail(error) {
     for (const control of document.querySelectorAll('button,select,input')) control.disabled = true;
 }
 function draw() {
+    presentations++;
+    needsDraw=false;
     present(context, game.frame(), game.width(), game.height());
     const state = JSON.parse(game.state());
     const finished = state.completion && state.completion.phase !== 'Playing';
@@ -91,8 +95,11 @@ function frame(timestamp) {
     request = null;
     try {
         if (document.hidden) { pump.suspend(); return; }
-        pump.frame(timestamp);
-        if (draw()) schedule();
+        const ticks = pump.frame(timestamp);
+        // Inputs and replacements already draw synchronously. Between admitted
+        // ticks the pixels and UI are unchanged; still service real-time audio.
+        if (ticks || needsDraw) { if (draw()) schedule(); }
+        else { audio?.service(); schedule(); }
     } catch (error) { fail(error); }
 }
 function replaced(reason) {
@@ -109,7 +116,8 @@ function action(name) {
     else if ((name === 'restart' || name === 'continue') && game.transition(name)) replaced(name);
 }
 function attempt(fn) {
-    try { fn(); draw(); } catch (error) { recover(error); draw(); }
+    const before = presentations;
+    try { fn(); if (presentations === before) draw(); } catch (error) { recover(error); draw(); }
 }
 pause.addEventListener('click', () => attempt(() => {
     if (exited) { exited = false; pump.suspend(); schedule(); }

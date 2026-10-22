@@ -46,7 +46,7 @@ files=sorted(p.name for p in Path('assets/local/dos-original').iterdir() if p.na
 for name in files:shutil.copyfile(Path('assets/local/dos-original')/name,out/'files'/name)
 shutil.copyfile(native/'adlib-image.bin',out/'adlib-image.bin')
 (out/'plan.json').write_text(json.dumps(dict(cases=cases,sounds=sounds,files=files,levels=[f'{r}-{n:02}' for r in ['fun','tricky','taxing','mayhem'] for n in range(1,31)])))
-for name in ['algorithm.js','live.js']:shutil.copyfile(Path('tools/performance')/name,out/name)
+for name in ['algorithm.js','live.js','measure.js','dispatch_events.js']:shutil.copyfile(Path('tools/performance')/name,out/name)
 (out/'algorithm.html').write_text('<!doctype html><meta charset="utf-8"><p id="status">Measuring</p><canvas id="game" width="320" height="200"></canvas><script type="module" src="algorithm.js"></script>')
 (out/'live.html').write_text((out/'index.html').read_text().replace('src="./app.js"','src="./live.js"'))
 PY
@@ -72,8 +72,23 @@ CI uses `ci_shell.py -c COMMAND` as the GNU make shell to append `PERF_COMMAND` 
 
 [Results and limitations](../../mydocs/reports/issue-111_web_deadlines.md) and [machine evidence](../../assets/manifests/web_deadlines.json) retain all failures. The current live observer records `callbackDetails` columns: rAF timestamp/begin/end relative milliseconds, RGB/state/audio/putImageData/step/bookkeeping milliseconds and control step. Preparation reserves fixed Float64 buffers; rows/JSON/hashes are produced after stopping the interval. Bookkeeping is only a partial overhead observation, not a complete subtraction from engine time.
 
-Copy **both** `live.js` and `measure.js` into a fresh staging folder. Set `PERF_WEB_PATH` to that folder relative to `assets/local/web` (default `performance`). `PERF_HEAP_INTERVAL_MS=500` captures CDP corresponding-isolate heap samples; `0` records timing without repeated heap queries. Run each profile with three60second intervals and distinct output folders. `PERF_SECONDS=5` is for harness sanity only, never a60second performance result. Raw runs refuse overwrite; only `lifecycle` may reuse an evidence directory.
+Copy `live.js`, `measure.js` and `dispatch_events.js` into a fresh staging folder. Set `PERF_WEB_PATH` to that folder relative to `assets/local/web` (default `performance`). `PERF_HEAP_INTERVAL_MS=500` captures CDP corresponding-isolate heap samples; `0` records timing without repeated heap queries. Run each profile with three60second intervals and distinct output folders. `PERF_SECONDS=5` is for harness sanity only, never a60second performance result. Raw runs refuse overwrite; only `lifecycle` may reuse an evidence directory.
 
 Completion budget is rAF timestamp+1000/60ms. Dispatch delay, callback duration, completion lateness and timestamp gaps are distinct; none is physical scanout. Even initial callbacks whose supplied timestamp predates the interval remain in reported miss totals. Memory sampled peaks are lower bounds, not continuous or Runtime-exclusive peaks. WASM committed memory, JS/embedder heap, backing storage and recorder capacity overlap and must not be summed.
 
 `python3 tools/web_deadlines.py` recomputes numeric observations without originals; `--local` also checks private raw/source input pins. `--require-ready` currently exits1: measured timing misses2/0/1 remain in #113. This evidence-valid CI check does not declare G11/G12 ready. No product code or PCM algorithm was changed by #111.
+
+## Dispatch diagnosis (#113)
+
+Set `PERF_TARGET_ID` to an existing task-owned local8080 page to reuse that tab with a fresh navigation and disabled network cache. Without it, the CLI creates a task tab. Keep user tabs untouched and close completed task tabs. This selects a browser target; output evidence still requires a fresh directory.
+
+Use a fresh stage containing the current app/WASM, `live.js`, `measure.js` and `dispatch_events.js`. `PERF_DIAGNOSTIC=1` records fixed-capacity reset/input/present rows, including key/repeat and every pointer argument. `PERF_POINTER_PROBE=1` adds ten trusted CDP pointer moves after two seconds; it changes the input workload. Use one5second run for this probe, never as a60second performance gate.
+
+`PERF_TRACE=1` collects Chromium timeline, renderer scheduler, compositor/GPU and GC events without screenshots or JS stack sampling. Use `new 1`. The CLI saves the raw run before draining the trace stream, preserves `dataLossOccurred`, and rejects a trace with known data loss. Trace collection is a separate diagnostic profile, not an uninstrumented timing result. The trace clock marker plus `clockStart` map rAF measurements into trace time; match renderer and pipeline IDs before attributing a stage.
+
+```sh
+PERF_WEB_PATH=NEW_STAGE PERF_HEAP_INTERVAL_MS=0 PERF_DIAGNOSTIC=1 PERF_POINTER_PROBE=1 PERF_SECONDS=5 node tools/performance/cdp.cjs live NEW_POINTER_OUTPUT new 1
+PERF_WEB_PATH=NEW_STAGE PERF_HEAP_INTERVAL_MS=0 PERF_DIAGNOSTIC=1 PERF_TRACE=1 node tools/performance/cdp.cjs live NEW_TRACE_OUTPUT new 1
+```
+
+For the formal host comparison, alternate fixed before/after stages for three60second pairs with the same observer/CLI/input/WASM and no trace, diagnostic event buffer, heap polling, concurrent builds or tests. Keep all initial/steady-state misses. Unchanged rAF callbacks remain in deadline counts even when they reuse already presented pixels. Report Canvas uploads separately from callback frequency; fewer uploads of identical pixels are not fewer simulation ticks. See [#113 working record](../../mydocs/working/issue-113_web_dispatch.md).

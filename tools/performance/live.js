@@ -3,6 +3,7 @@ import {observe} from './app.js';
 import init,{WebGame} from './pkg/lemmings_web.js';
 import {AudioHost} from './audio.js';
 import {Series,timeMethod} from './measure.js';
+import {DispatchEvents} from './dispatch_events.js';
 const wasm=await init();
 let game,config=null,data=null,step=0,start=0,tickStart=0,lastPresent=null,host=null,current=null;
 const clock=()=>performance.now();
@@ -30,16 +31,18 @@ window.requestAnimationFrame=callback=>raf(timestamp=>{
   if(captured&&data===captured)captured.callbacks.push(timestamp-start,begin-start,end-start,costs[0],costs[1],costs[2],costs[3],costs[4],costs[5],step);
  }
 });
-observe((event,g)=>{
+observe((event,g,detail)=>{
  const observed=clock();game=g;
  if(event==='reset'){
   step=0;
   if(config){
    const capacity=Math.ceil(config.seconds*240)+1000;
    data={ticks:new Series(capacity,3),frames:new Series(capacity,2),audio:new Series(capacity*3,6),callbacks:new Series(capacity,10),visibility:[],startState:JSON.parse(g.state()),startSound:JSON.parse(g.sound_state()),initialAudioUnderruns:host?.underruns||0,wasmStart:wasm.memory.buffer.byteLength};
+   data.diagnostic=config.diagnostic?new DispatchEvents(capacity):null;
    start=clock();lastPresent=null;
   }
  }
+ if(data?.diagnostic)data.diagnostic.record(event,detail,clock()-start,step,Boolean(current));
  if(event==='before'&&config){for(const c of config.commands)if(c[0]===step)g.command(c[2],c[3]);tickStart=clock();}
  if(event==='after'){step++;if(data)data.ticks.push(clock()-start,step,clock()-tickStart);}
  if(event==='present'&&data){const at=clock()-start;data.frames.push(at,lastPresent===null?0:at-lastPresent);lastPresent=at;}
@@ -61,6 +64,9 @@ window.__perfLive={
    const finalStateRaw=game.state();const outputs=[new TextEncoder().encode(finalStateRaw),game.terrain(),game.bricks(),game.objects(),game.frame()];
    const frameRows=recorded.callbacks.rows();
    const result={status:'OBSERVED',id:c.id,seconds,finalStateRaw,ticks:recorded.ticks.rows(),frames:recorded.frames.rows(),audioSamples:recorded.audio.rows(),callbacks:frameRows.map(r=>[r[1],r[2]-r[1]]),callbackDetails:frameRows,callbackColumns:['raf_timestamp_ms','begin_ms','end_ms','rgb_ms','state_ms','audio_ms','put_image_ms','step_ms','observer_bookkeeping_ms','control_step'],visibility:recorded.visibility,startState:recorded.startState,startSound:recorded.startSound,initialAudioUnderruns:recorded.initialAudioUnderruns,wasmStart:recorded.wasmStart,wasmEnd,recorderReservedBytes:recorded.ticks.bytes+recorded.frames.bytes+recorded.audio.bytes+recorded.callbacks.bytes,finalState:JSON.parse(finalStateRaw),finalSound:JSON.parse(game.sound_state()),audio:{state:host.context.state,rate:host.context.sampleRate,baseLatency:host.context.baseLatency,outputLatency:host.context.outputLatency,submitted:host.submitted,underruns:host.underruns,sources:host.sources.size,scheduledChunk:512,hardwareQuantum:'not exposed by AudioBufferSource API'},environment:{userAgent:navigator.userAgent,width:320,height:200,devicePixelRatio,viewport:[innerWidth,innerHeight],canvasCss:[document.querySelector("#game").getBoundingClientRect().width,document.querySelector("#game").getBoundingClientRect().height],heap:performance.memory?{usedJSHeapSize:performance.memory.usedJSHeapSize,totalJSHeapSize:performance.memory.totalJSHeapSize,jsHeapSizeLimit:performance.memory.jsHeapSizeLimit}:null}};
+   result.clockStart=start;result.clockOrigin=performance.timeOrigin;
+   result.diagnostic=recorded.diagnostic?.result()||null;
+   result.recorderReservedBytes+=recorded.diagnostic?.bytes||0;
    game.command('Pause',0);
    try{resolve({...result,outputHashes:await Promise.all(outputs.map(sha))});}catch(error){resolve({...result,status:'FAIL',error:String(error)});}
   },c.seconds*1000));

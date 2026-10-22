@@ -101,3 +101,7 @@
 - [#110 G11 전체 결과·잔여 제약 검토](issue-110_g11_closure.md): 전수/COMP·성능 증거와 마감 조건 대조.
 
 - [#111 Web 표시 마감·메모리 보완](issue-111_web_deadlines.md)
+
+- [#113 Web rAF 지연·추가 그리기 진단](issue-113_web_dispatch.md): 입력·그리기·rAF 상관 관측부터 착수.
+
+- [#115 G12 배포 준비](issue-115_release_preparation.md): 사용자 승인으로 성능 재검증을 다른 호스트에 이월하고 패키징 계약부터 진행.
