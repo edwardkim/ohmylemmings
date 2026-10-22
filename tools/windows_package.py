@@ -15,6 +15,7 @@ if __package__ in (None, ''):
 from tools.reference_assets import checked_bytes, download_bytes
 from tools.release_package import archive_bytes, encoded, regular, require, sha
 from tools.web_build import source_bundle
+from tools.release_version import workspace_version, package_name
 
 from tools.package_assets import GAME_FILES, game_pins, manifest
 
@@ -47,9 +48,8 @@ def fetch_sdl(destination, root=ROOT):
 
 
 def create(runtime, assets, sdl, output, root=ROOT):
-    import tomllib
-    version = tomllib.loads((root/'Cargo.toml').read_text())['workspace']['package']['version']
-    path = output/f'ohmylemmings-{version}-windows-x86_64.zip'
+    version = workspace_version(root)
+    path = output/package_name('windows-x86_64', version)
     sidecar = Path(str(path)+'.sha256')
     if path.exists() or sidecar.exists(): raise FileExistsError(path)
     files = {'OhMyLemmings.exe': regular(runtime/'lemmings-desktop.exe')}

@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing annotated version tag (vX.Y.Z or vX.Y.Z-rc.N)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check version and tagged source
+        run: python3 tools/release_version.py check --tag "$RELEASE_TAG"
+      - name: Prepare all four verified CI packages
+        run: python3 tools/publish_release.py prepare --tag "$RELEASE_TAG" --directory assets/local/release
+      - name: Verify draft and publish the player downloads
+        run: python3 tools/publish_release.py publish --directory assets/local/release
+      - name: Preserve publication provenance
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-publication
+          path: |
+            assets/local/release/RELEASE-MANIFEST.json
+            assets/local/release/SHA256SUMS
+            assets/local/release/published.json
+          if-no-files-found: warn
+          retention-days: 14

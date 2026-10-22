@@ -110,3 +110,5 @@
 - [#120 macOS 전체 게임 앱](issue-120_macos_full_game.md): universal2·원본 동봉·실제 ARM/Intel 검사와 서명/공증 조건.
 
 - [#122 Linux·Web 전체 게임 패키지](issue-122_linux_web_full_game.md)
+
+- [#124 버전·태그 관리와 첫 다운로드 릴리즈](issue-124_release_policy.md)

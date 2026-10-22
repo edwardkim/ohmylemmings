@@ -17,6 +17,7 @@ if __package__ in (None,''):sys.path.insert(0,str(ROOT))
 from tools.reference_assets import checked_bytes, download_bytes
 from tools.release_package import encoded, regular, require, sha
 from tools.web_build import source_bundle
+from tools.release_version import workspace_version, package_name, parse_version
 from tools.windows_package import GAME_FILES, game_pins, manifest
 
 APP='OhMyLemmings.app'
@@ -69,15 +70,15 @@ def prepare_sdl(destination,root=ROOT):
 def app_info(version):
     return dict(CFBundleExecutable='OhMyLemmings',CFBundleIdentifier='com.github.edwardkim.ohmylemmings',
         CFBundleName='Oh My Lemmings',CFBundleDisplayName='Oh My Lemmings',CFBundlePackageType='APPL',
-        CFBundleShortVersionString=version,CFBundleVersion=version,LSMinimumSystemVersion='13.0',
+        CFBundleShortVersionString=parse_version(version)['base'],CFBundleVersion=parse_version(version)['base'],
+        CFBundleGetInfoString='Oh My Lemmings '+version,LSMinimumSystemVersion='13.0',
         NSHighResolutionCapable=True,NSPrincipalClass='NSApplication')
 
 
 def stage(binary,assets,sdl,destination,root=ROOT):
-    import tomllib
     app=destination/APP
     if app.exists():raise FileExistsError(app)
-    version=tomllib.loads((root/'Cargo.toml').read_text())['workspace']['package']['version']
+    version=workspace_version(root)
     files={EXE:regular(binary),LIB:regular(sdl/'libSDL2-2.0.0.dylib'),
            APP+'/Contents/Info.plist':plistlib.dumps(app_info(version)),
            RES+'SDL2-LICENSE.txt':checked_bytes(regular(sdl/'SDL2-LICENSE.txt'),manifest(root,'macos_runtime.json')['license'],'SDL license'),
@@ -103,9 +104,8 @@ def validate_app(files,version,root):
 
 
 def create(app,output,root=ROOT):
-    import tomllib
-    version=tomllib.loads((root/'Cargo.toml').read_text())['workspace']['package']['version']
-    path=output/f'ohmylemmings-{version}-macos-universal2.zip';sidecar=Path(str(path)+'.sha256')
+    version=workspace_version(root)
+    path=output/package_name('macos-universal2',version);sidecar=Path(str(path)+'.sha256')
     if path.exists() or sidecar.exists():raise FileExistsError(path)
     require(app.name==APP and not app.is_symlink(),'Invalid application directory')
     require(all(not p.is_symlink() for p in app.rglob('*')),'Application contains links')
