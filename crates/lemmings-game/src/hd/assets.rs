@@ -1,6 +1,8 @@
-//! HD-03a little-endian RGBA pack v1. PNG decoding and I/O belong to tools/hosts.
+//! HD-03 little-endian RGBA pack v1. PNG decoding and I/O belong to tools/hosts.
 //! Pixels are straight-alpha, sRGB-encoded RGBA8. CRC detects accidental damage;
 //! provenance/authenticity is supplied by the external SHA-256 manifest.
+use super::Control;
+use crate::panel;
 use lemmings_resources::LemmingAnimationInfo;
 use std::fmt;
 
@@ -9,8 +11,46 @@ const MAX_DIM: u32 = 4096;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum AssetKey {
-    Actor { slot: u8, frame: u16 },
+    Actor {
+        slot: u8,
+        frame: u16,
+    },
     Rock,
+    /// Original graphics set, object ID and absolute disk frame (not level slot).
+    Object {
+        set: u8,
+        id: u8,
+        frame: u16,
+    },
+    Icon(Control),
+}
+
+/// Stable atlas IDs. Skill order reuses the original panel contract; numeric
+/// labels, selection/disabled states and minimap content are drawn by hosts.
+pub const ICON_CONTROLS: [Control; 13] = [
+    Control::Skill(panel::SKILLS[0]),
+    Control::Skill(panel::SKILLS[1]),
+    Control::Skill(panel::SKILLS[2]),
+    Control::Skill(panel::SKILLS[3]),
+    Control::Skill(panel::SKILLS[4]),
+    Control::Skill(panel::SKILLS[5]),
+    Control::Skill(panel::SKILLS[6]),
+    Control::Skill(panel::SKILLS[7]),
+    Control::Slower,
+    Control::Faster,
+    Control::Pause,
+    Control::Nuke,
+    Control::Restart,
+];
+
+/// HD-03b supports only the first theme's exit and entrance. These bounds are
+/// pinned GROUND0O.DAT metadata, recorded in remaster_pack.json production.source_objects (#147).
+pub const fn object_frame_count(set: u8, id: u8) -> Option<u16> {
+    match (set, id) {
+        (0, 0) => Some(1),
+        (0, 1) => Some(10),
+        _ => None,
+    }
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -196,6 +236,16 @@ impl<'a> AssetPack<'a> {
                     AssetKey::Actor { slot, frame }
                 }
                 1 if slot == 0 && frame == 0 => AssetKey::Rock,
+                2 => {
+                    let (set, id) = (slot / 16, slot % 16);
+                    if frame >= object_frame_count(set, id).ok_or(AssetError::Key)? {
+                        return Err(AssetError::Key);
+                    }
+                    AssetKey::Object { set, id, frame }
+                }
+                3 if frame == 0 => {
+                    AssetKey::Icon(*ICON_CONTROLS.get(slot as usize).ok_or(AssetError::Key)?)
+                }
                 _ => return Err(AssetError::Key),
             };
             let atlas = r.u16()?;

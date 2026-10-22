@@ -91,8 +91,10 @@
     "ui_families": 19,
     "ui_images": 200,
     "available_runtime_hd_animations": 0,
-    "available_hd_pack_candidate_animations": 2,
-    "available_hd_pack_candidate_frames": 16
+    "available_hd_pack_candidate_animations": 7,
+    "available_hd_pack_candidate_frames": 81,
+    "available_hd_pack_candidate_object_frames": 11,
+    "available_hd_pack_candidate_control_icons": 13
   },
   "animations": [
     {
@@ -170,8 +172,12 @@
       "foot_y": 12,
       "origin_x": -8,
       "origin_y": -12,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "pack_candidate_not_integrated",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 4,
+        "frames": 16
+      }
     },
     {
       "slot": 5,
@@ -254,8 +260,12 @@
       "foot_y": 13,
       "origin_x": -8,
       "origin_y": -13,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "pack_candidate_not_integrated",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 10,
+        "frames": 16
+      }
     },
     {
       "slot": 11,
@@ -268,8 +278,12 @@
       "foot_y": 13,
       "origin_x": -8,
       "origin_y": -13,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "pack_candidate_not_integrated",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 11,
+        "frames": 16
+      }
     },
     {
       "slot": 12,
@@ -478,8 +492,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "pack_candidate_not_integrated",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 26,
+        "frames": 16
+      }
     },
     {
       "slot": 27,
@@ -492,8 +510,12 @@
       "foot_y": 25,
       "origin_x": -16,
       "origin_y": -25,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "pack_candidate_not_integrated",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 27,
+        "frames": 1
+      }
     }
   ],
   "terrain_sets": [
@@ -663,9 +685,9 @@
     "Generated panel omits release-rate and Nuke controls; production must implement every specified panel command."
   ],
   "next_implementation": [
-    "HD-03 remaining facilities/skill animation/UI production and checks",
-    "Fun01 actual Native/Web HD integration using unchanged core",
-    "Full theme/state/level expansion and packaging"
+    "HD-04 Fun01 actual Native/Web HD composition/input integration and original-mode switch; validate action scale/phase, doorway against trigger and unchanged logic",
+    "HD-05 remaining21 actor animations/256 frames, other objects/themes/effects/full UI",
+    "HD-06 equivalence/platform packaging/provenance checks"
   ],
   "validation": {
     "status": "PASS",
@@ -694,5 +716,11 @@
     "scope": "2 walking slots/16 frames and rock material; alpha cutoff1 explicit; candidate, not actual HD game integration",
     "runtime_ready": false
   },
-  "validation_scope": "The validation object records original #138 concept checks. Current #144 pack validation is recorded separately in remaster_pack.json and the #144 report."
+  "validation_scope": "The validation object records original #138 concept checks. Current #144/#147 candidate pack validation is recorded separately in remaster_pack.json and their reports.",
+  "followup_147": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/147",
+    "manifest": "assets/manifests/remaster_pack.json",
+    "scope": "65 new actor frames, theme0 objects0/1 (1+10 frames),13 toolbar icons; candidate, not actual HD game integration",
+    "runtime_ready": false
+  }
 }

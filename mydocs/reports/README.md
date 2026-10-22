@@ -126,3 +126,5 @@
 - [#130 Windows 11·웹브라우저 메인테이너 인수](issue-130_maintainer_acceptance.md): 직접 테스트 성공 판정과 Windows 11 x64 지원·Windows 10 지원 제외 결정.
 
 - [#144 분리 HD 자산·RGBA 팩](issue-144_hd_assets.md): 걷기16프레임·암석/검증·제작 한계.
+
+- [#147 HD-03b 직업·시설·패널 자산](issue-147_hd_actions.md).

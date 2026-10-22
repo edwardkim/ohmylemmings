@@ -124,3 +124,5 @@
 - [#130 메인테이너 수동 검증·지원 범위](issue-130_windows_manual_validation.md): Windows 11·웹브라우저 직접 테스트 성공 판정, Windows 10 지원 제외.
 
 - [#144 HD 자산 제작·팩 구현](issue-144_hd_assets.md): HD-03a 걷기16프레임·암석과 공통 로더/검증.
+
+- [#147 HD-03b 직업·시설·패널 자산](issue-147_hd_actions.md).

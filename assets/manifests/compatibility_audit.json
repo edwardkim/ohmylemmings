@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 8842,
-      "sha256": "4fa9678af9841a46ae73d6a27b8c61750e0b0ffe8e60710409119cafc21d9d3e"
+      "bytes": 45868,
+      "sha256": "4d78b6b05a0c6890ea0ad70ed6bec1745b2b8502b02465191acaea821ffccd98"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -561,8 +561,8 @@
     },
     {
       "path": "crates/lemmings-game/examples/hd_asset_probe.rs",
-      "bytes": 1217,
-      "sha256": "9825f19b3b044836b3910299819c727e56141c8dd56699712c464413233da93f"
+      "bytes": 2355,
+      "sha256": "2a442d2135d5708a933654536084d8be783c1a30bf6acb48b73e3afd7160cef7"
     },
     {
       "path": "crates/lemmings-game/examples/performance_probe.rs",
@@ -586,8 +586,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/assets.rs",
-      "bytes": 7608,
-      "sha256": "b99405c53603f8b5925df19d9fcafe472e7571d5f3c890290a65b0aa21eaec02"
+      "bytes": 9267,
+      "sha256": "cac3d12002494ce080b0e8a03524e5aba1c41b85f528658705168c12ab700012"
     },
     {
       "path": "crates/lemmings-game/src/hd/layout.rs",
@@ -646,8 +646,8 @@
     },
     {
       "path": "crates/lemmings-game/tests/hd_assets.rs",
-      "bytes": 4807,
-      "sha256": "6666996b0438336917285560bd4abbfce8ee3aa5bd30bbc0d0a49b92348f561e"
+      "bytes": 6824,
+      "sha256": "6b9bc74832fca61db45aa3eb8863c2ebc255ab170dc38a71384c618d0a311699"
     },
     {
       "path": "crates/lemmings-game/tests/hd_presentation.rs",
@@ -1491,13 +1491,13 @@
     },
     {
       "path": "tools/hd_assets.py",
-      "bytes": 10990,
-      "sha256": "fc5976032649fc15f3538cf5430531a390105159f4fb85f1b6fff272368558b9"
+      "bytes": 11571,
+      "sha256": "6e9b7393577f1554cd44a0f7f81238fe11276165f770380b1229b19f68943e5e"
     },
     {
       "path": "tools/hd_assets_preview.html",
-      "bytes": 5836,
-      "sha256": "3217dfe5275c008003d69cb07c5d689f1f7ed703125bb9e580f2648ef6f6487d"
+      "bytes": 8270,
+      "sha256": "e5b1306f77ac1a16091f4b0122f6d4538672d3244c09b5b13e1372dc28856dac"
     },
     {
       "path": "tools/initial_reference.py",
@@ -1936,8 +1936,8 @@
     },
     {
       "path": "tools/tests/test_hd_assets.py",
-      "bytes": 8274,
-      "sha256": "fee12ca7a0fc0fbe9d877a3678822d0058a246fa5aff71c24c0f031f87380cbc"
+      "bytes": 9891,
+      "sha256": "0930c3508be533694a3d90c79911b8d68dc0e094d0481ea4e5eccbcc770ca0cb"
     },
     {
       "path": "tools/tests/test_initial_reference.py",
@@ -2263,6 +2263,56 @@
       "path": "tools/windows_package.py",
       "bytes": 11572,
       "sha256": "fe3b0f594936e976127c9e92ca0a81deb156b8d39368f657bf2497e6b5c0cbf8"
+    },
+    {
+      "path": "assets/remaster/issue-147-dig-v1.png",
+      "bytes": 2092060,
+      "sha256": "05a1b254c08c34e8be448c6c895e8e8d42136799057a955caa722f7b70701bd2"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-147_dig_v1.txt",
+      "bytes": 1550,
+      "sha256": "41b3a1431855b28eaf3a4b1bd3840949c8b5e54027f7abf5dd289c1e08b17de4"
+    },
+    {
+      "path": "assets/remaster/issue-147-build-v1.png",
+      "bytes": 1592573,
+      "sha256": "5b9ec08b5b372340e05fa43efd647d4f0acfc852d328ae138ba20e1610bd9f59"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-147_build_v1.txt",
+      "bytes": 1595,
+      "sha256": "404a2e42ecf3f48166dbd64d60dd06200d4811f2ba52a8a8282c21cc92939373"
+    },
+    {
+      "path": "assets/remaster/issue-147-bomb-v1.png",
+      "bytes": 1236195,
+      "sha256": "98ea395b5bf6f15001f2b8a0fa157d2469c10bc1c10f3f66818e1bc0979c9131"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-147_bomb_v1.txt",
+      "bytes": 1611,
+      "sha256": "9f88a60e45e5b2adcadd8481b89e467ffbc770a10d00ab4bbe2e1825aaefa87f"
+    },
+    {
+      "path": "assets/remaster/issue-147-facilities-v1.png",
+      "bytes": 1562112,
+      "sha256": "a3beea2a58b8df958456aae58203cf44e3604aff2c28ff6cbdfc51991552df70"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-147_facilities_v1.txt",
+      "bytes": 1941,
+      "sha256": "d427a08fb97c197e1ae2eaa829e6c88a60715322b5549faeef800ecb1440fd2d"
+    },
+    {
+      "path": "assets/remaster/issue-147-ui-v1.png",
+      "bytes": 1209440,
+      "sha256": "bd78475aa999c3fa1e0250b9fdebaa6a2a8d771a9449667b029bceac0a939633"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-147_ui_v1.txt",
+      "bytes": 2217,
+      "sha256": "570c19fde3c0a0d554662cb5015fcaa77b4bc8d7e60c56a8491ebab35afb7eb1"
     }
   ],
   "evidence": [
@@ -5347,5 +5397,59 @@
       "assets/remaster/prompts/issue-144_walk_v2.txt"
     ],
     "scope": "Optional HD RGBA pack loader/assets/tooling. Resources adds fixed animation metadata getter; simulation, original renderer/PCM and host input unchanged. Python CI validates new PNGs/pack; historical COMP/replays/performance remain original observations. Alpha cutoff1 is explicit and packed source samples are unedited."
+  },
+  "source_impact_147": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/147",
+    "baseline": "b6ae82b7bb33da2a2877e96d20b2e60849710639",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/remaster_pack.json",
+        "bytes": 8842,
+        "sha256": "4fa9678af9841a46ae73d6a27b8c61750e0b0ffe8e60710409119cafc21d9d3e"
+      },
+      {
+        "path": "crates/lemmings-game/examples/hd_asset_probe.rs",
+        "bytes": 1217,
+        "sha256": "9825f19b3b044836b3910299819c727e56141c8dd56699712c464413233da93f"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/assets.rs",
+        "bytes": 7608,
+        "sha256": "b99405c53603f8b5925df19d9fcafe472e7571d5f3c890290a65b0aa21eaec02"
+      },
+      {
+        "path": "crates/lemmings-game/tests/hd_assets.rs",
+        "bytes": 4807,
+        "sha256": "6666996b0438336917285560bd4abbfce8ee3aa5bd30bbc0d0a49b92348f561e"
+      },
+      {
+        "path": "tools/hd_assets.py",
+        "bytes": 10990,
+        "sha256": "fc5976032649fc15f3538cf5430531a390105159f4fb85f1b6fff272368558b9"
+      },
+      {
+        "path": "tools/hd_assets_preview.html",
+        "bytes": 5836,
+        "sha256": "3217dfe5275c008003d69cb07c5d689f1f7ed703125bb9e580f2648ef6f6487d"
+      },
+      {
+        "path": "tools/tests/test_hd_assets.py",
+        "bytes": 8274,
+        "sha256": "fee12ca7a0fc0fbe9d877a3678822d0058a246fa5aff71c24c0f031f87380cbc"
+      }
+    ],
+    "added": [
+      "assets/remaster/issue-147-dig-v1.png",
+      "assets/remaster/prompts/issue-147_dig_v1.txt",
+      "assets/remaster/issue-147-build-v1.png",
+      "assets/remaster/prompts/issue-147_build_v1.txt",
+      "assets/remaster/issue-147-bomb-v1.png",
+      "assets/remaster/prompts/issue-147_bomb_v1.txt",
+      "assets/remaster/issue-147-facilities-v1.png",
+      "assets/remaster/prompts/issue-147_facilities_v1.txt",
+      "assets/remaster/issue-147-ui-v1.png",
+      "assets/remaster/prompts/issue-147_ui_v1.txt"
+    ],
+    "scope": "Optional HD pack extends actor candidates, first-theme entrance/exit and typed toolbar icons, preserving v1 walking/material bytes and unchanged PNG samples. No simulation/original renderer/host/replay/PCM changes or actual HD integration. Historical COMP/120-level/G11/performance observations remain historical; #113 qualification deferred."
   }
 }
