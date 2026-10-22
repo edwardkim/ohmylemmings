@@ -8,8 +8,8 @@
     {
       "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 149792,
-      "sha256": "b55ba50c150696fde24ac65d15ca11485b3b0672ecdc573b63fe6167ef4af4f2"
+      "bytes": 152143,
+      "sha256": "31d73d91ed9e0e6eacf86bbf7ee25ea4f96d7720dd6700f975c69d186ee33720"
     },
     {
       "id": "performance",
@@ -20,8 +20,8 @@
     {
       "id": "display",
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 87869,
-      "sha256": "85b6c1e0212c3cfa40638ddf0d4b161062a0909e8ceebbec7c2244e000787099"
+      "bytes": 88452,
+      "sha256": "9dc2d1fb86c135ebd1cdf7ab776f4e95baa6abef40a2b11142db3bbafab018c0"
     }
   ],
   "web": {
@@ -10892,5 +10892,28 @@
       }
     ],
     "scope": "Current packaging/build source index only; frozen review/observations and NOT READY are retained, user-authorized G12 preparation continues."
+  },
+  "source_maintenance_118": {
+    "previous_pins": [
+      {
+        "id": "compatibility",
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 149792,
+        "sha256": "b55ba50c150696fde24ac65d15ca11485b3b0672ecdc573b63fe6167ef4af4f2"
+      },
+      {
+        "id": "compatibility",
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 151882,
+        "sha256": "b794a57b41388a991b1465d4b280e47d1e12b729c3c85ba55a9696ac16bb369e"
+      },
+      {
+        "id": "display",
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 87869,
+        "sha256": "85b6c1e0212c3cfa40638ddf0d4b161062a0909e8ceebbec7c2244e000787099"
+      }
+    ],
+    "scope": "Current Windows host/packaging source index; frozen review/observations and NOT READY retained. Latest user instruction authorizes original data in Windows download; faster-host performance remains deferred."
   }
 }

@@ -16,8 +16,8 @@
   "product_snapshot": [
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 4331,
-      "sha256": "67bc5a08046f3760776e6cb0b52b1db0b46f750e00fe68ad481ae223ca4fae7e"
+      "bytes": 7553,
+      "sha256": "6ecfa3da6cc803ed6658bee387bb7bfd468ddbc0444b68d01e5b2bdf527e9e65"
     },
     {
       "path": "Cargo.lock",
@@ -66,8 +66,8 @@
     },
     {
       "path": "apps/desktop/src/assets.rs",
-      "bytes": 1945,
-      "sha256": "8bb0208bf58588c8fcd0b6b0494c452c6bb28ae34f3821914757c2f7c093b8e6"
+      "bytes": 2457,
+      "sha256": "5561309879eae5531e677b9bc36e7f502c98dd02001cfbe435863817bbfe7387"
     },
     {
       "path": "apps/desktop/src/audio.rs",
@@ -91,8 +91,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 58448,
-      "sha256": "7b41010a0e0c2cb3512f3134f37843b26e20fc0eab92dae34a4a6f285fa6b871"
+      "bytes": 59945,
+      "sha256": "4451749d2fbff0f5e9d183877f582854d35e7a8f345b33491ca40f83fd165810"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -133,6 +133,11 @@
       "path": "apps/desktop/src/session.rs",
       "bytes": 106,
       "sha256": "9f3272a22d84e639c6fda46c490f1cf4d0bd6a1ab93cfea14b054cd4203fc52f"
+    },
+    {
+      "path": "apps/desktop/windows/start-game.cmd",
+      "bytes": 1208,
+      "sha256": "e4e58553a63d5a1186730376b1d28e96d0f3b5fb98d9b5f835f32b816569bdf0"
     },
     {
       "path": "apps/web/Cargo.toml",
@@ -238,6 +243,11 @@
       "path": "apps/web/www/style.css",
       "bytes": 4566,
       "sha256": "25b5a725ba90ceaa9366b9e5a80f5791bc82f9ef86ce859fdecc55d8910c8b85"
+    },
+    {
+      "path": "assets/manifests/windows_runtime.json",
+      "bytes": 932,
+      "sha256": "d3cf8bc1dd53c54238de57115dd056ae648ff86d59bf74522e2f491a445fa3e1"
     },
     {
       "path": "crates/lemmings-audio/Cargo.toml",
@@ -990,6 +1000,11 @@
       "sha256": "4bbf23bf8695ee8dbf495db415643cd954ea3bc854f9910fd568ab21230765b0"
     },
     {
+      "path": "tools/check_windows_package.py",
+      "bytes": 10189,
+      "sha256": "2c90880cc60caa3d8e76685b66aad60fd8583c135de2d4ac35335137da54630e"
+    },
+    {
       "path": "tools/compare_basher_dos.py",
       "bytes": 4496,
       "sha256": "c7b1860161990f2fa221ff5de2a76abec1684fe7f8c6e123e026d78d4ef5bb62"
@@ -1655,6 +1670,11 @@
       "sha256": "4b5fac88d2c71c0f6dedae4d8f5a1bf0c3eabbdc3d4ec3544a9e09dc7e1fbc83"
     },
     {
+      "path": "tools/tests/test_windows_package.py",
+      "bytes": 5340,
+      "sha256": "80b15c64c467db31d5518e606b451be4871f72e04d796a086e456cdb368c2fa7"
+    },
+    {
       "path": "tools/verify_adlib_timing.py",
       "bytes": 3657,
       "sha256": "e58af77fabb9a2d7c71c9bbcaf01b000279baeead7b47a65f75d80e25e0f5d88"
@@ -1838,6 +1858,11 @@
       "path": "tools/web_journey.py",
       "bytes": 5636,
       "sha256": "3f9834c056b886939ae46831390958880835a147b0b6c01320a514bb73018e06"
+    },
+    {
+      "path": "tools/windows_package.py",
+      "bytes": 11643,
+      "sha256": "e30d2c437e26b197aee8d0522a8928bb9b845ec538429603a038fde2efc50f0c"
     }
   ],
   "evidence": [
@@ -2103,8 +2128,8 @@
     {
       "id": "g11-06-display-cadence",
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 87869,
-      "sha256": "85b6c1e0212c3cfa40638ddf0d4b161062a0909e8ceebbec7c2244e000787099"
+      "bytes": 88452,
+      "sha256": "9dc2d1fb86c135ebd1cdf7ab776f4e95baa6abef40a2b11142db3bbafab018c0"
     }
   ],
   "local_evidence": [
@@ -4511,5 +4536,42 @@
       "tools/web/package_check.js"
     ],
     "scope": "Development Linux/Web packaging and clean CI install/source/hash checks only. No core, assets, native/Web runtime or PCM change; historical full120/240 and #113 misses retained. User deferred faster-host performance qualification. Windows and final release remain pending."
+  },
+  "source_impact_118": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/118",
+    "baseline_source": "41ec527b9cce33ec999b103e1084fff7cce0b11a",
+    "previous_pins": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 4331,
+        "sha256": "67bc5a08046f3760776e6cb0b52b1db0b46f750e00fe68ad481ae223ca4fae7e"
+      },
+      {
+        "path": "apps/desktop/src/assets.rs",
+        "bytes": 1945,
+        "sha256": "8bb0208bf58588c8fcd0b6b0494c452c6bb28ae34f3821914757c2f7c093b8e6"
+      },
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 58448,
+        "sha256": "7b41010a0e0c2cb3512f3134f37843b26e20fc0eab92dae34a4a6f285fa6b871"
+      }
+    ],
+    "added": [
+      "tools/windows_package.py",
+      "tools/check_windows_package.py",
+      "tools/tests/test_windows_package.py",
+      "apps/desktop/windows/start-game.cmd",
+      "assets/manifests/windows_runtime.json"
+    ],
+    "scope": "User-requested Windows full-game data ZIP, executable-relative startup, GUI error/log and static CRT packaging/Windows CI. Core/resource parsing/rendering/PCM synthesis unchanged. Historical full120/240 and deferred #113 performance verdict retained; new Windows functional scope is recorded in #118.",
+    "previous_evidence_pins": [
+      {
+        "id": "g11-06-display-cadence",
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 87869,
+        "sha256": "85b6c1e0212c3cfa40638ddf0d4b161062a0909e8ceebbec7c2244e000787099"
+      }
+    ]
   }
 }

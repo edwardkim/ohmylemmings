@@ -123,3 +123,5 @@ ADLIB 명령/레지스터 스트림의 합성877호출과 원본 드라이버 �
 [#111 Web 관측](manifests/web_deadlines.json)과 [수치 벡터](manifests/web_deadline_observations.jsonl)는7개60초 구간의 시간/메모리·원시 pins와 미통과를 보존합니다. `python3 tools/web_deadlines.py`는 원본 없이 재계산하고 `--local`은7원시/원본50개를 확인합니다. 일반 CI 성공을 실제 표시 마감 합격으로 계산하지 않으며 #113이 후속입니다.
 
 [#113 Web dispatch 기록](manifests/web_dispatch.json)은 전후3쌍의 숫자 벡터·trace 요약과 채택/이월 범위를 연결합니다. 원시 trace/원본 파생 자료는 ignored `assets/local/`에 유지하며 성능 합격을 선언하지 않습니다.
+
+[#118 Windows 전체 게임 패키지](../mydocs/reports/issue-118_windows_full_game.md)는 최신 사용자 지시에 따라 원본 제외 정책을 Windows 다운로드에 한해 변경합니다. 원본 고정 목록의 런타임28개(ADLIB 포함)를 ZIP의 `data/`에 넣으며 Git/공개 대응 소스 archive에는 원본 바이너리를 추가하지 않습니다. `GAME-DATA.json`은 원본50개 중 필요한28개의 출처·크기·SHA256을 연결합니다. SDL2 MSVC 입력과 라이선스 고정값은 [windows_runtime.json](manifests/windows_runtime.json)에서 확인합니다.

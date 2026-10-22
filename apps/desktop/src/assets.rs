@@ -2,7 +2,18 @@
 use lemmings_core::{Difficulty, LevelId};
 use lemmings_game::MissingAsset;
 pub use lemmings_game::assets::Assets;
-use std::{error::Error, fs, io, path::Path};
+use std::{
+    error::Error,
+    fs, io,
+    path::{Path, PathBuf},
+};
+
+pub fn bundled_directory(executable: &Path) -> PathBuf {
+    executable
+        .parent()
+        .unwrap_or_else(|| Path::new("."))
+        .join("data")
+}
 
 pub fn load(root: &Path) -> Result<Assets, Box<dyn Error>> {
     load_level(root, 1)
@@ -40,6 +51,16 @@ pub fn load_id(root: &Path, level: LevelId) -> Result<Assets, Box<dyn Error>> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn bundled_assets_resolve_beside_the_executable() {
+        let executable = Path::new("installation folder")
+            .join("한글")
+            .join("OhMyLemmings.exe");
+        assert_eq!(
+            bundled_directory(&executable),
+            executable.parent().unwrap().join("data")
+        );
+    }
     #[test]
     fn missing_or_truncated_original_files_report_the_path() {
         let directory =

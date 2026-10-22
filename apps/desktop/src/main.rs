@@ -1,3 +1,5 @@
+#![cfg_attr(all(windows, not(debug_assertions)), windows_subsystem = "windows")]
+
 mod assets;
 mod audio;
 mod frame_clock;
@@ -64,7 +66,11 @@ impl Options {
         let mut o = Self {
             performance: None,
             performance_seconds: 60.0,
-            assets: "assets/local/dos-original".into(),
+            assets: if cfg!(windows) {
+                assets::bundled_directory(&std::env::current_exe()?)
+            } else {
+                "assets/local/dos-original".into()
+            },
             mute: false,
             volume: 40,
             synthetic: false,
@@ -1359,10 +1365,18 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     if let Some(p) = &performance {
         p.finish(&game, video.current_video_driver(), canvas.info().name)?;
     }
+    #[cfg(windows)]
+    eprintln!(
+        "LEMMINGS_AUDIO submitted={} nonzero={} active={} original={}",
+        audio.submitted,
+        audio.nonzero,
+        audio.performance_state().is_some(),
+        !options.synthetic
+    );
     println!("{summary}");
     Ok(())
 }
-fn main() -> Result<(), Box<dyn Error>> {
+fn entry() -> Result<(), Box<dyn Error>> {
     if std::env::args().skip(1).eq(["--audio-probe"]) {
         println!("{}", audio::probe()?);
         return Ok(());
@@ -1374,6 +1388,34 @@ fn main() -> Result<(), Box<dyn Error>> {
             Ok(())
         }
     }
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let result = entry();
+    #[cfg(windows)]
+    if let Err(error) = &result {
+        let directory = std::env::var_os("LOCALAPPDATA")
+            .map(PathBuf::from)
+            .unwrap_or_else(std::env::temp_dir)
+            .join("OhMyLemmings");
+        let log = directory.join("last-error.log");
+        let message = format!(
+            "Could not start Oh My Lemmings.\n\n{error}\n\nExtract the complete ZIP, including the data folder and SDL2.dll.\nLog: {}",
+            log.display()
+        );
+        let _ = fs::create_dir_all(&directory);
+        let _ = fs::write(&log, &message);
+        // Dummy video is an explicitly headless host, so never open a modal UI.
+        if std::env::var("SDL_VIDEODRIVER").as_deref() != Ok("dummy") {
+            let _ = sdl2::messagebox::show_simple_message_box(
+                sdl2::messagebox::MessageBoxFlag::ERROR,
+                "Oh My Lemmings",
+                &message,
+                None,
+            );
+        }
+    }
+    result
 }
 #[cfg(test)]
 mod tests {
