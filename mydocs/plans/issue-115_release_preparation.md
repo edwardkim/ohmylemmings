@@ -23,3 +23,7 @@
 ### #120 macOS 추가
 
 Windows 실행을 확인한 사용자가 Mac 배포 준비를 요청했다. [#120](issue-120_macos_full_game.md)에서 Apple Silicon/Intel universal2 앱·원본28개·SDL을 동봉하고 실제 두 아키텍처에서 검증한다. 서명 자격이 없는 현재 시험판 ad-hoc와 정식 Developer ID/공증 단계를 구분하며 성능 이월은 유지한다.
+
+### #122 Linux·Web 계약 변경
+
+사용자가 다음 작업1번을 승인해 [#122](issue-122_linux_web_full_game.md)에서 Linux/Web 다운로드에도 원본28개·120레벨·음원을 동봉하고 기본 Fun01 실행으로 변경한다. 앞선 원본 제외는 명시적인 개발 모드에만 유지한다. Windows/Mac 완료와 실제 CI 증거는 각 #118/#120을 따른다. Apple Developer ID는 준비되지 않았으며 자체 Homebrew tap의 소스 Formula가 후속 후보다. 기존 앱 Cask는 Gatekeeper 요구를 없애지 않는다.

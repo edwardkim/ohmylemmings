@@ -209,13 +209,20 @@ jobs:
           cargo fetch --locked
       - name: Check Rust
         run: make SHELL=python3 ".SHELLFLAGS=tools/performance/ci_shell.py -c" check-rust check-desktop
-      - name: Package and install Linux development build
-        run: make package-linux
+      - name: Package and install Linux full game
+        run: |
+          python3 tools/reference_assets.py fetch
+          python3 tools/reference_assets.py verify
+          make package-linux
       - name: Preserve verified Linux development package
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: development-linux-x86_64
-          path: assets/local/dist/ohmylemmings-0.1.0-dev-linux-x86_64.tar.gz*
+          path: |
+            assets/local/dist/ohmylemmings-0.1.0-linux-x86_64.tar.gz*
+            assets/local/linux-package-check/*.json
+            assets/local/linux-package-check/*.log
+            assets/local/linux-package-check/original-fun01.*
           if-no-files-found: error
           retention-days: 14
           compression-level: 0
@@ -288,13 +295,19 @@ jobs:
           google-chrome --version
       - name: Check actual WASM and browser equivalence
         run: make check-web
-      - name: Package and install Web development build
-        run: make package-web
+      - name: Package and install Web full game
+        run: |
+          python3 tools/reference_assets.py fetch
+          python3 tools/reference_assets.py verify
+          make package-web
       - name: Preserve verified Web development package
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: development-web
-          path: assets/local/dist/ohmylemmings-0.1.0-dev-web.zip*
+          path: |
+            assets/local/dist/ohmylemmings-0.1.0-web.zip*
+            assets/local/web-package-check/*.json
+            assets/local/web-package-check/original-fun01.*
           if-no-files-found: error
           retention-days: 14
           compression-level: 0

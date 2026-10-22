@@ -37,7 +37,7 @@ wasm-bindgen crate/CLI는0.2.129로 맞추고 [도구 명세](../../assets/manif
 
 ## 원본 파일과 조작
 
-웹 페이지의 **게임 파일 선택**에서 보유한 DOS 게임 폴더의 DAT와 VGALEMMI.EXE를 함께 선택합니다. 관련 없는 파일은 건너뛰며 파일 내용은 네트워크로 보내지 않습니다. 필요한 파일 누락은 이름과 함께 화면에 표시됩니다. 다음 레벨에 필요한 파일도 처음에 함께 선택하면 레벨 열기/재시작/전환에 같은 바이트를 사용합니다. 새로고침하면 다시 선택해야 합니다. 원본을 자동 다운로드하거나 배포물에 포함하지 않습니다. 특수 배경 Fun22/Tricky14/Taxing15/Mayhem22에는 VGASPEC0..3.DAT도 함께 선택합니다.
+웹 페이지의 **게임 파일 선택**에서 보유한 DOS 게임 폴더의 DAT와 VGALEMMI.EXE를 함께 선택합니다. 관련 없는 파일은 건너뛰며 파일 내용은 네트워크로 보내지 않습니다. 필요한 파일 누락은 이름과 함께 화면에 표시됩니다. 다음 레벨에 필요한 파일도 처음에 함께 선택하면 레벨 열기/재시작/전환에 같은 바이트를 사용합니다. 새로고침하면 다시 선택해야 합니다. 이 설명은 `make web` 개발 출력에 해당합니다. `make package-web` 다운로드는 검증된 원본28개를 동봉하여 자동 로딩하며 새로고침해도 별도 파일 선택 없이 원본 Fun01을 시작합니다. 특수 배경 Fun22/Tricky14/Taxing15/Mayhem22에는 VGASPEC0..3.DAT도 함께 선택합니다.
 
 화면을 클릭해 키보드 포커스를 둡니다. C/F/E/K/U/B/M/D는 등반/낙하산/폭파/차단/계단/수평/대각/아래 굴착입니다. 기술 선택 후 레밍을 클릭합니다. Space 일시 정지, ↑↓ 출현 속도, ←→/Home/End 화면 이동, N 전체 폭파, Esc 중단 후 버튼으로 복귀합니다. 하단 패널 속도 버튼은 누름 반복, 전체 폭파는 더블클릭, 작은 지도는 끌기로 이동합니다. 우클릭을 누른 채 왼쪽 버튼을 눌러 기존 선택 규칙도 사용할 수 있습니다. 결과에서 Enter/왼쪽 클릭은 다음/재도전, R은 현재 레벨 재시작입니다.
 
@@ -76,3 +76,7 @@ python3 tools/check_web.py --evidence assets/local/web-original-check --original
 [#87 난이도 계약](../../mydocs/tech_insights/issue-87_rank_selection.md): UI 난이도/번호 선택·동일 ID 재시작·성공 시 난이도 경계 전환과 Mayhem30 종료를 처리합니다. 창작 바이트의 실제 제품 DOM8개 선택/재시작·3개 경계 Continue·파일 교체 실패를 검사합니다. 새 journey 기록은 difficulty를 포함하며 과거 누락 필드는 Fun으로 읽습니다.
 
 초기 진단 `asset_info()`·`materials()`는 현재 실행의 불변 초기 수치/팔레트와 강철/일방향 셀 복사본을 제공합니다. 실제 SDL/시간 분할/WASM/Canvas 전수 재현은 [#91 계약](../../mydocs/tech_insights/issue-91_initial_replay.md)을 따릅니다.
+
+## 전체 게임 HTTP 배포 (#122)
+
+`python3 tools/reference_assets.py fetch` 후 `make package-web`. `ohmylemmings-0.1.0-web.zip` 전체를 풀고 정적 HTTP 서버에서 제공합니다. 하위 경로도 지원합니다. ZIP을 직접 열거나 index.html만 복사하지 마세요. 원본28개·120레벨·음원·대응 소스와 라이선스가 포함됩니다. 소리는 사용자 버튼으로 켭니다. `GAME-DATA.json`/data 누락은 시작 실패로 표시합니다. 패키징 시 SHA256과 크기를 고정 원본 manifest로 검사하며 HTTP 로더는 목록·크기와 WASM 파서를 사용하므로 LAN HTTP에서도 실행됩니다. 원본 제외 연습 패키지는 `tools/release_package.py web --development --runtime assets/local/web`으로 명시합니다. [검증 범위](../../mydocs/reports/issue-122_linux_web_full_game.md).

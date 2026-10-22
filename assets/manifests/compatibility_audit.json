@@ -16,8 +16,8 @@
   "product_snapshot": [
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 12128,
-      "sha256": "150804da5d7a7d948674873acf2baa7ec3d40ca9bfff52d8bc208daab4ba88c1"
+      "bytes": 12633,
+      "sha256": "eece86ad9449d4c1e224a21b63ec02f864ba2ebe20c4eb8fa6b0425880c298b5"
     },
     {
       "path": "Cargo.lock",
@@ -31,8 +31,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 3394,
-      "sha256": "4c942c468c4369c654e31a841b9a79b8e92b5f1a21abcbcab5519843cc471889"
+      "bytes": 3386,
+      "sha256": "469a16b7f5f25db3e166e9a7bba5e4d1377bf5dd01bbfe02a1aabc470990b990"
     },
     {
       "path": "apps/audio-probe/Cargo.toml",
@@ -66,8 +66,8 @@
     },
     {
       "path": "apps/desktop/src/assets.rs",
-      "bytes": 3395,
-      "sha256": "c58fceaa2dd226c6b9ec309e8bc460db56e2995855d03386018f6aae4b7b2f51"
+      "bytes": 4199,
+      "sha256": "84580e9936f56a83d92957635ed89e21bc52e22bae7107ec71e80bff3e79829d"
     },
     {
       "path": "apps/desktop/src/audio.rs",
@@ -91,8 +91,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 60605,
-      "sha256": "19f8734bc04586cb751c976b877bd61ebd965e017f03d7d8f8bf87e58d74b7ec"
+      "bytes": 60575,
+      "sha256": "f7828b5c541784960c9dade4d416ef6106479e006b8393abf68b5a489250abf5"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -211,8 +211,8 @@
     },
     {
       "path": "apps/web/www/app.js",
-      "bytes": 8994,
-      "sha256": "5708479039abbee23d07a1a0ba4a1423969d680a73ef21ab98d1729273e4737c"
+      "bytes": 9700,
+      "sha256": "231fde74ec6c850fbc4f6c9e1008e91cbd24f004030f74508f1cbc6653c43374"
     },
     {
       "path": "apps/web/www/audio-license.html",
@@ -223,6 +223,11 @@
       "path": "apps/web/www/audio.js",
       "bytes": 5537,
       "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+    },
+    {
+      "path": "apps/web/www/bundled.js",
+      "bytes": 2067,
+      "sha256": "3998f197339247a182574a7e6e1d41d23e5bcfe9a6efc41b84ee3b610529348f"
     },
     {
       "path": "apps/web/www/controls.js",
@@ -236,8 +241,8 @@
     },
     {
       "path": "apps/web/www/index.html",
-      "bytes": 4599,
-      "sha256": "d0e00fee78e04fe3aaf4118d8a228ec8740d0de302e81068784bb74fcabb8fae"
+      "bytes": 4653,
+      "sha256": "cb76cca7cb23dfb83412191be27e5bc1490bca8b8694b4de8bd03a3c144a07cf"
     },
     {
       "path": "apps/web/www/style.css",
@@ -950,6 +955,11 @@
       "sha256": "fe3e11d98e86d3bcd425f384efcdb763d109d0805168dd9f33252f841d18cc5e"
     },
     {
+      "path": "tools/check_linux_game_package.py",
+      "bytes": 4578,
+      "sha256": "49217842b6790ef0f32cce2343fe58dfd99b7f87b557bbd39605e609ec4f0c2b"
+    },
+    {
       "path": "tools/check_macos_package.py",
       "bytes": 9326,
       "sha256": "55135e419bc6ea0c5d5f6f6966b4f426cebf9dca36727286c655900752a4d579"
@@ -981,8 +991,8 @@
     },
     {
       "path": "tools/check_release_package.py",
-      "bytes": 6081,
-      "sha256": "fd38189c7a4aa1f83d0b0ec80fe982d6539841b9ae75c9389b8ef58af3c044e9"
+      "bytes": 7496,
+      "sha256": "266c912f1f1116c56305eecca8a74a8aec42cbb42e88b53c7ecb98658ff43f16"
     },
     {
       "path": "tools/check_results.py",
@@ -1375,6 +1385,11 @@
       "sha256": "c1cb15c64d1155893d30689216a4001c48bbb7b60406dac477066bd30fe23d2c"
     },
     {
+      "path": "tools/package_assets.py",
+      "bytes": 748,
+      "sha256": "028b27294c49d48f85f503bfffbd86434530c1a7654d50a6d0fa42d6b8accbee"
+    },
+    {
       "path": "tools/performance.py",
       "bytes": 5877,
       "sha256": "2bb73eb1c0ea02eb820fc436f57f33a09d79d505d13b6d5db5af252522fc1670"
@@ -1436,8 +1451,8 @@
     },
     {
       "path": "tools/release_package.py",
-      "bytes": 12182,
-      "sha256": "39fdcfeb3d36671362700c3d01cf826abc5a815b5a9d77d7e940cabd82a8342c"
+      "bytes": 15515,
+      "sha256": "ebff42cc313f8fdd282ee5fcc2522b4ac1d974cdf688e402e954d5c73ea887d7"
     },
     {
       "path": "tools/solution_replay.py",
@@ -1578,6 +1593,11 @@
       "path": "tools/tests/test_floater.py",
       "bytes": 2190,
       "sha256": "a7108151a2e2bb7af8b26975507136a88b17008167ab7e6268d4b3bbbce5e19d"
+    },
+    {
+      "path": "tools/tests/test_full_release_package.py",
+      "bytes": 4365,
+      "sha256": "2658c8ba788ca330a0b5bab1ea98c43c755bc723a10c89e858f52b9ac3f9614f"
     },
     {
       "path": "tools/tests/test_g11_review.py",
@@ -1805,6 +1825,11 @@
       "sha256": "8dd0fe0e0df89a8cacc870bef43c4ef4a58280da1f02971d216af8f88aa57f61"
     },
     {
+      "path": "tools/web/bundled_check.js",
+      "bytes": 2160,
+      "sha256": "de5d23c7cfa2d9d9ee481852e6d20b677ced5cef4b2d4c24facefd49bf7d5af1"
+    },
+    {
       "path": "tools/web/check.html",
       "bytes": 229,
       "sha256": "7a8c0b2ec89897ab640ef4f09015222005f08dfac73f1f0de5940932370ab34b"
@@ -1823,6 +1848,11 @@
       "path": "tools/web/dom_check.js",
       "bytes": 11732,
       "sha256": "f657bcf2d656e2a04478e82287c8fc8f8aff108dc1dc756619b9a80a8b1aaa9e"
+    },
+    {
+      "path": "tools/web/full_package_check.js",
+      "bytes": 6258,
+      "sha256": "25658a7f7a14a2a5bd255fd952d3c60f3d68717f51a83c8931881cb1925596a4"
     },
     {
       "path": "tools/web/initial_replay.html",
@@ -1886,8 +1916,8 @@
     },
     {
       "path": "tools/windows_package.py",
-      "bytes": 11660,
-      "sha256": "bdbf42a342e20caffdb5e968d3e35fe710c12e7cd81ac69bb028ea32ab93b46a"
+      "bytes": 11081,
+      "sha256": "9f6751f11cb837e91a279f6946c3ab670d946444c6eb14bd8f84f71a134200f3"
     }
   ],
   "evidence": [
@@ -2153,8 +2183,8 @@
     {
       "id": "g11-06-display-cadence",
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 88946,
-      "sha256": "050d0784d00335be07ff1e7121e5e2f61804a3f3f9eb09501e0994268aa92d8a"
+      "bytes": 89425,
+      "sha256": "e72cc96ffbbe81c6a9e6edbc9dc4acd6b07351eaa3ebff553114a76f5f81459b"
     }
   ],
   "local_evidence": [
@@ -4635,5 +4665,73 @@
       "assets/manifests/macos_runtime.json"
     ],
     "scope": "User-requested full-game macOS universal2 app/data/SDL packaging and native ARM/Intel CI. Only Mac startup/error/end diagnostics change in the desktop adapter. Core/resources/renderer/PCM synthesis and historical full120/240/performance evidence unchanged. Ad-hoc preview and Developer ID/notarization qualification separated."
+  },
+  "source_impact_122": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/122",
+    "baseline_source": "79bfc205303e36dd716e722a522405fab002b957",
+    "previous_pins": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 12128,
+        "sha256": "150804da5d7a7d948674873acf2baa7ec3d40ca9bfff52d8bc208daab4ba88c1"
+      },
+      {
+        "path": "Makefile",
+        "bytes": 3394,
+        "sha256": "4c942c468c4369c654e31a841b9a79b8e92b5f1a21abcbcab5519843cc471889"
+      },
+      {
+        "path": "apps/desktop/src/assets.rs",
+        "bytes": 3395,
+        "sha256": "c58fceaa2dd226c6b9ec309e8bc460db56e2995855d03386018f6aae4b7b2f51"
+      },
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 60605,
+        "sha256": "19f8734bc04586cb751c976b877bd61ebd965e017f03d7d8f8bf87e58d74b7ec"
+      },
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 8994,
+        "sha256": "5708479039abbee23d07a1a0ba4a1423969d680a73ef21ab98d1729273e4737c"
+      },
+      {
+        "path": "apps/web/www/index.html",
+        "bytes": 4599,
+        "sha256": "d0e00fee78e04fe3aaf4118d8a228ec8740d0de302e81068784bb74fcabb8fae"
+      },
+      {
+        "path": "tools/check_release_package.py",
+        "bytes": 6081,
+        "sha256": "fd38189c7a4aa1f83d0b0ec80fe982d6539841b9ae75c9389b8ef58af3c044e9"
+      },
+      {
+        "path": "tools/release_package.py",
+        "bytes": 12182,
+        "sha256": "39fdcfeb3d36671362700c3d01cf826abc5a815b5a9d77d7e940cabd82a8342c"
+      },
+      {
+        "path": "tools/windows_package.py",
+        "bytes": 11660,
+        "sha256": "bdbf42a342e20caffdb5e968d3e35fe710c12e7cd81ac69bb028ea32ab93b46a"
+      }
+    ],
+    "previous_evidence_pins": [
+      {
+        "id": "g11-06-display-cadence",
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 88946,
+        "sha256": "050d0784d00335be07ff1e7121e5e2f61804a3f3f9eb09501e0994268aa92d8a"
+      }
+    ],
+    "added": [
+      "apps/web/www/bundled.js",
+      "tools/package_assets.py",
+      "tools/check_linux_game_package.py",
+      "tools/tests/test_full_release_package.py",
+      "tools/web/bundled_check.js",
+      "tools/web/full_package_check.js"
+    ],
+    "scope": "User-requested Linux/Web original28 packaging and default original startup, original-free mode retained; shared packaging inventory and functional CI. Linux default directory/diagnostic and Web startup/UI only. Core/resources/renderer/PCM synthesis and historical full120/240/performance evidence unchanged. Homebrew Formula/Cask review documented; no tap or release published."
   }
 }

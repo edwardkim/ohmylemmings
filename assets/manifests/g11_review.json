@@ -8,8 +8,8 @@
     {
       "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 154481,
-      "sha256": "588997ef6474536488732f8d26bb68fce746350968638deed7292d5bef2213b0"
+      "bytes": 158083,
+      "sha256": "3ab2898aae8eaf76da816ac67ae6d229e8ad1254e5f036171df86cf98cf75e9d"
     },
     {
       "id": "performance",
@@ -20,8 +20,8 @@
     {
       "id": "display",
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 88946,
-      "sha256": "050d0784d00335be07ff1e7121e5e2f61804a3f3f9eb09501e0994268aa92d8a"
+      "bytes": 89425,
+      "sha256": "e72cc96ffbbe81c6a9e6edbc9dc4acd6b07351eaa3ebff553114a76f5f81459b"
     }
   ],
   "web": {
@@ -10932,5 +10932,22 @@
       }
     ],
     "scope": "Current Mac host/packaging source index; frozen review/observations/NOT READY retained. User authorizes Mac preparation; faster-host performance remains deferred."
+  },
+  "source_maintenance_122": {
+    "previous_pins": [
+      {
+        "id": "compatibility",
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 154481,
+        "sha256": "588997ef6474536488732f8d26bb68fce746350968638deed7292d5bef2213b0"
+      },
+      {
+        "id": "display",
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 88946,
+        "sha256": "050d0784d00335be07ff1e7121e5e2f61804a3f3f9eb09501e0994268aa92d8a"
+      }
+    ],
+    "scope": "Current Linux/Web host/packaging source index; frozen review/observations/NOT READY retained. User authorizes Linux/Web complete game packaging; faster-host performance remains deferred."
   }
 }

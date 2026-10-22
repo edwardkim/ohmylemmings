@@ -869,8 +869,8 @@
   "source": [
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 60605,
-      "sha256": "19f8734bc04586cb751c976b877bd61ebd965e017f03d7d8f8bf87e58d74b7ec"
+      "bytes": 60575,
+      "sha256": "f7828b5c541784960c9dade4d416ef6106479e006b8393abf68b5a489250abf5"
     },
     {
       "path": "apps/desktop/src/frame_clock.rs",
@@ -1641,5 +1641,15 @@
       }
     ],
     "scope": "Mac app Resources/data default and Mac end/error diagnostics only; clock, renderer, engine and PCM implementation unchanged. Previous measured producer pins remain recorded. No new performance execution; #113 faster-host qualification deferred."
+  },
+  "source_maintenance_122": {
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 60605,
+        "sha256": "19f8734bc04586cb751c976b877bd61ebd965e017f03d7d8f8bf87e58d74b7ec"
+      }
+    ],
+    "scope": "Linux sibling data default and end diagnostic only; clock, renderer, engine and PCM implementation unchanged. Previous measured producer pins remain recorded. No new performance execution; #113 faster-host qualification deferred."
   }
 }

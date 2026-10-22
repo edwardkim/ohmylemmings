@@ -6,8 +6,8 @@
   "source": [
     {
       "path": "apps/web/www/app.js",
-      "bytes": 8994,
-      "sha256": "5708479039abbee23d07a1a0ba4a1423969d680a73ef21ab98d1729273e4737c"
+      "bytes": 9700,
+      "sha256": "231fde74ec6c850fbc4f6c9e1008e91cbd24f004030f74508f1cbc6653c43374"
     },
     {
       "path": "apps/web/www/host.js",
@@ -506,5 +506,15 @@
     "Trace69 misses all matched to renderer/frame pipeline IDs, with compositor ACK immediately before send and no overlapping MinorGC/MajorGC in the measured spans. ACK/GPU/OS internal causes and historical untraced causes remain unconfirmed.",
     "No fresh candidate interval-memory profile or new full120 replay; prior memory/PCM/functional proofs keep their stated source/method scopes.",
     "Later deferred-startup/window prototypes were preserved locally and are not included in the adopted production code."
-  ]
+  ],
+  "source_maintenance_122": {
+    "previous_pins": [
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 8994,
+        "sha256": "5708479039abbee23d07a1a0ba4a1423969d680a73ef21ab98d1729273e4737c"
+      }
+    ],
+    "scope": "Web original bundle startup/UI and loading visibility guard only. FramePump/render/audio scheduling unchanged; prior measured pins preserved. No new performance run; #113 faster-host qualification deferred."
+  }
 }

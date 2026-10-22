@@ -20,3 +20,5 @@
 - [#118 Windows 전체 게임 첫 실행](issue-118_windows_full_game.md): 원본 그래픽·120레벨·음향 동봉과 더블클릭 실행·실제 Windows 검증.
 
 - [#120 macOS 전체 게임 앱](issue-120_macos_full_game.md): Apple Silicon/Intel universal2·원본 동봉·실제 Mac 검증과 서명/공증 조건.
+
+- [#122 Linux·Web 전체 게임 다운로드](issue-122_linux_web_full_game.md)
