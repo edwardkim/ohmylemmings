@@ -120,3 +120,7 @@ G11-05는 [#93](../working/issue-93_solution_validation.md)에서 추적하며 �
 ## G11-06 Web 관측 보완 / #111
 
 [#111](../reports/issue-111_web_deadlines.md)에서 rAF timestamp/진입/완료·구간 heap 표본과 WASM committed 최고를 확보했습니다. 게임 코드는 불변입니다. 메모리 조회 없는60초3회도 완료 마감 초과2/0/1이 남아 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에서 dispatch/추가 draw를 진단합니다. 초기 경계 초과도 합계에서 빼지 않으며 G11/G12를 미완료로 유지합니다.
+
+## 성능 이월·G12 준비 승인 / #113
+
+[채택3쌍](../reports/issue-113_web_dispatch.md)의 보정 후 완료 초과0/1/0을 유지한다. 2026-10-22 사용자 지시로 현재 장비의 추가60fps 조정/반복은 중단하고 고성능 호스트에 이월한다. 기존 요구를 통과로 변경하지 않는다. [#115](issue-115_release_preparation.md) G12 준비는 사용자 승인된 선행 조건 예외로 진행한다.

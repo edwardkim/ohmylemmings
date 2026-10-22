@@ -19,6 +19,7 @@ check-python:
 	python3 tools/compatibility_audit.py
 	python3 tools/g11_review.py
 	python3 tools/web_deadlines.py
+	python3 tools/web_dispatch.py
 	python3 crates/lemmings-core/tests/fixtures/motion_reference.py
 
 check-wasm:

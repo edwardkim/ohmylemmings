@@ -8,8 +8,8 @@
     {
       "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 144920,
-      "sha256": "07a791aeb215e25338e808978deec38795db49b4c2a01b568e49a7b3e0048ac7"
+      "bytes": 148155,
+      "sha256": "1de81ac553cb6ed5df1894c017a1f14b18bac2d68ac57d4f8187356d0f610f40"
     },
     {
       "id": "performance",
@@ -10870,5 +10870,16 @@
     "Verify licenses, source/relink materials, checksums and original-free archive contents.",
     "Document installation, user-owned asset import and smoke/restart/audio checks."
   ],
-  "index_maintenance_111": "Current functional index link updated for measurement tools only. #110 historical callback observations and NOT-READY verdict are preserved; new observations/follow-up are in web_deadlines.json/#113."
+  "index_maintenance_111": "Current functional index link updated for measurement tools only. #110 historical callback observations and NOT-READY verdict are preserved; new observations/follow-up are in web_deadlines.json/#113.",
+  "source_maintenance_113": {
+    "previous_pins": [
+      {
+        "id": "compatibility",
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 144920,
+        "sha256": "07a791aeb215e25338e808978deec38795db49b4c2a01b568e49a7b3e0048ac7"
+      }
+    ],
+    "scope": "Current compatibility source index updated; frozen110 Web observations and NOT READY verdict retained. User authorizes115 preparation without declaring performance passed."
+  }
 }

@@ -122,3 +122,5 @@ mydocs/
 [G10-04 게임 사운드·DOS ID / #78](mydocs/reports/issue-78_game_sound.md)에서 논리 사건·원본 효과음/음악 선택·공유 큐/세대·native/actual WASM 명령→PCM을 연결합니다. 다음은 G10-05 SDL/Web 실제 출력입니다.
 
 [G10-05 SDL/Web 오디오 출력 / #80](mydocs/reports/issue-80_audio_output.md)에서 원본/연습 음원·장치 출력·활성화/음소거/볼륨·숨김/세대와 LAN HTTP를 연결합니다. 웹의 소리 켜기 버튼 또는 S, 양쪽 PageUp/PageDown으로 조절합니다. LGPL 라이선스와 재빌드 소스 묶음을 웹 footer에서 제공합니다. 다음은 G10-06 통합 대조·청취와 마감입니다.
+
+사용자 승인으로 [G12 배포 준비 / #115](mydocs/plans/issue-115_release_preparation.md)를 시작했습니다. [#113 성능 결과](mydocs/reports/issue-113_web_dispatch.md)의 남은60fps 검증은 더 좋은 호스트에 이월하며, 현재 장비에서 추가 조정·반복하지 않습니다.

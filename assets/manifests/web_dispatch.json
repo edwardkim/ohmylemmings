@@ -1,0 +1,510 @@
+{
+  "schema_version": 1,
+  "status": "MEASURED-WITH-DEFERRED-QUALIFICATION",
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/113",
+  "base_main": "3426212be0015d145b1e2f3ebdd1c726c6a1e250",
+  "source": [
+    {
+      "path": "apps/web/www/app.js",
+      "bytes": 8994,
+      "sha256": "5708479039abbee23d07a1a0ba4a1423969d680a73ef21ab98d1729273e4737c"
+    },
+    {
+      "path": "apps/web/www/host.js",
+      "bytes": 2308,
+      "sha256": "e0b1430ff18410ea21a0283beceb6328652bcc5fa1991f9dfb608227e7a254e6"
+    },
+    {
+      "path": "apps/web/www/controls.js",
+      "bytes": 4740,
+      "sha256": "e54f235e7cf09dac1a301651bced60bace9b06e2d541bbc7dfa769bb2179ab40"
+    },
+    {
+      "path": "apps/web/www/audio.js",
+      "bytes": 5537,
+      "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+    },
+    {
+      "path": "tools/performance/live.js",
+      "bytes": 6454,
+      "sha256": "7cb705e13069c01898e2dc6c19b0a50af82dc9bd712e960c44c62305c6f5613f"
+    },
+    {
+      "path": "tools/performance/cdp.cjs",
+      "bytes": 10058,
+      "sha256": "38037d724357a0c1fc53ad2649c0fe574ade6e6cf849b1a0148c387bd8828464"
+    },
+    {
+      "path": "tools/performance/dispatch_events.js",
+      "bytes": 1530,
+      "sha256": "86c71f35f3fd4744ba65e77c97fd585e788b754fb53e60781961ef340091b9b5"
+    },
+    {
+      "path": "tools/performance/measure.js",
+      "bytes": 1305,
+      "sha256": "026c63039b25050285fbb8f406222976c3bd7cda31f3aa625482f9f18fa5bf2a"
+    },
+    {
+      "path": "tools/web_dispatch.py",
+      "bytes": 7987,
+      "sha256": "3cfdde625f57232065d3ea8bf8a5fb102dcbdbb6e49ab8c365fb1e516ff033cd"
+    },
+    {
+      "path": "tools/tests/test_web_dispatch.py",
+      "bytes": 2783,
+      "sha256": "2850aeb5d814c5438f1d77ff6f4d5233eb2fb6b4735d01ebc5315017b8bf69e3"
+    },
+    {
+      "path": "tools/web/dispatch_check.js",
+      "bytes": 4687,
+      "sha256": "42c99dbd064f92e946a90ad4783e5f38b5b3986d568a46bbcf2e311eeb3ebb22"
+    },
+    {
+      "path": "tools/web/check.js",
+      "bytes": 8840,
+      "sha256": "c638861cc3e60fe032328bd6324d572d8830967ee758c8b840ce3a3fb6a545f8"
+    },
+    {
+      "path": "tools/check_web.py",
+      "bytes": 12247,
+      "sha256": "c52b46b3a9055c4005f437435c0004d67d5de4ca04576ab719c3b2fed9f8a55b"
+    }
+  ],
+  "reference": {
+    "path": "assets/manifests/performance_baseline.json",
+    "bytes": 689129,
+    "sha256": "a08fb43ba5be3ebabdddef118f566d27aabbe1ca41ac21fc2c15a142b03b52b2"
+  },
+  "observations": {
+    "path": "assets/manifests/web_dispatch_observations.jsonl",
+    "bytes": 1086659,
+    "sha256": "edd3e0e9633f8daa1235baa80b74155bf202df9c0a3c635b28ee14ec7e7c80b4"
+  },
+  "trace_observations": {
+    "path": "assets/manifests/web_dispatch_trace.json",
+    "bytes": 23938,
+    "sha256": "07b2d497c8ee4c5b395b7ffeaf4119c0df357c2d25d3db1a576467477a9826ee"
+  },
+  "runs": [
+    {
+      "id": "before-1",
+      "raw": {
+        "path": "assets/local/issue-113-review/final-before-1/run-1.json",
+        "bytes": 1193955,
+        "sha256": "cf6ee339d9de7be457ea63af302f976bade8e13143839981b69cb1f4c250a0bb"
+      }
+    },
+    {
+      "id": "after-1",
+      "raw": {
+        "path": "assets/local/issue-113-review/final-after-1/run-1.json",
+        "bytes": 939431,
+        "sha256": "07f20d61074a1b29d61542d5336a62d1faa1dd3492134e5d82c75e2b0a2c6be0"
+      }
+    },
+    {
+      "id": "before-2",
+      "raw": {
+        "path": "assets/local/issue-113-review/final-before-2/run-1.json",
+        "bytes": 1183311,
+        "sha256": "f2bc0b9d49fa120ab07956f64d7efe4121ed0191e8cc92581f7bb4fd9ef1d122"
+      }
+    },
+    {
+      "id": "after-2",
+      "raw": {
+        "path": "assets/local/issue-113-review/final-after-2/run-1.json",
+        "bytes": 956254,
+        "sha256": "80e7ab4169c3cfa2a093544cce55175fbff5ab114c276ed9f0d38ad6b8303ff3"
+      }
+    },
+    {
+      "id": "before-3",
+      "raw": {
+        "path": "assets/local/issue-113-review/final-before-3/run-1.json",
+        "bytes": 1182495,
+        "sha256": "5669bd1a5c182f833d2a96f8114a532f2b797db0584637e06cdd2f1671f6ae12"
+      }
+    },
+    {
+      "id": "after-3",
+      "raw": {
+        "path": "assets/local/issue-113-review/final-after-3/run-1.json",
+        "bytes": 969504,
+        "sha256": "801cae5ce0864ad84ae7f5054862af1c44d6d3df042c0cbc8bb11672caa73497"
+      }
+    }
+  ],
+  "comparison": {
+    "before_misses": [
+      1,
+      40,
+      84
+    ],
+    "after_misses": [
+      0,
+      1,
+      0
+    ],
+    "before_callback_over_budget": [
+      0,
+      0,
+      0
+    ],
+    "after_callback_over_budget": [
+      0,
+      0,
+      0
+    ],
+    "web_deadline_ready": false,
+    "before_presents": [
+      3604,
+      3601,
+      3592
+    ],
+    "after_presents": [
+      842,
+      842,
+      842
+    ],
+    "before_callback_ms": [
+      {
+        "count": 3602,
+        "median": 2.7999999821186066,
+        "p95": 8.200000017881393,
+        "max": 9.5
+      },
+      {
+        "count": 3599,
+        "median": 2.7000000178813934,
+        "p95": 8.299999982118607,
+        "max": 9.599999994039536
+      },
+      {
+        "count": 3590,
+        "median": 2.699999988079071,
+        "p95": 8.100000023841858,
+        "max": 11.0
+      }
+    ],
+    "after_callback_ms": [
+      {
+        "count": 3601,
+        "median": 0.5,
+        "p95": 7.9000000059604645,
+        "max": 9.899999976158142
+      },
+      {
+        "count": 3601,
+        "median": 0.5999999940395355,
+        "p95": 8.300000011920929,
+        "max": 9.899999976158142
+      },
+      {
+        "count": 3601,
+        "median": 0.5,
+        "p95": 7.9000000059604645,
+        "max": 10.199999988079071
+      }
+    ]
+  },
+  "g11_ready": false,
+  "g12_entry_ready": false,
+  "handoff": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/115",
+    "user_authorized_g12_preparation": true,
+    "performance_qualification": "Deferred to a more capable host by user on 2026-10-22; no more 60fps tuning/repeats on this machine"
+  },
+  "recorded_producer": [
+    {
+      "path": "assets/local/web/issue113-final-before/algorithm.js",
+      "bytes": 4676,
+      "sha256": "3fbdfef9dd3f1dce5ab7d35607aa36a626ce3d09eb7c153fc6d3e9ed76a6b2aa"
+    },
+    {
+      "path": "assets/local/web/issue113-final-before/app.js",
+      "bytes": 8577,
+      "sha256": "db8e52135fea78b358b2d3cf9560e55b18cc48e6bdc3d84a86e3c28a21d3952d"
+    },
+    {
+      "path": "assets/local/web/issue113-final-before/audio.js",
+      "bytes": 5537,
+      "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+    },
+    {
+      "path": "assets/local/web/issue113-final-before/controls.js",
+      "bytes": 4740,
+      "sha256": "e54f235e7cf09dac1a301651bced60bace9b06e2d541bbc7dfa769bb2179ab40"
+    },
+    {
+      "path": "assets/local/web/issue113-final-before/host.js",
+      "bytes": 2308,
+      "sha256": "e0b1430ff18410ea21a0283beceb6328652bcc5fa1991f9dfb608227e7a254e6"
+    },
+    {
+      "path": "assets/local/web/issue113-final-before/live.js",
+      "bytes": 6035,
+      "sha256": "0a55e410f323d16f5f2bcf90b6c26d9255ea36a66aae3367f0a1d3815b37548b"
+    },
+    {
+      "path": "assets/local/web/issue113-final-before/measure.js",
+      "bytes": 1305,
+      "sha256": "026c63039b25050285fbb8f406222976c3bd7cda31f3aa625482f9f18fa5bf2a"
+    },
+    {
+      "path": "assets/local/web/issue113-final-before/plan.json",
+      "bytes": 57449,
+      "sha256": "325a85547329d55337c4b3dd49f4d1d22875dc7851b88de99a04718b2c7cfaa5"
+    },
+    {
+      "path": "assets/local/web/issue113-final-before/pkg/lemmings_web.d.ts",
+      "bytes": 8226,
+      "sha256": "9e075b5b427bd865f01f07a2a7c876d1fd2a9da7b161599c6fe309983be83fb0"
+    },
+    {
+      "path": "assets/local/web/issue113-final-before/pkg/lemmings_web.js",
+      "bytes": 25036,
+      "sha256": "39832d648abebc0d742852418c5e90ac7c6870293ba66807ec85c18e7549d499"
+    },
+    {
+      "path": "assets/local/web/issue113-final-before/pkg/lemmings_web_bg.wasm",
+      "bytes": 545607,
+      "sha256": "4d7ff9519a1347160fefee062d2b70e70396e51e090c4ae0b48e3319345281c2"
+    },
+    {
+      "path": "assets/local/web/issue113-final-before/pkg/lemmings_web_bg.wasm.d.ts",
+      "bytes": 3830,
+      "sha256": "6b3c7d500f9582250af8aae0d910b00a6b6cb50e94e31ce196d596170f72b545"
+    },
+    {
+      "path": "assets/local/web/issue113-final-after/algorithm.js",
+      "bytes": 4676,
+      "sha256": "3fbdfef9dd3f1dce5ab7d35607aa36a626ce3d09eb7c153fc6d3e9ed76a6b2aa"
+    },
+    {
+      "path": "assets/local/web/issue113-final-after/app.js",
+      "bytes": 8994,
+      "sha256": "5708479039abbee23d07a1a0ba4a1423969d680a73ef21ab98d1729273e4737c"
+    },
+    {
+      "path": "assets/local/web/issue113-final-after/audio.js",
+      "bytes": 5537,
+      "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+    },
+    {
+      "path": "assets/local/web/issue113-final-after/controls.js",
+      "bytes": 4740,
+      "sha256": "e54f235e7cf09dac1a301651bced60bace9b06e2d541bbc7dfa769bb2179ab40"
+    },
+    {
+      "path": "assets/local/web/issue113-final-after/host.js",
+      "bytes": 2308,
+      "sha256": "e0b1430ff18410ea21a0283beceb6328652bcc5fa1991f9dfb608227e7a254e6"
+    },
+    {
+      "path": "assets/local/web/issue113-final-after/live.js",
+      "bytes": 6035,
+      "sha256": "0a55e410f323d16f5f2bcf90b6c26d9255ea36a66aae3367f0a1d3815b37548b"
+    },
+    {
+      "path": "assets/local/web/issue113-final-after/measure.js",
+      "bytes": 1305,
+      "sha256": "026c63039b25050285fbb8f406222976c3bd7cda31f3aa625482f9f18fa5bf2a"
+    },
+    {
+      "path": "assets/local/web/issue113-final-after/plan.json",
+      "bytes": 57449,
+      "sha256": "325a85547329d55337c4b3dd49f4d1d22875dc7851b88de99a04718b2c7cfaa5"
+    },
+    {
+      "path": "assets/local/web/issue113-final-after/pkg/lemmings_web.d.ts",
+      "bytes": 8226,
+      "sha256": "9e075b5b427bd865f01f07a2a7c876d1fd2a9da7b161599c6fe309983be83fb0"
+    },
+    {
+      "path": "assets/local/web/issue113-final-after/pkg/lemmings_web.js",
+      "bytes": 25036,
+      "sha256": "39832d648abebc0d742852418c5e90ac7c6870293ba66807ec85c18e7549d499"
+    },
+    {
+      "path": "assets/local/web/issue113-final-after/pkg/lemmings_web_bg.wasm",
+      "bytes": 545607,
+      "sha256": "4d7ff9519a1347160fefee062d2b70e70396e51e090c4ae0b48e3319345281c2"
+    },
+    {
+      "path": "assets/local/web/issue113-final-after/pkg/lemmings_web_bg.wasm.d.ts",
+      "bytes": 3830,
+      "sha256": "6b3c7d500f9582250af8aae0d910b00a6b6cb50e94e31ce196d596170f72b545"
+    },
+    {
+      "path": "assets/local/issue-113-review/paired-cdp.cjs",
+      "bytes": 7130,
+      "sha256": "6acd5e3af8b673acc658b256ecf68109ebbd32f870b1da0147ccf02e8596d00b"
+    }
+  ],
+  "local_evidence": [
+    {
+      "path": "assets/local/issue-113-review/final-source-pins.json",
+      "bytes": 4679,
+      "sha256": "e4fbb3411d50141c099bf19b06fb1f76beb8b104e9de9fb1358ae5c80beade68"
+    },
+    {
+      "path": "assets/local/issue-113-review/paired-source-pins.json",
+      "bytes": 4779,
+      "sha256": "1ccc0c950882140e5a3ab7e91e6e1e93f0a9d3ca0d457afa823646604ac4896b"
+    },
+    {
+      "path": "assets/local/issue-113-review/paired-cdp.cjs",
+      "bytes": 7130,
+      "sha256": "6acd5e3af8b673acc658b256ecf68109ebbd32f870b1da0147ccf02e8596d00b"
+    },
+    {
+      "path": "assets/local/issue-113-review/final-paired-progress.log",
+      "bytes": 653,
+      "sha256": "fbc460f677d0ea9944c6e2e36636cc01eba28f398893ab74f0623bfaa5245165"
+    },
+    {
+      "path": "assets/local/issue-113-review/trace-diagnostic/trace.json",
+      "bytes": 219761339,
+      "sha256": "febe9a9a18daa6afaf5399f245a4a7c29b36fdc77319e9015872e1ff0f0e3a3c"
+    },
+    {
+      "path": "assets/local/issue-113-review/trace-diagnostic/trace-meta.json",
+      "bytes": 87,
+      "sha256": "1c284b07b12c40662672d0b23df978609cdf6afa1fe32ac02cb97611f3f35a9e"
+    },
+    {
+      "path": "assets/local/issue-113-review/trace-diagnostic/run-1.json",
+      "bytes": 1335215,
+      "sha256": "e98ad560bda567d3d918fcaa657d03060d03fa6feeb52e9c82bd65f507b7e37e"
+    },
+    {
+      "path": "assets/local/issue-113-review/trace-summary.json",
+      "bytes": 23938,
+      "sha256": "07b2d497c8ee4c5b395b7ffeaf4119c0df357c2d25d3db1a576467477a9826ee"
+    },
+    {
+      "path": "assets/local/issue-113-review/pointer-probe/run-1.json",
+      "bytes": 112436,
+      "sha256": "81ad09d7c90b05b5c152662adf0d6d3f487511bc8e08757e59bc4933ed520cc2"
+    },
+    {
+      "path": "assets/local/issue-113-review/input-diagnostic/run-1.json",
+      "bytes": 1324510,
+      "sha256": "e3dbcce232e2e0bbf103c59079ac595e67e44ee02a8315d1c46e11e3bc71f78c"
+    },
+    {
+      "path": "assets/local/issue-113-review/web-check-final/summary.json",
+      "bytes": 9095,
+      "sha256": "bc4007e80c31568cdb2b0e4af934e5f7a09f7f06141ecc1b1d96bad4c54184cf"
+    },
+    {
+      "path": "assets/local/issue-113-review/dispatch-red.log",
+      "bytes": 356,
+      "sha256": "7dc71827afacfa13f913e8489c8ae5991293193ed97b2acc652dae14cefa1685"
+    },
+    {
+      "path": "assets/local/issue-113-review/release-red.log",
+      "bytes": 374,
+      "sha256": "3e4af6f30df39cdac7475f1b2b0a4b3133ab54c6324a7228aaaf88aae03469f9"
+    },
+    {
+      "path": "assets/local/issue-113-review/release-green.log",
+      "bytes": 183,
+      "sha256": "dc92872884b56448fcea4c5447b097655a56ef4797095252d271fb8efbd2dbce"
+    },
+    {
+      "path": "assets/local/issue-113-review/stats-red.log",
+      "bytes": 925,
+      "sha256": "f208bdc9813531e03aba6ab73f377374b1dd6225f7ecc4b8877e2bc0461095da"
+    },
+    {
+      "path": "assets/local/issue-113-review/stats-green.log",
+      "bytes": 816,
+      "sha256": "aa9abfc34b601d1e66cb51e29b299901a59588d8df0116a28ecc617e610a91e5"
+    },
+    {
+      "path": "assets/local/issue-113-review/deferred-startup-experiment/pins.json",
+      "bytes": 1261,
+      "sha256": "5d33b6996765442cfd396457155c53deb4fbba3f44e536b5a40e63289e8cea81"
+    },
+    {
+      "path": "assets/local/issue-113-review/tab-cleanup.json",
+      "bytes": 1339,
+      "sha256": "6f802588d1f28a65ab67f2623ee0b62e4c1998f3908a0fed82045a654fe692f3"
+    },
+    {
+      "path": "assets/local/issue-113-review/chromium/pins.json",
+      "bytes": 669,
+      "sha256": "b3b7ef181138090c791e8b9e1394127d45e66653eeb891d7f4b4e10636785aa3"
+    },
+    {
+      "path": "assets/local/issue-113-review/before-1/run-1.json",
+      "bytes": 1189063,
+      "sha256": "0aa23631e7179b03ea9ee1fba1d8b5172d2f765eccf8d1ac041cdee7e6f51021"
+    },
+    {
+      "path": "assets/local/issue-113-review/after-1/run-1.json",
+      "bytes": 979443,
+      "sha256": "946bb552e7f08811664180dd3af5351bb11ea299d8b3cb823ec0c386ae37ed54"
+    },
+    {
+      "path": "assets/local/issue-113-review/before-2/run-1.json",
+      "bytes": 1193404,
+      "sha256": "7150b31c6d200de57511c0747fbd83f0f9939833181d4efe18fe7d154513e66c"
+    },
+    {
+      "path": "assets/local/issue-113-review/after-2/run-1.json",
+      "bytes": 930349,
+      "sha256": "6298da2b5009748f11e06ab39ef9f1c9ab99c8a434d1b19817a447dc07d36762"
+    },
+    {
+      "path": "assets/local/issue-113-review/before-3/run-1.json",
+      "bytes": 1185826,
+      "sha256": "9af98745bc402f94fd78b028b8fbf68eeca490177e646a8373883c5c330371e8"
+    },
+    {
+      "path": "assets/local/issue-113-review/after-3/run-1.json",
+      "bytes": 977633,
+      "sha256": "2f49c13c4523c941ff888b4d9f7f5602148b646080179a7f47d3d2c6b861cb3a"
+    },
+    {
+      "path": "assets/local/issue-113-review/final-before-1/lifecycle.json",
+      "bytes": 202098,
+      "sha256": "da536bd6326e0ea6a88a96326d91d2ef089ba66307fc855d34d7bb1104bb62c2"
+    },
+    {
+      "path": "assets/local/issue-113-review/final-after-1/lifecycle.json",
+      "bytes": 202086,
+      "sha256": "eec7cefe0aa52b53606b260170003099a2a39189e5a4e951a037258977e2986b"
+    },
+    {
+      "path": "assets/local/issue-113-review/final-before-2/lifecycle.json",
+      "bytes": 202098,
+      "sha256": "3dea4370169d4ce30e39b7570410089c4e101e354f4919c64e4f2e2978ea7c06"
+    },
+    {
+      "path": "assets/local/issue-113-review/final-after-2/lifecycle.json",
+      "bytes": 202098,
+      "sha256": "fbdcc708c3fa934da217b9ba3b24831015f983955d5e43040290deb007c59cee"
+    },
+    {
+      "path": "assets/local/issue-113-review/final-before-3/lifecycle.json",
+      "bytes": 202062,
+      "sha256": "a100d56f72d6374175030cf1f634eaf3b563c27129a8d700cfed6d9b0fe35b37"
+    },
+    {
+      "path": "assets/local/issue-113-review/final-after-3/lifecycle.json",
+      "bytes": 202098,
+      "sha256": "f5eb9050e795a032d21567109136852a7185a5b767e2bdce5186fbffd7c88911"
+    }
+  ],
+  "scope": "Same-host alternating 60s three pairs, normal frozen #111 observer/CLI with no trace/extra event buffer/heap polling. All initial/steady-state misses retained. Current app matches the adopted after source. Separate traced/pointer/pilot experiments do not replace these pairs. No physical scanout or universal OS/GPU guarantee.",
+  "limitations": [
+    "Adopted candidate has completion misses 0/1/0, so the deadline gate remains unmet.",
+    "All six841tick state/terrain/brick/object/RGB hashes match the fixed reference; observed underruns0.",
+    "Trace69 misses all matched to renderer/frame pipeline IDs, with compositor ACK immediately before send and no overlapping MinorGC/MajorGC in the measured spans. ACK/GPU/OS internal causes and historical untraced causes remain unconfirmed.",
+    "No fresh candidate interval-memory profile or new full120 replay; prior memory/PCM/functional proofs keep their stated source/method scopes.",
+    "Later deferred-startup/window prototypes were preserved locally and are not included in the adopted production code."
+  ]
+}

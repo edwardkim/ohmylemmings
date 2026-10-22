@@ -121,3 +121,5 @@ ADLIB 명령/레지스터 스트림의 합성877호출과 원본 드라이버 �
 [#110 G11 검토](manifests/g11_review.json)는 공개 콜백 비용 벡터와 증거 pins를 담습니다. `python3 tools/g11_review.py`는 검토의 유효성과 G11/G12 미완료를 함께 출력하며 `--require-ready`는 현재 실패합니다. 원본 없이 재현하고 `--local`은 기존 원시 증거를 추가 확인합니다. 부족한 Web 측정은 #111이며 새 플레이/성능 통과 자료가 아닙니다.
 
 [#111 Web 관측](manifests/web_deadlines.json)과 [수치 벡터](manifests/web_deadline_observations.jsonl)는7개60초 구간의 시간/메모리·원시 pins와 미통과를 보존합니다. `python3 tools/web_deadlines.py`는 원본 없이 재계산하고 `--local`은7원시/원본50개를 확인합니다. 일반 CI 성공을 실제 표시 마감 합격으로 계산하지 않으며 #113이 후속입니다.
+
+[#113 Web dispatch 기록](manifests/web_dispatch.json)은 전후3쌍의 숫자 벡터·trace 요약과 채택/이월 범위를 연결합니다. 원시 trace/원본 파생 자료는 ignored `assets/local/`에 유지하며 성능 합격을 선언하지 않습니다.

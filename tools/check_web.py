@@ -112,8 +112,8 @@ def check(directory, browser=None, original_assets=None):
             test=dict(name=f'original-special-{rank}{level:02}',scene=f'original:{rank}:{level}',pacing='dos',steps=150,asset_directory=original,original=True,interactive=True,commands=[[10,'Key','Space',0],[12,'Key','Space',0],[40,'Key','ArrowRight',0],[60,'Key','Home',0],[120,'Restart']])
             test['rows']=native_rows(binary,test);test.pop('asset_directory');tests.append(test)
     expected=directory/'expected.json';expected.write_text(json.dumps(dict(cases=tests,original_files=selected),separators=(',',':'))+'\n')
-    for name in ['check.html','check.js','dom_check.js','sound_check.js']: shutil.copyfile(ROOT/'tools/web'/name,directory/name)
-    for name in ['measure.js','check_measure.js']: shutil.copyfile(ROOT/'tools/performance'/name,directory/name)
+    for name in ['check.html','check.js','dom_check.js','sound_check.js','dispatch_check.js']: shutil.copyfile(ROOT/'tools/web'/name,directory/name)
+    for name in ['measure.js','check_measure.js','dispatch_events.js']: shutil.copyfile(ROOT/'tools/performance'/name,directory/name)
     ready=threading.Event();result={}
     class Handler(SimpleHTTPRequestHandler):
         def log_message(self, *args): pass
