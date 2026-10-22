@@ -29,10 +29,10 @@ def check(directory, evidence):
             'Default launch did not load original Fun01')
     from tools.check_desktop import verify_pixels
     verify_pixels(initial)
-    logical = next(initial.glob('frame-*.rgb')).read_bytes()
+    logical = (initial / 'frame-000000.rgb').read_bytes()
     require(sha(logical) == '1539ca2afdcc9cfbe4fa5de51036c45b881014ec14a0ab030c191ca41f988c4d',
             'Packaged original Fun01 pixels differ from Windows/Mac baseline')
-    shutil.copyfile(next(initial.glob('frame-*.ppm')), evidence / 'original-fun01.ppm')
+    shutil.copyfile(initial / 'frame-000000.ppm', evidence / 'original-fun01.ppm')
     levels = 0
     for rank in ['fun', 'tricky', 'taxing', 'mayhem']:
         for number in range(1, 31):

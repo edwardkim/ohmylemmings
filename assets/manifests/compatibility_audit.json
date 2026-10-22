@@ -956,8 +956,8 @@
     },
     {
       "path": "tools/check_linux_game_package.py",
-      "bytes": 4578,
-      "sha256": "49217842b6790ef0f32cce2343fe58dfd99b7f87b557bbd39605e609ec4f0c2b"
+      "bytes": 4570,
+      "sha256": "5c287e958bb6136252a9bc268a607bf05325ff5b4a4e4023e7bebf9c378e8260"
     },
     {
       "path": "tools/check_macos_package.py",

@@ -13,3 +13,5 @@ Web: `ohmylemmings-0.1.0-web.zip` 전체를 HTTP 서버에 배치한다. 예: `p
 Linux 검증은 SDL dummy video/audio·readback이며 WebAudio는 실제 AudioContext에 자동 활성화 플래그를 사용한다. 사용자 물리 스피커 청취·60fps 인증은 별도다. 기존120개 해법/240사례를 새로 전수 완주했다고 주장하지 않는다. #113 성능 이월·G11 NOT READY를 유지한다. CI는 기존 합성 회귀 다음 원본50개 acquisition/verify와 새 압축 해제 검증을 수행하고14일 Linux/Web archive·sha·숫자 요약·원본 PNG/PPM 화면을 보관한다. 정확한 source/run/artifact와 PR/병합은 #122에 기록한다.
 
 공인 Developer ID가 없는 Mac은 자체 tap의 소스 빌드 Formula를 후속으로 사용할 수 있다. 현재 사전 빌드 `.app`을 Cask로 설치해도 Gatekeeper 요구가 없어지지 않으며 공식 Cask는 기본 macOS 설정에서 통과해야 한다. [Formula](https://docs.brew.sh/Formula-Cookbook), [Cask 신뢰 모델](https://docs.brew.sh/Homebrew-Security-and-Supply-Chain#casks-have-a-different-trust-model). tap 구현/공식 제출·유료 인증서 발급·정식 릴리스 게시를 이번 작업의 완료로 표시하지 않는다.
+
+첫 Linux CI에서 캡처 디렉터리의 비결정적인 glob 순서로 초기/2틱 화면을 혼동한 검사 오류를 발견했다. 초기 RGB/PPM 파일명을 명시해 고정했다. 첫 실패와 수정 source/최종 CI를 #122에 구분해 기록한다.

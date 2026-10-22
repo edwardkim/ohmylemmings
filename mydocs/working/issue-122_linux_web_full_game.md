@@ -11,3 +11,5 @@ Apple 공인 Developer ID가 없다는 사용자 답변을 기록한다. Homebre
 공식 근거: [Formula](https://docs.brew.sh/Formula-Cookbook), [Cask 신뢰 모델](https://docs.brew.sh/Homebrew-Security-and-Supply-Chain#casks-have-a-different-trust-model).
 
 구현/로컬 기능 검사 완료: 패키징20·Desktop41·Clippy·Python224/감사 PASS. Linux/Web 실제 새 압축 해제 기본 Fun01/120개·동일 첫 프레임1539ca2a…·Fun01 성공→Restart/Continue와 새 시도·비영 원본 PCM PASS. Web 필수 목록/MAIN 누락 오류·refresh/하위 경로·소스/라이선스 전달 PASS. 합성 WASM/native66회·11,960상태/6,877화면·Canvas/입력/음향 명령 PASS. 저사양 성능 반복 없음. 최종 CI·다운로드 검증·self-review/실제 병합을 진행한다.
+
+첫 PR CI의 Linux 패키지 검사는 정렬하지 않은 glob에서 첫 프레임을 골라 초기 대신2틱 프레임과 비교했다. 원본 입력/픽셀 엔진 오류가 아니며 `frame-000000`을 명시해 검사/스크린샷 선택을 고정했다. 첫 실패 run39755457756을 보존하고 수정 head의 CI를 재실행한다.
