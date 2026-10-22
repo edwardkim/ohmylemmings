@@ -52,7 +52,7 @@ class ReleasePackageTests(unittest.TestCase):
         (self.root / 'assets/local').mkdir(parents=True)
         (self.root / 'assets/local/secret.dat').write_bytes(b'private original')
         path = self.package('web')
-        result = verify_package(path)
+        result = verify_package(path, root=self.root)
         self.assertEqual(result['target'], 'web')
         with zipfile.ZipFile(path) as archive:
             names = archive.namelist()
@@ -65,6 +65,39 @@ class ReleasePackageTests(unittest.TestCase):
         self.assertTrue(result['development'])
         self.assertTrue(result['performance_qualification_deferred'])
 
+    def test_both_targets_deliver_project_license_and_all_third_party_notices(self):
+        for kind in ['linux', 'web']:
+            path = self.package(kind, 'licensed-' + kind)
+            if kind == 'web':
+                with zipfile.ZipFile(path) as archive:
+                    files = {n: archive.read(n) for n in archive.namelist()}
+            else:
+                with tarfile.open(path) as archive:
+                    files = {n: archive.extractfile(n).read() for n in archive.getnames()}
+            self.assertEqual(json.loads(files['PACKAGE-MANIFEST.json'])['project_license'], 'MIT')
+            for name in ['LICENSE', 'THIRD_PARTY_NOTICES.txt']:
+                self.assertEqual(files[name], (self.root / name).read_bytes())
+
+    def test_missing_notice_cannot_produce_either_package(self):
+        (self.root / 'THIRD_PARTY_NOTICES.txt').unlink()
+        for kind in ['linux', 'web']:
+            with self.assertRaises(ValueError): self.package(kind, 'missing-' + kind)
+
+    def test_rehashed_notice_replacement_still_fails_against_reviewed_source(self):
+        from tools.release_package import archive_bytes, encoded, sha
+        path = self.package('web')
+        with zipfile.ZipFile(path) as archive:
+            files = {name: archive.read(name) for name in archive.namelist()}
+        files['THIRD_PARTY_NOTICES.txt'] = b'replacement that removed upstream terms'
+        manifest = json.loads(files['PACKAGE-MANIFEST.json'])
+        for pin in manifest['files']:
+            pin.update(bytes=len(files[pin['path']]), sha256=sha(files[pin['path']]))
+        files['PACKAGE-MANIFEST.json'] = encoded(manifest)
+        files['SHA256SUMS'] = ''.join(f'{sha(b)}  {n}\n' for n,b in sorted(files.items()) if n != 'SHA256SUMS').encode()
+        path.write_bytes(archive_bytes(files, 'web'))
+        Path(str(path)+'.sha256').write_text(f'{sha(path.read_bytes())}  {path.name}\n')
+        with self.assertRaisesRegex(ValueError, 'license differs'): verify_package(path, root=self.root)
+
     def test_same_inputs_produce_identical_archives_for_both_targets(self):
         for kind in ['linux', 'web']:
             first = self.package(kind, 'first-' + kind)
@@ -73,7 +106,7 @@ class ReleasePackageTests(unittest.TestCase):
 
     def test_native_binary_is_executable_and_source_is_delivered(self):
         path = self.package('linux')
-        self.assertEqual(verify_package(path)['target'], 'linux-x86_64')
+        self.assertEqual(verify_package(path, root=self.root)['target'], 'linux-x86_64')
         with tarfile.open(path) as archive:
             self.assertEqual(archive.getmember('lemmings-desktop').mode, 0o755)
             self.assertIn('source.tar.gz', archive.getnames())
@@ -100,7 +133,7 @@ class ReleasePackageTests(unittest.TestCase):
     def test_changed_archive_bytes_fail_checksum(self):
         path = self.package('web')
         path.write_bytes(path.read_bytes() + b'tampered')
-        with self.assertRaises(ValueError): verify_package(path)
+        with self.assertRaises(ValueError): verify_package(path, root=self.root)
 
     def test_internal_corruption_or_extra_files_fail_even_with_updated_archive_checksum(self):
         for change in ['app.js', 'MAIN.DAT']:
@@ -115,4 +148,4 @@ class ReleasePackageTests(unittest.TestCase):
                     entry.external_attr = 0o100644 << 16
                     archive.writestr(entry, data)
             Path(str(path) + '.sha256').write_text(f'{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.name}\n')
-            with self.assertRaises(ValueError): verify_package(path)
+            with self.assertRaises(ValueError): verify_package(path, root=self.root)

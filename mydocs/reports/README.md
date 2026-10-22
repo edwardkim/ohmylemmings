@@ -114,3 +114,5 @@
 - [#124 버전·태그 관리와 첫 다운로드 릴리즈](issue-124_release_policy.md)
 
 - [#126 GitHub Pages 플레이 배포](issue-126_github_pages.md)
+
+- [#129 MIT 정책·제3자 고지 전달](issue-129_project_license.md)

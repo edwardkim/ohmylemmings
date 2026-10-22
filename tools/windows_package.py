@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if __package__ in (None, ''):
     sys.path.insert(0, str(ROOT))
 from tools.reference_assets import checked_bytes, download_bytes
-from tools.release_package import archive_bytes, encoded, regular, require, sha
+from tools.release_package import archive_bytes, encoded, regular, require, sha, project_license_files, verify_project_license, PROJECT_LICENSE_FILES
 from tools.web_build import source_bundle
 from tools.release_version import workspace_version, package_name
 
@@ -53,6 +53,7 @@ def create(runtime, assets, sdl, output, root=ROOT):
     sidecar = Path(str(path)+'.sha256')
     if path.exists() or sidecar.exists(): raise FileExistsError(path)
     files = {'OhMyLemmings.exe': regular(runtime/'lemmings-desktop.exe')}
+    files.update(project_license_files(root))
     pe64(files['OhMyLemmings.exe'])
     runtime_manifest = manifest(root, 'windows_runtime.json')
     for name in ['SDL2.dll', 'SDL2-LICENSE.txt']:
@@ -79,6 +80,7 @@ def create(runtime, assets, sdl, output, root=ROOT):
         '선택 가능한 난이도: fun/tricky/taxing/mayhem, 각 1..30\r\n\r\n'
         'Windows MSVC CRT는 정적으로 링크하며 SDL2.dll은 동봉합니다.\r\n'
         'SDL2: 동봉 SDL2-LICENSE.txt. OPL: LGPL-2.1-or-later.txt.\r\n'
+        '자체 코드: MIT(LICENSE). 제3자 고지: THIRD_PARTY_NOTICES.txt. 원본 게임 데이터/상표는 MIT 대상이 아닙니다.\r\n'
         'OPL Copyright (C) 2013-2020 Nuke.YKT; (C) 2026 Tony Gies (Rust port).\r\n'
         '게임 데이터 출처/해시: GAME-DATA.json. 대응 소스/수정/재링크: source.tar.gz 및 REBUILD.md.\r\n'
         '개발 프리뷰 빌드입니다. 성능 판정은 별도 환경에서 계속합니다(#113).\r\n'
@@ -99,7 +101,7 @@ def create(runtime, assets, sdl, output, root=ROOT):
     with tempfile.TemporaryDirectory() as temporary:
         source = Path(temporary)/'source.tar.gz'; source_info = source_bundle(source, root)
         files['source.tar.gz'] = source.read_bytes()
-    files['PACKAGE-MANIFEST.json'] = encoded(dict(schema_version=1, version=version, target='windows-x86_64',
+    files['PACKAGE-MANIFEST.json'] = encoded(dict(schema_version=1, version=version, target='windows-x86_64', project_license='MIT',
         original_game_data=True, first_level=dict(difficulty='fun',number=1), static_crt=True,
         performance_qualification_deferred=True, source=source_info,
         files=[dict(path=n,bytes=len(b),sha256=sha(b)) for n,b in sorted(files.items())]))
@@ -116,10 +118,13 @@ def verify(path, root=ROOT):
     require(regular(Path(str(path)+'.sha256')).decode() == f'{sha(raw)}  {path.name}\n', 'Archive checksum differs')
     with zipfile.ZipFile(io.BytesIO(raw)) as archive:
         names = archive.namelist()
-        require(len(names) == len(set(names)) and set(names) == BASE_FILES | {'data/'+n for n in GAME_FILES}, 'Invalid Windows inventory')
+        package = json.loads(archive.read('PACKAGE-MANIFEST.json'))
+        license_names = PROJECT_LICENSE_FILES if 'project_license' in package else set()
+        require(len(names) == len(set(names)) and set(names) == BASE_FILES | license_names | {'data/'+n for n in GAME_FILES}, 'Invalid Windows inventory')
         require(all(not i.is_dir() and i.external_attr >> 16 == 0o100644 for i in archive.infolist()), 'Invalid Windows ZIP file type')
         files = {n:archive.read(n) for n in names}
     package = json.loads(files['PACKAGE-MANIFEST.json'])
+    verify_project_license(files, package, root)
     require(package['schema_version'] == 1 and package['target'] == 'windows-x86_64'
         and package['original_game_data'] is True and package['static_crt'] is True, 'Windows package schema')
     pins = package['files']

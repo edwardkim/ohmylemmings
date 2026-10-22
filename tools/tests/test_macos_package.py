@@ -54,6 +54,13 @@ class MacPackageTests(unittest.TestCase):
         self.assertEqual(info['CFBundleVersion'],'0.2.0')
         self.assertIn('0.2.0-rc.1',info['CFBundleGetInfoString'])
 
+    def test_mac_app_contains_project_and_third_party_notices(self):
+        path=self.package()
+        with zipfile.ZipFile(path) as archive:
+            self.assertEqual(json.loads(archive.read('PACKAGE-MANIFEST.json'))['project_license'],'MIT')
+            for name in ['LICENSE','THIRD_PARTY_NOTICES.txt']:
+                self.assertEqual(archive.read(APP+'/Contents/Resources/'+name),(self.root/name).read_bytes())
+
     def test_missing_corrupt_data_or_linked_binary_is_rejected(self):
         path=self.app/'Contents/Resources/data/MAIN.DAT';path.write_bytes(b'bad')
         with self.assertRaises(ValueError):self.package()

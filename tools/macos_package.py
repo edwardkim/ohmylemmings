@@ -15,7 +15,7 @@ import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 if __package__ in (None,''):sys.path.insert(0,str(ROOT))
 from tools.reference_assets import checked_bytes, download_bytes
-from tools.release_package import encoded, regular, require, sha
+from tools.release_package import encoded, regular, require, sha, project_license_files, verify_project_license, PROJECT_LICENSE_FILES
 from tools.web_build import source_bundle
 from tools.release_version import workspace_version, package_name, parse_version
 from tools.windows_package import GAME_FILES, game_pins, manifest
@@ -27,6 +27,7 @@ RES=APP+'/Contents/Resources/'
 SIGNATURE=APP+'/Contents/_CodeSignature/CodeResources'
 APP_FILES={EXE,LIB,APP+'/Contents/Info.plist',SIGNATURE,RES+'GAME-DATA.json',
            RES+'SDL2-LICENSE.txt',RES+'LGPL-2.1-or-later.txt'} | {RES+'data/'+n for n in GAME_FILES}
+LICENSE_APP_FILES={RES+n for n in PROJECT_LICENSE_FILES}
 OUTSIDE={'README.txt','REBUILD.md','source.tar.gz','PACKAGE-MANIFEST.json','SHA256SUMS'}
 
 
@@ -83,6 +84,7 @@ def stage(binary,assets,sdl,destination,root=ROOT):
            APP+'/Contents/Info.plist':plistlib.dumps(app_info(version)),
            RES+'SDL2-LICENSE.txt':checked_bytes(regular(sdl/'SDL2-LICENSE.txt'),manifest(root,'macos_runtime.json')['license'],'SDL license'),
            RES+'LGPL-2.1-or-later.txt':regular(root/'crates/lemmings-opl/LICENSE')}
+    files.update({RES+n:data for n,data in project_license_files(root).items()})
     universal_arches(files[EXE]);universal_arches(files[LIB],6)
     original,pins=game_pins(root)
     files[RES+'GAME-DATA.json']=encoded(dict(profile=original['profile'],original_game_data=True,levels=120,files=pins,sources=original.get('sources',[])))
@@ -110,9 +112,10 @@ def create(app,output,root=ROOT):
     require(app.name==APP and not app.is_symlink(),'Invalid application directory')
     require(all(not p.is_symlink() for p in app.rglob('*')),'Application contains links')
     names={APP+'/'+p.relative_to(app).as_posix() for p in app.rglob('*') if not p.is_dir()}
-    require(names==APP_FILES,'Unexpected/missing app files or signature')
+    require(names==APP_FILES|LICENSE_APP_FILES,'Unexpected/missing app files or signature')
     files={n:regular(app.parent/n) for n in sorted(names)}
     validate_app(files,version,root)
+    verify_project_license(files,dict(project_license='MIT'),root,RES)
     files['README.txt']=(
         'Oh My Lemmings - macOS universal2 (Apple Silicon / Intel, macOS 13+)\n\n'
         'ZIP을 모두 풀고 OhMyLemmings.app을 Applications에 복사한 뒤 여세요.\n'
@@ -124,6 +127,7 @@ def create(app,output,root=ROOT):
         'F/C/E/K/U/M/B/D: 기술 선택, 왼쪽 클릭: 할당, Space: 일시정지, S: 소리, Esc: 종료\n'
         '결과 화면 R: 재시작, Enter: 다음 레벨. 고급: Contents/MacOS/OhMyLemmings --difficulty tricky --level 1\n'
         'SDL2-LICENSE.txt / LGPL-2.1-or-later.txt / GAME-DATA.json은 앱 Contents/Resources에 있습니다.\n'
+        '자체 코드는 MIT(LICENSE), 제3자 고지는 THIRD_PARTY_NOTICES.txt를 따릅니다. 원본 게임 데이터/상표는 MIT 대상이 아닙니다.\n'
         'OPL Copyright (C) 2013-2020 Nuke.YKT; (C) 2026 Tony Gies (Rust port).\n'
         '대응 소스와 수정·재링크 안내: source.tar.gz 및 REBUILD.md. 성능 판정은 #113에서 별도로 진행합니다.\n').encode()
     files['REBUILD.md']=(
@@ -138,7 +142,7 @@ def create(app,output,root=ROOT):
         'Developer ID signing/notarization requires your own Apple account and credentials.\n').encode()
     with tempfile.TemporaryDirectory() as temporary:
         source=Path(temporary)/'source.tar.gz';info=source_bundle(source,root);files['source.tar.gz']=source.read_bytes()
-    files['PACKAGE-MANIFEST.json']=encoded(dict(schema_version=1,version=version,target='macos-universal2',
+    files['PACKAGE-MANIFEST.json']=encoded(dict(schema_version=1,version=version,target='macos-universal2',project_license='MIT',
         original_game_data=True,architectures=['arm64','x86_64'],minimum_macos='13.0',
         signing='ad-hoc',notarized=False,source=info,
         files=[dict(path=n,bytes=len(b),sha256=sha(b)) for n,b in sorted(files.items())]))
@@ -158,11 +162,14 @@ def create(app,output,root=ROOT):
 def verify(path,root=ROOT):
     raw=regular(path);require(regular(Path(str(path)+'.sha256'))==f'{sha(raw)}  {path.name}\n'.encode(),'ZIP checksum differs')
     with zipfile.ZipFile(io.BytesIO(raw)) as z:
-        names=z.namelist();require(len(names)==len(set(names)) and set(names)==APP_FILES|OUTSIDE,'Invalid Mac ZIP inventory')
+        package=json.loads(z.read('PACKAGE-MANIFEST.json'))
+        licensed=LICENSE_APP_FILES if 'project_license' in package else set()
+        names=z.namelist();require(len(names)==len(set(names)) and set(names)==APP_FILES|OUTSIDE|licensed,'Invalid Mac ZIP inventory')
         for info in z.infolist():
             require(info.external_attr>>16==(0o100755 if info.filename in (EXE,LIB) else 0o100644),'Invalid Mac file permissions/type')
         files={n:z.read(n) for n in names}
     package=json.loads(files['PACKAGE-MANIFEST.json'])
+    verify_project_license(files,package,root,RES)
     require(package['schema_version']==1 and package['target']=='macos-universal2' and package['original_game_data'] is True
             and package['signing']=='ad-hoc' and package['notarized'] is False,'Invalid Mac package schema')
     pins=package['files'];require(len(pins)==len(files)-2 and {p['path'] for p in pins}==set(files)-{'PACKAGE-MANIFEST.json','SHA256SUMS'},'Invalid Mac pins')

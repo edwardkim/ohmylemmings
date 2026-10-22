@@ -24,6 +24,7 @@ WEB_FILES = (
     'host.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
 )
 COMMON_FILES = {'README.md', 'REBUILD.md', 'LGPL-2.1-or-later.txt'}
+PROJECT_LICENSE_FILES = {'LICENSE', 'THIRD_PARTY_NOTICES.txt'}
 
 
 def require(condition, message):
@@ -46,6 +47,20 @@ def regular(path):
     data = path.read_bytes()
     require(bool(data), f'Empty package input: {path}')
     return data
+
+
+def project_license_files(root):
+    return {name: regular(root / name) for name in sorted(PROJECT_LICENSE_FILES)}
+
+
+def verify_project_license(files, manifest, root, prefix=''):
+    # Legacy public v0.1.0 did not grant a project license. Do not relabel it.
+    if 'project_license' not in manifest:
+        return False
+    require(manifest['project_license'] == 'MIT', 'Unsupported project license')
+    for name, data in project_license_files(root).items():
+        require(files.get(prefix + name) == data, 'Project/third-party license differs')
+    return True
 
 
 def archive_bytes(files, target):
@@ -79,7 +94,7 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
     sidecar = Path(str(path) + '.sha256')
     if path.exists() or sidecar.exists():
         raise FileExistsError(f'Package evidence already exists: {path}')
-    files = {}
+    files = project_license_files(root)
     if kind == 'web':
         for name in WEB_FILES:
             files[name] = regular(runtime / name)
@@ -142,7 +157,8 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
         f'# Oh My Lemmings {version} package ({target})\n\n' + launch + '\n'
         + data_notice +
         'Performance qualification on a faster host is pending (#113); 60fps is not guaranteed.\n'
-        'A project-wide license has not yet been selected; this preparation does not grant one.\n'
+        'Project-authored contributions are MIT; see LICENSE and THIRD_PARTY_NOTICES.txt.\n'
+        'Third-party terms remain in force; original DOS data and marks are outside the MIT grant.\n'
         'The OPL synthesizer is LGPL-2.1-or-later: Copyright (C) 2013-2020 Nuke.YKT;\n'
         'Copyright (C) 2026 Tony Gies (Rust port). See LGPL-2.1-or-later.txt and REBUILD.md.\n'
         'Project: https://github.com/edwardkim/ohmylemmings\n'
@@ -159,7 +175,7 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
         'Replace the executable or the generated Web pkg/JS files with your rebuilt outputs.\n'
         'No signing restriction or installation lock is applied by these development packages.\n'
     ).encode()
-    files['PACKAGE-MANIFEST.json'] = encoded(dict(schema_version=1, version=version, target=target,
+    files['PACKAGE-MANIFEST.json'] = encoded(dict(schema_version=1, version=version, target=target, project_license='MIT',
         development=True, performance_qualification_deferred=True, original_game_data=assets is not None,
         source_archive=source_name, source=source,
         files=[dict(path=name, bytes=len(data), sha256=sha(data)) for name, data in sorted(files.items())]))
@@ -195,6 +211,8 @@ def verify_package(path, root=ROOT):
             and manifest['development'] is True and manifest['performance_qualification_deferred'] is True, 'Invalid development package manifest')
     source_name = 'audio-source.tar.gz' if target == 'web' else 'source.tar.gz'
     allowed = COMMON_FILES | {source_name, 'PACKAGE-MANIFEST.json', 'SHA256SUMS'}
+    if verify_project_license(files, manifest, root):
+        allowed |= PROJECT_LICENSE_FILES
     allowed |= set(WEB_FILES) | {'audio-source.json'} if target == 'web' else {'lemmings-desktop'}
     full = manifest.get('original_game_data', False)
     require(type(full) is bool, 'Invalid original data marker')

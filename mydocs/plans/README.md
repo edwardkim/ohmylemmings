@@ -26,3 +26,5 @@
 - [#124 버전·태그 정책과 Releases 배포](issue-124_release_policy.md)
 
 - [#126 GitHub Pages 플레이 배포](issue-126_github_pages.md)
+
+- [#129 자체 코드 라이선스 적용안](issue-129_project_license.md): 자체 코드 정책 결정과 기존 제3자/원본 범위 보존.

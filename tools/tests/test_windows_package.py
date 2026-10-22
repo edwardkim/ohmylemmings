@@ -63,6 +63,13 @@ class WindowsPackageTests(unittest.TestCase):
             self.assertNotIn('secret.txt', archive.namelist())
             for name in GAME_FILES: self.assertEqual(archive.read('data/'+name), (self.assets/name).read_bytes())
 
+    def test_windows_delivers_both_project_and_third_party_notices(self):
+        path = self.package()
+        with zipfile.ZipFile(path) as archive:
+            self.assertEqual(json.loads(archive.read('PACKAGE-MANIFEST.json'))['project_license'], 'MIT')
+            for name in ['LICENSE', 'THIRD_PARTY_NOTICES.txt']:
+                self.assertEqual(archive.read(name), (self.root / name).read_bytes())
+
     def test_missing_corrupt_or_linked_game_data_fails_before_creating_package(self):
         path = self.assets/'MAIN.DAT'; data = path.read_bytes(); path.unlink()
         with self.assertRaises(ValueError): self.package()

@@ -71,11 +71,13 @@ try {
     const refreshed=await open();assert(refreshed.game.level()===1,'fresh page did not reload bundled game');
     refreshed.detach();refreshed.frame.remove();
     for(const broken of ['GAME-DATA.json','data/MAIN.DAT']){const failed=await open(broken);failed.detach();failed.frame.remove();}
-    for(const name of ['audio-license.html','LGPL-2.1-or-later.txt','audio-source.json','audio-source.tar.gz']) {
+    const packageInfo=await (await fetch('./PACKAGE-MANIFEST.json')).json();
+    const licenseFiles=packageInfo.project_license==='MIT'?['LICENSE','THIRD_PARTY_NOTICES.txt']:[];
+    for(const name of ['audio-license.html','LGPL-2.1-or-later.txt','audio-source.json','audio-source.tar.gz',...licenseFiles]) {
         const response=await fetch('./'+name);assert(response.ok&&(await response.arrayBuffer()).byteLength>0,'source/license HTTP delivery failed');
     }
     result={status:'PASS',loader,original_levels_loaded:loaded,first_frame_sha256:digest,frame_rgb,audio,transitions,
-        source_delivery:true,refresh:true,subdirectory:true,missing_file_errors:2,scope:'Extracted full game; actual WASM/DOM/Canvas and original WebAudio PCM, automatic activation flag; no physical audibility or performance qualification'};
+        source_delivery:true,project_license:packageInfo.project_license??'not declared in historical package',refresh:true,subdirectory:true,missing_file_errors:2,scope:'Extracted full game; actual WASM/DOM/Canvas and original WebAudio PCM, automatic activation flag; no physical audibility or performance qualification'};
 } catch(error){result={status:'FAIL',error:String(error),stack:error.stack};}
 document.querySelector('#result').textContent=JSON.stringify({...result,frame_rgb:undefined});
 await fetch('/__result',{method:'POST',body:JSON.stringify(result)});
