@@ -14,8 +14,8 @@
 |---|---|---|
 | HD-01 / #138 | 실제 Fun 01 기준 HD 시안·아트/표시 계약·전체 원본 대응 목록·출처/해시와 검토 결과 | PR #139 병합·완료 |
 | [HD-02 / #140](issue-140_hd_presentation.md) | 공통 HD 표시 snapshot·좌표/입력·패널/카메라 계약 구현. 합성 경계와 읽기 전용 상태 검증 | PR #141 병합·CI7개 PASS·완료, [검증/병합 기록](../reports/issue-140_hd_presentation.md) |
-| [HD-03a / #144](issue-144_hd_assets.md) 및 후속 | 분리된 캐릭터/애니메이션·지형 재질·입출구·UI 자산 제작/로딩·검증 | HD-03a PR #145 병합·완료, [결과](../reports/issue-144_hd_assets.md); 시설/직업/UI는 후속 |
-| [HD-03b / #147](issue-147_hd_actions.md) | 굴착/계단/OhNo/폭발65프레임·첫 테마 입출구11프레임·13조작 아이콘과 typed 팩 확장 | 구현/로컬 검증, [결과](../reports/issue-147_hd_actions.md); 게시/병합은 #147 |
+| [HD-03a / #144](issue-144_hd_assets.md) 및 후속 | 분리된 캐릭터/애니메이션·지형 재질·입출구·UI 자산 제작/로딩·검증 | HD-03a PR #145 병합·완료, [결과](../reports/issue-144_hd_assets.md); 시설/직업/UI 첫 후보는 #147, 전체 확장은 후속 |
+| [HD-03b / #147](issue-147_hd_actions.md) | 굴착/계단/OhNo/폭발65프레임·첫 테마 입출구11프레임·13조작 아이콘과 typed 팩 확장 | PR #149 병합·CI7개 SUCCESS·완료, [결과](../reports/issue-147_hd_actions.md) |
 | HD-04 | Native/Web의 실제 Fun 01 HD 합성·걷기/굴착/계단/폭발·원본 모드 선택과 입력 통합 | 후속 구현 |
 | HD-05 | 전체28애니메이션337프레임 대응·5테마/특수4장면·시설/효과·결과/UI 확장 | 후속 구현 |
 | HD-06 | 원본/HD의 논리 상태·지형·저장 입력 동일성, 지원 플랫폼 패키지/소스/고지·기능 검증 | 후속 구현 |
