@@ -20,9 +20,14 @@
       "sha256": "25871f627d2ed4f50e2811e58af06769a90982fa5abb9adcc5fa5179d2f04184"
     },
     {
+      "path": ".github/workflows/pages.yml",
+      "bytes": 1503,
+      "sha256": "8188f63aadeb7b69a47f3912ec229cbaf8f5acfb6165863b2e117638775e0ebb"
+    },
+    {
       "path": ".github/workflows/release.yml",
-      "bytes": 1597,
-      "sha256": "0e22d25a2407316892183b0c08aab9ebd38e06f621f3b6a6dd57b68a0836ff1b"
+      "bytes": 1864,
+      "sha256": "2ae2047a0f88b70277b61ccf156376f80dd2d9eb644f9db7ceac4101c2cab202"
     },
     {
       "path": "Cargo.lock",
@@ -985,6 +990,11 @@
       "sha256": "78c6ae37747672613c3f2434a34018e9e09a6cb99cba891170d427314fe30113"
     },
     {
+      "path": "tools/check_pages.cjs",
+      "bytes": 10471,
+      "sha256": "44a5ce83e958747386a4d55dfc36a5fa3484c5c0d5e8488a37bc0a4e3b167b5e"
+    },
+    {
       "path": "tools/check_panel.py",
       "bytes": 4680,
       "sha256": "5c37a9e4357256af64502764df248bc10620ac83e7f517a28bdfdf46b5d49468"
@@ -1395,6 +1405,11 @@
       "sha256": "028b27294c49d48f85f503bfffbd86434530c1a7654d50a6d0fa42d6b8accbee"
     },
     {
+      "path": "tools/pages_package.py",
+      "bytes": 6554,
+      "sha256": "5f572e4b9496e372fb87ee38df957147723077bc6dd0fbe256d5fbca84f5482b"
+    },
+    {
       "path": "tools/performance.py",
       "bytes": 5877,
       "sha256": "2bb73eb1c0ea02eb820fc436f57f33a09d79d505d13b6d5db5af252522fc1670"
@@ -1658,6 +1673,11 @@
       "path": "tools/tests/test_opl_reference.py",
       "bytes": 2011,
       "sha256": "b1d6f70edb535519128d5dc352be187728eccddae113366eb3e98a44347682dd"
+    },
+    {
+      "path": "tools/tests/test_pages_package.py",
+      "bytes": 5904,
+      "sha256": "70c222169c305b22df5a610b2e7e26cdbc42f8bbff9a6ead9e67952483158a8c"
     },
     {
       "path": "tools/tests/test_panel.py",
@@ -4802,5 +4822,23 @@
       ".github/workflows/release.yml"
     ],
     "scope": "User-authorized version/tag policy and first public player Release. Shared SemVer/package paths, numeric Mac bundle metadata, CI checks and same-tree build promotion only. Core/resources/render/tick/PCM unchanged. No new historical full120/240 or performance run; #113 qualification deferred."
+  },
+  "source_impact_126": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/126",
+    "baseline_source": "75a432f2860815041a6e7f35ed27e161ed0283ca",
+    "previous_pins": [
+      {
+        "path": ".github/workflows/release.yml",
+        "bytes": 1597,
+        "sha256": "0e22d25a2407316892183b0c08aab9ebd38e06f621f3b6a6dd57b68a0836ff1b"
+      }
+    ],
+    "added": [
+      "tools/pages_package.py",
+      "tools/check_pages.cjs",
+      "tools/tests/test_pages_package.py",
+      ".github/workflows/pages.yml"
+    ],
+    "scope": "User-authorized GitHub Pages promotion of the exact public stable Web ZIP. Hosting verification/workflows/docs only. Core/resources/render/tick/PCM and existing release payload unchanged. No new historical full120/240 or performance run; #113 qualification deferred."
   }
 }
