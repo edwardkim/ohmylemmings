@@ -8,7 +8,7 @@
 
 | 후속 | 남은 범위 |
 |---|---|
-| [#129](https://github.com/edwardkim/ohmylemmings/issues/129) | 자체 코드의 라이선스 결정과 고지/metadata 정비 |
+| [#129](https://github.com/edwardkim/ohmylemmings/issues/129) | 자체 코드 MIT 선택·고지/metadata 정비 적용 완료. [보고서](../reports/issue-129_project_license.md) |
 | [#130](https://github.com/edwardkim/ohmylemmings/issues/130) | Windows 10/11 각각의 사용자 PC 화면·입력·실제 청취 기록 |
 | [#113](https://github.com/edwardkim/ohmylemmings/issues/113) | 더 좋은 호스트의 성능·구간 메모리 재검증 |
 

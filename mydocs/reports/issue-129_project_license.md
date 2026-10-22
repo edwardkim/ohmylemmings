@@ -23,5 +23,15 @@ TDD에서 새 패키징 검사3개가 누락 project_license로 실패한 뒤 �
 - make check-python: Python253개와 새 license policy·기존 증거 감사 PASS. Cargo metadata의8개 MIT/OPL LGPL과 Cargo.lock 불변을 확인했다.
 - 현재 소스로 release WASM을 새로 빌드하고 새 full Web ZIP을 추출해 /game/에서 실제 브라우저 검사 PASS.48개 파일의 패키지/소스·MIT/제3자 HTTP 고지, 원본120개 선택·RGB/Canvas, AudioContext PCM3072/비영3067, 저장 Fun01 입력 성공·Restart/Continue·refresh/누락 오류를 확인했다. 이 로컬 패키지는 개발 중 소스 snapshot790개이며 이후 최종 commit의 CI 산출물과 구분한다.
 - 기존 공개4개 archive는 원래 SHA대로 검증했다. Web03597c78…/Linux189dafe2…/Windows44fef8d9…/Macea2883c5…이며 새 라이선스가 없는 당시 metadata를 유지한다.
+- PR #132/head2a74d90의 CI39772657853에서 생성한 Windows·Mac·Web ZIP을 내려받아 새 MIT/고지 바이트와 내부 source793개를 확인했다. Windows/Mac의 source793개는 해당 commit의 Git blob과 전부 일치했다. 실제 최종 CI 상태와 Linux 결과는 GitHub #129 최종 기록을 따른다.
+- 자체 변경의 공백/링크 검사를 통과했다. upstream 원문과 이를 연결한 고지 bundle은 원래 공백·CRLF도 hash와 함께 보존하여 임의 정규화하지 않았다.
+
+## 최종 구현·CI 확인
+
+[PR #132](https://github.com/edwardkim/ohmylemmings/pull/132)을 실제 병합했다. merge598de8057133298ff4d0731dae36dc92bc59e291의 tree는 검토 head2a74d90d40a6d13611921b10992e77114a407c9d와 같다. [CI39772657853](https://github.com/edwardkim/ohmylemmings/actions/runs/39772657853)의 Rust native/Python/WASM/Web/Windows/Mac ARM/Intel **7개 모두 SUCCESS**이다. 중복 push CI39772572442는 취소했으며 통과로 계산하지 않는다.
+
+Linux/Windows/Mac/Web 네 산출물을 내려받아 새 MIT·기존 고지/원본·내부 전체 해시와 **각 source793개 전부 해당 head의 Git blob 동일성**을 확인했다. 정확한 package SHA·source tree·검증 범위는 [기계 기록](../../assets/manifests/project_license_validation.json)에 남겼다. 이는 CI 개발 빌드이며 기존 공개 v0.1.0/Pages를 교체하지 않았다. GitHub 저장소의 licenseInfo도 MIT License로 확인했다.
+
+최종 문서/일지와 상위 추적을 동기화한 뒤 #129를 완료 처리한다. 동일 구현의 중복 전체 빌드는 생략하고 완료 기록의 문서 변경은 별도 PR로 반영한다. G11/G12 전체 미완료와 #113/#130의 후속은 유지한다.
 
 ![새 빌드의 MIT·제3자/원본 예외·기존 LGPL 안내](issue-129_project_license.png)

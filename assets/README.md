@@ -129,3 +129,5 @@ ADLIB 명령/레지스터 스트림의 합성877호출과 원본 드라이버 �
 [#120 macOS 패키지](../mydocs/reports/issue-120_macos_full_game.md)는 Windows와 동일한 원본28개를 앱 Resources/data에 포함합니다. SDL2 2.32.10 source/라이선스의 고정 입력은 [macos_runtime.json](manifests/macos_runtime.json)에 기록하며 빌드한 dylib/원본/화면은 Git에 추가하지 않습니다.
 
 [#126 Pages 배포](../mydocs/reports/issue-126_github_pages.md)는 기존 정식 Web ZIP을 그대로 공개 호스팅합니다. [도구/action 출처](manifests/pages_tools.json), [초기 공개 기능·HTTP 검증과 원시 증거 pins](manifests/pages_deployment.json)를 기록하며 다운로드 원본/화면은 ignored local에 보관합니다.
+
+[#129 MIT 정책](../mydocs/reports/issue-129_project_license.md)의 [제3자 고지/의존성 inventory](manifests/license_inventory.json)와 [4플랫폼 CI 패키지·대응 소스 검증](manifests/project_license_validation.json)을 기록합니다. 원본 DOS 데이터/상표와 OPL/참조·의존 코드의 기존 조건은 자체 기여의 MIT 적용 범위와 구분합니다.
