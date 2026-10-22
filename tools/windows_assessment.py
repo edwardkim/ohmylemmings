@@ -94,6 +94,8 @@ def check():
         'Performance, desktop human interaction and clean end-user installation\n'
         'are not certified by this hosted-runner experiment.\n'
     ).encode()
+    flags = os.environ.get('RUSTFLAGS', '')
+    files['README.txt'] += ('Build RUSTFLAGS: ' + (flags or '(default)') + '\n').encode()
     files['MANIFEST.json'] = (json.dumps(dict(source=source, files=[dict(path=n, bytes=len(b), sha256=digest(b))
         for n, b in sorted(files.items())]), indent=2) + '\n').encode()
     files['SHA256SUMS'] = ''.join(f'{digest(b)}  {n}\n' for n, b in sorted(files.items())).encode()
@@ -133,9 +135,14 @@ def check():
         dependencies[name] = subprocess.check_output([str(dumpbin), '/DEPENDENTS', str(installed / name)],
                                                        text=True, encoding='utf-8', errors='replace')
     record('dependencies.json', dependencies)
+    if '+crt-static' in flags:
+        for text in dependencies.values():
+            assert 'VCRUNTIME140' not in text.upper() and 'MSVCP140' not in text.upper()
+            assert 'API-MS-WIN-CRT-' not in text.upper()
     summary = dict(status='PASS', target='x86_64-pc-windows-msvc',
         source_head=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
         rust=subprocess.check_output(['rustc', '--version'], text=True).strip(),
+        build_flags=flags,
         runner_os=os.environ.get('ImageOS'), runner_version=os.environ.get('ImageVersion'),
         archive_sha256=digest(trial.read_bytes()), source=source,
         files=[dict(path=n, bytes=len(b), sha256=digest(b)) for n, b in sorted(files.items())],

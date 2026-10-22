@@ -21,6 +21,7 @@ jobs:
       GIT_CONFIG_KEY_0: core.autocrlf
       GIT_CONFIG_VALUE_0: 'false'
       PYTHONUTF8: '1'
+      RUSTFLAGS: '-C target-feature=+crt-static'
     defaults:
       run:
         shell: pwsh
