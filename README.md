@@ -1,6 +1,6 @@
 # Rusty Lemmings
 
-2026-10-22 개발 상태: G00~G10과 [배포 준비 #115](mydocs/reports/issue-115_release_preparation.md)를 완료했고, v0.1.0의 Windows/macOS/Linux/Web 다운로드와 GitHub Pages 플레이를 제공합니다. G11 성능 재검증은 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에 이월했습니다. 자체 코드에는 [#129의 MIT 정책](mydocs/reports/issue-129_project_license.md)을 적용했고, Windows 10/11 수동 검증은 [#130](https://github.com/edwardkim/ohmylemmings/issues/130)에서 추적합니다. G11/G12 전체 완료 판정은 남아 있습니다.
+2026-10-22 개발 상태: G00~G10과 [배포 준비 #115](mydocs/reports/issue-115_release_preparation.md)를 완료했고, v0.1.0의 Windows/macOS/Linux/Web 다운로드와 GitHub Pages 플레이를 제공합니다. G11 성능 재검증은 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에 이월했습니다. 자체 코드에는 [#129의 MIT 정책](mydocs/reports/issue-129_project_license.md)을 적용했고, [#130](mydocs/reports/issue-130_maintainer_acceptance.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정을 받았습니다(Windows 10 미검증). G11/G12 전체 완료 판정은 남아 있습니다.
 
 [![CI](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml/badge.svg)](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml)
 [![Play on GitHub Pages](https://github.com/edwardkim/ohmylemmings/actions/workflows/pages.yml/badge.svg)](https://edwardkim.github.io/ohmylemmings/)

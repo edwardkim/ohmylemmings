@@ -4,7 +4,7 @@
 
 ## 목적과 현재 상태
 
-2026-10-22 현재 G00~G10과 [#115 배포 준비](../reports/issue-115_release_preparation.md)를 완료했습니다. 4플랫폼 v0.1.0 릴리즈와 Pages 플레이를 제공합니다. G11의120레벨/COMP·Native 보정 증거는 유효하며 남은 성능/메모리는 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)으로 이월했습니다. [#129](../reports/issue-129_project_license.md)에서 자체 코드 MIT·제3자 고지 정책을 적용했고, Windows10/11 수동 검증은 [#130](../working/issue-130_windows_manual_validation.md)에서 계속합니다. G11/G12 전체 완료 판정은 남아 있습니다. 아래 기록은 각 검증 시점의 결과입니다.
+2026-10-22 현재 G00~G10과 [#115 배포 준비](../reports/issue-115_release_preparation.md)를 완료했습니다. 4플랫폼 v0.1.0 릴리즈와 Pages 플레이를 제공합니다. G11의120레벨/COMP·Native 보정 증거는 유효하며 남은 성능/메모리는 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)으로 이월했습니다. [#129](../reports/issue-129_project_license.md)에서 자체 코드 MIT·제3자 고지 정책을 적용했고, [#130](../reports/issue-130_maintainer_acceptance.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정을 받았습니다(Windows 10 미검증). G11/G12 전체 완료 판정은 남아 있습니다. 아래 기록은 각 검증 시점의 결과입니다.
 
 [프로젝트 기획서](issue-1_rusty_lemmings.md)의 원본 호환 Rust 엔진을 작고 검증 가능한 목표로 나눕니다. 데스크톱과 웹에서 기준판의 레벨·직업·게임 규칙·사운드를 재현하는 것이 최종 목표입니다.
 
@@ -230,3 +230,7 @@ G09는 #70/PR #71·정확한 main CI까지 확인해 완료했습니다. [G10-01
 ## 배포 준비 완료·후속 분리 / 2026-10-22
 
 후속 #118/#120/#122의4플랫폼 전체 게임과 #124의 v0.1.0 공개 릴리즈, #126의 Pages 플레이까지 완료했다. 사용자가 잔여 항목을 분리해 #115를 종료하는 권고안을 수용했다. 자체 코드 라이선스는 #129, Windows10/11별 수동 검증은 #130, 고성능 호스트 성능/메모리는 #113에서 추적한다. #115 종료와 상위 #1/G11/G12 전체 완료를 구분한다. 공개 태그/asset과 Mac ad-hoc/미공증 안내는 유지한다.
+
+## 메인테이너 인수 / 2026-10-22
+
+[#130](../reports/issue-130_maintainer_acceptance.md)에 Windows 11·웹브라우저 직접 테스트 성공 판정을 기록하고 이 보고 범위로 완료 처리한다. 초기 계획의 Windows 10은 미검증으로 남긴다. 개별 검사·환경·패키지 해시 정보가 제공되지 않았음을 보존하며, #113과 G11/G12 전체 완료 판정은 변경하지 않는다.
