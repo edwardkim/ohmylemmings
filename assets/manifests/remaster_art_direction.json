@@ -1,0 +1,682 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/138",
+  "parent": "https://github.com/edwardkim/ohmylemmings/issues/137",
+  "status": "art_direction_candidate",
+  "runtime_ready": false,
+  "style": "soft_handpainted_2d",
+  "style_decision": "First candidate; user preference not yet reported",
+  "target": {
+    "width": 1920,
+    "height": 1080,
+    "game_rect": [
+      0,
+      0,
+      1920,
+      960
+    ],
+    "panel_rect": [
+      0,
+      960,
+      1920,
+      120
+    ],
+    "world_viewport": [
+      320,
+      160
+    ],
+    "world_scale": 6
+  },
+  "concept": {
+    "path": "assets/remaster/concepts/issue-138_fun01_handpainted_v1.png",
+    "bytes": 2459339,
+    "sha256": "82a89240cd1b1be12a6b0db662dfe9e1dc8a6632e951540e9723b4454c8a02c9",
+    "width": 1672,
+    "height": 941,
+    "purpose": "Design review only; generated composition is not an exact collision mask or runtime atlas",
+    "generator": "built-in image_gen",
+    "prompt": {
+      "path": "assets/remaster/prompts/issue-138_fun01_handpainted_v1.txt",
+      "bytes": 2697,
+      "sha256": "ac6cf66274f7f2a9f5940aac3b9495cdc375132b5bb1077b742ea8f594e0bd10"
+    },
+    "reference": {
+      "source": "local Fun 01 game capture; original-derived bytes remain under ignored assets/local",
+      "capture_png_sha256": "ad715a1fed63ce1028a988f7a3121fa417f3e341e023b4b780a486468a658023",
+      "logical_rgb_sha256": "e503f4a62a5f847ab22555dba9b897e51ef3e81001c0556c60b542d3c461da84",
+      "trace_sha256": "4a6fab55fbff0b46d35c23ff05b82a7be5eb8cae7604311a9a1e944a64519ee6",
+      "binary_sha256": "c0c34526c078868ffde248de8374d868304c9a805a1549e86386539e78c8c560",
+      "binary_source_commit": null,
+      "level": {
+        "difficulty": "fun",
+        "number": 1,
+        "camera": 624,
+        "iteration": 100
+      },
+      "asset_manifest": "assets/manifests/dos_original.json",
+      "command": "SDL_VIDEODRIVER=dummy target/release/lemmings-desktop --assets assets/local/dos-original --difficulty fun --level 1 --fast --steps 100 --render-every 100 --capture assets/local/issue-137-reference/fun01"
+    }
+  },
+  "reference_manifests": [
+    {
+      "path": "assets/manifests/lemming_sprites.json",
+      "bytes": 45118,
+      "sha256": "aa8b4f7f4460d9e94e1951ac89c0825b9ca2227b8adf10e38313982c709e19ab"
+    },
+    {
+      "path": "assets/manifests/vgagr_images.json",
+      "bytes": 4687,
+      "sha256": "ea066b8d3c8f4fd990daab20b435a6a7ec2a9a65345cf1c8bccfed7626b82fbc"
+    },
+    {
+      "path": "assets/manifests/vgaspec_backgrounds.json",
+      "bytes": 6785,
+      "sha256": "176b23c4ff891760e828bddfe4f42c505aa425b7d28cd532ef8c5289a4db4a4d"
+    },
+    {
+      "path": "assets/manifests/main_ui.json",
+      "bytes": 95587,
+      "sha256": "c153fd304544b70608460c1ce2bca9e9b26e42d8f9b9598abf45a821f4b59a5b"
+    }
+  ],
+  "coverage": {
+    "animations": 28,
+    "animation_frames": 337,
+    "terrain_sets": 5,
+    "terrain_pieces": 273,
+    "object_types": 54,
+    "object_animation_frames": 540,
+    "object_previews": 54,
+    "special_scenes": 4,
+    "ui_families": 19,
+    "ui_images": 200,
+    "available_runtime_hd_animations": 0
+  },
+  "animations": [
+    {
+      "slot": 0,
+      "kind": "Walking",
+      "direction": "Right",
+      "frame_count": 8,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 1,
+      "kind": "Jumping",
+      "direction": "Right",
+      "frame_count": 1,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 2,
+      "kind": "Walking",
+      "direction": "Left",
+      "frame_count": 8,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 3,
+      "kind": "Jumping",
+      "direction": "Left",
+      "frame_count": 1,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 4,
+      "kind": "Digging",
+      "direction": null,
+      "frame_count": 16,
+      "width": 16,
+      "height": 14,
+      "foot_x": 8,
+      "foot_y": 12,
+      "origin_x": -8,
+      "origin_y": -12,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 5,
+      "kind": "Climbing",
+      "direction": "Right",
+      "frame_count": 8,
+      "width": 16,
+      "height": 12,
+      "foot_x": 8,
+      "foot_y": 12,
+      "origin_x": -8,
+      "origin_y": -12,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 6,
+      "kind": "Climbing",
+      "direction": "Left",
+      "frame_count": 8,
+      "width": 16,
+      "height": 12,
+      "foot_x": 8,
+      "foot_y": 12,
+      "origin_x": -8,
+      "origin_y": -12,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 7,
+      "kind": "Drowning",
+      "direction": null,
+      "frame_count": 16,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 8,
+      "kind": "Hoisting",
+      "direction": "Right",
+      "frame_count": 8,
+      "width": 16,
+      "height": 12,
+      "foot_x": 8,
+      "foot_y": 12,
+      "origin_x": -8,
+      "origin_y": -12,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 9,
+      "kind": "Hoisting",
+      "direction": "Left",
+      "frame_count": 8,
+      "width": 16,
+      "height": 12,
+      "foot_x": 8,
+      "foot_y": 12,
+      "origin_x": -8,
+      "origin_y": -12,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 10,
+      "kind": "Building",
+      "direction": "Right",
+      "frame_count": 16,
+      "width": 16,
+      "height": 13,
+      "foot_x": 8,
+      "foot_y": 13,
+      "origin_x": -8,
+      "origin_y": -13,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 11,
+      "kind": "Building",
+      "direction": "Left",
+      "frame_count": 16,
+      "width": 16,
+      "height": 13,
+      "foot_x": 8,
+      "foot_y": 13,
+      "origin_x": -8,
+      "origin_y": -13,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 12,
+      "kind": "Bashing",
+      "direction": "Right",
+      "frame_count": 32,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 13,
+      "kind": "Bashing",
+      "direction": "Left",
+      "frame_count": 32,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 14,
+      "kind": "Mining",
+      "direction": "Right",
+      "frame_count": 24,
+      "width": 16,
+      "height": 13,
+      "foot_x": 8,
+      "foot_y": 13,
+      "origin_x": -8,
+      "origin_y": -13,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 15,
+      "kind": "Mining",
+      "direction": "Left",
+      "frame_count": 24,
+      "width": 16,
+      "height": 13,
+      "foot_x": 8,
+      "foot_y": 13,
+      "origin_x": -8,
+      "origin_y": -13,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 16,
+      "kind": "Falling",
+      "direction": "Right",
+      "frame_count": 4,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 17,
+      "kind": "Falling",
+      "direction": "Left",
+      "frame_count": 4,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 18,
+      "kind": "Umbrella",
+      "direction": "Right",
+      "frame_count": 8,
+      "width": 16,
+      "height": 16,
+      "foot_x": 8,
+      "foot_y": 16,
+      "origin_x": -8,
+      "origin_y": -16,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 19,
+      "kind": "Umbrella",
+      "direction": "Left",
+      "frame_count": 8,
+      "width": 16,
+      "height": 16,
+      "foot_x": 8,
+      "foot_y": 16,
+      "origin_x": -8,
+      "origin_y": -16,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 20,
+      "kind": "Splatting",
+      "direction": null,
+      "frame_count": 16,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 21,
+      "kind": "Exiting",
+      "direction": null,
+      "frame_count": 8,
+      "width": 16,
+      "height": 13,
+      "foot_x": 8,
+      "foot_y": 13,
+      "origin_x": -8,
+      "origin_y": -13,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 22,
+      "kind": "Vaporizing",
+      "direction": null,
+      "frame_count": 14,
+      "width": 16,
+      "height": 14,
+      "foot_x": 8,
+      "foot_y": 14,
+      "origin_x": -8,
+      "origin_y": -14,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 23,
+      "kind": "Blocking",
+      "direction": null,
+      "frame_count": 16,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 24,
+      "kind": "Shrugging",
+      "direction": "Right",
+      "frame_count": 8,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 25,
+      "kind": "Shrugging",
+      "direction": "Left",
+      "frame_count": 8,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 26,
+      "kind": "OhNo",
+      "direction": null,
+      "frame_count": 16,
+      "width": 16,
+      "height": 10,
+      "foot_x": 8,
+      "foot_y": 10,
+      "origin_x": -8,
+      "origin_y": -10,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    },
+    {
+      "slot": 27,
+      "kind": "Explosion",
+      "direction": null,
+      "frame_count": 1,
+      "width": 32,
+      "height": 32,
+      "foot_x": 16,
+      "foot_y": 25,
+      "origin_x": -16,
+      "origin_y": -25,
+      "hd_status": "not_started",
+      "runtime_asset": null
+    }
+  ],
+  "terrain_sets": [
+    {
+      "set": 0,
+      "terrain_count": 50,
+      "object_count": 11,
+      "frame_count": 111,
+      "preview_count": 11,
+      "hd_status": "not_started"
+    },
+    {
+      "set": 1,
+      "terrain_count": 64,
+      "object_count": 11,
+      "frame_count": 97,
+      "preview_count": 11,
+      "hd_status": "not_started"
+    },
+    {
+      "set": 2,
+      "terrain_count": 60,
+      "object_count": 10,
+      "frame_count": 98,
+      "preview_count": 10,
+      "hd_status": "not_started"
+    },
+    {
+      "set": 3,
+      "terrain_count": 62,
+      "object_count": 11,
+      "frame_count": 118,
+      "preview_count": 11,
+      "hd_status": "not_started"
+    },
+    {
+      "set": 4,
+      "terrain_count": 37,
+      "object_count": 11,
+      "frame_count": 116,
+      "preview_count": 11,
+      "hd_status": "not_started"
+    }
+  ],
+  "special_scenes": [
+    {
+      "set": 0,
+      "hd_status": "not_started"
+    },
+    {
+      "set": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "set": 2,
+      "hd_status": "not_started"
+    },
+    {
+      "set": 3,
+      "hd_status": "not_started"
+    }
+  ],
+  "ui_families": [
+    {
+      "kind": "Background",
+      "count": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "Logo",
+      "count": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "Play",
+      "count": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "LevelCode",
+      "count": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "Music",
+      "count": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "Rating",
+      "count": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "Exit",
+      "count": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "Navigation",
+      "count": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "MusicIcon",
+      "count": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "FxIcon",
+      "count": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "RatingSigns",
+      "count": 4,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "ScrollLeft",
+      "count": 16,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "ScrollRight",
+      "count": 16,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "Reel",
+      "count": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "MenuGlyphs",
+      "count": 94,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "SkillPanel",
+      "count": 1,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "PanelGlyphs",
+      "count": 38,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "DigitRight",
+      "count": 10,
+      "hd_status": "not_started"
+    },
+    {
+      "kind": "DigitLeft",
+      "count": 10,
+      "hd_status": "not_started"
+    }
+  ],
+  "review_findings": [
+    "Generated concept is 1672x941, not a 1920x1080 production asset; production layers must be authored/exported at target size.",
+    "Terrain edges are repainted approximations. Rebuild runtime visible boundaries from the authoritative simulation mask.",
+    "Characters, terrain, facilities and UI are baked together; separate layers/atlases are required for actual play.",
+    "AI-drawn CLIMB icon is a walking pose, not a climb pose; use an explicit skill icon specification.",
+    "Bottom concept is visually taller than the target120px panel when normalized; use the specified layout contract for runtime.",
+    "Generated HUD lettering and counts are illustrative; runtime must draw text and numeric values from state.",
+    "Generated panel omits release-rate and Nuke controls; production must implement every specified panel command."
+  ],
+  "next_implementation": [
+    "HD render snapshot/viewport/input contract and synthetic tests",
+    "Layered character/terrain/facility/UI production assets and checks",
+    "Fun01 actual Native/Web integration using unchanged core",
+    "Full theme/state/level expansion and packaging"
+  ],
+  "validation": {
+    "status": "PASS",
+    "png": {
+      "width": 1672,
+      "height": 941,
+      "bytes": 2459339,
+      "chunks": 4,
+      "crc_and_zlib_valid": true
+    },
+    "reference_pins": 4,
+    "animations": 28,
+    "frames": 337,
+    "terrain_pieces": 273,
+    "object_frames": 540,
+    "ui_images": 200,
+    "markdown_documents": 13,
+    "relative_file_links": 451,
+    "missing_links": 0,
+    "runtime_code_unchanged": true,
+    "runtime_ready": false
+  }
+}

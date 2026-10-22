@@ -5,6 +5,8 @@
 [![CI](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml/badge.svg)](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml)
 [![Play on GitHub Pages](https://github.com/edwardkim/ohmylemmings/actions/workflows/pages.yml/badge.svg)](https://edwardkim.github.io/ohmylemmings/)
 
+새 기능인 [2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)를 진행합니다. [Fun 01의 첫 HD 시안과 제작/표시 계약](mydocs/reports/issue-138_hd_art_direction.md)을 준비했으며 실제 HD 플레이 모드·분리 자산은 후속 구현입니다.
+
 프로젝트 자체 작성 코드는 [MIT](LICENSE)로 제공합니다. [제3자 고지 전문](THIRD_PARTY_NOTICES.txt)과 [적용 범위](third_party/README.md)를 함께 확인하세요. OPL 합성기는 LGPL-2.1-or-later를 유지하며, 원본 DOS 그래픽·레벨·음악/효과음·상표에는 프로젝트 MIT 허가가 적용되지 않습니다.
 
 고전 DOS 게임 레밍즈(Lemmings)의 데이터와 게임 동작을 Rust로 재현하는 프로젝트입니다. 렌더링·입출력과 분리된 코어 엔진을 만들고, SDL2 기반 데스크톱 환경과 WebAssembly 기반 웹 환경을 지원하는 것이 목표입니다.
