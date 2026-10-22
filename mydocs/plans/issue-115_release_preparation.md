@@ -15,3 +15,5 @@
 기능 회귀와 패키지 검증은 계속한다. 이 호스트에서의 60fps 조정·긴 성능 반복은 하지 않는다. 고성능 환경의 성능 검증과 최종 공개 릴리스 판단은 잔여 항목으로 명시한다.
 
 첫 구현은 [Linux·Web 개발용 패키징](../reports/issue-115_release_preparation.md)이다. Windows 실제 runner/DLL 검증은 후속 절편으로 유지한다. 저장소 전체 라이선스가 아직 정해지지 않았으므로 임의로 허가를 부여하거나 정식 배포를 게시하지 않는다.
+
+별도 [Windows 가능성 검토](../reports/issue-115_windows_packaging_review.md)에서 기존 코드의 실제 MSVC·정적 CRT 빌드와 시험 ZIP의 압축 해제 실행을 확인했다. 정식 packager/CI 통합과 사용자 PC 검증은 여전히 후속이다.

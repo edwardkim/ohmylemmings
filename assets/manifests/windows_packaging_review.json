@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/115",
+  "baseline_main": "41ec527b9cce33ec999b103e1084fff7cce0b11a",
+  "status": "FEASIBLE-WITH-REMAINING-PACKAGING-WORK",
+  "product_rust_changed": false,
+  "runs": [
+    {
+      "status": "PASS",
+      "run": "39726923791",
+      "head": "58de42415b7e13f4e3b64fb3b12bde3d67217c33",
+      "checkout": "58de42415b7e13f4e3b64fb3b12bde3d67217c33",
+      "archive_sha256": "a6f4b59c00cb040f23c144e24ea1cdbb08751f5226f2b37e3ffcdd293b0545dc",
+      "source_files": 704,
+      "all_source_matches_git_blobs": true,
+      "pe": {
+        "lemmings-desktop.exe": {
+          "machine": "AMD64",
+          "format": "PE32+",
+          "bytes": 903168,
+          "sha256": "9afe6c56aa45f8403bb02c2ef017366521041e9340c12b930f4bd171cf0175e7"
+        },
+        "SDL2.dll": {
+          "machine": "AMD64",
+          "format": "PE32+",
+          "bytes": 1586176,
+          "sha256": "b37740a72a7a9706216df9f0134894bb7a850b356fd149398c67d874cbcfacb4"
+        }
+      },
+      "imports": {
+        "lemmings-desktop.exe": [
+          "api-ms-win-core-synch-l1-2-0.dll",
+          "SDL2.dll",
+          "KERNEL32.dll",
+          "ntdll.dll",
+          "VCRUNTIME140.dll",
+          "api-ms-win-crt-math-l1-1-0.dll",
+          "api-ms-win-crt-string-l1-1-0.dll",
+          "api-ms-win-crt-runtime-l1-1-0.dll",
+          "api-ms-win-crt-stdio-l1-1-0.dll",
+          "api-ms-win-crt-locale-l1-1-0.dll",
+          "api-ms-win-crt-heap-l1-1-0.dll"
+        ],
+        "SDL2.dll": [
+          "SETUPAPI.dll",
+          "WINMM.dll",
+          "IMM32.dll",
+          "VERSION.dll",
+          "KERNEL32.dll",
+          "USER32.dll",
+          "GDI32.dll",
+          "ADVAPI32.dll",
+          "SHELL32.dll",
+          "ole32.dll",
+          "OLEAUT32.dll"
+        ]
+      },
+      "flags": "(default)",
+      "outcomes": [
+        "Won",
+        "Won",
+        "Lost"
+      ],
+      "audio": {
+        "status": "PASS",
+        "driver": "dummy",
+        "queued_bytes": 4096,
+        "consumed_bytes": 1024,
+        "cleared_bytes": 0,
+        "queue_limit_frames": 3072,
+        "nonzero_frames": 3625,
+        "submitted_frames": 8192,
+        "mute_hide_generation": true
+      },
+      "artifact": 12403810702,
+      "container_sha256": "sha256:f75df5a6439900729e69cf78ede1d083f41d6027d8b57ff9c16946a4b5c1959a",
+      "log_sha256": "5339d2cab36ed9f87819a53ae83f5605ad3954de8d56f6b54570f375805c1e10",
+      "url": "https://github.com/edwardkim/ohmylemmings/actions/runs/39726923791"
+    },
+    {
+      "status": "PASS",
+      "run": "39727233075",
+      "head": "1ad5be8426d5b20139f4a0116776c0f90dc620f2",
+      "checkout": "1ad5be8426d5b20139f4a0116776c0f90dc620f2",
+      "archive_sha256": "eb15a02399593b3501140e602ab2280d005a70abd8b20d69a0d0e8a02dc43f79",
+      "source_files": 704,
+      "all_source_matches_git_blobs": true,
+      "pe": {
+        "lemmings-desktop.exe": {
+          "machine": "AMD64",
+          "format": "PE32+",
+          "bytes": 1000448,
+          "sha256": "65809c2c25f29c1b3224044713642cefc9b20f5ede27e47a4b4c5bd2e342aa2b"
+        },
+        "SDL2.dll": {
+          "machine": "AMD64",
+          "format": "PE32+",
+          "bytes": 1586176,
+          "sha256": "b37740a72a7a9706216df9f0134894bb7a850b356fd149398c67d874cbcfacb4"
+        }
+      },
+      "imports": {
+        "lemmings-desktop.exe": [
+          "api-ms-win-core-synch-l1-2-0.dll",
+          "SDL2.dll",
+          "KERNEL32.dll",
+          "ntdll.dll"
+        ],
+        "SDL2.dll": [
+          "SETUPAPI.dll",
+          "WINMM.dll",
+          "IMM32.dll",
+          "VERSION.dll",
+          "KERNEL32.dll",
+          "USER32.dll",
+          "GDI32.dll",
+          "ADVAPI32.dll",
+          "SHELL32.dll",
+          "ole32.dll",
+          "OLEAUT32.dll"
+        ]
+      },
+      "flags": "-C target-feature=+crt-static",
+      "outcomes": [
+        "Won",
+        "Won",
+        "Lost"
+      ],
+      "audio": {
+        "status": "PASS",
+        "driver": "dummy",
+        "queued_bytes": 4096,
+        "consumed_bytes": 1024,
+        "cleared_bytes": 0,
+        "queue_limit_frames": 3072,
+        "nonzero_frames": 3625,
+        "submitted_frames": 8192,
+        "mute_hide_generation": true
+      },
+      "artifact": 12403811296,
+      "container_sha256": "sha256:1d04181041661b061a97a2fafb12410b569c80f91960539e347a3e1fffe9ead8",
+      "log_sha256": "ff80c56ec707c760af742027ec003d7884f704d11cf1b39f4ae6a21576399743",
+      "url": "https://github.com/edwardkim/ohmylemmings/actions/runs/39727233075"
+    }
+  ],
+  "windows_release_package_integrated": false,
+  "desktop_user_acceptance": false,
+  "g11_ready": false,
+  "formal_release_published": false,
+  "remaining": [
+    "Production Windows packager/PE/DLL/source validation and CI integration",
+    "Practice launcher and original-asset directory UX",
+    "Actual Windows10/11 x64 desktop video/input/DPI and human audio",
+    "Project-wide license decision",
+    "Issue113 faster-host performance and interval-memory qualification"
+  ]
+}

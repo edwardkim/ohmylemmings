@@ -10,3 +10,6 @@
 - 이 실험은 가능성 검토다. 정식 `release_package.py windows` 구현·사용자 PC 설치/화면/청취·서명/배포·성능 인증은 별도이며 #115/#113 잔여로 유지한다. 실제 결과는 검토 보고서와 #115에 기록한다.
 
 - 기본 MSVC 빌드의 [run39726923791](https://github.com/edwardkim/ohmylemmings/actions/runs/39726923791)이 통과했다. 기존 코드를 바꾸지 않고 help·한글/공백 경로·Won/Restart/Continue/Lost·비영 PCM/SDL dummy 오디오를 확인했다. 실제 exe에는 VCRUNTIME140.dll과 UCRT import가 있어 정적 CRT 후보를 별도로 시험한다. 이 기본 후보와 원시 결과는 보존한다.
+
+- 정적 CRT의 [run39727233075](https://github.com/edwardkim/ohmylemmings/actions/runs/39727233075)도 동일 기능을 통과했다. exe1,000,448bytes, VCRUNTIME140/MSVCP140/UCRT API-set 직접 import 없음. 실제 checkout/log·artifact digest·내부8개 파일과704개 소스 바이트를 Git blob에 대조했다.
+- [검토 보고서](../reports/issue-115_windows_packaging_review.md): Windows x64 ZIP은 가능하다. 현재 기본 실행은 상대 DOS 자산 경로를 요구하므로 사용자용 런처/자산 폴더 안내, 정식 packager/CI 통합과 실제 Windows PC 화면/입력/청취가 후속이다. 검토 branch는 main에 병합하지 않으며 정식 Windows 패키지 완료로 표시하지 않는다.
