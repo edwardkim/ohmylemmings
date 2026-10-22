@@ -8,8 +8,8 @@
     {
       "id": "compatibility",
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 148155,
-      "sha256": "1de81ac553cb6ed5df1894c017a1f14b18bac2d68ac57d4f8187356d0f610f40"
+      "bytes": 149792,
+      "sha256": "b55ba50c150696fde24ac65d15ca11485b3b0672ecdc573b63fe6167ef4af4f2"
     },
     {
       "id": "performance",
@@ -10881,5 +10881,16 @@
       }
     ],
     "scope": "Current compatibility source index updated; frozen110 Web observations and NOT READY verdict retained. User authorizes115 preparation without declaring performance passed."
+  },
+  "source_maintenance_115": {
+    "previous_pins": [
+      {
+        "id": "compatibility",
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 148155,
+        "sha256": "1de81ac553cb6ed5df1894c017a1f14b18bac2d68ac57d4f8187356d0f610f40"
+      }
+    ],
+    "scope": "Current packaging/build source index only; frozen review/observations and NOT READY are retained, user-authorized G12 preparation continues."
   }
 }

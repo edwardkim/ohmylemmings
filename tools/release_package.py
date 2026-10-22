@@ -1,0 +1,218 @@
+#!/usr/bin/env python3
+"""Create original-free development packages from already built Linux/Web inputs."""
+import argparse
+import gzip
+import hashlib
+import io
+import json
+from pathlib import Path
+import sys
+import tarfile
+import tempfile
+import tomllib
+import zipfile
+
+ROOT = Path(__file__).resolve().parents[1]
+if __package__ in (None, ''):
+    sys.path.insert(0, str(ROOT))
+from tools.web_build import source_bundle
+
+WEB_FILES = (
+    'index.html', 'app.js', 'audio.js', 'audio-license.html', 'controls.js',
+    'host.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
+)
+COMMON_FILES = {'README.md', 'REBUILD.md', 'LGPL-2.1-or-later.txt'}
+
+
+def require(condition, message):
+    if not condition:
+        raise ValueError(message)
+
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def encoded(data):
+    return (json.dumps(data, indent=2, sort_keys=True) + '\n').encode()
+
+
+def regular(path):
+    require(path.is_file() and not path.is_symlink()
+            and not any(parent.is_symlink() for parent in path.parents),
+            f'Missing or linked package input: {path}')
+    data = path.read_bytes()
+    require(bool(data), f'Empty package input: {path}')
+    return data
+
+
+def archive_bytes(files, target):
+    output = io.BytesIO()
+    if target == 'web':
+        with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+            for name, data in sorted(files.items()):
+                entry = zipfile.ZipInfo(name, (1980, 1, 1, 0, 0, 0))
+                entry.create_system = 3
+                entry.external_attr = (0o100644 << 16)
+                entry.compress_type = zipfile.ZIP_DEFLATED
+                archive.writestr(entry, data, compresslevel=9)
+    else:
+        with gzip.GzipFile(filename='', mode='wb', fileobj=output, mtime=0) as compressed:
+            with tarfile.open(fileobj=compressed, mode='w') as archive:
+                for name, data in sorted(files.items()):
+                    entry = tarfile.TarInfo(name)
+                    entry.mode = 0o755 if name == 'lemmings-desktop' else 0o644
+                    entry.size = len(data)
+                    archive.addfile(entry, io.BytesIO(data))
+    return output.getvalue()
+
+
+def create_package(kind, runtime, output, root=ROOT):
+    require(kind in ('linux', 'web'), 'Supported package targets: linux, web')
+    target = 'linux-x86_64' if kind == 'linux' else 'web'
+    version = tomllib.loads((root / 'Cargo.toml').read_text())['workspace']['package']['version']
+    require(all(c.isalnum() or c in '.-' for c in version), 'Invalid package version')
+    suffix = '.zip' if kind == 'web' else '.tar.gz'
+    path = output / f'ohmylemmings-{version}-dev-{target}{suffix}'
+    sidecar = Path(str(path) + '.sha256')
+    if path.exists() or sidecar.exists():
+        raise FileExistsError(f'Package evidence already exists: {path}')
+    files = {}
+    if kind == 'web':
+        for name in WEB_FILES:
+            files[name] = regular(runtime / name)
+            if not name.startswith('pkg/'):
+                require(files[name] == regular(root / 'apps/web/www' / name), f'Stale Web runtime: {name}')
+        require(files['pkg/lemmings_web_bg.wasm'][:8] == b'\0asm\1\0\0\0', 'Invalid WebAssembly header')
+    else:
+        binary = regular(runtime)
+        require(len(binary) >= 64 and binary[:6] == b'\x7fELF\x02\x01'
+                and int.from_bytes(binary[18:20], 'little') == 62, 'Expected a Linux x86_64 ELF executable')
+        files['lemmings-desktop'] = binary
+    files['LGPL-2.1-or-later.txt'] = regular(root / 'crates/lemmings-opl/LICENSE')
+    source_name = 'audio-source.tar.gz' if kind == 'web' else 'source.tar.gz'
+    with tempfile.TemporaryDirectory() as temporary:
+        source_path = Path(temporary) / source_name
+        source = source_bundle(source_path, root)
+        files[source_name] = source_path.read_bytes()
+    if kind == 'web':
+        files['audio-source.json'] = encoded(dict(**source, license='LGPL-2.1-or-later',
+            license_sha256=sha(files['LGPL-2.1-or-later.txt']),
+            wasm_sha256=sha(files['pkg/lemmings_web_bg.wasm']), notice='audio-license.html', archive=source_name))
+    launch = ('Serve this extracted folder over HTTP, for example: python3 -m http.server 8080\n'
+              'Open http://localhost:8080/ in a current WASM-capable browser.\n'
+              'Choose practice mode; sound needs a user click. Select owned DOS files for original levels.\n'
+              'Use the visible pause, restart and sound controls.\n') if kind == 'web' else (
+              'Linux x86_64: build qualification uses Ubuntu 24.04.\n'
+              'Install the SDL2 runtime (Ubuntu: sudo apt-get install libsdl2-2.0-0).\n'
+              './lemmings-desktop --synthetic-outcome win\n'
+              './lemmings-desktop --assets /path/to/owned/dos-files --difficulty fun --level 1\n'
+              'Space pauses; R restarts on results; Enter continues; S toggles sound; Esc exits.\n'
+              'Run ./lemmings-desktop --help for options.\n')
+    files['README.md'] = (
+        f'# Oh My Lemmings {version} development package ({target})\n\n' + launch + '\n'
+        'Original DOS assets are not included. Practice graphics and music are synthetic.\n'
+        'Performance qualification on a faster host is pending (#113); this is not a final release.\n'
+        'A project-wide license has not yet been selected; this preparation does not grant one.\n'
+        'The OPL synthesizer is LGPL-2.1-or-later: Copyright (C) 2013-2020 Nuke.YKT;\n'
+        'Copyright (C) 2026 Tony Gies (Rust port). See LGPL-2.1-or-later.txt and REBUILD.md.\n'
+        'Project: https://github.com/edwardkim/ohmylemmings\n'
+    ).encode()
+    files['REBUILD.md'] = (
+        '# Corresponding source and relinking\n\n'
+        f'Extract {source_name} into a separate folder. It includes current application/library\n'
+        'sources, pinned build files, notices, modifications and SOURCE-MANIFEST.json hashes.\n'
+        'Read crates/lemmings-opl/README.md and UPSTREAM.patch. Library modification, relinking\n'
+        'and reverse engineering for debugging such modifications are permitted by the LGPL.\n'
+        'Install Rust 1.93.1 and Python 3.12+; Linux builds need SDL2 development libraries.\n'
+        'Run cargo fetch --locked, then cargo build -p lemmings-desktop --release --locked --offline.\n'
+        'Web: rustup target add wasm32-unknown-unknown; python3 tools/web_build.py fetch; make web.\n'
+        'Replace the executable or the generated Web pkg/JS files with your rebuilt outputs.\n'
+        'No signing restriction or installation lock is applied by these development packages.\n'
+    ).encode()
+    files['PACKAGE-MANIFEST.json'] = encoded(dict(schema_version=1, version=version, target=target,
+        development=True, performance_qualification_deferred=True,
+        source_archive=source_name, source=source,
+        files=[dict(path=name, bytes=len(data), sha256=sha(data)) for name, data in sorted(files.items())]))
+    files['SHA256SUMS'] = ''.join(f'{sha(data)}  {name}\n' for name, data in sorted(files.items())).encode()
+    data = archive_bytes(files, target)
+    output.mkdir(parents=True, exist_ok=True)
+    with path.open('xb') as stream:
+        stream.write(data)
+    with sidecar.open('x') as stream:
+        stream.write(f'{sha(data)}  {path.name}\n')
+    verify_package(path)
+    return path
+
+
+def verify_package(path):
+    data = regular(path)
+    require(regular(Path(str(path) + '.sha256')).decode() == f'{sha(data)}  {path.name}\n', 'Archive checksum differs')
+    if path.suffix == '.zip':
+        with zipfile.ZipFile(io.BytesIO(data)) as archive:
+            names = archive.namelist()
+            require(all(not entry.is_dir() and entry.external_attr >> 16 == 0o100644 for entry in archive.infolist()), 'Invalid ZIP member type/mode')
+            files = {name: archive.read(name) for name in names}
+    else:
+        with tarfile.open(fileobj=io.BytesIO(data), mode='r:gz') as archive:
+            names = archive.getnames()
+            require(all(entry.isfile() and entry.mode == (0o755 if entry.name == 'lemmings-desktop' else 0o644)
+                        for entry in archive.getmembers()), 'Invalid tar member type/mode')
+            files = {name: archive.extractfile(name).read() for name in names}
+    require(len(names) == len(set(names)) and all(not Path(n).is_absolute() and '..' not in Path(n).parts for n in names), 'Invalid archive paths')
+    manifest = json.loads(files['PACKAGE-MANIFEST.json'])
+    target = manifest['target']
+    require(target in ('web', 'linux-x86_64') and manifest['schema_version'] == 1
+            and manifest['development'] is True and manifest['performance_qualification_deferred'] is True, 'Invalid development package manifest')
+    source_name = 'audio-source.tar.gz' if target == 'web' else 'source.tar.gz'
+    allowed = COMMON_FILES | {source_name, 'PACKAGE-MANIFEST.json', 'SHA256SUMS'}
+    allowed |= set(WEB_FILES) | {'audio-source.json'} if target == 'web' else {'lemmings-desktop'}
+    require(set(files) == allowed, 'Unexpected or missing package files')
+    pins = manifest['files']
+    require(len(pins) == len({pin['path'] for pin in pins})
+            and {pin['path'] for pin in pins} == allowed - {'PACKAGE-MANIFEST.json', 'SHA256SUMS'}, 'Invalid manifest inventory')
+    for pin in pins:
+        require(len(files[pin['path']]) == pin['bytes'] and sha(files[pin['path']]) == pin['sha256'], 'Package file checksum differs')
+    expected = ''.join(f'{sha(value)}  {name}\n' for name, value in sorted(files.items()) if name != 'SHA256SUMS')
+    require(files['SHA256SUMS'].decode() == expected, 'Internal checksums differ')
+    require(manifest['source_archive'] == source_name and sha(files[source_name]) == manifest['source']['archive_sha256']
+            and len(files[source_name]) == manifest['source']['archive_bytes'], 'Source archive pin differs')
+    with tarfile.open(fileobj=io.BytesIO(files[source_name]), mode='r:gz') as source:
+        entries = source.getmembers()
+        require(all(entry.isfile() and not Path(entry.name).is_absolute() and '..' not in Path(entry.name).parts
+                    and not entry.name.startswith(('assets/local/', 'target/')) for entry in entries), 'Invalid source archive')
+        pins = json.load(source.extractfile('SOURCE-MANIFEST.json'))
+        require(len(entries) == len(pins) + 1 and len(pins) == manifest['source']['source_files']
+                and {e.name for e in entries} == {p['path'] for p in pins} | {'SOURCE-MANIFEST.json'}, 'Source inventory differs')
+        for pin in pins:
+            value = source.extractfile(pin['path']).read()
+            require(len(value) == pin['bytes'] and sha(value) == pin['sha256'], 'Source checksum differs')
+    if target == 'web':
+        info = json.loads(files['audio-source.json'])
+        require(info['archive_sha256'] == manifest['source']['archive_sha256']
+                and info['wasm_sha256'] == sha(files['pkg/lemmings_web_bg.wasm'])
+                and info['license_sha256'] == sha(files['LGPL-2.1-or-later.txt']), 'Web source/license link differs')
+    return dict(status='PASS', target=target, development=True, performance_qualification_deferred=True,
+                archive_bytes=len(data), sha256=sha(data), files=len(files), source_files=len(pins))
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('command', choices=['linux', 'web', 'verify'])
+    parser.add_argument('--runtime', type=Path)
+    parser.add_argument('--output', type=Path, default=ROOT / 'assets/local/dist')
+    parser.add_argument('--archive', type=Path)
+    args = parser.parse_args()
+    if args.command == 'verify':
+        if args.archive is None:
+            parser.error('--archive is required')
+        print(json.dumps(verify_package(args.archive)))
+    else:
+        if args.runtime is None:
+            parser.error('--runtime is required')
+        path = create_package(args.command, args.runtime, args.output)
+        print(json.dumps(dict(archive=str(path), **verify_package(path))))
+
+
+if __name__ == '__main__':
+    main()

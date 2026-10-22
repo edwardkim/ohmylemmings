@@ -1,4 +1,4 @@
-.PHONY: check check-rust check-python check-wasm check-desktop check-web web serve-web
+.PHONY: check check-rust check-python check-wasm check-desktop check-web web serve-web package-linux package-web
 
 check: check-rust check-python check-wasm check-desktop check-web
 
@@ -53,6 +53,16 @@ web:
 
 serve-web:
 	python3 tools/web_build.py serve
+
+# Build first; output refuses overwrite so each validation keeps its own evidence.
+package-linux:
+	cargo build -p lemmings-desktop --release --locked --offline
+	python3 tools/release_package.py linux --runtime target/release/lemmings-desktop
+	python3 tools/check_release_package.py --archive assets/local/dist/ohmylemmings-0.1.0-dev-linux-x86_64.tar.gz
+
+package-web: web
+	python3 tools/release_package.py web --runtime assets/local/web
+	python3 tools/check_release_package.py --archive assets/local/dist/ohmylemmings-0.1.0-dev-web.zip
 
 check-web:
 	python3 tools/check_web.py
