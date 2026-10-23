@@ -31,4 +31,10 @@ node tools/web/hd_traps.cjs PRODUCT_URL DISPOSABLE_CDP_URL assets/local/web-trap
 node tools/web/hd_terrain.cjs PRODUCT_URL DISPOSABLE_CDP_URL assets/local/web-scenes NATIVE_JSONL --traps
 ```
 
-원본120초기 장면/선택 틱·기존 위험 회귀·전체 Python/Web·소스 감사·self-review·게시 CI와 실제 병합 결과는 완료 기록에 추가한다. 렌더링 정합은 전체 레벨 해결/성능 인수와 다르다. 횃불·나머지 장식/효과·글꼴/전체 UI와 HD 배포/인수는 후속이다. #137 OPEN, BGM #165는 리마스터 이후이며 #113 NOT READY와 공개 v0.1.0/Pages는 기존 범위다.
+최종 카탈로그로 원본120초기 장면·선택1,920틱·Web352Canvas를 대조했고 상태/마스크/사운드·Native/WASM 상태가 일치했다. 원본 함정 fallback0·console exception0이었다. 원본 레벨에는9종이 실제 배치되며 미배치 전기 바늘4/7은 합성 코스로 검증했다. 기존14위험 사례/28재생/11,788상태/1,714픽셀 대조, 전체703Rust/302Python 및 최종615소스 감사·G11기록 무결성·307문서 링크·Web8개 검사 명령을 통과했다. 마지막 solution replay는 증거 보존 옵션으로 실행해 모든 명령 종료0을 확인했다. self-review에서 원본 압축 인덱스·기준점·RGBA 보존과 core/resources/audio 제품 소스 미변경을 검토했다. 렌더링 정합은 전체 레벨 해결/성능 인수와 다르다. 횃불·나머지 장식/효과·글꼴/전체 UI와 HD 배포/인수는 후속이다. #137 OPEN, BGM #165는 리마스터 이후이며 #113 NOT READY와 공개 v0.1.0/Pages는 기존 범위다.
+
+## CI와 실제 병합
+
+PR #179 head `4081c95be985ee47c3984562f9399b1c5e87d0cd` / CI39948229305의7개 SUCCESS, 실제 merge `b1609edbde498d55e55e181c22adc1664ad95483`와 검토 head 전체 tree 일치를 확인했다.
+
+[PR #179](https://github.com/edwardkim/ohmylemmings/pull/179) · [CI39948229305](https://github.com/edwardkim/ohmylemmings/actions/runs/39948229305). Python·WASM·Rust native·Web·Windows·macOS Apple Silicon/Intel을 모두 통과했다. PR checkout `534afdbfc592e12ac37eefd6e78b8791302d0569` / tree `972a91962aa55c891216fccc18a4a3c726bee630`도 검토 head와 같다. 중복 push39948220334 취소는 PASS에 포함하지 않는다. 기존 플랫폼 패키징 CI와 전체 HD 배포/성능 인수를 구분한다. 완료 문서 병합·root Native/Web 준비·preview-172 보존과 종료 근거는 [#178](https://github.com/edwardkim/ohmylemmings/issues/178)에 기록한다.
