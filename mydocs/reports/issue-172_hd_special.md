@@ -27,7 +27,7 @@ built-in image_gen으로4PNG를 생성했고 선택 출력 파일을 바이트 �
 - 사용자 요청으로 기존8080의 `/preview-172/`에 별도 작업본을 준비했다. CDP19222의 빈 탭에서 Fun22/HD/1920canvas/일시정지/오류 없음을 확인했고 사용자가 확인 후 계속 진행을 승인했다. 사용자 탭과 preview 복사본은 이후 QA로 바꾸지 않는다.
 - Web 비교 도구 초기에 HD쪽만 레벨을 두 번 로딩하여 sound generation 번호가 달라지는 실패가 있었다. 두 모드의 로딩 횟수를 같게 고쳤으며 사운드 제품 코드는 바꾸지 않았다. 실패 로그를 보존하고 최종 Web 검사 결과를 별도 기록한다.
 
-Web120장면/1,920틱/352Canvas에서 네 special selector, 일반5테마,14일방통행 장면과 Native/WASM 최종 상태·모드별 상태/마스크/사운드 동일성을 확인했다. 콘솔 오류0이다. 기존 Web33사례/66실행/11,960상태/6,877Canvas와 HD13사례/7,593상태/821표시도 통과했다. 추가 회귀·소스 감사·CI/self-review·실제 병합/개발 환경 준비 결과를 이어서 기록한다. BGM #165는 리마스터 완료 이후이며, sound-state 동일성/비영 PCM은 지속 BGM 청취 통과를 뜻하지 않는다. 공개 Releases/Pages는 변경하지 않는다.
+Web120장면/1,920틱/352Canvas에서 네 special selector, 일반5테마,14일방통행 장면과 Native/WASM 최종 상태·모드별 상태/마스크/사운드 동일성을 확인했다. 콘솔 오류0이다. 기존 Web33사례/66실행/11,960상태/6,877Canvas와 HD13사례/7,593상태/821표시도 통과했다. 로컬 `make check-web` 전체 및 소스 감사·CI/self-review·실제 병합을 완료했다. 개발 환경 준비 식별자는 이슈에 기록한다. BGM #165는 리마스터 완료 이후이며, sound-state 동일성/비영 PCM은 지속 BGM 청취 통과를 뜻하지 않는다. 공개 Releases/Pages는 변경하지 않는다.
 
 ![생성 파노라마의 실제 브라우저 자산 미리보기](../../assets/remaster/previews/issue-172_special.png)
 
@@ -36,3 +36,11 @@ Web120장면/1,920틱/352Canvas에서 네 special selector, 일반5테마,14일�
 재현: `make hd-assets` 후 `cargo run -p lemmings-game --example hd_terrain_probe --release --locked --offline -- assets/local/hd-runtime/atlas assets/local/dos-original`로 Native120행을 저장한다. 전체 게임 데이터가 준비된 Web과 별도 빈 QA 브라우저에서 `node tools/web/hd_terrain.cjs PRODUCT_URL DISPOSABLE_CDP_URL NEW_EVIDENCE_DIR NATIVE_JSONL --special`로 대조한다. 사용자 플레이 탭에 실행하지 않는다.
 
 게시 전 self-review: `make check-python` 전체·558소스 pin·G11 기록 무결성·301Markdown 상대 링크를 통과했다. 이전 producer pin과 성능 관측값을 보존했다. 구현 변경은 game HD 표시/typed 자산과 제작·검증 도구에 한정하며 core/resources/audio 제품 소스는 바꾸지 않았다.
+
+## CI와 실제 병합
+
+PR #173 head `f96a5c78d9ee5afccb4324be59e6b2c11a31ba2e` / CI39928593396의7개 SUCCESS (첫 실행6개, 재실행 Rust native1개), 실제 merge `d8e6dacc554157ba3fcd91d9297d1c6b7242f1b0`와 검토 head 전체 tree 일치를 확인했다.
+
+[PR #173](https://github.com/edwardkim/ohmylemmings/pull/173) · [CI39928593396](https://github.com/edwardkim/ohmylemmings/actions/runs/39928593396). Python·WASM·Rust native·Web·Windows·macOS Apple Silicon/Intel을 모두 통과했다. PR checkout `8ed912afa66b54bb880066a7f35bd40b2833e97a`도 검토 head와 tree가 같다. 첫 실행의 Rust 검사·Linux 설치는 통과했으나 결과 파일 업로드가 ECONNRESET으로 실패했다. 해당 job만 재실행해 최종 통과를 확인했으며 첫 실행 전체를 성공으로 세지 않는다. 중복 push39928584782 취소도 통과로 세지 않는다. 기존 전체 게임 패키지 검사와 전체 HD 배포/성능 인수는 구분한다. 완료 문서 실제 병합·root Native4장면/8080 준비·사용자 preview 보존 및 종료 근거는 [#172](https://github.com/edwardkim/ohmylemmings/issues/172)에 기록한다.
+
+CI Web ZIP은143,783,524바이트/SHA-256 `7fdbc30f80574ce5e7e738b722c8b151b02a37285e67001b587b763d403f3740`,82파일·966소스·28게임 파일이다. 카탈로그의 새4페이지 전달과 새 설치120레벨/재시작·전환·하위경로·소스/고지를 통과했다. 오디오 smoke는 BGM 지속 청취 판정이 아니다.
