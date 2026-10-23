@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exact mono PCM comparison against unmodified C Nuked-OPL3, offline by default."""
+"""Exact mono PCM comparison against pinned C Nuked-OPL3 buffered delivery, offline by default."""
 import argparse
 import hashlib
 import json
@@ -66,7 +66,7 @@ def check(directory,original_assets=None):
         if not info['nonzero']:raise ValueError('silent reference: '+case['name'])
         rows.append(dict(name=case['name'],**info))
         if original_assets:(directory/(case['name']+'.pcm')).write_bytes(actual)
-    result=dict(status='PASS',scope='Exact mono left PCM; fixed Rust core/stream scheduler versus unmodified separate-process C1.8; not hardware/device listening',cases=rows,case_count=len(rows),frames=sum(v['frames'] for v in rows),c_commit=manifest['commit'],compiler=subprocess.check_output(['cc','--version'],text=True).splitlines()[0])
+    result=dict(status='PASS',scope='Exact mono left PCM; fixed Rust core/stream scheduler versus separate-process C1.8 buffered delivery; not hardware/device listening',cases=rows,case_count=len(rows),frames=sum(v['frames'] for v in rows),c_commit=manifest['commit'],compiler=subprocess.check_output(['cc','--version'],text=True).splitlines()[0])
     if original_assets:
         if verified_assets(original_assets.resolve())!=original:raise ValueError('originals changed')
         result.update(original_files=len(original),music=21,effects=18)

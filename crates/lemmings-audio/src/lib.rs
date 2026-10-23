@@ -98,7 +98,8 @@ pub struct PcmPosition {
 }
 
 /// Borrowed driver and owned OPL2 state. Register writes occur before the first
-/// sample of their interval. The nth interval ends at floor(n * rate * den/num).
+/// sample of their interval, then the OPL core delivers them with its bounded
+/// native-sample write spacing. The nth interval ends at floor(n * rate * den/num).
 /// The fixed OPL pipeline's left signal is delivered as mono, saturating to
 /// i16 without adaptive normalization. Serialize samples using `i16::to_le_bytes`.
 pub struct AdlibPcm<'a> {

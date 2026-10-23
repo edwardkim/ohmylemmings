@@ -1697,5 +1697,10 @@
     "Earlier candidate and invalid counter/cycles experiments retained as failures, excluded from selected-engine passes"
   ],
   "next": "G10-04 game events/DOS numeric IDs; then05SDL/Web devices and06integration/listening; G10 remains in progress",
-  "publication": "Exact push/PR/main four jobs/full ZIP checkout logs/same merge tree and remote mode/blob proof recorded in issue76 before closure"
+  "publication": "Exact push/PR/main four jobs/full ZIP checkout logs/same merge tree and remote mode/blob proof recorded in issue76 before closure",
+  "delivery_correction_165": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/165",
+    "current": "assets/manifests/bgm_delivery.json",
+    "scope": "Historical #76 direct-write PCM/C agreement below remains a recording of that delivery mode. Current adapter and C harness both select upstream buffered writes; core, VM event schedule and rational sample clock unchanged. New PCM fixture pins are scoped to #165, not a new DOS/hardware match."
+  }
 }

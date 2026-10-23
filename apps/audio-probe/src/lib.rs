@@ -7,6 +7,37 @@ use lemmings_audio::{AdlibPcm, AudioRate, MAX_PCM_FRAMES};
 use lemmings_opl::Opl2;
 use lemmings_resources::{AdlibCommand, AdlibImage, AdlibPlayer, AdlibWrite};
 
+/// Bounded, asset-free register trace protocol shared with the separate C oracle.
+pub fn opl_pcm(data: &[u8]) -> Result<Vec<i16>, String> {
+    if data.len() < 12 {
+        return Err("truncated OPL trace".into());
+    }
+    let word = |at| u32::from_le_bytes(data[at..at + 4].try_into().unwrap());
+    let (rate, frames, count) = (word(0), word(4), word(8));
+    if frames > 16_000_000 || count > 1_000_000 || data.len() != 12 + count as usize * 6 {
+        return Err("OPL trace bounds".into());
+    }
+    let mut chip = Opl2::new(rate).map_err(|e| e.to_string())?;
+    let mut previous = 0;
+    for at in (12..data.len()).step_by(6) {
+        let frame = word(at);
+        if frame >= frames || frame < previous {
+            return Err("OPL trace event order".into());
+        }
+        previous = frame;
+    }
+    let mut result = Vec::with_capacity(frames as usize);
+    let mut at = 12;
+    for frame in 0..frames {
+        while at < data.len() && word(at) == frame {
+            chip.write_reg(data[at + 4], data[at + 5]);
+            at += 6;
+        }
+        result.push(chip.render_frame().0 as i16);
+    }
+    Ok(result)
+}
+
 fn actions(sequence: &str) -> Result<Vec<(&str, usize)>, String> {
     let mut result = Vec::new();
     let mut total = 0_usize;
@@ -90,7 +121,7 @@ pub fn render(
     }
     Ok(output)
 }
-/// Separate reference path: unmodified OPL API with absolute rational sample
+/// Separate reference path: bounded buffered OPL API with absolute rational sample
 /// deadlines, no AudioPcm, interval-remainder recurrence or render preflight.
 pub fn direct(
     data: &[u8],
@@ -153,6 +184,10 @@ pub fn direct(
 #[cfg(target_arch = "wasm32")]
 mod wasm {
     use wasm_bindgen::prelude::*;
+    #[wasm_bindgen]
+    pub fn opl_pcm(data: &[u8]) -> Result<Vec<i16>, JsValue> {
+        super::opl_pcm(data).map_err(|e| JsValue::from_str(&e))
+    }
     #[wasm_bindgen]
     pub fn game_sound_trace(partitions: &[u32]) -> Result<String, JsValue> {
         super::game_sound_trace(partitions).map_err(|e| JsValue::from_str(&e))

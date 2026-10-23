@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 257156,
-      "sha256": "93260bb2b8d0f4c9b7fc6a357ab7778f4a9437aa821474075b4f9fed4cbcf1b3",
+      "bytes": 261150,
+      "sha256": "3bcc8b09d09ddbb4fe640ef3f8bdf01f16a476e738208bec77281ebb22e1ca35",
       "id": "compatibility"
     },
     {
@@ -11146,5 +11146,15 @@
       "id": "compatibility"
     },
     "scope": "Current HD packaging/host boot/installation validation source inventory only. No new all-level solution or performance qualification."
+  },
+  "source_maintenance_165_fix": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/165",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 257156,
+      "sha256": "93260bb2b8d0f4c9b7fc6a357ab7778f4a9437aa821474075b4f9fed4cbcf1b3",
+      "id": "compatibility"
+    },
+    "scope": "Current BGM buffered delivery source inventory. Frozen #106/#107 PCM identity/performance belongs to immediate delivery before this fix; no new60fps result or all-level solution replay."
   }
 }

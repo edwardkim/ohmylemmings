@@ -16,8 +16,8 @@
   "product_snapshot": [
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 13104,
-      "sha256": "37e46084ac77806ccb70a398775495425f99cb487f03d7d5f1ba1f2e12b54ae9"
+      "bytes": 13481,
+      "sha256": "bef50598bc19d1c9c858bd6ac613e1e6fae2297a023be311d9f1c7ed31cd47a2"
     },
     {
       "path": ".github/workflows/pages.yml",
@@ -46,8 +46,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 3649,
-      "sha256": "f6b866d596aa856c6bcf6fe14368403b34a27404bd7eea99458791e688837bde"
+      "bytes": 3712,
+      "sha256": "e332794d644641a972a7eab7b53e20381c7c4af1f6d226bce9cbb50fa9f9f9e2"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -66,8 +66,8 @@
     },
     {
       "path": "apps/audio-probe/src/lib.rs",
-      "bytes": 5975,
-      "sha256": "f5ef3c6f1c148abf6c6dddebf81789f05f7d591d4842b37152faa376a4193c94"
+      "bytes": 7273,
+      "sha256": "9f4192e7971dede12e070d8d58bf994e06fc06b126ab9bc5a2170c2a8bc13b10"
     },
     {
       "path": "apps/audio-probe/src/main.rs",
@@ -321,13 +321,13 @@
     },
     {
       "path": "crates/lemmings-audio/src/lib.rs",
-      "bytes": 10545,
-      "sha256": "3627878e068cb91ac69cb2c1b6a16071fe4c17e5e459893669767f77890e285a"
+      "bytes": 10627,
+      "sha256": "f44ebde8ba9c452c0f01cb01ceb4086ebaaa55601ab510219ac2e5c300cfcebb"
     },
     {
       "path": "crates/lemmings-audio/tests/pcm.rs",
-      "bytes": 8740,
-      "sha256": "6d57bdbaa98b95c425aaa44af2b6c0685259e8badc90888c60b90e93cb08ac59"
+      "bytes": 9684,
+      "sha256": "66a0ee92fa933bb691ce2fa72871a6a7b9877fc5072e95cc07fa489c028a84d9"
     },
     {
       "path": "crates/lemmings-core/Cargo.toml",
@@ -676,8 +676,8 @@
     },
     {
       "path": "crates/lemmings-opl/src/lib.rs",
-      "bytes": 2804,
-      "sha256": "5a60522b004780996702d94cdd7fcf1094779902f40a7f7ab48de4a465e4f8c2"
+      "bytes": 5130,
+      "sha256": "6980a4f832e1782aba12ce2a8ca789243615c06739906f84754293fb5230ddbe"
     },
     {
       "path": "crates/lemmings-resources/Cargo.toml",
@@ -1116,8 +1116,8 @@
     },
     {
       "path": "tools/audio/check.js",
-      "bytes": 1350,
-      "sha256": "debdd8bda38b9cde227bccf87d891a6dbb6015265d540ed61695cdd7c6b15348"
+      "bytes": 1414,
+      "sha256": "34aa94d5c3dd3c0ada22077b7af589443128b256db07c81be7dda59cb6a2afce"
     },
     {
       "path": "tools/audio/game-check.html",
@@ -1171,8 +1171,8 @@
     },
     {
       "path": "tools/check_audio.py",
-      "bytes": 9877,
-      "sha256": "283603de0dd9322de8b35d30565c9ac4d06dd746e269b0e3463626bfd4ef30f5"
+      "bytes": 9913,
+      "sha256": "f9eca808f7ffb915b2534f07ba1792ce7a2dbfdaa495a78fc16ea28b4496f5bc"
     },
     {
       "path": "tools/check_audio_output.py",
@@ -1261,8 +1261,8 @@
     },
     {
       "path": "tools/check_opl_reference.py",
-      "bytes": 5356,
-      "sha256": "78c6ae37747672613c3f2434a34018e9e09a6cb99cba891170d427314fe30113"
+      "bytes": 5377,
+      "sha256": "34f54420e6eeb257f82a03d370f2d0cc67772f302112a15cc8abe3b85591e482"
     },
     {
       "path": "tools/check_pages.cjs",
@@ -1797,12 +1797,12 @@
     {
       "path": "tools/tests/fixtures/audio_output.json",
       "bytes": 3455,
-      "sha256": "b209fbd629c16b95fa1317b03efd3c798a117911f06731ed4238a9e5996dee2b"
+      "sha256": "95e301216fa8a3af9e8514391dfa328d81a20913f119f717608f2a390b910955"
     },
     {
       "path": "tools/tests/fixtures/audio_pcm.json",
-      "bytes": 4460,
-      "sha256": "52bd775571c8760932d6fd30cb0b1abce91f18f50592ff034fe64997c5a390c5"
+      "bytes": 4496,
+      "sha256": "73468d1c63a6025873f3653c6ce37c4a7cd29009685b8268859e238dea180e65"
     },
     {
       "path": "tools/tests/fixtures/dos_sound.json",
@@ -1812,7 +1812,7 @@
     {
       "path": "tools/tests/fixtures/game_sound.json",
       "bytes": 1097,
-      "sha256": "09f2d2c7cdb62b41033d69d84a3952a17a1a83366df6ad6f3c4351a9a4131383"
+      "sha256": "09b63051c3e5902d0e1c5d1ea54b63cfd88ae331b9ef5062e325cfcb9fc99ff0"
     },
     {
       "path": "tools/tests/test_adlib.py",
@@ -3243,6 +3243,31 @@
       "path": "tools/tests/test_hd_delivery.py",
       "bytes": 2960,
       "sha256": "b0b1f621fa2bb69a9357f738591c607e0589e15283c8817d0fb86514b5459499"
+    },
+    {
+      "path": "apps/audio-probe/src/bin/opl_trace.rs",
+      "bytes": 499,
+      "sha256": "eab6179cbf349dce21fa355bfccc2971184230bfa6457ae1435574d0fa386b92"
+    },
+    {
+      "path": "apps/audio-probe/tests/opl_trace.rs",
+      "bytes": 1084,
+      "sha256": "a8db47ff1fb2fcb4ad46ac86a0cb132704056bedbd8e0f1529ab2e5fd60f4972"
+    },
+    {
+      "path": "assets/manifests/bgm_delivery.json",
+      "bytes": 8721,
+      "sha256": "0b2b973bf54bce6f0aaf674b60b82eb18f2a8606144b37eabacb142fce43e22c"
+    },
+    {
+      "path": "tools/check_bgm.py",
+      "bytes": 6731,
+      "sha256": "bb7795319c44341a501e3c79287077a8a646f552de2bb735f29c6327d0601ec1"
+    },
+    {
+      "path": "tools/tests/test_bgm.py",
+      "bytes": 1294,
+      "sha256": "fe0e359b0999652720c988c00f76f0ace98cf83b69f9d5b15222deaebdc9876f"
     }
   ],
   "evidence": [
@@ -3409,10 +3434,9 @@
     },
     {
       "path": "assets/manifests/adlib_pcm.json",
-      "bytes": 57079,
-      "sha256": "09242a77347a80a7280c50dec1dc4c5bef405ea609222bddf23606105b79ba6a",
-      "id": "adlib_pcm",
-      "kind": "historical-scoped-evidence"
+      "bytes": 57545,
+      "sha256": "2377aa354fe1b26b0ece86567ca5582e7d5cef80d24a088149b156670d116be7",
+      "id": "adlib_pcm"
     },
     {
       "path": "assets/manifests/game_sound.json",
@@ -7321,5 +7345,88 @@
       "tools/tests/test_hd_delivery.py"
     ],
     "scope": "HD download delivery: native executable/bundle-relative presentation profile, explicit original override and Web packaged default HD. Complete verified catalog shared by all packagers; cache source validation and extracted-package regressions. Original51 catalog members and simulation/audio sources unchanged; historical120 solution evidence stays historical. BGM165 deferred and113 NOT READY unchanged."
+  },
+  "source_impact_165_fix": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/165",
+    "baseline": "c1bbb3c4154766bf0f7aff884cfaa8b9f7849c67",
+    "previous_pins": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 13104,
+        "sha256": "37e46084ac77806ccb70a398775495425f99cb487f03d7d5f1ba1f2e12b54ae9"
+      },
+      {
+        "path": "Makefile",
+        "bytes": 3649,
+        "sha256": "f6b866d596aa856c6bcf6fe14368403b34a27404bd7eea99458791e688837bde"
+      },
+      {
+        "path": "apps/audio-probe/src/lib.rs",
+        "bytes": 5975,
+        "sha256": "f5ef3c6f1c148abf6c6dddebf81789f05f7d591d4842b37152faa376a4193c94"
+      },
+      {
+        "path": "crates/lemmings-audio/src/lib.rs",
+        "bytes": 10545,
+        "sha256": "3627878e068cb91ac69cb2c1b6a16071fe4c17e5e459893669767f77890e285a"
+      },
+      {
+        "path": "crates/lemmings-audio/tests/pcm.rs",
+        "bytes": 8740,
+        "sha256": "6d57bdbaa98b95c425aaa44af2b6c0685259e8badc90888c60b90e93cb08ac59"
+      },
+      {
+        "path": "crates/lemmings-opl/src/lib.rs",
+        "bytes": 2804,
+        "sha256": "5a60522b004780996702d94cdd7fcf1094779902f40a7f7ab48de4a465e4f8c2"
+      },
+      {
+        "path": "tools/audio/check.js",
+        "bytes": 1350,
+        "sha256": "debdd8bda38b9cde227bccf87d891a6dbb6015265d540ed61695cdd7c6b15348"
+      },
+      {
+        "path": "tools/check_audio.py",
+        "bytes": 9877,
+        "sha256": "283603de0dd9322de8b35d30565c9ac4d06dd746e269b0e3463626bfd4ef30f5"
+      },
+      {
+        "path": "tools/check_opl_reference.py",
+        "bytes": 5356,
+        "sha256": "78c6ae37747672613c3f2434a34018e9e09a6cb99cba891170d427314fe30113"
+      },
+      {
+        "path": "tools/tests/fixtures/audio_output.json",
+        "bytes": 3455,
+        "sha256": "b209fbd629c16b95fa1317b03efd3c798a117911f06731ed4238a9e5996dee2b"
+      },
+      {
+        "path": "tools/tests/fixtures/audio_pcm.json",
+        "bytes": 4460,
+        "sha256": "52bd775571c8760932d6fd30cb0b1abce91f18f50592ff034fe64997c5a390c5"
+      },
+      {
+        "path": "tools/tests/fixtures/game_sound.json",
+        "bytes": 1097,
+        "sha256": "09f2d2c7cdb62b41033d69d84a3952a17a1a83366df6ad6f3c4351a9a4131383"
+      }
+    ],
+    "previous_evidence_pins": [
+      {
+        "path": "assets/manifests/adlib_pcm.json",
+        "bytes": 57079,
+        "sha256": "09242a77347a80a7280c50dec1dc4c5bef405ea609222bddf23606105b79ba6a",
+        "id": "adlib_pcm",
+        "kind": "historical-scoped-evidence"
+      }
+    ],
+    "added": [
+      "apps/audio-probe/src/bin/opl_trace.rs",
+      "apps/audio-probe/tests/opl_trace.rs",
+      "assets/manifests/bgm_delivery.json",
+      "tools/check_bgm.py",
+      "tools/tests/test_bgm.py"
+    ],
+    "scope": "OPL adapter now selects existing upstream bounded buffered writes. Core, game/session/VM/rational clocks unchanged. Corrected synthetic PCM hashes independently C buffered checked; state/RGB/maps/event trace unchanged. Historical immediate-write PCM/performance evidence remains historical. New sustained/retrigger/overflow/continuation/Native/WASM checks and source notices; no hardware equivalence or113 performance acceptance."
   }
 }

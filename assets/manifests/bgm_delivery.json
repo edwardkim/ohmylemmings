@@ -1,0 +1,324 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/165",
+  "baseline_main": "c1bbb3c4154766bf0f7aff884cfaa8b9f7849c67",
+  "status": "local_digital_validation_record",
+  "cause": "Immediate key-off/on before an OPL sample hid note releases from the envelope; later note attacks faded.",
+  "fix": "Opl2 adapter selects existing upstream write_reg_buffered; fixed1024-entry ring with two native-sample spacing. Native OPL/resampler/VM/game clocks unchanged.",
+  "provenance": {
+    "core_unchanged": "crates/lemmings-opl/src/core.rs",
+    "c_core_unchanged": "tools/audio/reference/opl3.c",
+    "c_pin": "assets/manifests/opl_reference.json",
+    "modification_notice": "crates/lemmings-opl/README.md"
+  },
+  "local": {
+    "rust_tests": 715,
+    "c_synthetic_cases": 24,
+    "c_original_cases": 63,
+    "register_retrigger_and_overflow_cases": 11,
+    "original_60s_cases": [
+      {
+        "name": "music-0-60s",
+        "frames": 1323000,
+        "sha256": "6c9f6e7a95c12e2d7531678eb9794be6e1f7a6d5cf96b367a9eddae94728f53e",
+        "ac_rms_at_0_5_15_30_40_55": [
+          1798.32,
+          1943.31,
+          1342.29,
+          1262.24,
+          1721.02,
+          1296.21
+        ]
+      },
+      {
+        "name": "music-1-60s",
+        "frames": 1323000,
+        "sha256": "960880f5bea779e0010e00719388cbe4e982f40fee9d32d67d4dc51e0b142ea3",
+        "ac_rms_at_0_5_15_30_40_55": [
+          1056.01,
+          1179.05,
+          1179.96,
+          1068.72,
+          1054.92,
+          1099.85
+        ]
+      },
+      {
+        "name": "music-2-60s",
+        "frames": 1323000,
+        "sha256": "fad8cad0227b4056224fa307c6744b92882b967bc71800499bf7c3931397d7b0",
+        "ac_rms_at_0_5_15_30_40_55": [
+          2383.13,
+          2166.3,
+          1622.59,
+          1596.87,
+          1316.17,
+          1625.49
+        ]
+      },
+      {
+        "name": "music-3-60s",
+        "frames": 1323000,
+        "sha256": "06b581a8e3451396072c36483ded21f7b2bf0ec211cd789714b0902b4b86043d",
+        "ac_rms_at_0_5_15_30_40_55": [
+          2453.25,
+          2364.16,
+          2404.85,
+          3119.3,
+          2412.0,
+          2602.42
+        ]
+      },
+      {
+        "name": "music-4-60s",
+        "frames": 1323000,
+        "sha256": "a88feb8b71e8e62e0f0f49566b7b14c6b8a45d0ce7a327a9425803468bbd886d",
+        "ac_rms_at_0_5_15_30_40_55": [
+          909.09,
+          947.52,
+          1584.65,
+          2341.23,
+          1973.76,
+          1226.07
+        ]
+      },
+      {
+        "name": "music-5-60s",
+        "frames": 1323000,
+        "sha256": "4d29370ad49930ec8a31699bfa981d934c75776d36590b859fd494f03ea69ee7",
+        "ac_rms_at_0_5_15_30_40_55": [
+          2937.31,
+          2843.91,
+          2913.04,
+          2860.28,
+          2683.86,
+          2744.66
+        ]
+      },
+      {
+        "name": "music-6-60s",
+        "frames": 1323000,
+        "sha256": "497366349e1e9b3d6f6cf02efe4eeb2c728e7c9121d14534fc752d06d397979e",
+        "ac_rms_at_0_5_15_30_40_55": [
+          2682.6,
+          2932.3,
+          2658.46,
+          2623.94,
+          2559.33,
+          2492.86
+        ]
+      },
+      {
+        "name": "music-7-60s",
+        "frames": 1323000,
+        "sha256": "2646e4de3035c8b7ed3f1df629fbf55fde93d890b8ffc41611df35fd9d4159c7",
+        "ac_rms_at_0_5_15_30_40_55": [
+          3272.65,
+          1974.08,
+          2614.42,
+          2343.49,
+          2148.6,
+          2600.97
+        ]
+      },
+      {
+        "name": "music-8-60s",
+        "frames": 1323000,
+        "sha256": "d9250ff325ddb9b636effbd1fb7093eb0d23d816370d6749ee1e1c6b4010f400",
+        "ac_rms_at_0_5_15_30_40_55": [
+          1600.94,
+          1766.0,
+          1674.35,
+          1720.94,
+          1581.73,
+          1707.15
+        ]
+      },
+      {
+        "name": "music-9-60s",
+        "frames": 1323000,
+        "sha256": "1b5c114c0b8faf2c46d2edfd645f9be0edccdf05924b2323013848d65ce443db",
+        "ac_rms_at_0_5_15_30_40_55": [
+          3539.44,
+          3402.05,
+          3797.71,
+          3634.41,
+          1677.24,
+          3413.47
+        ]
+      },
+      {
+        "name": "music-10-60s",
+        "frames": 1323000,
+        "sha256": "550520fcc66ef3e26662845e94d4986d48808c0dd66d03c781a0c07bc673e2ec",
+        "ac_rms_at_0_5_15_30_40_55": [
+          2021.47,
+          1919.76,
+          2280.16,
+          2053.26,
+          1723.75,
+          2773.49
+        ]
+      },
+      {
+        "name": "music-11-60s",
+        "frames": 1323000,
+        "sha256": "d5a37fbe6c71a7d1b6b78bc5a7a53f173edf878fad8e87598884c0a8355ec15a",
+        "ac_rms_at_0_5_15_30_40_55": [
+          3377.93,
+          2684.5,
+          3282.97,
+          2589.73,
+          3073.09,
+          3058.93
+        ]
+      },
+      {
+        "name": "music-12-60s",
+        "frames": 1323000,
+        "sha256": "8063a54dc724cab859cc126d5a7adf56b602cac0f6ae608193e1f59efa6b8c84",
+        "ac_rms_at_0_5_15_30_40_55": [
+          3058.29,
+          2029.79,
+          2123.24,
+          2722.71,
+          3044.45,
+          2654.35
+        ]
+      },
+      {
+        "name": "music-13-60s",
+        "frames": 1323000,
+        "sha256": "0f7197c221b033ead04f9c9ddf656caa34912d70dd7110e985c8454166a2616b",
+        "ac_rms_at_0_5_15_30_40_55": [
+          2529.58,
+          2608.95,
+          2702.21,
+          2582.91,
+          2649.59,
+          2431.82
+        ]
+      },
+      {
+        "name": "music-14-60s",
+        "frames": 1323000,
+        "sha256": "c7c2bfb90f0f23100ef6eed2c7737a7f55b7aeffd117f682290b99159f4d4d3f",
+        "ac_rms_at_0_5_15_30_40_55": [
+          2753.89,
+          2735.02,
+          2741.34,
+          2701.21,
+          4260.2,
+          2635.62
+        ]
+      },
+      {
+        "name": "music-15-60s",
+        "frames": 1323000,
+        "sha256": "8a9da088ea669dbd28bef83285c183cf6514b107d95945c56199511d39b7684b",
+        "ac_rms_at_0_5_15_30_40_55": [
+          1927.89,
+          2151.02,
+          3416.03,
+          2735.14,
+          3526.69,
+          2838.31
+        ]
+      },
+      {
+        "name": "music-16-60s",
+        "frames": 1323000,
+        "sha256": "432fbcf5e3016284b7e5134ec3c07374ec495ada08e7fd8e5baa0f2d3732f450",
+        "ac_rms_at_0_5_15_30_40_55": [
+          3051.95,
+          3062.77,
+          3269.82,
+          3010.39,
+          3092.17,
+          2924.89
+        ]
+      },
+      {
+        "name": "music-17-60s",
+        "frames": 1323000,
+        "sha256": "3d4c613020ec7cb506d37b6b0fd9d577b04991bac9948a74c9f0cdfeddff6726",
+        "ac_rms_at_0_5_15_30_40_55": [
+          4451.79,
+          3447.96,
+          3514.01,
+          3446.3,
+          3642.78,
+          2243.1
+        ]
+      },
+      {
+        "name": "music-18-60s",
+        "frames": 1323000,
+        "sha256": "d26e2b44c12b63df5c1c069c713f89294d69cf73787f425fc2f61786393034a2",
+        "ac_rms_at_0_5_15_30_40_55": [
+          1739.18,
+          1598.6,
+          1570.46,
+          1577.54,
+          1591.76,
+          1922.73
+        ]
+      },
+      {
+        "name": "music-19-60s",
+        "frames": 1323000,
+        "sha256": "75ac890495a3d03e30f07e33fd4ab84bf11d6a5e5d9544781ad3bcca45426014",
+        "ac_rms_at_0_5_15_30_40_55": [
+          2787.33,
+          2612.98,
+          2689.58,
+          2457.44,
+          2635.21,
+          3611.89
+        ]
+      },
+      {
+        "name": "music-20-60s",
+        "frames": 1323000,
+        "sha256": "a0f43e15e601b6a2e8f6f1c4b24ce168b0dd1057b46dc2d6908aa2d713486634",
+        "ac_rms_at_0_5_15_30_40_55": [
+          3091.18,
+          3251.92,
+          2871.21,
+          3337.12,
+          3222.65,
+          3173.78
+        ]
+      },
+      {
+        "name": "music-effects-60s",
+        "frames": 1323000,
+        "sha256": "a5c7bad918021d189e5095ba0e1c4b5cace09d8638463ac2c2c76a6f258cdc03",
+        "ac_rms_at_0_5_15_30_40_55": [
+          2937.31,
+          2843.91,
+          2913.04,
+          2860.28,
+          2683.86,
+          2744.66
+        ]
+      }
+    ],
+    "wasm_long_music_and_register_cases": 13,
+    "wasm_long_frames": 4993330,
+    "output_cases": 6,
+    "simulation_rgb_maps_event_trace_unchanged": true,
+    "physical_listening": "Separate maintainer confirmation, not implied by PCM/AudioContext tests."
+  },
+  "delivery": {
+    "web_preview": "/preview-165/",
+    "comparison": "/preview-165/listen.html",
+    "public_release_and_pages_unchanged": true,
+    "source_and_lgpl_notices_delivered": true
+  },
+  "limits": [
+    "Exact output agreement with pinned buffered C is not analog hardware equivalence.",
+    "Digital RMS is DC-removed, not physical speaker loudness.",
+    "Performance113 NOT READY remains; no60fps qualification."
+  ]
+}

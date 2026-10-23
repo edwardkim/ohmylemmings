@@ -5,32 +5,32 @@
     {
       "name": "startup-56",
       "frames": 182475,
-      "sha256": "92df061476edd24f080c538c1029eb1540ee1cde15b3f4a401f6a0f9254ac6d9"
+      "sha256": "8c6666e1b10a5a038c4683f28280123075719bd42e8ad4f581a3f28bcd6e2008"
     },
     {
       "name": "splat-exit",
       "frames": 9438,
-      "sha256": "2814f9e6eceaa67f3d879e7cc9dbb51b80734e93feb3bc6a4f6485b57da0556b"
+      "sha256": "f7d52d5cb57b3510a8009fd3c966c37050f502bee977ec529e05997b81f7f5c6"
     },
     {
       "name": "assign-basher",
       "frames": 9438,
-      "sha256": "2814f9e6eceaa67f3d879e7cc9dbb51b80734e93feb3bc6a4f6485b57da0556b"
+      "sha256": "f7d52d5cb57b3510a8009fd3c966c37050f502bee977ec529e05997b81f7f5c6"
     },
     {
       "name": "expiry-0-255",
       "frames": 9438,
-      "sha256": "2814f9e6eceaa67f3d879e7cc9dbb51b80734e93feb3bc6a4f6485b57da0556b"
+      "sha256": "f7d52d5cb57b3510a8009fd3c966c37050f502bee977ec529e05997b81f7f5c6"
     },
     {
       "name": "builder-3",
       "frames": 9438,
-      "sha256": "2814f9e6eceaa67f3d879e7cc9dbb51b80734e93feb3bc6a4f6485b57da0556b"
+      "sha256": "f7d52d5cb57b3510a8009fd3c966c37050f502bee977ec529e05997b81f7f5c6"
     },
     {
       "name": "trap-11",
       "frames": 9438,
-      "sha256": "2814f9e6eceaa67f3d879e7cc9dbb51b80734e93feb3bc6a4f6485b57da0556b"
+      "sha256": "f7d52d5cb57b3510a8009fd3c966c37050f502bee977ec529e05997b81f7f5c6"
     }
   ]
 }
