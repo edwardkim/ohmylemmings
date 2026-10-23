@@ -226,3 +226,25 @@ fn detached_state_survives_owned_image_relocation_without_resetting_pcm_or_drive
     assert_eq!(a.position(), c.position());
     assert_eq!(a.driver_state(), c.driver_state());
 }
+
+#[test]
+fn continuation_keeps_pending_register_delivery_before_the_first_note_attack() {
+    let bytes = fixture();
+    let image = AdlibImage::parse(&bytes).unwrap();
+    for rate in [8000, 44100, 192000] {
+        let mut a = AdlibPcm::new(image, rate, AudioRate::DOS_VGA).unwrap();
+        let mut b = AdlibPcm::new(image, rate, AudioRate::DOS_VGA).unwrap();
+        a.request_music(0).unwrap();
+        b.request_music(0).unwrap();
+        let mut scratch = [AdlibWrite::default(); 4096];
+        a.render(&mut [0; 1], &mut scratch, 4096).unwrap();
+        b.render(&mut [0; 1], &mut scratch, 4096).unwrap();
+        let mut a = AdlibPcm::resume(image, a.into_continuation());
+        let mut x = [0; 8192];
+        let mut y = [0; 8192];
+        a.render(&mut x, &mut scratch, 4096).unwrap();
+        b.render(&mut y, &mut scratch, 4096).unwrap();
+        assert_eq!(x, y);
+        assert_eq!(a.driver_state(), b.driver_state());
+    }
+}

@@ -130,7 +130,7 @@ def check(directory,*,wasm=False,original_assets=None,write_fixture=False,browse
         case['expected']=expected;rows.append(dict(name=case['name'],**expected))
     if write_fixture:
         if original_assets:raise ValueError('original PCM cannot enter public synthetic fixture')
-        FIXTURE.write_text(json.dumps(dict(engine='Nuked-OPL3-1.8/rust-0.1.0-no_std',scope='Unmodified OPL core, direct absolute rational delivery; synthetic data only; not hardware PCM',cases=generated),indent=2)+'\n')
+        FIXTURE.write_text(json.dumps(dict(engine='Nuked-OPL3-1.8/rust-0.1.0-no_std',scope='Unmodified OPL core, bounded buffered register delivery and absolute rational scheduling (#165); synthetic only; not hardware PCM',cases=generated),indent=2)+'\n')
     result=dict(status='PASS',engine='Nuked-OPL3-1.8/rust-0.1.0-no_std',native_cases=len(cases),native_deliveries=len(cases)*3,frames=sum(x['frames'] for x in rows),cases=rows,pcm_device_verified=False)
     if wasm:result['wasm']=check_browser(directory,cases,browser)
     if original_assets:

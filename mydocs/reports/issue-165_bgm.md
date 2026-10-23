@@ -40,3 +40,21 @@
 재현 산출물은 별도 worktree의 ignored `assets/local/issue-165-review/`에 보관했다: `direct-pcm.json`, `integrated/trace.json`, `music5-60s.json`, `music5-trace.jsonl`, `buffer-comparison.json`, `synthetic-retrigger.json`, `compare-buffered.py`. 원본 PCM/trace/바이너리는 커밋하지 않는다. 합성 비교는 `tools/audio/nuked_reference.c`와 고정 `tools/audio/reference/opl3.c`를 C99/O2로 별도 빌드하고 함수 호출 하나만 바꾸어 재현한다.
 
 상태: 원인 조사 완료, 제품 수정·플랫폼 재검증·메인테이너 청취는 후속으로 #165 OPEN 유지.
+
+## 제품 수정·로컬 검증 (2026-10-24)
+
+상위 #137은 #187/PR188·189로 마감했고, 메인테이너의 다음 진행 승인으로 main `c1bbb3c4154766bf0f7aff884cfaa8b9f7849c67`에서 수정을 재개했다. 앞선 ‘미수정/대기’ 표기는 당시 조사 기록이다.
+
+`Opl2::write_reg`가 기존 upstream `Chip::write_reg_buffered`를 선택하도록 변경했다. 고정1024항목 ring과 원래 overflow 정책을 그대로 사용하며 쓰기 사이의2개 native OPL 샘플을 보존한다. CPU/장치 sample rate에 맞춘 임의 sleep·게임 틱·전체 음량 조절로 우회하지 않는다. 정수 합성 core·리샘플러·AdLib VM·음악 선택/효과음 이벤트·게임 규칙은 바꾸지 않았다. Clone과 PCM continuation에 대기 register도 그대로 남는다. LGPL 수정 내용은 library README에 명시했고 원본 core/라이선스/고지는 유지한다.
+
+- 반복10음표가 수정 전8000Hz의 두 번째 음표에서 실패(AC 분산6,141,201→258,693)하고, 수정 후8k/22.05k/44.1k/48k/49.716k/96k/192kHz에서 통과했다.1023/1024/1025/4096연속 쓰기·복제·1프레임 이후 continuation 복원을 검증했다.
+- 고정 C core 자체는 그대로 두고 비교 harness만 `OPL3_WriteRegBuffered`로 바꿨다. 기존24합성/63원본 포함 사례가 바이트 단위로 같고, 새11반복/overflow 사례도 C와 일치했다. 기존 immediate-write C 동일성은 과거 전달 방식의 기록이다.
+- 원본21곡 각각60초와 음악5+효과음0/17 이후 음악 지속60초의22사례가 C와 바이트 단위로 일치했다. 기본 곡의0/5/15/30/40/55초 AC RMS는2937.31/2843.91/2913.04/2860.28/2683.86/2744.66으로 유지됐다. 이는 스피커 음량이나 하드웨어 OPL 동일성 판정이 아니다.
+- 실제 WASM은11register 사례+기본 곡/효과음 혼합60초의13사례/4,993,330프레임을 통과했다. 기존24 PCM/72Native 전달·24WASM, 게임98사례/97효과음 분기/170음악 조합, output6사례/249,492프레임·실제 Web Audio running/비영/예약 node·원본 대응 소스/라이선스 delivery와 SDL dummy queue도 통과했다.
+- Rust715개·Python311개·format/Clippy를 통과했다. 변경된 합성 PCM golden은 C 대조 후에만 갱신했으며 게임 이벤트 trace SHA `7fd0d4d1c324d868387b77e03c65b87e4d0dea0d22113527eb033cadb854b64c`와 상태/RGB/지형/객체 해시는 그대로다. 원본 PCM/곡/바이너리/녹음은 ignored 경로에만 둔다.
+
+CI에는 자산 없는 반복/overflow 검사, Linux 원본21곡/효과음 혼합60초, Web 원본 기본/혼합60초 WASM을 추가한다. 이전 #187 Intel Mac 설치 검사가571초로10분 한도에 근접했으므로 해당 job만15분으로 조정했다. 기능/오류 판정은 유지하며 성능 #113 NOT READY를 바꾸지 않는다.
+
+실행 중인 기존8080 서버의 `/preview-165/`에 수정 HD 게임, `/preview-165/listen.html`에 같은 기본 곡의 수정 전후60초 비교를 준비했다. user CDP19222/기존4탭과 `/preview-172/`는 이동·교체하지 않았다. 실제 사람이 BGM/효과음을 듣는 판정은 디지털 결과와 구분해 요청했다. 아직 플랫폼 CI·self-review·실제 병합과 청취 응답 확인 전이므로 #165는 OPEN이다. 공개 v0.1.0/Pages는 바꾸지 않는다.
+
+현재 정량 기록: [BGM 전달 검증](../../assets/manifests/bgm_delivery.json). 새 원시 자료는 ignored `assets/local/issue-165-fix/`에 보관한다. 원본 VM/register 일정과 전체 게임/화면은 유지하므로 이 수정에120개 스테이지의 재완주나 새60fps 측정을 포함하지 않는다.

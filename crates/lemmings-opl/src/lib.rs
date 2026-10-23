@@ -31,7 +31,10 @@ impl Opl2 {
         })
     }
     pub fn write_reg(&mut self, register: u8, value: u8) {
-        self.chip.write_reg(u16::from(register), value);
+        // Preserve upstream's two-native-sample register spacing so a key-off
+        // followed by key-on is observed by the envelope generator. The fixed
+        // 1024-entry ring/overflow policy and clock are owned by the integer core.
+        self.chip.write_reg_buffered(u16::from(register), value);
     }
     /// Signed stereo pipeline values widened from the core's saturated i16 output.
     /// The native OPL pipeline can introduce a small left/right sample delay even
@@ -45,6 +48,49 @@ impl Opl2 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn simultaneous_key_off_on_restarts_each_note_at_every_supported_rate() {
+        for rate in [8000, 22050, 44100, 48000, 49716, 96000, 192000] {
+            let mut chip = Opl2::new(rate).unwrap();
+            for (register, value) in [
+                (0x20, 1),
+                (0x23, 1),
+                (0x40, 0x3f),
+                (0x43, 0),
+                (0x60, 0xf4),
+                (0x63, 0xf4),
+                (0x80, 0x44),
+                (0x83, 0x44),
+                (0xc0, 0),
+                (0xa0, 0x98),
+            ] {
+                chip.write_reg(register, value);
+            }
+            let mut first = 0.0;
+            for note in 0..10 {
+                chip.write_reg(0xb0, 0x11);
+                chip.write_reg(0xb0, 0x31);
+                let (mut sum, mut squares) = (0_i64, 0_i64);
+                let count = rate / 10;
+                for frame in 0..rate / 2 {
+                    let sample = i64::from(chip.render_frame().0);
+                    if frame < count {
+                        sum += sample;
+                        squares += sample * sample;
+                    }
+                }
+                let variance =
+                    squares as f64 / f64::from(count) - (sum as f64 / f64::from(count)).powi(2);
+                if note == 0 {
+                    first = variance;
+                }
+                assert!(
+                    variance > 1_000_000.0 && variance > first * 0.25,
+                    "note {note} at {rate}Hz lost attack: variance {variance}, first {first}"
+                );
+            }
+        }
+    }
     #[test]
     fn sample_rate_bounds_prevent_zero_resampler_divisors() {
         for rate in [0, 1, 7999, 192001, u32::MAX] {
@@ -69,6 +115,19 @@ mod tests {
         let mut clone = chip.clone();
         for _ in 0..1000 {
             assert_eq!(chip.render_frame(), clone.render_frame());
+        }
+    }
+    #[test]
+    fn pending_and_overflowed_register_bursts_survive_cloning() {
+        for count in [1, 1023, 1024, 1025, 4096] {
+            let mut chip = Opl2::new(192000).unwrap();
+            for n in 0..count {
+                chip.write_reg((n % 256) as u8, (n / 7) as u8);
+            }
+            let mut copy = chip.clone();
+            for _ in 0..12000 {
+                assert_eq!(chip.render_frame(), copy.render_frame());
+            }
         }
     }
 }

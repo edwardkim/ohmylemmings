@@ -1,150 +1,150 @@
 {
   "engine": "Nuked-OPL3-1.8/rust-0.1.0-no_std",
-  "scope": "Unmodified OPL core, direct absolute rational delivery; synthetic data only; not hardware PCM",
+  "scope": "Unmodified OPL core, bounded buffered register delivery and absolute rational scheduling (#165); synthetic only; not hardware PCM",
   "cases": {
     "vga-8000-1": {
       "frames": 5600,
-      "sha256": "ca4d64653577c06b706cd8c2b81fab080f6dd18968ecb8ed3baac1b4319a7094",
-      "peak": 7658,
-      "nonzero": 5108
+      "sha256": "75a3e480690dba4625085c9e0f0d55aa6cce0a5abefe1ab1379e4cc53e256228",
+      "peak": 7581,
+      "nonzero": 5166
     },
     "vga-8000-8": {
       "frames": 5600,
-      "sha256": "40bcd3df288658908da92e6f57db9fe302a90ea4c88db1c98ad6c02f51bd1b3f",
-      "peak": 32768,
-      "nonzero": 5112
+      "sha256": "0333ef3107f088b9ec51f6a241428286b16b29f25e368c8717b22be0f718a34f",
+      "peak": 20404,
+      "nonzero": 5579
     },
     "pit-8000-1": {
       "frames": 5600,
-      "sha256": "e49d0583f07ac4ee8aeeb3fed07698b9735c3d998b3f8aa0849cdcf3e578d676",
-      "peak": 7499,
-      "nonzero": 4753
+      "sha256": "9f537756a16793c12e70243e32209085bd108e949d1c33504c2b7230a71b188c",
+      "peak": 7534,
+      "nonzero": 4918
     },
     "pit-8000-8": {
       "frames": 5600,
-      "sha256": "ffbedd72d44ad3e4a323afe28fa284b99904054abb8d85b29413a4c2bd5d0ad5",
-      "peak": 32768,
-      "nonzero": 4759
+      "sha256": "27f45394fb2989428e9c26be4d9c06bd72cd6c19b9a110d9ae82e6b81c99ca0c",
+      "peak": 16371,
+      "nonzero": 5579
     },
     "vga-44100-1": {
       "frames": 30870,
-      "sha256": "2d910d2ef338779835b76b9a7babd20062707c202aa9f8efbe19046faff07dc9",
-      "peak": 7749,
-      "nonzero": 28074
+      "sha256": "f96c1a3123c565bf5d1f22a5399e4d166f32c7d8d90a9716ecdcd018318fc78f",
+      "peak": 7867,
+      "nonzero": 29110
     },
     "vga-44100-8": {
       "frames": 30870,
-      "sha256": "97997577d45a2819fb79d5c63e45b51f4ee4f712050f84cdf0f76f0f4cc5283d",
-      "peak": 32768,
-      "nonzero": 28080
+      "sha256": "3b6c34ec4601ff345d205ee5f7674c7dc8cec300961e7ea2b1a7dbd8d2e03ac0",
+      "peak": 19526,
+      "nonzero": 30763
     },
     "pit-44100-1": {
       "frames": 30870,
-      "sha256": "d75527c5de431dfb0d4489960881ceab5ffaff0e7e26b0150fed1ac073ef421d",
-      "peak": 7761,
-      "nonzero": 25832
+      "sha256": "fcbfcc36b0cd0390f4b13d186ba0a56e42000cefd74c42194ec145a775dc57ed",
+      "peak": 7772,
+      "nonzero": 27613
     },
     "pit-44100-8": {
       "frames": 30870,
-      "sha256": "fd4ebb184e38271b8676c77d771d704653e28606217aff657a1a487cba9c66e2",
-      "peak": 32768,
-      "nonzero": 25835
+      "sha256": "f9176a60f88eeab7884e00200a51498582f2a4b4846896c202ae85302ad8b22b",
+      "peak": 19385,
+      "nonzero": 30762
     },
     "vga-48000-1": {
       "frames": 33600,
-      "sha256": "3ebabcf6024829a5c06af487184ee58a0e087fcb1629efac447cbb0835c3df73",
-      "peak": 7895,
-      "nonzero": 30493
+      "sha256": "44559d8af91acca38be6232d87d1b8e3cc7522fa8ca1e9fcc08adcffe730e8c3",
+      "peak": 7779,
+      "nonzero": 31622
     },
     "vga-48000-8": {
       "frames": 33600,
-      "sha256": "456ff3282b175213152fd7d0a028ffa5dbb0796b6bcd8fa8070ed5a22ed2a48b",
-      "peak": 32768,
-      "nonzero": 30497
+      "sha256": "368204ba9e2bd51268a491f4df1ab7c42e6288953f751a8411f8768d7fe21d2f",
+      "peak": 19797,
+      "nonzero": 33486
     },
     "pit-48000-1": {
       "frames": 33600,
-      "sha256": "21cfac5eb28c256fab08379d4f21791c97006b008f9907ee22600a1ea6a33001",
-      "peak": 7815,
-      "nonzero": 28105
+      "sha256": "39019d3afa576f3fe2525e2a79b9f967dc11a353d1e0484d73574c826e26d8b5",
+      "peak": 7699,
+      "nonzero": 29956
     },
     "pit-48000-8": {
       "frames": 33600,
-      "sha256": "a60ca17aa78e1b8365f50a168eabb765094c9f3e5a8469eeda50800840a20809",
-      "peak": 32768,
-      "nonzero": 28108
+      "sha256": "4d25f7a9017a9235dd0c3dc4d0c56f2aa9c281dd35631d9da8445e46a79558af",
+      "peak": 20268,
+      "nonzero": 33484
     },
     "vga-49716-1": {
       "frames": 34800,
-      "sha256": "1ee804a537068e99ad86522a9065f1d4be7043d4fd5fed2c70fb2643972a3336",
-      "peak": 7790,
-      "nonzero": 31706
+      "sha256": "8f778cd23cd5dd99ce48577e8103a4fc8f17b66b7df539808a2c87773ad15fff",
+      "peak": 7850,
+      "nonzero": 32876
     },
     "vga-49716-8": {
       "frames": 34800,
-      "sha256": "573e1ea5fd35ab141ea028f94657f05a803a6c76fa1e2dd8cc496fdd577ed1af",
-      "peak": 32768,
-      "nonzero": 31707
+      "sha256": "dbee82ec9251fd84a1a09e1e62c8e97f1937075e45587a90e83c187548291db1",
+      "peak": 19983,
+      "nonzero": 34684
     },
     "pit-49716-1": {
       "frames": 34800,
-      "sha256": "29e5ce828d534cacf3a79600d37ea89fd37369ced13fcedba1e7ff67dc65ec61",
-      "peak": 7710,
-      "nonzero": 29143
+      "sha256": "212062789f8ac1886863c9a180cb38685e603830c2821b69280de5d77d25a7e5",
+      "peak": 7770,
+      "nonzero": 31241
     },
     "pit-49716-8": {
       "frames": 34800,
-      "sha256": "9e0d7d40de2b4042ce698069bf343e4d8cdce95a8ee8f388028f28b3b643c233",
-      "peak": 32768,
-      "nonzero": 29144
+      "sha256": "2042729ad38838056f21820b02181c3f6405956e11bad525936161a1ade535dc",
+      "peak": 20262,
+      "nonzero": 34682
     },
     "vga-96000-1": {
       "frames": 67200,
-      "sha256": "33e00dc2eea75b8de5207cfb35c831e758386540434017c8e685eb29f6252884",
-      "peak": 7725,
-      "nonzero": 61146
+      "sha256": "6503fa75b6e06a326836c195a70a43e3227b44706c3e495aecda5c9b01031313",
+      "peak": 7895,
+      "nonzero": 63403
     },
     "vga-96000-8": {
       "frames": 67200,
-      "sha256": "2381e60438900d4076364f62779abb51ea6397329b38d75167485d6f9e382cf7",
-      "peak": 32768,
-      "nonzero": 61156
+      "sha256": "a17c376300f98218ded00fb522aaaa1bbd6a4586b6e624c89566ef30a0da0b80",
+      "peak": 19982,
+      "nonzero": 66967
     },
     "pit-96000-1": {
       "frames": 67200,
-      "sha256": "ec67cb00ed4b5558e693cf05e71e23836f60120302ac6efec7aed240dc014039",
-      "peak": 7735,
-      "nonzero": 56224
+      "sha256": "4460b93cbf311143e376a06ee42eb13be55b8c4aafe762738cf2f317a4d3a76a",
+      "peak": 7560,
+      "nonzero": 60178
     },
     "pit-96000-8": {
       "frames": 67200,
-      "sha256": "a48115df9ff32598737b2da0631e210c5d4dcdff45cdc8b6f6bdc2fdf84ea0b5",
-      "peak": 32768,
-      "nonzero": 56238
+      "sha256": "e0471af606b943b6071b7f564cddf7836912de8413c01da289125d0fd45ce0e4",
+      "peak": 19828,
+      "nonzero": 66965
     },
     "vga-192000-1": {
       "frames": 134400,
-      "sha256": "d4bc07907aa8ac71ead6d58dd4b665a428a1bc3dbe2d590f3b2cf407387b85d1",
-      "peak": 7725,
-      "nonzero": 122298
+      "sha256": "aea029f1a050b55b82088a2ec3feac18f01d21f045e133691ec102f0da765390",
+      "peak": 7900,
+      "nonzero": 126804
     },
     "vga-192000-8": {
       "frames": 134400,
-      "sha256": "49ca39e68d331eb56bdbc38cd39574d9c85acbf9b1aec01c3282bd3ed5d05552",
-      "peak": 32768,
-      "nonzero": 122311
+      "sha256": "90b67c32bf14851ce26d1b20f1eccbc29c26c7fd0669facb25914c9216c0a936",
+      "peak": 19982,
+      "nonzero": 133943
     },
     "pit-192000-1": {
       "frames": 134400,
-      "sha256": "aed94821dcbab5e475ba7d1cf2cd9f0c56224ea1befcfe19d16368add5c0b27e",
-      "peak": 7737,
-      "nonzero": 112457
+      "sha256": "311d5a3bc879fefa7fe64e8f82a87d5fa9f69ad474ff632b9b370cfebb967e7d",
+      "peak": 7738,
+      "nonzero": 120355
     },
     "pit-192000-8": {
       "frames": 134400,
-      "sha256": "59d9e11607e0684002f5f1cf8f072958aaddc2d4de11542ff996c6e9fd9b6d4a",
-      "peak": 32768,
-      "nonzero": 112475
+      "sha256": "8384eaae2bc3f2776611440f851daf0a9b51b665ab9a238f02896b9680169d43",
+      "peak": 20302,
+      "nonzero": 133939
     }
   }
 }

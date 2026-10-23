@@ -1,7 +1,8 @@
 /* Optional host-only black-box comparison with pinned unmodified Nuked-OPL3.
  * Unmodified LGPL header/core and source pins: tools/audio/reference/.
  * Input: LE rate:u32, frames:u32, event_count:u32; events(frame:u32,reg:u8,val:u8).
- * Output: mono left signed i16 LE. No device or original timing emulation.
+ * Output: mono left signed i16 LE. Bounded upstream buffered register delivery
+ * (issue165); no device or original timing emulation. Core C sources unchanged.
  */
 #include <stdint.h>
 #include <stdio.h>
@@ -33,7 +34,7 @@ int main(void) {
     uint32_t event = 0;
     for (uint32_t frame = 0; frame < frames; ++frame) {
         while (event < count && times[event] == frame) {
-            OPL3_WriteReg(&chip, registers[event*2], registers[event*2+1]); ++event;
+            OPL3_WriteRegBuffered(&chip, registers[event*2], registers[event*2+1]); ++event;
         }
         int16_t out[2]; OPL3_GenerateResampled(&chip, out);
         uint16_t mono = (uint16_t)out[0]; putchar(mono & 255); putchar(mono >> 8);
