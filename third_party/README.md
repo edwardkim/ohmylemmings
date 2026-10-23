@@ -25,3 +25,8 @@ the 18 locked Cargo dependency versions/checksums, including build dependencies.
 
 Original DOS graphics, levels, music/effects and marks are outside the project
 MIT grant. GAME-DATA records provenance/hashes, not a new license grant.
+
+- HD UI glyph coverage is rasterized from the pinned Noto Sans SemiBold font.
+  [Its complete OFL notice](NotoSans-OFL.txt) and the generated atlas retain the
+  upstream font terms; the game uses shared embedded coverage, with no runtime
+  system-font or FreeType dependency. See [font provenance](../assets/manifests/hd_ui_font.json).

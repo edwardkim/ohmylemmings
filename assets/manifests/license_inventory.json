@@ -238,6 +238,11 @@
       "bytes": 1057,
       "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397",
       "origin": "https://crates.io/crates/wasm-bindgen-shared/0.2.129"
+    },
+    {
+      "path": "third_party/NotoSans-OFL.txt",
+      "bytes": 4377,
+      "sha256": "0dab92d0544f7b233403f14b84a663bdbfa746982eda629e7f4f9ffe1b036feb"
     }
   ],
   "cargo_dependencies": [
@@ -429,8 +434,8 @@
   },
   "notice_bundle": {
     "path": "THIRD_PARTY_NOTICES.txt",
-    "bytes": 190121,
-    "sha256": "7614f7c79fe19e2315b71d2d52e9333b5f11fc7ac3fa3b08f38f43736398ebaa"
+    "bytes": 194710,
+    "sha256": "c291104495e4a77b96529bcde7ab72f59c7762260b9d083b32ac86bcfabc22bc"
   },
   "retained_library_notices": [
     {

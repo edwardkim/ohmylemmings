@@ -16,6 +16,8 @@ export async function checkHd(assert,throws) {
     try {
         const before=game.state();game.load_hd(bytes);assert(game.state()===before,'HD loading changed simulation');
         assert(JSON.parse(game.hd_info()).actor_frames_available===337,'complete character pack unavailable');
+        const ui=JSON.parse(game.hd_info());assert(ui.ui_glyphs===95&&ui.ui_font_atlases===3,'HD UI font coverage');
+        for(let page=0;page<3;page++){const pixels=game.hd_texture(ui.ui_font_first+page);assert(pixels.length===1024*384*4&&pixels.some((v,i)=>i%4===3&&v>0&&v<255),'HD font lost antialiasing');}
         for(const [scene,job,total] of scenarios) {
             game.reset(scene,'reference');plain.reset(scene,'reference');host.invalidate();
             for(let step=0;step<=total;step++) {

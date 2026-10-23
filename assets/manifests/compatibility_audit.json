@@ -51,8 +51,8 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
-      "bytes": 190121,
-      "sha256": "7614f7c79fe19e2315b71d2d52e9333b5f11fc7ac3fa3b08f38f43736398ebaa"
+      "bytes": 194710,
+      "sha256": "c291104495e4a77b96529bcde7ab72f59c7762260b9d083b32ac86bcfabc22bc"
     },
     {
       "path": "apps/audio-probe/Cargo.toml",
@@ -271,8 +271,8 @@
     },
     {
       "path": "assets/manifests/license_inventory.json",
-      "bytes": 16815,
-      "sha256": "df602624f486e3a52770d967f620eb9a132825867e824d70dbb737ef2a3f5f29"
+      "bytes": 16978,
+      "sha256": "abc7e631e937b8f793732e00c26f446fb31f2f672867ec147b3b55388cb0d0a3"
     },
     {
       "path": "assets/manifests/macos_runtime.json",
@@ -596,8 +596,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/mod.rs",
-      "bytes": 961,
-      "sha256": "1412ded296913dc297a15b56c99cc80ee27e53113d776515062604952e0a0fd2"
+      "bytes": 979,
+      "sha256": "8f731a707e21321b077be7ff7040df89e31fe76be9dd3749af4daf21abb72b4f"
     },
     {
       "path": "crates/lemmings-game/src/hd/snapshot.rs",
@@ -911,8 +911,8 @@
     },
     {
       "path": "third_party/README.md",
-      "bytes": 1634,
-      "sha256": "f7b329106d4212e24a96b704724d8ed717501269d626579637e4f22fb72ca967"
+      "bytes": 1971,
+      "sha256": "1ed2b542b506368db19e38e96e3d37e609e7e73ce28bc52346634d59e04d1e47"
     },
     {
       "path": "third_party/SDL2-2.32.10-LICENSE.txt",
@@ -2321,8 +2321,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/scene.rs",
-      "bytes": 70399,
-      "sha256": "56f047195a16731c703e0b3f3e50965e520cff73aa76e64349f57416f32d3b27"
+      "bytes": 80289,
+      "sha256": "5b81dc738d6e9aaf05dc33778e8a784047e14f3a8c5191216ff07205899ea256"
     },
     {
       "path": "crates/lemmings-game/tests/hd_scene.rs",
@@ -2346,13 +2346,13 @@
     },
     {
       "path": "tools/web/hd_check.js",
-      "bytes": 4530,
-      "sha256": "92ac78fc3214210a93e83e0ce81da52fd5c48560c70e36b28a956ee82a2edcc1"
+      "bytes": 4843,
+      "sha256": "b37e9ef1132b558f82281a84e01004bc5a7974be741ee0d75c53eddfe3dc86fa"
     },
     {
       "path": "tools/web/hd_product.cjs",
-      "bytes": 10498,
-      "sha256": "4728af538eea0623a8dfae05a81f06de4be5c29bacc97da1ca7e8c8a89790573"
+      "bytes": 11309,
+      "sha256": "22cd824c03aacb748bf53cb21e623c796a115231ffac1a451f3153d40ef77b66"
     },
     {
       "path": "assets/manifests/hd_integration.json",
@@ -3148,6 +3148,81 @@
       "path": "tools/web/hd_decor.cjs",
       "bytes": 7970,
       "sha256": "db3231ee1f824b2e8367ead9e0f9d3597b044dd8a6e187c8cb3f8016b1b09996"
+    },
+    {
+      "path": "assets/manifests/hd_ui_font.json",
+      "bytes": 9544,
+      "sha256": "dc269bda652f3031197242e3b77c804cb8ea85c68c1c74392f5d4d88b6c1ee70"
+    },
+    {
+      "path": "assets/remaster/previews/issue-184_lost.png",
+      "bytes": 288408,
+      "sha256": "ccd3576fce905ec718caeb246bd6abe3a11c627351f55aa488fcd680bff50a77"
+    },
+    {
+      "path": "assets/remaster/previews/issue-184_paused.png",
+      "bytes": 343851,
+      "sha256": "b5f5f33bd3e26cf619b941e21636d8d2dc4f95d88f6b5c004c82fbca1d44199f"
+    },
+    {
+      "path": "assets/remaster/previews/issue-184_play.png",
+      "bytes": 343602,
+      "sha256": "6db9e4829f85b69113e657354b3a327ce3875ca38d02e494eedceb0582f8d62d"
+    },
+    {
+      "path": "assets/remaster/previews/issue-184_won.png",
+      "bytes": 289684,
+      "sha256": "5a5426250b5361d6911d79e58fabb1c8a27477e16edb89bef98f6fdff6453b30"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/font.rs",
+      "bytes": 2981,
+      "sha256": "5f511af5547be285a802edcf9beb076a7bd8763028949fae53347ff7a68df394"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/ui.rs",
+      "bytes": 2631,
+      "sha256": "7bfdfcd92903eb941f3f7de7052ee4e00f1ac2a2991e853ce1bebea89cd8604e"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/ui_font.alpha",
+      "bytes": 393216,
+      "sha256": "8794a93e03dcd2de57244af2e9e9d907bc37de29822c56a643ce816ca03ce6a4"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/ui_font_metrics.rs",
+      "bytes": 3544,
+      "sha256": "1a3789708d418326fcf8d9c41b7b5965147ef8e4c9944dd94bbfa9f9419b303e"
+    },
+    {
+      "path": "third_party/NotoSans-OFL.txt",
+      "bytes": 4377,
+      "sha256": "0dab92d0544f7b233403f14b84a663bdbfa746982eda629e7f4f9ffe1b036feb"
+    },
+    {
+      "path": "tools/check_hd_ui.py",
+      "bytes": 3036,
+      "sha256": "269ceef8eccbfdfa8c17be5b5f7a6e27aff19b043f14bb59f585b74a68eed1ca"
+    },
+    {
+      "path": "tools/font_raster.c",
+      "bytes": 1642,
+      "sha256": "1d448050fd618167bd7205b7415963b8e34f62226e243ef83b8f81a83d060578"
+    },
+    {
+      "path": "tools/hd_ui_font.py",
+      "bytes": 4414,
+      "sha256": "90ae5acad7aea7db4bdc7b1fe71eee0f9cb88ecdf46a90b50637a0acb07eff1e"
+    },
+    {
+      "path": "tools/tests/test_hd_ui_font.py",
+      "bytes": 487,
+      "sha256": "02d0fd838412c8d01a1915542611eabc5480d45a4897a869aef8a4d9dea2ddaf"
+    },
+    {
+      "path": "tools/web/hd_ui.cjs",
+      "bytes": 6800,
+      "sha256": "a2a8fedff2d6120bad961e2778a38ad7aefb6fdc6dfc000de37dd01507088ab3"
     }
   ],
   "evidence": [
@@ -7054,5 +7129,64 @@
       "tools/web/hd_decor.cjs"
     ],
     "scope": "Two immutable flag/one-way sheets,212 object frames, bounded typed keys and selected catalog extension. Original triggers/loop/order and simulation masks preserved; synthetic SDL/WASM dig/Pause courses. No simulation/audio synthesis changes. Historical evidence remains historical; BGM165 deferred,113 NOT READY unchanged."
+  },
+  "source_impact_184": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/184",
+    "baseline": "95e194324ebe6d6a4082fdfefddcb83063175584",
+    "previous_pins": [
+      {
+        "path": "THIRD_PARTY_NOTICES.txt",
+        "bytes": 190121,
+        "sha256": "7614f7c79fe19e2315b71d2d52e9333b5f11fc7ac3fa3b08f38f43736398ebaa"
+      },
+      {
+        "path": "assets/manifests/license_inventory.json",
+        "bytes": 16815,
+        "sha256": "df602624f486e3a52770d967f620eb9a132825867e824d70dbb737ef2a3f5f29"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/mod.rs",
+        "bytes": 961,
+        "sha256": "1412ded296913dc297a15b56c99cc80ee27e53113d776515062604952e0a0fd2"
+      },
+      {
+        "path": "third_party/README.md",
+        "bytes": 1634,
+        "sha256": "f7b329106d4212e24a96b704724d8ed717501269d626579637e4f22fb72ca967"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/scene.rs",
+        "bytes": 70399,
+        "sha256": "56f047195a16731c703e0b3f3e50965e520cff73aa76e64349f57416f32d3b27"
+      },
+      {
+        "path": "tools/web/hd_check.js",
+        "bytes": 4530,
+        "sha256": "92ac78fc3214210a93e83e0ce81da52fd5c48560c70e36b28a956ee82a2edcc1"
+      },
+      {
+        "path": "tools/web/hd_product.cjs",
+        "bytes": 10498,
+        "sha256": "4728af538eea0623a8dfae05a81f06de4be5c29bacc97da1ca7e8c8a89790573"
+      }
+    ],
+    "added": [
+      "assets/manifests/hd_ui_font.json",
+      "assets/remaster/previews/issue-184_lost.png",
+      "assets/remaster/previews/issue-184_paused.png",
+      "assets/remaster/previews/issue-184_play.png",
+      "assets/remaster/previews/issue-184_won.png",
+      "crates/lemmings-game/src/hd/font.rs",
+      "crates/lemmings-game/src/hd/ui.rs",
+      "crates/lemmings-game/src/hd/ui_font.alpha",
+      "crates/lemmings-game/src/hd/ui_font_metrics.rs",
+      "third_party/NotoSans-OFL.txt",
+      "tools/check_hd_ui.py",
+      "tools/font_raster.c",
+      "tools/hd_ui_font.py",
+      "tools/tests/test_hd_ui_font.py",
+      "tools/web/hd_ui.cjs"
+    ],
+    "scope": "Embedded95 AA glyphs, UI skin/status/skill/pause/result rendering and original14 input regions. Pinned Noto OFL/notice delivery and offline FreeType authoring tool. Original gameplay assets/catalog preserved; SDL/WASM UI courses. No simulation/audio synthesis changes. Historical evidence remains historical; BGM165 deferred,113 NOT READY unchanged."
   }
 }

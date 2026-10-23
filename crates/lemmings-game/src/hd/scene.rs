@@ -3,9 +3,10 @@
 use super::{
     Control,
     assets::{AssetFrame, AssetKey, AssetPack},
-    snapshot,
+    font, snapshot,
+    ui::{self, Ink},
 };
-use crate::{Assets, LevelRun, assets::object_frame, panel, render::glyph};
+use crate::{Assets, LevelRun, assets::object_frame, panel};
 use lemmings_core::{MotionAction, MotionDirection};
 use lemmings_resources::{
     GroundObject, LemmingAnimationInfo, LemmingSpriteKind, LemmingSprites, ObjectPlacement,
@@ -136,6 +137,8 @@ pub struct Renderer {
     hd_decor: Vec<(u8, u8, u16)>,
     source_decor: Vec<(u8, u8, u16)>,
     epoch: u64,
+    font: usize,
+    skin: usize,
 }
 impl Renderer {
     pub fn fallback() -> Self {
@@ -171,6 +174,8 @@ impl Renderer {
             hd_decor: Vec::new(),
             source_decor: Vec::new(),
             epoch: 0,
+            font: 0,
+            skin: 0,
         }
     }
     pub fn new(bytes: &[u8]) -> Result<Self, Box<dyn Error>> {
@@ -227,10 +232,11 @@ impl Renderer {
         let original_hazards = portal_keys(&self.source_hazards);
         let traps = portal_keys(&self.hd_traps);
         let original_traps = portal_keys(&self.source_traps);
+        let font_first = self.font;
         let decor = portal_keys(&self.hd_decor);
         let original_decor = portal_keys(&self.source_decor);
         format!(
-            "{{\"version\":1,\"width\":1920,\"height\":1080,\"actor_frames_available\":{},\"portal_frames_available\":{},\"trap_frames_available\":{},\"hazard_frames_available\":{},\"exit_effect_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"special_panorama\":{},\"terrain_material\":{},\"one_way_objects\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}],\"hd_portal_frames\":[{portals}],\"original_portal_frames\":[{originals}],\"hd_exit_effect_frames\":[{effects}],\"original_exit_effect_frames\":[{original_effects}],\"hd_hazard_frames\":[{hazards}],\"original_hazard_frames\":[{original_hazards}],\"hd_trap_frames\":[{traps}],\"original_trap_frames\":[{original_traps}],\"hd_decor_frames\":[{decor}],\"original_decor_frames\":[{original_decor}]}}",
+            "{{\"version\":1,\"width\":1920,\"ui_font\":\"Noto Sans SemiBold\",\"ui_glyphs\":95,\"ui_font_first\":{font_first},\"ui_font_atlases\":3,\"height\":1080,\"actor_frames_available\":{},\"portal_frames_available\":{},\"trap_frames_available\":{},\"hazard_frames_available\":{},\"exit_effect_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"special_panorama\":{},\"terrain_material\":{},\"one_way_objects\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}],\"hd_portal_frames\":[{portals}],\"original_portal_frames\":[{originals}],\"hd_exit_effect_frames\":[{effects}],\"original_exit_effect_frames\":[{original_effects}],\"hd_hazard_frames\":[{hazards}],\"original_hazard_frames\":[{original_hazards}],\"hd_trap_frames\":[{traps}],\"original_trap_frames\":[{original_traps}],\"hd_decor_frames\":[{decor}],\"original_decor_frames\":[{original_decor}]}}",
             self.frames
                 .iter()
                 .filter(|f| matches!(f.key, AssetKey::Actor { .. }))
@@ -270,6 +276,18 @@ impl Renderer {
             return Err("unsupported HD world dimensions".into());
         }
         self.textures.truncate(self.base);
+        self.font = self.textures.len();
+        for rgb in font::COLORS {
+            let rgba = font::ALPHA
+                .iter()
+                .flat_map(|&a| [rgb[0], rgb[1], rgb[2], a])
+                .collect();
+            self.textures
+                .push(Texture::new(font::WIDTH, font::HEIGHT, rgba));
+        }
+        self.skin = self.textures.len();
+        self.textures
+            .push(Texture::new(ui::SKIN_WIDTH, ui::SKIN_HEIGHT, ui::skin()));
         self.fallback_frames.clear();
         self.objects.clear();
         self.hd_portals.clear();
@@ -383,25 +401,18 @@ impl Renderer {
     fn fill(out: &mut Vec<Draw>, rect: [i32; 4], color: [u8; 4]) {
         out.push(Draw::Fill { rect, color });
     }
-    fn text(out: &mut Vec<Draw>, x: i32, y: i32, value: &str, scale: i32, color: [u8; 4]) {
-        for (i, c) in value.chars().enumerate() {
-            for (dy, bits) in glyph(c.to_ascii_uppercase()).iter().enumerate() {
-                for dx in 0..5 {
-                    if bits & (1 << (4 - dx)) != 0 {
-                        Self::fill(
-                            out,
-                            [
-                                x + (i as i32 * 6 + dx) * scale,
-                                y + dy as i32 * scale,
-                                scale,
-                                scale,
-                            ],
-                            color,
-                        );
-                    }
-                }
-            }
-        }
+    fn text(&self, out: &mut Vec<Draw>, x: i32, y: i32, value: &str, size: i32, ink: Ink) {
+        font::draw(out, self.font + ink as usize, x, y, value, size);
+    }
+    fn centered(&self, out: &mut Vec<Draw>, [x, w, y]: [i32; 3], value: &str, size: i32, ink: Ink) {
+        self.text(
+            out,
+            x + (w - font::width(value, size)) / 2,
+            y,
+            value,
+            size,
+            ink,
+        );
     }
     fn blit(out: &mut Vec<Draw>, f: &AssetFrame, x: i32, y: i32) {
         out.push(Draw::Blit {
@@ -816,13 +827,13 @@ impl Renderer {
                 .ok_or("actor frame out of range")?;
             Self::blit(&mut out, frame, actor.foot.0 as i32, actor.foot.1 as i32);
             if let Some(digit) = a.countdown_digit() {
-                Self::text(
+                self.text(
                     &mut out,
                     actor.foot.0 as i32,
                     actor.foot.1 as i32 - frame.anchor[1] as i32 - 32,
                     &digit.to_string(),
-                    4,
-                    [255, 239, 153, 255],
+                    24,
+                    Ink::Accent,
                 );
             }
             if s.hud.hits.primary == Some(a.id) {
@@ -834,44 +845,63 @@ impl Renderer {
             }
         }
         out.push(Draw::GameClip(false));
-        Self::fill(&mut out, [0, 960, 1920, 120], [28, 47, 53, 255]);
-        let white = [222, 237, 226, 255];
-        Self::text(
+        Self::fill(&mut out, [0, 960, 1920, 120], ui::BACKGROUND);
+        Self::fill(&mut out, [0, 960, 1920, 2], [79, 110, 89, 255]);
+        let title = font::fit(
+            &format!(
+                "{} {:02}  -  {}",
+                s.level.difficulty().name(),
+                s.level.number(),
+                s.title
+            ),
+            20,
+            368,
+        );
+        self.text(&mut out, 16, 968, &title, 20, Ink::Main);
+        self.text(
             &mut out,
             16,
-            976,
-            &format!("{} {}", s.level.difficulty().name(), s.level.number()),
-            2,
-            white,
+            995,
+            &format!(
+                "Alive {}   Saved {}%{}",
+                s.hud.alive,
+                s.hud.rescued_percent,
+                s.hud
+                    .target_percent
+                    .map_or_else(String::new, |t| format!(" / {t}%"))
+            ),
+            17,
+            Ink::Subtle,
         );
-        Self::text(
-            &mut out,
-            16,
-            998,
-            &format!("OUT {} SAVED {}%", s.hud.alive, s.hud.rescued_percent),
-            2,
-            white,
-        );
-        Self::text(
+        self.text(
             &mut out,
             16,
             1020,
             &format!(
-                "TIME {}:{:02} NEED {}%",
+                "Time {}:{:02}",
                 s.hud.seconds_remaining / 60,
-                s.hud.seconds_remaining % 60,
-                s.hud.target_percent.unwrap_or(0)
+                s.hud.seconds_remaining % 60
             ),
-            2,
-            white,
+            24,
+            Ink::Main,
         );
-        Self::text(
+        self.text(
             &mut out,
             16,
-            1050,
-            "HD PREVIEW - SOME ORIGINAL ART",
-            1,
-            [159, 187, 177, 255],
+            1052,
+            &format!("Released {} / {}", s.hud.released, s.hud.population),
+            15,
+            Ink::Subtle,
+        );
+        let selected = skill_name(s.hud.selected).0;
+        self.text(&mut out, 212, 1022, selected, 20, Ink::Accent);
+        self.text(
+            &mut out,
+            212,
+            1052,
+            "Select skill, click a lemming",
+            12,
+            Ink::Subtle,
         );
         for region in super::control_regions() {
             let c = region.control;
@@ -881,48 +911,92 @@ impl Renderer {
             let x = region.rect.x as i32;
             let w = region.rect.width as i32;
             let active = matches!(c,Control::Skill(skill) if skill==s.hud.selected)
-                || (c == Control::Pause && s.hud.paused);
-            Self::fill(
+                || c == Control::Pause && s.hud.paused
+                || c == Control::Nuke && s.hud.nuked;
+            ui::card(
                 &mut out,
-                [x + 2, 964, w - 4, 112],
-                if active {
-                    [53, 104, 83, 255]
-                } else {
-                    [34, 61, 66, 255]
-                },
+                self.skin,
+                u32::from(active),
+                [x + 3, 965, w - 6, 110],
+            );
+            let (name, key, value, available) = match c {
+                Control::Slower => (
+                    "Rate -",
+                    "Down",
+                    s.hud.release_rate.to_string(),
+                    s.hud.release_rate > s.hud.minimum_release_rate,
+                ),
+                Control::Faster => (
+                    "Rate +",
+                    "Up",
+                    s.hud.release_rate.to_string(),
+                    s.hud.release_rate < 99,
+                ),
+                Control::Skill(skill) => {
+                    let (name, key) = skill_name(skill);
+                    let count =
+                        s.hud.skills[panel::SKILLS.iter().position(|&v| v == skill).unwrap()];
+                    (name, key, count.to_string(), count > 0)
+                }
+                Control::Pause => (
+                    "Pause",
+                    "Space",
+                    if s.hud.paused { "Paused" } else { "Pause" }.into(),
+                    true,
+                ),
+                Control::Nuke => (
+                    "Nuke",
+                    "N",
+                    if s.hud.nuked { "Active" } else { "2 clicks" }.into(),
+                    !s.hud.nuked,
+                ),
+                Control::Restart => (
+                    "Retry",
+                    if s.hud.result.is_some() { "R" } else { "" },
+                    "Restart".into(),
+                    true,
+                ),
+                Control::Minimap => unreachable!(),
+            };
+            let ink = if available { Ink::Main } else { Ink::Subtle };
+            self.text(
+                &mut out,
+                x + w - 9 - font::width(key, 11),
+                968,
+                key,
+                11,
+                Ink::Subtle,
             );
             if let Some(f) = self.frames.iter().find(|f| f.key == AssetKey::Icon(c)) {
-                Self::blit(&mut out, f, x + w / 2, 1004);
+                out.push(Draw::Blit {
+                    texture: f.atlas as usize,
+                    source: f.rect,
+                    dest: [x + (w - 52) / 2, 978, 52, 52],
+                });
             } else {
-                let name = match c {
-                    Control::Slower => "-",
-                    Control::Faster => "+",
-                    Control::Pause => "P",
-                    Control::Nuke => "N",
-                    Control::Restart => "R",
-                    _ => "SKILL",
-                };
-                Self::text(&mut out, x + 8, 992, name, 2, white);
+                self.centered(&mut out, [x, w, 987], name, 16, ink);
             }
-            let value = match c {
-                Control::Slower | Control::Faster => s.hud.release_rate.to_string(),
-                Control::Skill(skill) => s.hud.skills
-                    [panel::SKILLS.iter().position(|&v| v == skill).unwrap()]
-                .to_string(),
-                Control::Pause => if s.hud.paused { "PLAY" } else { "PAUSE" }.into(),
-                Control::Nuke => "NUKE".into(),
-                Control::Restart => "RETRY".into(),
-                _ => String::new(),
-            };
-            Self::text(
+            self.centered(
                 &mut out,
-                x + (w - value.len() as i32 * 12) / 2,
-                1044,
+                [x, w, 1032],
+                name,
+                14,
+                if active { Ink::Accent } else { ink },
+            );
+            self.centered(
+                &mut out,
+                [x, w, 1050],
                 &value,
-                2,
-                white,
+                if matches!(c, Control::Skill(_) | Control::Slower | Control::Faster) {
+                    22
+                } else {
+                    14
+                },
+                ink,
             );
         }
+        ui::card(&mut out, self.skin, 0, [1660, 972, 256, 96]);
+        self.centered(&mut out, [1664, 248, 960], "Map", 12, Ink::Subtle);
         out.push(Draw::Blit {
             texture: self.mini,
             source: [0, 0, 248, 88],
@@ -938,40 +1012,124 @@ impl Renderer {
         ] {
             Self::fill(&mut out, rect, [227, 242, 182, 255]);
         }
+        self.centered(
+            &mut out,
+            [1664, 248, 1067],
+            "Drag to look around",
+            11,
+            Ink::Subtle,
+        );
         if let Some(result) = s.hud.result {
-            Self::fill(&mut out, [300, 260, 1320, 400], [24, 43, 50, 245]);
-            Self::text(
+            Self::fill(&mut out, [0, 0, 1920, 960], [5, 12, 16, 150]);
+            ui::card(&mut out, self.skin, 2, [340, 210, 1240, 550]);
+            let color = if result.success {
+                [159, 211, 111, 255]
+            } else {
+                [234, 168, 122, 255]
+            };
+            Self::fill(&mut out, [380, 250, 5, 440], color);
+            self.text(
                 &mut out,
-                390,
-                310,
+                420,
+                250,
                 if result.success {
-                    "LEVEL COMPLETE"
+                    "Level complete!"
                 } else {
-                    "TRY AGAIN"
+                    "Try again"
                 },
-                6,
-                white,
+                48,
+                Ink::Main,
             );
-            Self::text(
+            self.text(
                 &mut out,
-                390,
-                400,
+                420,
+                320,
+                &font::fit(s.title, 24, 1080),
+                24,
+                Ink::Subtle,
+            );
+            self.text(
+                &mut out,
+                420,
+                402,
                 &format!(
-                    "SAVED {}%  NEED {}%",
+                    "Saved {}%   /   Target {}%",
                     result.rescued_percent,
                     s.hud.target_percent.unwrap_or(0)
                 ),
-                4,
-                white,
+                32,
+                Ink::Main,
             );
-            Self::text(&mut out, 390, 480, "ENTER / CLICK: NEXT OR RETRY", 3, white);
-            Self::text(&mut out, 390, 535, "R: RESTART   ESC: EXIT", 3, white);
+            self.text(
+                &mut out,
+                420,
+                360,
+                match result.reason {
+                    lemmings_core::EndReason::TimeExpired => "Time is up",
+                    lemmings_core::EndReason::PopulationExhausted => "All lemmings accounted for",
+                },
+                18,
+                Ink::Subtle,
+            );
+            self.text(
+                &mut out,
+                420,
+                450,
+                &format!(
+                    "Rescued {} / {}    Time left {}:{:02}",
+                    result.rescued,
+                    result.lemming_count,
+                    s.hud.seconds_remaining / 60,
+                    s.hud.seconds_remaining % 60
+                ),
+                20,
+                Ink::Subtle,
+            );
+            let action = if s.hud.result_error {
+                "Could not load the level. Press R to try again."
+            } else if s.hud.replaying {
+                "Replay complete"
+            } else if result.success && s.hud.can_continue {
+                "Enter or click to continue to the next level"
+            } else if result.success {
+                "All levels complete! Press R to play this level again"
+            } else {
+                "Enter or click to retry this level"
+            };
+            self.text(&mut out, 420, 500, action, 24, Ink::Accent);
+            if !s.hud.replaying {
+                self.text(&mut out, 420, 570, "R  Restart this level", 20, Ink::Subtle);
+            }
+            self.text(&mut out, 420, 610, "Esc  Exit", 20, Ink::Subtle);
         } else if s.hud.paused {
-            Self::text(&mut out, 24, 24, "PAUSED", 4, white);
+            ui::card(&mut out, self.skin, 2, [24, 24, 350, 98]);
+            self.text(&mut out, 46, 36, "Paused", 32, Ink::Main);
+            self.text(
+                &mut out,
+                46,
+                81,
+                "Space or Pause to resume",
+                17,
+                Ink::Subtle,
+            );
         }
         Ok(out)
     }
 }
+fn skill_name(skill: crate::render::SelectedSkill) -> (&'static str, &'static str) {
+    use crate::render::SelectedSkill::*;
+    match skill {
+        Climber => ("Climber", "C"),
+        Floater => ("Floater", "F"),
+        Bomber => ("Bomber", "E"),
+        Blocker => ("Blocker", "K"),
+        Builder => ("Builder", "U"),
+        Basher => ("Basher", "B"),
+        Miner => ("Miner", "M"),
+        Digger => ("Digger", "D"),
+    }
+}
+
 fn actor_slot(action: MotionAction, direction: MotionDirection) -> Option<u8> {
     let kind = match action {
         MotionAction::Walking => LemmingSpriteKind::Walking,
@@ -1007,6 +1165,133 @@ fn actor_slot(action: MotionAction, direction: MotionDirection) -> Option<u8> {
 
 #[cfg(test)]
 mod tests {
+    fn ui_text(renderer: &Renderer, draws: &[Draw]) -> String {
+        draws
+            .iter()
+            .filter_map(|draw| match draw {
+                Draw::Blit {
+                    texture, source, ..
+                } if (renderer.font..renderer.font + 3).contains(texture) => {
+                    char::from_u32(32 + source[0] / 64 + source[1] / 64 * 16)
+                }
+                _ => None,
+            })
+            .collect()
+    }
+
+    #[test]
+    fn hd_ui_uses_cached_smooth_glyphs_and_keeps_live_state_and_masks_read_only() {
+        let mut run =
+            LevelRun::new(Assets::synthetic_builder(), 1, Some(2), Pacing::Reference).unwrap();
+        let mut renderer = Renderer::fallback();
+        renderer.reset(&run.assets).unwrap();
+        for t in &renderer.textures[renderer.font..renderer.font + 3] {
+            assert!(t.rgba.chunks_exact(4).any(|p| p[3] > 0 && p[3] < 255));
+        }
+        let revisions: Vec<_> = renderer.textures[renderer.font..renderer.font + 3]
+            .iter()
+            .map(|t| t.revision)
+            .collect();
+        let terrain = run.session.terrain().to_vec();
+        let objects = run.session.object_map_data().to_vec();
+        for skill in panel::SKILLS {
+            run.view.selected_skill = skill;
+            let before = crate::diagnostics::state(&run.session);
+            let audio = run.sound.diagnostic_json();
+            let draws = renderer.frame(&run).unwrap();
+            let text = ui_text(&renderer, &draws);
+            assert!(text.contains(skill_name(skill).0));
+            assert!(text.contains("Released0/"));
+            assert!(!text.contains("HDPREVIEW"));
+            assert_eq!(before, crate::diagnostics::state(&run.session));
+            assert_eq!(audio, run.sound.diagnostic_json());
+            assert_eq!(terrain, run.session.terrain());
+            assert_eq!(objects, run.session.object_map_data());
+            assert_eq!(
+                revisions,
+                renderer.textures[renderer.font..renderer.font + 3]
+                    .iter()
+                    .map(|t| t.revision)
+                    .collect::<Vec<_>>()
+            );
+        }
+    }
+
+    #[test]
+    fn result_text_respects_retry_terminal_and_failed_load_instead_of_promising_an_unavailable_next()
+     {
+        for (kind, next, error, replaying, expected, forbidden) in [
+            (
+                "win",
+                Some(2),
+                false,
+                false,
+                "Enterorclicktocontinuetothenextlevel",
+                "Alllevelscomplete",
+            ),
+            (
+                "win",
+                None,
+                false,
+                false,
+                "PressRtoplaythislevelagain",
+                "Enterorclick",
+            ),
+            (
+                "loss",
+                Some(2),
+                false,
+                false,
+                "Enterorclicktoretrythislevel",
+                "nextlevel",
+            ),
+            (
+                "win",
+                Some(2),
+                true,
+                false,
+                "Couldnotloadthelevel",
+                "nextlevel",
+            ),
+            (
+                "win",
+                Some(2),
+                false,
+                true,
+                "Replaycomplete",
+                "Enterorclick",
+            ),
+        ] {
+            let mut run = LevelRun::new(
+                Assets::synthetic_completion(kind),
+                1,
+                next,
+                Pacing::Reference,
+            )
+            .unwrap();
+            for _ in 0..800 {
+                if run.session.result().is_some() {
+                    break;
+                }
+                run.tick().unwrap();
+            }
+            assert!(run.session.result().is_some());
+            run.view.result_error = error;
+            run.view.replaying = replaying;
+            let before = crate::diagnostics::state(&run.session);
+            let audio = run.sound.diagnostic_json();
+            let mut renderer = Renderer::fallback();
+            renderer.reset(&run.assets).unwrap();
+            let draws = renderer.frame(&run).unwrap();
+            let text = ui_text(&renderer, &draws);
+            assert!(text.contains(expected), "{text}");
+            assert!(!text.contains(forbidden), "{text}");
+            assert!(text.contains("Timeleft"));
+            assert!(text.contains("Rescued"));
+            assert_eq!(before, crate::diagnostics::state(&run.session));
+            assert_eq!(audio, run.sound.diagnostic_json());
+        }
+    }
     use super::*;
     use crate::pacing::Pacing;
     use lemmings_resources::ObjectFlags;

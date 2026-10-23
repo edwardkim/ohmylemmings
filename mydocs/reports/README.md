@@ -150,3 +150,5 @@
 - [#178 기계 함정 HD](issue-178_hd_traps.md):10종159프레임·발동/재사용/Pause·인스턴스별 위상과 Native/Web 검증.
 
 - [#181 회전 깃발·일방통행 표시 HD](issue-181_hd_decor.md)
+
+- [#184 HD 글꼴·전체 게임 UI](issue-184_hd_ui.md)
