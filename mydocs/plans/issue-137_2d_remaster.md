@@ -16,7 +16,7 @@
 | [HD-02 / #140](issue-140_hd_presentation.md) | 공통 HD 표시 snapshot·좌표/입력·패널/카메라 계약 구현. 합성 경계와 읽기 전용 상태 검증 | PR #141 병합·CI7개 PASS·완료, [검증/병합 기록](../reports/issue-140_hd_presentation.md) |
 | [HD-03a / #144](issue-144_hd_assets.md) 및 후속 | 분리된 캐릭터/애니메이션·지형 재질·입출구·UI 자산 제작/로딩·검증 | HD-03a PR #145 병합·완료, [결과](../reports/issue-144_hd_assets.md); 시설/직업/UI 첫 후보는 #147, 전체 확장은 후속 |
 | [HD-03b / #147](issue-147_hd_actions.md) | 굴착/계단/OhNo/폭발65프레임·첫 테마 입출구11프레임·13조작 아이콘과 typed 팩 확장 | PR #149 병합·CI7개 SUCCESS·완료, [결과](../reports/issue-147_hd_actions.md) |
-| [HD-04 / #151](issue-151_hd_integration.md) | Native/Web의 실제 Fun 01 HD 합성·걷기/굴착/계단/폭발·원본 모드 선택과 입력 통합 | 구현·로컬 검증, [결과](../reports/issue-151_hd_integration.md); 게시/병합은 #151 |
+| [HD-04 / #151](issue-151_hd_integration.md) | Native/Web의 실제 Fun 01 HD 합성·걷기/굴착/계단/폭발·원본 모드 선택과 입력 통합 | 완료: PR #152·CI7개 SUCCESS·실제 병합; [결과](../reports/issue-151_hd_integration.md) |
 | HD-05 | 전체28애니메이션337프레임 대응·5테마/특수4장면·시설/효과·결과/UI 확장 | 후속 구현 |
 | HD-06 | 원본/HD의 논리 상태·지형·저장 입력 동일성, 지원 플랫폼 패키지/소스/고지·기능 검증 | 후속 구현 |
 
@@ -38,3 +38,5 @@
 Windows는 Windows 11 x64만 지원한다. Mac ad-hoc/미공증과 원본/제3자 고지는 기존 정책을 따른다. 공개 v0.1.0 태그/asset/Pages를 이 작업에서 교체하지 않으며, 새 배포는 기존 버전·태그 정책으로 별도 검증한다.
 
 #113은 기존 모드의 고성능 호스트 성능/메모리 후속이다. 현재 저사양 호스트의 긴60fps 반복은 재개하지 않는다. HD 모드의 새 성능 요구·환경·자료는 별도로 기록하며 기존 미충족 수치를 통과로 바꾸지 않는다.
+
+HD-04 [#151 실제 부분 HD 게임](../reports/issue-151_hd_integration.md)은 PR #152·CI39876930568의7개 SUCCESS·실제 병합/동일 tree로 완료했다. runtime_ready=true는7애니메이션81프레임의 부분 미리보기, full_remaster_ready=false다. 다음은 HD-05 나머지21애니메이션256프레임·시설/효과/테마/글꼴 확장, HD-06 전체 동일성/지원 패키징이다. #137은 OPEN이다.
