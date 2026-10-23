@@ -17,7 +17,11 @@ pub fn bundled_directory(executable: &Path) -> PathBuf {
 
 pub fn linux_directory(executable: &Path) -> PathBuf {
     let bundled = bundled_directory(executable);
-    if bundled.exists() {
+    if bundled.exists()
+        || executable
+            .parent()
+            .is_some_and(|directory| directory.join("GAME-DATA.json").exists())
+    {
         bundled
     } else {
         "assets/local/dos-original".into()
@@ -54,7 +58,19 @@ pub fn packaged_hd_directory(executable: &Path) -> Result<Option<PathBuf>, io::E
             io::ErrorKind::InvalidData,
             format!("{}: invalid HD presentation profile", marker.display()),
         )),
-        Err(error) if error.kind() == io::ErrorKind::NotFound => Ok(None),
+        Err(error) if error.kind() == io::ErrorKind::NotFound => {
+            if root.join("HD-ASSETS.json").exists() {
+                Err(io::Error::new(
+                    error.kind(),
+                    format!(
+                        "{}: required HD presentation profile missing",
+                        marker.display()
+                    ),
+                ))
+            } else {
+                Ok(None)
+            }
+        }
         Err(error) => Err(error),
     }
 }
@@ -112,6 +128,9 @@ mod tests {
             );
             fs::write(resources.join("HD-PRESENTATION"), b"bad").unwrap();
             assert!(packaged_hd_directory(&executable).is_err());
+            fs::remove_file(resources.join("HD-PRESENTATION")).unwrap();
+            fs::write(resources.join("HD-ASSETS.json"), b"{}").unwrap();
+            assert!(packaged_hd_directory(&executable).is_err());
         }
         fs::remove_dir_all(root).unwrap();
     }
@@ -125,6 +144,9 @@ mod tests {
             PathBuf::from("assets/local/dos-original")
         );
         fs::create_dir_all(&data).unwrap();
+        assert_eq!(linux_directory(&executable), data);
+        fs::remove_dir(&data).unwrap();
+        fs::write(executable.parent().unwrap().join("GAME-DATA.json"), b"{}").unwrap();
         assert_eq!(linux_directory(&executable), data);
         fs::remove_dir_all(root).unwrap();
     }

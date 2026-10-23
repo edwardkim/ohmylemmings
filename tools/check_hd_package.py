@@ -50,10 +50,24 @@ def check(binary, resources, foreign, environment, evidence):
         run('corrupt',['--steps',1,'--fast'],False)
     finally:
         catalog.write_bytes(data)
+    marker=resources/'HD-PRESENTATION';marker_data=marker.read_bytes()
+    try:
+        marker.unlink()
+        run('missing-profile',['--steps',1,'--fast'],False)
+        run('original-without-profile',['--original','--steps',1,'--fast'])
+    finally:
+        marker.write_bytes(marker_data)
+    original_data=resources/'data';hidden_data=resources/'hidden-data'
+    try:
+        original_data.rename(hidden_data)
+        missing=run('missing-data-directory',['--steps',1,'--fast'],False)
+        require(str(original_data) in missing.stderr.replace('\\\\', '\\'),'Missing install data used a development fallback')
+    finally:
+        hidden_data.rename(original_data)
     report=dict(status='PASS',default='hd',original_override=True,logical_frame_unchanged=True,
                 displayed_frame_differs=True,themes_and_special_levels=[1]+selected,
                 replay_states=len(states.splitlines()),replay_phase=completion['phase'],
-                missing_and_corrupt_rejected=True,original_works_without_hd=True,
+                missing_and_corrupt_rejected=True,original_works_without_hd=True,missing_profile_and_data_directory_rejected=True,
                 catalog_sha256=sha(data),info=info)
     (evidence/'hd-summary.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     return report

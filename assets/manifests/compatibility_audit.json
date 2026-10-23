@@ -86,8 +86,8 @@
     },
     {
       "path": "apps/desktop/src/assets.rs",
-      "bytes": 6067,
-      "sha256": "ee077f22d774c8c6c62b8c39020b2273a58a016e0d15ed4474eb8f08f8e92a75"
+      "bytes": 6961,
+      "sha256": "0c7e1ccbdbf0025d2242d4c64130cfeb42dfacd70528d1d19f64de903882ea0e"
     },
     {
       "path": "apps/desktop/src/audio.rs",
@@ -3231,8 +3231,8 @@
     },
     {
       "path": "tools/check_hd_package.py",
-      "bytes": 3656,
-      "sha256": "c0b37e4a406c86f81e0adf8b74cc42dc20bcb4782116b32f2f083c791dad2e06"
+      "bytes": 4377,
+      "sha256": "aa9c63a5fbfbd87c934d578efea53ae45d33fe8f4cbbbd3980c877b093e0eb9e"
     },
     {
       "path": "tools/hd_delivery.py",
