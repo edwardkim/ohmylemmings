@@ -74,3 +74,5 @@
 [5테마 출입구 연락표](previews/issue-160_portals.png), [자체 제작 코스의 실제 Web Canvas](previews/issue-160_web_course.png), [동일 코스의 실제 Native SDL](previews/issue-160_native_course.png)을 확인할 수 있다. 원본 맵 캡처는 ignored에 보존한다. 전체 리마스터와 지원 HD 배포는 후속이다.
 
 [#163 팩 정리](../../mydocs/reports/issue-163_hd_pack.md): 원본32PNG·440자산을 유지하고 런타임27atlas/131,699,864바이트로 정리했습니다. 필터링에 민감한 페이지는 기존 배치를 유지하며 Native/Canvas 화면 동일성을 검증했습니다. 전체 리마스터·성능 인수는 후속입니다.
+
+[#169 테마별 HD 로딩](../../mydocs/reports/issue-169_hd_loading.md): 공통 자산과 현재 테마만 선택하여18~19atlas/약94.2~100.5MB를 로딩합니다. `make hd-assets`/`make web`으로 카탈로그를 갱신하며 Native는 `--hd-pack FILE_OR_DIRECTORY`도 지원합니다. 기존 v1 팩과 원본 모드는 유지합니다.

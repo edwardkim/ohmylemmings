@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 217150,
-      "sha256": "1f4b8f5b6168f465465d04cc29b2b7d7bec6452c911c89fbdb1f800231caa3e2",
+      "bytes": 222361,
+      "sha256": "c7c2b7094a352e1f38f2bc0dc90adf53f89711a75e59ff1ddd3409beac426695",
       "id": "compatibility"
     },
     {
@@ -19,8 +19,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 89941,
-      "sha256": "b16a0fd5afde439a9bb21cd6f89f1e3c03b54b8c0440ef2b9ff02ae7e18b85cc",
+      "bytes": 90482,
+      "sha256": "9e69b622e66a8df2a1389bd5de4c12088a10f6096f662bba15e403c851bd03ee",
       "id": "display"
     }
   ],
@@ -11070,5 +11070,21 @@
       "id": "compatibility"
     },
     "scope": "Update current compaction tooling, manifests and proof inventory only; historical observations/NOT READY and #113 deferred performance stay unchanged. No new all-level/performance qualification."
+  },
+  "source_maintenance_169": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/169",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 217150,
+      "sha256": "1f4b8f5b6168f465465d04cc29b2b7d7bec6452c911c89fbdb1f800231caa3e2",
+      "id": "compatibility"
+    },
+    "scope": "Update current theme-loading host/tooling, source and proof inventory only; historical observations/NOT READY and #113 deferred performance stay unchanged. No new all-level/performance qualification.",
+    "previous_display_pin": {
+      "path": "assets/manifests/display_cadence.json",
+      "bytes": 89941,
+      "sha256": "b16a0fd5afde439a9bb21cd6f89f1e3c03b54b8c0440ef2b9ff02ae7e18b85cc",
+      "id": "display"
+    }
   }
 }

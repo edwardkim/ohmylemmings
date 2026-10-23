@@ -140,3 +140,5 @@
 - [#163 HD 자산 팩 정리](issue-163_hd_pack.md)
 
 - [#165 BGM 감쇠 원인 조사](issue-165_bgm.md)
+
+- [#169 테마별 HD 로딩](issue-169_hd_loading.md)

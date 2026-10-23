@@ -20,3 +20,5 @@ pub use layout::{
 pub use snapshot::{
     ActorSnapshot, HudSnapshot, Snapshot, SnapshotError, TerrainSnapshot, snapshot,
 };
+
+pub mod catalog;

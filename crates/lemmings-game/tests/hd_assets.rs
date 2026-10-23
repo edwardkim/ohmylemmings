@@ -349,3 +349,44 @@ fn decorative_exit_flames_keep_six_frames_without_accepting_arrow_or_hazard_keys
         assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
     }
 }
+
+fn selection(parts: &[Vec<u8>]) -> Vec<u8> {
+    let mut data = b"LHDSET01".to_vec();
+    data.extend((parts.len() as u16).to_le_bytes());
+    data.extend(0u16.to_le_bytes());
+    for part in parts {
+        data.extend((part.len() as u32).to_le_bytes());
+        data.extend(part);
+    }
+    data
+}
+#[test]
+fn selected_atlas_parts_keep_pixels_and_remap_frame_indices() {
+    let a = fixture();
+    let mut b = fixture();
+    b[42..44].copy_from_slice(&1u16.to_le_bytes());
+    let bytes = selection(&[a.clone(), b]);
+    let pack = AssetPack::parse(&bytes).unwrap();
+    assert_eq!(pack.atlases().len(), 2);
+    assert_eq!(pack.frames()[1].atlas, 1);
+    assert_eq!(
+        pack.atlases()[0].rgba(),
+        AssetPack::parse(&a).unwrap().atlases()[0].rgba()
+    );
+    assert_eq!(pack.frames()[0].rect, pack.frames()[1].rect);
+}
+#[test]
+fn selected_parts_reject_duplicates_truncation_nesting_and_excess_atlases() {
+    let a = fixture();
+    let bytes = selection(&[a.clone(), a.clone()]);
+    assert_eq!(
+        AssetPack::parse(&bytes).unwrap_err(),
+        AssetError::DuplicateKey
+    );
+    let bytes = selection(std::slice::from_ref(&a));
+    for n in 0..bytes.len() {
+        assert!(AssetPack::parse(&bytes[..n]).is_err());
+    }
+    assert!(AssetPack::parse(&selection(&[bytes])).is_err());
+    assert!(AssetPack::parse(&selection(&vec![a; 33])).is_err());
+}

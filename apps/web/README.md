@@ -94,3 +94,5 @@ python3 tools/check_web.py --evidence assets/local/web-original-check --original
 [#160 전체 입출구·출구 불꽃](../../mydocs/reports/issue-160_hd_portals.md): 5테마 문55프레임과 장식30프레임을 실제 Canvas에 연결했습니다. `make web`으로 현재 팩과 WASM을 함께 갱신합니다. 원본 판정·문 열림·장식 재생 주기를 유지합니다.
 
 [#163 팩 정리](../../mydocs/reports/issue-163_hd_pack.md): 원본32PNG·440자산을 유지하고 런타임27atlas/131,699,864바이트로 정리했습니다. 필터링에 민감한 페이지는 기존 배치를 유지하며 Native/Canvas 화면 동일성을 검증했습니다. 전체 리마스터·성능 인수는 후속입니다.
+
+[#169 테마별 HD 로딩](../../mydocs/reports/issue-169_hd_loading.md): 공통 자산과 현재 테마만 선택하여18~19atlas/약94.2~100.5MB를 로딩합니다. `make hd-assets`/`make web`으로 카탈로그를 갱신하며 Native는 `--hd-pack FILE_OR_DIRECTORY`도 지원합니다. 기존 v1 팩과 원본 모드는 유지합니다.

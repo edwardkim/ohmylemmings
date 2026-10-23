@@ -186,7 +186,7 @@ impl<'a> Reader<'a> {
     }
 }
 
-fn crc32(bytes: &[u8]) -> u32 {
+pub(super) fn crc32(bytes: &[u8]) -> u32 {
     let mut crc = !0u32;
     for byte in bytes {
         crc ^= u32::from(*byte);
@@ -201,6 +201,43 @@ impl<'a> AssetPack<'a> {
     pub fn parse(bytes: &'a [u8]) -> Result<Self, AssetError> {
         if bytes.len() > MAX_BYTES {
             return Err(AssetError::Limit);
+        }
+        if bytes.starts_with(b"LHDSET01") {
+            let mut r = Reader { bytes, position: 8 };
+            let count = r.u16()?;
+            if !(1..=32).contains(&count) || r.u16()? != 0 {
+                return Err(AssetError::Limit);
+            }
+            let mut result = Self {
+                atlases: Vec::new(),
+                frames: Vec::new(),
+            };
+            for _ in 0..count {
+                let size = r.u32()? as usize;
+                let part = r.take(size)?;
+                if !part.starts_with(b"LHDPAK01") {
+                    return Err(AssetError::Magic);
+                }
+                let pack = Self::parse(part)?;
+                if result.atlases.len() + pack.atlases.len() > 32
+                    || result.frames.len() + pack.frames.len() > 4096
+                {
+                    return Err(AssetError::Limit);
+                }
+                let base = result.atlases.len() as u16;
+                for mut frame in pack.frames {
+                    if result.frames.iter().any(|old| old.key == frame.key) {
+                        return Err(AssetError::DuplicateKey);
+                    }
+                    frame.atlas += base;
+                    result.frames.push(frame);
+                }
+                result.atlases.extend(pack.atlases);
+            }
+            if r.position != bytes.len() {
+                return Err(AssetError::TrailingBytes);
+            }
+            return Ok(result);
         }
         let mut r = Reader { bytes, position: 0 };
         if r.take(8)? != b"LHDPAK01" {

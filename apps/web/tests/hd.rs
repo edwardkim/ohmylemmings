@@ -91,3 +91,33 @@ fn hd_pause_nuke_minimap_and_invalid_pointer_reuse_existing_input_rules() {
     hd.hd_pointer("up", -1., -1., 0., 0., 0.).unwrap();
     assert!(hd.view_state().contains("\"dragging\":false"));
 }
+
+#[test]
+fn selected_set_failure_retains_the_previous_renderer_and_game() {
+    let mut game = WebGame::new("builder", "reference").unwrap();
+    let part = pack();
+    let mut bytes = b"LHDSET01".to_vec();
+    bytes.extend(1u16.to_le_bytes());
+    bytes.extend([0, 0]);
+    bytes.extend((part.len() as u32).to_le_bytes());
+    bytes.extend(part);
+    game.load_hd(&bytes).unwrap();
+    let before = (
+        game.state(),
+        game.sound_state(),
+        game.hd_commands().unwrap(),
+        game.hd_info(),
+    );
+    assert_eq!(game.hd_scope().unwrap(), 3);
+    bytes.pop();
+    assert!(game.load_hd(&bytes).is_err());
+    assert_eq!(
+        (
+            game.state(),
+            game.sound_state(),
+            game.hd_commands().unwrap(),
+            game.hd_info()
+        ),
+        before
+    );
+}

@@ -21,7 +21,7 @@ from tools.release_version import workspace_version, package_name
 
 WEB_FILES = (
     'index.html', 'app.js', 'audio.js', 'audio-license.html', 'controls.js',
-    'host.js', 'hd.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
+    'host.js', 'hd.js', 'hd-loader.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
 )
 COMMON_FILES = {'README.md', 'REBUILD.md', 'LGPL-2.1-or-later.txt'}
 PROJECT_LICENSE_FILES = {'LICENSE', 'THIRD_PARTY_NOTICES.txt'}
@@ -102,7 +102,14 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
                 require(files[name] == regular(root / 'apps/web/www' / name), f'Stale Web runtime: {name}')
         if (root/'assets/manifests/remaster_pack.json').exists():
             require((runtime/'hd-assets.hdp').is_file(),'HD runtime pack is missing; rebuild the Web runtime')
-        if (runtime/'hd-assets.hdp').exists():files['hd-assets.hdp']=regular(runtime/'hd-assets.hdp')
+        if (runtime/'hd-assets.hdp').exists() and not (runtime/'hd-assets/catalog.hdi').exists():
+            files['hd-assets.hdp']=regular(runtime/'hd-assets.hdp')
+        if (runtime/'hd-assets/catalog.hdi').exists():
+            from tools.hd_catalog import runtime_catalog
+            expected=runtime_catalog(root,regular(runtime/'hd-assets.hdp'))
+            for name,data in expected.items():
+                require(regular(runtime/'hd-assets'/name)==data,'HD catalog member differs')
+                files['hd-assets/'+name]=data
         require(files['pkg/lemmings_web_bg.wasm'][:8] == b'\0asm\1\0\0\0', 'Invalid WebAssembly header')
     else:
         binary = regular(runtime)
@@ -217,11 +224,18 @@ def verify_package(path, root=ROOT):
     if verify_project_license(files, manifest, root):
         allowed |= PROJECT_LICENSE_FILES
     allowed |= set(WEB_FILES) | {'audio-source.json'} if target == 'web' else {'lemmings-desktop'}
-    if target=='web' and 'hd-assets.hdp' in files:
+    if target=='web' and ('hd-assets.hdp' in files or 'hd-assets/catalog.hdi' in files):
         try:from .hd_assets import runtime_pack
         except ImportError:from hd_assets import runtime_pack
-        require(files['hd-assets.hdp']==runtime_pack(root=root),'HD runtime pack differs')
-        allowed.add('hd-assets.hdp')
+        base_hd=runtime_pack(root=root)
+        if 'hd-assets.hdp' in files:
+            require(files['hd-assets.hdp']==base_hd,'HD runtime pack differs')
+            allowed.add('hd-assets.hdp')
+        if 'hd-assets/catalog.hdi' in files:
+            from tools.hd_catalog import runtime_catalog
+            for name,member in runtime_catalog(root,base_hd).items():
+                require(files.get('hd-assets/'+name)==member,'HD catalog member differs')
+                allowed.add('hd-assets/'+name)
     full = manifest.get('original_game_data', False)
     require(type(full) is bool, 'Invalid original data marker')
     if full:

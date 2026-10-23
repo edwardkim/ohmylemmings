@@ -32,7 +32,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--hd] [--hd-pack FILE] [--fullscreen] [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--performance NEW_JSON --performance-seconds 60] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nF8: original/HD preview (--hd-pack PATH); F11: fullscreen; --hd starts HD preview. S: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--hd] [--hd-pack FILE_OR_DIRECTORY] [--fullscreen] [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--performance NEW_JSON --performance-seconds 60] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nF8: original/HD preview (--hd-pack PATH); F11: fullscreen; --hd starts HD preview. S: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
     hd: bool,
     fullscreen: bool,
@@ -964,12 +964,19 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     let creator = canvas.texture_creator();
     let mut texture =
         creator.create_texture_streaming(PixelFormatEnum::RGB24, WIDTH as u32, HEIGHT as u32)?;
-    let hd_path = options
-        .hd_pack
-        .clone()
-        .unwrap_or_else(|| "assets/local/hd-runtime/assets.hdp".into());
+    let hd_path = options.hd_pack.clone().unwrap_or_else(|| {
+        let directory = PathBuf::from("assets/local/hd-runtime/atlas");
+        if directory.join("catalog.hdi").is_file() {
+            directory
+        } else {
+            "assets/local/hd-runtime/assets.hdp".into()
+        }
+    });
     let mut hd_host = if options.hd || options.hd_pack.is_some() {
-        Some(hd::Host::new(&creator, &fs::read(&hd_path)?)?)
+        Some(hd::Host::new(
+            &creator,
+            &hd::read_pack(&hd_path, &game.assets)?,
+        )?)
     } else {
         None
     };
@@ -1076,7 +1083,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                     continue;
                 }
                 if hd_host.is_none() {
-                    match fs::read(&hd_path)
+                    match hd::read_pack(&hd_path, &game.assets)
                         .map_err(|e| e.to_string())
                         .and_then(|b| hd::Host::new(&creator, &b).map_err(|e| e.to_string()))
                     {
@@ -1177,6 +1184,26 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             };
             match replacement {
                 Ok(Some(next)) => {
+                    let theme_changed = hd_host.is_some()
+                        && hd_path.is_dir()
+                        && lemmings_game::hd::catalog::level_scope(&game.assets)?
+                            != lemmings_game::hd::catalog::level_scope(&next.assets)?;
+                    let next_hd_host = if theme_changed && hd_active {
+                        match hd::read_pack(&hd_path, &next.assets)
+                            .and_then(|bytes| hd::Host::new(&creator, &bytes))
+                        {
+                            Ok(host) => Some(host),
+                            Err(error) => {
+                                if scripted {
+                                    return Err(error);
+                                }
+                                eprintln!("HD theme unavailable; keeping current level: {error}");
+                                continue 'running;
+                            }
+                        }
+                    } else {
+                        None
+                    };
                     if let Some(c) = &mut capture {
                         c.finish(
                             &game.session,
@@ -1212,6 +1239,12 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                             )
                         })
                         .transpose()?;
+                    if let Some(host) = next_hd_host {
+                        hd_host = Some(host);
+                    } else if theme_changed {
+                        // Original mode must not depend on optional HD files.
+                        hd_host = None;
+                    }
                     game = next;
                     if let Some(host) = &mut hd_host {
                         host.invalidate();

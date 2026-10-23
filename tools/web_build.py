@@ -126,7 +126,11 @@ def build(output=OUTPUT):
         from .hd_assets import runtime_pack
     except ImportError:
         from hd_assets import runtime_pack
-    (output/'hd-assets.hdp').write_bytes(runtime_pack(root=ROOT))
+    data=runtime_pack(root=ROOT)
+    (output/'hd-assets.hdp').write_bytes(data)
+    try:from .hd_catalog import runtime_catalog,write_files
+    except ImportError:from hd_catalog import runtime_catalog,write_files
+    write_files(runtime_catalog(ROOT,data),output/'hd-assets')
     audio_delivery(output)
     print(json.dumps(dict(status='PASS',bindgen=version,output=str(output))))
     return output

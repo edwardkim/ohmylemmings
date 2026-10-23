@@ -840,5 +840,12 @@
     "scope": "Preserve PNGs and full frame geometry; retain filter-sensitive canonical pages and compact other pages. 27 runtime atlases,440 keys,131699864 bytes.",
     "runtime_ready": true,
     "full_remaster_ready": false
+  },
+  "followup_169": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/169",
+    "manifest": "assets/manifests/hd_loading.json",
+    "scope": "Immutable atlas pages selected by common/current theme; bounded pinned extension manifests, native/web loading and legacy v1 compatibility. No new art or BGM fix.",
+    "runtime_ready": true,
+    "full_remaster_ready": false
   }
 }
