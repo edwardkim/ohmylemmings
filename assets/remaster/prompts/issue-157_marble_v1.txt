@@ -1,0 +1,7 @@
+Use case: stylized-concept
+Asset type: seamless opaque terrain material for a hand-painted 2D side-view game, not a level image.
+Primary request: A single square tileable material swatch of pale mauve and dusty blush marble, cool lavender gray veins and softly worn limestone; low contrast, matte surface, no gold.
+Style/medium: charming hand-painted gouache, finely detailed but understated, coherent soft brushwork and gently rounded mineral forms matching a friendly 2D puzzle game. Smooth HD details, no pixel art, no photographic rendering.
+Composition: material uniformly fills the entire square, flat side-on cut face, evenly distributed fine details. Medium-small material features appropriate to a game terrain cross-section. No focal object or directional gradient. All four edges should tile seamlessly. Requested size 1024x1024.
+Lighting: diffuse even illumination, moderate contrast, unobtrusive fine texture so characters remain legible.
+Constraints: every pixel fully opaque including edges. No horizon, sky, grass, landscape, silhouette, caves, holes, border, framing, 3D perspective, characters, objects, lettering, text, logo, or watermark. One material only.

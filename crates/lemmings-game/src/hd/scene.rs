@@ -119,7 +119,7 @@ pub struct Renderer {
     old_mask: Vec<u8>,
     old_bricks: Vec<u8>,
     initial: Vec<[u8; 4]>,
-    material: bool,
+    material: Option<u8>,
     mini: usize,
     terrain_rebuilds: u64,
     missing: Vec<(u8, u16)>,
@@ -143,7 +143,7 @@ impl Renderer {
             old_mask: Vec::new(),
             old_bricks: Vec::new(),
             initial: Vec::new(),
-            material: true,
+            material: None,
             mini: 0,
             terrain_rebuilds: 0,
             missing: Vec::new(),
@@ -192,14 +192,25 @@ impl Renderer {
             .collect::<Vec<_>>()
             .join(",");
         format!(
-            "{{\"version\":1,\"width\":1920,\"height\":1080,\"actor_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}]}}",
+            "{{\"version\":1,\"width\":1920,\"height\":1080,\"actor_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"terrain_material\":{},\"one_way_objects\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}]}}",
             self.frames
                 .iter()
                 .filter(|f| matches!(f.key, AssetKey::Actor { .. }))
                 .count(),
             self.terrain_rebuilds,
-            !self.material
+            self.material.is_none(),
+            self.material
+                .map_or_else(|| "null".into(), |set| set.to_string()),
+            self.objects
+                .iter()
+                .filter(|o| matches!(o.meta.trigger_effect, 7 | 8))
+                .count()
         )
+    }
+    fn select_material(&mut self, set: u8, special: bool) {
+        self.material = (!special
+            && AssetKey::material(set).is_some_and(|key| self.frames.iter().any(|f| f.key == key)))
+        .then_some(set);
     }
     pub fn reset(&mut self, assets: &Assets) -> Result<(), Box<dyn Error>> {
         if assets.width == 0 || assets.width > 4096 || assets.height != 160 {
@@ -247,15 +258,11 @@ impl Renderer {
             }
         }
         self.textures.push(Texture::new(1024, 352, atlas));
-        self.material = true;
+        self.select_material(0, false);
         if let Some((set, level, ground, images)) = assets.hd_art()? {
-            self.material = set == 0
-                && level.header().special_graphic_set().is_none()
-                && !assets
-                    .one_way_left
-                    .iter()
-                    .chain(&assets.one_way_right)
-                    .any(|&v| v != 0);
+            self.select_material(set, level.header().special_graphic_set().is_some());
+            // One-way arrows remain original object art, drawn on the current
+            // terrain below. Their trigger masks do not select terrain color.
             for placement in level.objects() {
                 let meta = ground
                     .object(placement.id as usize)
@@ -367,10 +374,10 @@ impl Renderer {
             self.old_bricks.copy_from_slice(bricks);
             self.epoch = self.epoch.wrapping_add(1);
         }
-        let rock = self
-            .frames
-            .iter()
-            .find(|f| f.key == AssetKey::Rock)
+        let material = self
+            .material
+            .and_then(AssetKey::material)
+            .and_then(|key| self.frames.iter().find(|f| f.key == key))
             .copied();
         for cy in 0..self.chunks_y {
             for cx in 0..self.chunks_x {
@@ -401,28 +408,23 @@ impl Renderer {
                                 }
                             } else if steel[i] != 0 {
                                 [132, 150, 166, 255]
-                            } else if self.material {
-                                if let Some(r) = rock {
-                                    let source = &self.textures[r.atlas as usize];
-                                    let sx = r.rect[0]
-                                        + (((x * 6 + px) * r.rect[2] as usize / 256)
-                                            % r.rect[2] as usize)
-                                            as u32;
-                                    let sy = r.rect[1]
-                                        + (((y * 6 + py) * r.rect[3] as usize / 256)
-                                            % r.rect[3] as usize)
-                                            as u32;
-                                    let at =
-                                        (sy as usize * source.width as usize + sx as usize) * 4;
-                                    [
-                                        source.rgba[at],
-                                        source.rgba[at + 1],
-                                        source.rgba[at + 2],
-                                        255,
-                                    ]
-                                } else {
-                                    [130, 85, 45, 255]
-                                }
+                            } else if let Some(r) = material {
+                                let source = &self.textures[r.atlas as usize];
+                                let sx = r.rect[0]
+                                    + (((x * 6 + px) * r.rect[2] as usize / 256)
+                                        % r.rect[2] as usize)
+                                        as u32;
+                                let sy = r.rect[1]
+                                    + (((y * 6 + py) * r.rect[3] as usize / 256)
+                                        % r.rect[3] as usize)
+                                        as u32;
+                                let at = (sy as usize * source.width as usize + sx as usize) * 4;
+                                [
+                                    source.rgba[at],
+                                    source.rgba[at + 1],
+                                    source.rgba[at + 2],
+                                    255,
+                                ]
                             } else {
                                 let mut c = self.initial[i];
                                 c[3] = 255;
@@ -971,5 +973,130 @@ mod tests {
             .wire(),
             [1, 7, 1, 2, 3, 4, -5, 6, 7, 8, 0, 0]
         );
+    }
+
+    #[test]
+    fn all_materials_keep_masks_bricks_steel_one_way_and_terrain_edits() {
+        let mut run = run();
+        let at = 10 * run.assets.width + 10;
+        run.assets.one_way_left[at] = 1;
+        let mut r = Renderer::fallback();
+        for set in 0..5 {
+            r.textures
+                .push(Texture::new(1, 1, vec![set * 40, 20, 30, 255]));
+            r.frames.push(AssetFrame {
+                key: AssetKey::material(set).unwrap(),
+                atlas: set.into(),
+                rect: [0, 0, 1, 1],
+                display: [256, 256],
+                anchor: [0, 0],
+            });
+        }
+        r.base = r.textures.len();
+        r.reset(&run.assets).unwrap();
+        assert_eq!(r.material, Some(0));
+        let state = crate::diagnostics::state(&run.session);
+        let sound = run.sound.diagnostic_json();
+        let pixel = (60 * 192 + 60) * 4;
+        for set in 0..5 {
+            r.select_material(set, false);
+            r.dirty.fill(true);
+            r.frame(&run).unwrap();
+            assert_eq!(
+                &r.textures[r.chunk_base].rgba[pixel..pixel + 4],
+                &[set * 40, 20, 30, 255]
+            );
+            assert_eq!(r.textures[r.chunk_base].rgba[3], 0);
+            assert_eq!(state, crate::diagnostics::state(&run.session));
+            assert_eq!(sound, run.sound.diagnostic_json());
+            let mut removed = run.session.render_terrain().to_vec();
+            removed[at] = 0;
+            let rebuilds = r.terrain_rebuilds();
+            r.terrain(
+                &removed,
+                run.session.render_bricks(),
+                &run.assets.steel,
+                0,
+                &mut Vec::new(),
+            )
+            .unwrap();
+            assert_eq!(r.terrain_rebuilds(), rebuilds + 1);
+            assert!(r.textures[r.chunk_base].rgba.iter().all(|&v| v == 0));
+        }
+        r.select_material(4, true);
+        assert_eq!(r.material, None);
+        r.select_material(5, false);
+        assert_eq!(r.material, None);
+        r.select_material(4, false);
+        r.frames.pop();
+        r.select_material(4, false);
+        assert_eq!(r.material, None);
+        r.select_material(3, false);
+        let mut steel = run.assets.steel.clone();
+        steel[at] = 1;
+        let mut bricks = run.session.render_bricks().to_vec();
+        r.dirty.fill(true);
+        r.terrain(
+            run.session.render_terrain(),
+            &bricks,
+            &steel,
+            0,
+            &mut Vec::new(),
+        )
+        .unwrap();
+        assert_eq!(
+            &r.textures[r.chunk_base].rgba[pixel..pixel + 4],
+            &[132, 150, 166, 255]
+        );
+        bricks[at] = 1;
+        r.terrain(
+            run.session.render_terrain(),
+            &bricks,
+            &steel,
+            0,
+            &mut Vec::new(),
+        )
+        .unwrap();
+        assert_eq!(
+            &r.textures[r.chunk_base].rgba[pixel..pixel + 4],
+            &[118, 75, 32, 255]
+        );
+    }
+
+    #[test]
+    fn material_sampling_keeps_world_alignment_across_chunks_and_scroll() {
+        let mut assets = Assets::synthetic_builder();
+        assets.terrain.fill(1);
+        let run = LevelRun::new(assets, 1, None, Pacing::Reference).unwrap();
+        let mut r = Renderer::fallback();
+        r.textures
+            .push(Texture::new(2, 1, vec![10, 20, 30, 255, 40, 50, 60, 255]));
+        r.frames.push(AssetFrame {
+            key: AssetKey::Rock,
+            atlas: 0,
+            rect: [0, 0, 2, 1],
+            display: [256, 256],
+            anchor: [0, 0],
+        });
+        r.base = 1;
+        r.reset(&run.assets).unwrap();
+        r.frame(&run).unwrap();
+        assert_eq!(
+            &r.textures[r.chunk_base].rgba[191 * 4..192 * 4],
+            &[40, 50, 60, 255]
+        );
+        assert_eq!(&r.textures[r.chunk_base + 1].rgba[..4], &[40, 50, 60, 255]);
+        let texture = r.textures[r.chunk_base + 1].rgba.clone();
+        let rebuilds = r.terrain_rebuilds();
+        r.terrain(
+            run.session.render_terrain(),
+            run.session.render_bricks(),
+            &run.assets.steel,
+            32,
+            &mut Vec::new(),
+        )
+        .unwrap();
+        assert_eq!(texture, r.textures[r.chunk_base + 1].rgba);
+        assert_eq!(r.terrain_rebuilds(), rebuilds + r.chunks_y as u64);
     }
 }

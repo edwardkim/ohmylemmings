@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 143690,
-      "sha256": "4a34d4be364963f91446e39234a580c2b5e8e90ddbdb5bcb9b8c7bc000f6289f"
+      "bytes": 146997,
+      "sha256": "2783b5a555adb8a626b751799e24a43240199df0ee47e5adf4eb7e7e1a4bf789"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -561,8 +561,8 @@
     },
     {
       "path": "crates/lemmings-game/examples/hd_asset_probe.rs",
-      "bytes": 2555,
-      "sha256": "b9bac2c75ff997fe749327de4590468efc2fe1ef4e7f8d1002e87eebc7cf14f5"
+      "bytes": 2583,
+      "sha256": "c04fb403e88993c6daa0c63be2d68380694805de4de92ced122bc34369f293ce"
     },
     {
       "path": "crates/lemmings-game/examples/performance_probe.rs",
@@ -586,8 +586,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/assets.rs",
-      "bytes": 10026,
-      "sha256": "e40997ad72a58483653eaf787c78458e36fdb967cacdc3cae50a102ff22f3640"
+      "bytes": 10377,
+      "sha256": "3cab0b60765f516e0d867442364364a3a970e0d6ab9647e26b92617c6786426f"
     },
     {
       "path": "crates/lemmings-game/src/hd/layout.rs",
@@ -646,8 +646,8 @@
     },
     {
       "path": "crates/lemmings-game/tests/hd_assets.rs",
-      "bytes": 8205,
-      "sha256": "f5c90d7e9c6812ae60a823033b85d84c91d1faecee2174119eb8d9196c445e03"
+      "bytes": 8646,
+      "sha256": "5a73ecf2021416b704a9154226855fb46bec0175647cbf400a98f8e4977cc2ed"
     },
     {
       "path": "crates/lemmings-game/tests/hd_presentation.rs",
@@ -1491,13 +1491,13 @@
     },
     {
       "path": "tools/hd_assets.py",
-      "bytes": 14015,
-      "sha256": "616fa83d2da29d60de55248b5d4bca49905d8da77d4d58e266b12ba0fd36db76"
+      "bytes": 17141,
+      "sha256": "4f405f4f2021fc51e3493db0ae96dd3cf64c39eebee87395801232893aa029af"
     },
     {
       "path": "tools/hd_assets_preview.html",
-      "bytes": 8566,
-      "sha256": "99f790f9e82cae52116efb05c3686d5d0bacaffffd8614c9060be2cb772b52d9"
+      "bytes": 9378,
+      "sha256": "7a735d51f83e853477d1d16a372c6bf1c41939ff4fd90c24a1523f76b3b767d2"
     },
     {
       "path": "tools/initial_reference.py",
@@ -1936,8 +1936,8 @@
     },
     {
       "path": "tools/tests/test_hd_assets.py",
-      "bytes": 12885,
-      "sha256": "dbb4b91c208fe2551112aa688f62a69a5dfa08c589e3a4016a38250eb45d2600"
+      "bytes": 16213,
+      "sha256": "deec2b85790e973f1487dd042306ed73d5f65f2fa226a1836aa3f75954c5a60d"
     },
     {
       "path": "tools/tests/test_initial_reference.py",
@@ -2321,8 +2321,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/scene.rs",
-      "bytes": 36721,
-      "sha256": "398b3042861389b79f381caa84ef772b78726b721d1d93661456ad353fbd21b6"
+      "bytes": 41333,
+      "sha256": "97ec07fa097147096f2c7139421a210b4baab54fbb7c7aade881c78c5590ce84"
     },
     {
       "path": "crates/lemmings-game/tests/hd_scene.rs",
@@ -2501,8 +2501,68 @@
     },
     {
       "path": "tools/hd_assets_check.cjs",
-      "bytes": 6100,
-      "sha256": "ea58a019cfdf7ded8360320eef5c0db2027426dde085d5985bc55d7d57ed35fe"
+      "bytes": 6910,
+      "sha256": "9d29f255b70ac63f41265517e110bbd01face6bb45a1bbd99561b61e244b0e52"
+    },
+    {
+      "path": "assets/manifests/hd_terrain.json",
+      "bytes": 6584,
+      "sha256": "8a7beba96a57f5f598a16cfbb35096449463d5379c485114dd588d1b92638e77"
+    },
+    {
+      "path": "assets/remaster/issue-157-crystal-v1.png",
+      "bytes": 2798974,
+      "sha256": "9c460f24a16c2a019d2f6715ee08fc37887423431281adab5721178592d7c459"
+    },
+    {
+      "path": "assets/remaster/issue-157-fire-v1.png",
+      "bytes": 2751967,
+      "sha256": "f9474d28d0fd965f59a10519b934329f055f8e460ef92bcef84827c94c64e0c3"
+    },
+    {
+      "path": "assets/remaster/issue-157-marble-v1.png",
+      "bytes": 2677744,
+      "sha256": "d9a6396459a7285c4557b5e34cf6abe30a921ea53d904557ef0aab99a07dde38"
+    },
+    {
+      "path": "assets/remaster/issue-157-pillar-v1.png",
+      "bytes": 2971032,
+      "sha256": "b30f4fb8042e90d94c0cd98dba90f5617a598c0f5d5792611868fccab1c363a8"
+    },
+    {
+      "path": "assets/remaster/previews/issue-157_materials.png",
+      "bytes": 214811,
+      "sha256": "b2b081075831b308c45daedc935345bd3cfb15e29b349413b85733e844ef4e06"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-157_crystal_v1.txt",
+      "bytes": 1220,
+      "sha256": "ddbc6faf5f3ec6e66e6f7c5ac0e3906a08487521e96dc176d5991d016d233629"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-157_fire_v1.txt",
+      "bytes": 1196,
+      "sha256": "34e54331f6b5c459a359bfbda338e5dedbbb262511b09c8685f12840206f635b"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-157_marble_v1.txt",
+      "bytes": 1178,
+      "sha256": "0bf8286f993b3af37e8ef9a78a3cddb42ee1bc1de47228517032ca153f7d6e8c"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-157_pillar_v1.txt",
+      "bytes": 1225,
+      "sha256": "be720a27d9ce559c22c622ab26073a6619c2c9eb11cb76787f627a79375dae54"
+    },
+    {
+      "path": "crates/lemmings-game/examples/hd_terrain_probe.rs",
+      "bytes": 4269,
+      "sha256": "0da977f19bace05a8c6a8583f1739380b992c0d7ddcf96f550ab76bdd3f772a3"
+    },
+    {
+      "path": "tools/web/hd_terrain.cjs",
+      "bytes": 5882,
+      "sha256": "ece048bf2f5fc81eb75ca17db0ecc1682ffe3e2cb19375d276cc49d8647a688c"
     }
   ],
   "evidence": [
@@ -5860,5 +5920,71 @@
       "tools/hd_assets_check.cjs"
     ],
     "scope": "Complete logical actor slot/frame asset coverage and bounded128MiB/32atlas v1 loader support, restored-state/PNG/Canvas and13 natural synthetic checks. No core physics or timing changes. Historical COMP/120-level/G11/performance observations remain historical; #113 deferred and NOT READY unchanged. Other themes/facilities/effects and support packaging remain follow-up."
+  },
+  "source_impact_157": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/157",
+    "baseline": "6c866e975180ca36d497726a563bb3ad7573a5a0",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/remaster_pack.json",
+        "bytes": 143690,
+        "sha256": "4a34d4be364963f91446e39234a580c2b5e8e90ddbdb5bcb9b8c7bc000f6289f"
+      },
+      {
+        "path": "crates/lemmings-game/examples/hd_asset_probe.rs",
+        "bytes": 2555,
+        "sha256": "b9bac2c75ff997fe749327de4590468efc2fe1ef4e7f8d1002e87eebc7cf14f5"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/assets.rs",
+        "bytes": 10026,
+        "sha256": "e40997ad72a58483653eaf787c78458e36fdb967cacdc3cae50a102ff22f3640"
+      },
+      {
+        "path": "crates/lemmings-game/tests/hd_assets.rs",
+        "bytes": 8205,
+        "sha256": "f5c90d7e9c6812ae60a823033b85d84c91d1faecee2174119eb8d9196c445e03"
+      },
+      {
+        "path": "tools/hd_assets.py",
+        "bytes": 14015,
+        "sha256": "616fa83d2da29d60de55248b5d4bca49905d8da77d4d58e266b12ba0fd36db76"
+      },
+      {
+        "path": "tools/hd_assets_preview.html",
+        "bytes": 8566,
+        "sha256": "99f790f9e82cae52116efb05c3686d5d0bacaffffd8614c9060be2cb772b52d9"
+      },
+      {
+        "path": "tools/tests/test_hd_assets.py",
+        "bytes": 12885,
+        "sha256": "dbb4b91c208fe2551112aa688f62a69a5dfa08c589e3a4016a38250eb45d2600"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/scene.rs",
+        "bytes": 36721,
+        "sha256": "398b3042861389b79f381caa84ef772b78726b721d1d93661456ad353fbd21b6"
+      },
+      {
+        "path": "tools/hd_assets_check.cjs",
+        "bytes": 6100,
+        "sha256": "ea58a019cfdf7ded8360320eef5c0db2027426dde085d5985bc55d7d57ed35fe"
+      }
+    ],
+    "added": [
+      "assets/manifests/hd_terrain.json",
+      "assets/remaster/issue-157-crystal-v1.png",
+      "assets/remaster/issue-157-fire-v1.png",
+      "assets/remaster/issue-157-marble-v1.png",
+      "assets/remaster/issue-157-pillar-v1.png",
+      "assets/remaster/previews/issue-157_materials.png",
+      "assets/remaster/prompts/issue-157_crystal_v1.txt",
+      "assets/remaster/prompts/issue-157_fire_v1.txt",
+      "assets/remaster/prompts/issue-157_marble_v1.txt",
+      "assets/remaster/prompts/issue-157_pillar_v1.txt",
+      "crates/lemmings-game/examples/hd_terrain_probe.rs",
+      "tools/web/hd_terrain.cjs"
+    ],
+    "scope": "Five normal terrain materials, original one-way object art, lossless rectangle compilation with unchanged v1 bounds, Native/Web120 initial scenes and selected1920 ticks plus7 SDL pairs. No core physics or timing changes. Historical COMP/120-level/G11/performance observations remain historical; #113 deferred and NOT READY unchanged. Special scenes/facilities/effects/UI and support packaging remain follow-up."
   }
 }

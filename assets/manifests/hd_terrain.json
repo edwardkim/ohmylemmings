@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/157",
+  "generator": "built-in image_gen",
+  "new_materials": [
+    {
+      "set": 1,
+      "name": "fire",
+      "source": {
+        "path": "assets/remaster/issue-157-fire-v1.png",
+        "bytes": 2751967,
+        "sha256": "f9474d28d0fd965f59a10519b934329f055f8e460ef92bcef84827c94c64e0c3"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-157_fire_v1.txt",
+        "bytes": 1196,
+        "sha256": "34e54331f6b5c459a359bfbda338e5dedbbb262511b09c8685f12840206f635b"
+      },
+      "width": 1254,
+      "height": 1254,
+      "atlas": 19,
+      "alpha": "opaque"
+    },
+    {
+      "set": 2,
+      "name": "marble",
+      "source": {
+        "path": "assets/remaster/issue-157-marble-v1.png",
+        "bytes": 2677744,
+        "sha256": "d9a6396459a7285c4557b5e34cf6abe30a921ea53d904557ef0aab99a07dde38"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-157_marble_v1.txt",
+        "bytes": 1178,
+        "sha256": "0bf8286f993b3af37e8ef9a78a3cddb42ee1bc1de47228517032ca153f7d6e8c"
+      },
+      "width": 1254,
+      "height": 1254,
+      "atlas": 20,
+      "alpha": "opaque"
+    },
+    {
+      "set": 3,
+      "name": "pillar",
+      "source": {
+        "path": "assets/remaster/issue-157-pillar-v1.png",
+        "bytes": 2971032,
+        "sha256": "b30f4fb8042e90d94c0cd98dba90f5617a598c0f5d5792611868fccab1c363a8"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-157_pillar_v1.txt",
+        "bytes": 1225,
+        "sha256": "be720a27d9ce559c22c622ab26073a6619c2c9eb11cb76787f627a79375dae54"
+      },
+      "width": 1254,
+      "height": 1254,
+      "atlas": 21,
+      "alpha": "opaque"
+    },
+    {
+      "set": 4,
+      "name": "crystal",
+      "source": {
+        "path": "assets/remaster/issue-157-crystal-v1.png",
+        "bytes": 2798974,
+        "sha256": "9c460f24a16c2a019d2f6715ee08fc37887423431281adab5721178592d7c459"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-157_crystal_v1.txt",
+        "bytes": 1220,
+        "sha256": "ddbc6faf5f3ec6e66e6f7c5ac0e3906a08487521e96dc176d5991d016d233629"
+      },
+      "width": 1254,
+      "height": 1254,
+      "atlas": 22,
+      "alpha": "opaque"
+    }
+  ],
+  "legacy_material": {
+    "set": 0,
+    "path": "assets/remaster/issue-144-rock-v1.png"
+  },
+  "policy": "Original masks/steel/bricks remain authoritative. Original one-way object graphics retain direction/phase, clipping and triggers. Four special scenes keep original artwork. No per-piece redesign or complete terrain remaster claim.",
+  "validation": {
+    "status": "PASS",
+    "pack": {
+      "bytes": 109503312,
+      "sha256": "6f1561f12318b4fe62e3cb53088146ac97822b3fb2d86df7197310512cb7d744",
+      "atlases": 23,
+      "frames": 366,
+      "actor_frames": 337,
+      "materials": 5
+    },
+    "lossless": {
+      "previous_frames": 362,
+      "exact_rgba_samples": 26313649,
+      "source_pngs_unchanged": true
+    },
+    "original_catalog": {
+      "scenes": 120,
+      "normal_sets": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "special_selectors": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "one_way_scenes": 14,
+      "paired_cases": 16,
+      "paired_ticks": 1920,
+      "canvas_frames": 352,
+      "native_wasm_final_states_equal": true,
+      "mode_state_masks_audio_equal": true
+    },
+    "native_sdl": {
+      "pairs": 7,
+      "states": 847,
+      "equal_files_per_pair": 20
+    },
+    "regression": {
+      "wasm_synthetic_cases": 33,
+      "runs": 66,
+      "states": 11960,
+      "canvas_readbacks": 6877,
+      "hd_natural_cases": 13,
+      "hd_states": 7593,
+      "hd_frames": 821,
+      "restored_native_frames": 337,
+      "asset_canvas_frames": 337
+    },
+    "ui": {
+      "fun01_rescued": 10,
+      "skills": 8,
+      "fullscreen": true,
+      "actor_click": true
+    },
+    "proofs": [
+      {
+        "path": "assets/local/issue-157-review/pack.json",
+        "bytes": 26705,
+        "sha256": "1c37879bbae65f598016726afc41752a203f885fa81f98bd3ba451f3fbe97850"
+      },
+      {
+        "path": "assets/local/issue-157-review/lossless.json",
+        "bytes": 390,
+        "sha256": "606604f41a3fb0deae7456899f22e0d51e8cc80d37efb190a6458bec705f0426"
+      },
+      {
+        "path": "assets/local/issue-157-review/native-terrain-final.jsonl",
+        "bytes": 200794,
+        "sha256": "cad2ad59eeb8c15b841fbf4dea9b9334a5af2e27d6655b34e43f6ebbe938ce73"
+      },
+      {
+        "path": "assets/local/issue-157-review/native-sdl.json",
+        "bytes": 735,
+        "sha256": "e1c1be40307dce0eb37f7662d29829f575ae755a024a270a6d6220b45b81e7a9"
+      },
+      {
+        "path": "assets/local/issue-157-review/web-terrain/terrain-check.json",
+        "bytes": 27764,
+        "sha256": "bfc08283ae7af682e6307e1482046c684273cd4ab742d7f61bcd21ee6260d706"
+      },
+      {
+        "path": "assets/local/issue-157-review/asset-canvas-final/summary.json",
+        "bytes": 395,
+        "sha256": "c5ee0f657c8ef6c36085425672a5b233dd94f4b209c33ffb4eb65fea5ef4ee04"
+      },
+      {
+        "path": "assets/local/issue-157-review/product-ui/product-check.json",
+        "bytes": 998,
+        "sha256": "d7eccdc8573995333135b6e0683cf0cc30c7519d13f4742b411abf19a2aa701c"
+      },
+      {
+        "path": "assets/local/issue-157-review/web-regression/summary.json",
+        "bytes": 7929,
+        "sha256": "d579e8e064aabe5a73d39a92d2259d48dfac526ef7a652bda133d96fd4930878"
+      },
+      {
+        "path": "assets/local/issue-157-review/pack-native.json",
+        "bytes": 134,
+        "sha256": "4aee311707111fa29952066f297f3fa627a5a139551d9ea0fa39e1b6c7c97842"
+      },
+      {
+        "path": "assets/local/issue-157-review/characters-native.json",
+        "bytes": 196,
+        "sha256": "722da49167c1bd468ab343e14a4ae4e5484368dbf19385f34c9cfd2006c0d4ae"
+      },
+      {
+        "path": "assets/local/issue-157-review/legacy-pack.json",
+        "bytes": 131,
+        "sha256": "af88b7d1a9c968191cfa006c65d6a2e479db4e424c7b325aab6b314657bc7235"
+      }
+    ],
+    "scope": "Initial120-scene coverage and selected120-tick pairs; 7 SDL120-tick pairs and Fun01 Web UI completion. Not all-level playthrough, performance qualification, per-piece redesign, full remaster or a public deployment."
+  },
+  "full_remaster_ready": false,
+  "preview": {
+    "path": "assets/remaster/previews/issue-157_materials.png",
+    "bytes": 214811,
+    "sha256": "b2b081075831b308c45daedc935345bd3cfb15e29b349413b85733e844ef4e06"
+  }
+}

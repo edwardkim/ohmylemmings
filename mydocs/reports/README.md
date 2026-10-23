@@ -132,3 +132,5 @@
 - [#151 HD-04 실제 Native/Web HD 미리보기](issue-151_hd_integration.md).
 
 - [#154 HD-05a 캐릭터 전체 프레임](issue-154_hd_actors.md)
+
+- [#157 HD-05b 일반 지형 재질·무손실 팩](issue-157_hd_terrain.md)

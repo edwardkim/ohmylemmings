@@ -177,6 +177,38 @@
       "height": 821,
       "alpha": "sprite",
       "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-157-fire-v1.png",
+      "bytes": 2751967,
+      "sha256": "f9474d28d0fd965f59a10519b934329f055f8e460ef92bcef84827c94c64e0c3",
+      "width": 1254,
+      "height": 1254,
+      "alpha": "opaque"
+    },
+    {
+      "path": "assets/remaster/issue-157-marble-v1.png",
+      "bytes": 2677744,
+      "sha256": "d9a6396459a7285c4557b5e34cf6abe30a921ea53d904557ef0aab99a07dde38",
+      "width": 1254,
+      "height": 1254,
+      "alpha": "opaque"
+    },
+    {
+      "path": "assets/remaster/issue-157-pillar-v1.png",
+      "bytes": 2971032,
+      "sha256": "b30f4fb8042e90d94c0cd98dba90f5617a598c0f5d5792611868fccab1c363a8",
+      "width": 1254,
+      "height": 1254,
+      "alpha": "opaque"
+    },
+    {
+      "path": "assets/remaster/issue-157-crystal-v1.png",
+      "bytes": 2798974,
+      "sha256": "9c460f24a16c2a019d2f6715ee08fc37887423431281adab5721178592d7c459",
+      "width": 1254,
+      "height": 1254,
+      "alpha": "opaque"
     }
   ],
   "provenance": [
@@ -289,6 +321,26 @@
       "path": "assets/remaster/prompts/issue-154_vapor_v1.txt",
       "bytes": 1113,
       "sha256": "14b47dc1ad2747eeec4172c8ffbbf8d9b4fb3c8b6c1e0858455c5daee2a45556"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-157_fire_v1.txt",
+      "bytes": 1196,
+      "sha256": "34e54331f6b5c459a359bfbda338e5dedbbb262511b09c8685f12840206f635b"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-157_marble_v1.txt",
+      "bytes": 1178,
+      "sha256": "0bf8286f993b3af37e8ef9a78a3cddb42ee1bc1de47228517032ca153f7d6e8c"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-157_pillar_v1.txt",
+      "bytes": 1225,
+      "sha256": "be720a27d9ce559c22c622ab26073a6619c2c9eb11cb76787f627a79375dae54"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-157_crystal_v1.txt",
+      "bytes": 1220,
+      "sha256": "ddbc6faf5f3ec6e66e6f7c5ac0e3906a08487521e96dc176d5991d016d233629"
     }
   ],
   "frames": [
@@ -8586,6 +8638,86 @@
         10,
         46
       ]
+    },
+    {
+      "key": {
+        "material": 1
+      },
+      "atlas": 19,
+      "rect": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "display": [
+        256,
+        256
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "key": {
+        "material": 2
+      },
+      "atlas": 20,
+      "rect": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "display": [
+        256,
+        256
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "key": {
+        "material": 3
+      },
+      "atlas": 21,
+      "rect": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "display": [
+        256,
+        256
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "key": {
+        "material": 4
+      },
+      "atlas": 22,
+      "rect": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "display": [
+        256,
+        256
+      ],
+      "anchor": [
+        0,
+        0
+      ]
     }
   ],
   "required": [
@@ -10729,6 +10861,18 @@
         22,
         13
       ]
+    },
+    {
+      "material": 1
+    },
+    {
+      "material": 2
+    },
+    {
+      "material": 3
+    },
+    {
+      "material": 4
     }
   ],
   "production_144": {
@@ -10956,7 +11100,7 @@
       27
     ],
     "actor_frames": 81,
-    "source_fallback": "all missing actor frames, unremastered objects/effects, other themes or one-way terrain",
+    "source_fallback": "all missing actor frames, unremastered objects/effects, special scenes or absent terrain material",
     "remaining_actor_animations": 21,
     "remaining_actor_frames": 256,
     "contract": "mydocs/reports/issue-151_hd_integration.md",
@@ -11117,5 +11261,19 @@
       ]
     },
     "scope": "Reorder immutable selected poses only. Miner strike is down at1/2 then recovers/lifts; Basher extends during2..5 in each16-phase cycle. No core clock/mask/input changes."
+  },
+  "packing": "rectangles-v1",
+  "production_157": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/157",
+    "terrain_sets": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "packing": "lossless referenced rectangles with copied one-pixel gutters; source PNG samples unchanged",
+    "source_fallback": "special scenes and absent material keys; other facilities/effects/UI still original",
+    "full_remaster_ready": false
   }
 }

@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 201170,
-      "sha256": "9e19b951796f3ed52255529d9a1c196a8cf1d1bdabb4f1f6cebf25519eb344eb",
+      "bytes": 206154,
+      "sha256": "37aeb0077f9119b53c2a32dc8bf50b75e8be7a15611bc87643b0b464b3e2f905",
       "id": "compatibility"
     },
     {
@@ -11040,5 +11040,15 @@
       "id": "compatibility"
     },
     "scope": "Update current actor asset/source inventory only; historical observations/NOT READY and #113 deferred performance stay unchanged. No new all-level/performance qualification."
+  },
+  "source_maintenance_157": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/157",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 201170,
+      "sha256": "9e19b951796f3ed52255529d9a1c196a8cf1d1bdabb4f1f6cebf25519eb344eb",
+      "id": "compatibility"
+    },
+    "scope": "Update current terrain/packing asset and source inventory only; historical observations/NOT READY and #113 deferred performance stay unchanged. No new all-level/performance qualification."
   }
 }

@@ -41,3 +41,16 @@
 | vapor | [PNG](issue-154-vapor-v1.png) | [prompt](prompts/issue-154_vapor_v1.txt) | 14 |
 
 [28동작 연락표](previews/issue-154_actors.png)는 실제 브라우저 Canvas 캡처이고 [우산 SDL 장면](previews/issue-154_native_floater.png)은 자체 합성 지형의 실제 Native 출력이다. 원본 캡처는 공개하지 않는다. 캐릭터 키의 누락 없음은 전체 리마스터 완료와 다르며 다른 테마/시설/효과/글꼴과 지원 배포는 HD-05 후속/HD-06이다.128MiB/32atlas 한계로 확장한 팩을 사용하려면 현재 Native/Web 빌드를 사용한다. 기존 v1 소형 팩은 계속 읽을 수 있다.
+
+## #157 HD-05b 일반 지형 재질
+
+일반 세트0~4에 HD 재질을 연결하고 원본 일방통행 화살표를 유지했다. 아래4장과 기존 [세트0 암석](issue-144-rock-v1.png)을 사용한다. built-in image_gen으로 생성했으며 PNG 샘플은 수정/재표본화하지 않았다.
+
+| 세트 | PNG | 정확한 생성 프롬프트 |
+|---|---|---|
+| 1 · 화산암 | [PNG](issue-157-fire-v1.png) | [prompt](prompts/issue-157_fire_v1.txt) |
+| 2 · 대리석 | [PNG](issue-157-marble-v1.png) | [prompt](prompts/issue-157_marble_v1.txt) |
+| 3 · 사암 | [PNG](issue-157-pillar-v1.png) | [prompt](prompts/issue-157_pillar_v1.txt) |
+| 4 · 결정 | [PNG](issue-157-crystal-v1.png) | [prompt](prompts/issue-157_crystal_v1.txt) |
+
+[반복 재질 검토 화면](previews/issue-157_materials.png)은 실제 자산 Canvas 캡처다. [출처/해시·검증](../manifests/hd_terrain.json)과 [결과/재현](../../mydocs/reports/issue-157_hd_terrain.md)을 참고한다. 런타임 팩은 참조 사각형의 RGBA를 그대로 재배치해23atlas366자산/109,503,312바이트로 정리했다. 제작 PNG와 manifest의 원본 좌표는 보존한다. 원본 지형 형상은 유지하며273개 조각별 재디자인·특수4장면·나머지 시설/효과/전체 UI·지원 배포는 후속이다.

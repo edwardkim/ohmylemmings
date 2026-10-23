@@ -609,7 +609,7 @@
       "object_count": 11,
       "frame_count": 111,
       "preview_count": 11,
-      "hd_status": "not_started"
+      "hd_status": "HD material preview; original piece geometry preserved; facilities/effects partially original (#157)"
     },
     {
       "set": 1,
@@ -617,7 +617,7 @@
       "object_count": 11,
       "frame_count": 97,
       "preview_count": 11,
-      "hd_status": "not_started"
+      "hd_status": "HD material preview; original piece geometry preserved; facilities/effects partially original (#157)"
     },
     {
       "set": 2,
@@ -625,7 +625,7 @@
       "object_count": 10,
       "frame_count": 98,
       "preview_count": 10,
-      "hd_status": "not_started"
+      "hd_status": "HD material preview; original piece geometry preserved; facilities/effects partially original (#157)"
     },
     {
       "set": 3,
@@ -633,7 +633,7 @@
       "object_count": 11,
       "frame_count": 118,
       "preview_count": 11,
-      "hd_status": "not_started"
+      "hd_status": "HD material preview; original piece geometry preserved; facilities/effects partially original (#157)"
     },
     {
       "set": 4,
@@ -641,7 +641,7 @@
       "object_count": 11,
       "frame_count": 116,
       "preview_count": 11,
-      "hd_status": "not_started"
+      "hd_status": "HD material preview; original piece geometry preserved; facilities/effects partially original (#157)"
     }
   ],
   "special_scenes": [
@@ -769,7 +769,7 @@
     "Generated panel omits release-rate and Nuke controls; production must implement every specified panel command."
   ],
   "next_implementation": [
-    "HD-05b five terrain themes/special scenes and remaining facilities/effects/UI",
+    "HD-05c four special scenes and remaining facilities/effects/UI",
     "HD-06 whole equivalence/support packaging/source notice checks"
   ],
   "validation": {
@@ -819,5 +819,12 @@
     "full_remaster_ready": false,
     "scope": "All28 original character animation slots and337 logical frames mapped; new256 source poses selected. Other themes/facilities/effects/UI still partial.",
     "manifest": "assets/manifests/hd_actors.json"
+  },
+  "followup_157": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/157",
+    "manifest": "assets/manifests/hd_terrain.json",
+    "scope": "All five normal terrain sets use HD materials with original masks; original one-way object art remains. Four special scenes retain original images. Not a per-piece terrain redesign.",
+    "runtime_ready": true,
+    "full_remaster_ready": false
   }
 }

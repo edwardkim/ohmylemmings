@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HD 자산 미리보기 · #154</title>
+<title>HD 자산 미리보기 · #157</title>
 <style>
 body{margin:0;background:#142026;color:#e7efea;font:16px system-ui,sans-serif}main{max-width:1040px;margin:auto;padding:28px}h1{font-size:28px;margin:0 0 8px}h2{font-size:20px}p{color:#b8c9c1;line-height:1.6}button,select,input{font:inherit}button,select{background:#263b40;color:#fff;border:1px solid #57716a;border-radius:6px;padding:8px 12px}label{display:inline-flex;gap:8px;align-items:center;margin:8px 12px 8px 0}.stage{max-width:1000px;background:repeating-conic-gradient(#25343c 0 25%,#30424a 0 50%) 0/24px 24px;border:1px solid #557069;border-radius:12px;overflow:hidden;margin:20px 0}canvas{display:block;max-width:100%;height:auto}output{font-variant-numeric:tabular-nums}#frames,#icons{display:flex;gap:8px;flex-wrap:wrap}#frames canvas{background:#22363b;border:1px solid #536b68;border-radius:6px}#icons figure{margin:0;background:#22363b;border:1px solid #536b68;border-radius:6px;text-align:center;width:112px;padding:6px 0}#icons canvas{margin:auto}figcaption{font-size:13px;margin-top:4px}details{margin-top:20px}code{overflow-wrap:anywhere}
 </style><main>
@@ -14,6 +14,9 @@ body{margin:0;background:#142026;color:#e7efea;font:16px system-ui,sans-serif}ma
 <p>왼쪽은 HD 표시 크기, 오른쪽은 확대 확인용입니다. 십자선은 발 또는 시설 배치 기준점입니다. 암석 도형은 미리보기 배경이며 게임 충돌 지형이 아닙니다.</p>
 <div id="frames"></div>
 <h2>패널 아이콘 · 실제 버튼 순서</h2><div id="icons"></div>
+<h2>일반 지형 5테마 · 반복 재질 검토</h2>
+<canvas id="materials" width="1000" height="250" aria-label="5개 지형 재질"></canvas>
+<p>각 열은 같은 재질을 반복한 자산 미리보기입니다. 실제 게임에서는 원본 지형 마스크·강철·벽돌과 시설 화살표를 유지합니다. 특수 배경은 원본 그림을 사용합니다.</p>
 <details><summary>제작 범위와 확인 사항</summary><p id="details"></p><p>새 동작의 크기·위상과 시설 문의 실제 통과 위치는 HD 게임 통합에서 검토합니다. 글자·숫자·선택/비활성 테두리·미니맵은 실제 상태로 표시합니다. 이 페이지의 재생은 게임 틱·충돌·진행 검증이 아닙니다.</p></details>
 <p id="status" role="status">자산을 불러오는 중…</p>
 </main>
@@ -48,6 +51,8 @@ try {
  const iconNames=['slower','faster','climber','floater','bomber','blocker','builder','basher','miner','digger','pause','nuke','restart'];
  const iconLabels=['속도 −','속도 +','등반','우산','폭탄','막기','계단','수평 굴착','대각 굴착','수직 굴착','일시정지','전체 폭발','재시작'];
  for(let i=0;i<iconNames.length;i++){const frame=manifest.frames.find(f=>f.key.icon===iconNames[i]);if(!frame)continue;const figure=document.createElement('figure'),canvas=document.createElement('canvas'),caption=document.createElement('figcaption');canvas.width=80;canvas.height=76;canvas.setAttribute('aria-label',iconNames[i]);drawSprite(canvas.getContext('2d'),frame,40,38);caption.textContent=iconLabels[i];figure.append(canvas,caption);$('icons').append(figure);}
+ const mc=$('materials').getContext('2d');
+ for(let set=0;set<5;set++){const f=manifest.frames.find(f=>f.key.material===set);if(!f)continue;const [x,y,w,h]=f.rect;for(let ty=0;ty<2;ty++)for(let tx=0;tx<2;tx++)mc.drawImage(images[f.atlas],x,y,w,h,set*200+tx*96,32+ty*96,96,96);mc.fillStyle='#e7efea';mc.font='15px system-ui';mc.fillText(['0 · 흙/암석','1 · 화산암','2 · 대리석','3 · 사암','4 · 결정'][set],set*200,20);}
  $('play').onclick=()=>{playing=!playing;$('play').textContent=playing?'일시정지':'재생';};
  $('frame').oninput=()=>{playing=false;$('play').textContent='재생';index=Number($('frame').value);draw();};
  $('animation').onchange=()=>{index=0;$('frame').max=String(current().frames.length-1);last=-1;draw();};$('background').onchange=draw;

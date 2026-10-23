@@ -216,3 +216,5 @@ cargo run -p lemmings-desktop --release --locked --offline -- --hd
 [구현·검증·남은 범위](../../mydocs/reports/issue-151_hd_integration.md)를 참고하세요. 현재 저사양 호스트의60fps 검증은 재개하지 않습니다.
 
 [#154 전체 캐릭터 대응](../../mydocs/reports/issue-154_hd_actors.md)의 새 팩은119,548,732바이트입니다. 현재 빌드와 `make hd-assets`로 준비하며 기존64MiB/16atlas 제한의 이전 실행 파일은 새 팩을 읽지 못합니다. 전체 지원 플랫폼 HD 패키징은 HD-06 후속입니다.
+
+[#157 일반5지형 재질](../../mydocs/reports/issue-157_hd_terrain.md)을 연결하고 팩을109,503,312바이트로 정리했습니다. 현재 빌드/`make hd-assets`를 사용하세요. 원본 일방통행 화살표와 특수4배경을 유지합니다. 전체 HD 지원 패키징은 후속입니다.

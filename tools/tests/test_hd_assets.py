@@ -81,7 +81,7 @@ class HdAssetsTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);m=self.fixture(root)
             for key,value in [('key',dict(actor=[0,8])),('key',dict(actor=[28,0])),
-                ('key',dict(material=1)),('atlas',1),('rect',[1,0,2,2]),('rect',[0,0,0,2]),
+                ('key',dict(material=5)),('atlas',1),('rect',[1,0,2,2]),('rect',[0,0,0,2]),
                 ('display',[0,60]),('anchor',[5000,60])]:
                 changed=json.loads(json.dumps(m));changed['frames'][0][key]=value
                 with self.assertRaises(AssetError):compile_pack(changed,root=root)
@@ -222,6 +222,60 @@ class HdAssetsTests(unittest.TestCase):
             self.assertEqual(row['cell'],cell,(slot,frame))
             bound=next(r for r in pack['frames'] if r['key'].get('actor')==[slot,frame])
             self.assertEqual((bound['atlas'],bound['rect']),(group['atlas'],row['rect']))
+
+    def test_five_material_ids_are_bounded_and_keep_the_legacy_rock_key(self):
+        from tools.hd_assets import key_fields
+        for theme in range(5):
+            self.assertEqual(key_fields({'material':theme}),(1,theme,0))
+        for invalid in [-1,5,True,'1']:
+            with self.assertRaises(AssetError):key_fields({'material':invalid})
+
+    def test_rectangle_packing_preserves_every_sample_and_reuses_duplicate_rectangles(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);m=self.fixture(root)
+            rgba=bytes(v for y in range(16) for x in range(16) for v in [x,y,70,255])
+            p=root/'art.png';p.write_bytes(png(16,16,raw=b''.join(b'\0'+rgba[y*64:(y+1)*64] for y in range(16))))
+            m['atlases'][0].update(bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest(),width=16,height=16)
+            m['frames']=[dict(key={'actor':[0,i]},atlas=0,rect=rect,display=[96,60],anchor=[48,60])
+                         for i,rect in enumerate([[2,3,2,3],[10,9,3,2],[2,3,2,3]])]
+            m['packing']='rectangles-v1'
+            data,report=compile_pack(m,root=root)
+            self.assertEqual(data,compile_pack(m,root=root)[0])
+            w,h,length,checksum,cutoff=struct.unpack_from('<IIIII',data,12)
+            self.assertLess(w*h,16*16)
+            pixels=data[32:32+length];self.assertEqual(zlib.crc32(pixels),checksum)
+            packed=[]
+            for i,f in enumerate(m['frames']):
+                record=struct.unpack_from('<BBHHHIIIIHHhh',data,32+length+i*32)
+                x,y,fw,fh=record[5:9];packed.append([x,y,fw,fh])
+                sx,sy,sw,sh=f['rect'];self.assertEqual((fw,fh),(sw,sh))
+                for row in range(sh):
+                    self.assertEqual(pixels[((y+row)*w+x)*4:((y+row)*w+x+fw)*4],
+                                     rgba[((sy+row)*16+sx)*4:((sy+row)*16+sx+sw)*4])
+                self.assertEqual(record[9:],(96,60,48,60))
+            self.assertEqual(packed[0],packed[2])
+            self.assertEqual(report['packing'],'rectangles-v1')
+            self.assertEqual(p.read_bytes(),png(16,16,raw=b''.join(b'\0'+rgba[y*64:(y+1)*64] for y in range(16))))
+
+    def test_unknown_packing_policy_is_rejected_and_full_image_stays_unchanged(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);m=self.fixture(root);legacy=compile_pack(m,root=root)[0]
+            m['packing']='rectangles-v1';self.assertEqual(compile_pack(m,root=root)[0],legacy)
+            for value in [True,'lossy',{}]:
+                m['packing']=value
+                with self.assertRaises(AssetError):compile_pack(m,root=root)
+
+    def test_relocated_gutters_copy_straight_alpha_and_colored_transparent_samples(self):
+        from tools.hd_assets import pack_rectangles
+        rgba=bytes(v for y in range(16) for x in range(16) for v in [x,y,80,(x+y)*8])
+        w,h,pixels,rects=pack_rectangles(16,16,rgba,{(2,3,2,3),(10,9,3,2)})
+        self.assertLess(w*h,256)
+        for (sx,sy,sw,sh),(dx,dy,_,_) in rects.items():
+            for y in range(-1,sh+1):
+                for x in range(-1,sw+1):
+                    source=((sy+min(max(y,0),sh-1))*16+sx+min(max(x,0),sw-1))*4
+                    dest=((dy+y)*w+dx+x)*4
+                    self.assertEqual(pixels[dest:dest+4],rgba[source:source+4])
 
 
 if __name__=='__main__':unittest.main()

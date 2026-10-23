@@ -148,8 +148,8 @@ def key_fields(key):
     if set(key) == {'icon'}:
         require(isinstance(key['icon'],str) and key['icon'] in ICON_NAMES, 'unknown icon')
         return 3,ICON_NAMES.index(key['icon']),0
-    require(set(key) == {'material'} and type(key['material']) is int and key['material'] == 0, 'unknown material/key')
-    return 1,0,0
+    require(set(key) == {'material'} and type(key['material']) is int and 0 <= key['material'] < 5, 'unknown material/key')
+    return 1,key['material'],0
 
 
 def sprite_bounds(rgba, width, rect, cutoff=0):
@@ -177,50 +177,108 @@ def actor_coverage(frames):
     return dict(animations=sum(all((slot,frame) in actors for frame in range(count)) for slot,count in enumerate(counts)),frames=len(actors),missing=missing)
 
 
+def pack_rectangles(width, height, rgba, rectangles):
+    """Copy referenced rectangles exactly, with one sample-extruded gutter.
+
+    Each source atlas retains its index/cutoff. Only runtime coordinates change;
+    source PNGs, dimensions, anchors and every referenced RGBA sample stay intact.
+    Keep the original atlas whenever shelves would use more space.
+    """
+    original={rect:rect for rect in rectangles}
+    if not rectangles or any(w+2 > MAX_DIM or h+2 > MAX_DIM for x,y,w,h in rectangles):
+        return width,height,rgba,original
+    ordered=sorted(rectangles,key=lambda r:(-r[3],-r[2],r[1],r[0]))
+    minimum=max(r[2]+2 for r in ordered)
+    candidates=sorted({minimum,width,MAX_DIM,*range(((minimum+63)//64)*64,MAX_DIM+1,64)})
+    best=None
+    for limit in candidates:
+        if limit < minimum:continue
+        shelves=[];positions={};used_width=0;used_height=0
+        for rect in ordered:
+            x,y,w,h=rect;pw,ph=w+2,h+2
+            fits=[s for s in shelves if ph <= s[2] and s[0]+pw <= limit]
+            if fits:
+                shelf=min(fits,key=lambda s:(s[2]-ph,limit-s[0]-pw,s[1]))
+            else:
+                shelf=[0,used_height,ph];shelves.append(shelf);used_height+=ph
+            positions[rect]=(shelf[0]+1,shelf[1]+1,w,h)
+            shelf[0]+=pw;used_width=max(used_width,shelf[0])
+        if used_height > MAX_DIM:continue
+        score=(used_width*used_height,used_width,used_height)
+        if best is None or score < best[0]:best=(score,positions)
+    if best is None or best[0][0] >= width*height:return width,height,rgba,original
+    (_,packed_width,packed_height),positions=best
+    pixels=bytearray(packed_width*packed_height*4)
+    for (sx,sy,w,h),(dx,dy,_,_) in positions.items():
+        for row in range(-1,h+1):
+            start=((sy+min(max(row,0),h-1))*width+sx)*4
+            samples=rgba[start:start+w*4]
+            target=((dy+row)*packed_width+dx-1)*4
+            pixels[target:target+(w+2)*4]=samples[:4]+samples+samples[-4:]
+    return packed_width,packed_height,bytes(pixels),positions
+
+
 def compile_pack(manifest, *, root=ROOT):
     require(isinstance(manifest,dict) and type(manifest.get('schema_version')) is int and manifest['schema_version'] == 1, 'manifest schema')
     atlases = manifest.get('atlases'); frames = manifest.get('frames')
     require(isinstance(atlases,list) and 1 <= len(atlases) <= MAX_ATLASES, 'atlas count')
     require(isinstance(frames,list) and 1 <= len(frames) <= 4096, 'frame count')
+    packing=manifest.get('packing','source-v1')
+    require(packing in ('source-v1','rectangles-v1'), 'unknown packing policy')
     coverage=actor_coverage(frames)
     require(type(manifest.get('complete_actors',False)) is bool, 'complete actors policy')
     if manifest.get('complete_actors',False):require(not coverage['missing'], 'incomplete actor coverage')
     provenance = manifest.get('provenance',[])
     require(isinstance(provenance,list) and len(provenance) <= 128, 'provenance list')
     for pin in provenance: read_pin(pin,root)
-    output = bytearray(b'LHDPAK01'+struct.pack('<HH',len(atlases),len(frames)))
-    images = []; atlas_report = []
+    dimensions = []
     for atlas in atlases:
-        data = read_pin(atlas,root); w,h,rgba = decode_png(data)
-        require([w,h] == [integer(atlas.get('width'),1,MAX_DIM),integer(atlas.get('height'),1,MAX_DIM)], 'atlas dimensions')
-        alpha = rgba[3::4]
-        cutoff = integer(atlas.get('alpha_cutoff',0),0,254)
+        require(isinstance(atlas,dict), 'atlas record')
+        dimensions.append((integer(atlas.get('width'),1,MAX_DIM),integer(atlas.get('height'),1,MAX_DIM)))
+        integer(atlas.get('alpha_cutoff',0),0,254)
         require(atlas.get('alpha') in ['sprite','opaque'], 'alpha policy')
-        if atlas['alpha'] == 'opaque': require(all(a == 255 for a in alpha), 'opaque atlas has transparency')
-        else: require(min(alpha) <= cutoff < max(alpha), 'sprite atlas must have transparency and visible ink')
-        require(len(output) + 20 + len(rgba) + len(frames)*32 <= MAX_BYTES, 'pack size limit')
-        output.extend(struct.pack('<IIIII',w,h,len(rgba),zlib.crc32(rgba),cutoff)); output.extend(rgba)
-        images.append((w,h,rgba)); atlas_report.append(dict(width=w,height=h,alpha_cutoff=cutoff,rgba_sha256=hashlib.sha256(rgba).hexdigest()))
-    seen = set(); bounds = []
+    seen = set(); bounds = []; records=[]; rectangles=[set() for _ in atlases]
     for entry in frames:
         require(isinstance(entry,dict), 'frame record')
         fields = key_fields(entry.get('key'))
         require(fields not in seen, 'duplicate frame key'); seen.add(fields)
         index = integer(entry.get('atlas'),0,len(atlases)-1)
         x,y,w,h = numbers(entry.get('rect'),4,0,MAX_DIM)
-        width,height,rgba = images[index]
+        width,height = dimensions[index]
         require(w > 0 and h > 0 and x+w <= width and y+h <= height, 'frame rectangle')
         display = numbers(entry.get('display'),2,1,MAX_DIM)
         anchor = numbers(entry.get('anchor'),2,-MAX_DIM,MAX_DIM)
-        if atlases[index]['alpha'] == 'sprite': bounds.append(dict(key=entry['key'],bbox=sprite_bounds(rgba,width,[x,y,w,h],atlases[index].get('alpha_cutoff',0))))
-        output.extend(struct.pack('<BBHHHIIIIHHhh',*fields,index,0,x,y,w,h,*display,*anchor))
+        rectangles[index].add((x,y,w,h))
+        records.append((fields,index,(x,y,w,h),display,anchor))
     if 'required' in manifest:
         require(isinstance(manifest['required'],list) and len(manifest['required']) <= 4096, 'required keys')
         required = [key_fields(key) for key in manifest['required']]
         require(len(set(required)) == len(required) and set(required) == seen, 'required coverage differs')
+    output = bytearray(b'LHDPAK01'+struct.pack('<HH',len(atlases),len(frames)))
+    atlas_report=[];mappings=[]
+    # Decode one source at a time rather than retaining up to32 full PNGs.
+    for index,atlas in enumerate(atlases):
+        data=read_pin(atlas,root);width,height,rgba=decode_png(data)
+        require((width,height)==dimensions[index], 'atlas dimensions')
+        alpha=rgba[3::4];cutoff=atlas.get('alpha_cutoff',0)
+        if atlas['alpha']=='opaque':require(all(a==255 for a in alpha), 'opaque atlas has transparency')
+        else:
+            require(min(alpha)<=cutoff<max(alpha), 'sprite atlas must have transparency and visible ink')
+            for entry in frames:
+                if entry['atlas']==index:bounds.append(dict(key=entry['key'],bbox=sprite_bounds(rgba,width,entry['rect'],cutoff)))
+        if packing=='rectangles-v1':w,h,pixels,mapping=pack_rectangles(width,height,rgba,rectangles[index])
+        else:w,h,pixels,mapping=width,height,rgba,{r:r for r in rectangles[index]}
+        require(len(output) + 20 + len(pixels) + len(frames)*32 <= MAX_BYTES, 'pack size limit')
+        output.extend(struct.pack('<IIIII',w,h,len(pixels),zlib.crc32(pixels),cutoff));output.extend(pixels)
+        mappings.append(mapping)
+        atlas_report.append(dict(width=w,height=h,source_width=width,source_height=height,alpha_cutoff=cutoff,
+                                 rgba_sha256=hashlib.sha256(pixels).hexdigest(),source_rgba_sha256=hashlib.sha256(rgba).hexdigest()))
+    for fields,index,rect,display,anchor in records:
+        output.extend(struct.pack('<BBHHHIIIIHHhh',*fields,index,0,*mappings[index][rect],*display,*anchor))
     pack = bytes(output)
     return pack,dict(status='PASS',atlases=atlas_report,frames=len(frames),actor_coverage=coverage,sprite_bounds=bounds,
-                     bytes=len(pack),sha256=hashlib.sha256(pack).hexdigest(),pixel_policy='unchanged RGB, straight alpha RGBA8; sRGB interpretation')
+                     bytes=len(pack),sha256=hashlib.sha256(pack).hexdigest(),packing=packing,
+                     pixel_policy='unchanged referenced RGB/straight alpha RGBA8; sRGB interpretation; optional lossless rectangle relocation')
 
 
 def runtime_pack(*,root=ROOT):
