@@ -129,6 +129,8 @@ pub struct Renderer {
     source_portals: Vec<(u8, u8, u16)>,
     hd_exit_effects: Vec<(u8, u8, u16)>,
     source_exit_effects: Vec<(u8, u8, u16)>,
+    hd_hazards: Vec<(u8, u8, u16)>,
+    source_hazards: Vec<(u8, u8, u16)>,
     epoch: u64,
 }
 impl Renderer {
@@ -158,6 +160,8 @@ impl Renderer {
             source_portals: Vec::new(),
             hd_exit_effects: Vec::new(),
             source_exit_effects: Vec::new(),
+            hd_hazards: Vec::new(),
+            source_hazards: Vec::new(),
             epoch: 0,
         }
     }
@@ -211,8 +215,10 @@ impl Renderer {
         let originals = portal_keys(&self.source_portals);
         let effects = portal_keys(&self.hd_exit_effects);
         let original_effects = portal_keys(&self.source_exit_effects);
+        let hazards = portal_keys(&self.hd_hazards);
+        let original_hazards = portal_keys(&self.source_hazards);
         format!(
-            "{{\"version\":1,\"width\":1920,\"height\":1080,\"actor_frames_available\":{},\"portal_frames_available\":{},\"exit_effect_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"special_panorama\":{},\"terrain_material\":{},\"one_way_objects\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}],\"hd_portal_frames\":[{portals}],\"original_portal_frames\":[{originals}],\"hd_exit_effect_frames\":[{effects}],\"original_exit_effect_frames\":[{original_effects}]}}",
+            "{{\"version\":1,\"width\":1920,\"height\":1080,\"actor_frames_available\":{},\"portal_frames_available\":{},\"hazard_frames_available\":{},\"exit_effect_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"special_panorama\":{},\"terrain_material\":{},\"one_way_objects\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}],\"hd_portal_frames\":[{portals}],\"original_portal_frames\":[{originals}],\"hd_exit_effect_frames\":[{effects}],\"original_exit_effect_frames\":[{original_effects}],\"hd_hazard_frames\":[{hazards}],\"original_hazard_frames\":[{original_hazards}]}}",
             self.frames
                 .iter()
                 .filter(|f| matches!(f.key, AssetKey::Actor { .. }))
@@ -221,6 +227,7 @@ impl Renderer {
                 .iter()
                 .filter(|f| matches!(f.key, AssetKey::Object { id: 0 | 1, .. }))
                 .count(),
+            self.frames.iter().filter(|f| matches!(f.key, AssetKey::Object { set, id, .. } if super::assets::hazard_frame_count(set, id).is_some())).count(),
             self.frames.iter().filter(|f| matches!(f.key, AssetKey::Object { set, id, .. } if super::assets::exit_effect_frame_count(set, id).is_some())).count(),
             self.terrain_rebuilds,
             self.material.is_none() && self.special.is_none(),
@@ -256,6 +263,8 @@ impl Renderer {
         self.source_portals.clear();
         self.hd_exit_effects.clear();
         self.source_exit_effects.clear();
+        self.hd_hazards.clear();
+        self.source_hazards.clear();
         self.missing.clear();
         self.width = assets.width;
         self.height = assets.height;
@@ -541,6 +550,8 @@ impl Renderer {
         self.source_portals.clear();
         self.hd_exit_effects.clear();
         self.source_exit_effects.clear();
+        self.hd_hazards.clear();
+        self.source_hazards.clear();
         let mask = run.session.render_terrain();
         let mut occupied = mask.to_vec();
         let mut compact = 0;
@@ -597,6 +608,14 @@ impl Renderer {
                         self.hd_exit_effects.push(key);
                     } else {
                         self.source_exit_effects.push(key);
+                    }
+                }
+                if super::assets::hazard_frame_count(o.set, p.id).is_some() {
+                    let key = (o.set, p.id, frame as u16);
+                    if hd.is_some() {
+                        self.hd_hazards.push(key);
+                    } else {
+                        self.source_hazards.push(key);
                     }
                 }
                 let (w, h, ax, ay) = hd.map_or(
@@ -1117,6 +1136,93 @@ mod tests {
         legacy.frame(&run).unwrap();
         assert_eq!(legacy.source_exit_effects, vec![(4, 8, 0)]);
         assert!(legacy.hd_exit_effects.is_empty());
+    }
+
+    #[test]
+    fn hazards_follow_all_84_disk_frames_without_mutating_state_or_audio() {
+        let mut renderer = Renderer::fallback();
+        for set in 0..5 {
+            for id in 0..16 {
+                if let Some(count) = super::super::assets::hazard_frame_count(set, id) {
+                    for frame in 0..count {
+                        let atlas = renderer.textures.len() as u16;
+                        renderer.textures.push(Texture::new(
+                            1,
+                            1,
+                            vec![set * 40, id * 20, frame as u8 * 13, 255],
+                        ));
+                        renderer.frames.push(AssetFrame {
+                            key: AssetKey::Object { set, id, frame },
+                            atlas,
+                            rect: [0, 0, 1, 1],
+                            display: [12, 6],
+                            anchor: [0, 0],
+                        });
+                    }
+                }
+            }
+        }
+        renderer.base = renderer.textures.len();
+        let mut seen = std::collections::BTreeSet::new();
+        for (set, id, count) in [
+            (0, 5, 8),
+            (1, 5, 8),
+            (1, 7, 8),
+            (1, 8, 10),
+            (1, 10, 10),
+            (2, 5, 8),
+            (2, 9, 16),
+            (3, 5, 8),
+            (4, 6, 8),
+        ] {
+            let mut run = run();
+            renderer.reset(&run.assets).unwrap();
+            {
+                object(&mut renderer, id, false);
+                let o = renderer.objects.last_mut().unwrap();
+                o.set = set;
+                o.placement.flags.no_overwrite = false;
+                o.meta.animation_flags = 2;
+                o.meta.frame_count = count;
+                o.meta.trigger_effect = if id == 5 || set == 4 { 5 } else { 6 };
+                o.frames = vec![vec![255, 0, 0, 255, 0, 255, 0, 255]; count as usize];
+            }
+            for _ in 0..count * 2 {
+                let state = crate::diagnostics::state(&run.session);
+                let sound = run.sound.diagnostic_json();
+                renderer.frame(&run).unwrap();
+                assert!(renderer.source_hazards.is_empty());
+                assert_eq!(renderer.hd_hazards.len(), 1);
+                for &(theme, id, frame) in &renderer.hd_hazards {
+                    assert_eq!(
+                        u64::from(frame),
+                        (run.session.scheduler.step_state().iteration + 2) % u64::from(count)
+                    );
+                    let o = renderer
+                        .objects
+                        .iter()
+                        .find(|o| o.placement.id == id)
+                        .unwrap();
+                    assert_eq!(
+                        &renderer.textures[o.texture].rgba[..4],
+                        &[theme * 40, id * 20, frame as u8 * 13, 255]
+                    );
+                    seen.insert((theme, id, frame));
+                }
+                assert_eq!(state, crate::diagnostics::state(&run.session));
+                assert_eq!(sound, run.sound.diagnostic_json());
+                run.tick().unwrap();
+            }
+        }
+        assert_eq!(seen.len(), 84);
+        assert!(renderer.info().contains("\"hazard_frames_available\":84"));
+        let run = run();
+        let mut legacy = Renderer::fallback();
+        legacy.reset(&run.assets).unwrap();
+        object(&mut legacy, 6, false);
+        legacy.frame(&run).unwrap();
+        assert_eq!(legacy.source_hazards, vec![(4, 6, 0)]);
+        assert!(legacy.hd_hazards.is_empty());
     }
 
     fn run() -> LevelRun {

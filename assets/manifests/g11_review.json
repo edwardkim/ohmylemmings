@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 226257,
-      "sha256": "743bc4572c5eb5f326fd61d60e488cb25cbfbdfb59751ec4468e8a98b2758d5e",
+      "bytes": 233772,
+      "sha256": "0aba2fe8383fd5ad7aa0abc0d5bbd0e2bccb01e2fc0f8625d52911ae5763650d",
       "id": "compatibility"
     },
     {
@@ -11096,5 +11096,15 @@
       "id": "compatibility"
     },
     "scope": "Current special HD assets/renderer/tooling proof inventory only; no new all-level completion or performance qualification."
+  },
+  "source_maintenance_175": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/175",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 226257,
+      "sha256": "743bc4572c5eb5f326fd61d60e488cb25cbfbdfb59751ec4468e8a98b2758d5e",
+      "id": "compatibility"
+    },
+    "scope": "Current hazard HD assets/renderer/tooling proof inventory only; no new all-level completion or performance qualification."
   }
 }

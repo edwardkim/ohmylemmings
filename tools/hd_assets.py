@@ -135,6 +135,9 @@ def source_counts():
 
 
 EXIT_EFFECT_PROFILES=((0,7),(1,6),(2,6),(3,6),(4,8))
+# GROUND0O..4O effect5/6 disk frames; exact records pinned in hd_hazards.json.
+HAZARD_PROFILES={(0,5):8,(1,5):8,(1,7):8,(1,8):10,(1,10):10,
+                 (2,5):8,(2,9):16,(3,5):8,(4,6):8}
 
 
 def key_fields(key):
@@ -145,7 +148,7 @@ def key_fields(key):
         return 0,slot,frame
     if set(key) == {'object'}:
         theme,id,frame = numbers(key['object'],3,0,65535)
-        count = 6 if (theme,id) in EXIT_EFFECT_PROFILES else {0:1, 1:10}.get(id) if theme < 5 else None
+        count = HAZARD_PROFILES.get((theme,id), 6 if (theme,id) in EXIT_EFFECT_PROFILES else {0:1, 1:10}.get(id) if theme < 5 else None)
         require(count is not None and frame < count, 'unsupported object/frame')
         return 2,theme*16+id,frame
     if set(key) == {'icon'}:
@@ -197,7 +200,7 @@ def portal_coverage(frames):
 
 
 def exit_effect_coverage(frames):
-    """Pure decorative exit flames; arrow/hazard object keys remain unsupported."""
+    """Pure decorative exit flames, separate from hazard coverage."""
     found=set()
     for entry in frames:
         require(isinstance(entry,dict), 'frame record')
@@ -206,6 +209,19 @@ def exit_effect_coverage(frames):
             found.add((slot//16,slot%16,frame))
     missing=[[theme,id,frame] for theme,id in EXIT_EFFECT_PROFILES
              for frame in range(6) if (theme,id,frame) not in found]
+    return dict(frames=len(found),missing=missing)
+
+
+def hazard_coverage(frames):
+    """Effect5 water and effect6 lethal effects, retaining original disk counts."""
+    found=set()
+    for entry in frames:
+        require(isinstance(entry,dict), 'frame record')
+        kind,slot,frame=key_fields(entry.get('key'))
+        if kind==2 and (slot//16,slot%16) in HAZARD_PROFILES:
+            found.add((slot//16,slot%16,frame))
+    missing=[[theme,id,frame] for (theme,id),count in HAZARD_PROFILES.items()
+             for frame in range(count) if (theme,id,frame) not in found]
     return dict(frames=len(found),missing=missing)
 
 
@@ -390,6 +406,9 @@ def compile_pack(manifest, *, root=ROOT):
     effects=exit_effect_coverage(frames)
     require(type(manifest.get('complete_exit_effects',False)) is bool, 'complete exit effects policy')
     if manifest.get('complete_exit_effects',False):require(not effects['missing'], 'incomplete exit effect coverage')
+    hazards=hazard_coverage(frames)
+    require(type(manifest.get('complete_hazards',False)) is bool, 'complete hazards policy')
+    if manifest.get('complete_hazards',False):require(not hazards['missing'], 'incomplete hazard coverage')
     provenance = manifest.get('provenance',[])
     require(isinstance(provenance,list) and len(provenance) <= 128, 'provenance list')
     for pin in provenance: read_pin(pin,root)
@@ -418,7 +437,7 @@ def compile_pack(manifest, *, root=ROOT):
         require(len(set(required)) == len(required) and set(required) == seen, 'required coverage differs')
     if packing=='compact-v1':
         pack,report=compile_compact(atlases,frames,records,dimensions,root)
-        report.update(status='PASS',frames=len(frames),actor_coverage=coverage,portal_coverage=portals,exit_effect_coverage=effects,bytes=len(pack),sha256=hashlib.sha256(pack).hexdigest(),packing=packing,pixel_policy=report['compaction']['policy'])
+        report.update(status='PASS',frames=len(frames),actor_coverage=coverage,portal_coverage=portals,exit_effect_coverage=effects,hazard_coverage=hazards,bytes=len(pack),sha256=hashlib.sha256(pack).hexdigest(),packing=packing,pixel_policy=report['compaction']['policy'])
         return pack,report
     output = bytearray(b'LHDPAK01'+struct.pack('<HH',len(atlases),len(frames)))
     atlas_report=[];mappings=[]
@@ -442,7 +461,7 @@ def compile_pack(manifest, *, root=ROOT):
     for fields,index,rect,display,anchor in records:
         output.extend(struct.pack('<BBHHHIIIIHHhh',*fields,index,0,*mappings[index][rect],*display,*anchor))
     pack = bytes(output)
-    return pack,dict(status='PASS',atlases=atlas_report,frames=len(frames),actor_coverage=coverage,portal_coverage=portals,exit_effect_coverage=effects,sprite_bounds=bounds,
+    return pack,dict(status='PASS',atlases=atlas_report,frames=len(frames),actor_coverage=coverage,portal_coverage=portals,exit_effect_coverage=effects,hazard_coverage=hazards,sprite_bounds=bounds,
                      bytes=len(pack),sha256=hashlib.sha256(pack).hexdigest(),packing=packing,
                      pixel_policy='unchanged referenced RGB/straight alpha RGBA8; sRGB interpretation; optional lossless rectangle relocation')
 

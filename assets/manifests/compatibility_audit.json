@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 180458,
-      "sha256": "51aadc0203ec25e0057914a100e0a9c5128b7891d45c9cccc53f40fe857eabdc"
+      "bytes": 180632,
+      "sha256": "e56de939c213cba7f3c0171957e0663bc53f94dff7f4aa39a9ef4c2e1207ed9a"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -586,8 +586,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/assets.rs",
-      "bytes": 13413,
-      "sha256": "8a74f99736573b4c323c24565417d7d8a2e29601f2adb3a48de4cfc4b4d18a17"
+      "bytes": 13916,
+      "sha256": "aa85fd3058a5fcee2028e2c4a4eae19bfc628aa3b076e937b93dee2ff9974ea9"
     },
     {
       "path": "crates/lemmings-game/src/hd/layout.rs",
@@ -646,8 +646,8 @@
     },
     {
       "path": "crates/lemmings-game/tests/hd_assets.rs",
-      "bytes": 13210,
-      "sha256": "fe0cb85f65df0e4288ccdb01ccbaaa58a191a30435f58eff4c0d7ef97c4af34e"
+      "bytes": 14109,
+      "sha256": "b43d0d4352eef7a8ec4c8576cbe7512ef0cc437e8b00855f75a8fe1b8ae17b8e"
     },
     {
       "path": "crates/lemmings-game/tests/hd_presentation.rs",
@@ -1491,8 +1491,8 @@
     },
     {
       "path": "tools/hd_assets.py",
-      "bytes": 28907,
-      "sha256": "a1e6f98636535dd32a66a39b04c6ef11ce1d5417799a8434f01dcd468b19153a"
+      "bytes": 29979,
+      "sha256": "b885c5048912abd8b46f5f659ecd7ee13ae8f567302dd1bd5437d8722d4d9dc2"
     },
     {
       "path": "tools/hd_assets_preview.html",
@@ -1936,8 +1936,8 @@
     },
     {
       "path": "tools/tests/test_hd_assets.py",
-      "bytes": 18539,
-      "sha256": "15bf95167e7c7b025efdebbc251f8f3d9872bc27f49fde610066d2ecf9b412fc"
+      "bytes": 20006,
+      "sha256": "822bdcffba77cac1aa7f420c4e810cf531cd9bf6dc440fe40c0c1d815b8d2e5c"
     },
     {
       "path": "tools/tests/test_initial_reference.py",
@@ -2321,8 +2321,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/scene.rs",
-      "bytes": 55247,
-      "sha256": "e81c4de12d1bb1c05bcc9cb40078a71aa4761f4fb3a173ee8f3ef9c338e60763"
+      "bytes": 59880,
+      "sha256": "12ae1216fb3c52be82cb6cfb6cd3b037e97a2ee85ebe617d5866f5907aa70b97"
     },
     {
       "path": "crates/lemmings-game/tests/hd_scene.rs",
@@ -2561,8 +2561,8 @@
     },
     {
       "path": "tools/web/hd_terrain.cjs",
-      "bytes": 6984,
-      "sha256": "94995389c47b5ad2c9bfd2a33d99188d2a764b8f4a9166354035d3e327309268"
+      "bytes": 7250,
+      "sha256": "baf3eb1f101f14ed95dd988907054dd251dabded0aa7e3935ec93007f48c5405"
     },
     {
       "path": "assets/manifests/hd_portals.json",
@@ -2803,6 +2803,131 @@
       "path": "assets/remaster/previews/issue-172_special.png",
       "bytes": 726381,
       "sha256": "185cce85764cd020fe7c22dc36d1eec5c9ecba4f14bc5458c1f1b581198fa8e6"
+    },
+    {
+      "path": "assets/manifests/hd_hazards.json",
+      "bytes": 26467,
+      "sha256": "f3805263dabde6d2c78a8579296abafe974a39207f40a2997d2234f6ffb1b931"
+    },
+    {
+      "path": "assets/manifests/remaster_hazards.json",
+      "bytes": 33647,
+      "sha256": "7fc0224c9de4929981b4806da17d488f37edaa9a1b3a49824d8eadb104d301df"
+    },
+    {
+      "path": "assets/remaster/issue-175-blue-water-v1.png",
+      "bytes": 925398,
+      "sha256": "818a9622894d1d58cc2ad0f292c35b29a4ae606d1fe4e483e70fd10fa680521e"
+    },
+    {
+      "path": "assets/remaster/issue-175-fire-pit-v1.png",
+      "bytes": 1017377,
+      "sha256": "4b85c30b2e68a689382d93522a2cc2f438db3008723f957bbd4e1cfc346d4a62"
+    },
+    {
+      "path": "assets/remaster/issue-175-green-water-v1.png",
+      "bytes": 1396465,
+      "sha256": "d3a6eda5ed81469a6d2ccd3d88b3118ed2c5d65b1879259292e6bbe5b06c1fdf"
+    },
+    {
+      "path": "assets/remaster/issue-175-ice-water-v1.png",
+      "bytes": 1254402,
+      "sha256": "7eb89cb19b0cab39d40be429c3c85bd0c7e7590a1eac1cf0f09975dacd9b161a"
+    },
+    {
+      "path": "assets/remaster/issue-175-jet-left-v1.png",
+      "bytes": 1035939,
+      "sha256": "5ead58d3633b3593ac07c22472fbbd67a9d164c3bbf2a199fa250827d7694f43"
+    },
+    {
+      "path": "assets/remaster/issue-175-jet-right-v1.png",
+      "bytes": 717202,
+      "sha256": "5251d61538cc28c84d5f29f34d8c767c0a9aa67e0d08ad8af30a5813c4a7cbc7"
+    },
+    {
+      "path": "assets/remaster/issue-175-lava-v1.png",
+      "bytes": 1135513,
+      "sha256": "2ad4c9a57a3739f6a5e553ad91c69cf30e0a7058bc0f6e65093be3813fddc7e6"
+    },
+    {
+      "path": "assets/remaster/issue-175-spinner-v1.png",
+      "bytes": 1583015,
+      "sha256": "a3502626ffa45148b850fa1a0c5d23bdccfdf8cd2bb360750b723fe429c580fa"
+    },
+    {
+      "path": "assets/remaster/previews/issue-175_web_fire.png",
+      "bytes": 154934,
+      "sha256": "abf718b584983e29423b628f283811a0d37c27708f66f7809695e3f3589b865f"
+    },
+    {
+      "path": "assets/remaster/previews/issue-175_web_spinner.png",
+      "bytes": 156952,
+      "sha256": "aa0f14dd6a277772b5fb72d22093f7bef4baac3554559b0c6bd0b65d270a623b"
+    },
+    {
+      "path": "assets/remaster/previews/issue-175_web_water.png",
+      "bytes": 140314,
+      "sha256": "52e362fa5ac37a2e231fd0bd2300895202795d21c7de2e56fad6b073bc03da25"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-175_blue_water_v1.txt",
+      "bytes": 1180,
+      "sha256": "fff1d88690d6fc77a64750a14b2ad340686e7b78a504fe44dfb97df9f8df868d"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-175_fire_pit_v1.txt",
+      "bytes": 697,
+      "sha256": "d6177e3de92ef4af56f52582c01220fce748f208b783ca943523b839dc445cf1"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-175_green_water_v1.txt",
+      "bytes": 784,
+      "sha256": "15233f8de12be61b0b1109c394eda5bd1119b6061dc95a54c7b5c3023fa52e5a"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-175_ice_water_v1.txt",
+      "bytes": 677,
+      "sha256": "de9ebbfcce2531ad3e49de64ba4815156fee0f4308c504cb8af0f4ba657f6960"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-175_jet_left_v1.txt",
+      "bytes": 644,
+      "sha256": "b2a1a9bd4579c0a770c044d37e55cc5fb4089728af9700701f3e3ca6e8397384"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-175_jet_right_v1.txt",
+      "bytes": 666,
+      "sha256": "ec8619fc64790974473a71849ec59f2e30fe6752628eb2b6042f5ccec54fcbbb"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-175_lava_v1.txt",
+      "bytes": 907,
+      "sha256": "0f093f84ad3ede895373d155a580f5f4783de4a5262b761eb0ff5670712b6433"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-175_spinner_v1.txt",
+      "bytes": 934,
+      "sha256": "713075f5765c375d7a5532b3bc397488b9891f5fb9d50002bc4fa5bd3e14c9f4"
+    },
+    {
+      "path": "tools/check_hd_hazards.py",
+      "bytes": 3181,
+      "sha256": "669886af8f9cd55537664464aabb74fe866ea57458935ad2fbbec16ffff35eb1"
+    },
+    {
+      "path": "tools/hazard_fixture.py",
+      "bytes": 2424,
+      "sha256": "7033bc3375ad8e93433d1f3b0ca54eb05ad26293d8aa9ba2408645d798c679a7"
+    },
+    {
+      "path": "tools/tests/test_hazard_fixture.py",
+      "bytes": 790,
+      "sha256": "564372d363b113fdeff3498230c83c5a0c61b885bfe428f5ca3f9ed8beed2158"
+    },
+    {
+      "path": "tools/web/hd_hazards.cjs",
+      "bytes": 6296,
+      "sha256": "92fb76e51adf9dfdf7e3042379ceb1a13c1fe76c28fded1e8a5d03c65f0cc7c0"
     }
   ],
   "evidence": [
@@ -6508,5 +6633,74 @@
       "assets/remaster/previews/issue-172_special.png"
     ],
     "scope": "Four generated special panoramas, bounded typed keys and selected catalog extension. Renderer color only with original collision mask and world placement preserved. No simulation/audio synthesis changes. Historical evidence remains historical; BGM165 deferred,113 NOT READY unchanged."
+  },
+  "source_impact_175": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/175",
+    "baseline": "02f824329a3fede022a85aa46cbdaaf400da1690",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/remaster_pack.json",
+        "bytes": 180458,
+        "sha256": "51aadc0203ec25e0057914a100e0a9c5128b7891d45c9cccc53f40fe857eabdc"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/assets.rs",
+        "bytes": 13413,
+        "sha256": "8a74f99736573b4c323c24565417d7d8a2e29601f2adb3a48de4cfc4b4d18a17"
+      },
+      {
+        "path": "crates/lemmings-game/tests/hd_assets.rs",
+        "bytes": 13210,
+        "sha256": "fe0cb85f65df0e4288ccdb01ccbaaa58a191a30435f58eff4c0d7ef97c4af34e"
+      },
+      {
+        "path": "tools/hd_assets.py",
+        "bytes": 28907,
+        "sha256": "a1e6f98636535dd32a66a39b04c6ef11ce1d5417799a8434f01dcd468b19153a"
+      },
+      {
+        "path": "tools/tests/test_hd_assets.py",
+        "bytes": 18539,
+        "sha256": "15bf95167e7c7b025efdebbc251f8f3d9872bc27f49fde610066d2ecf9b412fc"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/scene.rs",
+        "bytes": 55247,
+        "sha256": "e81c4de12d1bb1c05bcc9cb40078a71aa4761f4fb3a173ee8f3ef9c338e60763"
+      },
+      {
+        "path": "tools/web/hd_terrain.cjs",
+        "bytes": 6984,
+        "sha256": "94995389c47b5ad2c9bfd2a33d99188d2a764b8f4a9166354035d3e327309268"
+      }
+    ],
+    "added": [
+      "assets/manifests/hd_hazards.json",
+      "assets/manifests/remaster_hazards.json",
+      "assets/remaster/issue-175-blue-water-v1.png",
+      "assets/remaster/issue-175-fire-pit-v1.png",
+      "assets/remaster/issue-175-green-water-v1.png",
+      "assets/remaster/issue-175-ice-water-v1.png",
+      "assets/remaster/issue-175-jet-left-v1.png",
+      "assets/remaster/issue-175-jet-right-v1.png",
+      "assets/remaster/issue-175-lava-v1.png",
+      "assets/remaster/issue-175-spinner-v1.png",
+      "assets/remaster/previews/issue-175_web_fire.png",
+      "assets/remaster/previews/issue-175_web_spinner.png",
+      "assets/remaster/previews/issue-175_web_water.png",
+      "assets/remaster/prompts/issue-175_blue_water_v1.txt",
+      "assets/remaster/prompts/issue-175_fire_pit_v1.txt",
+      "assets/remaster/prompts/issue-175_green_water_v1.txt",
+      "assets/remaster/prompts/issue-175_ice_water_v1.txt",
+      "assets/remaster/prompts/issue-175_jet_left_v1.txt",
+      "assets/remaster/prompts/issue-175_jet_right_v1.txt",
+      "assets/remaster/prompts/issue-175_lava_v1.txt",
+      "assets/remaster/prompts/issue-175_spinner_v1.txt",
+      "tools/check_hd_hazards.py",
+      "tools/hazard_fixture.py",
+      "tools/tests/test_hazard_fixture.py",
+      "tools/web/hd_hazards.cjs"
+    ],
+    "scope": "Eight generated hazard sheets,84 object frames, bounded typed keys and selected catalog extension. Original triggers/loop/order and simulation masks preserved; synthetic SDL/WASM death courses. No simulation/audio synthesis changes. Historical evidence remains historical; BGM165 deferred,113 NOT READY unchanged."
   }
 }
