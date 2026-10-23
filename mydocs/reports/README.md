@@ -144,3 +144,5 @@
 - [#169 테마별 HD 로딩](issue-169_hd_loading.md)
 
 - [#172 특수4장면 HD](issue-172_hd_special.md)
+
+- [#175 물·불 위험 요소 HD](issue-175_hd_hazards.md):9객체84프레임·SDL/WASM 사망 코스와 카탈로그 검증.

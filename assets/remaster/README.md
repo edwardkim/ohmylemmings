@@ -78,3 +78,20 @@
 [#169 테마별 HD 로딩](../../mydocs/reports/issue-169_hd_loading.md): 공통 자산과 현재 테마만 선택하여18~19atlas/약94.2~100.5MB를 로딩합니다. `make hd-assets`/`make web`으로 카탈로그를 갱신하며 Native는 `--hd-pack FILE_OR_DIRECTORY`도 지원합니다. 기존 v1 팩과 원본 모드는 유지합니다.
 
 [#172 특수4장면](../../mydocs/reports/issue-172_hd_special.md)의 [용](issue-172-special-0-v1.png)·[용암](issue-172-special-1-v1.png)·[유적](issue-172-special-2-v1.png)·[숲](issue-172-special-3-v1.png)은 built-in image_gen 출력 그대로이며 중앙 panorama rectangle을 사용한다. [4프롬프트/출처/해시](../manifests/hd_special.json), [확장 manifest](../manifests/remaster_special.json). 원본 지형 mask를 보존한다.
+
+## #175 HD-05g 물·불 위험 요소
+
+물5종40프레임과 effect6 위험 장치4종44프레임에 새8PNG를 연결한다. 세트0/3의 같은 청색 물 그림은 공유한다. 선택 PNG는 built-in image_gen의 출력 그대로이며 RGB/alpha를 편집하거나 재표본화하지 않는다. 표시 시 cutoff127로 배경의 낮은 alpha 잔여를 제외한다. [전체 프롬프트·출처·해시·프레임 좌표](../manifests/hd_hazards.json), [확장 팩](../manifests/remaster_hazards.json), [작업 계획](../../mydocs/plans/issue-175_hd_hazards.md)을 따른다. 물은 연결 경계에1 HD픽셀씩 여유를 두며 원본 trigger는 그대로다.
+
+| 자산 | PNG | 생성 프롬프트 |
+|---|---|---|
+| 청색 물0/3 | [PNG](issue-175-blue-water-v1.png) | [prompt](prompts/issue-175_blue_water_v1.txt) |
+| 용암 | [PNG](issue-175-lava-v1.png) | [prompt](prompts/issue-175_lava_v1.txt) |
+| 화로 | [PNG](issue-175-fire-pit-v1.png) | [prompt](prompts/issue-175_fire_pit_v1.txt) |
+| 녹색 물 | [PNG](issue-175-green-water-v1.png) | [prompt](prompts/issue-175_green_water_v1.txt) |
+| 얼음 물 | [PNG](issue-175-ice-water-v1.png) | [prompt](prompts/issue-175_ice_water_v1.txt) |
+| 오른쪽 분사기 | [PNG](issue-175-jet-right-v1.png) | [prompt](prompts/issue-175_jet_right_v1.txt) |
+| 왼쪽 분사기 | [PNG](issue-175-jet-left-v1.png) | [prompt](prompts/issue-175_jet_left_v1.txt) |
+| 회전 위험 장치 | [PNG](issue-175-spinner-v1.png) | [prompt](prompts/issue-175_spinner_v1.txt) |
+
+자체 합성 코스를 실제 Web Canvas로 재생한 [물](previews/issue-175_web_water.png)·[분사기](previews/issue-175_web_fire.png)·[회전 장치](previews/issue-175_web_spinner.png) 캡처다. 원본 레벨의 캡처는 ignored에 보존한다. 기계 함정·횃불/기타 효과·글꼴/전체 UI와 전체 리마스터 인수는 후속이다.

@@ -66,7 +66,10 @@ pub const fn object_frame_count(set: u8, id: u8) -> Option<u16> {
     match (set, id) {
         (0..=4, 0) => Some(1),
         (0..=4, 1) => Some(10),
-        _ => exit_effect_frame_count(set, id),
+        _ => match exit_effect_frame_count(set, id) {
+            Some(count) => Some(count),
+            None => hazard_frame_count(set, id),
+        },
     }
 }
 
@@ -74,6 +77,17 @@ pub const fn object_frame_count(set: u8, id: u8) -> Option<u16> {
 pub const fn exit_effect_frame_count(set: u8, id: u8) -> Option<u16> {
     match (set, id) {
         (0, 7) | (1..=3, 6) | (4, 8) => Some(6),
+        _ => None,
+    }
+}
+
+/// GROUND effect5/6 profiles; disk records and triggers are pinned in hd_hazards.json.
+/// These keys only select artwork and never alter the simulation's hazard rules.
+pub const fn hazard_frame_count(set: u8, id: u8) -> Option<u16> {
+    match (set, id) {
+        (0..=3, 5) | (4, 6) | (1, 7) => Some(8),
+        (1, 8 | 10) => Some(10),
+        (2, 9) => Some(16),
         _ => None,
     }
 }

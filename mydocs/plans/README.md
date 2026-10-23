@@ -52,3 +52,5 @@
 - [#169 테마별 HD 로딩](issue-169_hd_loading.md)
 
 - [#172 특수4장면 HD](issue-172_hd_special.md)
+
+- [#175 물·불 HD](issue-175_hd_hazards.md)

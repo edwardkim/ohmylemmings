@@ -297,7 +297,7 @@ fn expanded_character_pack_accepts_32_small_atlases_and_rejects_33() {
 }
 
 #[test]
-fn decorative_exit_flames_keep_six_frames_without_accepting_arrow_or_hazard_keys() {
+fn decorative_exit_flames_keep_six_frames_without_accepting_arrow_or_trap_keys() {
     assert_eq!(
         AssetPack::parse(&fixture())
             .unwrap()
@@ -407,4 +407,37 @@ fn special_panorama_keys_are_bounded_and_do_not_alias_materials() {
     bytes[40] = 4;
     bytes[41] = 4;
     assert_eq!(AssetPack::parse(&bytes).unwrap_err(), AssetError::Key);
+}
+
+#[test]
+fn hazard_keys_accept_exact_disk_frames_and_reject_first_out_of_range() {
+    let profiles = [
+        (0, 5, 8),
+        (1, 5, 8),
+        (1, 7, 8),
+        (1, 8, 10),
+        (1, 10, 10),
+        (2, 5, 8),
+        (2, 9, 16),
+        (3, 5, 8),
+        (4, 6, 8),
+    ];
+    for (set, id, count) in profiles {
+        for frame in 0u16..=count {
+            let mut b = fixture();
+            b[40] = 2;
+            b[41] = set * 16 + id;
+            b[42..44].copy_from_slice(&frame.to_le_bytes());
+            if frame < count {
+                assert!(
+                    AssetPack::parse(&b)
+                        .unwrap()
+                        .frame(AssetKey::Object { set, id, frame })
+                        .is_some()
+                );
+            } else {
+                assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
+            }
+        }
+    }
 }
