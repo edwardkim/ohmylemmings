@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HD 자산 미리보기 · #147</title>
+<title>HD 자산 미리보기 · #154</title>
 <style>
 body{margin:0;background:#142026;color:#e7efea;font:16px system-ui,sans-serif}main{max-width:1040px;margin:auto;padding:28px}h1{font-size:28px;margin:0 0 8px}h2{font-size:20px}p{color:#b8c9c1;line-height:1.6}button,select,input{font:inherit}button,select{background:#263b40;color:#fff;border:1px solid #57716a;border-radius:6px;padding:8px 12px}label{display:inline-flex;gap:8px;align-items:center;margin:8px 12px 8px 0}.stage{max-width:1000px;background:repeating-conic-gradient(#25343c 0 25%,#30424a 0 50%) 0/24px 24px;border:1px solid #557069;border-radius:12px;overflow:hidden;margin:20px 0}canvas{display:block;max-width:100%;height:auto}output{font-variant-numeric:tabular-nums}#frames,#icons{display:flex;gap:8px;flex-wrap:wrap}#frames canvas{background:#22363b;border:1px solid #536b68;border-radius:6px}#icons figure{margin:0;background:#22363b;border:1px solid #536b68;border-radius:6px;text-align:center;width:112px;padding:6px 0}#icons canvas{margin:auto}figcaption{font-size:13px;margin-top:4px}details{margin-top:20px}code{overflow-wrap:anywhere}
 </style><main>
 <h1>HD 직업·시설·조작 자산</h1>
-<p>걷기·굴착·계단·폭발과 첫 테마 입출구·13개 조작 아이콘의 제작 검토 화면입니다. 실제 HD 게임 화면 연결은 다음 통합 단계입니다.</p>
+<p>캐릭터28동작337프레임과 첫 테마 입출구·13개 조작 아이콘의 자산 검토 화면입니다. Native/Web HD 게임에서도 같은 팩을 사용합니다.</p>
 <label>동작 <select id="animation"></select></label>
 <button id="play">일시정지</button>
 <label>프레임 <input id="frame" type="range" min="0" max="7" value="0"><output id="number">0</output></label>
@@ -23,7 +23,7 @@ try {
  const response=await fetch('manifest.json');if(!response.ok)throw Error('manifest '+response.status);
  const manifest=await response.json();
  const images=await Promise.all(manifest.atlases.map(async entry=>{const image=new Image();image.src=entry.path;await image.decode();if(!entry.alpha_cutoff)return image;const texture=document.createElement('canvas');texture.width=image.width;texture.height=image.height;const context=texture.getContext('2d',{willReadFrequently:true});context.drawImage(image,0,0);const pixels=context.getImageData(0,0,image.width,image.height);for(let i=3;i<pixels.data.length;i+=4)if(pixels.data[i]<=entry.alpha_cutoff)pixels.data[i]=0;context.putImageData(pixels,0,0);return texture;}));
- const labels={0:'걷기 →',2:'걷기 ←',4:'굴착 ↓',10:'계단 →',11:'계단 ←',26:'Oh No',27:'폭발'};
+ const labels=['걷기 →','점프 →','걷기 ←','점프 ←','굴착 ↓','등반 →','등반 ←','익사','턱 오르기 →','턱 오르기 ←','계단 →','계단 ←','수평 굴착 →','수평 굴착 ←','대각 굴착 →','대각 굴착 ←','낙하 →','낙하 ←','우산 →','우산 ←','추락 착지','구출','사라짐','막기','어깨 으쓱 →','어깨 으쓱 ←','Oh No','폭발'];
  const groups=[];
  for(const entry of manifest.frames){const a=entry.key.actor,o=entry.key.object;if(!a&&!o)continue;const id=a?'actor-'+a[0]:'object-'+o[0]+'-'+o[1];let group=groups.find(g=>g.id===id);if(!group){group={id,label:a?(labels[a[0]]??'동작 '+a[0]):(o[1]===1?'입구 열기':'출구'),frames:[]};groups.push(group);}group.frames.push(entry);}
  for(const group of groups){group.frames.sort((a,b)=>(a.key.actor?.[1]??a.key.object[2])-(b.key.actor?.[1]??b.key.object[2]));const option=document.createElement('option');option.value=group.id;option.textContent=`${group.label} · ${group.frames.length}프레임`;$('animation').append(option);}

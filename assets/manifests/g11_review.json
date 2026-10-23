@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 191771,
-      "sha256": "7249a4684fb9440ce21d294bbac37b93c87c4cd50cf950121f63745e51c24c28",
+      "bytes": 201170,
+      "sha256": "f33838b0f71149ebb5c21c13673e165853911cf3224be3ac7e92206006e9ebc6",
       "id": "compatibility"
     },
     {
@@ -11030,5 +11030,15 @@
       "sha256": "e72cc96ffbbe81c6a9e6edbc9dc4acd6b07351eaa3ebff553114a76f5f81459b"
     },
     "scope": "Refresh HD integration source index. Frozen observations/NOT READY and deferred #113 remain unchanged; no new performance/all-level qualification."
+  },
+  "source_maintenance_154": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/154",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 191771,
+      "sha256": "7249a4684fb9440ce21d294bbac37b93c87c4cd50cf950121f63745e51c24c28",
+      "id": "compatibility"
+    },
+    "scope": "Update current actor asset/source inventory only; historical observations/NOT READY and #113 deferred performance stay unchanged. No new all-level/performance qualification."
   }
 }

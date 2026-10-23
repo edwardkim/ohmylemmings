@@ -11,7 +11,8 @@ import tempfile
 import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
-MAX_BYTES = 64 * 1024 * 1024
+MAX_BYTES = 128 * 1024 * 1024
+MAX_ATLASES = 32
 MAX_PNG = 32 * 1024 * 1024
 MAX_DIM = 4096
 ICON_NAMES = ('climber', 'floater', 'bomber', 'blocker', 'builder', 'basher',
@@ -164,11 +165,26 @@ def sprite_bounds(rgba, width, rect, cutoff=0):
     return bounds
 
 
+def actor_coverage(frames):
+    """Count original logical actor keys, independent of atlas packing/layout."""
+    actors=set()
+    for entry in frames:
+        require(isinstance(entry,dict), 'frame record')
+        kind,slot,frame=key_fields(entry.get('key'))
+        if kind==0:actors.add((slot,frame))
+    counts=source_counts()
+    missing=[[slot,frame] for slot,count in enumerate(counts) for frame in range(count) if (slot,frame) not in actors]
+    return dict(animations=sum(all((slot,frame) in actors for frame in range(count)) for slot,count in enumerate(counts)),frames=len(actors),missing=missing)
+
+
 def compile_pack(manifest, *, root=ROOT):
     require(isinstance(manifest,dict) and type(manifest.get('schema_version')) is int and manifest['schema_version'] == 1, 'manifest schema')
     atlases = manifest.get('atlases'); frames = manifest.get('frames')
-    require(isinstance(atlases,list) and 1 <= len(atlases) <= 16, 'atlas count')
+    require(isinstance(atlases,list) and 1 <= len(atlases) <= MAX_ATLASES, 'atlas count')
     require(isinstance(frames,list) and 1 <= len(frames) <= 4096, 'frame count')
+    coverage=actor_coverage(frames)
+    require(type(manifest.get('complete_actors',False)) is bool, 'complete actors policy')
+    if manifest.get('complete_actors',False):require(not coverage['missing'], 'incomplete actor coverage')
     provenance = manifest.get('provenance',[])
     require(isinstance(provenance,list) and len(provenance) <= 128, 'provenance list')
     for pin in provenance: read_pin(pin,root)
@@ -203,7 +219,7 @@ def compile_pack(manifest, *, root=ROOT):
         required = [key_fields(key) for key in manifest['required']]
         require(len(set(required)) == len(required) and set(required) == seen, 'required coverage differs')
     pack = bytes(output)
-    return pack,dict(status='PASS',atlases=atlas_report,frames=len(frames),sprite_bounds=bounds,
+    return pack,dict(status='PASS',atlases=atlas_report,frames=len(frames),actor_coverage=coverage,sprite_bounds=bounds,
                      bytes=len(pack),sha256=hashlib.sha256(pack).hexdigest(),pixel_policy='unchanged RGB, straight alpha RGBA8; sRGB interpretation')
 
 

@@ -192,8 +192,13 @@ impl Renderer {
             .collect::<Vec<_>>()
             .join(",");
         format!(
-            "{{\"version\":1,\"width\":1920,\"height\":1080,\"terrain_rebuilds\":{},\"source_terrain\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}]}}",
-            self.terrain_rebuilds, !self.material
+            "{{\"version\":1,\"width\":1920,\"height\":1080,\"actor_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}]}}",
+            self.frames
+                .iter()
+                .filter(|f| matches!(f.key, AssetKey::Actor { .. }))
+                .count(),
+            self.terrain_rebuilds,
+            !self.material
         )
     }
     pub fn reset(&mut self, assets: &Assets) -> Result<(), Box<dyn Error>> {

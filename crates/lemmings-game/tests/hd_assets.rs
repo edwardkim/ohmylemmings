@@ -210,3 +210,43 @@ fn every_toolbar_icon_resolves_to_the_existing_control_and_minimap_has_no_icon()
         assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
     }
 }
+
+#[test]
+fn every_original_actor_frame_is_required_for_complete_character_coverage() {
+    use lemmings_resources::LemmingAnimationInfo;
+    let partial = fixture();
+    let missing = AssetPack::parse(&partial).unwrap().missing_actor_frames();
+    assert_eq!(missing.len(), 336);
+    assert!(!missing.contains(&(0, 0)));
+    let mut full = fixture();
+    full.truncate(40);
+    full[10..12].copy_from_slice(&337u16.to_le_bytes());
+    for slot in 0..28 {
+        for frame in 0..u16::from(LemmingAnimationInfo::for_slot(slot).unwrap().frame_count) {
+            let mut record = fixture()[40..].to_vec();
+            record[1] = slot as u8;
+            record[2..4].copy_from_slice(&frame.to_le_bytes());
+            full.extend(record);
+        }
+    }
+    assert!(
+        AssetPack::parse(&full)
+            .unwrap()
+            .missing_actor_frames()
+            .is_empty()
+    );
+}
+
+#[test]
+fn expanded_character_pack_accepts_32_small_atlases_and_rejects_33() {
+    let original = fixture();
+    let mut bytes = original[..12].to_vec();
+    bytes[8..10].copy_from_slice(&32u16.to_le_bytes());
+    for _ in 0..32 {
+        bytes.extend(&original[12..40]);
+    }
+    bytes.extend(&original[40..]);
+    assert_eq!(AssetPack::parse(&bytes).unwrap().atlases().len(), 32);
+    bytes[8..10].copy_from_slice(&33u16.to_le_bytes());
+    assert!(AssetPack::parse(&bytes).is_err());
+}

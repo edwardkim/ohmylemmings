@@ -6,7 +6,7 @@ use crate::panel;
 use lemmings_resources::LemmingAnimationInfo;
 use std::fmt;
 
-const MAX_BYTES: usize = 64 * 1024 * 1024;
+const MAX_BYTES: usize = 128 * 1024 * 1024;
 const MAX_DIM: u32 = 4096;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -187,7 +187,7 @@ impl<'a> AssetPack<'a> {
         }
         let atlas_count = r.u16()? as usize;
         let frame_count = r.u16()? as usize;
-        if !(1..=16).contains(&atlas_count) || !(1..=4096).contains(&frame_count) {
+        if !(1..=32).contains(&atlas_count) || !(1..=4096).contains(&frame_count) {
             return Err(AssetError::Limit);
         }
         let mut atlases = Vec::with_capacity(atlas_count);
@@ -287,6 +287,26 @@ impl<'a> AssetPack<'a> {
     }
     pub fn frames(&self) -> &[AssetFrame] {
         &self.frames
+    }
+    /// Original slot/frame keys still absent from this pack. Partial v1 packs
+    /// remain supported; producers can require complete coverage explicitly.
+    pub fn missing_actor_frames(&self) -> Vec<(u8, u16)> {
+        let mut missing = Vec::new();
+        for slot in 0..28 {
+            let info = LemmingAnimationInfo::for_slot(slot).expect("original slot");
+            for frame in 0..u16::from(info.frame_count) {
+                if self
+                    .frame(AssetKey::Actor {
+                        slot: slot as u8,
+                        frame,
+                    })
+                    .is_none()
+                {
+                    missing.push((slot as u8, frame));
+                }
+            }
+        }
+        missing
     }
     /// Missing HD states are explicit: no fabricated frame or silent fallback.
     pub fn frame(&self, key: AssetKey) -> Option<&AssetFrame> {

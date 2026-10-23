@@ -107,3 +107,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 버전·태그·게시 운영은 [#124 릴리즈 정책](plans/issue-124_release_policy.md)을 따릅니다.
 
 [#147 HD-03b 직업·시설·패널 자산](reports/issue-147_hd_actions.md)에서 새65캐릭터 프레임·첫 테마 입출구11프레임·13조작 아이콘과 typed 팩을 준비했다. 현재 후보는7atlas106자산/81캐릭터 프레임이며 실제 HD 게임/GPU·Fun01 통합은 [#151](reports/issue-151_hd_integration.md), 전체 자산 확장은 #137 후속이다.
+
+[#154 HD-05a 캐릭터 전체 프레임](reports/issue-154_hd_actors.md)에서 남은21동작256포즈를 연결해 전체28/337 캐릭터 키와 Native/Web 표시를 로컬 검증했다. 정확한 CI/병합은 #154에 기록하며 다른 테마/시설/효과/글꼴과 지원 HD 배포는 후속이다.

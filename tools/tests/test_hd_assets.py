@@ -189,5 +189,24 @@ class HdAssetsTests(unittest.TestCase):
             (root/'art.png').write_bytes(b'corrupted source')
             with self.assertRaises(AssetError):runtime_pack(root=root)
 
+    def test_complete_actor_contract_requires_all_337_original_frame_keys(self):
+        from tools.hd_assets import actor_coverage, source_counts
+        frames=[dict(key=dict(actor=[slot,frame])) for slot,count in enumerate(source_counts()) for frame in range(count)]
+        self.assertEqual(actor_coverage(frames),dict(animations=28,frames=337,missing=[]))
+        partial=actor_coverage(frames[:-1]);self.assertEqual(partial['missing'],[[27,0]])
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);m=self.fixture(root);m['complete_actors']=True
+            with self.assertRaisesRegex(AssetError,'actor coverage'):compile_pack(m,root=root)
+            m['complete_actors']='yes'
+            with self.assertRaises(AssetError):compile_pack(m,root=root)
+
+    def test_expanded_atlas_count_is_bounded_and_legacy_fixture_still_builds(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);m=self.fixture(root)
+            m['atlases']*=32
+            self.assertEqual(len(compile_pack(m,root=root)[1]['atlases']),32)
+            m['atlases'].append(m['atlases'][0])
+            with self.assertRaises(AssetError):compile_pack(m,root=root)
+
 
 if __name__=='__main__':unittest.main()

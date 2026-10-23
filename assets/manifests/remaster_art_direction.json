@@ -90,9 +90,9 @@
     "special_scenes": 4,
     "ui_families": 19,
     "ui_images": 200,
-    "available_runtime_hd_animations": 7,
-    "available_hd_pack_candidate_animations": 7,
-    "available_hd_pack_candidate_frames": 81,
+    "available_runtime_hd_animations": 28,
+    "available_hd_pack_candidate_animations": 28,
+    "available_hd_pack_candidate_frames": 337,
     "available_hd_pack_candidate_object_frames": 11,
     "available_hd_pack_candidate_control_icons": 13
   },
@@ -126,8 +126,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 1,
+        "frames": 1
+      }
     },
     {
       "slot": 2,
@@ -158,8 +162,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 3,
+        "frames": 1
+      }
     },
     {
       "slot": 4,
@@ -190,8 +198,12 @@
       "foot_y": 12,
       "origin_x": -8,
       "origin_y": -12,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 5,
+        "frames": 8
+      }
     },
     {
       "slot": 6,
@@ -204,8 +216,12 @@
       "foot_y": 12,
       "origin_x": -8,
       "origin_y": -12,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 6,
+        "frames": 8
+      }
     },
     {
       "slot": 7,
@@ -218,8 +234,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 7,
+        "frames": 16
+      }
     },
     {
       "slot": 8,
@@ -232,8 +252,12 @@
       "foot_y": 12,
       "origin_x": -8,
       "origin_y": -12,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 8,
+        "frames": 8
+      }
     },
     {
       "slot": 9,
@@ -246,8 +270,12 @@
       "foot_y": 12,
       "origin_x": -8,
       "origin_y": -12,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 9,
+        "frames": 8
+      }
     },
     {
       "slot": 10,
@@ -296,8 +324,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 12,
+        "frames": 32
+      }
     },
     {
       "slot": 13,
@@ -310,8 +342,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 13,
+        "frames": 32
+      }
     },
     {
       "slot": 14,
@@ -324,8 +360,12 @@
       "foot_y": 13,
       "origin_x": -8,
       "origin_y": -13,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 14,
+        "frames": 24
+      }
     },
     {
       "slot": 15,
@@ -338,8 +378,12 @@
       "foot_y": 13,
       "origin_x": -8,
       "origin_y": -13,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 15,
+        "frames": 24
+      }
     },
     {
       "slot": 16,
@@ -352,8 +396,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 16,
+        "frames": 4
+      }
     },
     {
       "slot": 17,
@@ -366,8 +414,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 17,
+        "frames": 4
+      }
     },
     {
       "slot": 18,
@@ -380,8 +432,12 @@
       "foot_y": 16,
       "origin_x": -8,
       "origin_y": -16,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 18,
+        "frames": 8
+      }
     },
     {
       "slot": 19,
@@ -394,8 +450,12 @@
       "foot_y": 16,
       "origin_x": -8,
       "origin_y": -16,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 19,
+        "frames": 8
+      }
     },
     {
       "slot": 20,
@@ -408,8 +468,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 20,
+        "frames": 16
+      }
     },
     {
       "slot": 21,
@@ -422,8 +486,12 @@
       "foot_y": 13,
       "origin_x": -8,
       "origin_y": -13,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 21,
+        "frames": 8
+      }
     },
     {
       "slot": 22,
@@ -436,8 +504,12 @@
       "foot_y": 14,
       "origin_x": -8,
       "origin_y": -14,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 22,
+        "frames": 14
+      }
     },
     {
       "slot": 23,
@@ -450,8 +522,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 23,
+        "frames": 16
+      }
     },
     {
       "slot": 24,
@@ -464,8 +540,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 24,
+        "frames": 8
+      }
     },
     {
       "slot": 25,
@@ -478,8 +558,12 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "not_started",
-      "runtime_asset": null
+      "hd_status": "integrated_preview",
+      "runtime_asset": {
+        "manifest": "assets/manifests/remaster_pack.json",
+        "slot": 25,
+        "frames": 8
+      }
     },
     {
       "slot": 26,
@@ -685,8 +769,8 @@
     "Generated panel omits release-rate and Nuke controls; production must implement every specified panel command."
   ],
   "next_implementation": [
-    "HD-05 remaining21 actor animations/256 frames and other themes/objects/effects/full UI; refine gameplay scale/pose/terrain contour",
-    "HD-06 full state/mask/input/audio equivalence and supported-package HD delivery/performance on qualified host"
+    "HD-05b five terrain themes/special scenes and remaining facilities/effects/UI",
+    "HD-06 whole equivalence/support packaging/source notice checks"
   ],
   "validation": {
     "status": "PASS",
@@ -728,5 +812,12 @@
     "manifest": "assets/manifests/remaster_pack.json",
     "scope": "Native/Web opt-in partial HD preview; other actor/object/effect art falls back to original. Concept scene remains non-runtime.",
     "full_remaster_ready": false
+  },
+  "followup_154": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/154",
+    "runtime_ready": true,
+    "full_remaster_ready": false,
+    "scope": "All28 original character animation slots and337 logical frames mapped; new256 source poses selected. Other themes/facilities/effects/UI still partial.",
+    "manifest": "assets/manifests/hd_actors.json"
   }
 }
