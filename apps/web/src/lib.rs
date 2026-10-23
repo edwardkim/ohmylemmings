@@ -21,6 +21,8 @@ pub struct WebGame {
     run: LevelRun,
     source: Source,
     pacing: Pacing,
+    hd: Option<lemmings_game::hd::scene::Renderer>,
+    hd_dirty: bool,
 }
 
 #[derive(Clone)]
@@ -72,6 +74,8 @@ impl WebGame {
             run: LevelRun::new_for_level(assets, level, next, pacing).map_err(|e| e.to_string())?,
             source,
             pacing,
+            hd: None,
+            hd_dirty: true,
         })
     }
 
@@ -83,6 +87,7 @@ impl WebGame {
             .sound
             .fresh_generation_after(self.run.sound.generation())
             .map_err(str::to_string)?;
+        replacement.hd = self.hd.take();
         *self = replacement;
         Ok(())
     }
@@ -110,6 +115,8 @@ impl WebGame {
             run,
             source,
             pacing: Pacing::Dos,
+            hd: self.hd.take(),
+            hd_dirty: true,
         };
         Ok(())
     }
@@ -135,6 +142,7 @@ impl WebGame {
             .continue_from(&self.run.sound, false)
             .map_err(|e| e.to_string())?;
         self.run = replacement;
+        self.hd_dirty = true;
         Ok(())
     }
     /// Result-only scene actions never enter the deterministic tick-input log.
@@ -150,6 +158,7 @@ impl WebGame {
         {
             Ok(Some(run)) => {
                 self.run = run;
+                self.hd_dirty = true;
                 Ok(true)
             }
             Ok(None) => Ok(false),
@@ -193,6 +202,72 @@ impl WebGame {
         clicks: f64,
     ) -> Result<String, String> {
         input::event(&mut self.run, kind, x, y, button, buttons, clicks)
+    }
+    /// Optional presentation assets. Construct before replacing a working pack.
+    pub fn load_hd(&mut self, bytes: &[u8]) -> Result<(), String> {
+        let mut renderer =
+            lemmings_game::hd::scene::Renderer::new(bytes).map_err(|e| e.to_string())?;
+        renderer
+            .reset(&self.run.assets)
+            .map_err(|e| e.to_string())?;
+        self.hd = Some(renderer);
+        self.hd_dirty = false;
+        Ok(())
+    }
+    pub fn hd_commands(&mut self) -> Result<Vec<i32>, String> {
+        let renderer = self.hd.as_mut().ok_or("HD assets are not loaded")?;
+        if self.hd_dirty {
+            renderer
+                .reset(&self.run.assets)
+                .map_err(|e| e.to_string())?;
+            self.hd_dirty = false;
+        }
+        Ok(renderer
+            .frame(&self.run)
+            .map_err(|e| e.to_string())?
+            .iter()
+            .flat_map(|c| c.wire())
+            .collect())
+    }
+    pub fn hd_texture_revision(&self, index: u32) -> u32 {
+        self.hd
+            .as_ref()
+            .and_then(|r| r.textures().get(index as usize))
+            .map_or(0, |t| t.revision)
+    }
+    pub fn hd_texture_width(&self, index: u32) -> u32 {
+        self.hd
+            .as_ref()
+            .and_then(|r| r.textures().get(index as usize))
+            .map_or(0, |t| t.width)
+    }
+    pub fn hd_texture_height(&self, index: u32) -> u32 {
+        self.hd
+            .as_ref()
+            .and_then(|r| r.textures().get(index as usize))
+            .map_or(0, |t| t.height)
+    }
+    pub fn hd_texture(&self, index: u32) -> Result<Vec<u8>, String> {
+        self.hd
+            .as_ref()
+            .and_then(|r| r.textures().get(index as usize))
+            .map(|t| t.rgba.clone())
+            .ok_or("HD texture index".into())
+    }
+    pub fn hd_info(&self) -> String {
+        self.hd.as_ref().map_or_else(|| "null".into(), |r| r.info())
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn hd_pointer(
+        &mut self,
+        kind: &str,
+        x: f64,
+        y: f64,
+        button: f64,
+        buttons: f64,
+        clicks: f64,
+    ) -> Result<String, String> {
+        input::hd_event(&mut self.run, kind, x, y, button, buttons, clicks)
     }
     pub fn release_input(&mut self) {
         input::release(&mut self.run);

@@ -21,7 +21,7 @@ from tools.release_version import workspace_version, package_name
 
 WEB_FILES = (
     'index.html', 'app.js', 'audio.js', 'audio-license.html', 'controls.js',
-    'host.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
+    'host.js', 'hd.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
 )
 COMMON_FILES = {'README.md', 'REBUILD.md', 'LGPL-2.1-or-later.txt'}
 PROJECT_LICENSE_FILES = {'LICENSE', 'THIRD_PARTY_NOTICES.txt'}
@@ -100,6 +100,9 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
             files[name] = regular(runtime / name)
             if not name.startswith('pkg/'):
                 require(files[name] == regular(root / 'apps/web/www' / name), f'Stale Web runtime: {name}')
+        if (root/'assets/manifests/remaster_pack.json').exists():
+            require((runtime/'hd-assets.hdp').is_file(),'HD runtime pack is missing; rebuild the Web runtime')
+        if (runtime/'hd-assets.hdp').exists():files['hd-assets.hdp']=regular(runtime/'hd-assets.hdp')
         require(files['pkg/lemmings_web_bg.wasm'][:8] == b'\0asm\1\0\0\0', 'Invalid WebAssembly header')
     else:
         binary = regular(runtime)
@@ -214,6 +217,11 @@ def verify_package(path, root=ROOT):
     if verify_project_license(files, manifest, root):
         allowed |= PROJECT_LICENSE_FILES
     allowed |= set(WEB_FILES) | {'audio-source.json'} if target == 'web' else {'lemmings-desktop'}
+    if target=='web' and 'hd-assets.hdp' in files:
+        try:from .hd_assets import runtime_pack
+        except ImportError:from hd_assets import runtime_pack
+        require(files['hd-assets.hdp']==runtime_pack(root=root),'HD runtime pack differs')
+        allowed.add('hd-assets.hdp')
     full = manifest.get('original_game_data', False)
     require(type(full) is bool, 'Invalid original data marker')
     if full:

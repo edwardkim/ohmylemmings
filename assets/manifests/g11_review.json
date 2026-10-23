@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 185919,
-      "sha256": "7d0321cbbb64aa1788d61f0f8cee2d84e95a79a172529b95e14927168e4e0d6a",
+      "bytes": 191771,
+      "sha256": "7249a4684fb9440ce21d294bbac37b93c87c4cd50cf950121f63745e51c24c28",
       "id": "compatibility"
     },
     {
@@ -18,10 +18,10 @@
       "sha256": "a08fb43ba5be3ebabdddef118f566d27aabbe1ca41ac21fc2c15a142b03b52b2"
     },
     {
-      "id": "display",
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 89425,
-      "sha256": "e72cc96ffbbe81c6a9e6edbc9dc4acd6b07351eaa3ebff553114a76f5f81459b"
+      "bytes": 89941,
+      "sha256": "b16a0fd5afde439a9bb21cd6f89f1e3c03b54b8c0440ef2b9ff02ae7e18b85cc",
+      "id": "display"
     }
   ],
   "web": {
@@ -11014,5 +11014,21 @@
       "sha256": "c98b92266e160e04d2ff5e3507c6de014762ab9ecbf013ab6e38088bfc4d073d"
     },
     "scope": "Refresh current HD asset source index; frozen observations/NOT READY and deferred #113 are unchanged. No new game/performance qualification."
+  },
+  "source_maintenance_151": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/151",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 185919,
+      "sha256": "7d0321cbbb64aa1788d61f0f8cee2d84e95a79a172529b95e14927168e4e0d6a",
+      "id": "compatibility"
+    },
+    "previous_display_pin": {
+      "id": "display",
+      "path": "assets/manifests/display_cadence.json",
+      "bytes": 89425,
+      "sha256": "e72cc96ffbbe81c6a9e6edbc9dc4acd6b07351eaa3ebff553114a76f5f81459b"
+    },
+    "scope": "Refresh HD integration source index. Frozen observations/NOT READY and deferred #113 remain unchanged; no new performance/all-level qualification."
   }
 }

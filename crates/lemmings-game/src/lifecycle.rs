@@ -77,6 +77,18 @@ impl LevelRun {
         })
     }
 
+    /// Explicit live-level retry; result transitions retain their existing guard.
+    pub fn restart(
+        &self,
+        pacing: Pacing,
+        load: impl FnOnce(LevelId) -> Result<(Assets, Option<LevelId>), Box<dyn Error>>,
+    ) -> Result<Self, Box<dyn Error>> {
+        let (assets, next) = load(self.level)?;
+        let mut replacement = Self::new_for_level(assets, self.level, next, pacing)?;
+        replacement.sound.continue_from(&self.sound, false)?;
+        Ok(replacement)
+    }
+
     /// Collect every boundary before a host batches or renders another update.
     pub fn tick(&mut self) -> Result<(), Box<dyn Error>> {
         self.session.tick()?;

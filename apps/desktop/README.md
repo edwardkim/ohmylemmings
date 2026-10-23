@@ -201,3 +201,16 @@ ZIP을 모두 풀고 `OhMyLemmings.exe`를 더블클릭하면 원본 Fun01을 �
 `python3 tools/reference_assets.py fetch` 후 `make package-linux`. Ubuntu24.04/glibc2.39+ x86_64용 tar.gz를 모두 풀고 SDL2 런타임(`sudo apt-get install libsdl2-2.0-0`)이 있는 환경에서 `./lemmings-desktop`을 실행합니다. 실행 파일 옆 data의 원본 Fun01을 기본으로 열며 현재 작업 폴더와 무관합니다. `--difficulty tricky --level 1` 등으로120개를 고릅니다. 일반 cargo 실행 파일 옆에 data가 없으면 기존 개발 assets/local 경로를 유지합니다. [검증 범위](../../mydocs/reports/issue-122_linux_web_full_game.md).
 
 Mac 인증서가 없는 현재 Homebrew 후속 경로는 자체 tap의 소스 빌드 Formula입니다. 기존 `.app` Cask는 격리/Gatekeeper를 우회하지 않으며 공식 Cask는 기본 보안 검사에 통과해야 합니다. [공식 신뢰 모델](https://docs.brew.sh/Homebrew-Security-and-Supply-Chain#casks-have-a-different-trust-model). 아직 tap은 게시하지 않았습니다.
+
+## HD 미리보기
+
+첫 테마 재질·입출구·7개 캐릭터 애니메이션과 새 패널을 사용하는 개발용 HD 모드입니다. 아직 제작하지 않은 동작/불꽃 등은 원본 스프라이트로 표시합니다. 전체 리마스터 완료나 새 공개 릴리즈를 뜻하지 않습니다.
+
+```sh
+make hd-assets
+cargo run -p lemmings-desktop --release --locked --offline -- --hd
+```
+
+기존 원본 데이터 준비가 필요합니다. F8로 원본/HD, F11로 전체화면을 전환합니다. `--fullscreen`으로 전체화면 시작, `--hd-pack FILE`로 별도 팩을 지정할 수 있습니다. HD 게임은1920×960/패널120을 비율 유지해 표시하며8직업·생성속도·Pause/Nuke·재시작·미니맵을 같은 게임 상태에 연결합니다. 원본 RGB stream/기존 성능 모드는 원본 표시 계약을 유지하며 HD는 일반 `--capture`를 사용합니다.
+
+[구현·검증·남은 범위](../../mydocs/reports/issue-151_hd_integration.md)를 참고하세요. 현재 저사양 호스트의60fps 검증은 재개하지 않습니다.

@@ -1,4 +1,4 @@
-//! Shared game asset assembly, CPU rendering and scene transitions.
+//! Shared game assets, original CPU rendering, HD draw lists and scene transitions.
 //!
 //! Hosts supply named bytes, tick the shared session, translate their input to
 //! logical coordinates/commands, and present RGB frames. This crate performs no

@@ -2,8 +2,8 @@
   "schema_version": 1,
   "issue": "https://github.com/edwardkim/ohmylemmings/issues/138",
   "parent": "https://github.com/edwardkim/ohmylemmings/issues/137",
-  "status": "art_direction_candidate",
-  "runtime_ready": false,
+  "status": "partial_runtime_preview",
+  "runtime_ready": true,
   "style": "soft_handpainted_2d",
   "style_decision": "First candidate; user preference not yet reported",
   "target": {
@@ -90,7 +90,7 @@
     "special_scenes": 4,
     "ui_families": 19,
     "ui_images": 200,
-    "available_runtime_hd_animations": 0,
+    "available_runtime_hd_animations": 7,
     "available_hd_pack_candidate_animations": 7,
     "available_hd_pack_candidate_frames": 81,
     "available_hd_pack_candidate_object_frames": 11,
@@ -108,7 +108,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "pack_candidate_not_integrated",
+      "hd_status": "integrated_preview",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 0,
@@ -140,7 +140,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "pack_candidate_not_integrated",
+      "hd_status": "integrated_preview",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 2,
@@ -172,7 +172,7 @@
       "foot_y": 12,
       "origin_x": -8,
       "origin_y": -12,
-      "hd_status": "pack_candidate_not_integrated",
+      "hd_status": "integrated_preview",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 4,
@@ -260,7 +260,7 @@
       "foot_y": 13,
       "origin_x": -8,
       "origin_y": -13,
-      "hd_status": "pack_candidate_not_integrated",
+      "hd_status": "integrated_preview",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 10,
@@ -278,7 +278,7 @@
       "foot_y": 13,
       "origin_x": -8,
       "origin_y": -13,
-      "hd_status": "pack_candidate_not_integrated",
+      "hd_status": "integrated_preview",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 11,
@@ -492,7 +492,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "pack_candidate_not_integrated",
+      "hd_status": "integrated_preview",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 26,
@@ -510,7 +510,7 @@
       "foot_y": 25,
       "origin_x": -16,
       "origin_y": -25,
-      "hd_status": "pack_candidate_not_integrated",
+      "hd_status": "integrated_preview",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 27,
@@ -685,9 +685,8 @@
     "Generated panel omits release-rate and Nuke controls; production must implement every specified panel command."
   ],
   "next_implementation": [
-    "HD-04 Fun01 actual Native/Web HD composition/input integration and original-mode switch; validate action scale/phase, doorway against trigger and unchanged logic",
-    "HD-05 remaining21 actor animations/256 frames, other objects/themes/effects/full UI",
-    "HD-06 equivalence/platform packaging/provenance checks"
+    "HD-05 remaining21 actor animations/256 frames and other themes/objects/effects/full UI; refine gameplay scale/pose/terrain contour",
+    "HD-06 full state/mask/input/audio equivalence and supported-package HD delivery/performance on qualified host"
   ],
   "validation": {
     "status": "PASS",
@@ -722,5 +721,12 @@
     "manifest": "assets/manifests/remaster_pack.json",
     "scope": "65 new actor frames, theme0 objects0/1 (1+10 frames),13 toolbar icons; candidate, not actual HD game integration",
     "runtime_ready": false
+  },
+  "full_remaster_ready": false,
+  "followup_151": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/151",
+    "manifest": "assets/manifests/remaster_pack.json",
+    "scope": "Native/Web opt-in partial HD preview; other actor/object/effect art falls back to original. Concept scene remains non-runtime.",
+    "full_remaster_ready": false
   }
 }

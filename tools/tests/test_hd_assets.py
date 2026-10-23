@@ -177,5 +177,17 @@ class HdAssetsTests(unittest.TestCase):
             m['atlases'][0]['alpha_cutoff']=253
             with self.assertRaises(AssetError):compile_pack(m,root=root)
 
+    def test_runtime_cache_validates_sources_and_repairs_damaged_compiled_bytes(self):
+        from tools.hd_assets import runtime_pack
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);m=self.fixture(root)
+            manifest=root/'assets/manifests/remaster_pack.json';manifest.parent.mkdir(parents=True);manifest.write_text(json.dumps(m))
+            data=runtime_pack(root=root)
+            self.assertEqual(data,compile_pack(m,root=root)[0])
+            cached=root/'assets/local/hd-runtime/assets.hdp';cached.write_bytes(b'broken')
+            self.assertEqual(runtime_pack(root=root),data)
+            (root/'art.png').write_bytes(b'corrupted source')
+            with self.assertRaises(AssetError):runtime_pack(root=root)
+
 
 if __name__=='__main__':unittest.main()

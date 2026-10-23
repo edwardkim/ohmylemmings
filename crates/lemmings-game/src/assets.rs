@@ -5,6 +5,8 @@ use lemmings_core::{
 use lemmings_resources::*;
 use std::{error::Error, fmt};
 
+pub(crate) type HdArt<'a> = (u8, LevelRecord<'a>, GroundRecord<'a>, VgagrImages<'a>);
+
 pub struct Assets {
     pub width: usize,
     pub height: usize,
@@ -111,6 +113,52 @@ pub fn object_frame(
     }
 }
 impl Assets {
+    pub(crate) fn hd_art(&self) -> Result<Option<HdArt<'_>>, Box<dyn Error>> {
+        let Some(o) = &self.original else {
+            return Ok(None);
+        };
+        let ground = GroundRecord::parse(&o.ground)?;
+        Ok(Some((
+            o.graphics,
+            LevelRecord::parse(&o.level)?,
+            ground,
+            VgagrImages::new(ground, &o.terrain_images, &o.object_images)?,
+        )))
+    }
+
+    pub(crate) fn hd_terrain(&self) -> Result<Vec<[u8; 4]>, Box<dyn Error>> {
+        let Some(o) = &self.original else {
+            return Ok(vec![[130, 85, 45, 255]; self.width * self.height]);
+        };
+        let ground = GroundRecord::parse(&o.ground)?;
+        let images = VgagrImages::new(ground, &o.terrain_images, &o.object_images)?;
+        let mut canvas = vec![IndexedPixel::default(); self.width * self.height];
+        let terrain = compose_level_terrain(
+            LevelRecord::parse(&o.level)?,
+            images,
+            o.special_record.as_deref(),
+            &mut canvas,
+        )?;
+        let palette = terrain.palette().map(|c| {
+            if o.special_record.is_some() {
+                c.to_rgb8_shifted()
+            } else {
+                c.to_rgb8_full_range()
+            }
+        });
+        Ok(terrain
+            .pixels()
+            .iter()
+            .map(|p| {
+                if p.opaque {
+                    let [r, g, b] = palette[p.color as usize];
+                    [r, g, b, 255]
+                } else {
+                    [0; 4]
+                }
+            })
+            .collect())
+    }
     /// Backward-compatible Fun 1..=30 entry point.
     ///
     /// Parses the same resources used by native rendering, without filesystem,

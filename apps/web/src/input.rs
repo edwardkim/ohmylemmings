@@ -188,3 +188,32 @@ pub fn event(
     pointer::refresh(s, v);
     Ok("none".into())
 }
+
+/// HD coordinates may be fractional CSS-design pixels; all other event fields
+/// share the legacy bounds. Validate the complete event before touching the view.
+#[allow(clippy::too_many_arguments)]
+pub fn hd_event(
+    run: &mut LevelRun,
+    kind: &str,
+    x: f64,
+    y: f64,
+    button: f64,
+    buttons: f64,
+    clicks: f64,
+) -> Result<String, String> {
+    if !matches!(kind, "down" | "up" | "move")
+        || !x.is_finite()
+        || !y.is_finite()
+        || !integer(button, 0., 2.)
+        || !integer(buttons, 0., 31.)
+        || !integer(clicks, 0., 255.)
+    {
+        return Err("invalid HD pointer event".into());
+    }
+    let Some((x, y)) =
+        lemmings_game::hd::input::route(run, kind, x, y, button as u8, buttons as u8)
+    else {
+        return Ok("restart-level".into());
+    };
+    event(run, kind, x.into(), y.into(), button, buttons, clicks)
+}

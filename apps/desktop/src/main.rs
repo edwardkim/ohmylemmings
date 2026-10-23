@@ -3,6 +3,7 @@
 mod assets;
 mod audio;
 mod frame_clock;
+mod hd;
 mod input;
 mod lifecycle;
 mod pacing;
@@ -31,8 +32,11 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--performance NEW_JSON --performance-seconds 60] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nS: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--hd] [--hd-pack FILE] [--fullscreen] [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--performance NEW_JSON --performance-seconds 60] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nF8: original/HD preview (--hd-pack PATH); F11: fullscreen; --hd starts HD preview. S: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
+    hd: bool,
+    fullscreen: bool,
+    hd_pack: Option<PathBuf>,
     performance: Option<PathBuf>,
     performance_seconds: f64,
     assets: PathBuf,
@@ -64,6 +68,9 @@ impl Options {
     fn parse(args: impl Iterator<Item = String>) -> Result<Option<Self>, Box<dyn Error>> {
         let mut args = args.peekable();
         let mut o = Self {
+            hd: false,
+            fullscreen: false,
+            hd_pack: None,
             performance: None,
             performance_seconds: 60.0,
             assets: if cfg!(windows) {
@@ -101,6 +108,11 @@ impl Options {
         let mut specified_assets = false;
         while let Some(flag) = args.next() {
             match flag.as_str() {
+                "--hd" => o.hd = true,
+                "--fullscreen" => o.fullscreen = true,
+                "--hd-pack" => {
+                    o.hd_pack = Some(args.next().ok_or("--hd-pack needs a path")?.into())
+                }
                 "--help" | "-h" => return Ok(None),
                 "--result-actions" => {
                     let value = args
@@ -251,7 +263,9 @@ impl Options {
             }
         }
         if o.performance.is_some()
-            && (o.fast
+            && (o.hd
+                || o.hd_pack.is_some()
+                || o.fast
                 || o.mute
                 || o.capture.is_some()
                 || o.steps.is_some()
@@ -259,6 +273,12 @@ impl Options {
                 || !(0.1..=600.0).contains(&o.performance_seconds))
         {
             return Err("performance requires visible/audio-on real-time execution, no capture/steps, 0.1..600 seconds".into());
+        }
+        if o.hd && o.capture_stream {
+            return Err(
+                "HD preview supports --capture; --capture-stream is the original RGB contract"
+                    .into(),
+            );
         }
         if o.synthetic && specified_assets {
             return Err("choose --assets or --synthetic".into());
@@ -929,12 +949,35 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
         .position_centered()
         .resizable()
         .build()?;
-    let mut canvas = window.into_canvas().software().build()?;
+    let mut canvas = if options.hd || options.hd_pack.is_some() {
+        window.into_canvas().build()?
+    } else {
+        window.into_canvas().software().build()?
+    };
+    if options.fullscreen {
+        canvas
+            .window_mut()
+            .set_fullscreen(sdl2::video::FullscreenType::Desktop)?;
+    }
     canvas.set_logical_size(WIDTH as u32, HEIGHT as u32)?;
     canvas.set_integer_scale(true)?;
     let creator = canvas.texture_creator();
     let mut texture =
         creator.create_texture_streaming(PixelFormatEnum::RGB24, WIDTH as u32, HEIGHT as u32)?;
+    let hd_path = options
+        .hd_pack
+        .clone()
+        .unwrap_or_else(|| "assets/local/hd-runtime/assets.hdp".into());
+    let mut hd_host = if options.hd || options.hd_pack.is_some() {
+        Some(hd::Host::new(&creator, &fs::read(&hd_path)?)?)
+    } else {
+        None
+    };
+    let mut hd_active = options.hd;
+    if hd_active {
+        canvas.set_integer_scale(false)?;
+        canvas.set_logical_size(1920, 1080)?;
+    }
     let default_cursor = sdl2::mouse::Cursor::from_system(sdl2::mouse::SystemCursor::Arrow).ok();
     let play_cursor = sdl2::mouse::Cursor::from_system(sdl2::mouse::SystemCursor::Crosshair).ok();
     let selected_cursor = sdl2::mouse::Cursor::from_system(sdl2::mouse::SystemCursor::Hand).ok();
@@ -966,6 +1009,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     let mut rendered = 0u64;
     let mut observed_events = 0u64;
     let mut initial = true;
+    let mut presentation_dirty = false;
     let mut last_captured = None;
     let mut demo_at = None;
     let mut pending_due = 0u64;
@@ -1020,6 +1064,76 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                     _ => {}
                 }
             }
+            if matches!(
+                event,
+                Event::KeyDown {
+                    keycode: Some(Keycode::F8),
+                    repeat: false,
+                    ..
+                }
+            ) {
+                if options.capture_stream || options.performance.is_some() {
+                    continue;
+                }
+                if hd_host.is_none() {
+                    match fs::read(&hd_path)
+                        .map_err(|e| e.to_string())
+                        .and_then(|b| hd::Host::new(&creator, &b).map_err(|e| e.to_string()))
+                    {
+                        Ok(host) => hd_host = Some(host),
+                        Err(error) => {
+                            eprintln!(
+                                "HD assets unavailable: {error}; prepare a pack with tools/hd_assets.py build and --hd-pack PATH"
+                            );
+                            continue;
+                        }
+                    }
+                }
+                hd_active = !hd_active;
+                game.view.panel.release();
+                game.view.panel.pointer = None;
+                game.view.right_mouse = false;
+                game.view.selection = Default::default();
+                canvas.set_integer_scale(!hd_active)?;
+                let (w, h) = if hd_active {
+                    (1920, 1080)
+                } else {
+                    (WIDTH as u32, HEIGHT as u32)
+                };
+                canvas.set_logical_size(w, h)?;
+                presentation_dirty = true;
+                continue;
+            }
+            if matches!(
+                event,
+                Event::KeyDown {
+                    keycode: Some(Keycode::F11),
+                    repeat: false,
+                    ..
+                }
+            ) {
+                let fullscreen = canvas.window().fullscreen_state();
+                canvas.window_mut().set_fullscreen(
+                    if fullscreen == sdl2::video::FullscreenType::Off {
+                        sdl2::video::FullscreenType::Desktop
+                    } else {
+                        sdl2::video::FullscreenType::Off
+                    },
+                )?;
+                presentation_dirty = true;
+                continue;
+            }
+            let event = if hd_active {
+                match hd::event(event, &mut game) {
+                    hd::Routed::Event(event) => event,
+                    hd::Routed::Restart => {
+                        action = Some(ResultAction::Restart);
+                        continue;
+                    }
+                }
+            } else {
+                event
+            };
             if audio.input(&event, &sdl, &options) {
                 continue;
             }
@@ -1054,7 +1168,14 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
         }
         if let Some(action) = action {
             let scripted = !options.result_actions.is_empty();
-            match game.prepare(action, pacing, |level| load_assets(&options, level)) {
+            let replacement = if action == ResultAction::Restart && game.session.result().is_none()
+            {
+                game.restart(pacing, |level| load_assets(&options, level))
+                    .map(Some)
+            } else {
+                game.prepare(action, pacing, |level| load_assets(&options, level))
+            };
+            match replacement {
                 Ok(Some(next)) => {
                     if let Some(c) = &mut capture {
                         c.finish(
@@ -1092,6 +1213,9 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                         })
                         .transpose()?;
                     game = next;
+                    if let Some(host) = &mut hd_host {
+                        host.invalidate();
+                    }
                     if let Some(c) = &mut capture {
                         initialize_capture(c, &game.assets, &game.session, game.level)?;
                         c.pointer(&game.session, &game.view)?;
@@ -1265,6 +1389,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
         }
         let take_capture = capture.is_some() && milestone && last_captured != Some(step);
         let render = initial
+            || presentation_dirty
             || (game.session.result().is_some() && !result_rendered)
             || take_capture
             || finished
@@ -1286,14 +1411,26 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             texture.update(None, &frame, WIDTH * 3)?;
             canvas.set_draw_color(sdl2::pixels::Color::RGB(0, 0, 0));
             canvas.clear();
-            canvas.copy(&texture, None, None)?;
+            if hd_active {
+                hd_host
+                    .as_mut()
+                    .ok_or("missing HD host")?
+                    .draw(&mut canvas, &game)?;
+            } else {
+                canvas.copy(&texture, None, None)?;
+            }
             if take_capture || options.capture_stream {
                 // Read the full output, including the letterbox after a WM
                 // resize. SDL's implicit read rectangle follows the viewport.
                 let size = canvas.output_size()?;
                 canvas.set_logical_size(0, 0)?;
                 let pixels = canvas.read_pixels(None, PixelFormatEnum::RGB24);
-                canvas.set_logical_size(WIDTH as u32, HEIGHT as u32)?;
+                let (w, h) = if hd_active {
+                    (1920, 1080)
+                } else {
+                    (WIDTH as u32, HEIGHT as u32)
+                };
+                canvas.set_logical_size(w, h)?;
                 capture
                     .as_mut()
                     .unwrap()
@@ -1313,6 +1450,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             if let (Some(p), Some(begin)) = (&mut performance, frame_begin) {
                 p.frame(begin, cpu_ns, upload_ns, present_ns, budget, skipped);
             }
+            presentation_dirty = false;
             result_rendered = game.session.result().is_some();
             rendered += 1;
         }
@@ -1337,11 +1475,23 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                     let frame = game.view.frame(&game.assets, &game.session)?;
                     texture.update(None, &frame, WIDTH * 3)?;
                     canvas.clear();
-                    canvas.copy(&texture, None, None)?;
+                    if hd_active {
+                        hd_host
+                            .as_mut()
+                            .ok_or("missing HD host")?
+                            .draw(&mut canvas, &game)?;
+                    } else {
+                        canvas.copy(&texture, None, None)?;
+                    }
                     let size = canvas.output_size()?;
                     canvas.set_logical_size(0, 0)?;
                     let pixels = canvas.read_pixels(None, PixelFormatEnum::RGB24)?;
-                    canvas.set_logical_size(WIDTH as u32, HEIGHT as u32)?;
+                    let (w, h) = if hd_active {
+                        (1920, 1080)
+                    } else {
+                        (WIDTH as u32, HEIGHT as u32)
+                    };
+                    canvas.set_logical_size(w, h)?;
                     c.frame(probe, &frame, &pixels, size)?;
                     canvas.present();
                     rendered += 1;
