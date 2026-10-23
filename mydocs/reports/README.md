@@ -138,3 +138,5 @@
 - [#160 전체 테마 입출구·출구 불꽃](issue-160_hd_portals.md)
 
 - [#163 HD 자산 팩 정리](issue-163_hd_pack.md)
+
+- [#165 BGM 감쇠 원인 조사](issue-165_bgm.md)

@@ -46,3 +46,5 @@
 - [#160 HD-05c 전체 테마 입출구](issue-160_hd_portals.md)
 
 - [#163 HD 자산 팩 정리 계획](issue-163_hd_pack.md)
+
+- [#165 BGM 누락 조사](issue-165_bgm.md)
