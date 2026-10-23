@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 진행 중입니다. [#154 전체 캐릭터337프레임](reports/issue-154_hd_actors.md), [#157 일반5테마 지형](reports/issue-157_hd_terrain.md)에 이어 [#160 전체 입출구·출구 불꽃](reports/issue-160_hd_portals.md)을 PR #161·CI7개 SUCCESS·실제 병합으로 완료했습니다. [#163 팩 정리](reports/issue-163_hd_pack.md)는 PR #164·CI7개·실제 병합으로27atlas/131,699,864바이트와 기존 화면 동일성을 확인했습니다. [#169 테마별 로딩](reports/issue-169_hd_loading.md)은 PR #170·CI7개·실제 병합으로 화면을 보존하며 현재 테마18~19atlas/94.2~100.5MB 선택을 완료했습니다. [#172 특수4장면](reports/issue-172_hd_special.md)은 PR #173·CI7개·실제 병합으로 새 파노라마/원본 mask 표시·선택 로딩을 완료했습니다. 나머지 함정/효과/글꼴/전체 UI와 지원 HD 배포는 후속입니다. 초기 #1 종료와 성능 #113 이월/NOT READY를 유지합니다.
+[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 진행 중입니다. 캐릭터337프레임·일반5테마 재질·특수4장면에 이어 [#181 깃발·일방통행 표시](reports/issue-181_hd_decor.md)를 PR #182·CI7개 SUCCESS·실제 병합으로 완료해 원본54객체/540디스크 키를 모두 갖췄습니다. 다음은 글꼴/전체 UI·지원 HD 배포와 전체 인수입니다. BGM #165는 리마스터 이후이며 성능 #113 NOT READY는 유지합니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 
@@ -115,3 +115,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 [#175 물·불 HD](reports/issue-175_hd_hazards.md)는8PNG·9객체84프레임, 원본 판정/주기 보존과 실제 Native/Web 검증·PR #176 CI7개·병합을 완료했습니다. 다음은 기계 함정·나머지 효과/글꼴/전체 UI와 HD 배포/인수입니다.
 
 [#178 기계 함정 HD](reports/issue-178_hd_traps.md)는9PNG·10종159프레임과 원본 발동 상태 보존·Native/Web 검증·PR #179 CI7개·실제 병합을 완료했습니다. 다음은 횃불/나머지 장식·글꼴/전체 UI와 지원 HD 배포/인수입니다.
+
+[#181 깃발·일방통행 표시 HD](reports/issue-181_hd_decor.md)는2PNG/20종212키·원본 방향 제한/지형 보존과 Native/Web 검증·PR #182 CI7개·실제 병합을 완료했습니다. 원본54객체/540키를 갖췄으며, 다음은 글꼴/전체 UI와 지원 HD 배포/인수입니다. BGM #165는 리마스터 이후입니다.
