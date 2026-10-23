@@ -45,4 +45,4 @@ BGM 결함은 알려진 별도 후속으로 명시하며, HD 검증 통과를 BG
 
 [#169 테마별 로딩](../reports/issue-169_hd_loading.md): 다음 그래픽 제작용 활성 예산 약32~38MiB 확보. 로컬 Native/Web 동일성·전환/실패 복구와 PR #170 CI7개·실제 병합 완료. 이후 특수4장면/함정·효과/글꼴·전체 UI를 진행한다.
 
-[#172 특수4장면](../reports/issue-172_hd_special.md):4PNG와 원본 mask 표시·선택 catalog를 연결했다. 로컬 검증과 사용자 Fun22 시연 확인 후 최종 Web/감사/CI·병합을 진행 중이다. 다음은 나머지 함정/효과와 글꼴/전체 UI다.
+[#172 특수4장면](../reports/issue-172_hd_special.md):4PNG와 원본 mask 표시·선택 catalog를 연결했다. 로컬 검증·사용자 Fun22 시연·Web120장면·감사와 PR #173 CI7개·실제 병합을 완료했다. 다음은 나머지 함정/효과와 글꼴/전체 UI다.

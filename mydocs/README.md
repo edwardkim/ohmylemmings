@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 진행 중입니다. [#154 전체 캐릭터337프레임](reports/issue-154_hd_actors.md), [#157 일반5테마 지형](reports/issue-157_hd_terrain.md)에 이어 [#160 전체 입출구·출구 불꽃](reports/issue-160_hd_portals.md)을 PR #161·CI7개 SUCCESS·실제 병합으로 완료했습니다. [#163 팩 정리](reports/issue-163_hd_pack.md)는 PR #164·CI7개·실제 병합으로27atlas/131,699,864바이트와 기존 화면 동일성을 확인했습니다. [#169 테마별 로딩](reports/issue-169_hd_loading.md)은 PR #170·CI7개·실제 병합으로 화면을 보존하며 현재 테마18~19atlas/94.2~100.5MB 선택을 완료했습니다. 특수4장면·나머지 함정/효과/글꼴/전체 UI와 지원 HD 배포는 후속입니다. 초기 #1 종료와 성능 #113 이월/NOT READY를 유지합니다.
+[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 진행 중입니다. [#154 전체 캐릭터337프레임](reports/issue-154_hd_actors.md), [#157 일반5테마 지형](reports/issue-157_hd_terrain.md)에 이어 [#160 전체 입출구·출구 불꽃](reports/issue-160_hd_portals.md)을 PR #161·CI7개 SUCCESS·실제 병합으로 완료했습니다. [#163 팩 정리](reports/issue-163_hd_pack.md)는 PR #164·CI7개·실제 병합으로27atlas/131,699,864바이트와 기존 화면 동일성을 확인했습니다. [#169 테마별 로딩](reports/issue-169_hd_loading.md)은 PR #170·CI7개·실제 병합으로 화면을 보존하며 현재 테마18~19atlas/94.2~100.5MB 선택을 완료했습니다. [#172 특수4장면](reports/issue-172_hd_special.md)은 PR #173·CI7개·실제 병합으로 새 파노라마/원본 mask 표시·선택 로딩을 완료했습니다. 나머지 함정/효과/글꼴/전체 UI와 지원 HD 배포는 후속입니다. 초기 #1 종료와 성능 #113 이월/NOT READY를 유지합니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 
