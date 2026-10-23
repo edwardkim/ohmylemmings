@@ -23,7 +23,7 @@ built-in image_gen을 사용했다. 새 PNG4장은 각각1254×1254/완전 불�
 - 실제 SDL dummy/software: Fun01/02/04/05/06/11/24의 원본/HD 각120틱. 총847상태, 사례당20개 진단/입력/최종 맵 파일 일치. 재질5종과 좌우 화살표를 실제 화면에서 검토했다. GPU/60fps 검증은 아니다.
 - 전체 캐릭터: Native 복원337·Canvas337프레임, 미리보기30그룹/60끝점·13아이콘·5재질 PASS. 복원 프레임 검사와 자연 플레이 검사를 구분한다.
 - 기존 Web 회귀:33사례/66실행·11,960상태·6,877Canvas, HD 자연13사례/7,593상태/821표시 PASS. 실제 제품 Fun01 664틱/665상태·10구출,8직업/Pause/미니맵/재시작·레밍 클릭·전체화면·모드 전환 PASS.
-- 로컬 workspace Rust/doc·추가 지형 테스트, Python275·format/Clippy/WASM library PASS. 현재 소스 감사·문서 검사·정확한 PR head CI/실제 병합은 아래 마감 기록과 이슈에서 확인한다.
+- 로컬 workspace Rust/doc·추가 지형 테스트, Python275·format/Clippy/WASM library PASS. 소스 감사510개·문서317개 상대 파일 링크와 self-review PASS. 최종 CI/병합은 아래를 따른다.
 
 원본 캡처·전체 진단/맵·ZIP은 ignored로 보존하고, 공개 manifest에는 경로·해시·요약만 기록한다. #113 성능 이월/NOT READY·#142 진단·공개 v0.1.0/Pages는 기존 상태를 유지한다.
 
@@ -44,6 +44,10 @@ cargo run -p lemmings-game --example hd_terrain_probe --release --locked --offli
 node tools/web/hd_terrain.cjs http://127.0.0.1:8080/ http://127.0.0.1:19257 assets/local/catalog-web-review assets/local/catalog-hd.jsonl
 ```
 
-## 마감
+## 최종 CI·실제 병합
 
-로컬 검증·self-review를 마치고 코드 PR의 정확한 head CI와 실제 merge를 진행한다. 최종 PR/CI·merge·main 개발 준비는 이슈와 완료 기록에 동기화한다.
+[PR #158](https://github.com/edwardkim/ohmylemmings/pull/158)의 최종 head `c1ad3d114b7943d19cd1c6042cfb36d76da98fc0`를 [CI39895388097](https://github.com/edwardkim/ohmylemmings/actions/runs/39895388097) attempt1에서 확인했다. Rust native·Python tooling·WASM libraries·Web browser·Windows full game·macOS Apple Silicon/Intel의7개 검사가 모두 SUCCESS다. 중복 push CI39895342271 취소는 PASS에 포함하지 않는다. 최종 PR head에는 실패/재시도가 없다.
+
+Chrome155.0.8059.39에서 Web 회귀·HD13사례와 전체 게임 ZIP/대응 소스902파일·새 설치 검사가 통과했다. Web ZIP105,227,464바이트/SHA-256 `c99d506a580cdef2f6457a9719b123e7b2061891fee5bf7e5de3c15af025212a`다. Linux의 전체 Rust/SDL/저장 입력 회귀와 기존 전체 게임 새 설치도 PASS다. 이 플랫폼 CI와 지원 HD 패키징/성능 인수를 구분한다.
+
+PR을 merge `08d309f1aac5edc194752f6004f96fcd8f92f9a0`로 실제 병합하고 검토 head와 main 전체 tree 일치를 확인했다. 완료 문서·상위 계획/일지·self-review를 동기화한다. 문서 PR/merge와 root main·Native/HD 팩·기존8080 전체 게임 Web의 최종 준비는 [#157 완료 기록](https://github.com/edwardkim/ohmylemmings/issues/157)에 연결한다. #157 범위는 완료이며 #137·#113·#142는 OPEN, #1은 CLOSED다. 공개 v0.1.0/Pages는 유지한다.
