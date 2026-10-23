@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 261150,
-      "sha256": "3bcc8b09d09ddbb4fe640ef3f8bdf01f16a476e738208bec77281ebb22e1ca35",
+      "bytes": 262261,
+      "sha256": "7ebd08b102ac87de7b0222109129423751e45a36bca2bc0f73ac87cc358fc696",
       "id": "compatibility"
     },
     {
@@ -11156,5 +11156,15 @@
       "id": "compatibility"
     },
     "scope": "Current BGM buffered delivery source inventory. Frozen #106/#107 PCM identity/performance belongs to immediate delivery before this fix; no new60fps result or all-level solution replay."
+  },
+  "source_maintenance_191": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/191",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 261150,
+      "sha256": "3bcc8b09d09ddbb4fe640ef3f8bdf01f16a476e738208bec77281ebb22e1ca35",
+      "id": "compatibility"
+    },
+    "scope": "Version0.2.0 and release preparation only; prior performance remains historical and113 NOT READY."
   }
 }

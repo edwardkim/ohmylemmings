@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 [#187 지원 HD 패키징·최종 인수](reports/issue-187_hd_release.md), PR #188·CI7개 SUCCESS·실제 병합으로 완료했습니다.899HD 키·95글꼴/현재 전체 UI·새 다운로드 기본 HD와 원본 선택을 제공합니다. 다음은 BGM #165입니다. 공개 v0.1.0/Pages·Mac 미공증·성능 #113 NOT READY는 유지합니다. 아래 단계별 후속/OPEN 표기는 당시 기록입니다.
+[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 [#187 지원 HD 패키징·최종 인수](reports/issue-187_hd_release.md), PR #188·CI7개 SUCCESS·실제 병합으로 완료했습니다.899HD 키·95글꼴/현재 전체 UI·새 다운로드 기본 HD와 원본 선택을 제공합니다. BGM #165 수정을 진행하고, 메인테이너가 지정한 [리마스터0.2.0 버전 적용 #191](plans/issue-191_remaster_version.md)을 준비합니다. 공개 v0.1.0/Pages·Mac 미공증·성능 #113 NOT READY는 유지합니다. 아래 단계별 후속/OPEN 표기는 당시 기록입니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 
