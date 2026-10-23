@@ -24,4 +24,12 @@ self-review: 원본 시뮬레이션·Rust 렌더러·입력·사운드·틱 코�
 
 [검증 수치·해시](../../assets/manifests/hd_compaction.json), [실제 자체 코스 좌우 비교](../../assets/remaster/previews/issue-163_comparison.png)를 기록한다. 최종 팩 SHA-256: `07e240a23f338fef77e7f9fbf6fc439ba3e0dd3972566f9e848bcbe106014ff4`.
 
-제품 Web/Fun01 UI8기술·할당·일시정지·미니맵·재시작·전체화면과665상태/10구출을 통과했다. 소스542pin 감사·라이선스·기록된 G11 검증을 통과했다. 기존 Web33사례/66실행/11,960상태/6,877Canvas와 HD13사례/7,593상태/821그리기도 PASS다. exact-head CI/실제 병합은 진행 중이다. #113 성능 이월/NOT READY, #142 진단, 특수4장면·나머지 효과/글꼴/전체 UI·지원 HD 배포는 그대로 후속이다. 공개 Releases/Pages는 바꾸지 않는다.
+제품 Web/Fun01 UI8기술·할당·일시정지·미니맵·재시작·전체화면과665상태/10구출을 통과했다. 소스542pin 감사·라이선스·기록된 G11 검증을 통과했다. 기존 Web33사례/66실행/11,960상태/6,877Canvas와 HD13사례/7,593상태/821그리기도 PASS다. exact-head CI7개와 실제 병합을 완료했다. #113 성능 이월/NOT READY, #142 진단, 특수4장면·나머지 효과/글꼴/전체 UI·지원 HD 배포는 그대로 후속이다. 공개 Releases/Pages는 바꾸지 않는다.
+
+## CI와 실제 병합
+
+PR #164 head `7908209698feb738d19e7f75804e22e167a96c8a` / CI39911107894 attempt1의7개 SUCCESS, 실제 merge `232853111944acc48f23da043b8357da83cf4c47`와 검토 head 전체 tree 일치를 확인했다. 중복 push CI39911103477 취소는 PASS에 포함하지 않는다.
+
+[PR #164](https://github.com/edwardkim/ohmylemmings/pull/164) · [CI39911107894](https://github.com/edwardkim/ohmylemmings/actions/runs/39911107894). Rust native·Python tooling·WASM libraries·Web browser·Windows full game·macOS Apple Silicon/Intel을 통과했다. 기존 전체 게임 패키지 CI 통과를 전체 HD 배포/성능 인수와 구분한다. 완료 문서의 별도 실제 병합과 root main·Native·8080 Web 준비/종료 식별자는 [#163](https://github.com/edwardkim/ohmylemmings/issues/163)에 기록한다.
+
+CI checkout `f9ecf46824cae14836192e884b35a0b9f2fd5511`와 검토 head 전체 tree가 같다. CI에서 재생성한 팩도 최종 SHA와 일치했다. Web 개발 ZIP 새 설치는28게임 파일·940소스 파일·120레벨 로딩/오디오/전환을 통과했다. ZIP은133,594,024바이트/SHA-256 `2139e1e00aaa3ab4725860d2b8bbb4ffa4fc17c84b8ab865b69d181c07281581`다. 원시 HD 팩 절감 수치와 ZIP 전체 크기는 별개다.
