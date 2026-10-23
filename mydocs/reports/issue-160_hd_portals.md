@@ -47,3 +47,11 @@ cargo run -p lemmings-game --example hd_terrain_probe --release --locked --offli
 node tools/web/hd_portals.cjs http://127.0.0.1:18360/web/ http://127.0.0.1:19360 assets/local/course-web-review http://127.0.0.1:18360/portal-courses/cases.json
 node tools/web/hd_terrain.cjs http://127.0.0.1:18360/web/ http://127.0.0.1:19360 assets/local/catalog-web-review assets/local/catalog-hd.jsonl --portals
 ```
+
+## 최종 CI·실제 병합
+
+[PR #161](https://github.com/edwardkim/ohmylemmings/pull/161)의 최종 head `e5a6b302ee6aa6a52088b3eb81f2012cef8d8059`를 [CI39904818590](https://github.com/edwardkim/ohmylemmings/actions/runs/39904818590) attempt1에서 확인했다. Rust native·Python tooling·WASM libraries·Web browser·Windows full game·macOS Apple Silicon/Intel의7개 검사가 모두 SUCCESS다. 중복 push CI39904813609 취소는 PASS에 포함하지 않으며 최종 PR head의 실패/재시도는 없다. CI의 PR checkout `b62e150152906773d9a362582daae0f723f193ca`와 검토 head 전체 tree도 같다.
+
+Chrome155.0.8059.39의 전체 Web 회귀·오디오/저장 입력 smoke와 개발용 전체 게임 ZIP 새 설치도 PASS다. Web ZIP133,442,156바이트/SHA-256 `38255df676fcc79701f9b5df2af59d838c919cae6cbc85881b6e6a4518f90fbc`이며 대응 소스931파일과 게임 데이터28개를 검증했다. Windows와 두 Mac에서도 기존 전체 게임 패키지의 새 설치를 확인했다. 이를 전체 HD 지원 패키징이나 성능 인수와 구분한다.
+
+PR을 merge `40b4bdaadb2d1f8198d4cd1cb5c1617a4c76fbbd`로 실제 병합하고 검토 head와 main 전체 tree 일치를 확인했다. 완료 문서·상위 계획/진행·일지를 동기화한다. 문서 PR/merge와 root main·Native/HD 팩·기존8080 전체 게임 Web의 최종 준비는 [#160 완료 기록](https://github.com/edwardkim/ohmylemmings/issues/160)에 연결한다. #160 범위는 완료이며 #137·#113·#142는 OPEN, #1은 CLOSED다. 공개 v0.1.0/Pages는 유지한다.
