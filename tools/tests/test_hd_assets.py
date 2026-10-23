@@ -208,5 +208,20 @@ class HdAssetsTests(unittest.TestCase):
             m['atlases'].append(m['atlases'][0])
             with self.assertRaises(AssetError):compile_pack(m,root=root)
 
+    def test_default_action_art_uses_strikes_at_original_terrain_cut_frames(self):
+        # Visual cells selected during #154 review: downward pickaxe and fully
+        # extended fists. This guards the data binding, not simulation timing.
+        from tools.hd_assets import ROOT
+        pack=json.loads((ROOT/'assets/manifests/remaster_pack.json').read_text())
+        art=json.loads((ROOT/'assets/manifests/hd_actors.json').read_text())
+        for slot,frame,name,cell in [(14,1,'mine',5),(14,2,'mine',6),
+                (15,1,'mine',29),(15,2,'mine',30),(12,5,'bash',12),
+                (12,21,'bash',52),(13,5,'bash',36),(13,21,'bashleft2',4)]:
+            group=next(g for g in art['layout'] if g['name']==name)
+            row=next(r for r in group['rows'] if r['slot']==slot and r['frame']==frame)
+            self.assertEqual(row['cell'],cell,(slot,frame))
+            bound=next(r for r in pack['frames'] if r['key'].get('actor')==[slot,frame])
+            self.assertEqual((bound['atlas'],bound['rect']),(group['atlas'],row['rect']))
+
 
 if __name__=='__main__':unittest.main()

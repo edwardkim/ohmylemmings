@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 141698,
-      "sha256": "565bc920cf7cb34e8e5c2be3daf4a80ef17ee108e020cd9eed743a81ed1610d1"
+      "bytes": 143690,
+      "sha256": "4a34d4be364963f91446e39234a580c2b5e8e90ddbdb5bcb9b8c7bc000f6289f"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -1936,8 +1936,8 @@
     },
     {
       "path": "tools/tests/test_hd_assets.py",
-      "bytes": 11835,
-      "sha256": "a740c6103326e4323dc01413078b5b6ae552e0a17e5690d3614619e267291d34"
+      "bytes": 12885,
+      "sha256": "dbb4b91c208fe2551112aa688f62a69a5dfa08c589e3a4016a38250eb45d2600"
     },
     {
       "path": "tools/tests/test_initial_reference.py",
@@ -2361,8 +2361,8 @@
     },
     {
       "path": "assets/manifests/hd_actors.json",
-      "bytes": 90840,
-      "sha256": "0fcc1a38b03ee6ec2f021994e267f98588a471d8659a22f26411c9b7bdd3fd21"
+      "bytes": 94442,
+      "sha256": "53a66805571de2f7f51d628806f02c1855774b860d120dc16ac38ee69926fd2a"
     },
     {
       "path": "assets/remaster/issue-154-air-v1.png",
@@ -2426,8 +2426,8 @@
     },
     {
       "path": "assets/remaster/previews/issue-154_actors.png",
-      "bytes": 208528,
-      "sha256": "f505988325348f26c0b4ffe5cd44ef21497cc23fc3dbbee973c7218173160293"
+      "bytes": 208682,
+      "sha256": "6d4ea6366cb25e03c966a9d84546c9aa2ade573e7da06781ea3b88d8d375df18"
     },
     {
       "path": "assets/remaster/previews/issue-154_native_floater.png",

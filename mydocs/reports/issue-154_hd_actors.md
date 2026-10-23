@@ -16,11 +16,13 @@ built-in image_gen으로 선택한 새12장의 PNG와 정확한 프롬프트는 
 
 ![전체28동작의 실제 브라우저 Canvas 검토](../../assets/remaster/previews/issue-154_actors.png)
 
+최종 위상 검토에서 Miner의 원본 지형 삭제1·2프레임과 Basher의16단위2~5프레임에 타격 포즈를 맞췄다. 생성 순서의 여러 동작 반복을 원본 사건 시계로 사용하지 않는다. TDD로 이 시점의 실제 source cell/팩 사각형 연결을 고정하고, 픽셀/게임 틱을 바꾸지 않고 선택 포즈의 순서만 보정했다.
+
 ## 팩·호환·검사
 
-RGBA 팩은19atlas/362자산(캐릭터337·시설11·아이콘13·암석1),119,548,732바이트/SHA `bcef0e0b66d4c614507a641d4176d2198b0224a6856319f5a165a779d5a853cc`다. v1 레코드 형식은 유지하고 bounded 한계를128MiB/32atlas로 확장했다. 이전64MiB/16atlas 실행 파일은 새 대형 팩을 거부한다. 새 로더에서 기존44MB/7atlas/106자산 팩을 실제로 읽고 CRC·프레임/시설/아이콘 호환을 확인했다.
+RGBA 팩은19atlas/362자산(캐릭터337·시설11·아이콘13·암석1),119,548,732바이트/SHA `8bdb5875f17784516d58a5a196dc373ce33da7873ac5399349c8374bf4d660eb`다. v1 레코드 형식은 유지하고 bounded 한계를128MiB/32atlas로 확장했다. 이전64MiB/16atlas 실행 파일은 새 대형 팩을 거부한다. 새 로더에서 기존44MB/7atlas/106자산 팩을 실제로 읽고 CRC·프레임/시설/아이콘 호환을 확인했다.
 
-TDD로 Python의 전체337키 요구/누락과32atlas 경계, Rust의 전체 키 누락/32atlas 경계를 먼저 실패시킨 뒤 구현했다. `complete_actors=true` 팩은 한 프레임이라도 빠지면 제작 검사에서 실패한다. `missing_actor_frames()`는 기존 부분 팩도 계속 허용하며 누락을 명시한다. 신규 Rust2개·example1개/Python2개를 포함해 workspace Rust656/doc29·example1·Python270, format/Clippy·WASM library build·라이선스 검사 PASS다. example 테스트는 `make check-desktop`에서도 실행한다.
+TDD로 Python의 전체337키 요구/누락과32atlas 경계, Rust의 전체 키 누락/32atlas 경계를 먼저 실패시킨 뒤 구현했다. `complete_actors=true` 팩은 한 프레임이라도 빠지면 제작 검사에서 실패한다. `missing_actor_frames()`는 기존 부분 팩도 계속 허용하며 누락을 명시한다. 신규 Rust2개·example1개/Python3개를 포함해 workspace Rust656/doc29·example1·Python271, format/Clippy·WASM library build·라이선스 검사 PASS다. example 테스트는 `make check-desktop`에서도 실행한다.
 
 19개 원본 RGBA atlas를 처음에 복사/업로드하는 비용이 있다. 큰 팩의 임의 상한 해제 대신128MiB를 유지하며, Web HD 검사도 한 번 로딩한 팩을 장면 전환에 재사용한다. 이후에는 기존 변경 chunk/texture revision만 갱신한다. 이번은 기능 검증이며 초기 메모리·로딩 지연·고성능 호스트60fps 인수를 대신하지 않는다.
 
@@ -50,3 +52,5 @@ python3 tools/hd_assets.py build --output assets/local/hd-actors-preview
 자산 검토는 출력 폴더를 localhost에 제공하고 별도의 빈 disposable Chromium/CDP에 `node tools/hd_assets_check.cjs PREVIEW_URL DISPOSABLE_CDP_URL NEW_EVIDENCE_DIR`를 사용한다. 실제 제품 UI 재현은 기존 `tools/web/hd_product.cjs`를 따른다. 사용자19222 탭은 조작하지 않았다.
 
 [#113](https://github.com/edwardkim/ohmylemmings/issues/113) 성능 이월/NOT READY, [#142](https://github.com/edwardkim/ohmylemmings/issues/142) Chrome156 진단, #1 CLOSED·Windows11 지원과 공개 v0.1.0/Pages 유지 정책을 보존한다. 정확한 PR head/CI7개·실제 merge·완료 문서·root 동기화는 [#154 최종 기록](https://github.com/edwardkim/ohmylemmings/issues/154)에 연결한다. 로컬 통과만으로 종료하지 않는다.
+
+위상 보정 후 최종 팩으로 전수337복원/Canvas·13사례7593상태821표시·실제 Native Miner 원본/HD300step·Fun01 HD664step과 실제 전체 Web 제품 UI/Fun01을 다시 검사했다. 원본 Native와 최종 Web 공통661상태·세 맵 동일/PASS다. 기존 우산 장면의 frame binding은 보정 대상인Miner/Basher와 분리돼 있다. 최초 head의 CI는 위상 보정을 위해 취소했으며 최종 head의 검사를 별도 확인한다.
