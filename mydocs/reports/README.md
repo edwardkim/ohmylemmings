@@ -152,3 +152,5 @@
 - [#181 회전 깃발·일방통행 표시 HD](issue-181_hd_decor.md)
 
 - [#184 HD 글꼴·전체 게임 UI](issue-184_hd_ui.md)
+
+- [#187 HD 패키징·최종 인수](issue-187_hd_release.md)

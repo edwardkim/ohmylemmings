@@ -18,6 +18,7 @@ from tools.web_build import source_bundle
 from tools.package_assets import GAME_FILES, game_pins
 from tools.reference_assets import checked_bytes
 from tools.release_version import workspace_version, package_name
+from tools.hd_delivery import delivery_files, verify_delivery
 
 WEB_FILES = (
     'index.html', 'app.js', 'audio.js', 'audio-license.html', 'controls.js',
@@ -116,6 +117,12 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
         require(len(binary) >= 64 and binary[:6] == b'\x7fELF\x02\x01'
                 and int.from_bytes(binary[18:20], 'little') == 62, 'Expected a Linux x86_64 ELF executable')
         files['lemmings-desktop'] = binary
+    hd_remaster = (root/'assets/manifests/remaster_pack.json').is_file()
+    if hd_remaster:
+        files.update(delivery_files(root))
+        if kind == 'web':
+            require(files['index.html'].count(b'<head>') == 1, 'Expected one Web document head')
+            files['index.html'] = files['index.html'].replace(b'<head>', b'<head>\n    <meta name="game-presentation" content="hd">', 1)
     if assets is not None:
         if kind == 'web':
             require(files['index.html'].count(b'<head>') == 1, 'Expected one Web document head')
@@ -163,6 +170,9 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
                    'GAME-DATA.json records original provenance and hashes; the project LGPL notice does not license DOS data.\n'
                    if assets is not None else
                    'Original DOS assets are not included. Practice graphics and music are synthetic.\n')
+    if hd_remaster:
+        launch += ('HD presentation starts automatically. Keep hd-assets/, HD-ASSETS.json and HD-PRESENTATION.\n'
+                   'Use the Web presentation selector or native F8 to switch; native --original starts original mode.\n')
     files['README.md'] = (
         f'# Oh My Lemmings {version} package ({target})\n\n' + launch + '\n'
         + data_notice +
@@ -186,7 +196,7 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
         'No signing restriction or installation lock is applied by these development packages.\n'
     ).encode()
     files['PACKAGE-MANIFEST.json'] = encoded(dict(schema_version=1, version=version, target=target, project_license='MIT',
-        development=True, performance_qualification_deferred=True, original_game_data=assets is not None,
+        development=True, performance_qualification_deferred=True, original_game_data=assets is not None, hd_remaster=hd_remaster,
         source_archive=source_name, source=source,
         files=[dict(path=name, bytes=len(data), sha256=sha(data)) for name, data in sorted(files.items())]))
     files['SHA256SUMS'] = ''.join(f'{sha(data)}  {name}\n' for name, data in sorted(files.items())).encode()
@@ -224,7 +234,11 @@ def verify_package(path, root=ROOT):
     if verify_project_license(files, manifest, root):
         allowed |= PROJECT_LICENSE_FILES
     allowed |= set(WEB_FILES) | {'audio-source.json'} if target == 'web' else {'lemmings-desktop'}
-    if target=='web' and ('hd-assets.hdp' in files or 'hd-assets/catalog.hdi' in files):
+    if manifest.get('hd_remaster', False):
+        allowed |= verify_delivery(files, root)
+        if target == 'web':
+            require(b'<meta name="game-presentation" content="hd">' in files['index.html'], 'Missing HD presentation marker')
+    elif target=='web' and ('hd-assets.hdp' in files or 'hd-assets/catalog.hdi' in files):
         try:from .hd_assets import runtime_pack
         except ImportError:from hd_assets import runtime_pack
         base_hd=runtime_pack(root=root)

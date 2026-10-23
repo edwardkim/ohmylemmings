@@ -18,6 +18,7 @@ from tools.reference_assets import checked_bytes, download_bytes
 from tools.release_package import encoded, regular, require, sha, project_license_files, verify_project_license, PROJECT_LICENSE_FILES
 from tools.web_build import source_bundle
 from tools.release_version import workspace_version, package_name, parse_version
+from tools.hd_delivery import delivery_files, verify_delivery
 from tools.windows_package import GAME_FILES, game_pins, manifest
 
 APP='OhMyLemmings.app'
@@ -85,6 +86,8 @@ def stage(binary,assets,sdl,destination,root=ROOT):
            RES+'SDL2-LICENSE.txt':checked_bytes(regular(sdl/'SDL2-LICENSE.txt'),manifest(root,'macos_runtime.json')['license'],'SDL license'),
            RES+'LGPL-2.1-or-later.txt':regular(root/'crates/lemmings-opl/LICENSE')}
     files.update({RES+n:data for n,data in project_license_files(root).items()})
+    if (root/'assets/manifests/remaster_pack.json').is_file():
+        files.update({RES+n:data for n,data in delivery_files(root).items()})
     universal_arches(files[EXE]);universal_arches(files[LIB],6)
     original,pins=game_pins(root)
     files[RES+'GAME-DATA.json']=encoded(dict(profile=original['profile'],original_game_data=True,levels=120,files=pins,sources=original.get('sources',[])))
@@ -112,14 +115,18 @@ def create(app,output,root=ROOT):
     require(app.name==APP and not app.is_symlink(),'Invalid application directory')
     require(all(not p.is_symlink() for p in app.rglob('*')),'Application contains links')
     names={APP+'/'+p.relative_to(app).as_posix() for p in app.rglob('*') if not p.is_dir()}
-    require(names==APP_FILES|LICENSE_APP_FILES,'Unexpected/missing app files or signature')
+    hd_remaster=(root/'assets/manifests/remaster_pack.json').is_file()
+    hd_names={RES+n for n in delivery_files(root)} if hd_remaster else set()
+    require(names==APP_FILES|LICENSE_APP_FILES|hd_names,'Unexpected/missing app files or signature')
     files={n:regular(app.parent/n) for n in sorted(names)}
     validate_app(files,version,root)
     verify_project_license(files,dict(project_license='MIT'),root,RES)
+    if hd_remaster: verify_delivery(files,root,RES)
     files['README.txt']=(
         'Oh My Lemmings - macOS universal2 (Apple Silicon / Intel, macOS 13+)\n\n'
         'ZIP을 모두 풀고 OhMyLemmings.app을 Applications에 복사한 뒤 여세요.\n'
         '원본 그래픽·120개 레벨·음원이 포함되며 Fun01을 바로 시작합니다. SDL 설치는 필요 없습니다.\n'
+        'HD 패키지는 HD로 시작합니다. F8: 원본/HD 전환, --original: 원본 실행. 앱 전체를 유지하세요.\n'
         '현재 시험 패키지는 ad-hoc 서명이며 Apple Developer ID/공증은 아직 적용하지 않았습니다.\n'
         '최초 다운로드 실행이 차단되면 앱을 열어 본 뒤 시스템 설정 > 개인정보 보호 및 보안 > 그래도 열기를 사용합니다.\n'
         'Apple 안내: https://support.apple.com/102445\n'
@@ -143,7 +150,7 @@ def create(app,output,root=ROOT):
     with tempfile.TemporaryDirectory() as temporary:
         source=Path(temporary)/'source.tar.gz';info=source_bundle(source,root);files['source.tar.gz']=source.read_bytes()
     files['PACKAGE-MANIFEST.json']=encoded(dict(schema_version=1,version=version,target='macos-universal2',project_license='MIT',
-        original_game_data=True,architectures=['arm64','x86_64'],minimum_macos='13.0',
+        original_game_data=True,hd_remaster=hd_remaster,architectures=['arm64','x86_64'],minimum_macos='13.0',
         signing='ad-hoc',notarized=False,source=info,
         files=[dict(path=n,bytes=len(b),sha256=sha(b)) for n,b in sorted(files.items())]))
     files['SHA256SUMS']=''.join(f'{sha(b)}  {n}\n' for n,b in sorted(files.items())).encode()
@@ -164,12 +171,14 @@ def verify(path,root=ROOT):
     with zipfile.ZipFile(io.BytesIO(raw)) as z:
         package=json.loads(z.read('PACKAGE-MANIFEST.json'))
         licensed=LICENSE_APP_FILES if 'project_license' in package else set()
-        names=z.namelist();require(len(names)==len(set(names)) and set(names)==APP_FILES|OUTSIDE|licensed,'Invalid Mac ZIP inventory')
+        hd_names={RES+n for n in delivery_files(root)} if package.get('hd_remaster',False) else set()
+        names=z.namelist();require(len(names)==len(set(names)) and set(names)==APP_FILES|OUTSIDE|licensed|hd_names,'Invalid Mac ZIP inventory')
         for info in z.infolist():
             require(info.external_attr>>16==(0o100755 if info.filename in (EXE,LIB) else 0o100644),'Invalid Mac file permissions/type')
         files={n:z.read(n) for n in names}
     package=json.loads(files['PACKAGE-MANIFEST.json'])
     verify_project_license(files,package,root,RES)
+    if package.get('hd_remaster',False):verify_delivery(files,root,RES)
     require(package['schema_version']==1 and package['target']=='macos-universal2' and package['original_game_data'] is True
             and package['signing']=='ad-hoc' and package['notarized'] is False,'Invalid Mac package schema')
     pins=package['files'];require(len(pins)==len(files)-2 and {p['path'] for p in pins}==set(files)-{'PACKAGE-MANIFEST.json','SHA256SUMS'},'Invalid Mac pins')

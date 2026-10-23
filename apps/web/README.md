@@ -81,11 +81,11 @@ python3 tools/check_web.py --evidence assets/local/web-original-check --original
 
 `python3 tools/reference_assets.py fetch` 후 `make package-web`. `ohmylemmings-0.1.0-web.zip` 전체를 풀고 정적 HTTP 서버에서 제공합니다. 하위 경로도 지원합니다. ZIP을 직접 열거나 index.html만 복사하지 마세요. 원본28개·120레벨·음원·대응 소스와 라이선스가 포함됩니다. 소리는 사용자 버튼으로 켭니다. `GAME-DATA.json`/data 누락은 시작 실패로 표시합니다. 패키징 시 SHA256과 크기를 고정 원본 manifest로 검사하며 HTTP 로더는 목록·크기와 WASM 파서를 사용하므로 LAN HTTP에서도 실행됩니다. 원본 제외 연습 패키지는 `tools/release_package.py web --development --runtime assets/local/web`으로 명시합니다. [검증 범위](../../mydocs/reports/issue-122_linux_web_full_game.md).
 
-## HD 미리보기
+## HD 화면 (#187)
 
-`make web`는 검증한 HD 팩도 준비합니다. 화면 선택에서 **HD 미리보기**를 고르면1920×1080으로 표시하고 원본 화면으로 돌아가도 같은 게임을 계속합니다. 일반5테마 재질·첫 테마 입출구·28개 캐릭터 애니메이션337프레임/패널을 제공하며 특수4배경·나머지 시설/효과는 원본 그림을 사용합니다. 전체화면 버튼, HD 패널·미니맵·직접 레밍 선택도 지원합니다.
+새 전체 게임 패키지는 기본 HD로 시작합니다.1920×1080 캐릭터·5테마 재질·특수4장면·54객체/540키와 HD 글꼴/게임 패널/결과 UI를 제공합니다. 화면 선택의 **HD**/**원본**은 같은 게임 상태에서 전환하며 전체화면·미니맵·직접 레밍 선택을 지원합니다. 개발 `make web`는 팩을 준비하며 화면 선택으로 HD를 켭니다.
 
-개발 Web 패키지에는 팩이 포함됩니다. 현재 공개 v0.1.0/Pages는 이번 작업에서 갱신하지 않습니다. [검증과 재현](../../mydocs/reports/issue-151_hd_integration.md)에 실제 Fun01 결과와 부분 제작 범위를 기록합니다.
+패키지의 hd-assets·HD-ASSETS.json·HD-PRESENTATION과 원본 data/GAME-DATA.json을 함께 HTTP로 제공합니다. 런타임 외부 CDN은 필요 없습니다. 현재 공개 v0.1.0/Pages는 그대로입니다. [HD 패키징/인수](../../mydocs/reports/issue-187_hd_release.md)에 검증 범위를 기록하며, 아래 팩 수치는 각 단계 당시의 기록입니다.
 
 [#154 캐릭터 검증/메모리 범위](../../mydocs/reports/issue-154_hd_actors.md): HD 모드를 고를 때 약119.5MB RGBA 팩을 불러옵니다. 팩은 WASM에 한 번 읽고 장면 전환에서 재사용하며 변경 텍스처만 Canvas에 전송합니다. 초기 메모리 비용을 포함한 성능 합격은 후속입니다.
 

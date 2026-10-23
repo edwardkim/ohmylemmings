@@ -34,6 +34,31 @@ pub fn macos_bundle_directory(executable: &Path) -> Option<PathBuf> {
     }
 }
 
+pub fn presentation_root(executable: &Path) -> PathBuf {
+    macos_bundle_directory(executable)
+        .and_then(|path| path.parent().map(Path::to_path_buf))
+        .unwrap_or_else(|| {
+            executable
+                .parent()
+                .unwrap_or_else(|| Path::new("."))
+                .to_path_buf()
+        })
+}
+
+pub fn packaged_hd_directory(executable: &Path) -> Result<Option<PathBuf>, io::Error> {
+    let root = presentation_root(executable);
+    let marker = root.join("HD-PRESENTATION");
+    match fs::read(&marker) {
+        Ok(data) if data == b"hd\n" => Ok(Some(root.join("hd-assets"))),
+        Ok(_) => Err(io::Error::new(
+            io::ErrorKind::InvalidData,
+            format!("{}: invalid HD presentation profile", marker.display()),
+        )),
+        Err(error) if error.kind() == io::ErrorKind::NotFound => Ok(None),
+        Err(error) => Err(error),
+    }
+}
+
 pub fn load(root: &Path) -> Result<Assets, Box<dyn Error>> {
     load_level(root, 1)
 }
@@ -70,6 +95,26 @@ pub fn load_id(root: &Path, level: LevelId) -> Result<Assets, Box<dyn Error>> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn packaged_hd_is_independent_of_cwd_and_requires_a_valid_profile() {
+        let root = std::env::temp_dir().join(format!("lemmings-hd-{}", std::process::id()));
+        for executable in [
+            root.join("한글 game/OhMyLemmings.exe"),
+            root.join("한글/OhMyLemmings.app/Contents/MacOS/OhMyLemmings"),
+        ] {
+            let resources = presentation_root(&executable);
+            fs::create_dir_all(&resources).unwrap();
+            assert_eq!(packaged_hd_directory(&executable).unwrap(), None);
+            fs::write(resources.join("HD-PRESENTATION"), b"hd\n").unwrap();
+            assert_eq!(
+                packaged_hd_directory(&executable).unwrap(),
+                Some(resources.join("hd-assets"))
+            );
+            fs::write(resources.join("HD-PRESENTATION"), b"bad").unwrap();
+            assert!(packaged_hd_directory(&executable).is_err());
+        }
+        fs::remove_dir_all(root).unwrap();
+    }
     #[test]
     fn linux_bundle_uses_sibling_data_and_preserves_unbundled_development() {
         let root = std::env::temp_dir().join(format!("lemmings-linux-{}", std::process::id()));

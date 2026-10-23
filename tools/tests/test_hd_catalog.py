@@ -43,6 +43,12 @@ class HdCatalogTests(unittest.TestCase):
             ext=dict(schema_version=1,atlases=[pin],frames=[dict(key=dict(material=4),atlas=0,rect=[0,0,2,2],display=[12,12],anchor=[0,0])])
             p=root/'extension.json';p.write_text(json.dumps(ext));ref=dict(path=p.name,bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest());m=root/'assets/manifests/remaster_pack.json';m.write_text(json.dumps(dict(catalog_extensions=[ref])))
             self.assertEqual(len(runtime_catalog(root,self.pack())),5)
+            from unittest.mock import patch
+            with patch('tools.hd_assets.compile_pack', side_effect=AssertionError('cache must avoid PNG decoding')):
+                self.assertEqual(len(runtime_catalog(root,self.pack())),5)
+            image=root/'p.png';original=image.read_bytes();image.write_bytes(original+b'corrupt')
+            with self.assertRaises(ValueError):runtime_catalog(root,self.pack())
+            image.write_bytes(original)
             p.write_text(p.read_text()+' ')
             with self.assertRaises(ValueError):runtime_catalog(root,self.pack())
     def test_special_pages_only_load_for_the_matching_special_scope(self):

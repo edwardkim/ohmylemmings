@@ -1,11 +1,11 @@
 # Rusty Lemmings
 
-2026-10-23 개발 상태: G00~G10과 [배포 준비 #115](mydocs/reports/issue-115_release_preparation.md)를 완료했고, v0.1.0의 Windows/macOS/Linux/Web 다운로드와 GitHub Pages 플레이를 제공합니다. G11 성능 재검증은 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에 이월했습니다. 자체 코드에는 [#129의 MIT 정책](mydocs/reports/issue-129_project_license.md)을 적용했고, [#130](mydocs/reports/issue-130_maintainer_acceptance.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정을 받았습니다. Windows 지원 대상은 **Windows 11 x64**이며 **Windows 10은 지원하지 않습니다**. [#1은 초기 구현·첫 플레이 배포의 상위 추적을 종료](mydocs/reports/issue-1_initial_development_closure.md)하며, 남은 성능·메모리는 #113에서 계속합니다.
+2026-10-24 개발 상태: G00~G10과 [배포 준비 #115](mydocs/reports/issue-115_release_preparation.md)를 완료했고, v0.1.0의 Windows/macOS/Linux/Web 다운로드와 GitHub Pages 플레이를 제공합니다. G11 성능 재검증은 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에 이월했습니다. 자체 코드에는 [#129의 MIT 정책](mydocs/reports/issue-129_project_license.md)을 적용했고, [#130](mydocs/reports/issue-130_maintainer_acceptance.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정을 받았습니다. Windows 지원 대상은 **Windows 11 x64**이며 **Windows 10은 지원하지 않습니다**. [#1은 초기 구현·첫 플레이 배포의 상위 추적을 종료](mydocs/reports/issue-1_initial_development_closure.md)하며, 남은 성능·메모리는 #113에서 계속합니다.
 
 [![CI](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml/badge.svg)](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml)
 [![Play on GitHub Pages](https://github.com/edwardkim/ohmylemmings/actions/workflows/pages.yml/badge.svg)](https://edwardkim.github.io/ohmylemmings/)
 
-[2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)를 진행합니다. Native/Web 개발 미리보기에서 캐릭터28동작337프레임·일반5재질·특수4장면·원본54객체/540키와 [HD 글꼴·게임 패널/결과 UI](mydocs/reports/issue-184_hd_ui.md)를 제공합니다. 원본 모드 전환과 기존 조작/규칙을 유지합니다. 지원 HD 패키징과 전체 인수는 후속이며 공개 v0.1.0/Pages는 기존 배포를 유지합니다.
+[2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)를 진행합니다. Native/Web 개발 미리보기에서 캐릭터28동작337프레임·일반5재질·특수4장면·원본54객체/540키와 [HD 글꼴·게임 패널/결과 UI](mydocs/reports/issue-184_hd_ui.md)를 제공합니다. 원본 모드 전환과 기존 조작/규칙을 유지합니다. [#187 HD 패키징·전체 인수](mydocs/reports/issue-187_hd_release.md)에서 새 다운로드 패키지의 기본 HD 실행과 전체 자산·소스를 연결했습니다. 현재 공개 v0.1.0/Pages는 기존 배포를 유지하며 새 버전 공개 전 개발 후보를 검증합니다. BGM #165는 리마스터 마감 이후 처리합니다.
 
 프로젝트 자체 작성 코드는 [MIT](LICENSE)로 제공합니다. [제3자 고지 전문](THIRD_PARTY_NOTICES.txt)과 [적용 범위](third_party/README.md)를 함께 확인하세요. OPL 합성기는 LGPL-2.1-or-later를 유지하며, 원본 DOS 그래픽·레벨·음악/효과음·상표에는 프로젝트 MIT 허가가 적용되지 않습니다.
 

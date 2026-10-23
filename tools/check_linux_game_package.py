@@ -14,9 +14,11 @@ def check(directory, evidence):
     foreign = evidence / '다른 작업 folder'
     foreign.mkdir()
     env = dict(os.environ, SDL_VIDEODRIVER='dummy', SDL_AUDIODRIVER='dummy', SDL_RENDER_DRIVER='software')
+    from tools.check_hd_package import check as check_hd
+    hd = check_hd(binary, directory, foreign, env, evidence)
 
     def execute(label, arguments, success=True):
-        result = subprocess.run([str(binary), *map(str, arguments)], cwd=foreign, env=env,
+        result = subprocess.run([str(binary), '--original', *map(str, arguments)], cwd=foreign, env=env,
                                 capture_output=True, text=True, timeout=90)
         (evidence / (label + '.log')).write_text(result.stdout + result.stderr)
         require((result.returncode == 0) == success, f'{label}: {result.stderr}')
@@ -70,7 +72,7 @@ def check(directory, evidence):
     dependencies = subprocess.check_output(['ldd', str(binary)], text=True)
     require('not found' not in dependencies and 'libSDL2' in dependencies, 'Unresolved Linux runtime')
     (evidence / 'dependencies.log').write_text(dependencies)
-    return dict(status='PASS', original_levels_loaded=levels, first_frame_sha256=sha(logical),
+    return dict(status='PASS', hd=hd, original_levels_loaded=levels, first_frame_sha256=sha(logical),
                 foreign_cwd=True, unicode_space_install=True, transitions=transitions,
                 audio=dict(submitted=int(match[1]), nonzero=int(match[2]), driver='dummy'),
                 scope='Extracted full game; SDL dummy video/audio and pixel readback; no physical audibility or performance qualification')

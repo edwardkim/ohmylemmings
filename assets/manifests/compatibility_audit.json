@@ -16,8 +16,8 @@
   "product_snapshot": [
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 12796,
-      "sha256": "173b3b301f33baeaba0169043124b79f4139f0ea223f840a83770e6e929ca9ea"
+      "bytes": 13104,
+      "sha256": "37e46084ac77806ccb70a398775495425f99cb487f03d7d5f1ba1f2e12b54ae9"
     },
     {
       "path": ".github/workflows/pages.yml",
@@ -86,8 +86,8 @@
     },
     {
       "path": "apps/desktop/src/assets.rs",
-      "bytes": 4199,
-      "sha256": "84580e9936f56a83d92957635ed89e21bc52e22bae7107ec71e80bff3e79829d"
+      "bytes": 6067,
+      "sha256": "ee077f22d774c8c6c62b8c39020b2273a58a016e0d15ed4474eb8f08f8e92a75"
     },
     {
       "path": "apps/desktop/src/audio.rs",
@@ -111,8 +111,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 67617,
-      "sha256": "906a5316f71f99be2d2896292f204442f33f7ba43752cf15e8686ac59d184c3d"
+      "bytes": 69182,
+      "sha256": "7a55407b8f77a129a0de0bcc5dfa881afa32099cf5cc78004f43175b3cd49c5d"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -231,8 +231,8 @@
     },
     {
       "path": "apps/web/www/app.js",
-      "bytes": 11586,
-      "sha256": "69d64462c33c33ab4e24ee5b0711fe44903944ca180f09cb7d99a74ca281c861"
+      "bytes": 11821,
+      "sha256": "e681b1adad154f82e432d4cd6bc44013e9836ca7859688b7c31edef2b41cd11d"
     },
     {
       "path": "apps/web/www/audio-license.html",
@@ -261,8 +261,8 @@
     },
     {
       "path": "apps/web/www/index.html",
-      "bytes": 5116,
-      "sha256": "eaf31bd424c2bbdd818463b0eb5ef49e13e48b943ebc055273ab8ba3ca38c8d3"
+      "bytes": 5013,
+      "sha256": "b7ed19b4c0c7eda676a5a0d65342358f9e3d3b1228c9b0c5ad785023ed229b1c"
     },
     {
       "path": "apps/web/www/style.css",
@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 180976,
-      "sha256": "ac745f479657c7f26b35eeff13c8a302804680d4677481b5ce6b363133aaf5ca"
+      "bytes": 181384,
+      "sha256": "63cbb1c6b6d231ad965c4a8787ad21c79886ac8b8c793aa68fb90a44b4ffefa9"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -1241,13 +1241,13 @@
     },
     {
       "path": "tools/check_linux_game_package.py",
-      "bytes": 4570,
-      "sha256": "5c287e958bb6136252a9bc268a607bf05325ff5b4a4e4023e7bebf9c378e8260"
+      "bytes": 4709,
+      "sha256": "4d65b8055778ff996f237c1e078bf35380d5e4515187179a7cac1e1a93309dca"
     },
     {
       "path": "tools/check_macos_package.py",
-      "bytes": 9326,
-      "sha256": "55135e419bc6ea0c5d5f6f6966b4f426cebf9dca36727286c655900752a4d579"
+      "bytes": 9535,
+      "sha256": "624834489925e1ce55ab5f45a57721f6ee0debddcb76ce8ecc4571b1fbe58831"
     },
     {
       "path": "tools/check_miner.py",
@@ -1281,8 +1281,8 @@
     },
     {
       "path": "tools/check_release_package.py",
-      "bytes": 7496,
-      "sha256": "266c912f1f1116c56305eecca8a74a8aec42cbb42e88b53c7ecb98658ff43f16"
+      "bytes": 7657,
+      "sha256": "ed0a89999c2d582c32cbdf74abb3ffa5e1ebeec68aabfc6b05d18b7f39ea8a9d"
     },
     {
       "path": "tools/check_results.py",
@@ -1311,8 +1311,8 @@
     },
     {
       "path": "tools/check_windows_package.py",
-      "bytes": 10189,
-      "sha256": "2c90880cc60caa3d8e76685b66aad60fd8583c135de2d4ac35335137da54630e"
+      "bytes": 10324,
+      "sha256": "54c5a3f105d3662eb948006f49bbcee657c7008aeae3a783348e17e140baf7ea"
     },
     {
       "path": "tools/compare_basher_dos.py",
@@ -1606,8 +1606,8 @@
     },
     {
       "path": "tools/macos_package.py",
-      "bytes": 14068,
-      "sha256": "bed627c3ed5003caa386cd664f937b89d88663abbf069fe1f5ee4860c300d841"
+      "bytes": 14818,
+      "sha256": "355a9c12b27a9ed6814fec34234ffc5b426dd1f1f088b59023933c07d07d512f"
     },
     {
       "path": "tools/macos_window.swift",
@@ -1766,8 +1766,8 @@
     },
     {
       "path": "tools/release_package.py",
-      "bytes": 17691,
-      "sha256": "3edcee580cf8a56d72b41cee3bef1b3c826e5d8ed2be3b9a3d2f6e6ffeae14ab"
+      "bytes": 18677,
+      "sha256": "c02917590f91d27d3c4b74ad22b83d2f59054e15ac0f1f25d9ae2098240d8cac"
     },
     {
       "path": "tools/release_version.py",
@@ -1956,8 +1956,8 @@
     },
     {
       "path": "tools/tests/test_macos_package.py",
-      "bytes": 5130,
-      "sha256": "1ee9bdb9cbd3961c72864b68c1f02902b5679d52fe762e027072749d05787b79"
+      "bytes": 5219,
+      "sha256": "99aa651563c8c6c4b1a495cc3753f911f2acbc47c9c8e55bf0edf1ffa5994382"
     },
     {
       "path": "tools/tests/test_miner.py",
@@ -2011,8 +2011,8 @@
     },
     {
       "path": "tools/tests/test_release_package.py",
-      "bytes": 8836,
-      "sha256": "255b4e581114a84c35d6b233c3b3c80d7a36aeba7ba7550d4105ac91c43be72e"
+      "bytes": 10321,
+      "sha256": "7207c7c492f3c55319fdb7ed8375ee9dbb3dd3d63ff03d7d94efef8ed0fbff01"
     },
     {
       "path": "tools/tests/test_release_version.py",
@@ -2061,8 +2061,8 @@
     },
     {
       "path": "tools/tests/test_windows_package.py",
-      "bytes": 5921,
-      "sha256": "7a0bfee4a2f8158f858744433bca3603a958ec9d918022670a3842f244f7ee64"
+      "bytes": 6186,
+      "sha256": "82fc0eeb141503e656c7810788edcc426a50ebd1e102f09943f671c28d772897"
     },
     {
       "path": "tools/verify_adlib_timing.py",
@@ -2196,8 +2196,8 @@
     },
     {
       "path": "tools/web/full_package_check.js",
-      "bytes": 6534,
-      "sha256": "0e0b72792f53e65d9182e706c53cb4e0f8b188c114ad66d55a05a234c7e04330"
+      "bytes": 9261,
+      "sha256": "47563721899450d8b1aefaa43b120f32b248ffa9406be53a2875bed7043b7963"
     },
     {
       "path": "tools/web/initial_replay.html",
@@ -2261,8 +2261,8 @@
     },
     {
       "path": "tools/windows_package.py",
-      "bytes": 11572,
-      "sha256": "fe3b0f594936e976127c9e92ca0a81deb156b8d39368f657bf2497e6b5c0cbf8"
+      "bytes": 12147,
+      "sha256": "6584da2fc820d5b7f6366ce1c8a26bfae0cea7975bbf6bf3bc8b8fd1994355c9"
     },
     {
       "path": "assets/remaster/issue-147-dig-v1.png",
@@ -2331,8 +2331,8 @@
     },
     {
       "path": "apps/desktop/src/hd.rs",
-      "bytes": 5851,
-      "sha256": "d5783eff8e9bcfca70f5afa57d8a8b0c5d517847ad4329cfd722b82c7ca7cc31"
+      "bytes": 5987,
+      "sha256": "2a20d9170fc572a80df4a7247486d2f4fd40e7dbb410e89a7bf8d3a5974729fc"
     },
     {
       "path": "apps/web/tests/hd.rs",
@@ -2746,13 +2746,13 @@
     },
     {
       "path": "tools/hd_catalog.py",
-      "bytes": 4813,
-      "sha256": "800ed718dc20f2c85fb704096a358c865fb800d5c3dd3e3d782383b6725d52a6"
+      "bytes": 6907,
+      "sha256": "0c2f655a245d5d86cd2add6bad134515726c70b921a8030e4ec5d7604ac53270"
     },
     {
       "path": "tools/tests/test_hd_catalog.py",
-      "bytes": 4318,
-      "sha256": "0aad6e5633ec858fed3ee2d3cb4dab45e93092a506d63e6da88877adbe6328be"
+      "bytes": 4773,
+      "sha256": "e742d8849e5252a2e9665efb7ca1347045ba82da573d31be3ebdfd9d8485e0e2"
     },
     {
       "path": "tools/tests/test_hd_loader.py",
@@ -3223,6 +3223,26 @@
       "path": "tools/web/hd_ui.cjs",
       "bytes": 6800,
       "sha256": "a2a8fedff2d6120bad961e2778a38ad7aefb6fdc6dfc000de37dd01507088ab3"
+    },
+    {
+      "path": "assets/manifests/hd_delivery.json",
+      "bytes": 11537,
+      "sha256": "118cc5ced853c8597e115c5fe2df1a4a8a9184b81ba49cbf3f6be7e7c0de054a"
+    },
+    {
+      "path": "tools/check_hd_package.py",
+      "bytes": 3656,
+      "sha256": "c0b37e4a406c86f81e0adf8b74cc42dc20bcb4782116b32f2f083c791dad2e06"
+    },
+    {
+      "path": "tools/hd_delivery.py",
+      "bytes": 2169,
+      "sha256": "ef29ef4be7702a0cc3f6a78e41e2a599a76dbb3c64be1ec82463831bf6d4b036"
+    },
+    {
+      "path": "tools/tests/test_hd_delivery.py",
+      "bytes": 2960,
+      "sha256": "b0b1f621fa2bb69a9357f738591c607e0589e15283c8817d0fb86514b5459499"
     }
   ],
   "evidence": [
@@ -3487,8 +3507,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 90482,
-      "sha256": "9e69b622e66a8df2a1389bd5de4c12088a10f6096f662bba15e403c851bd03ee",
+      "bytes": 90979,
+      "sha256": "f53e3e7c189f167a571ccc6764b73d858e3d77a5b3e86e09279ec3b71525105b",
       "id": "g11-06-display-cadence"
     }
   ],
@@ -7188,5 +7208,118 @@
       "tools/web/hd_ui.cjs"
     ],
     "scope": "Embedded95 AA glyphs, UI skin/status/skill/pause/result rendering and original14 input regions. Pinned Noto OFL/notice delivery and offline FreeType authoring tool. Original gameplay assets/catalog preserved; SDL/WASM UI courses. No simulation/audio synthesis changes. Historical evidence remains historical; BGM165 deferred,113 NOT READY unchanged."
+  },
+  "source_impact_187": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/187",
+    "baseline": "7de84d3ef1d80f6ef0d7c13b66637c63b8b64d02",
+    "previous_pins": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 12796,
+        "sha256": "173b3b301f33baeaba0169043124b79f4139f0ea223f840a83770e6e929ca9ea"
+      },
+      {
+        "path": "apps/desktop/src/assets.rs",
+        "bytes": 4199,
+        "sha256": "84580e9936f56a83d92957635ed89e21bc52e22bae7107ec71e80bff3e79829d"
+      },
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 67617,
+        "sha256": "906a5316f71f99be2d2896292f204442f33f7ba43752cf15e8686ac59d184c3d"
+      },
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 11586,
+        "sha256": "69d64462c33c33ab4e24ee5b0711fe44903944ca180f09cb7d99a74ca281c861"
+      },
+      {
+        "path": "apps/web/www/index.html",
+        "bytes": 5116,
+        "sha256": "eaf31bd424c2bbdd818463b0eb5ef49e13e48b943ebc055273ab8ba3ca38c8d3"
+      },
+      {
+        "path": "assets/manifests/remaster_pack.json",
+        "bytes": 180976,
+        "sha256": "ac745f479657c7f26b35eeff13c8a302804680d4677481b5ce6b363133aaf5ca"
+      },
+      {
+        "path": "tools/check_linux_game_package.py",
+        "bytes": 4570,
+        "sha256": "5c287e958bb6136252a9bc268a607bf05325ff5b4a4e4023e7bebf9c378e8260"
+      },
+      {
+        "path": "tools/check_macos_package.py",
+        "bytes": 9326,
+        "sha256": "55135e419bc6ea0c5d5f6f6966b4f426cebf9dca36727286c655900752a4d579"
+      },
+      {
+        "path": "tools/check_release_package.py",
+        "bytes": 7496,
+        "sha256": "266c912f1f1116c56305eecca8a74a8aec42cbb42e88b53c7ecb98658ff43f16"
+      },
+      {
+        "path": "tools/check_windows_package.py",
+        "bytes": 10189,
+        "sha256": "2c90880cc60caa3d8e76685b66aad60fd8583c135de2d4ac35335137da54630e"
+      },
+      {
+        "path": "tools/macos_package.py",
+        "bytes": 14068,
+        "sha256": "bed627c3ed5003caa386cd664f937b89d88663abbf069fe1f5ee4860c300d841"
+      },
+      {
+        "path": "tools/release_package.py",
+        "bytes": 17691,
+        "sha256": "3edcee580cf8a56d72b41cee3bef1b3c826e5d8ed2be3b9a3d2f6e6ffeae14ab"
+      },
+      {
+        "path": "tools/tests/test_macos_package.py",
+        "bytes": 5130,
+        "sha256": "1ee9bdb9cbd3961c72864b68c1f02902b5679d52fe762e027072749d05787b79"
+      },
+      {
+        "path": "tools/tests/test_release_package.py",
+        "bytes": 8836,
+        "sha256": "255b4e581114a84c35d6b233c3b3c80d7a36aeba7ba7550d4105ac91c43be72e"
+      },
+      {
+        "path": "tools/tests/test_windows_package.py",
+        "bytes": 5921,
+        "sha256": "7a0bfee4a2f8158f858744433bca3603a958ec9d918022670a3842f244f7ee64"
+      },
+      {
+        "path": "tools/web/full_package_check.js",
+        "bytes": 6534,
+        "sha256": "0e0b72792f53e65d9182e706c53cb4e0f8b188c114ad66d55a05a234c7e04330"
+      },
+      {
+        "path": "tools/windows_package.py",
+        "bytes": 11572,
+        "sha256": "fe3b0f594936e976127c9e92ca0a81deb156b8d39368f657bf2497e6b5c0cbf8"
+      },
+      {
+        "path": "apps/desktop/src/hd.rs",
+        "bytes": 5851,
+        "sha256": "d5783eff8e9bcfca70f5afa57d8a8b0c5d517847ad4329cfd722b82c7ca7cc31"
+      },
+      {
+        "path": "tools/hd_catalog.py",
+        "bytes": 4813,
+        "sha256": "800ed718dc20f2c85fb704096a358c865fb800d5c3dd3e3d782383b6725d52a6"
+      },
+      {
+        "path": "tools/tests/test_hd_catalog.py",
+        "bytes": 4318,
+        "sha256": "0aad6e5633ec858fed3ee2d3cb4dab45e93092a506d63e6da88877adbe6328be"
+      }
+    ],
+    "added": [
+      "assets/manifests/hd_delivery.json",
+      "tools/check_hd_package.py",
+      "tools/hd_delivery.py",
+      "tools/tests/test_hd_delivery.py"
+    ],
+    "scope": "HD download delivery: native executable/bundle-relative presentation profile, explicit original override and Web packaged default HD. Complete verified catalog shared by all packagers; cache source validation and extracted-package regressions. Original51 catalog members and simulation/audio sources unchanged; historical120 solution evidence stays historical. BGM165 deferred and113 NOT READY unchanged."
   }
 }

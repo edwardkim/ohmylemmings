@@ -2,7 +2,7 @@
   "schema_version": 1,
   "issue": "https://github.com/edwardkim/ohmylemmings/issues/154",
   "parent": "https://github.com/edwardkim/ohmylemmings/issues/137",
-  "status": "all_characters_preview",
+  "status": "full_runtime_remaster",
   "runtime_ready": true,
   "style": "soft_handpainted_2d_candidate",
   "pixel_policy": "sRGB-encoded straight RGBA8; PNG sample values retained without retouching/resampling; hosts discard alpha<=atlas.alpha_cutoff",
@@ -13362,7 +13362,7 @@
     "entrance": "source1 closed ->2..9 opening ->0 stays open; generated cells0..9 mapped to source1..9,0",
     "pixels": "PNG bytes unchanged"
   },
-  "full_remaster_ready": false,
+  "full_remaster_ready": true,
   "production_147": {
     "generator": "built-in image_gen",
     "pixels": "All five generated PNG files preserved byte-for-byte; pack RGBA samples unchanged. Alpha cutoff is a host compositing instruction, not source retouching.",
@@ -13758,5 +13758,10 @@
       "bytes": 79717,
       "sha256": "540a5a721bdef5f3df6353a29a76d2ce5c2f6a417cb4c656ba38937672550a08"
     }
-  ]
+  ],
+  "release_acceptance_187": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/187",
+    "report": "mydocs/reports/issue-187_hd_release.md",
+    "scope": "Current native/Web game graphics and UI, complete HD download packaging. Final supported-platform CI and actual merge are recorded in the report. Historical slice metadata below remains historical. No BGM or performance qualification."
+  }
 }

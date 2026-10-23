@@ -189,6 +189,11 @@ try {
         document.querySelector('#asset-help').textContent = '원본 그래픽·120개 레벨·음원이 준비되어 있습니다. 난이도와 레벨을 골라 플레이하세요. 다른 파일을 직접 선택할 수도 있습니다.';
     }
     pump = newPump();
+    if(document.querySelector('meta[name="game-presentation"][content="hd"]')) {
+        await hdLoader.load(game);
+        hd=new HdCanvas(game);hdScope=game.hd_scope();hdMode=true;
+        presentation.value='hd';screenSize();
+    }
     const sound=document.querySelector('#sound'),volume=document.querySelector('#volume'),audioStatus=document.querySelector('#audio-status');
     const audioSupported=typeof globalThis.AudioContext==='function';
     audio=new AudioHost(()=>game,WebAudio,({state,volume,muted,error})=>{

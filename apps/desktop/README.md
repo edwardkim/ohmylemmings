@@ -202,9 +202,9 @@ ZIP을 모두 풀고 `OhMyLemmings.exe`를 더블클릭하면 원본 Fun01을 �
 
 Mac 인증서가 없는 현재 Homebrew 후속 경로는 자체 tap의 소스 빌드 Formula입니다. 기존 `.app` Cask는 격리/Gatekeeper를 우회하지 않으며 공식 Cask는 기본 보안 검사에 통과해야 합니다. [공식 신뢰 모델](https://docs.brew.sh/Homebrew-Security-and-Supply-Chain#casks-have-a-different-trust-model). 아직 tap은 게시하지 않았습니다.
 
-## HD 미리보기
+## HD 화면 (#187)
 
-첫 테마 재질·입출구·28개 캐릭터 애니메이션337프레임과 새 패널을 사용하는 개발용 HD 모드입니다. 아직 제작하지 않은 시설/불꽃 등은 원본 그림으로 표시합니다. 전체 리마스터 완료나 새 공개 릴리즈를 뜻하지 않습니다.
+새 패키지는 일반 실행으로 HD 게임을 시작합니다. 캐릭터337프레임·5테마 재질·특수4장면·54객체/540키와 HD 글꼴/패널/결과 UI를 포함합니다. `--original`로 원본 화면을 시작하며 F8로 같은 게임에서 전환합니다. `hd-assets/`, `HD-ASSETS.json`, `HD-PRESENTATION`과 원본 data를 모두 유지하세요. Mac은 앱 전체를 유지합니다. 개발 체크아웃은 아래처럼 HD를 명시합니다.
 
 ```sh
 make hd-assets
@@ -213,7 +213,7 @@ cargo run -p lemmings-desktop --release --locked --offline -- --hd
 
 기존 원본 데이터 준비가 필요합니다. F8로 원본/HD, F11로 전체화면을 전환합니다. `--fullscreen`으로 전체화면 시작, `--hd-pack FILE`로 별도 팩을 지정할 수 있습니다. HD 게임은1920×960/패널120을 비율 유지해 표시하며8직업·생성속도·Pause/Nuke·재시작·미니맵을 같은 게임 상태에 연결합니다. 원본 RGB stream/기존 성능 모드는 원본 표시 계약을 유지하며 HD는 일반 `--capture`를 사용합니다.
 
-[구현·검증·남은 범위](../../mydocs/reports/issue-151_hd_integration.md)를 참고하세요. 현재 저사양 호스트의60fps 검증은 재개하지 않습니다.
+현재 [HD 패키징/인수](../../mydocs/reports/issue-187_hd_release.md)를 참고하세요. 공개 v0.1.0/Pages는 그대로이며 BGM #165·고성능 호스트의 #113 성능 검증은 별도입니다. 아래 수치는 각 단계 당시의 기록입니다.
 
 [#154 전체 캐릭터 대응](../../mydocs/reports/issue-154_hd_actors.md)의 새 팩은119,548,732바이트입니다. 현재 빌드와 `make hd-assets`로 준비하며 기존64MiB/16atlas 제한의 이전 실행 파일은 새 팩을 읽지 못합니다. 전체 지원 플랫폼 HD 패키징은 HD-06 후속입니다.
 

@@ -46,6 +46,7 @@ class MacPackageTests(unittest.TestCase):
             self.assertEqual(info['LSMinimumSystemVersion'],'13.0')
             self.assertIn(APP+'/Contents/Resources/data/ADLIB.DAT',z.namelist())
             self.assertIn('source.tar.gz',z.namelist())
+            self.assertEqual(z.read(APP+'/Contents/Resources/HD-PRESENTATION'), b'hd\n')
             self.assertIn('시험',z.read('README.txt').decode())
 
     def test_preview_version_keeps_numeric_bundle_fields_and_full_version_notice(self):

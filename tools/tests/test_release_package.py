@@ -65,6 +65,27 @@ class ReleasePackageTests(unittest.TestCase):
         self.assertTrue(result['development'])
         self.assertTrue(result['performance_qualification_deferred'])
 
+    def test_new_hd_packages_deliver_complete_profile_on_both_targets(self):
+        from tools.tests.test_hd_delivery import install_fixture
+        install_fixture(self.root, self.runtime)
+        for path in [self.runtime/'index.html',self.root/'apps/web/www/index.html']:
+            path.write_bytes(b'<!doctype html><html><head></head><body></body></html>')
+        # Source-export inventory must describe the fixture's newly added public files.
+        names = sorted(p.relative_to(self.root).as_posix() for p in self.root.rglob('*')
+                       if p.is_file() and 'assets/local/' not in p.relative_to(self.root).as_posix()
+                       and p.name != 'SOURCE-MANIFEST.json')
+        (self.root/'SOURCE-MANIFEST.json').write_text(json.dumps([dict(path=n) for n in names]))
+        for kind in ['linux','web']:
+            path=self.package(kind,'hd-'+kind)
+            self.assertEqual(verify_package(path,root=self.root)['status'],'PASS')
+            if kind == 'web':
+                with zipfile.ZipFile(path) as archive: files={n:archive.read(n) for n in archive.namelist()}
+                self.assertIn(b'name="game-presentation" content="hd"', files['index.html'])
+            else:
+                with tarfile.open(path) as archive: files={n:archive.extractfile(n).read() for n in archive.getnames()}
+            self.assertEqual(files['HD-PRESENTATION'],b'hd\n')
+            self.assertEqual(json.loads(files['HD-ASSETS.json'])['logical_keys'],6)
+
     def test_both_targets_deliver_project_license_and_all_third_party_notices(self):
         for kind in ['linux', 'web']:
             path = self.package(kind, 'licensed-' + kind)

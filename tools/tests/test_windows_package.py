@@ -41,6 +41,8 @@ class WindowsPackageTests(unittest.TestCase):
         sdlpins = [dict(name=n,size=len((self.sdl/n).read_bytes()),sha256=hashlib.sha256((self.sdl/n).read_bytes()).hexdigest())
                    for n in ['SDL2.dll','SDL2-LICENSE.txt']]
         (manifests/'windows_runtime.json').write_text(json.dumps(dict(files=sdlpins)))
+        from tools.tests.test_hd_delivery import install_fixture
+        install_fixture(self.root)
         names = sorted(p.relative_to(self.root).as_posix() for p in self.root.rglob('*') if p.is_file())
         (self.root/'SOURCE-MANIFEST.json').write_text(json.dumps([dict(path=n) for n in names]))
 
@@ -59,6 +61,8 @@ class WindowsPackageTests(unittest.TestCase):
             self.assertIn('OhMyLemmings.exe', archive.namelist())
             self.assertIn('start-game.cmd', archive.namelist())
             self.assertIn('source.tar.gz', archive.namelist())
+            self.assertEqual(archive.read('HD-PRESENTATION'), b'hd\n')
+            self.assertTrue(json.loads(archive.read('PACKAGE-MANIFEST.json'))['hd_remaster'])
             self.assertNotIn('data/INSTALL.EXE', archive.namelist())
             self.assertNotIn('secret.txt', archive.namelist())
             for name in GAME_FILES: self.assertEqual(archive.read('data/'+name), (self.assets/name).read_bytes())
