@@ -113,3 +113,9 @@
 | 광선 장치 | [PNG](issue-178-beam-v1.png) | [prompt](prompts/issue-178_beam_v1.txt) |
 
 자체 코스의 실제 Web Canvas: [케이블 장치](previews/issue-178_web_hoist.png), [벽 가시](previews/issue-178_web_spikes.png), [전기 함정](previews/issue-178_web_lightning.png). 원본 캡처는 ignored에 보존한다. 횃불/기타 장식·글꼴/전체 UI와 지원 HD 배포/전체 리마스터 인수는 후속이다.
+
+## #181 HD-05i 회전 깃발·일방통행 표시
+
+[깃발 PNG](issue-181-flags-v1.png)·[화살표 PNG](issue-181-arrows-v1.png)를 built-in image_gen으로 제작했다. [깃발 프롬프트](prompts/issue-181_flags_v1.txt)·[화살표 프롬프트](prompts/issue-181_arrows_v1.txt), [출처/원본 메타데이터](../manifests/hd_decor.json), [확장 팩](../manifests/remaster_decor.json), [검증 보고서](../../mydocs/reports/issue-181_hd_decor.md)를 참고한다. PNG 바이트는 그대로 보존한다. 10깃발/140키는28새 포즈를 테마 간 공유하고, 10방향 표시/72키는 원본7/8프레임 주기로 대응한다. 표시 애니메이션은 새 그림의 하이라이트 변화이며 원본 화살표의 이동 픽셀을 복제하지 않는다. 지형/방향 판정과 음원은 보존한다. 초기 횃불 분류를 원본의 회전 깃발로 정정했다.
+
+[실제 Web 자체 코스0](previews/issue-181_course_0.png)·[코스4](previews/issue-181_course_4.png): 좌/우 표시, 회전 깃발과 Digger의 지형 제거 장면. 원본 레벨 데이터는 쓰지 않는다.

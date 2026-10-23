@@ -142,6 +142,10 @@ HAZARD_PROFILES={(0,5):8,(1,5):8,(1,7):8,(1,8):10,(1,10):10,
 TRAP_PROFILES={(0,6):15,(0,8):17,(0,10):12,(2,8):15,(3,8):37,
                (3,9):7,(3,10):7,(4,7):25,(4,9):8,(4,10):16}
 
+# Remaining original GROUND objects: green/blue pennants and one-way arrows.
+DECOR_PROFILES={(s,i):14 for s,ids in [(0,[2,9]),(1,[2,9]),(2,[2,7]),(3,[2,7]),(4,[2,3])] for i in ids}
+DECOR_PROFILES.update({(s,i):8 if s==1 else 7 for s in range(5) for i in ([4,5] if s==4 else [3,4])})
+
 def key_fields(key):
     require(isinstance(key,dict), 'frame key')
     if set(key) == {'actor'}:
@@ -150,7 +154,7 @@ def key_fields(key):
         return 0,slot,frame
     if set(key) == {'object'}:
         theme,id,frame = numbers(key['object'],3,0,65535)
-        count = TRAP_PROFILES.get((theme,id))
+        count = DECOR_PROFILES.get((theme,id),TRAP_PROFILES.get((theme,id)))
         if count is None:count = HAZARD_PROFILES.get((theme,id), 6 if (theme,id) in EXIT_EFFECT_PROFILES else {0:1, 1:10}.get(id) if theme < 5 else None)
         require(count is not None and frame < count, 'unsupported object/frame')
         return 2,theme*16+id,frame
@@ -238,6 +242,19 @@ def trap_coverage(frames):
             found.add((slot//16,slot%16,frame))
     missing=[[theme,id,frame] for (theme,id),count in TRAP_PROFILES.items()
              for frame in range(count) if (theme,id,frame) not in found]
+    return dict(frames=len(found),missing=missing)
+
+
+def decor_coverage(frames):
+    """All140 flag and72 arrow disk keys, including the8-frame fire arrows."""
+    found=set()
+    for entry in frames:
+        require(isinstance(entry,dict), 'frame record')
+        kind,slot,frame=key_fields(entry.get('key'))
+        if kind==2 and (slot//16,slot%16) in DECOR_PROFILES:
+            found.add((slot//16,slot%16,frame))
+    missing=[[s,i,f] for (s,i),count in DECOR_PROFILES.items()
+             for f in range(count) if (s,i,f) not in found]
     return dict(frames=len(found),missing=missing)
 
 
@@ -428,6 +445,9 @@ def compile_pack(manifest, *, root=ROOT):
     traps=trap_coverage(frames)
     require(type(manifest.get('complete_traps',False)) is bool, 'complete traps policy')
     if manifest.get('complete_traps',False):require(not traps['missing'], 'incomplete trap coverage')
+    decor=decor_coverage(frames)
+    require(type(manifest.get('complete_decor',False)) is bool, 'complete decor policy')
+    if manifest.get('complete_decor',False):require(not decor['missing'], 'incomplete decor coverage')
     provenance = manifest.get('provenance',[])
     require(isinstance(provenance,list) and len(provenance) <= 128, 'provenance list')
     for pin in provenance: read_pin(pin,root)
@@ -456,7 +476,7 @@ def compile_pack(manifest, *, root=ROOT):
         require(len(set(required)) == len(required) and set(required) == seen, 'required coverage differs')
     if packing=='compact-v1':
         pack,report=compile_compact(atlases,frames,records,dimensions,root)
-        report.update(status='PASS',frames=len(frames),actor_coverage=coverage,portal_coverage=portals,exit_effect_coverage=effects,hazard_coverage=hazards,trap_coverage=traps,bytes=len(pack),sha256=hashlib.sha256(pack).hexdigest(),packing=packing,pixel_policy=report['compaction']['policy'])
+        report.update(status='PASS',frames=len(frames),actor_coverage=coverage,portal_coverage=portals,exit_effect_coverage=effects,hazard_coverage=hazards,trap_coverage=traps,decor_coverage=decor,bytes=len(pack),sha256=hashlib.sha256(pack).hexdigest(),packing=packing,pixel_policy=report['compaction']['policy'])
         return pack,report
     output = bytearray(b'LHDPAK01'+struct.pack('<HH',len(atlases),len(frames)))
     atlas_report=[];mappings=[]
@@ -480,7 +500,7 @@ def compile_pack(manifest, *, root=ROOT):
     for fields,index,rect,display,anchor in records:
         output.extend(struct.pack('<BBHHHIIIIHHhh',*fields,index,0,*mappings[index][rect],*display,*anchor))
     pack = bytes(output)
-    return pack,dict(status='PASS',atlases=atlas_report,frames=len(frames),actor_coverage=coverage,portal_coverage=portals,exit_effect_coverage=effects,hazard_coverage=hazards,trap_coverage=traps,sprite_bounds=bounds,
+    return pack,dict(status='PASS',atlases=atlas_report,frames=len(frames),actor_coverage=coverage,portal_coverage=portals,exit_effect_coverage=effects,hazard_coverage=hazards,trap_coverage=traps,decor_coverage=decor,sprite_bounds=bounds,
                      bytes=len(pack),sha256=hashlib.sha256(pack).hexdigest(),packing=packing,
                      pixel_policy='unchanged referenced RGB/straight alpha RGBA8; sRGB interpretation; optional lossless rectangle relocation')
 

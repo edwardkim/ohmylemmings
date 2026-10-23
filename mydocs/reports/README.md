@@ -148,3 +148,5 @@
 - [#175 물·불 위험 요소 HD](issue-175_hd_hazards.md):9객체84프레임·SDL/WASM 사망 코스와 카탈로그 검증.
 
 - [#178 기계 함정 HD](issue-178_hd_traps.md):10종159프레임·발동/재사용/Pause·인스턴스별 위상과 Native/Web 검증.
+
+- [#181 회전 깃발·일방통행 표시 HD](issue-181_hd_decor.md)
