@@ -15,8 +15,17 @@
 - Python/Rust의 신규212키·경계 테스트에서 미구현 실패를 먼저 확인하고 통과시켰다. 비어 있는 객체 번호와 범위 밖 프레임은 거부한다.
 - 렌더러는212루프 위상에서 상태·마스크·사운드를 보존한다. 기존 부분 팩은 원본 그림으로 대체할 수 있다.
 - 실제 SDL5합성 코스/1,790상태에서 원본/HD 입력·상태·최종 지형/객체·사운드 기록이 일치했다. Digger의 실제 지형 변경과10스텝 Pause를 확인했다.
-- WASM/Canvas5코스/1,790상태·670Canvas·전212위상을 통과했다. 실제 지형 제거로 원래 보이던70,319샘플이 투명화됨을 확인했다. 별도 빈 Chromium을 사용했고 console 오류0이다. 원본120장면과 선택1,920틱, 전체 검사·출처 감사·self-review·정확한 head의 CI·실제 병합은 최종 결과를 아래에 추가한다.
+- WASM/Canvas5코스/1,790상태·670Canvas·전212위상을 통과했다. 실제 지형 제거로 원래 보이던70,319샘플이 투명화됨을 확인했다. 별도 빈 Chromium을 사용했고 console 오류0이다. 원본120초기 장면·선택1,920틱·Web352Canvas도 Native/WASM 최종 상태와 모드별 상태/마스크/사운드가 일치했다. 원본14장면의 방향 제한과 이번 대상 중 실제 배치6종을 확인했다. 캠페인에 미배치된14종은 위 합성 코스로 검증한다. 원본 그림 fallback0·console 오류0이다.
+- `make check`의 모든 구성 명령을 통과했다: 워크스페이스705Rust·304Python, WASM 컴파일, 실제 SDL 회귀, Web8개 검사 명령 종료0. 마지막 solution replay는 증거 보존 옵션을 사용했다.627소스 핀·310문서 링크·기록된 G11 무결성도 통과했다.
+- self-review에서 v1 키 인코딩·경계·부분 팩 대체, PNG/프롬프트/출처, 두 방향의 실제 Canvas 화면, RGBA/기준점과25범위 예산을 검토했다. Web 검사 stride를 실제1584에 맞추고 합성 코스의 지형 인코딩/기술 입력 경계를 수정한 후 최종 증거를 다시 생성했다. core/session/resources/audio/platform 제품 코드는 바꾸지 않았다.
+
 
 재현: `source assets/local/dev-tools/env.sh`(root 준비 환경), `make check`, `python3 tools/check_hd_decor.py --output assets/local/issue-181-review/new-native`, `cargo run -p lemmings-game --example hd_terrain_probe --release --locked --offline -- assets/local/web/hd-assets assets/local/dos-original`. 브라우저는 별도 빈 Chromium 프로필/CDP와 로컬 서버에서 `tools/web/hd_decor.cjs`·`hd_terrain.cjs --decor`를 사용한다. 원본 캡처는 ignored에만 보관한다.
 
 현재 단계의 전체 UI·글꼴·지원 HD 배포와 리마스터 전체 인수는 남아 있다. 성능 #113 NOT READY와 BGM #165의 후순위를 유지한다. 사용자19222/8080·preview-172는 유지한다.
+
+## CI와 실제 병합
+
+PR #182 head `0744178020c71e6b84024ef2ff00a204140d35aa` / CI39955094648의7개 SUCCESS, 실제 merge `331f512f625921d792f855c8e7a28d93144c6ed4`와 검토 head 전체 tree 일치를 확인했다.
+
+[PR #182](https://github.com/edwardkim/ohmylemmings/pull/182) · [CI39955094648](https://github.com/edwardkim/ohmylemmings/actions/runs/39955094648). Python·WASM·Rust native·Web·Windows·macOS Apple Silicon/Intel을 통과했다. PR checkout `600f96f1c703e3cb1ec1a2fc1cfbe80f3b1a5023` / tree `debcd551247cc3ed03ccae8b3232bcc13f92a57f`를 검토 head와 대조했다. attempt1의 Web은 준비11분26초 뒤15분 작업 제한으로 종료됐다. 같은 head의 attempt2에서 Web만 재실행해 성공했고 다른6개는 attempt1 성공 결과를 유지했다. 시간 제한 종료와 중복 push39955085721 취소는 PASS에 포함하지 않는다. 기존 플랫폼 패키징 검사와 전체 HD 배포/성능 인수는 구별한다. 완료 문서 실제 병합과 root Native/Web 준비·preview-172 보존은 [#181](https://github.com/edwardkim/ohmylemmings/issues/181)의 종료 근거에 기록한다.
