@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 179152,
-      "sha256": "cbb3abd134a9706bb0872395026eec543d48705a2a25209306cd05f6e4d8aa70"
+      "bytes": 180255,
+      "sha256": "21c779de2d25ce575e9b171afa8ae4d4ab6ce60872ac95b0f613f7b3da8be924"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -1491,8 +1491,8 @@
     },
     {
       "path": "tools/hd_assets.py",
-      "bytes": 19006,
-      "sha256": "376089f94aac0489b8141264c03d48d02b3be877616e982d4420b688b0606175"
+      "bytes": 28522,
+      "sha256": "9589cbf7a2fc16661364aee47bad62858654a723ba0019b04ad2cd8b0944c122"
     },
     {
       "path": "tools/hd_assets_preview.html",
@@ -2676,8 +2676,8 @@
     },
     {
       "path": "tools/check_hd_portals.py",
-      "bytes": 2831,
-      "sha256": "95cdd36745c93dbf347265a6191a12abfc1ce6ae17c1683040b9a32a1cf3911b"
+      "bytes": 3330,
+      "sha256": "eea1caa07cd35ad41b91003121a6ef6ca0adbeff5903d00a4e1f436a142d666f"
     },
     {
       "path": "tools/portal_fixture.py",
@@ -2693,6 +2693,36 @@
       "path": "tools/web/hd_portals.cjs",
       "bytes": 7103,
       "sha256": "d4bc2db8c1d2059f54a179ee21f7599a146c355bd85da10bc5fc8431cdaa736a"
+    },
+    {
+      "path": "assets/manifests/hd_compaction.json",
+      "bytes": 12102,
+      "sha256": "f657b883fab0df438636fccef19e23438db18dba1c9312aef40bfdea8cea85c7"
+    },
+    {
+      "path": "assets/remaster/previews/issue-163_comparison.png",
+      "bytes": 64821,
+      "sha256": "ef921719776be837cd02aba3d6660fbf52dad42afcf7b6c282ab1a7bdd272e13"
+    },
+    {
+      "path": "tools/check_hd_compaction.py",
+      "bytes": 3360,
+      "sha256": "bfd1dea3f90f6fa9a3ed544f3b0a83c8e1abbe9654d10ded5e9f457edc95a7e4"
+    },
+    {
+      "path": "tools/tests/test_hd_compact.py",
+      "bytes": 7887,
+      "sha256": "25678051fbdfbfcd1cf779d9e4cedb0611279a0b055b4a29929626b6edf7b00a"
+    },
+    {
+      "path": "tools/web/hd_compact.cjs",
+      "bytes": 9652,
+      "sha256": "ac41f14603279088ed0bc897e26df79436abf9052ead1bf21ed28f1bdde5233c"
+    },
+    {
+      "path": "tools/web/hd_compact.html",
+      "bytes": 178,
+      "sha256": "530bdc16c31e0885ba2168658979b2f9606a78d69a70815dfba8a5e9e2aa0e67"
     }
   ],
   "evidence": [
@@ -6206,5 +6236,35 @@
       "tools/web/hd_portals.cjs"
     ],
     "scope": "All five portal sets55keys and actual effect0 exit ornaments30keys, original phases/provenance and Native/Web read-only rendering. New PNGs/rectangles/anchors retain source RGBA; v1/128MiB/32atlas unchanged. No core physics, timing, input or sound changes. Historical COMP/120-level/G11/performance observations remain historical; #113 deferred/NOT READY unchanged. Four special scenes and other hazards/effects/UI, support HD packaging and performance remain follow-up."
+  },
+  "source_impact_163": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/163",
+    "baseline": "f8e06fce1c072f69db56de25ef17a3266bda2968",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/remaster_pack.json",
+        "bytes": 179152,
+        "sha256": "cbb3abd134a9706bb0872395026eec543d48705a2a25209306cd05f6e4d8aa70"
+      },
+      {
+        "path": "tools/hd_assets.py",
+        "bytes": 19006,
+        "sha256": "376089f94aac0489b8141264c03d48d02b3be877616e982d4420b688b0606175"
+      },
+      {
+        "path": "tools/check_hd_portals.py",
+        "bytes": 2831,
+        "sha256": "95cdd36745c93dbf347265a6191a12abfc1ce6ae17c1683040b9a32a1cf3911b"
+      }
+    ],
+    "added": [
+      "assets/manifests/hd_compaction.json",
+      "assets/remaster/previews/issue-163_comparison.png",
+      "tools/check_hd_compaction.py",
+      "tools/tests/test_hd_compact.py",
+      "tools/web/hd_compact.cjs",
+      "tools/web/hd_compact.html"
+    ],
+    "scope": "Tooling-only HD pack compaction, unchanged source PNG pins and production frame geometry.27runtime atlases/440frames,131699864bytes,23sampling-locked sources. Native/Canvas exact output checks; no Rust/core/host/timing/input/sound edits. Historical all-level and performance evidence remain historical; #113 deferred/NOT READY unchanged."
   }
 }

@@ -132,3 +132,5 @@
 - [#154 HD-05a 캐릭터 전체 프레임 진행](issue-154_hd_actors.md)
 
 - [#160 전체 테마 입출구 진행/self-review](issue-160_hd_portals.md)
+
+- [#163 HD 자산 팩 정리 진행 기록](issue-163_hd_pack.md)

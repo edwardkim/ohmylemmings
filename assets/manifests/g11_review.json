@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 214819,
-      "sha256": "74f2dbef7367d1e08e33d50e55884adf84507bb24cf3030a7e49b5e6775ae5ac",
+      "bytes": 217150,
+      "sha256": "1f4b8f5b6168f465465d04cc29b2b7d7bec6452c911c89fbdb1f800231caa3e2",
       "id": "compatibility"
     },
     {
@@ -11060,5 +11060,15 @@
       "id": "compatibility"
     },
     "scope": "Update current portal/ornament asset and source inventory only; historical observations/NOT READY and #113 deferred performance stay unchanged. No new all-level/performance qualification."
+  },
+  "source_maintenance_163": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/163",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 214819,
+      "sha256": "74f2dbef7367d1e08e33d50e55884adf84507bb24cf3030a7e49b5e6775ae5ac",
+      "id": "compatibility"
+    },
+    "scope": "Update current compaction tooling, manifests and proof inventory only; historical observations/NOT READY and #113 deferred performance stay unchanged. No new all-level/performance qualification."
   }
 }

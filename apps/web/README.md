@@ -92,3 +92,5 @@ python3 tools/check_web.py --evidence assets/local/web-original-check --original
 [#157 일반 지형/팩 검증](../../mydocs/reports/issue-157_hd_terrain.md): 5재질과 일방통행 표시,120초기 장면·선택1,920틱의 Native/Web 상태 및 원본/HD 마스크·사운드를 대조했습니다. 전체120레벨 완주/성능 판정은 아닙니다.
 
 [#160 전체 입출구·출구 불꽃](../../mydocs/reports/issue-160_hd_portals.md): 5테마 문55프레임과 장식30프레임을 실제 Canvas에 연결했습니다. `make web`으로 현재 팩과 WASM을 함께 갱신합니다. 원본 판정·문 열림·장식 재생 주기를 유지합니다.
+
+[#163 팩 정리](../../mydocs/reports/issue-163_hd_pack.md): 원본32PNG·440자산을 유지하고 런타임27atlas/131,699,864바이트로 정리했습니다. 필터링에 민감한 페이지는 기존 배치를 유지하며 Native/Canvas 화면 동일성을 검증했습니다. 전체 리마스터·성능 인수는 후속입니다.

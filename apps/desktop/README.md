@@ -219,4 +219,6 @@ cargo run -p lemmings-desktop --release --locked --offline -- --hd
 
 [#157 일반5지형 재질](../../mydocs/reports/issue-157_hd_terrain.md)을 연결하고 팩을109,503,312바이트로 정리했습니다. 현재 빌드/`make hd-assets`를 사용하세요. 원본 일방통행 화살표와 특수4배경을 유지합니다. 전체 HD 지원 패키징은 후속입니다.
 
-[#160 전체 입출구·출구 불꽃](../../mydocs/reports/issue-160_hd_portals.md)을 연결했습니다. 현재 팩은32atlas/440자산·133,385,948바이트이며 기존128MiB 한도 안입니다. `make hd-assets` 후 현재 Native/Web 빌드를 사용하세요. 원본 모드·구버전 팩을 지원하며 특수 장면·나머지 함정/효과/UI와 지원 HD 배포는 후속입니다.
+[#160 전체 입출구·출구 불꽃](../../mydocs/reports/issue-160_hd_portals.md)을 연결했습니다. 현재 팩은27atlas/440자산·131,699,864바이트이며 기존128MiB 한도 안입니다. `make hd-assets` 후 현재 Native/Web 빌드를 사용하세요. 원본 모드·구버전 팩을 지원하며 특수 장면·나머지 함정/효과/UI와 지원 HD 배포는 후속입니다.
+
+[#163 팩 정리](../../mydocs/reports/issue-163_hd_pack.md): 원본32PNG·440자산을 유지하고 런타임27atlas/131,699,864바이트로 정리했습니다. 필터링에 민감한 페이지는 기존 배치를 유지하며 Native/Canvas 화면 동일성을 검증했습니다. 전체 리마스터·성능 인수는 후속입니다.
