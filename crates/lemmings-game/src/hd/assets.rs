@@ -68,7 +68,10 @@ pub const fn object_frame_count(set: u8, id: u8) -> Option<u16> {
         (0..=4, 1) => Some(10),
         _ => match exit_effect_frame_count(set, id) {
             Some(count) => Some(count),
-            None => hazard_frame_count(set, id),
+            None => match hazard_frame_count(set, id) {
+                Some(count) => Some(count),
+                None => trap_frame_count(set, id),
+            },
         },
     }
 }
@@ -88,6 +91,21 @@ pub const fn hazard_frame_count(set: u8, id: u8) -> Option<u16> {
         (0..=3, 5) | (4, 6) | (1, 7) => Some(8),
         (1, 8 | 10) => Some(10),
         (2, 9) => Some(16),
+        _ => None,
+    }
+}
+
+/// Original effect4 object counts, pinned with triggers in hd_traps.json.
+pub const fn trap_frame_count(set: u8, id: u8) -> Option<u16> {
+    match (set, id) {
+        (0, 6) | (2, 8) => Some(15),
+        (0, 8) => Some(17),
+        (0, 10) => Some(12),
+        (3, 8) => Some(37),
+        (3, 9 | 10) => Some(7),
+        (4, 7) => Some(25),
+        (4, 9) => Some(8),
+        (4, 10) => Some(16),
         _ => None,
     }
 }

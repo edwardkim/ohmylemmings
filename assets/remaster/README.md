@@ -95,3 +95,21 @@
 | 회전 위험 장치 | [PNG](issue-175-spinner-v1.png) | [prompt](prompts/issue-175_spinner_v1.txt) |
 
 자체 합성 코스를 실제 Web Canvas로 재생한 [물](previews/issue-175_web_water.png)·[분사기](previews/issue-175_web_fire.png)·[회전 장치](previews/issue-175_web_spinner.png) 캡처다. 원본 레벨의 캡처는 ignored에 보존한다. 기계 함정·횃불/기타 효과·글꼴/전체 UI와 전체 리마스터 인수는 후속이다.
+
+## #178 HD-05h 기계 함정
+
+원본 effect4 함정10종159논리 프레임을 새9PNG로 대응한다. built-in image_gen으로 제작했고 선택 PNG는 출력 바이트 그대로다. 원본 first/count/once·trigger·sound ID, 압축 함정 인덱스와 실제 발동 상태를 보존한다. [전체 프롬프트/중간 생성 이력·출처·해시·사각형/앵커](../manifests/hd_traps.json), [확장 팩](../manifests/remaster_traps.json), [결과·재현·검증 한계](../../mydocs/reports/issue-178_hd_traps.md)를 따른다. 표시 cutoff127로 낮은 alpha 여백을 제외하며, 케이블 시트 구분선은 선택 사각형 밖에 있다.
+
+| 자산 | PNG | 선택 출력의 최종 프롬프트 |
+|---|---|---|
+| 바닥 집게 | [PNG](issue-178-jaw-v1.png) | [prompt](prompts/issue-178_jaw_v1.txt) |
+| 낙석 | [PNG](issue-178-rock-v1.png) | [prompt](prompts/issue-178_rock_v2.txt) |
+| 추 | [PNG](issue-178-weight-v1.png) | [prompt](prompts/issue-178_weight_v2.txt) |
+| 대리석 압착기 | [PNG](issue-178-marble-press-v1.png) | [prompt](prompts/issue-178_marble_press_v1.txt) |
+| 케이블 장치 | [PNG](issue-178-hoist-v1.png) | [prompt](prompts/issue-178_hoist_v1.txt) |
+| 좌우 벽 가시 | [PNG](issue-178-wall-spikes-v1.png) | [prompt](prompts/issue-178_wall_spikes_v1.txt) |
+| 전기 바늘 | [PNG](issue-178-needle-v1.png) | [prompt](prompts/issue-178_needle_v1.txt) |
+| 긴 전극 | [PNG](issue-178-lightning-v1.png) | [prompt](prompts/issue-178_lightning_v4.txt) |
+| 광선 장치 | [PNG](issue-178-beam-v1.png) | [prompt](prompts/issue-178_beam_v1.txt) |
+
+자체 코스의 실제 Web Canvas: [케이블 장치](previews/issue-178_web_hoist.png), [벽 가시](previews/issue-178_web_spikes.png), [전기 함정](previews/issue-178_web_lightning.png). 원본 캡처는 ignored에 보존한다. 횃불/기타 장식·글꼴/전체 UI와 지원 HD 배포/전체 리마스터 인수는 후속이다.

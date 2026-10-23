@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 180632,
-      "sha256": "e56de939c213cba7f3c0171957e0663bc53f94dff7f4aa39a9ef4c2e1207ed9a"
+      "bytes": 180804,
+      "sha256": "acf4af955963314fac91d48113cd9e27413dc4b4f2930dcddbc26a97e6976b61"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -586,8 +586,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/assets.rs",
-      "bytes": 13916,
-      "sha256": "aa85fd3058a5fcee2028e2c4a4eae19bfc628aa3b076e937b93dee2ff9974ea9"
+      "bytes": 14460,
+      "sha256": "44a6f70258e545440fda19752cb0aff5978bbef7721297e3689d786641fb1a85"
     },
     {
       "path": "crates/lemmings-game/src/hd/layout.rs",
@@ -646,8 +646,8 @@
     },
     {
       "path": "crates/lemmings-game/tests/hd_assets.rs",
-      "bytes": 14109,
-      "sha256": "b43d0d4352eef7a8ec4c8576cbe7512ef0cc437e8b00855f75a8fe1b8ae17b8e"
+      "bytes": 15264,
+      "sha256": "3135bc81ca9b25d7b2472b715cf5bd26105a7efa7de60f83182f70fb26ffe4db"
     },
     {
       "path": "crates/lemmings-game/tests/hd_presentation.rs",
@@ -1491,8 +1491,8 @@
     },
     {
       "path": "tools/hd_assets.py",
-      "bytes": 29979,
-      "sha256": "b885c5048912abd8b46f5f659ecd7ee13ae8f567302dd1bd5437d8722d4d9dc2"
+      "bytes": 30994,
+      "sha256": "84d2e92a900971e52decb4622b8764a0d8d265c14fe03f98e0b768889ce34264"
     },
     {
       "path": "tools/hd_assets_preview.html",
@@ -1936,8 +1936,8 @@
     },
     {
       "path": "tools/tests/test_hd_assets.py",
-      "bytes": 20006,
-      "sha256": "822bdcffba77cac1aa7f420c4e810cf531cd9bf6dc440fe40c0c1d815b8d2e5c"
+      "bytes": 21319,
+      "sha256": "07328df6115d232fa5db03a85ceba96fcb97f59a5f4a92bec123f87d8aa02485"
     },
     {
       "path": "tools/tests/test_initial_reference.py",
@@ -2321,8 +2321,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/scene.rs",
-      "bytes": 59880,
-      "sha256": "12ae1216fb3c52be82cb6cfb6cd3b037e97a2ee85ebe617d5866f5907aa70b97"
+      "bytes": 65274,
+      "sha256": "ed515a49716e511942e78488421e143f23c20a4c51b4eb2577be21a3131a94d1"
     },
     {
       "path": "crates/lemmings-game/tests/hd_scene.rs",
@@ -2561,8 +2561,8 @@
     },
     {
       "path": "tools/web/hd_terrain.cjs",
-      "bytes": 7250,
-      "sha256": "baf3eb1f101f14ed95dd988907054dd251dabded0aa7e3935ec93007f48c5405"
+      "bytes": 7504,
+      "sha256": "9f55fa8ad6b2d551723efb7a532f747b9f0318a08ae4d561cbd3284113019e88"
     },
     {
       "path": "assets/manifests/hd_portals.json",
@@ -2928,6 +2928,166 @@
       "path": "tools/web/hd_hazards.cjs",
       "bytes": 6296,
       "sha256": "92fb76e51adf9dfdf7e3042379ceb1a13c1fe76c28fded1e8a5d03c65f0cc7c0"
+    },
+    {
+      "path": "assets/manifests/hd_traps.json",
+      "bytes": 48798,
+      "sha256": "0e1a9ad6f899e79165d658b547ce966bed9e40dfda3891dfceadb8789234c993"
+    },
+    {
+      "path": "assets/manifests/remaster_traps.json",
+      "bytes": 62062,
+      "sha256": "00e705ee129b39b45b46ad6bc2021c1c91f258fed090c37bbb2aeeef4c443a0a"
+    },
+    {
+      "path": "assets/remaster/issue-178-beam-v1.png",
+      "bytes": 1050065,
+      "sha256": "aadfb4143dc73449ccd2be1292787d23c0c6df6bafd024806f022ec1962eb570"
+    },
+    {
+      "path": "assets/remaster/issue-178-hoist-v1.png",
+      "bytes": 1125519,
+      "sha256": "29e7d84cdf1109a5937887cab089e6b8a323515c62026c58dbc69b3a07b95ad3"
+    },
+    {
+      "path": "assets/remaster/issue-178-jaw-v1.png",
+      "bytes": 832619,
+      "sha256": "f85d3fc3c09fe2f650a24dba15c8e690ca2c41b27940d560f0c8e5f2d5a4e375"
+    },
+    {
+      "path": "assets/remaster/issue-178-lightning-v1.png",
+      "bytes": 1769082,
+      "sha256": "0e4cf0389d3a1b43b6ad517a7af64f363b692d02a51abada0ce83b2e05fe07d6"
+    },
+    {
+      "path": "assets/remaster/issue-178-marble-press-v1.png",
+      "bytes": 1270674,
+      "sha256": "a050b8edf0ad28932396ba8e3ae5f3baff7f124968535d11d76e34402e2d72c3"
+    },
+    {
+      "path": "assets/remaster/issue-178-needle-v1.png",
+      "bytes": 1453924,
+      "sha256": "fc880416ff2dd414aae73b556df9f94df3da4de5aaee992c08dacb2547b62e52"
+    },
+    {
+      "path": "assets/remaster/issue-178-rock-v1.png",
+      "bytes": 1150597,
+      "sha256": "a1353185fa0738c359895494992bc831a5fde23d03c72ec1b3db74df7ee7f4a8"
+    },
+    {
+      "path": "assets/remaster/issue-178-wall-spikes-v1.png",
+      "bytes": 861691,
+      "sha256": "1949190960280b7f270f48223c92e5a9825785000032634cf0ac3d3388caa3b0"
+    },
+    {
+      "path": "assets/remaster/issue-178-weight-v1.png",
+      "bytes": 1037612,
+      "sha256": "1ccc3bce44b1e433cb895a4ab4888be65d4f7c8ef4e1293abbd8cf5c88ec02d2"
+    },
+    {
+      "path": "assets/remaster/previews/issue-178_web_hoist.png",
+      "bytes": 158377,
+      "sha256": "6506276f329aa645afbd78a18f8aca1bf6ddd0d4d5f8e8676466c0aada1b56d7"
+    },
+    {
+      "path": "assets/remaster/previews/issue-178_web_lightning.png",
+      "bytes": 191545,
+      "sha256": "838bb4c29b0531ad097342ee3b3a98dea251b23a321a2450b7e3db28f5f5c316"
+    },
+    {
+      "path": "assets/remaster/previews/issue-178_web_spikes.png",
+      "bytes": 160243,
+      "sha256": "2e1c410da8cf64193f3c84cb81880ccad4069d4cd739c061207ba9c7b2d3c634"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_beam_v1.txt",
+      "bytes": 1118,
+      "sha256": "073052044ef9a201ef04b7e38665e0a9a1a21e95480c7e0e9ce4510177f1128a"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_hoist_v1.txt",
+      "bytes": 1347,
+      "sha256": "4a05bd48aa0ce7b2dfeaf1da798361f99661262abb7086dc50bb56b46b2c9889"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_jaw_v1.txt",
+      "bytes": 1438,
+      "sha256": "4ce1b3fb941d2a9ac23d31b9a61c9196a091bb2e4b3e1f86c7bd698d20af0cc5"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_lightning_v1.txt",
+      "bytes": 1190,
+      "sha256": "7936bb6528355e05fc9a0b4cd139e8d87def4987c558ddde8be9bdb52418b7c0"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_lightning_v2.txt",
+      "bytes": 751,
+      "sha256": "63cba034930a92b5b06de0623c818c0e2023141a95016f7a270f51f4e085ee39"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_lightning_v3.txt",
+      "bytes": 1094,
+      "sha256": "fd271b23e15caca42b82c2b184b50318d653dec9e721a5b6de85c02059c06b8a"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_lightning_v4.txt",
+      "bytes": 713,
+      "sha256": "37d1ba8125f7131c46d2106e3e201db798a69224f466666db8e05080b852fdd6"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_marble_press_v1.txt",
+      "bytes": 1139,
+      "sha256": "1c45857e0559a6492190a5df3da88f7cf7b18d8b5421ad74e7a0748f6f178da2"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_needle_v1.txt",
+      "bytes": 1104,
+      "sha256": "f33ae55cc80a5752f63d771f24408d7db663d11138091135739f366ffd7befd8"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_rock_v1.txt",
+      "bytes": 1076,
+      "sha256": "12b81c0d354fcc9878b2fb88df7806e5a67f6707c5a7931d45255d6b44d81820"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_rock_v2.txt",
+      "bytes": 782,
+      "sha256": "8c5e548ea6e777ff954cb27eb97e01b8968ecb3c0e6e4097320968ece9b199bf"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_wall_spikes_v1.txt",
+      "bytes": 1203,
+      "sha256": "3265144336760322e5d5d3300edcabd5a3678659ace470fe0f97d113baec6647"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_weight_v1.txt",
+      "bytes": 1192,
+      "sha256": "a181198fc8903b870c2a7a36a5129f73d4f2ac7fd067ef54a6f0e0c894ea44d0"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-178_weight_v2.txt",
+      "bytes": 701,
+      "sha256": "a3422322601c9dac5fabf8270e49dffeef40f047397587f657ad2702454d336f"
+    },
+    {
+      "path": "tools/check_hd_traps.py",
+      "bytes": 4023,
+      "sha256": "94e74aabe16911797a649b49fd000dfac5577b637989afebdd653f7ed0f8abf0"
+    },
+    {
+      "path": "tools/tests/test_trap_fixture.py",
+      "bytes": 990,
+      "sha256": "0c81c57a65c3dad04c7c4503b0d62803498d62edc55893453b717a7aef52ab0f"
+    },
+    {
+      "path": "tools/trap_fixture.py",
+      "bytes": 2532,
+      "sha256": "1b38ea993f52350e5e1d41a790a4a42ed68c0c491684a580baeeca27bfd3c966"
+    },
+    {
+      "path": "tools/web/hd_traps.cjs",
+      "bytes": 6746,
+      "sha256": "e82e681cd41ed9ecf0f0743f19dc4bc4c97b697b366f27379c868c51ed49f804"
     }
   ],
   "evidence": [
@@ -6702,5 +6862,81 @@
       "tools/web/hd_hazards.cjs"
     ],
     "scope": "Eight generated hazard sheets,84 object frames, bounded typed keys and selected catalog extension. Original triggers/loop/order and simulation masks preserved; synthetic SDL/WASM death courses. No simulation/audio synthesis changes. Historical evidence remains historical; BGM165 deferred,113 NOT READY unchanged."
+  },
+  "source_impact_178": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/178",
+    "baseline": "fd70f64078a12390988581ce2377fa029fbf9cba",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/remaster_pack.json",
+        "bytes": 180632,
+        "sha256": "e56de939c213cba7f3c0171957e0663bc53f94dff7f4aa39a9ef4c2e1207ed9a"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/assets.rs",
+        "bytes": 13916,
+        "sha256": "aa85fd3058a5fcee2028e2c4a4eae19bfc628aa3b076e937b93dee2ff9974ea9"
+      },
+      {
+        "path": "crates/lemmings-game/tests/hd_assets.rs",
+        "bytes": 14109,
+        "sha256": "b43d0d4352eef7a8ec4c8576cbe7512ef0cc437e8b00855f75a8fe1b8ae17b8e"
+      },
+      {
+        "path": "tools/hd_assets.py",
+        "bytes": 29979,
+        "sha256": "b885c5048912abd8b46f5f659ecd7ee13ae8f567302dd1bd5437d8722d4d9dc2"
+      },
+      {
+        "path": "tools/tests/test_hd_assets.py",
+        "bytes": 20006,
+        "sha256": "822bdcffba77cac1aa7f420c4e810cf531cd9bf6dc440fe40c0c1d815b8d2e5c"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/scene.rs",
+        "bytes": 59880,
+        "sha256": "12ae1216fb3c52be82cb6cfb6cd3b037e97a2ee85ebe617d5866f5907aa70b97"
+      },
+      {
+        "path": "tools/web/hd_terrain.cjs",
+        "bytes": 7250,
+        "sha256": "baf3eb1f101f14ed95dd988907054dd251dabded0aa7e3935ec93007f48c5405"
+      }
+    ],
+    "added": [
+      "assets/manifests/hd_traps.json",
+      "assets/manifests/remaster_traps.json",
+      "assets/remaster/issue-178-beam-v1.png",
+      "assets/remaster/issue-178-hoist-v1.png",
+      "assets/remaster/issue-178-jaw-v1.png",
+      "assets/remaster/issue-178-lightning-v1.png",
+      "assets/remaster/issue-178-marble-press-v1.png",
+      "assets/remaster/issue-178-needle-v1.png",
+      "assets/remaster/issue-178-rock-v1.png",
+      "assets/remaster/issue-178-wall-spikes-v1.png",
+      "assets/remaster/issue-178-weight-v1.png",
+      "assets/remaster/previews/issue-178_web_hoist.png",
+      "assets/remaster/previews/issue-178_web_lightning.png",
+      "assets/remaster/previews/issue-178_web_spikes.png",
+      "assets/remaster/prompts/issue-178_beam_v1.txt",
+      "assets/remaster/prompts/issue-178_hoist_v1.txt",
+      "assets/remaster/prompts/issue-178_jaw_v1.txt",
+      "assets/remaster/prompts/issue-178_lightning_v1.txt",
+      "assets/remaster/prompts/issue-178_lightning_v2.txt",
+      "assets/remaster/prompts/issue-178_lightning_v3.txt",
+      "assets/remaster/prompts/issue-178_lightning_v4.txt",
+      "assets/remaster/prompts/issue-178_marble_press_v1.txt",
+      "assets/remaster/prompts/issue-178_needle_v1.txt",
+      "assets/remaster/prompts/issue-178_rock_v1.txt",
+      "assets/remaster/prompts/issue-178_rock_v2.txt",
+      "assets/remaster/prompts/issue-178_wall_spikes_v1.txt",
+      "assets/remaster/prompts/issue-178_weight_v1.txt",
+      "assets/remaster/prompts/issue-178_weight_v2.txt",
+      "tools/check_hd_traps.py",
+      "tools/tests/test_trap_fixture.py",
+      "tools/trap_fixture.py",
+      "tools/web/hd_traps.cjs"
+    ],
+    "scope": "Nine generated mechanical trap sheets,159 object frames, bounded typed keys and selected catalog extension. Original triggers/loop/order and simulation masks preserved; synthetic SDL/WASM death courses. No simulation/audio synthesis changes. Historical evidence remains historical; BGM165 deferred,113 NOT READY unchanged."
   }
 }

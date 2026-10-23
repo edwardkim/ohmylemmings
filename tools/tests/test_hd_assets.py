@@ -162,7 +162,7 @@ class HdAssetsTests(unittest.TestCase):
         for id,name in enumerate(ICON_NAMES):
             self.assertEqual(key_fields({'icon':name}),(3,id,0))
         for key in [{'object':[0,0,1]},{'object':[0,1,10]},{'object':[5,0,0]},
-                    {'object':[0,6,0]},{'object':[False,0,0]},{'object':[0,1]},
+                    {'object':[0,2,0]},{'object':[False,0,0]},{'object':[0,1]},
                     {'icon':'minimap'},{'icon':13},{'icon':False},{'icon':[]}]:
             with self.assertRaises(AssetError): key_fields(key)
 
@@ -319,7 +319,7 @@ class HdAssetsTests(unittest.TestCase):
         for theme,id,count in profiles:
             self.assertEqual(key_fields({'object':[theme,id,count-1]}),(2,theme*16+id,count-1))
             with self.assertRaises(AssetError):key_fields({'object':[theme,id,count]})
-        for theme,id in [(0,6),(2,8),(3,7),(4,7),(5,5)]:
+        for theme,id in [(0,2),(2,7),(3,7),(4,11),(5,5)]:
             with self.assertRaises(AssetError):key_fields({'object':[theme,id,0]})
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);m=self.fixture(root);m['complete_hazards']=True
@@ -330,5 +330,23 @@ class HdAssetsTests(unittest.TestCase):
             with self.assertRaisesRegex(AssetError,'hazard coverage'):compile_pack(m,root=root)
             m['complete_hazards']='yes'
             with self.assertRaisesRegex(AssetError,'hazards policy'):compile_pack(m,root=root)
+
+    def test_mechanical_trap_pack_requires_all_159_disk_frames(self):
+        from tools.hd_assets import trap_coverage, key_fields
+        profiles=[(0,6,15),(0,8,17),(0,10,12),(2,8,15),(3,8,37),(3,9,7),(3,10,7),(4,7,25),(4,9,8),(4,10,16)]
+        keys=[{'object':[theme,id,frame]} for theme,id,count in profiles for frame in range(count)]
+        self.assertEqual(trap_coverage([{'key':key} for key in keys]),dict(frames=159,missing=[]))
+        for theme,id,count in profiles:
+            self.assertEqual(key_fields({'object':[theme,id,count-1]}),(2,theme*16+id,count-1))
+            with self.assertRaises(AssetError):key_fields({'object':[theme,id,count]})
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);m=self.fixture(root);m['complete_traps']=True
+            with self.assertRaisesRegex(AssetError,'trap coverage'):compile_pack(m,root=root)
+            f=m['frames'][0];m['frames']=[dict(f,key=key) for key in keys]
+            self.assertEqual(compile_pack(m,root=root)[1]['trap_coverage'],dict(frames=159,missing=[]))
+            m['frames'].pop()
+            with self.assertRaisesRegex(AssetError,'trap coverage'):compile_pack(m,root=root)
+            m['complete_traps']='yes'
+            with self.assertRaisesRegex(AssetError,'traps policy'):compile_pack(m,root=root)
 
 if __name__=='__main__':unittest.main()

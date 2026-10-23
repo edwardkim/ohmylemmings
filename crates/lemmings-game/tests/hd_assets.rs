@@ -297,7 +297,7 @@ fn expanded_character_pack_accepts_32_small_atlases_and_rejects_33() {
 }
 
 #[test]
-fn decorative_exit_flames_keep_six_frames_without_accepting_arrow_or_trap_keys() {
+fn decorative_exit_flames_keep_six_frames_without_accepting_arrow_or_torch_keys() {
     assert_eq!(
         AssetPack::parse(&fixture())
             .unwrap()
@@ -342,7 +342,7 @@ fn decorative_exit_flames_keep_six_frames_without_accepting_arrow_or_trap_keys()
         b[42..44].copy_from_slice(&6u16.to_le_bytes());
         assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
     }
-    for slot in [2, 3, 6, 19, 35, 51, 68, 82] {
+    for slot in [2, 3, 9, 19, 35, 51, 68, 82] {
         let mut b = fixture();
         b[40] = 2;
         b[41] = slot;
@@ -439,5 +439,45 @@ fn hazard_keys_accept_exact_disk_frames_and_reject_first_out_of_range() {
                 assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
             }
         }
+    }
+}
+
+#[test]
+fn mechanical_traps_accept_exact_disk_counts_and_keep_other_keys_rejected() {
+    let profiles = [
+        (0, 6, 15),
+        (0, 8, 17),
+        (0, 10, 12),
+        (2, 8, 15),
+        (3, 8, 37),
+        (3, 9, 7),
+        (3, 10, 7),
+        (4, 7, 25),
+        (4, 9, 8),
+        (4, 10, 16),
+    ];
+    for (set, id, count) in profiles {
+        for frame in 0u16..=count {
+            let mut b = fixture();
+            b[40] = 2;
+            b[41] = set * 16 + id;
+            b[42..44].copy_from_slice(&frame.to_le_bytes());
+            if frame < count {
+                assert!(
+                    AssetPack::parse(&b)
+                        .unwrap()
+                        .frame(AssetKey::Object { set, id, frame })
+                        .is_some()
+                );
+            } else {
+                assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
+            }
+        }
+    }
+    for (set, id) in [(0, 2), (1, 9), (2, 7), (3, 7), (4, 11)] {
+        let mut b = fixture();
+        b[40] = 2;
+        b[41] = set * 16 + id;
+        assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
     }
 }

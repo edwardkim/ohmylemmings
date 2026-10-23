@@ -131,6 +131,8 @@ pub struct Renderer {
     source_exit_effects: Vec<(u8, u8, u16)>,
     hd_hazards: Vec<(u8, u8, u16)>,
     source_hazards: Vec<(u8, u8, u16)>,
+    hd_traps: Vec<(u8, u8, u16)>,
+    source_traps: Vec<(u8, u8, u16)>,
     epoch: u64,
 }
 impl Renderer {
@@ -162,6 +164,8 @@ impl Renderer {
             source_exit_effects: Vec::new(),
             hd_hazards: Vec::new(),
             source_hazards: Vec::new(),
+            hd_traps: Vec::new(),
+            source_traps: Vec::new(),
             epoch: 0,
         }
     }
@@ -217,8 +221,10 @@ impl Renderer {
         let original_effects = portal_keys(&self.source_exit_effects);
         let hazards = portal_keys(&self.hd_hazards);
         let original_hazards = portal_keys(&self.source_hazards);
+        let traps = portal_keys(&self.hd_traps);
+        let original_traps = portal_keys(&self.source_traps);
         format!(
-            "{{\"version\":1,\"width\":1920,\"height\":1080,\"actor_frames_available\":{},\"portal_frames_available\":{},\"hazard_frames_available\":{},\"exit_effect_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"special_panorama\":{},\"terrain_material\":{},\"one_way_objects\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}],\"hd_portal_frames\":[{portals}],\"original_portal_frames\":[{originals}],\"hd_exit_effect_frames\":[{effects}],\"original_exit_effect_frames\":[{original_effects}],\"hd_hazard_frames\":[{hazards}],\"original_hazard_frames\":[{original_hazards}]}}",
+            "{{\"version\":1,\"width\":1920,\"height\":1080,\"actor_frames_available\":{},\"portal_frames_available\":{},\"trap_frames_available\":{},\"hazard_frames_available\":{},\"exit_effect_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"special_panorama\":{},\"terrain_material\":{},\"one_way_objects\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}],\"hd_portal_frames\":[{portals}],\"original_portal_frames\":[{originals}],\"hd_exit_effect_frames\":[{effects}],\"original_exit_effect_frames\":[{original_effects}],\"hd_hazard_frames\":[{hazards}],\"original_hazard_frames\":[{original_hazards}],\"hd_trap_frames\":[{traps}],\"original_trap_frames\":[{original_traps}]}}",
             self.frames
                 .iter()
                 .filter(|f| matches!(f.key, AssetKey::Actor { .. }))
@@ -227,6 +233,7 @@ impl Renderer {
                 .iter()
                 .filter(|f| matches!(f.key, AssetKey::Object { id: 0 | 1, .. }))
                 .count(),
+            self.frames.iter().filter(|f| matches!(f.key, AssetKey::Object { set, id, .. } if super::assets::trap_frame_count(set, id).is_some())).count(),
             self.frames.iter().filter(|f| matches!(f.key, AssetKey::Object { set, id, .. } if super::assets::hazard_frame_count(set, id).is_some())).count(),
             self.frames.iter().filter(|f| matches!(f.key, AssetKey::Object { set, id, .. } if super::assets::exit_effect_frame_count(set, id).is_some())).count(),
             self.terrain_rebuilds,
@@ -265,6 +272,8 @@ impl Renderer {
         self.source_exit_effects.clear();
         self.hd_hazards.clear();
         self.source_hazards.clear();
+        self.hd_traps.clear();
+        self.source_traps.clear();
         self.missing.clear();
         self.width = assets.width;
         self.height = assets.height;
@@ -552,6 +561,8 @@ impl Renderer {
         self.source_exit_effects.clear();
         self.hd_hazards.clear();
         self.source_hazards.clear();
+        self.hd_traps.clear();
+        self.source_traps.clear();
         let mask = run.session.render_terrain();
         let mut occupied = mask.to_vec();
         let mut compact = 0;
@@ -616,6 +627,14 @@ impl Renderer {
                         self.hd_hazards.push(key);
                     } else {
                         self.source_hazards.push(key);
+                    }
+                }
+                if super::assets::trap_frame_count(o.set, p.id).is_some() {
+                    let key = (o.set, p.id, frame as u16);
+                    if hd.is_some() {
+                        self.hd_traps.push(key);
+                    } else {
+                        self.source_traps.push(key);
                     }
                 }
                 let (w, h, ax, ay) = hd.map_or(
@@ -1223,6 +1242,110 @@ mod tests {
         legacy.frame(&run).unwrap();
         assert_eq!(legacy.source_hazards, vec![(4, 6, 0)]);
         assert!(legacy.hd_hazards.is_empty());
+    }
+
+    #[test]
+    fn trap_art_tracks_live_trigger_frames_reuse_and_pause_without_mutating_game() {
+        let mut renderer = Renderer::fallback();
+        for set in 0..5 {
+            for id in 0..16 {
+                if let Some(count) = super::super::assets::trap_frame_count(set, id) {
+                    for frame in 0..count {
+                        let atlas = renderer.textures.len() as u16;
+                        renderer.textures.push(Texture::new(
+                            1,
+                            1,
+                            vec![set * 40, id * 20, frame as u8 * 6, 255],
+                        ));
+                        renderer.frames.push(AssetFrame {
+                            key: AssetKey::Object { set, id, frame },
+                            atlas,
+                            rect: [0, 0, 1, 1],
+                            display: [12, 6],
+                            anchor: [0, 0],
+                        });
+                    }
+                }
+            }
+        }
+        renderer.base = renderer.textures.len();
+        let mut seen = std::collections::BTreeSet::new();
+        for (set, id, count) in [
+            (0, 6, 15),
+            (0, 8, 17),
+            (0, 10, 12),
+            (2, 8, 15),
+            (3, 8, 37),
+            (3, 9, 7),
+            (3, 10, 7),
+            (4, 7, 25),
+            (4, 9, 8),
+            (4, 10, 16),
+        ] {
+            let mut assets = Assets::synthetic_hazards(0, false);
+            assets.traps[0] = Some(lemmings_core::TrapState::new(count, 0).unwrap());
+            let mut run = LevelRun::new(assets, 1, None, Pacing::Dos).unwrap();
+            renderer.reset(&run.assets).unwrap();
+            let target = object(&mut renderer, id, false);
+            let o = renderer.objects.last_mut().unwrap();
+            o.set = set;
+            o.placement.flags.no_overwrite = false;
+            o.meta.trigger_effect = 4;
+            o.meta.frame_count = count;
+            o.meta.animation_flags = 1;
+            o.frames = vec![vec![255, 0, 0, 255, 0, 255, 0, 255]; count as usize];
+            let mut paused = false;
+            let mut started = false;
+            let mut reused = false;
+            let mut cycles = 0;
+            let mut was_triggered = false;
+            for _ in 0..300 {
+                let trap = run.session.traps()[0].unwrap();
+                if trap.triggered() && !was_triggered {
+                    if started {
+                        reused = true;
+                    }
+                    started = true;
+                }
+                if !trap.triggered() && was_triggered {
+                    cycles += 1;
+                }
+                was_triggered = trap.triggered();
+                let state = crate::diagnostics::state(&run.session);
+                let sound = run.sound.diagnostic_json();
+                renderer.frame(&run).unwrap();
+                assert!(renderer.source_traps.is_empty());
+                assert_eq!(renderer.hd_traps, vec![(set, id, u16::from(trap.frame()))]);
+                assert_eq!(
+                    &renderer.textures[target].rgba[..4],
+                    &[set * 40, id * 20, trap.frame() * 6, 255]
+                );
+                assert_eq!(state, crate::diagnostics::state(&run.session));
+                assert_eq!(sound, run.sound.diagnostic_json());
+                seen.insert((set, id, trap.frame()));
+                if trap.triggered() && !paused {
+                    run.session
+                        .queue(lemmings_core::InputCommand::Pause)
+                        .unwrap();
+                    run.tick().unwrap();
+                    let frozen = run.session.traps()[0];
+                    for _ in 0..3 {
+                        run.tick().unwrap();
+                        renderer.frame(&run).unwrap();
+                        assert_eq!(run.session.traps()[0], frozen);
+                    }
+                    run.session
+                        .queue(lemmings_core::InputCommand::Resume)
+                        .unwrap();
+                    run.tick().unwrap();
+                    paused = true;
+                }
+                run.tick().unwrap();
+            }
+            assert!(started && reused && cycles > 0 && paused, "{set}/{id}");
+        }
+        assert_eq!(seen.len(), 159);
+        assert!(renderer.info().contains("\"trap_frames_available\":159"));
     }
 
     fn run() -> LevelRun {
