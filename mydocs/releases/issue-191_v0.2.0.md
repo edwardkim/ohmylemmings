@@ -1,6 +1,6 @@
 # Oh My Lemmings 0.2.0 — 2D 리마스터
 
-담당 [#191](https://github.com/edwardkim/ohmylemmings/issues/191). 메인테이너가 확정한 리마스터 버전입니다. **현재 배포 후보 준비 중이며, v0.2.0 태그·공개 릴리즈·Pages 게시 전입니다.** 기존 공개0.1.0은 보존합니다.
+담당 [#191](https://github.com/edwardkim/ohmylemmings/issues/191). 메인테이너가 확정한 리마스터 버전입니다. **0.2.0 시험 패키지의7개 플랫폼 CI를 완료했으며, v0.2.0 태그·공개 릴리즈·Pages 게시 전입니다.** 기존 공개0.1.0은 보존합니다.
 
 ## 변경 사항
 
@@ -24,6 +24,6 @@
 
 ## 확인 범위와 남은 사항
 
-실제0.2.0 소스 트리의7개 플랫폼 CI와 전체 패키지·소스·체크섬을 확인한 뒤 게시 후보를 확정합니다. HD 리마스터는 [#187 보고서](../reports/issue-187_hd_release.md), BGM 수정은 [#165 보고서](../reports/issue-165_bgm.md)를 따릅니다.0.1.0의 당시 수동 인수나 이전 단계의 전체 해법 기록을 이번0.2.0의 새 수동/전체 완주 판정으로 확대하지 않습니다.
+실제0.2.0 소스 트리의 [7개 플랫폼 CI](https://github.com/edwardkim/ohmylemmings/actions/runs/39984622798)와 전체 패키지·소스·체크섬 검사를 완료했습니다. HD 리마스터는 [#187 보고서](../reports/issue-187_hd_release.md), BGM 수정은 [#165 보고서](../reports/issue-165_bgm.md)를 따릅니다.0.1.0의 당시 수동 인수나 이전 단계의 전체 해법 기록을 이번0.2.0의 새 수동/전체 완주 판정으로 확대하지 않습니다.
 
 Windows10은 지원하지 않습니다. Mac은 ad-hoc 서명/미공증이며 Apple Developer ID 서명은 없습니다.60fps/고성능 호스트 성능은 #113 NOT READY로 유지합니다. 공개 게시 전 이 문서를 공개 다운로드 완료로 해석하지 마세요.

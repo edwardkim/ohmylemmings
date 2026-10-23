@@ -2,6 +2,8 @@
 
 이슈: https://github.com/edwardkim/ohmylemmings/issues/165
 
+현재: 공통 BGM 제품 수정·7개 플랫폼 CI·실제 병합을 완료했다. 리마스터 버전0.2.0의 패키지도 검증했다. 메인테이너의 실제 청취 응답은 아직 없다. 디지털/장치 검증 및 제품 수정은 완료했으며 #165는 청취 확인 대기로 OPEN을 유지한다. 버전0.2.0 선택을 청취 정상 판정으로 간주하지 않았다. 아래 미수정/대기·CI 전 표기는 당시 기록이다.
+
 메인테이너가 Web·Native·다운로드 패키지에서 효과음은 들리지만 BGM은 들리지 않는다고 보고했다. 기준 main `9e734a7b26542ad5ec1e50ed2d1742e9001597f9`에서 공통 PCM 경로의 음표 재시작 손실을 재현했다. 이번 변경은 조사 기록이며 제품 수정·수정 후 청취 판정은 아직 하지 않았다. #163 팩 정리는 별도로 완료했다.
 
 ## 확인된 원인
@@ -58,3 +60,15 @@ CI에는 자산 없는 반복/overflow 검사, Linux 원본21곡/효과음 혼�
 실행 중인 기존8080 서버의 `/preview-165/`에 수정 HD 게임, `/preview-165/listen.html`에 같은 기본 곡의 수정 전후60초 비교를 준비했다. user CDP19222/기존4탭과 `/preview-172/`는 이동·교체하지 않았다. 실제 사람이 BGM/효과음을 듣는 판정은 디지털 결과와 구분해 요청했다. 아직 플랫폼 CI·self-review·실제 병합과 청취 응답 확인 전이므로 #165는 OPEN이다. 공개 v0.1.0/Pages는 바꾸지 않는다.
 
 현재 정량 기록: [BGM 전달 검증](../../assets/manifests/bgm_delivery.json). 새 원시 자료는 ignored `assets/local/issue-165-fix/`에 보관한다. 원본 VM/register 일정과 전체 게임/화면은 유지하므로 이 수정에120개 스테이지의 재완주나 새60fps 측정을 포함하지 않는다.
+
+## 최종 CI·병합·버전 반영
+
+BGM [PR #190](https://github.com/edwardkim/ohmylemmings/pull/190) 실제 merge `9a0ab3bb4e1c4607ee3500445e1cc3ceedc911f7`. head `95c2e221acff5d62f530e312231b8847db22b484`의 [CI39982379823](https://github.com/edwardkim/ohmylemmings/actions/runs/39982379823)에서7개 모두 SUCCESS. CI checkout `6c571f10202c3897f09d965a4df6a26567ef5b62`/실제 merge tree `25a01ea4e47454f856ce457a1a9b4b921e8bffb0`가 같다.
+
+버전 [PR #192](https://github.com/edwardkim/ohmylemmings/pull/192) 실제 merge `c7da0071cd8d056bea4bad83fa912b70be407e60`. head `232019603a36d487149c1cd9b8f93732c3111b15`의 [CI39984622798](https://github.com/edwardkim/ohmylemmings/actions/runs/39984622798)에서7개 모두 SUCCESS. CI checkout `d405a53a140de2c6ded78ea5c1c1a0be8a92a231`/실제 merge tree `daac94826be9b8fd15c084eb364dd06d00635c4e`가 같다.
+
+Linux의 원본21곡/효과음 혼합60초, Web의 원본 기본 곡/효과음 혼합60초 WASM과 기존 전체 회귀·4플랫폼 새 설치/원본/HD/오디오 probe를 통과했다. Windows hosted 환경은 Server2022, Mac은 arm64/Intel에서 같은 universal 앱을 검증했다.
+
+메인테이너의 실제 청취 응답은 아직 없다. 디지털/장치 검증 및 제품 수정은 완료했으며 #165는 청취 확인 대기로 OPEN을 유지한다. 버전0.2.0 선택을 청취 정상 판정으로 간주하지 않았다.
+
+취소한 중복 push/main 실행은 PASS에 포함하지 않는다. 완료 문서는 별도 Markdown 변경으로 검토하고, 실제 문서 merge 및 root main0.2.0/Native/Web 재빌드·원본13사례 C/Native/WASM 재확인·preview-172/165 보존 증거는 해당 이슈와 ignored root-ready.json에 고정한다. 공개0.1.0/Pages는 유지하며0.2.0 태그/공개는 별도다.
