@@ -44,3 +44,5 @@
 - [#157 HD-05b 일반 지형 재질 계획](issue-157_hd_terrain.md)
 
 - [#160 HD-05c 전체 테마 입출구](issue-160_hd_portals.md)
+
+- [#163 HD 자산 팩 정리 계획](issue-163_hd_pack.md)

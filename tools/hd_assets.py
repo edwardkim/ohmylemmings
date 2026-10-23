@@ -247,13 +247,137 @@ def pack_rectangles(width, height, rgba, rectangles):
     return packed_width,packed_height,bytes(pixels),positions
 
 
+def compact_layout(rectangles, margins=None):
+    """Keep complete frame extents; share only protected transparent borders."""
+    require(bool(rectangles), 'empty compact page')
+    margins=margins or {}
+    ordered=sorted(rectangles,key=lambda key:(-rectangles[key][1],-rectangles[key][0],key))
+    require(all(0<w<=MAX_DIM and 0<h<=MAX_DIM for w,h in rectangles.values()), 'compact rectangle dimensions')
+    large=[key for key in ordered if max(rectangles[key])+2>MAX_DIM]
+    ordered=[key for key in ordered if key not in large]
+    fixed=[(rectangles[k][0],rectangles[k][1],{k:(0,0,*rectangles[k])}) for k in large]
+    if not ordered:return fixed
+    minimum=max(rectangles[key][0]+2 for key in ordered)
+    best=None
+    for limit in sorted({minimum,MAX_DIM,*range(((minimum+63)//64)*64,MAX_DIM+1,64)}):
+        pages=[]
+        for key in ordered:
+            w,h=rectangles[key];pw,ph=w+2,h+2;left,top,right,bottom=margins.get(key,(0,0,0,0))
+            fits=[(s['height']-ph,limit-s['cursor']-pw+min(s['right'],left),i,j) for i,p in enumerate(pages) for j,s in enumerate(p['shelves']) if ph<=s['height'] and s['cursor']+pw-min(s['right'],left)<=limit]
+            if fits:
+                _,_,i,j=min(fits);page=pages[i];shelf=page['shelves'][j]
+            else:
+                page=next((p for p in pages if p['height']+ph<=MAX_DIM),None)
+                if page is None:
+                    page=dict(width=0,height=0,shelves=[],positions={});pages.append(page)
+                shelf=dict(cursor=0,y=page['height'],height=ph,right=0,top=MAX_DIM,bottom=MAX_DIM,keys=[])
+                page['shelves'].append(shelf);page['height']+=ph
+            overlap=min(shelf['right'],left);x=shelf['cursor']+1-overlap
+            page['positions'][key]=(x,shelf['y']+1,w,h)
+            shelf['keys'].append(key);shelf['cursor']=x+w+1;shelf['right']=right
+            shelf['top']=min(shelf['top'],top);shelf['bottom']=min(shelf['bottom'],shelf['height']-ph+bottom)
+            page['width']=max(page['width'],shelf['cursor'])
+        result=list(fixed)
+        for page in pages:
+            height=0;previous=None
+            for shelf in page['shelves']:
+                if previous is not None:height-=min(previous['bottom'],shelf['top'])
+                shift=shelf['y']-height
+                for key in shelf['keys']:
+                    x,y,w,h=page['positions'][key];page['positions'][key]=(x,y-shift,w,h)
+                height+=shelf['height'];previous=shelf
+            result.append((page['width'],height,page['positions']))
+        score=(sum(w*h for w,h,_ in result),len(result),limit)
+        if best is None or score<best[0]:best=(score,result)
+    return best[1]
+
+
+def compile_compact(atlases, frames, records, dimensions, root):
+    regions={};sources=[];transforms=[None]*len(records);bounds=[];scratch=0;fixed=[];locked_sources=[]
+    for index,atlas in enumerate(atlases):
+        width,height,rgba=decode_png(read_pin(atlas,root))
+        require((width,height)==dimensions[index], 'atlas dimensions')
+        cutoff=atlas.get('alpha_cutoff',0);alpha=rgba[3::4]
+        if atlas['alpha']=='opaque':require(all(a==255 for a in alpha), 'opaque atlas has transparency')
+        else:require(min(alpha)<=cutoff<max(alpha), 'sprite atlas must have transparency and visible ink')
+        sources.append(dict(width=width,height=height,alpha_cutoff=cutoff,rgba_sha256=hashlib.sha256(rgba).hexdigest()))
+        require(type(atlas.get('sampling_locked',False)) is bool, 'sampling lock policy')
+        locked=atlas.get('sampling_locked',False)
+        source_rects={record[2] for record in records if record[1]==index}
+        if locked and source_rects:
+            fw,fh,fp,fm=pack_rectangles(width,height,rgba,source_rects)
+            fixed_page=len(fixed);fixed.append((fw,fh,cutoff,None,fp));locked_sources.append(index);scratch+=len(fp)
+            require(scratch<=MAX_BYTES, 'compact region size limit')
+        cached={}
+        for number,(_,source,rect,display,anchor) in enumerate(records):
+            if source!=index:continue
+            rect2,display2,anchor2=rect,display,anchor;protected=[0,0,0,0]
+            if atlas['alpha']=='sprite':
+                if rect not in cached:cached[rect]=sprite_bounds(rgba,width,rect,cutoff)
+                box=cached[rect];bounds.append(dict(key=frames[number]['key'],bbox=box))
+                protected=[max(0,box[0]-2),max(0,box[1]-2),max(0,rect[2]-box[2]-3),max(0,rect[3]-box[3]-3)]
+            if locked:
+                transforms[number]=dict(key=frames[number]['key'],source_atlas=index,source_rect=list(rect),source_display=display,source_anchor=anchor,shared_margins=[0,0,0,0],source_region=list(rect),display=display,anchor=anchor,fixed_page=fixed_page,rect=list(fm[rect]))
+                continue
+            token=(index,rect2)
+            if token not in regions:
+                x,y,w,h=rect2;scratch+=w*h*4
+                require(scratch<=MAX_BYTES, 'compact region size limit')
+                pixels=b''.join(rgba[((y+row)*width+x)*4:((y+row)*width+x+w)*4] for row in range(h))
+                regions[token]=dict(id=len(regions),width=w,height=h,rgba=pixels,cutoff=cutoff,margins=protected)
+            transforms[number]=dict(key=frames[number]['key'],source_atlas=index,source_rect=list(rect),source_display=display,source_anchor=anchor,shared_margins=protected,source_region=list(rect2),display=display2,anchor=anchor2,region=regions[token]['id'])
+    pages=list(fixed);destinations={};by_id={r['id']:r for r in regions.values()}
+    for cutoff in sorted({r['cutoff'] for r in regions.values()}):
+        same={r['id']:(r['width'],r['height']) for r in regions.values() if r['cutoff']==cutoff}
+        for width,height,positions in compact_layout(same,{key:by_id[key]['margins'] for key in same}):
+            pages.append((width,height,cutoff,positions,None))
+    require(1<=len(pages)<=MAX_ATLASES, 'runtime atlas count')
+    size=12+len(pages)*20+len(records)*32+sum(w*h*4 for w,h,_,_,_ in pages)
+    require(size<=MAX_BYTES, 'pack size limit')
+    output=bytearray(b'LHDPAK01'+struct.pack('<HH',len(pages),len(records)));atlas_report=[]
+    shared=0
+    for index,(width,height,cutoff,positions,original) in enumerate(pages):
+        if original is not None:
+            output.extend(struct.pack('<IIIII',width,height,len(original),zlib.crc32(original),cutoff));output.extend(original)
+            atlas_report.append(dict(width=width,height=height,alpha_cutoff=cutoff,rgba_sha256=hashlib.sha256(original).hexdigest(),sampling_locked=True))
+            continue
+        pixels=bytearray(width*height*4);written=bytearray(width*height)
+        for key,(x,y,w,h) in positions.items():
+            region=by_id[key];data=region['rgba']
+            for row in range(-int(y>0),h+int(y+h<height)):
+                source=min(max(row,0),h-1)*w*4;samples=data[source:source+w*4]
+                left=int(x>0);right=int(x+w<width);target=((y+row)*width+x-left)*4
+                line=(samples[:4] if left else b'')+samples+(samples[-4:] if right else b'')
+                first=target//4;count=w+left+right;used=written[first:first+count]
+                if any(used):
+                    for col,flag in enumerate(used):
+                        if flag:
+                            require(pixels[target+col*4+3]<=cutoff and line[col*4+3]<=cutoff, 'visible atlas overlap')
+                            shared+=flag==1
+                        written[first+col]=2 if flag else 1
+                else:written[first:first+count]=b'\1'*count
+                pixels[target:target+len(line)]=line
+            destinations[key]=(index,(x,y,w,h))
+        output.extend(struct.pack('<IIIII',width,height,len(pixels),zlib.crc32(pixels),cutoff));output.extend(pixels)
+        atlas_report.append(dict(width=width,height=height,alpha_cutoff=cutoff,rgba_sha256=hashlib.sha256(pixels).hexdigest()))
+    for (fields,_,_,_,_),transform in zip(records,transforms):
+        if 'fixed_page' in transform:index,rect=transform.pop('fixed_page'),transform['rect']
+        else:index,rect=destinations[transform.pop('region')]
+        transform.update(atlas=index,rect=list(rect))
+        output.extend(struct.pack('<BBHHHIIIIHHhh',*fields,index,0,*rect,*transform['display'],*transform['anchor']))
+    compaction=dict(sampling_locked_sources=locked_sources,shared_invisible_samples=shared,retained_region_bytes=scratch,frame_transforms=transforms,
+                    policy='Source PNGs unchanged. Full source-frame dimensions, display sizes and anchors unchanged. Share only cutoff-invisible border samples, retaining a two-source-pixel guard around visible ink and one sample-extruded page gutter. Equal cutoffs only; sampling-locked sources retain their entire canonical rectangles-v1 page to preserve host filtering phase. Shared invisible filler RGB may differ; visible and protected boundary RGBA stay exact.')
+    return bytes(output),dict(atlases=atlas_report,source_atlases=len(atlases),source_images=sources,sprite_bounds=bounds,compaction=compaction)
+
+
 def compile_pack(manifest, *, root=ROOT):
     require(isinstance(manifest,dict) and type(manifest.get('schema_version')) is int and manifest['schema_version'] == 1, 'manifest schema')
     atlases = manifest.get('atlases'); frames = manifest.get('frames')
-    require(isinstance(atlases,list) and 1 <= len(atlases) <= MAX_ATLASES, 'atlas count')
+    packing=manifest.get('packing','source-v1')
+    require(isinstance(atlases,list) and 1 <= len(atlases) <= (128 if packing=='compact-v1' else MAX_ATLASES), 'atlas count')
     require(isinstance(frames,list) and 1 <= len(frames) <= 4096, 'frame count')
     packing=manifest.get('packing','source-v1')
-    require(packing in ('source-v1','rectangles-v1'), 'unknown packing policy')
+    require(packing in ('source-v1','rectangles-v1','compact-v1'), 'unknown packing policy')
     coverage=actor_coverage(frames)
     require(type(manifest.get('complete_actors',False)) is bool, 'complete actors policy')
     if manifest.get('complete_actors',False):require(not coverage['missing'], 'incomplete actor coverage')
@@ -289,6 +413,10 @@ def compile_pack(manifest, *, root=ROOT):
         require(isinstance(manifest['required'],list) and len(manifest['required']) <= 4096, 'required keys')
         required = [key_fields(key) for key in manifest['required']]
         require(len(set(required)) == len(required) and set(required) == seen, 'required coverage differs')
+    if packing=='compact-v1':
+        pack,report=compile_compact(atlases,frames,records,dimensions,root)
+        report.update(status='PASS',frames=len(frames),actor_coverage=coverage,portal_coverage=portals,exit_effect_coverage=effects,bytes=len(pack),sha256=hashlib.sha256(pack).hexdigest(),packing=packing,pixel_policy=report['compaction']['policy'])
+        return pack,report
     output = bytearray(b'LHDPAK01'+struct.pack('<HH',len(atlases),len(frames)))
     atlas_report=[];mappings=[]
     # Decode one source at a time rather than retaining up to32 full PNGs.

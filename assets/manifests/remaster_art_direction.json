@@ -833,5 +833,12 @@
     "scope": "All five portal sets:55 logical door frames plus30 pure decorative exit ornament frames; original phases, placement, trigger provenance and gameplay remain unchanged. Four special scenes and other hazards/effects/UI remain follow-up.",
     "runtime_ready": true,
     "full_remaster_ready": false
+  },
+  "followup_163": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/163",
+    "manifest": "assets/manifests/hd_compaction.json",
+    "scope": "Preserve PNGs and full frame geometry; retain filter-sensitive canonical pages and compact other pages. 27 runtime atlases,440 keys,131699864 bytes.",
+    "runtime_ready": true,
+    "full_remaster_ready": false
   }
 }

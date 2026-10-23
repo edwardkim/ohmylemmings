@@ -136,3 +136,5 @@
 - [#157 HD-05b 일반 지형 재질·무손실 팩](issue-157_hd_terrain.md)
 
 - [#160 전체 테마 입출구·출구 불꽃](issue-160_hd_portals.md)
+
+- [#163 HD 자산 팩 정리](issue-163_hd_pack.md)

@@ -1,0 +1,387 @@
+{
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/163",
+  "baseline": "f8e06fce1c072f69db56de25ef17a3266bda2968",
+  "status": "PASS",
+  "source_png_pins_and_production_frames_unchanged": true,
+  "source_atlases": 32,
+  "sampling_locked_sources": [
+    2,
+    3,
+    4,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    14,
+    15,
+    16,
+    17,
+    18,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "runtime_limits": {
+    "format": "LHDPAK01",
+    "bytes": 134217728,
+    "atlases": 32,
+    "dimension": 4096
+  },
+  "full_remaster_ready": false,
+  "performance": "Deferred under #113; NOT READY unchanged.",
+  "policy": "Source PNGs unchanged. Full source-frame dimensions, display sizes and anchors unchanged. Share only cutoff-invisible border samples, retaining a two-source-pixel guard around visible ink and one sample-extruded page gutter. Equal cutoffs only; sampling-locked sources retain their entire canonical rectangles-v1 page to preserve host filtering phase. Shared invisible filler RGB may differ; visible and protected boundary RGBA stay exact.",
+  "checks": {
+    "pixels": {
+      "path": "assets/local/issue-163-review/pixel-final.json",
+      "sha256": "b78e7c3dec0fe2c02714c13064150982d8424a158e515fbec2c07e42bf1fdebd",
+      "result": {
+        "status": "PASS",
+        "frames": 440,
+        "visible_samples": 18125600,
+        "protected_rgba_samples": 27292318,
+        "changed_invisible_filler_samples": 91395,
+        "all_visible_and_filter_boundary_rgba_exact": true,
+        "all_frame_dimensions_display_anchors_equal": true,
+        "old_bytes": 133385948,
+        "bytes": 131699864,
+        "saved_bytes": 1686084,
+        "old_atlases": 32,
+        "atlases": 27,
+        "old_sha256": "328097f22e3f6bbf1075cf0028dcdc3a8846f0cecbc9fc41440fd226a70ac20e",
+        "sha256": "07e240a23f338fef77e7f9fbf6fc439ba3e0dd3972566f9e848bcbe106014ff4",
+        "scope": "Full frame geometry unchanged; exact visible RGBA plus one-source-pixel filtering boundary. Only cutoff-invisible filler may share storage. Actual SDL/Canvas comparison is separate."
+      }
+    },
+    "canvas": {
+      "path": "assets/local/issue-163-review/canvas-final/summary.json",
+      "sha256": "6a9d62a8d415568a146992f0622102f1113eca3ce4adec6c736298e355efce3c",
+      "result": {
+        "status": "PASS",
+        "frames": 440,
+        "backgrounds": 2,
+        "canvas_comparisons": 880,
+        "pixel_samples": 12198902,
+        "rgba_exact": true,
+        "old_atlases": 32,
+        "atlases": 27,
+        "old_sha256": "328097f22e3f6bbf1075cf0028dcdc3a8846f0cecbc9fc41440fd226a70ac20e",
+        "sha256": "07e240a23f338fef77e7f9fbf6fc439ba3e0dd3972566f9e848bcbe106014ff4",
+        "scope": "Every compiled frame through actual Canvas linear filtering; exact RGBA on two opaque backgrounds. Not gameplay or performance.",
+        "console_errors": 0
+      }
+    },
+    "native_courses": {
+      "path": "assets/local/issue-163-courses-final/summary.json",
+      "sha256": "a48cdd943c35f9db3805042acb5963649a6736b1875bf43e99bbb9b8eec9c1c6",
+      "result": {
+        "status": "PASS",
+        "themes": 5,
+        "states": 947,
+        "saved_per_theme": 1,
+        "mode_state_inputs_masks_equal": true,
+        "baseline_hd_pixels_equal": true,
+        "scope": "invented courses with documented original portal metadata; actual SDL original/HD pairs, not original-level solutions or performance"
+      }
+    },
+    "web_courses": {
+      "path": "assets/local/issue-163-review/courses-final/summary.json",
+      "sha256": "a3660613b6feb89716b41360542188954c360bcd234fcdf29504895ec41d0e2d",
+      "result": {
+        "status": "PASS",
+        "themes": 5,
+        "states": 947,
+        "canvas_pairs": 120,
+        "rgba_exact": true,
+        "state_masks_sound_equal": true,
+        "saved_per_theme": 1,
+        "rows": [
+          {
+            "theme": 0,
+            "states": 191,
+            "canvas_pairs": 24,
+            "saved": 1
+          },
+          {
+            "theme": 1,
+            "states": 187,
+            "canvas_pairs": 24,
+            "saved": 1
+          },
+          {
+            "theme": 2,
+            "states": 191,
+            "canvas_pairs": 24,
+            "saved": 1
+          },
+          {
+            "theme": 3,
+            "states": 191,
+            "canvas_pairs": 24,
+            "saved": 1
+          },
+          {
+            "theme": 4,
+            "states": 187,
+            "canvas_pairs": 24,
+            "saved": 1
+          }
+        ],
+        "scope": "Five invented courses through actual WASM/Canvas, old versus compact HD pack and native states. Not original-level completion or performance.",
+        "console_errors": 0
+      }
+    },
+    "native_original": {
+      "path": "assets/local/issue-163-review/real-native-final/summary.json",
+      "sha256": "c78a283b7021a497348a6d6eadabdde19310a2b3cfe24fe94c43cd7ea8c139db",
+      "result": {
+        "status": "PASS",
+        "levels": [
+          {
+            "level": 1,
+            "identical_files": 38
+          },
+          {
+            "level": 2,
+            "identical_files": 38
+          },
+          {
+            "level": 4,
+            "identical_files": 38
+          },
+          {
+            "level": 5,
+            "identical_files": 38
+          },
+          {
+            "level": 6,
+            "identical_files": 38
+          }
+        ],
+        "scope": "Five original levels,120 ticks each; old/new HD native pixels and diagnostics identical. Not complete level solutions or performance."
+      }
+    },
+    "pack": {
+      "path": "assets/local/issue-163-review/probe-final.json",
+      "sha256": "987c9d53042c7d064b34212d006797e09cee0c9f744e99f89cbcb35a6cba4667",
+      "result": {
+        "status": "PASS",
+        "atlases": 27,
+        "frames": 440,
+        "bytes": 131699864,
+        "actor_frames": 337,
+        "object_frames": 85,
+        "icons": 13,
+        "pixel_crc_valid": true
+      }
+    },
+    "legacy_pack": {
+      "path": "assets/local/issue-163-review/probe-legacy.json",
+      "sha256": "af88b7d1a9c968191cfa006c65d6a2e479db4e424c7b325aab6b314657bc7235",
+      "result": {
+        "status": "PASS",
+        "atlases": 7,
+        "frames": 106,
+        "bytes": 44046160,
+        "actor_frames": 81,
+        "object_frames": 11,
+        "icons": 13,
+        "pixel_crc_valid": true
+      }
+    },
+    "actors": {
+      "path": "assets/local/issue-163-review/characters-final.json",
+      "sha256": "722da49167c1bd468ab343e14a4ae4e5484368dbf19385f34c9cfd2006c0d4ae",
+      "result": {
+        "status": "PASS",
+        "restored_animations": 28,
+        "restored_frames": 337,
+        "no_actor_fallback": true,
+        "rendering_read_only": true,
+        "scope": "restored synthetic actor states, not natural gameplay or performance"
+      }
+    },
+    "product_web": {
+      "path": "assets/local/issue-163-review/product-final/product-check.json",
+      "sha256": "03882a61c6be056277bf25462673d3bcf707ddd6f6aa07633367fbb97eca6c07",
+      "result": {
+        "status": "PASS",
+        "controls": {
+          "skills": 8,
+          "pause": true,
+          "minimap": true,
+          "restart": true,
+          "actor_assignment": true
+        },
+        "fullscreen": true,
+        "fullscreen_rect": {
+          "width": 800,
+          "height": 450
+        },
+        "play": {
+          "status": "PASS",
+          "steps": 664,
+          "states": 665,
+          "frames": 36,
+          "final": {
+            "phase": "Won",
+            "reason": "PopulationExhausted",
+            "original_total": 10,
+            "lemming_count": 10,
+            "required": 1,
+            "rescued": 10,
+            "target_percent": 10,
+            "rescued_percent": 100
+          },
+          "info": {
+            "version": 1,
+            "width": 1920,
+            "height": 1080,
+            "actor_frames_available": 337,
+            "portal_frames_available": 55,
+            "exit_effect_frames_available": 30,
+            "terrain_rebuilds": 291,
+            "source_terrain": false,
+            "terrain_material": 0,
+            "one_way_objects": 0,
+            "missing_actor_frames": [],
+            "hd_actor_frames": [],
+            "hd_portal_frames": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "original_portal_frames": [],
+            "hd_exit_effect_frames": [
+              [
+                0,
+                7,
+                2
+              ]
+            ],
+            "original_exit_effect_frames": []
+          }
+        },
+        "console_errors": 0,
+        "scope": "actual bundled Fun01 product UI/Canvas; fixed explicit ticks, not a performance measurement"
+      }
+    },
+    "web_regression": {
+      "path": "assets/local/issue-163-review/web-regression-final/summary.json",
+      "sha256": "d579e8e064aabe5a73d39a92d2259d48dfac526ef7a652bda133d96fd4930878",
+      "result": {
+        "measurement": {
+          "status": "PASS",
+          "fixed_capacity": true,
+          "preserves_arguments_receiver_result_and_failure": true,
+          "canvas_three_argument_overload": true
+        },
+        "dispatch": {
+          "status": "PASS",
+          "unchanged_callbacks_skip_rgb": true,
+          "audio_service_retained": true,
+          "ticks_refresh": true,
+          "input_immediate": true,
+          "single_replacement_draw": true,
+          "completion_stops": true
+        },
+        "dom": {
+          "status": "PASS",
+          "ranks": {
+            "status": "PASS",
+            "rank_selections": 8,
+            "restarts": 8,
+            "cross_rank_continues": 3,
+            "terminal_mayhem": true,
+            "atomic_file_failure": true,
+            "special_selections": 4,
+            "special_restarts": 4,
+            "special_continues": 4,
+            "special_atomic_failures": 8
+          },
+          "scaled_assignments": 8,
+          "panel_skills": 8,
+          "held_release": true,
+          "focus_release": true,
+          "double_click_capture": true,
+          "right_chord_fallback": true,
+          "local_files": true,
+          "atomic_replacement": true,
+          "result_lifecycle": true
+        },
+        "sound_commands": {
+          "startup_events": 3,
+          "ui_burst": 1100,
+          "retained": 1024,
+          "dropped": 76,
+          "lifecycle": true,
+          "simulation_unchanged": true
+        },
+        "status": "PASS",
+        "hd": {
+          "status": "PASS",
+          "wire_version": 1,
+          "scenarios": 13,
+          "frames": 821,
+          "states": 7593,
+          "actor_frames_available": 337,
+          "observed_slots": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            7,
+            10,
+            12,
+            14,
+            16,
+            17,
+            18,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27
+          ],
+          "no_actor_fallback": true,
+          "unchanged_logic_masks_audio": true,
+          "dirty_chunks": true,
+          "corrupt_pack": true,
+          "input": true,
+          "scope": "full character pack in actual WASM HD renderer/Canvas with synthetic state pairs; not a performance or all-level qualification"
+        },
+        "cases": 33,
+        "runs": 66,
+        "states": 11960,
+        "frames": 6877,
+        "canvas_readbacks": 6877,
+        "boundary_checks": true,
+        "refresh_rates": [
+          60,
+          120,
+          144
+        ],
+        "browser": "Chromium 152.0.7977.82 Arch Linux",
+        "expected_sha256": "bcfeb145620014b2eac781648617a889508525b4e9f7da1e2b727c2309b4cb20",
+        "scope": "real WASM versus native wrapper: every full diagnostic state and all terrain/brick/object bytes by SHA-256; all rendered RGB and opaque Canvas readback; synthetic and invented file bytes only"
+      }
+    }
+  },
+  "python_tests": 291
+}
