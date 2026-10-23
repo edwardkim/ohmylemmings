@@ -11,3 +11,5 @@ main 6c866e9·#157 OPEN/번호·URL을 확인하고 별도 worktree에서 진행
 5. 출처/감사/문서·self-review·정확한 CI·실제 PR merge를 확인한 뒤 완료 처리한다.
 
 특수 배경4종·시설/효과·전체 글꼴/UI와 HD-06 배포는 후속이다. #113 성능/NOT READY·#142 진단·공개 v0.1.0/Pages는 기존 상태를 유지한다.
+
+완료: PR #158/merge `08d309f1aac5edc194752f6004f96fcd8f92f9a0`, 최종 head `c1ad3d114b7943d19cd1c6042cfb36d76da98fc0`의 CI39895388097 attempt1·7개 SUCCESS와 전체 tree 일치. [결과/재현·후속](../reports/issue-157_hd_terrain.md)을 따른다.

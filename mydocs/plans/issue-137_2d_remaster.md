@@ -8,7 +8,7 @@
 
 1920×1080급 화면에서 새 캐릭터·지형·시설/효과·UI를 HD 해상도로 합성한다. 기존 논리 틱·레벨·충돌·지형 변형·저장 입력·사운드 사건은 보존한다. 원본 모드도 유지한다. 부드러운 손그림풍2D를 첫 시각 후보로 사용하며 사용자의 스타일 선택을 우선한다.
 
-첫 절편 [#138](https://github.com/edwardkim/ohmylemmings/issues/138)의 [Fun 01 시안·규격](issue-138_hd_art_contract.md)과 [결과](../reports/issue-138_hd_art_direction.md)를 준비했다. 시안 그림 자체는 제작 참고이며, 이후 별도 Native/Web 부분 HD 게임과28/337 캐릭터 자산을 구현했다. 다른 테마/시설/효과/UI·지원 HD 배포가 남아 #137은 OPEN이다.
+첫 절편 [#138](https://github.com/edwardkim/ohmylemmings/issues/138)의 [Fun 01 시안·규격](issue-138_hd_art_contract.md)과 [결과](../reports/issue-138_hd_art_direction.md)를 준비했다. 시안 그림 자체는 제작 참고이며, 이후 별도 Native/Web 부분 HD 게임과28/337 캐릭터 자산을 구현했다. 특수 장면/나머지 시설/효과/UI·지원 HD 배포가 남아 #137은 OPEN이다.
 
 | 단계 | 범위·완료 기준 | 현재 상태 |
 |---|---|---|
@@ -18,7 +18,7 @@
 | [HD-03b / #147](issue-147_hd_actions.md) | 굴착/계단/OhNo/폭발65프레임·첫 테마 입출구11프레임·13조작 아이콘과 typed 팩 확장 | PR #149 병합·CI7개 SUCCESS·완료, [결과](../reports/issue-147_hd_actions.md) |
 | [HD-04 / #151](issue-151_hd_integration.md) | Native/Web의 실제 Fun 01 HD 합성·걷기/굴착/계단/폭발·원본 모드 선택과 입력 통합 | 완료: PR #152·CI7개 SUCCESS·실제 병합; [결과](../reports/issue-151_hd_integration.md) |
 | [HD-05a / #154](issue-154_hd_actors.md) 및 후속 | 전체28애니메이션337프레임 대응·5테마/특수4장면·시설/효과·결과/UI 확장 | #154 PR #155·CI7개 SUCCESS·실제 병합 완료; 테마/시설/효과/UI는 후속 |
-| [HD-05b / #157](issue-157_hd_terrain.md) | 일반5테마 재질·일방통행 표시·무손실 팩 | 로컬 검증 완료, 정확한 PR CI/실제 병합 진행 |
+| [HD-05b / #157](issue-157_hd_terrain.md) | 일반5테마 재질·일방통행 표시·무손실 팩 | 완료: PR #158·CI7개 SUCCESS·실제 병합 |
 | HD-06 | 원본/HD의 논리 상태·지형·저장 입력 동일성, 지원 플랫폼 패키지/소스/고지·기능 검증 | 후속 구현 |
 
 각 구현 절편은 해당 GitHub 이슈를 먼저 등록·확인한 뒤 TDD로 진행한다. 디자인 시안의 완성과 실제 HD 모드·전체 자산의 완성을 구분하고, 부모 완료 목록은 실제 구현/검증에 맞춰 갱신한다.
@@ -44,4 +44,4 @@ HD-04 [#151 실제 부분 HD 게임](../reports/issue-151_hd_integration.md)은 
 
 HD-05a [#154 캐릭터 전체 키](../reports/issue-154_hd_actors.md)는28/337 대응과 Native/Web 표시·복원337/자연13사례·Fun01 동일성을 PR #155/CI7개 SUCCESS·실제 병합으로 완료했다. 캐릭터 누락0은 전체 리마스터 완료를 뜻하지 않는다. 다음은 다른 테마/특수 장면·시설/효과/UI의 HD-05 후속과 지원 HD 패키지/전체 인수 HD-06이다.
 
-HD-05b [#157 일반 지형](../reports/issue-157_hd_terrain.md)은 일반5재질·원본 화살표와 팩 정리를 검증하고 정확한 CI/실제 병합을 진행한다. 특수4장면·나머지 시설/효과/전체 UI와 HD-06은 후속이다.
+HD-05b [#157 일반 지형](../reports/issue-157_hd_terrain.md)은 일반5재질·원본 화살표와 팩 정리를 PR #158·CI7개 SUCCESS·실제 병합으로 완료했다. 특수4장면·나머지 시설/효과/전체 UI와 HD-06은 후속이다.
