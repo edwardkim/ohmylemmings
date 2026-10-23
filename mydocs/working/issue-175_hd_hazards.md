@@ -11,3 +11,5 @@
 실제 SDL9합성 코스991상태에서 익사5·vaporize4, 원본/HD 상태·입력·마스크·사운드가 일치했다. 분사기4픽셀 trigger를 actor 발 위치에 맞추도록 **검증용 코스 배치만** 보정했다. 원본 메타데이터·제품 시뮬레이션은 바꾸지 않았다. Web 동일 코스/전체84위상·원본120장면·전체 로컬 검사·감사·self-review·게시 CI와 실제 병합은 진행 중이다.
 
 재현: `python3 tools/check_hd_hazards.py --pack assets/local/web/hd-assets --output assets/local/<새 폴더>` → `tools/web/hd_hazards.cjs`에 별도 CDP/코스 cases.json을 전달. 사용자19222/8080·preview-172는 유지한다.
+
+최종 완료: PR #176 head `75ae0af61fe4d8e06c9be668e289daa00c6833e3` / CI39939672234의7개 SUCCESS, 실제 merge `775608d4c47c6b62eff291052144e4a2c6e76883`와 검토 head 전체 tree 일치를 확인했다. 로컬 전체 검사와9개 위험 코스/원본120장면을 통과했다. 위 진행 중/미완료 문구는 당시 기록이다. [최종 결과·재현·한계](../reports/issue-175_hd_hazards.md)를 따른다.
