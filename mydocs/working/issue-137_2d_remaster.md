@@ -54,3 +54,9 @@ BGM 결함은 알려진 별도 후속으로 명시하며, HD 검증 통과를 BG
 [#181 깃발·일방통행 표시](../reports/issue-181_hd_decor.md):2PNG·20종212키를 연결하여 원본54객체/540프레임의 HD 대응을 갖췄다. 원본에서 미배치된14종은 합성으로 검증했다. SDL/WASM5코스1,790상태·670Canvas/212위상과 지형 제거·Pause, 원본120장면/1,920틱/352Canvas·627소스 감사·PR #182 CI7개·실제 병합을 완료했다. 초기 횃불 분류는 회전 깃발로 정정한다. 다음은 글꼴/전체 UI·지원 HD 배포/전체 인수이며 #137 OPEN·BGM #165는 리마스터 이후다.
 
 [#184 HD 글꼴·게임 UI](../reports/issue-184_hd_ui.md):95 AA glyph·3색 atlas와 코드 기반 skin, 상태/8기술/미니맵·Pause/카운트다운/성공/실패/마지막 레벨 안내를 완성했다.14조작 영역·원본 모드/규칙과51카탈로그 파일을 보존했다. SDL/WASM7코스826상태·실제 Fun01/6레벨 선택 RGBA·709Rust/305Python·PR #185 CI7개·실제 병합을 확인했다. 다음은 HD-06 지원 HD 패키징/전체 인수다. #137 OPEN·BGM #165는 리마스터 이후다.
+
+## 최종 마감 #187
+
+PR #188 실제 merge `6a7c68dc61b063f915aae15476dc3c61bd75a51b`, head `6243132b5fd094d4d49804e075bd9443e024d18a`의 [CI39976023448](https://github.com/edwardkim/ohmylemmings/actions/runs/39976023448)에서7개 모두 SUCCESS. CI checkout `96f74ff2e6fce579952223e6ddbe6abb1d2bd263`과 실제 병합 tree `ef01904c2cc8d3884303499d79dc9b3e5479ecfc`가 같다.
+
+899HD 키·현재 전체 UI/95글꼴·지원 패키지/설치 인수를 마쳤다. [최종 보고서](../reports/issue-187_hd_release.md). 앞선 부분 preview/Open 기록은 당시 기록이다. #137 완료 후 BGM #165를 처리하며 #113 NOT READY·공개 v0.1.0/Pages·Mac 미공증은 유지한다.

@@ -33,4 +33,10 @@ Self-review에서 전체 data 디렉터리 누락이 개발 assets 경로로 대
 
 ## CI·self-review·병합
 
-로컬 기능 검증을 마쳤으며 PR의 동일 head에 대한7개 플랫폼 job, 실제 병합 commit/tree와 문서 동기화 결과를 확인한 뒤 이 절을 확정한다. #187/#137은 그 전까지 OPEN이다.
+PR #188 실제 merge `6a7c68dc61b063f915aae15476dc3c61bd75a51b`, head `6243132b5fd094d4d49804e075bd9443e024d18a`의 [CI39976023448](https://github.com/edwardkim/ohmylemmings/actions/runs/39976023448)에서7개 모두 SUCCESS. CI checkout `96f74ff2e6fce579952223e6ddbe6abb1d2bd263`과 실제 병합 tree `ef01904c2cc8d3884303499d79dc9b3e5479ecfc`가 같다.
+
+최종 판정은 Python tooling·WASM libraries·Rust native·Web browser·Windows full game·macOS Apple Silicon·macOS Intel의7개 SUCCESS다. Windows Server2022와 Mac arm64/Intel에서 실제 추출 앱을 실행했고, Mac은 같은 universal2 아카이브를 두 CPU에서 검증했다. 원본120레벨과 HD/원본 Fun01 저장 입력·5테마/특수 장면·경로·누락/손상을 포함한다. 첫 head `91ccbf2`의 진행/취소된 CI와 중복 push 실행은 최종 PASS에 포함하지 않는다.
+
+Self-review로 설치 경로 fallback·프로필 누락 경계를 보완했으며,51카탈로그 파일·코어/게임/음원 소스 불변과 라이선스/문서 감사도 확인했다. #187 HD-06 및 상위 #137의 현재 게임 2D 리마스터 인수를 완료한다. 기존120레벨 해법·이전 위상/규칙 증거를 이번의 새 전체 HD 완주로 확대하지 않는다. BGM #165·#113 NOT READY·미공증/새 버전 공개는 별도다.
+
+완료 문서는 [PR #189](https://github.com/edwardkim/ohmylemmings/pull/189)의 Markdown9개로 분리했고317문서 상대 링크·646소스 연결·라이선스 감사를 통과했다. 실제 문서 merge/root 준비 commit과 사용자 preview-172 전체 해시 보존은 GitHub 이슈의 종료 기록 및 ignored root-ready.json에 고정한다.
