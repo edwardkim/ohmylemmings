@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 233772,
-      "sha256": "0aba2fe8383fd5ad7aa0abc0d5bbd0e2bccb01e2fc0f8625d52911ae5763650d",
+      "bytes": 242909,
+      "sha256": "b1b4315515694e965d9beb075b19e689a2cf2e4ecab92bdb75c7913b0e675979",
       "id": "compatibility"
     },
     {
@@ -11106,5 +11106,15 @@
       "id": "compatibility"
     },
     "scope": "Current hazard HD assets/renderer/tooling proof inventory only; no new all-level completion or performance qualification."
+  },
+  "source_maintenance_178": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/178",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 233772,
+      "sha256": "0aba2fe8383fd5ad7aa0abc0d5bbd0e2bccb01e2fc0f8625d52911ae5763650d",
+      "id": "compatibility"
+    },
+    "scope": "Current mechanical trap HD assets/renderer/tooling proof inventory only; no new all-level completion or performance qualification."
   }
 }

@@ -1,0 +1,1930 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/178",
+  "generator": "built-in image_gen.imagegen",
+  "source_objects": [
+    {
+      "set": 0,
+      "id": 6,
+      "count": 15,
+      "width": 16,
+      "height": 21,
+      "effect": 4,
+      "first": 0,
+      "loops": false,
+      "trigger": [
+        8,
+        16,
+        4,
+        8
+      ],
+      "sound": 15,
+      "fields": [
+        6,
+        1,
+        0,
+        15,
+        16,
+        21,
+        210,
+        168,
+        168,
+        84,
+        2,
+        5,
+        1,
+        2,
+        4,
+        24650,
+        24650,
+        19720,
+        15
+      ],
+      "source": {
+        "name": "GROUND0O.DAT",
+        "bytes": 1056,
+        "sha256": "86ecce12dea563b97d07339028780a0a50fc2cc75a67f682bf4d9aff8cf4b24a"
+      }
+    },
+    {
+      "set": 0,
+      "id": 8,
+      "count": 17,
+      "width": 16,
+      "height": 38,
+      "effect": 4,
+      "first": 0,
+      "loops": false,
+      "trigger": [
+        4,
+        36,
+        4,
+        4
+      ],
+      "sound": 7,
+      "fields": [
+        8,
+        1,
+        0,
+        17,
+        16,
+        38,
+        380,
+        304,
+        304,
+        152,
+        1,
+        10,
+        1,
+        1,
+        4,
+        36760,
+        36760,
+        29408,
+        7
+      ],
+      "source": {
+        "name": "GROUND0O.DAT",
+        "bytes": 1056,
+        "sha256": "86ecce12dea563b97d07339028780a0a50fc2cc75a67f682bf4d9aff8cf4b24a"
+      }
+    },
+    {
+      "set": 0,
+      "id": 10,
+      "count": 12,
+      "width": 32,
+      "height": 42,
+      "effect": 4,
+      "first": 0,
+      "loops": false,
+      "trigger": [
+        12,
+        36,
+        4,
+        4
+      ],
+      "sound": 14,
+      "fields": [
+        10,
+        1,
+        0,
+        12,
+        32,
+        42,
+        840,
+        672,
+        672,
+        336,
+        3,
+        10,
+        1,
+        1,
+        4,
+        9450,
+        9450,
+        7560,
+        14
+      ],
+      "source": {
+        "name": "GROUND0O.DAT",
+        "bytes": 1056,
+        "sha256": "86ecce12dea563b97d07339028780a0a50fc2cc75a67f682bf4d9aff8cf4b24a"
+      }
+    },
+    {
+      "set": 2,
+      "id": 8,
+      "count": 15,
+      "width": 32,
+      "height": 34,
+      "effect": 4,
+      "first": 0,
+      "loops": false,
+      "trigger": [
+        12,
+        28,
+        8,
+        4
+      ],
+      "sound": 7,
+      "fields": [
+        8,
+        1,
+        0,
+        15,
+        32,
+        34,
+        680,
+        544,
+        544,
+        272,
+        3,
+        8,
+        2,
+        1,
+        4,
+        14400,
+        14400,
+        11520,
+        7
+      ],
+      "source": {
+        "name": "GROUND2O.DAT",
+        "bytes": 1056,
+        "sha256": "52e62aeefd6cd548690c02af6474936c5e16112e115ca7808c3748e500a9412d"
+      }
+    },
+    {
+      "set": 3,
+      "id": 8,
+      "count": 37,
+      "width": 16,
+      "height": 41,
+      "effect": 4,
+      "first": 0,
+      "loops": false,
+      "trigger": [
+        4,
+        32,
+        4,
+        4
+      ],
+      "sound": 9,
+      "fields": [
+        8,
+        1,
+        0,
+        37,
+        16,
+        41,
+        410,
+        328,
+        328,
+        164,
+        1,
+        9,
+        1,
+        1,
+        4,
+        28010,
+        28010,
+        22408,
+        9
+      ],
+      "source": {
+        "name": "GROUND3O.DAT",
+        "bytes": 1056,
+        "sha256": "f4df8579a30cb55dae4a06f606e0453cb0931219efadf3e9465d681a43a2722c"
+      }
+    },
+    {
+      "set": 3,
+      "id": 9,
+      "count": 7,
+      "width": 16,
+      "height": 26,
+      "effect": 4,
+      "first": 0,
+      "loops": false,
+      "trigger": [
+        4,
+        16,
+        4,
+        4
+      ],
+      "sound": 7,
+      "fields": [
+        9,
+        1,
+        0,
+        7,
+        16,
+        26,
+        260,
+        208,
+        208,
+        104,
+        1,
+        5,
+        1,
+        1,
+        4,
+        43180,
+        43180,
+        34544,
+        7
+      ],
+      "source": {
+        "name": "GROUND3O.DAT",
+        "bytes": 1056,
+        "sha256": "f4df8579a30cb55dae4a06f606e0453cb0931219efadf3e9465d681a43a2722c"
+      }
+    },
+    {
+      "set": 3,
+      "id": 10,
+      "count": 7,
+      "width": 16,
+      "height": 26,
+      "effect": 4,
+      "first": 0,
+      "loops": false,
+      "trigger": [
+        8,
+        16,
+        4,
+        4
+      ],
+      "sound": 7,
+      "fields": [
+        10,
+        1,
+        0,
+        7,
+        16,
+        26,
+        260,
+        208,
+        208,
+        104,
+        2,
+        5,
+        1,
+        1,
+        4,
+        45000,
+        45000,
+        36000,
+        7
+      ],
+      "source": {
+        "name": "GROUND3O.DAT",
+        "bytes": 1056,
+        "sha256": "f4df8579a30cb55dae4a06f606e0453cb0931219efadf3e9465d681a43a2722c"
+      }
+    },
+    {
+      "set": 4,
+      "id": 7,
+      "count": 25,
+      "width": 32,
+      "height": 19,
+      "effect": 4,
+      "first": 0,
+      "loops": false,
+      "trigger": [
+        12,
+        8,
+        4,
+        4
+      ],
+      "sound": 9,
+      "fields": [
+        7,
+        1,
+        0,
+        25,
+        32,
+        19,
+        380,
+        304,
+        304,
+        152,
+        3,
+        3,
+        1,
+        1,
+        4,
+        27950,
+        27950,
+        22360,
+        9
+      ],
+      "source": {
+        "name": "GROUND4O.DAT",
+        "bytes": 1056,
+        "sha256": "9669ee978e5adf5f8d5bfeb80ccc5d6c20e75e32f55e2a5c1c738f64af8faa91"
+      }
+    },
+    {
+      "set": 4,
+      "id": 9,
+      "count": 8,
+      "width": 16,
+      "height": 71,
+      "effect": 4,
+      "first": 0,
+      "loops": false,
+      "trigger": [
+        4,
+        36,
+        8,
+        8
+      ],
+      "sound": 6,
+      "fields": [
+        9,
+        1,
+        0,
+        8,
+        16,
+        71,
+        710,
+        568,
+        568,
+        284,
+        1,
+        10,
+        2,
+        2,
+        4,
+        37450,
+        37450,
+        29960,
+        6
+      ],
+      "source": {
+        "name": "GROUND4O.DAT",
+        "bytes": 1056,
+        "sha256": "9669ee978e5adf5f8d5bfeb80ccc5d6c20e75e32f55e2a5c1c738f64af8faa91"
+      }
+    },
+    {
+      "set": 4,
+      "id": 10,
+      "count": 16,
+      "width": 32,
+      "height": 15,
+      "effect": 4,
+      "first": 0,
+      "loops": false,
+      "trigger": [
+        12,
+        8,
+        8,
+        4
+      ],
+      "sound": 6,
+      "fields": [
+        10,
+        1,
+        0,
+        16,
+        32,
+        15,
+        300,
+        240,
+        240,
+        120,
+        3,
+        3,
+        2,
+        1,
+        4,
+        43130,
+        43130,
+        34504,
+        6
+      ],
+      "source": {
+        "name": "GROUND4O.DAT",
+        "bytes": 1056,
+        "sha256": "9669ee978e5adf5f8d5bfeb80ccc5d6c20e75e32f55e2a5c1c738f64af8faa91"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "path": "assets/manifests/dos_original.json",
+      "bytes": 12573,
+      "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "assets/remaster/issue-144-walk-v1.png",
+      "bytes": 907552,
+      "sha256": "a85552bb91740695545f01c4c8a20366a5028965d1c906cfe6ce09e8da1d0dff"
+    }
+  ],
+  "generations": [
+    {
+      "index": 0,
+      "prompt": "Use case: stylized-concept. Asset type: production transparent RGBA animation sprite sheet for HD side-view puzzle game. Image1 is the exact original 15-frame ground jaw trap sequence (read left-to-right top-to-bottom); image2 is only character/style reference, green-haired blue-tunic toy creature. Redraw the mechanical spring jaw trap and its captured creature as polished hand-painted game art, smooth contours, stone-gray hinged jaws, dark recess, clean metal highlights. EXACTLY 15 consecutive frames in a 4-column 4-row grid; final bottom-right cell empty. Fixed camera, same ground baseline, same trap center. Follow image1 poses: frame0 open low jaws with NO creature;1 creature caught between jaws;2 jaws rising;3 creature lifted;4-9 creature pulled upward while jaws close;10-13 jaws reopen and creature drops/vanishes;14 open empty jaws again. Keep creature small relative to the trap and consistent with image2, no extra characters. Each cell256x256 on1024square sheet, artwork narrow16:21 aspect within central160x210 area; every sprite has at least16 transparent pixels on EVERY side. Frame0 and14 remain present mechanical trap even with no creature. No text, grid lines, numbering, scene, floor outside trap, shadows outside cell, labels or background. Include the victim only in the original active frames. Mild cartoon disappearance, no realistic gore. Exact full15 poses, no cropped jaws, true transparent background.",
+      "tool": "built-in image_gen.imagegen",
+      "prompt_file": "assets/remaster/prompts/issue-178_jaw_v1.txt",
+      "output": {
+        "path": "assets/remaster/issue-178-jaw-v1.png",
+        "bytes": 832619,
+        "sha256": "f85d3fc3c09fe2f650a24dba15c8e690ca2c41b27940d560f0c8e5f2d5a4e375"
+      },
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "selected_cells": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "rectangles": {
+        "0": [
+          34,
+          215,
+          249,
+          81
+        ],
+        "1": [
+          346,
+          123,
+          251,
+          175
+        ],
+        "2": [
+          680,
+          119,
+          234,
+          184
+        ],
+        "3": [
+          1021,
+          38,
+          179,
+          211
+        ],
+        "4": [
+          106,
+          368,
+          111,
+          228
+        ],
+        "5": [
+          422,
+          359,
+          107,
+          238
+        ],
+        "6": [
+          742,
+          350,
+          103,
+          239
+        ],
+        "7": [
+          1059,
+          362,
+          99,
+          227
+        ],
+        "8": [
+          112,
+          683,
+          97,
+          210
+        ],
+        "9": [
+          421,
+          699,
+          100,
+          194
+        ],
+        "10": [
+          686,
+          762,
+          195,
+          157
+        ],
+        "11": [
+          972,
+          784,
+          256,
+          123
+        ],
+        "12": [
+          28,
+          1099,
+          261,
+          111
+        ],
+        "13": [
+          341,
+          1115,
+          260,
+          80
+        ],
+        "14": [
+          655,
+          1115,
+          260,
+          80
+        ]
+      },
+      "anchor_policy": "bottom",
+      "alpha_cutoff": 127,
+      "references": [
+        {
+          "name": "reference-0-6.png",
+          "bytes": 2744,
+          "sha256": "fc82a5ef6233e3d40ea7539fe68b1fbcaf4dfa8e9ddfe3a5b9b63b729f3cd60e",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "prompt": "Precise sprite-sheet edit. Preserve exactly17frames,4columns5rows,last3cells empty. ADD COMPLETELY TRANSPARENT PADDING on every side of EVERY sprite: shrink and center each cell artwork so NO rock/character/dust touches sheet or cell edges, especially TOP EDGE first row. At least20pixels empty gutter all sides. Preserve orange-rock style, pose order, fixed scale. Correct death sequence: frames0and16 rock ONLY. Frames1..7 may show blue-tunic green-haired creature getting crushed. Frames8..15 must have NO CREATURE, NO GREEN HAIR, NO BLUE CLOTHES: only rock returning to top and beige dust dissipating. A dead creature must not stand up or escape. Keep exact17 chronological states, no grid, no text or background, true alpha. Frame indices are conceptual, do NOT write numbers.",
+      "tool": "built-in image_gen.imagegen",
+      "prompt_file": "assets/remaster/prompts/issue-178_rock_v2.txt",
+      "output": {
+        "path": "assets/remaster/issue-178-rock-v1.png",
+        "bytes": 1150597,
+        "sha256": "a1353185fa0738c359895494992bc831a5fde23d03c72ec1b3db74df7ee7f4a8"
+      },
+      "dimensions": [
+        1122,
+        1402
+      ],
+      "selected_cells": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "rectangles": {
+        "0": [
+          87,
+          49,
+          160,
+          131
+        ],
+        "1": [
+          356,
+          48,
+          156,
+          277
+        ],
+        "2": [
+          616,
+          48,
+          157,
+          277
+        ],
+        "3": [
+          888,
+          48,
+          160,
+          277
+        ],
+        "4": [
+          82,
+          349,
+          158,
+          270
+        ],
+        "5": [
+          352,
+          368,
+          154,
+          250
+        ],
+        "6": [
+          570,
+          401,
+          252,
+          213
+        ],
+        "7": [
+          840,
+          421,
+          251,
+          196
+        ],
+        "8": [
+          51,
+          664,
+          220,
+          212
+        ],
+        "9": [
+          335,
+          670,
+          209,
+          207
+        ],
+        "10": [
+          587,
+          669,
+          219,
+          206
+        ],
+        "11": [
+          861,
+          658,
+          211,
+          221
+        ],
+        "12": [
+          73,
+          916,
+          177,
+          197
+        ],
+        "13": [
+          352,
+          916,
+          161,
+          182
+        ],
+        "14": [
+          618,
+          917,
+          158,
+          144
+        ],
+        "15": [
+          897,
+          919,
+          159,
+          156
+        ],
+        "16": [
+          81,
+          1177,
+          161,
+          132
+        ]
+      },
+      "anchor_policy": "top",
+      "alpha_cutoff": 127,
+      "references": [
+        {
+          "name": "generation-1",
+          "bytes": 1256001,
+          "sha256": "0aea2282afc5925c8a07a41e16ac0b72d20a4915cd9d9195ceff70e210ac7893",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "prompt": "Use case: precise-object-edit. Preserve this exact12-frame4columns3rows animation and art. Make all12sprites smaller and centered inside their cells so EVERY edge has at least24pixels completely transparent gutter, including top chain in first row and bottom platforms in last row. Nothing should touch sheet edge or cell boundary. Chain is short and fully visible, do not extend above its cell. Platform has complete rounded lower corners. Keep each weight/platform position consistent relative to its own cell and maintain original12-frame sequence. Keep '10 TONS' text, green-haired blue creature, cartoon dust, same style. No new background, grid, labels, or extra frames. True transparent alpha.",
+      "tool": "built-in image_gen.imagegen",
+      "prompt_file": "assets/remaster/prompts/issue-178_weight_v2.txt",
+      "output": {
+        "path": "assets/remaster/issue-178-weight-v1.png",
+        "bytes": 1037612,
+        "sha256": "1ccc3bce44b1e433cb895a4ab4888be65d4f7c8ef4e1293abbd8cf5c88ec02d2"
+      },
+      "dimensions": [
+        1295,
+        1215
+      ],
+      "selected_cells": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "rectangles": {
+        "0": [
+          64,
+          116,
+          226,
+          323
+        ],
+        "1": [
+          380,
+          105,
+          225,
+          334
+        ],
+        "2": [
+          693,
+          104,
+          226,
+          335
+        ],
+        "3": [
+          1006,
+          116,
+          226,
+          323
+        ],
+        "4": [
+          49,
+          515,
+          268,
+          265
+        ],
+        "5": [
+          367,
+          515,
+          261,
+          265
+        ],
+        "6": [
+          680,
+          527,
+          256,
+          253
+        ],
+        "7": [
+          1000,
+          524,
+          237,
+          256
+        ],
+        "8": [
+          62,
+          870,
+          233,
+          285
+        ],
+        "9": [
+          373,
+          867,
+          235,
+          288
+        ],
+        "10": [
+          686,
+          852,
+          238,
+          303
+        ],
+        "11": [
+          1002,
+          843,
+          233,
+          312
+        ]
+      },
+      "anchor_policy": "bottom",
+      "alpha_cutoff": 127,
+      "references": [
+        {
+          "name": "generation-3",
+          "bytes": 1422934,
+          "sha256": "af5483c882d95b47ed584e7a9b7ae8fee81ef9c754876d37deec0de62194f0c7",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "prompt": "Use case: stylized-concept. RGBA production HD sprite sheet, exact15frames in4columns4rows, lastcell empty. Image1 original pale marble piston crusher animation; image2 only creature/style reference. Redraw same32:34 footprint with fixed pink-white marble upper housing at top, fixed shallow pink marble pedestal at bottom, and luminous veined marble piston descending vertically between them. Smooth hand-painted high-definition stone, fine mauve veins and warm pink bevels, side-view orthographic. Frames0 idle: piston retracted, empty gap.1-3 small green-haired blue-tunic creature on pedestal.4-6 piston descends and crushes creature in cartoon puff.7-10 piston stays down, victim disappears.11-14 piston retracts to original empty gap, no creature. Keep identical upper housing and lower pedestal positions in allframes, no camera or perspective changes.1024square canvas,256square cells, all artwork safely INSIDE central210square, completely transparent23pixel margin on EVERY side of every cell, including upper housing and lower pedestal. No realistic gore, no text, grid, labels, scene or background, no clipping at sheet edges.",
+      "tool": "built-in image_gen.imagegen",
+      "prompt_file": "assets/remaster/prompts/issue-178_marble_press_v1.txt",
+      "output": {
+        "path": "assets/remaster/issue-178-marble-press-v1.png",
+        "bytes": 1270674,
+        "sha256": "a050b8edf0ad28932396ba8e3ae5f3baff7f124968535d11d76e34402e2d72c3"
+      },
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "selected_cells": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "rectangles": {
+        "0": [
+          34,
+          25,
+          247,
+          276
+        ],
+        "1": [
+          347,
+          25,
+          247,
+          276
+        ],
+        "2": [
+          660,
+          25,
+          247,
+          276
+        ],
+        "3": [
+          974,
+          25,
+          247,
+          276
+        ],
+        "4": [
+          34,
+          340,
+          247,
+          274
+        ],
+        "5": [
+          347,
+          340,
+          247,
+          274
+        ],
+        "6": [
+          660,
+          340,
+          249,
+          274
+        ],
+        "7": [
+          974,
+          340,
+          247,
+          274
+        ],
+        "8": [
+          34,
+          654,
+          247,
+          273
+        ],
+        "9": [
+          347,
+          654,
+          247,
+          273
+        ],
+        "10": [
+          660,
+          654,
+          247,
+          273
+        ],
+        "11": [
+          974,
+          654,
+          247,
+          273
+        ],
+        "12": [
+          33,
+          967,
+          248,
+          265
+        ],
+        "13": [
+          347,
+          966,
+          247,
+          266
+        ],
+        "14": [
+          660,
+          966,
+          247,
+          266
+        ]
+      },
+      "anchor_policy": "bottom",
+      "alpha_cutoff": 127,
+      "references": [
+        {
+          "name": "reference-2-8.png",
+          "bytes": 8463,
+          "sha256": "ef9ce96f1b2ca01462339c1b05dfd1cb82f09150d908cd2f37abafcdae296a54",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "prompt": "Use case: stylized-concept. A production transparent animation sprite sheet, EXACTLY37 chronological frames laid out in4columns10rows, last3cells empty, no other arrangement. Image1 is original37-frame cable-hoist trap sequence; image2 only character/artstyle. Redraw all37 as polished hand-painted side-view game art, same narrow16:41 profile: fixed slender dark-metal right post, short upper bracket/pulley, a brown lifting cable on left, small golden gear base. Green-haired blue-tunic cartoon creature appears only during active cycle. Frames0 idle empty rig.1-4 creature enters at bottom.5-12 cable catches torso and lifts/rotates creature upwards.13-20 creature spins near upper bracket, then begins descending.21-27 creature drops to base, gray cartoon puff dissolves it.28-36 empty rig, cable returns to idle; NO surviving creature or green hair in28-36. Cable is a mechanical lifting sling, not a noose around neck. No realistic injury/gore. Fixed rig size, location, camera and base throughout; move only creature/cable/dust. Each cell has at least16px true transparent padding on all4sides; entire rig fully inside, no touching cell/sheet edges. Tall1024x2560canvas, 4x10 equal cells. No labels, numbers, text, grid, background, extra stage elements. Include37 complete frames; cells38-40 bottom-right are completely empty transparent.",
+      "tool": "built-in image_gen.imagegen",
+      "prompt_file": "assets/remaster/prompts/issue-178_hoist_v1.txt",
+      "output": {
+        "path": "assets/remaster/issue-178-hoist-v1.png",
+        "bytes": 1125519,
+        "sha256": "29e7d84cdf1109a5937887cab089e6b8a323515c62026c58dbc69b3a07b95ad3"
+      },
+      "dimensions": [
+        793,
+        1983
+      ],
+      "selected_cells": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "rectangles": {
+        "0": [
+          77,
+          10,
+          88,
+          184
+        ],
+        "1": [
+          261,
+          9,
+          98,
+          185
+        ],
+        "2": [
+          453,
+          9,
+          102,
+          184
+        ],
+        "3": [
+          651,
+          9,
+          101,
+          184
+        ],
+        "4": [
+          72,
+          203,
+          93,
+          187
+        ],
+        "5": [
+          272,
+          203,
+          87,
+          187
+        ],
+        "6": [
+          467,
+          204,
+          88,
+          186
+        ],
+        "7": [
+          655,
+          203,
+          98,
+          187
+        ],
+        "8": [
+          56,
+          401,
+          109,
+          186
+        ],
+        "9": [
+          238,
+          401,
+          121,
+          187
+        ],
+        "10": [
+          428,
+          401,
+          127,
+          187
+        ],
+        "11": [
+          642,
+          401,
+          111,
+          187
+        ],
+        "12": [
+          66,
+          598,
+          99,
+          188
+        ],
+        "13": [
+          265,
+          598,
+          94,
+          188
+        ],
+        "14": [
+          450,
+          598,
+          105,
+          188
+        ],
+        "15": [
+          647,
+          598,
+          105,
+          188
+        ],
+        "16": [
+          70,
+          796,
+          94,
+          187
+        ],
+        "17": [
+          259,
+          796,
+          100,
+          188
+        ],
+        "18": [
+          462,
+          796,
+          93,
+          187
+        ],
+        "19": [
+          666,
+          796,
+          86,
+          187
+        ],
+        "20": [
+          75,
+          994,
+          89,
+          187
+        ],
+        "21": [
+          265,
+          995,
+          94,
+          186
+        ],
+        "22": [
+          460,
+          995,
+          95,
+          186
+        ],
+        "23": [
+          656,
+          995,
+          96,
+          186
+        ],
+        "24": [
+          68,
+          1192,
+          97,
+          187
+        ],
+        "25": [
+          266,
+          1192,
+          93,
+          187
+        ],
+        "26": [
+          467,
+          1192,
+          88,
+          187
+        ],
+        "27": [
+          667,
+          1192,
+          85,
+          187
+        ],
+        "28": [
+          77,
+          1390,
+          88,
+          190
+        ],
+        "29": [
+          271,
+          1389,
+          88,
+          191
+        ],
+        "30": [
+          467,
+          1389,
+          88,
+          191
+        ],
+        "31": [
+          665,
+          1389,
+          87,
+          191
+        ],
+        "32": [
+          77,
+          1587,
+          87,
+          185
+        ],
+        "33": [
+          271,
+          1587,
+          88,
+          185
+        ],
+        "34": [
+          467,
+          1587,
+          88,
+          185
+        ],
+        "35": [
+          663,
+          1587,
+          89,
+          186
+        ],
+        "36": [
+          76,
+          1781,
+          89,
+          186
+        ]
+      },
+      "anchor_policy": "right-bottom",
+      "alpha_cutoff": 127,
+      "references": [
+        {
+          "name": "reference-3-8.png",
+          "bytes": 20968,
+          "sha256": "b33f4d0143e85a879627843f8ab9732831c1b0e6f718eed7562b8b706683b484",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "prompt": "Use case: stylized-concept. One production RGBA sprite sheet for paired wall spike traps, EXACTLY14 chronological poses in4columns4rows; last2cells empty. Image1 original7-frame LEFT wall firing spikes RIGHT; image2 original7-frame RIGHT wall firing spikes LEFT. Smooth hand-painted side-view HD art, darksteel sliding spikes mounted on narrow warm brass vertical wall rails, small orange activation spark only at extension. Whole profile16:26, no creature. Poses0..6 correspond ONLY to left wall/point-right:0 spikes retracted,1 ignition spark and half extension,2 full sharp spikes extended right,3 still extended,4 half retracted,5 only short tips,6 fully retracted. Poses7..13 correspond ONLY to right wall/point-left, exactly mirrored mechanics in SAME temporal order. Keep each rail stationary at outer side, same height and width, fixed camera. Each256square cell has at least24px fully transparent padding on every side,1024square sheet. No girders crossing between cells, no grid lines, frame borders, text, labels, numbering, scenery or shadows outside sprites. Fine steel highlights and brass texture; no flames after activation pose. True transparent background and clean separated sprites.",
+      "tool": "built-in image_gen.imagegen",
+      "prompt_file": "assets/remaster/prompts/issue-178_wall_spikes_v1.txt",
+      "output": {
+        "path": "assets/remaster/issue-178-wall-spikes-v1.png",
+        "bytes": 861691,
+        "sha256": "1949190960280b7f270f48223c92e5a9825785000032634cf0ac3d3388caa3b0"
+      },
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "selected_cells": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "rectangles": {
+        "0": [
+          118,
+          33,
+          60,
+          257
+        ],
+        "1": [
+          398,
+          33,
+          160,
+          257
+        ],
+        "2": [
+          708,
+          33,
+          181,
+          257
+        ],
+        "3": [
+          1023,
+          33,
+          180,
+          257
+        ],
+        "4": [
+          116,
+          347,
+          117,
+          256
+        ],
+        "5": [
+          404,
+          346,
+          86,
+          257
+        ],
+        "6": [
+          712,
+          346,
+          63,
+          257
+        ],
+        "8": [
+          144,
+          655,
+          67,
+          254
+        ],
+        "9": [
+          377,
+          654,
+          154,
+          256
+        ],
+        "10": [
+          665,
+          654,
+          180,
+          256
+        ],
+        "11": [
+          978,
+          654,
+          181,
+          256
+        ],
+        "12": [
+          95,
+          961,
+          113,
+          257
+        ],
+        "13": [
+          428,
+          961,
+          90,
+          257
+        ],
+        "14": [
+          734,
+          961,
+          67,
+          257
+        ]
+      },
+      "anchor_policy": "wall",
+      "alpha_cutoff": 127,
+      "references": [
+        {
+          "name": "reference-3-9.png",
+          "bytes": 2806,
+          "sha256": "6ec5f50cbc9836b060b9c389fccf597dbf0fb7ab959d29dfb951738be2710cc0",
+          "storage": "ignored reference/generation intermediate"
+        },
+        {
+          "name": "reference-3-10.png",
+          "bytes": 2901,
+          "sha256": "743bf5c189668d41dfb1ad34c375b0b6e8aede35dbbbf503592dddb54cadad18",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "prompt": "Use case: stylized-concept. Production HD game RGBA animation sprite sheet EXACTLY25frames in5columns5rows on1280square canvas. Image1 original25-frame electrical needle trap; image2 green-haired blue-tunic toy creature style. Orthographic side view, same32:19 horizontal footprint. Two fixed short turquoise-steel posts left/right, fine horizontal metal needles pointing inward across gap, pale cyan highlights. Keep both posts and baseline absolutely identical in all25frames. Frame0 empty inactive trap.1-6 creature enters gap,7-10 red-orange electrical sparks catch it,11-15 creature dissolves into tiny green/blue cartoon particles,16-20 remaining small particles fade,21-24 empty inactive trap. NO surviving creature in16-24; no creature in0. Move only victim and sparks, not posts; preserve25 distinct temporal frames, row-major reading order. Smooth hand-painted polished game art, no pixel blocks, no realistic gore. Every256cell has24px true transparent gutters on ALL sides; no sprite touches cell edge. No grid, borders, labels, digits, background, scenery, boxes or shadows outside sprites.",
+      "tool": "built-in image_gen.imagegen",
+      "prompt_file": "assets/remaster/prompts/issue-178_needle_v1.txt",
+      "output": {
+        "path": "assets/remaster/issue-178-needle-v1.png",
+        "bytes": 1453924,
+        "sha256": "fc880416ff2dd414aae73b556df9f94df3da4de5aaee992c08dacb2547b62e52"
+      },
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "selected_cells": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "rectangles": {
+        "0": [
+          34,
+          119,
+          196,
+          142
+        ],
+        "1": [
+          286,
+          107,
+          199,
+          154
+        ],
+        "2": [
+          531,
+          109,
+          194,
+          152
+        ],
+        "3": [
+          771,
+          114,
+          194,
+          147
+        ],
+        "4": [
+          1007,
+          117,
+          196,
+          144
+        ],
+        "5": [
+          34,
+          341,
+          198,
+          147
+        ],
+        "6": [
+          287,
+          341,
+          199,
+          147
+        ],
+        "7": [
+          528,
+          340,
+          198,
+          146
+        ],
+        "8": [
+          765,
+          340,
+          200,
+          146
+        ],
+        "9": [
+          1008,
+          337,
+          201,
+          149
+        ],
+        "10": [
+          31,
+          564,
+          208,
+          156
+        ],
+        "11": [
+          281,
+          562,
+          207,
+          157
+        ],
+        "12": [
+          524,
+          567,
+          205,
+          152
+        ],
+        "13": [
+          764,
+          571,
+          205,
+          147
+        ],
+        "14": [
+          1012,
+          572,
+          199,
+          146
+        ],
+        "15": [
+          32,
+          807,
+          199,
+          147
+        ],
+        "16": [
+          284,
+          807,
+          202,
+          147
+        ],
+        "17": [
+          523,
+          807,
+          203,
+          147
+        ],
+        "18": [
+          764,
+          807,
+          202,
+          147
+        ],
+        "19": [
+          1013,
+          807,
+          197,
+          147
+        ],
+        "20": [
+          33,
+          1041,
+          197,
+          146
+        ],
+        "21": [
+          282,
+          1042,
+          204,
+          146
+        ],
+        "22": [
+          525,
+          1042,
+          200,
+          146
+        ],
+        "23": [
+          762,
+          1042,
+          204,
+          146
+        ],
+        "24": [
+          1011,
+          1042,
+          201,
+          146
+        ]
+      },
+      "anchor_policy": "bottom",
+      "alpha_cutoff": 127,
+      "references": [
+        {
+          "name": "reference-4-7.png",
+          "bytes": 10135,
+          "sha256": "147a5f2b5d5aeb681659ff21a72c6361ce427126789602d4285566ccf13ced81",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "prompt": "Background-extraction edit ONLY. Keep these EXACT8 tall electrical-trap poses,4columns2rows and geometry/scale/character details unchanged. Remove the entire dark black/gray/blue gradient backdrop and broad ambient glow between sprites. Output TRUE RGBA alpha transparency: every background pixel and all cell gutters must be completely transparent (alpha0). Preserve only crisp metal stems, cyan diamond electrodes, creatures/particles and tight narrow red-orange lightning strokes. No opaque black background, no gray background, no checkerboard, no backdrop glow, no canvas or grid. Preserve tall16:71 machinery, small creature scale, full rounded endcaps and all margins. Do not resize/rearrange or add text.",
+      "tool": "built-in image_gen.imagegen",
+      "prompt_file": "assets/remaster/prompts/issue-178_lightning_v4.txt",
+      "output": {
+        "path": "assets/remaster/issue-178-lightning-v1.png",
+        "bytes": 1769082,
+        "sha256": "0e4cf0389d3a1b43b6ad517a7af64f363b692d02a51abada0ce83b2e05fe07d6"
+      },
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "selected_cells": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "rectangles": {
+        "0": [
+          95,
+          44,
+          99,
+          695
+        ],
+        "1": [
+          323,
+          44,
+          130,
+          696
+        ],
+        "2": [
+          569,
+          44,
+          145,
+          696
+        ],
+        "3": [
+          816,
+          44,
+          134,
+          696
+        ],
+        "4": [
+          73,
+          797,
+          145,
+          696
+        ],
+        "5": [
+          311,
+          796,
+          148,
+          697
+        ],
+        "6": [
+          575,
+          797,
+          115,
+          696
+        ],
+        "7": [
+          829,
+          797,
+          102,
+          696
+        ]
+      },
+      "anchor_policy": "bottom",
+      "alpha_cutoff": 127,
+      "references": [
+        {
+          "name": "generation-12",
+          "bytes": 1766177,
+          "sha256": "ab1689ed670a9d604a6c47edda51570ca004b3102b0bed8032750dbddd494116",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "prompt": "Use case: stylized-concept. Production transparent RGBA HD animation sprite sheet EXACTLY16frames in4columns4rows,1024square canvas. Image1 original16-frame rainbow disintegration trap32:15: a low horizontal bright multicolor beam emitter at bottom, victim above gradually dissolves to green particles. Image2 character/style reference only. Redraw as polished hand-painted side-view toy game art: small flat metal emitter bar with blue endcaps and luminous red/yellow/green central slit, fixed position and baseline in allframes. Frame0 NO creature, inactive emitter only.1-4 small green-haired blue-tunic creature caught above slit.5-8 creature turns into luminous green-blue particles from feet upward.9-13 last green strands/specks fade upward, no intact creature.14-15 empty emitter, NO creature. Keep compact wide32:15 footprint; same emitter/camera/scale allframes. Each256cell has at least24px empty transparent gutter on all4sides. No realistic injury/gore, no scenery, background, floor, grid, labels, borders or numbers. No character appears after disappearance. Smooth readable contours, clean true alpha.",
+      "tool": "built-in image_gen.imagegen",
+      "prompt_file": "assets/remaster/prompts/issue-178_beam_v1.txt",
+      "output": {
+        "path": "assets/remaster/issue-178-beam-v1.png",
+        "bytes": 1050065,
+        "sha256": "aadfb4143dc73449ccd2be1292787d23c0c6df6bafd024806f022ec1962eb570"
+      },
+      "dimensions": [
+        1655,
+        950
+      ],
+      "selected_cells": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "rectangles": {
+        "0": [
+          74,
+          179,
+          234,
+          59
+        ],
+        "1": [
+          501,
+          22,
+          242,
+          216
+        ],
+        "2": [
+          918,
+          22,
+          240,
+          216
+        ],
+        "3": [
+          1346,
+          16,
+          235,
+          222
+        ],
+        "4": [
+          73,
+          264,
+          235,
+          244
+        ],
+        "5": [
+          500,
+          266,
+          243,
+          242
+        ],
+        "6": [
+          918,
+          268,
+          239,
+          240
+        ],
+        "7": [
+          1346,
+          279,
+          235,
+          228
+        ],
+        "8": [
+          73,
+          537,
+          235,
+          204
+        ],
+        "9": [
+          501,
+          544,
+          242,
+          197
+        ],
+        "10": [
+          917,
+          560,
+          240,
+          181
+        ],
+        "11": [
+          1346,
+          596,
+          235,
+          145
+        ],
+        "12": [
+          73,
+          819,
+          235,
+          118
+        ],
+        "13": [
+          501,
+          827,
+          241,
+          110
+        ],
+        "14": [
+          918,
+          843,
+          239,
+          94
+        ],
+        "15": [
+          1346,
+          878,
+          235,
+          59
+        ]
+      },
+      "anchor_policy": "bottom",
+      "alpha_cutoff": 127,
+      "references": [
+        {
+          "name": "reference-4-10.png",
+          "bytes": 4047,
+          "sha256": "e6dbc4cd550643a9f7533b48e4a2a6107a7cddc4fffdb328a5fc729ca898348d",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    }
+  ],
+  "intermediate_generations": [
+    {
+      "index": 1,
+      "prompt": "Use case: stylized-concept. Production RGBA sprite sheet for side-view HD game. Image1 is original17-frame hanging rock crusher trap,4columns5rows; image2 is only style and victim reference. Redraw EXACTLY17 poses in4columns5rows, last3cells empty, transparent1024x1280 canvas. Every cell256square, narrow16:38 artwork, keep at least16pixels transparent margin EVERY side. Fixed orthographic view. Orange-brown craggy suspended rock near top, victim with green hair and blue tunic near bottom only in active phases. Follow input17frames temporal order:0 empty rock;1-3 creature steps below;4-7 rock drops to squish creature in a mild cartoon puff;8-12 rock rises back while dust trail dissipates;13-16 trailing dust fades to empty rock. Frame16 must have rock and NO victim, ready to idle. Keep rock shape/size consistent, warm earthen highlights. No realistic gore or detached limbs, no text, labels, grid, background, scenery, floor, boxes or numbers. Preserve whole mechanical footprint and motion vertically; do not crop rock or creature. Clean fully transparent gutters.",
+      "tool": "built-in image_gen.imagegen",
+      "output_reference": {
+        "bytes": 1256001,
+        "sha256": "0aea2282afc5925c8a07a41e16ac0b72d20a4915cd9d9195ceff70e210ac7893",
+        "storage": "discarded generation intermediate; inputs to the selected edits, not distributed"
+      },
+      "references": [
+        {
+          "name": "reference-0-8.png",
+          "bytes": 8555,
+          "sha256": "2f341793aed009ca42d247ef5a55adc780353ad1bbc4885b3c54f01de09226d8",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "prompt": "Use case: stylized-concept. Production transparent RGBA HD animation sprite sheet, orthographic side view. Image1 original12frames of a triangular drop-weight crusher above a fixed narrow platform; image2 victim/style reference. Redraw exactly12frames in4columns3rows, eachcell256x320, canvas1024x960. Each sprite whole32:42 profile with generous20px transparent gutters. Dark graphite triangular iron weight with warm rusty left edge, tiny hanging chain above, fixed gray platform below. Weight bears identical clear decorative text '10 TONS' on two lines. Follow original temporal stages: frame0 weight raised NO creature;1-2 green-haired blue-tunic creature on platform;3 weight begins falling;4 weight hits platform;5-7 cartoon dust compresses/disappears creature;8-10 weight rises, dust fades;11 raised weight, NO creature. Never show victim escaping after impact. Maintain platform size and baseline, centered weight, same camera all frames. Fine bevels/metal highlights, consistent with hand-painted toy game, no realistic gore. No extra scene, backdrop, border, grid, numbers labeling frames or text beyond '10 TONS'. Absolutely transparent background, no sprite clipped by its cell.",
+      "tool": "built-in image_gen.imagegen",
+      "output_reference": {
+        "bytes": 1422934,
+        "sha256": "af5483c882d95b47ed584e7a9b7ae8fee81ef9c754876d37deec0de62194f0c7",
+        "storage": "discarded generation intermediate; inputs to the selected edits, not distributed"
+      },
+      "references": [
+        {
+          "name": "reference-0-10.png",
+          "bytes": 8839,
+          "sha256": "435cf21282f4488d0d57db1a72dd96dd5abcc54d09a5a511489c6d16bb09ba8a",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "prompt": "Use case: stylized-concept. Production transparent RGBA animation sheet EXACTLY8frames in4columns2rows, canvas2048x1024 with512square cells. Image1 original tall electrical trap16:71 silhouette: two blue crystal-metal diamond electrodes, one near top and one near bottom, aligned vertically on a slim charcoal cable/support, large empty gap between. Image2 green-haired blue-tunic toy creature style. Redraw in polished hand-painted HD art with icy cyan bevels, darksteel stems. All8 electrodes/supports identical and perfectly stationary. Frame0 idle empty gap with NO creature/no arc.1 creature caught at gap center,2-4 jagged red-orange electrical arcs wrap creature,5 creature fades to green-blue cartoon particles,6 only small particles and arc,7 empty gap, arcs fade. No surviving creature escaping. Preserve whole narrow tall footprint, no horizontal machine or extra housing. Each sprite within central150x400region, at least36px completely transparent padding EVERY side; NO electrode/stem touches cell edge. Side-view orthographic, no perspective/scenery, no realistic gore, no text, grid, frame borders, labels or numbers. Strong clean alpha transparency outside each full trap.",
+      "tool": "built-in image_gen.imagegen",
+      "output_reference": {
+        "bytes": 1053348,
+        "sha256": "c36be7b0c3e8452509b7e403188c4d4451041a68fadc52f41f38d477a7ed6987",
+        "storage": "discarded generation intermediate; inputs to the selected edits, not distributed"
+      },
+      "references": [
+        {
+          "name": "reference-4-9.png",
+          "bytes": 8030,
+          "sha256": "0f422de00ca043c62251b4928f4592a3bf93dd8cda69c5615716f1440b0f293f",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "prompt": "Precise production sprite-sheet edit: keep the SAME8frames4columns2rows and exact poses, but make EACH full vertical electrode assembly 75percent as tall and center it inside its own cell. Shorten top and bottom dark stems and give them visible rounded endcaps INSIDE each cell. At least40px completely transparent space ABOVE and BELOW every electrode assembly; no stem touches sheet edge or neighboring frame. The topmost tip of the first row MUST have transparent space above it. Bottommost tip second row MUST have transparent space below. Keep two diamond cyan electrodes, arcs and victim phases unchanged, same style/colors, exact8poses. Do not add frame lines, grid, text, labels or background. True transparent alpha, fully separated sprites.",
+      "tool": "built-in image_gen.imagegen",
+      "output_reference": {
+        "bytes": 707770,
+        "sha256": "6823e5db5f68e19ba5e068c0202922712667d6d4935d01c1e07ca6f9328cbcb7",
+        "storage": "discarded generation intermediate; inputs to the selected edits, not distributed"
+      },
+      "references": [
+        {
+          "name": "generation-9",
+          "bytes": 1053348,
+          "sha256": "c36be7b0c3e8452509b7e403188c4d4451041a68fadc52f41f38d477a7ed6987",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "prompt": "Use case: precise-object-edit. Re-layout these SAME8electrical trap poses into a TALL1024x1536 sprite sheet:4columns2rows, eachcell256wide768tall, NOT square cells. Reference2 is the original tall16:71 device proportion. In eachcell, assembly spans about650pixels vertically but only140pixels horizontally. Put small DIAMOND electrodes about560pixels apart: upper diamond atcell y95, lower diamond aty655. Diamonds should each be only70x70pixels and keep truly square diamond proportions. The captured character is small, about120pixels tall, centered between electrodes (one fifth of assembly height), matching reference1 character style. Extend slim vertical support/cable through long empty gap, keep capped ends inside cell, no cropping. Frame0 and7 NO character. Frames1..3 electrical capture,4..6 disintegration; retain original8pose sequence. All4sides of EVERY cell have transparent20px gutters. No frame borders/grid/text/background. Exact4x2 tallcell layout, full transparent alpha. This corrects scale: tall delicate machinery and small creature, not a squat trap with giant victim.",
+      "tool": "built-in image_gen.imagegen",
+      "output_reference": {
+        "bytes": 1766177,
+        "sha256": "ab1689ed670a9d604a6c47edda51570ca004b3102b0bed8032750dbddd494116",
+        "storage": "discarded generation intermediate; inputs to the selected edits, not distributed"
+      },
+      "references": [
+        {
+          "name": "generation-11",
+          "bytes": 707770,
+          "sha256": "6823e5db5f68e19ba5e068c0202922712667d6d4935d01c1e07ca6f9328cbcb7",
+          "storage": "ignored reference/generation intermediate"
+        },
+        {
+          "name": "reference-4-9.png",
+          "bytes": 8030,
+          "sha256": "0f422de00ca043c62251b4928f4592a3bf93dd8cda69c5615716f1440b0f293f",
+          "storage": "ignored reference/generation intermediate"
+        }
+      ]
+    }
+  ],
+  "policy": "Generated PNG bytes unchanged. Runtime rectangles preserve every referenced RGBA sample; cutoff127 excludes low-alpha residue. Trimmed frames use common per-profile pixel density and explicit anchors to keep fixed bases/walls stationary. Hoist source cell rules are outside selected rectangles. Simulation triggers, compact trap indices, first/count/once and sound metadata are unchanged."
+}

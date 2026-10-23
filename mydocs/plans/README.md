@@ -54,3 +54,5 @@
 - [#172 특수4장면 HD](issue-172_hd_special.md)
 
 - [#175 물·불 HD](issue-175_hd_hazards.md)
+
+- [#178 기계 함정 HD](issue-178_hd_traps.md):발동/재사용·원본 판정 보존과 Native/Web 검증.
