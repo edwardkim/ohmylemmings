@@ -5,7 +5,7 @@
 [![CI](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml/badge.svg)](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml)
 [![Play on GitHub Pages](https://github.com/edwardkim/ohmylemmings/actions/workflows/pages.yml/badge.svg)](https://edwardkim.github.io/ohmylemmings/)
 
-[2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)를 진행합니다. Native/Web에서 부분 HD 플레이와 원본 모드 전환, 전체 캐릭터28동작337프레임을 제공합니다. [#157 일반5테마 재질·일방통행 표시와 팩 정리](mydocs/reports/issue-157_hd_terrain.md)를 PR #158·CI7개 통과·실제 병합으로 완료했습니다. 특수 배경·나머지 시설/효과·전체 UI와 지원 HD 배포는 후속입니다. 공개 v0.1.0/Pages는 기존 배포를 유지합니다.
+[2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)를 진행합니다. Native/Web 개발 미리보기에서 캐릭터28동작337프레임·일반5재질·특수4장면·원본54객체/540키와 [HD 글꼴·게임 패널/결과 UI](mydocs/reports/issue-184_hd_ui.md)를 제공합니다. 원본 모드 전환과 기존 조작/규칙을 유지합니다. 지원 HD 패키징과 전체 인수는 후속이며 공개 v0.1.0/Pages는 기존 배포를 유지합니다.
 
 프로젝트 자체 작성 코드는 [MIT](LICENSE)로 제공합니다. [제3자 고지 전문](THIRD_PARTY_NOTICES.txt)과 [적용 범위](third_party/README.md)를 함께 확인하세요. OPL 합성기는 LGPL-2.1-or-later를 유지하며, 원본 DOS 그래픽·레벨·음악/효과음·상표에는 프로젝트 MIT 허가가 적용되지 않습니다.
 
@@ -144,4 +144,4 @@ macOS 전체 게임 앱은 [#120 배포 안내](mydocs/reports/issue-120_macos_f
 
 [#163 팩 정리](mydocs/reports/issue-163_hd_pack.md): 원본32PNG·440자산을 유지하고 런타임27atlas/131,699,864바이트로 정리했습니다. 필터링에 민감한 페이지는 기존 배치를 유지하며 Native/Canvas 화면 동일성을 검증했습니다. 전체 리마스터·성능 인수는 후속입니다.
 
-[#169 테마별 HD 로딩](mydocs/reports/issue-169_hd_loading.md): 공통 자산과 현재 테마만 선택하여18~19atlas/약94.2~100.5MB를 로딩합니다. `make hd-assets`/`make web`으로 카탈로그를 갱신하며 Native는 `--hd-pack FILE_OR_DIRECTORY`도 지원합니다. 기존 v1 팩과 원본 모드는 유지합니다.
+[#169 테마별 HD 로딩](mydocs/reports/issue-169_hd_loading.md): 공통 자산과 현재 테마/특수 장면을 선택합니다. 현재 선택 팩은 최대26atlas/약124.7MB이며, HD UI에는 별도 약4.7MB의 RGBA가 추가됩니다. `make hd-assets`/`make web`으로 카탈로그를 갱신하며 Native는 `--hd-pack FILE_OR_DIRECTORY`도 지원합니다. 기존 v1 팩과 원본 모드는 유지합니다.
