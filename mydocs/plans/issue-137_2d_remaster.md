@@ -19,7 +19,7 @@
 | [HD-04 / #151](issue-151_hd_integration.md) | Native/Web의 실제 Fun 01 HD 합성·걷기/굴착/계단/폭발·원본 모드 선택과 입력 통합 | 완료: PR #152·CI7개 SUCCESS·실제 병합; [결과](../reports/issue-151_hd_integration.md) |
 | [HD-05a / #154](issue-154_hd_actors.md) 및 후속 | 전체28애니메이션337프레임 대응·5테마/특수4장면·시설/효과·결과/UI 확장 | #154 PR #155·CI7개 SUCCESS·실제 병합 완료; 테마/시설/효과/UI는 후속 |
 | [HD-05b / #157](issue-157_hd_terrain.md) | 일반5테마 재질·일방통행 표시·무손실 팩 | 완료: PR #158·CI7개 SUCCESS·실제 병합 |
-| [HD-05c / #160](issue-160_hd_portals.md) | 5테마 입출구55·순수 출구 장식30프레임 | 구현·로컬 검증 중; 최종 CI/병합 예정 |
+| [HD-05c / #160](issue-160_hd_portals.md) | 5테마 입출구55·순수 출구 장식30프레임 | 완료: PR #161·CI7개 SUCCESS·실제 병합 |
 | HD-06 | 원본/HD의 논리 상태·지형·저장 입력 동일성, 지원 플랫폼 패키지/소스/고지·기능 검증 | 후속 구현 |
 
 각 구현 절편은 해당 GitHub 이슈를 먼저 등록·확인한 뒤 TDD로 진행한다. 디자인 시안의 완성과 실제 HD 모드·전체 자산의 완성을 구분하고, 부모 완료 목록은 실제 구현/검증에 맞춰 갱신한다.
@@ -46,3 +46,5 @@ HD-04 [#151 실제 부분 HD 게임](../reports/issue-151_hd_integration.md)은 
 HD-05a [#154 캐릭터 전체 키](../reports/issue-154_hd_actors.md)는28/337 대응과 Native/Web 표시·복원337/자연13사례·Fun01 동일성을 PR #155/CI7개 SUCCESS·실제 병합으로 완료했다. 캐릭터 누락0은 전체 리마스터 완료를 뜻하지 않는다. 다음은 다른 테마/특수 장면·시설/효과/UI의 HD-05 후속과 지원 HD 패키지/전체 인수 HD-06이다.
 
 HD-05b [#157 일반 지형](../reports/issue-157_hd_terrain.md)은 일반5재질·원본 화살표와 팩 정리를 PR #158·CI7개 SUCCESS·실제 병합으로 완료했다. 특수4장면·나머지 시설/효과/전체 UI와 HD-06은 후속이다.
+
+HD-05c [#160 전체 입출구·출구 장식](../reports/issue-160_hd_portals.md)은5테마55문/30장식과 Native/Web 위상·구출/원본 동일성을 PR #161·CI7개 SUCCESS·실제 병합으로 완료했다. 다음은 특수4장면·나머지 함정/효과/글꼴/전체 UI와 지원 HD 패키징/인수 HD-06이다. #137은 OPEN이다.

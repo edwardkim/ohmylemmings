@@ -11,3 +11,5 @@ TDD에서 아직 지원하지 않는 테마/프레임과 장식 키가 실패하
 검토 항목: core/resources 의존 경계·원본 tick/입력/사운드 보존, 원본 객체 위상/그리기 순서/클리핑/trigger 유지, 부분 구버전 팩 허용과 엄격한 제작 누락 검사 분리, 원본 이미지·캡처·전체 맵의 ignored 보존, 자기 QA 브라우저/포트만 종료, 사용자 CDP19222·기존8080 서비스·root 사용자 파일 보존. #113 NOT READY/이월·#142 진단·공개 배포는 변경하지 않는다.
 
 최종 로컬 검증: 자체5코스947상태/120Canvas·전55문/30장식·5구출, 원본120초기/1,920틱/352Canvas와 SDL5사례605상태, 캐릭터337/구버전 팩·Web66실행/HD13사례·제품 Fun0110구출 PASS. Python280·format/Clippy/WASM와 소스 감사536개·문서289개 링크 PASS. self-review에서 추가 차단 사항은 발견하지 않았다. 최종 head CI와 실제 merge 후 root 준비를 진행한다.
+
+PR #161 head `e5a6b302ee6aa6a52088b3eb81f2012cef8d8059`/CI39904818590 attempt1 최종7개 SUCCESS, 실제 merge `40b4bdaadb2d1f8198d4cd1cb5c1617a4c76fbbd` 및 전체 tree 일치로 완료했다. 완료 문서 동기화와 root 준비의 최종 식별자는 #160을 따른다. #137·#113·#142/NOT READY와 공개 배포는 유지한다.
