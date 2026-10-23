@@ -128,3 +128,5 @@
 - [#147 HD-03b 직업·시설·패널 자산](issue-147_hd_actions.md).
 
 - [#151 HD-04 실제 Fun01 Native/Web 통합](issue-151_hd_integration.md).
+
+- [#154 HD-05a 캐릭터 전체 프레임 진행](issue-154_hd_actors.md)

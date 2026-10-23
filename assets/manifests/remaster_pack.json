@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "issue": "https://github.com/edwardkim/ohmylemmings/issues/151",
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/154",
   "parent": "https://github.com/edwardkim/ohmylemmings/issues/137",
-  "status": "integrated_preview",
+  "status": "all_characters_preview",
   "runtime_ready": true,
   "style": "soft_handpainted_2d_candidate",
   "pixel_policy": "sRGB-encoded straight RGBA8; PNG sample values retained without retouching/resampling; hosts discard alpha<=atlas.alpha_cutoff",
@@ -69,6 +69,114 @@
       "height": 1254,
       "alpha": "sprite",
       "alpha_cutoff": 1
+    },
+    {
+      "path": "assets/remaster/issue-154-air-v1.png",
+      "bytes": 1168233,
+      "sha256": "4ddf96185daabd07a05d0cec5b4f7e6fc6602c5d7f3c50b227c979e699de1bab",
+      "width": 1774,
+      "height": 887,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-154-climb-v1.png",
+      "bytes": 2387202,
+      "sha256": "99db728e35fffc85b5416148f12966cd83a57ec66daa03705015b73bff432116",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-154-bash-v1.png",
+      "bytes": 2054662,
+      "sha256": "6dcba40ca508fe059540af9f6e4f57130e2fcaa5eeb127dfb15f711bd9ff531c",
+      "width": 1254,
+      "height": 1254,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-154-bashleft2-v1.png",
+      "bytes": 1888904,
+      "sha256": "47fb309f3fed8c18ea169c38ef8f08293a0552a7f338d92a9b7a183a3d1f1d67",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-154-mine-v1.png",
+      "bytes": 1792320,
+      "sha256": "1594440d33c459f58d4e59826f13f04f793d07c565d780dc16baa093a088d8b4",
+      "width": 1448,
+      "height": 1086,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-154-minefix-v1.png",
+      "bytes": 1242624,
+      "sha256": "2dfc06f5484c592aca0aa7ae02656eada22485a0a218eb23086d65726b68808f",
+      "width": 1254,
+      "height": 1254,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-154-mineleft-v1.png",
+      "bytes": 1104972,
+      "sha256": "0ae20c3b8f8dda72c2d7dc8ec5005dbbce793d871bc3d1c7be7ba140dd8c9d75",
+      "width": 2172,
+      "height": 724,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-154-umbrella-v1.png",
+      "bytes": 1616136,
+      "sha256": "8b5c4e1376a14836c08e902b5c4ccd3d40cc3cbdb554f7003d3ca41293c71c45",
+      "width": 1271,
+      "height": 1237,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-154-block-v1.png",
+      "bytes": 2511139,
+      "sha256": "26dca42d4521c45d1042f8652193e1fd2c9f33e2a8b7aa8f0966b168f8b24928",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-154-exitdrown-v1.png",
+      "bytes": 1550427,
+      "sha256": "e36e33e6275deb93414703ae0bb1cb5fb790a63ef3aa5b6d63c1286dee6611b3",
+      "width": 1774,
+      "height": 887,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-154-splat-v1.png",
+      "bytes": 1467000,
+      "sha256": "7f9f60989731efe3d9ebd7ac4389192170daf7de9e59fcdcde8634c1e1ab9dbd",
+      "width": 1254,
+      "height": 1254,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-154-vapor-v1.png",
+      "bytes": 2083691,
+      "sha256": "7a8ea3135c76b6e050d9042ddeb4005736eb876242bed4ea12ba18a800f04d0f",
+      "width": 1916,
+      "height": 821,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
     }
   ],
   "provenance": [
@@ -121,6 +229,66 @@
       "path": "assets/manifests/dos_original.json",
       "bytes": 12573,
       "sha256": "e17d36073099f47126e8e36c1bbecca19add0f47819b315cd59b14d44782ab05"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_air_v1.txt",
+      "bytes": 1268,
+      "sha256": "6b225ae3d803061f42d6674520709bc983ded9d8d666e1d8d8cadbdedeb6ac42"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_climb_v1.txt",
+      "bytes": 1307,
+      "sha256": "862d92749edd4f0113b0f6de0a28b7eb25f9334cee4f48ba287e96ce8fd688dc"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_bash_v1.txt",
+      "bytes": 1332,
+      "sha256": "1151a3d5ed7d0516c07869b702396ee3a73e3941e9a2898e5e7ff63f5626da7b"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_bashleft2_v1.txt",
+      "bytes": 804,
+      "sha256": "7ba884862c4d5a183955555c6a494d5e436ab34cfdfa436bd079411abf782032"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_mine_v1.txt",
+      "bytes": 1315,
+      "sha256": "8dc1d21755ba674f24f680e2bbefc74390697818854ed58a547ab397cf8dad9d"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_minefix_v1.txt",
+      "bytes": 876,
+      "sha256": "69ad4a0934b851879847a99f0425c41e35004de0e6d49d93f343494a9e0e535f"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_mineleft_v1.txt",
+      "bytes": 775,
+      "sha256": "301d97e53d3d7852b957ec10fa393bf749195c7779ae7ec5358c4fa3867c7463"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_umbrella_v1.txt",
+      "bytes": 855,
+      "sha256": "5b94d2d19ba7cf48659bee4877c01ddfbf239cb363715d2b016a89812cc82159"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_block_v1.txt",
+      "bytes": 1070,
+      "sha256": "45ad22f0a11cc3da3b2a02f2e773d988f010ac6a7fb1aca5a7ffa9501a69fc2d"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_exitdrown_v1.txt",
+      "bytes": 1259,
+      "sha256": "1d10e61f7d7077993dc10978ae888859b7c43fb3d6677853d621817c67b5f915"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_splat_v1.txt",
+      "bytes": 1111,
+      "sha256": "239c379db61c43bfe1ca7cf2ced1c1b2562168d50aba4171bd5b3fc1e5517381"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_vapor_v1.txt",
+      "bytes": 1113,
+      "sha256": "14b47dc1ad2747eeec4172c8ffbbf8d9b4fb3c8b6c1e0858455c5daee2a45556"
     }
   ],
   "frames": [
@@ -2530,6 +2698,5894 @@
         32,
         32
       ]
+    },
+    {
+      "key": {
+        "actor": [
+          1,
+          0
+        ]
+      },
+      "atlas": 7,
+      "rect": [
+        59,
+        40,
+        215,
+        345
+      ],
+      "display": [
+        37,
+        59
+      ],
+      "anchor": [
+        18,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          16,
+          0
+        ]
+      },
+      "atlas": 7,
+      "rect": [
+        402,
+        51,
+        235,
+        322
+      ],
+      "display": [
+        40,
+        55
+      ],
+      "anchor": [
+        20,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          16,
+          1
+        ]
+      },
+      "atlas": 7,
+      "rect": [
+        765,
+        68,
+        237,
+        340
+      ],
+      "display": [
+        40,
+        58
+      ],
+      "anchor": [
+        20,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          16,
+          2
+        ]
+      },
+      "atlas": 7,
+      "rect": [
+        1130,
+        90,
+        231,
+        344
+      ],
+      "display": [
+        39,
+        58
+      ],
+      "anchor": [
+        20,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          16,
+          3
+        ]
+      },
+      "atlas": 7,
+      "rect": [
+        1497,
+        105,
+        213,
+        329
+      ],
+      "display": [
+        36,
+        56
+      ],
+      "anchor": [
+        18,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          3,
+          0
+        ]
+      },
+      "atlas": 7,
+      "rect": [
+        55,
+        449,
+        223,
+        354
+      ],
+      "display": [
+        38,
+        60
+      ],
+      "anchor": [
+        19,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          17,
+          0
+        ]
+      },
+      "atlas": 7,
+      "rect": [
+        408,
+        457,
+        237,
+        329
+      ],
+      "display": [
+        40,
+        56
+      ],
+      "anchor": [
+        20,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          17,
+          1
+        ]
+      },
+      "atlas": 7,
+      "rect": [
+        773,
+        477,
+        230,
+        353
+      ],
+      "display": [
+        39,
+        60
+      ],
+      "anchor": [
+        20,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          17,
+          2
+        ]
+      },
+      "atlas": 7,
+      "rect": [
+        1132,
+        490,
+        229,
+        354
+      ],
+      "display": [
+        39,
+        60
+      ],
+      "anchor": [
+        20,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          17,
+          3
+        ]
+      },
+      "atlas": 7,
+      "rect": [
+        1491,
+        506,
+        213,
+        341
+      ],
+      "display": [
+        36,
+        58
+      ],
+      "anchor": [
+        18,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          5,
+          0
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        47,
+        65,
+        136,
+        200
+      ],
+      "display": [
+        34,
+        50
+      ],
+      "anchor": [
+        17,
+        49
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          5,
+          1
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        232,
+        55,
+        139,
+        210
+      ],
+      "display": [
+        35,
+        52
+      ],
+      "anchor": [
+        18,
+        51
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          5,
+          2
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        418,
+        55,
+        147,
+        209
+      ],
+      "display": [
+        37,
+        52
+      ],
+      "anchor": [
+        18,
+        51
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          5,
+          3
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        616,
+        47,
+        141,
+        218
+      ],
+      "display": [
+        35,
+        54
+      ],
+      "anchor": [
+        18,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          5,
+          4
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        810,
+        40,
+        139,
+        225
+      ],
+      "display": [
+        35,
+        56
+      ],
+      "anchor": [
+        18,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          5,
+          5
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        993,
+        46,
+        140,
+        218
+      ],
+      "display": [
+        35,
+        54
+      ],
+      "anchor": [
+        18,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          5,
+          6
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        1196,
+        33,
+        141,
+        231
+      ],
+      "display": [
+        35,
+        58
+      ],
+      "anchor": [
+        18,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          5,
+          7
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        1373,
+        21,
+        131,
+        244
+      ],
+      "display": [
+        33,
+        61
+      ],
+      "anchor": [
+        16,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          6,
+          0
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        35,
+        301,
+        147,
+        217
+      ],
+      "display": [
+        37,
+        54
+      ],
+      "anchor": [
+        18,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          6,
+          1
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        220,
+        297,
+        140,
+        217
+      ],
+      "display": [
+        35,
+        54
+      ],
+      "anchor": [
+        18,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          6,
+          2
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        410,
+        294,
+        144,
+        220
+      ],
+      "display": [
+        36,
+        55
+      ],
+      "anchor": [
+        18,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          6,
+          3
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        596,
+        286,
+        142,
+        228
+      ],
+      "display": [
+        36,
+        57
+      ],
+      "anchor": [
+        18,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          6,
+          4
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        786,
+        302,
+        148,
+        212
+      ],
+      "display": [
+        37,
+        53
+      ],
+      "anchor": [
+        18,
+        52
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          6,
+          5
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        989,
+        305,
+        141,
+        209
+      ],
+      "display": [
+        35,
+        52
+      ],
+      "anchor": [
+        18,
+        51
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          6,
+          6
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        1172,
+        292,
+        145,
+        222
+      ],
+      "display": [
+        36,
+        56
+      ],
+      "anchor": [
+        18,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          6,
+          7
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        1359,
+        272,
+        139,
+        237
+      ],
+      "display": [
+        35,
+        59
+      ],
+      "anchor": [
+        18,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          8,
+          0
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        37,
+        591,
+        152,
+        203
+      ],
+      "display": [
+        38,
+        51
+      ],
+      "anchor": [
+        19,
+        50
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          8,
+          1
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        238,
+        571,
+        150,
+        218
+      ],
+      "display": [
+        38,
+        54
+      ],
+      "anchor": [
+        19,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          8,
+          2
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        427,
+        561,
+        145,
+        226
+      ],
+      "display": [
+        36,
+        56
+      ],
+      "anchor": [
+        18,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          8,
+          3
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        605,
+        555,
+        155,
+        203
+      ],
+      "display": [
+        39,
+        51
+      ],
+      "anchor": [
+        20,
+        50
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          8,
+          4
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        775,
+        580,
+        187,
+        150
+      ],
+      "display": [
+        47,
+        38
+      ],
+      "anchor": [
+        24,
+        37
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          8,
+          5
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        967,
+        574,
+        199,
+        161
+      ],
+      "display": [
+        50,
+        40
+      ],
+      "anchor": [
+        25,
+        39
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          8,
+          6
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        1184,
+        531,
+        156,
+        204
+      ],
+      "display": [
+        39,
+        51
+      ],
+      "anchor": [
+        20,
+        50
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          8,
+          7
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        1377,
+        510,
+        126,
+        226
+      ],
+      "display": [
+        32,
+        56
+      ],
+      "anchor": [
+        16,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          9,
+          0
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        40,
+        801,
+        154,
+        198
+      ],
+      "display": [
+        38,
+        50
+      ],
+      "anchor": [
+        19,
+        49
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          9,
+          1
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        219,
+        792,
+        153,
+        207
+      ],
+      "display": [
+        38,
+        52
+      ],
+      "anchor": [
+        19,
+        51
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          9,
+          2
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        409,
+        798,
+        154,
+        201
+      ],
+      "display": [
+        38,
+        50
+      ],
+      "anchor": [
+        19,
+        49
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          9,
+          3
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        590,
+        782,
+        162,
+        218
+      ],
+      "display": [
+        40,
+        54
+      ],
+      "anchor": [
+        20,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          9,
+          4
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        777,
+        785,
+        177,
+        202
+      ],
+      "display": [
+        44,
+        50
+      ],
+      "anchor": [
+        22,
+        49
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          9,
+          5
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        978,
+        783,
+        171,
+        202
+      ],
+      "display": [
+        43,
+        50
+      ],
+      "anchor": [
+        22,
+        49
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          9,
+          6
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        1193,
+        780,
+        142,
+        214
+      ],
+      "display": [
+        36,
+        54
+      ],
+      "anchor": [
+        18,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          9,
+          7
+        ]
+      },
+      "atlas": 8,
+      "rect": [
+        1372,
+        747,
+        124,
+        248
+      ],
+      "display": [
+        31,
+        62
+      ],
+      "anchor": [
+        16,
+        61
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          0
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        23,
+        32,
+        116,
+        153
+      ],
+      "display": [
+        41,
+        54
+      ],
+      "anchor": [
+        20,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          1
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        176,
+        32,
+        116,
+        153
+      ],
+      "display": [
+        41,
+        54
+      ],
+      "anchor": [
+        20,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          2
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        330,
+        32,
+        124,
+        153
+      ],
+      "display": [
+        43,
+        54
+      ],
+      "anchor": [
+        22,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          3
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        482,
+        32,
+        128,
+        154
+      ],
+      "display": [
+        45,
+        54
+      ],
+      "anchor": [
+        22,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          4
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        635,
+        31,
+        144,
+        154
+      ],
+      "display": [
+        50,
+        54
+      ],
+      "anchor": [
+        25,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          5
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        641,
+        204,
+        130,
+        157
+      ],
+      "display": [
+        46,
+        55
+      ],
+      "anchor": [
+        23,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          6
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        485,
+        204,
+        136,
+        157
+      ],
+      "display": [
+        48,
+        55
+      ],
+      "anchor": [
+        24,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          7
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        327,
+        203,
+        129,
+        158
+      ],
+      "display": [
+        45,
+        55
+      ],
+      "anchor": [
+        22,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          8
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        795,
+        203,
+        122,
+        157
+      ],
+      "display": [
+        43,
+        55
+      ],
+      "anchor": [
+        22,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          9
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        802,
+        32,
+        122,
+        154
+      ],
+      "display": [
+        43,
+        54
+      ],
+      "anchor": [
+        22,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          10
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        956,
+        203,
+        132,
+        158
+      ],
+      "display": [
+        46,
+        55
+      ],
+      "anchor": [
+        23,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          11
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        959,
+        31,
+        119,
+        154
+      ],
+      "display": [
+        42,
+        54
+      ],
+      "anchor": [
+        21,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          12
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        1116,
+        203,
+        116,
+        159
+      ],
+      "display": [
+        41,
+        56
+      ],
+      "anchor": [
+        20,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          13
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        1116,
+        31,
+        117,
+        154
+      ],
+      "display": [
+        41,
+        54
+      ],
+      "anchor": [
+        20,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          14
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        24,
+        202,
+        106,
+        159
+      ],
+      "display": [
+        37,
+        56
+      ],
+      "anchor": [
+        18,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          15
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        176,
+        202,
+        107,
+        159
+      ],
+      "display": [
+        37,
+        56
+      ],
+      "anchor": [
+        18,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          16
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        23,
+        379,
+        115,
+        157
+      ],
+      "display": [
+        40,
+        55
+      ],
+      "anchor": [
+        20,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          17
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        176,
+        379,
+        115,
+        157
+      ],
+      "display": [
+        40,
+        55
+      ],
+      "anchor": [
+        20,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          18
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        328,
+        379,
+        131,
+        157
+      ],
+      "display": [
+        46,
+        55
+      ],
+      "anchor": [
+        23,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          19
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        487,
+        379,
+        133,
+        157
+      ],
+      "display": [
+        47,
+        55
+      ],
+      "anchor": [
+        24,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          20
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        643,
+        380,
+        140,
+        156
+      ],
+      "display": [
+        49,
+        55
+      ],
+      "anchor": [
+        24,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          21
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        632,
+        1082,
+        140,
+        154
+      ],
+      "display": [
+        49,
+        54
+      ],
+      "anchor": [
+        24,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          22
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        478,
+        1083,
+        123,
+        154
+      ],
+      "display": [
+        43,
+        54
+      ],
+      "anchor": [
+        22,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          23
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        327,
+        1082,
+        123,
+        154
+      ],
+      "display": [
+        43,
+        54
+      ],
+      "anchor": [
+        22,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          24
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        798,
+        1083,
+        119,
+        154
+      ],
+      "display": [
+        42,
+        54
+      ],
+      "anchor": [
+        21,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          25
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        800,
+        380,
+        122,
+        156
+      ],
+      "display": [
+        43,
+        55
+      ],
+      "anchor": [
+        22,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          26
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        955,
+        1082,
+        123,
+        155
+      ],
+      "display": [
+        43,
+        54
+      ],
+      "anchor": [
+        22,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          27
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        959,
+        379,
+        117,
+        157
+      ],
+      "display": [
+        41,
+        55
+      ],
+      "anchor": [
+        20,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          28
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        1117,
+        1083,
+        115,
+        153
+      ],
+      "display": [
+        40,
+        54
+      ],
+      "anchor": [
+        20,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          29
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        1117,
+        379,
+        116,
+        157
+      ],
+      "display": [
+        41,
+        55
+      ],
+      "anchor": [
+        20,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          30
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        25,
+        1078,
+        120,
+        159
+      ],
+      "display": [
+        42,
+        56
+      ],
+      "anchor": [
+        21,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          12,
+          31
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        175,
+        1078,
+        120,
+        158
+      ],
+      "display": [
+        42,
+        55
+      ],
+      "anchor": [
+        21,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          0
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        27,
+        556,
+        119,
+        154
+      ],
+      "display": [
+        42,
+        54
+      ],
+      "anchor": [
+        21,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          1
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        184,
+        555,
+        118,
+        155
+      ],
+      "display": [
+        41,
+        54
+      ],
+      "anchor": [
+        20,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          2
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        343,
+        554,
+        122,
+        156
+      ],
+      "display": [
+        43,
+        55
+      ],
+      "anchor": [
+        22,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          3
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        495,
+        553,
+        148,
+        156
+      ],
+      "display": [
+        52,
+        55
+      ],
+      "anchor": [
+        26,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          4
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        667,
+        559,
+        133,
+        151
+      ],
+      "display": [
+        47,
+        53
+      ],
+      "anchor": [
+        24,
+        52
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          5
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        632,
+        728,
+        145,
+        159
+      ],
+      "display": [
+        51,
+        56
+      ],
+      "anchor": [
+        26,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          6
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        488,
+        728,
+        126,
+        159
+      ],
+      "display": [
+        44,
+        56
+      ],
+      "anchor": [
+        22,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          7
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        344,
+        728,
+        121,
+        159
+      ],
+      "display": [
+        42,
+        56
+      ],
+      "anchor": [
+        21,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          8
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        802,
+        725,
+        137,
+        162
+      ],
+      "display": [
+        48,
+        57
+      ],
+      "anchor": [
+        24,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          9
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        816,
+        553,
+        125,
+        157
+      ],
+      "display": [
+        44,
+        55
+      ],
+      "anchor": [
+        22,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          10
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        973,
+        726,
+        111,
+        159
+      ],
+      "display": [
+        39,
+        56
+      ],
+      "anchor": [
+        20,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          11
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        978,
+        553,
+        114,
+        156
+      ],
+      "display": [
+        40,
+        55
+      ],
+      "anchor": [
+        20,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          12
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        1126,
+        726,
+        106,
+        160
+      ],
+      "display": [
+        37,
+        56
+      ],
+      "anchor": [
+        18,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          13
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        1129,
+        555,
+        112,
+        155
+      ],
+      "display": [
+        39,
+        54
+      ],
+      "anchor": [
+        20,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          14
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        28,
+        724,
+        117,
+        162
+      ],
+      "display": [
+        41,
+        57
+      ],
+      "anchor": [
+        20,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          15
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        175,
+        728,
+        134,
+        158
+      ],
+      "display": [
+        47,
+        55
+      ],
+      "anchor": [
+        24,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          16
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        31,
+        907,
+        115,
+        159
+      ],
+      "display": [
+        40,
+        56
+      ],
+      "anchor": [
+        20,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          17
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        187,
+        907,
+        115,
+        159
+      ],
+      "display": [
+        40,
+        56
+      ],
+      "anchor": [
+        20,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          18
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        345,
+        907,
+        118,
+        159
+      ],
+      "display": [
+        41,
+        56
+      ],
+      "anchor": [
+        20,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          19
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        486,
+        909,
+        143,
+        157
+      ],
+      "display": [
+        50,
+        55
+      ],
+      "anchor": [
+        25,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          20
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        644,
+        906,
+        140,
+        160
+      ],
+      "display": [
+        49,
+        56
+      ],
+      "anchor": [
+        24,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          21
+        ]
+      },
+      "atlas": 10,
+      "rect": [
+        57,
+        620,
+        277,
+        327
+      ],
+      "display": [
+        50,
+        59
+      ],
+      "anchor": [
+        25,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          22
+        ]
+      },
+      "atlas": 10,
+      "rect": [
+        1180,
+        153,
+        323,
+        324
+      ],
+      "display": [
+        58,
+        58
+      ],
+      "anchor": [
+        29,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          23
+        ]
+      },
+      "atlas": 10,
+      "rect": [
+        812,
+        153,
+        306,
+        324
+      ],
+      "display": [
+        55,
+        58
+      ],
+      "anchor": [
+        28,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          24
+        ]
+      },
+      "atlas": 10,
+      "rect": [
+        464,
+        620,
+        245,
+        327
+      ],
+      "display": [
+        44,
+        59
+      ],
+      "anchor": [
+        22,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          25
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        810,
+        908,
+        130,
+        158
+      ],
+      "display": [
+        46,
+        55
+      ],
+      "anchor": [
+        23,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          26
+        ]
+      },
+      "atlas": 10,
+      "rect": [
+        848,
+        616,
+        235,
+        331
+      ],
+      "display": [
+        42,
+        60
+      ],
+      "anchor": [
+        21,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          27
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        972,
+        907,
+        118,
+        159
+      ],
+      "display": [
+        41,
+        56
+      ],
+      "anchor": [
+        20,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          28
+        ]
+      },
+      "atlas": 10,
+      "rect": [
+        1239,
+        615,
+        235,
+        332
+      ],
+      "display": [
+        42,
+        60
+      ],
+      "anchor": [
+        21,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          29
+        ]
+      },
+      "atlas": 9,
+      "rect": [
+        1127,
+        907,
+        109,
+        159
+      ],
+      "display": [
+        38,
+        56
+      ],
+      "anchor": [
+        19,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          30
+        ]
+      },
+      "atlas": 10,
+      "rect": [
+        82,
+        144,
+        231,
+        332
+      ],
+      "display": [
+        42,
+        60
+      ],
+      "anchor": [
+        21,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          13,
+          31
+        ]
+      },
+      "atlas": 10,
+      "rect": [
+        463,
+        152,
+        260,
+        324
+      ],
+      "display": [
+        47,
+        58
+      ],
+      "anchor": [
+        24,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          0
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        736,
+        73,
+        154,
+        161
+      ],
+      "display": [
+        46,
+        48
+      ],
+      "anchor": [
+        23,
+        47
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          1
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        916,
+        75,
+        149,
+        162
+      ],
+      "display": [
+        45,
+        49
+      ],
+      "anchor": [
+        22,
+        48
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          2
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        1095,
+        75,
+        155,
+        163
+      ],
+      "display": [
+        46,
+        49
+      ],
+      "anchor": [
+        23,
+        48
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          3
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        736,
+        277,
+        153,
+        163
+      ],
+      "display": [
+        46,
+        49
+      ],
+      "anchor": [
+        23,
+        48
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          4
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        916,
+        280,
+        151,
+        160
+      ],
+      "display": [
+        45,
+        48
+      ],
+      "anchor": [
+        22,
+        47
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          5
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        1094,
+        281,
+        158,
+        159
+      ],
+      "display": [
+        47,
+        48
+      ],
+      "anchor": [
+        24,
+        47
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          6
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        736,
+        467,
+        157,
+        163
+      ],
+      "display": [
+        47,
+        49
+      ],
+      "anchor": [
+        24,
+        48
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          7
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        918,
+        469,
+        147,
+        161
+      ],
+      "display": [
+        44,
+        48
+      ],
+      "anchor": [
+        22,
+        47
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          8
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        1093,
+        470,
+        153,
+        161
+      ],
+      "display": [
+        46,
+        48
+      ],
+      "anchor": [
+        23,
+        47
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          9
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        558,
+        64,
+        160,
+        169
+      ],
+      "display": [
+        48,
+        51
+      ],
+      "anchor": [
+        24,
+        50
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          10
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        1279,
+        66,
+        158,
+        167
+      ],
+      "display": [
+        47,
+        50
+      ],
+      "anchor": [
+        24,
+        49
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          11
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        558,
+        269,
+        162,
+        167
+      ],
+      "display": [
+        49,
+        50
+      ],
+      "anchor": [
+        24,
+        49
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          12
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        1279,
+        263,
+        157,
+        170
+      ],
+      "display": [
+        47,
+        51
+      ],
+      "anchor": [
+        24,
+        50
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          13
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        558,
+        464,
+        160,
+        161
+      ],
+      "display": [
+        48,
+        48
+      ],
+      "anchor": [
+        24,
+        47
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          14
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        1279,
+        460,
+        159,
+        165
+      ],
+      "display": [
+        48,
+        50
+      ],
+      "anchor": [
+        24,
+        49
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          15
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        23,
+        63,
+        151,
+        170
+      ],
+      "display": [
+        45,
+        51
+      ],
+      "anchor": [
+        22,
+        50
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          16
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        24,
+        265,
+        149,
+        168
+      ],
+      "display": [
+        45,
+        50
+      ],
+      "anchor": [
+        22,
+        49
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          17
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        24,
+        454,
+        152,
+        171
+      ],
+      "display": [
+        46,
+        51
+      ],
+      "anchor": [
+        23,
+        50
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          19
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        211,
+        238,
+        120,
+        197
+      ],
+      "display": [
+        36,
+        59
+      ],
+      "anchor": [
+        18,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          20
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        210,
+        434,
+        121,
+        192
+      ],
+      "display": [
+        36,
+        58
+      ],
+      "anchor": [
+        18,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          21
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        392,
+        33,
+        120,
+        199
+      ],
+      "display": [
+        36,
+        60
+      ],
+      "anchor": [
+        18,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          22
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        395,
+        239,
+        117,
+        194
+      ],
+      "display": [
+        35,
+        58
+      ],
+      "anchor": [
+        18,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          23
+        ]
+      },
+      "atlas": 12,
+      "rect": [
+        75,
+        68,
+        194,
+        253
+      ],
+      "display": [
+        43,
+        56
+      ],
+      "anchor": [
+        22,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          0
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        731,
+        657,
+        161,
+        159
+      ],
+      "display": [
+        48,
+        48
+      ],
+      "anchor": [
+        24,
+        47
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          1
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        914,
+        658,
+        161,
+        158
+      ],
+      "display": [
+        48,
+        47
+      ],
+      "anchor": [
+        24,
+        46
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          3
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        732,
+        852,
+        159,
+        164
+      ],
+      "display": [
+        48,
+        49
+      ],
+      "anchor": [
+        24,
+        48
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          4
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        914,
+        854,
+        161,
+        160
+      ],
+      "display": [
+        48,
+        48
+      ],
+      "anchor": [
+        24,
+        47
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          5
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        1095,
+        852,
+        163,
+        162
+      ],
+      "display": [
+        49,
+        49
+      ],
+      "anchor": [
+        24,
+        48
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          6
+        ]
+      },
+      "atlas": 12,
+      "rect": [
+        358,
+        407,
+        221,
+        217
+      ],
+      "display": [
+        49,
+        48
+      ],
+      "anchor": [
+        24,
+        47
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          7
+        ]
+      },
+      "atlas": 12,
+      "rect": [
+        665,
+        442,
+        218,
+        187
+      ],
+      "display": [
+        48,
+        41
+      ],
+      "anchor": [
+        24,
+        40
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          8
+        ]
+      },
+      "atlas": 12,
+      "rect": [
+        369,
+        991,
+        211,
+        222
+      ],
+      "display": [
+        46,
+        49
+      ],
+      "anchor": [
+        23,
+        48
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          9
+        ]
+      },
+      "atlas": 12,
+      "rect": [
+        684,
+        1026,
+        210,
+        195
+      ],
+      "display": [
+        46,
+        43
+      ],
+      "anchor": [
+        23,
+        42
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          10
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        553,
+        656,
+        160,
+        160
+      ],
+      "display": [
+        48,
+        48
+      ],
+      "anchor": [
+        24,
+        47
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          11
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        552,
+        854,
+        161,
+        161
+      ],
+      "display": [
+        48,
+        48
+      ],
+      "anchor": [
+        24,
+        47
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          12
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        28,
+        640,
+        148,
+        174
+      ],
+      "display": [
+        44,
+        52
+      ],
+      "anchor": [
+        22,
+        51
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          13
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        222,
+        623,
+        116,
+        193
+      ],
+      "display": [
+        35,
+        58
+      ],
+      "anchor": [
+        18,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          14
+        ]
+      },
+      "atlas": 12,
+      "rect": [
+        69,
+        368,
+        190,
+        257
+      ],
+      "display": [
+        42,
+        57
+      ],
+      "anchor": [
+        21,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          15
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        1277,
+        639,
+        153,
+        176
+      ],
+      "display": [
+        46,
+        53
+      ],
+      "anchor": [
+        23,
+        52
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          14,
+          18
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        211,
+        36,
+        120,
+        197
+      ],
+      "display": [
+        36,
+        59
+      ],
+      "anchor": [
+        18,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          2
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        1095,
+        655,
+        162,
+        161
+      ],
+      "display": [
+        49,
+        48
+      ],
+      "anchor": [
+        24,
+        47
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          17
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        222,
+        818,
+        116,
+        195
+      ],
+      "display": [
+        35,
+        58
+      ],
+      "anchor": [
+        18,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          18
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        402,
+        814,
+        112,
+        197
+      ],
+      "display": [
+        34,
+        59
+      ],
+      "anchor": [
+        17,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          19
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        1279,
+        835,
+        150,
+        176
+      ],
+      "display": [
+        45,
+        53
+      ],
+      "anchor": [
+        22,
+        52
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          20
+        ]
+      },
+      "atlas": 13,
+      "rect": [
+        14,
+        272,
+        260,
+        342
+      ],
+      "display": [
+        44,
+        58
+      ],
+      "anchor": [
+        22,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          21
+        ]
+      },
+      "atlas": 12,
+      "rect": [
+        1002,
+        368,
+        187,
+        256
+      ],
+      "display": [
+        41,
+        56
+      ],
+      "anchor": [
+        20,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          22
+        ]
+      },
+      "atlas": 12,
+      "rect": [
+        94,
+        954,
+        169,
+        259
+      ],
+      "display": [
+        37,
+        57
+      ],
+      "anchor": [
+        18,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          23
+        ]
+      },
+      "atlas": 12,
+      "rect": [
+        1017,
+        954,
+        176,
+        259
+      ],
+      "display": [
+        39,
+        57
+      ],
+      "anchor": [
+        20,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          15,
+          16
+        ]
+      },
+      "atlas": 11,
+      "rect": [
+        25,
+        836,
+        152,
+        176
+      ],
+      "display": [
+        46,
+        53
+      ],
+      "anchor": [
+        23,
+        52
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          18,
+          0
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        68,
+        15,
+        194,
+        306
+      ],
+      "display": [
+        58,
+        92
+      ],
+      "anchor": [
+        29,
+        91
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          18,
+          1
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        378,
+        17,
+        220,
+        300
+      ],
+      "display": [
+        66,
+        90
+      ],
+      "anchor": [
+        33,
+        89
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          18,
+          2
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        676,
+        30,
+        239,
+        290
+      ],
+      "display": [
+        72,
+        87
+      ],
+      "anchor": [
+        36,
+        86
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          18,
+          3
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        991,
+        12,
+        271,
+        302
+      ],
+      "display": [
+        81,
+        91
+      ],
+      "anchor": [
+        40,
+        90
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          18,
+          4
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        20,
+        330,
+        278,
+        299
+      ],
+      "display": [
+        83,
+        90
+      ],
+      "anchor": [
+        42,
+        89
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          18,
+          5
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        364,
+        328,
+        270,
+        301
+      ],
+      "display": [
+        81,
+        90
+      ],
+      "anchor": [
+        40,
+        89
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          18,
+          6
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        668,
+        330,
+        284,
+        302
+      ],
+      "display": [
+        85,
+        91
+      ],
+      "anchor": [
+        42,
+        90
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          18,
+          7
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        976,
+        330,
+        286,
+        300
+      ],
+      "display": [
+        86,
+        90
+      ],
+      "anchor": [
+        43,
+        89
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          19,
+          0
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        85,
+        635,
+        191,
+        293
+      ],
+      "display": [
+        57,
+        88
+      ],
+      "anchor": [
+        28,
+        87
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          19,
+          1
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        372,
+        633,
+        216,
+        293
+      ],
+      "display": [
+        65,
+        88
+      ],
+      "anchor": [
+        32,
+        87
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          19,
+          2
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        690,
+        637,
+        226,
+        289
+      ],
+      "display": [
+        68,
+        87
+      ],
+      "anchor": [
+        34,
+        86
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          19,
+          3
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        947,
+        629,
+        281,
+        299
+      ],
+      "display": [
+        84,
+        90
+      ],
+      "anchor": [
+        42,
+        89
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          19,
+          4
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        24,
+        927,
+        285,
+        298
+      ],
+      "display": [
+        86,
+        89
+      ],
+      "anchor": [
+        43,
+        88
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          19,
+          5
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        350,
+        925,
+        273,
+        301
+      ],
+      "display": [
+        82,
+        90
+      ],
+      "anchor": [
+        41,
+        89
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          19,
+          6
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        652,
+        925,
+        289,
+        304
+      ],
+      "display": [
+        87,
+        91
+      ],
+      "anchor": [
+        44,
+        90
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          19,
+          7
+        ]
+      },
+      "atlas": 14,
+      "rect": [
+        972,
+        926,
+        290,
+        304
+      ],
+      "display": [
+        87,
+        91
+      ],
+      "anchor": [
+        44,
+        90
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          0
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        14,
+        32,
+        166,
+        227
+      ],
+      "display": [
+        42,
+        57
+      ],
+      "anchor": [
+        21,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          1
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        196,
+        34,
+        174,
+        225
+      ],
+      "display": [
+        44,
+        56
+      ],
+      "anchor": [
+        22,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          2
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        382,
+        37,
+        180,
+        222
+      ],
+      "display": [
+        45,
+        56
+      ],
+      "anchor": [
+        22,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          3
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        572,
+        34,
+        188,
+        225
+      ],
+      "display": [
+        47,
+        56
+      ],
+      "anchor": [
+        24,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          4
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        773,
+        34,
+        189,
+        224
+      ],
+      "display": [
+        47,
+        56
+      ],
+      "anchor": [
+        24,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          5
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        973,
+        34,
+        183,
+        225
+      ],
+      "display": [
+        46,
+        56
+      ],
+      "anchor": [
+        23,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          6
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        1167,
+        33,
+        175,
+        226
+      ],
+      "display": [
+        44,
+        56
+      ],
+      "anchor": [
+        22,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          7
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        1358,
+        31,
+        164,
+        228
+      ],
+      "display": [
+        41,
+        57
+      ],
+      "anchor": [
+        20,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          8
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        14,
+        276,
+        169,
+        228
+      ],
+      "display": [
+        42,
+        57
+      ],
+      "anchor": [
+        21,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          9
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        195,
+        281,
+        175,
+        224
+      ],
+      "display": [
+        44,
+        56
+      ],
+      "anchor": [
+        22,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          10
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        381,
+        283,
+        181,
+        221
+      ],
+      "display": [
+        45,
+        55
+      ],
+      "anchor": [
+        22,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          11
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        571,
+        281,
+        190,
+        224
+      ],
+      "display": [
+        48,
+        56
+      ],
+      "anchor": [
+        24,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          12
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        773,
+        279,
+        190,
+        225
+      ],
+      "display": [
+        48,
+        56
+      ],
+      "anchor": [
+        24,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          13
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        973,
+        282,
+        183,
+        222
+      ],
+      "display": [
+        46,
+        56
+      ],
+      "anchor": [
+        23,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          14
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        1167,
+        284,
+        176,
+        221
+      ],
+      "display": [
+        44,
+        55
+      ],
+      "anchor": [
+        22,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          23,
+          15
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        1353,
+        277,
+        169,
+        227
+      ],
+      "display": [
+        42,
+        57
+      ],
+      "anchor": [
+        21,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          24,
+          0
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        36,
+        523,
+        135,
+        228
+      ],
+      "display": [
+        34,
+        57
+      ],
+      "anchor": [
+        17,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          24,
+          1
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        216,
+        527,
+        147,
+        223
+      ],
+      "display": [
+        37,
+        56
+      ],
+      "anchor": [
+        18,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          24,
+          2
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        406,
+        527,
+        142,
+        223
+      ],
+      "display": [
+        36,
+        56
+      ],
+      "anchor": [
+        18,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          24,
+          3
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        582,
+        526,
+        169,
+        224
+      ],
+      "display": [
+        42,
+        56
+      ],
+      "anchor": [
+        21,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          24,
+          4
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        36,
+        765,
+        140,
+        229
+      ],
+      "display": [
+        35,
+        57
+      ],
+      "anchor": [
+        18,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          24,
+          5
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        219,
+        771,
+        147,
+        223
+      ],
+      "display": [
+        37,
+        56
+      ],
+      "anchor": [
+        18,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          24,
+          6
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        409,
+        772,
+        146,
+        221
+      ],
+      "display": [
+        36,
+        55
+      ],
+      "anchor": [
+        18,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          24,
+          7
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        581,
+        769,
+        170,
+        225
+      ],
+      "display": [
+        42,
+        56
+      ],
+      "anchor": [
+        21,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          25,
+          0
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        784,
+        529,
+        171,
+        220
+      ],
+      "display": [
+        43,
+        55
+      ],
+      "anchor": [
+        22,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          25,
+          1
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        990,
+        528,
+        145,
+        221
+      ],
+      "display": [
+        36,
+        55
+      ],
+      "anchor": [
+        18,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          25,
+          2
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        1179,
+        529,
+        140,
+        221
+      ],
+      "display": [
+        35,
+        55
+      ],
+      "anchor": [
+        18,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          25,
+          3
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        1366,
+        524,
+        136,
+        226
+      ],
+      "display": [
+        34,
+        56
+      ],
+      "anchor": [
+        17,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          25,
+          4
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        786,
+        770,
+        169,
+        223
+      ],
+      "display": [
+        42,
+        56
+      ],
+      "anchor": [
+        21,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          25,
+          5
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        983,
+        770,
+        148,
+        223
+      ],
+      "display": [
+        37,
+        56
+      ],
+      "anchor": [
+        18,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          25,
+          6
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        1172,
+        771,
+        146,
+        223
+      ],
+      "display": [
+        36,
+        56
+      ],
+      "anchor": [
+        18,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          25,
+          7
+        ]
+      },
+      "atlas": 15,
+      "rect": [
+        1361,
+        765,
+        140,
+        229
+      ],
+      "display": [
+        35,
+        57
+      ],
+      "anchor": [
+        18,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          21,
+          0
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        12,
+        82,
+        201,
+        302
+      ],
+      "display": [
+        36,
+        54
+      ],
+      "anchor": [
+        18,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          21,
+          1
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        262,
+        87,
+        182,
+        292
+      ],
+      "display": [
+        33,
+        53
+      ],
+      "anchor": [
+        16,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          21,
+          2
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        491,
+        92,
+        172,
+        293
+      ],
+      "display": [
+        31,
+        53
+      ],
+      "anchor": [
+        16,
+        52
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          21,
+          3
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        714,
+        94,
+        184,
+        294
+      ],
+      "display": [
+        33,
+        53
+      ],
+      "anchor": [
+        16,
+        52
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          21,
+          4
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        950,
+        106,
+        161,
+        283
+      ],
+      "display": [
+        29,
+        51
+      ],
+      "anchor": [
+        14,
+        50
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          21,
+          5
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        1172,
+        113,
+        150,
+        274
+      ],
+      "display": [
+        27,
+        49
+      ],
+      "anchor": [
+        14,
+        49
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          21,
+          6
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        1398,
+        153,
+        133,
+        233
+      ],
+      "display": [
+        24,
+        42
+      ],
+      "anchor": [
+        12,
+        41
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          21,
+          7
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        1613,
+        254,
+        101,
+        119
+      ],
+      "display": [
+        18,
+        21
+      ],
+      "anchor": [
+        9,
+        23
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          0
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        14,
+        408,
+        211,
+        237
+      ],
+      "display": [
+        38,
+        43
+      ],
+      "anchor": [
+        19,
+        42
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          1
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        12,
+        714,
+        218,
+        139
+      ],
+      "display": [
+        39,
+        25
+      ],
+      "anchor": [
+        20,
+        24
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          2
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        248,
+        420,
+        211,
+        223
+      ],
+      "display": [
+        38,
+        40
+      ],
+      "anchor": [
+        19,
+        39
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          3
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        253,
+        721,
+        208,
+        134
+      ],
+      "display": [
+        37,
+        24
+      ],
+      "anchor": [
+        18,
+        23
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          4
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        473,
+        441,
+        206,
+        202
+      ],
+      "display": [
+        37,
+        36
+      ],
+      "anchor": [
+        18,
+        35
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          5
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        484,
+        746,
+        190,
+        106
+      ],
+      "display": [
+        34,
+        19
+      ],
+      "anchor": [
+        17,
+        18
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          6
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        699,
+        458,
+        203,
+        182
+      ],
+      "display": [
+        37,
+        33
+      ],
+      "anchor": [
+        18,
+        32
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          7
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        713,
+        755,
+        182,
+        96
+      ],
+      "display": [
+        33,
+        17
+      ],
+      "anchor": [
+        16,
+        16
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          8
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        922,
+        482,
+        208,
+        161
+      ],
+      "display": [
+        37,
+        29
+      ],
+      "anchor": [
+        18,
+        28
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          9
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        936,
+        755,
+        181,
+        96
+      ],
+      "display": [
+        33,
+        17
+      ],
+      "anchor": [
+        16,
+        16
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          10
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        1149,
+        505,
+        212,
+        138
+      ],
+      "display": [
+        38,
+        25
+      ],
+      "anchor": [
+        19,
+        24
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          11
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        1170,
+        766,
+        153,
+        85
+      ],
+      "display": [
+        28,
+        15
+      ],
+      "anchor": [
+        14,
+        14
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          12
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        1380,
+        523,
+        196,
+        120
+      ],
+      "display": [
+        35,
+        22
+      ],
+      "anchor": [
+        18,
+        21
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          13
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        1393,
+        771,
+        141,
+        78
+      ],
+      "display": [
+        25,
+        14
+      ],
+      "anchor": [
+        12,
+        13
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          14
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        1593,
+        555,
+        165,
+        89
+      ],
+      "display": [
+        30,
+        16
+      ],
+      "anchor": [
+        15,
+        15
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          7,
+          15
+        ]
+      },
+      "atlas": 16,
+      "rect": [
+        1609,
+        750,
+        110,
+        95
+      ],
+      "display": [
+        20,
+        17
+      ],
+      "anchor": [
+        10,
+        16
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          0
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        34,
+        28,
+        225,
+        325
+      ],
+      "display": [
+        40,
+        58
+      ],
+      "anchor": [
+        20,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          1
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        355,
+        61,
+        228,
+        305
+      ],
+      "display": [
+        41,
+        55
+      ],
+      "anchor": [
+        20,
+        54
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          2
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        657,
+        84,
+        238,
+        315
+      ],
+      "display": [
+        43,
+        57
+      ],
+      "anchor": [
+        22,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          3
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        1003,
+        121,
+        202,
+        301
+      ],
+      "display": [
+        36,
+        54
+      ],
+      "anchor": [
+        18,
+        53
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          4
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        40,
+        409,
+        224,
+        323
+      ],
+      "display": [
+        40,
+        58
+      ],
+      "anchor": [
+        20,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          5
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        358,
+        422,
+        231,
+        311
+      ],
+      "display": [
+        42,
+        56
+      ],
+      "anchor": [
+        21,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          6
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        665,
+        476,
+        246,
+        275
+      ],
+      "display": [
+        44,
+        50
+      ],
+      "anchor": [
+        22,
+        49
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          7
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        992,
+        515,
+        228,
+        232
+      ],
+      "display": [
+        41,
+        42
+      ],
+      "anchor": [
+        20,
+        41
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          8
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        49,
+        794,
+        231,
+        220
+      ],
+      "display": [
+        42,
+        40
+      ],
+      "anchor": [
+        21,
+        39
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          9
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        339,
+        816,
+        261,
+        198
+      ],
+      "display": [
+        47,
+        36
+      ],
+      "anchor": [
+        24,
+        35
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          10
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        645,
+        851,
+        283,
+        164
+      ],
+      "display": [
+        51,
+        30
+      ],
+      "anchor": [
+        26,
+        29
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          11
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        966,
+        899,
+        260,
+        118
+      ],
+      "display": [
+        47,
+        21
+      ],
+      "anchor": [
+        24,
+        20
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          12
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        20,
+        1099,
+        277,
+        112
+      ],
+      "display": [
+        50,
+        20
+      ],
+      "anchor": [
+        25,
+        19
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          13
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        337,
+        1113,
+        287,
+        93
+      ],
+      "display": [
+        52,
+        17
+      ],
+      "anchor": [
+        26,
+        16
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          14
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        651,
+        1112,
+        277,
+        90
+      ],
+      "display": [
+        50,
+        16
+      ],
+      "anchor": [
+        25,
+        15
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          20,
+          15
+        ]
+      },
+      "atlas": 17,
+      "rect": [
+        958,
+        1115,
+        278,
+        91
+      ],
+      "display": [
+        50,
+        16
+      ],
+      "anchor": [
+        25,
+        15
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          0
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        16,
+        66,
+        230,
+        356
+      ],
+      "display": [
+        41,
+        64
+      ],
+      "anchor": [
+        20,
+        64
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          1
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        282,
+        93,
+        274,
+        322
+      ],
+      "display": [
+        49,
+        58
+      ],
+      "anchor": [
+        24,
+        59
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          2
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        564,
+        89,
+        263,
+        337
+      ],
+      "display": [
+        47,
+        61
+      ],
+      "anchor": [
+        24,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          3
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        841,
+        98,
+        256,
+        330
+      ],
+      "display": [
+        46,
+        59
+      ],
+      "anchor": [
+        23,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          4
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        1111,
+        106,
+        255,
+        322
+      ],
+      "display": [
+        46,
+        58
+      ],
+      "anchor": [
+        23,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          5
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        1401,
+        101,
+        249,
+        327
+      ],
+      "display": [
+        45,
+        59
+      ],
+      "anchor": [
+        22,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          6
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        1686,
+        120,
+        217,
+        319
+      ],
+      "display": [
+        39,
+        57
+      ],
+      "anchor": [
+        20,
+        55
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          7
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        35,
+        464,
+        252,
+        313
+      ],
+      "display": [
+        45,
+        56
+      ],
+      "anchor": [
+        22,
+        60
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          8
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        315,
+        463,
+        246,
+        312
+      ],
+      "display": [
+        44,
+        56
+      ],
+      "anchor": [
+        22,
+        61
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          9
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        599,
+        478,
+        227,
+        298
+      ],
+      "display": [
+        41,
+        54
+      ],
+      "anchor": [
+        20,
+        58
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          10
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        857,
+        485,
+        244,
+        290
+      ],
+      "display": [
+        44,
+        52
+      ],
+      "anchor": [
+        22,
+        57
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          11
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        1133,
+        488,
+        235,
+        273
+      ],
+      "display": [
+        42,
+        49
+      ],
+      "anchor": [
+        21,
+        56
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          12
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        1424,
+        511,
+        219,
+        224
+      ],
+      "display": [
+        39,
+        40
+      ],
+      "anchor": [
+        20,
+        52
+      ]
+    },
+    {
+      "key": {
+        "actor": [
+          22,
+          13
+        ]
+      },
+      "atlas": 18,
+      "rect": [
+        1736,
+        545,
+        118,
+        130
+      ],
+      "display": [
+        21,
+        23
+      ],
+      "anchor": [
+        10,
+        46
+      ]
     }
   ],
   "required": [
@@ -3137,6 +9193,1542 @@
     },
     {
       "icon": "restart"
+    },
+    {
+      "actor": [
+        1,
+        0
+      ]
+    },
+    {
+      "actor": [
+        16,
+        0
+      ]
+    },
+    {
+      "actor": [
+        16,
+        1
+      ]
+    },
+    {
+      "actor": [
+        16,
+        2
+      ]
+    },
+    {
+      "actor": [
+        16,
+        3
+      ]
+    },
+    {
+      "actor": [
+        3,
+        0
+      ]
+    },
+    {
+      "actor": [
+        17,
+        0
+      ]
+    },
+    {
+      "actor": [
+        17,
+        1
+      ]
+    },
+    {
+      "actor": [
+        17,
+        2
+      ]
+    },
+    {
+      "actor": [
+        17,
+        3
+      ]
+    },
+    {
+      "actor": [
+        5,
+        0
+      ]
+    },
+    {
+      "actor": [
+        5,
+        1
+      ]
+    },
+    {
+      "actor": [
+        5,
+        2
+      ]
+    },
+    {
+      "actor": [
+        5,
+        3
+      ]
+    },
+    {
+      "actor": [
+        5,
+        4
+      ]
+    },
+    {
+      "actor": [
+        5,
+        5
+      ]
+    },
+    {
+      "actor": [
+        5,
+        6
+      ]
+    },
+    {
+      "actor": [
+        5,
+        7
+      ]
+    },
+    {
+      "actor": [
+        6,
+        0
+      ]
+    },
+    {
+      "actor": [
+        6,
+        1
+      ]
+    },
+    {
+      "actor": [
+        6,
+        2
+      ]
+    },
+    {
+      "actor": [
+        6,
+        3
+      ]
+    },
+    {
+      "actor": [
+        6,
+        4
+      ]
+    },
+    {
+      "actor": [
+        6,
+        5
+      ]
+    },
+    {
+      "actor": [
+        6,
+        6
+      ]
+    },
+    {
+      "actor": [
+        6,
+        7
+      ]
+    },
+    {
+      "actor": [
+        8,
+        0
+      ]
+    },
+    {
+      "actor": [
+        8,
+        1
+      ]
+    },
+    {
+      "actor": [
+        8,
+        2
+      ]
+    },
+    {
+      "actor": [
+        8,
+        3
+      ]
+    },
+    {
+      "actor": [
+        8,
+        4
+      ]
+    },
+    {
+      "actor": [
+        8,
+        5
+      ]
+    },
+    {
+      "actor": [
+        8,
+        6
+      ]
+    },
+    {
+      "actor": [
+        8,
+        7
+      ]
+    },
+    {
+      "actor": [
+        9,
+        0
+      ]
+    },
+    {
+      "actor": [
+        9,
+        1
+      ]
+    },
+    {
+      "actor": [
+        9,
+        2
+      ]
+    },
+    {
+      "actor": [
+        9,
+        3
+      ]
+    },
+    {
+      "actor": [
+        9,
+        4
+      ]
+    },
+    {
+      "actor": [
+        9,
+        5
+      ]
+    },
+    {
+      "actor": [
+        9,
+        6
+      ]
+    },
+    {
+      "actor": [
+        9,
+        7
+      ]
+    },
+    {
+      "actor": [
+        12,
+        0
+      ]
+    },
+    {
+      "actor": [
+        12,
+        1
+      ]
+    },
+    {
+      "actor": [
+        12,
+        2
+      ]
+    },
+    {
+      "actor": [
+        12,
+        3
+      ]
+    },
+    {
+      "actor": [
+        12,
+        4
+      ]
+    },
+    {
+      "actor": [
+        12,
+        5
+      ]
+    },
+    {
+      "actor": [
+        12,
+        6
+      ]
+    },
+    {
+      "actor": [
+        12,
+        7
+      ]
+    },
+    {
+      "actor": [
+        12,
+        8
+      ]
+    },
+    {
+      "actor": [
+        12,
+        9
+      ]
+    },
+    {
+      "actor": [
+        12,
+        10
+      ]
+    },
+    {
+      "actor": [
+        12,
+        11
+      ]
+    },
+    {
+      "actor": [
+        12,
+        12
+      ]
+    },
+    {
+      "actor": [
+        12,
+        13
+      ]
+    },
+    {
+      "actor": [
+        12,
+        14
+      ]
+    },
+    {
+      "actor": [
+        12,
+        15
+      ]
+    },
+    {
+      "actor": [
+        12,
+        16
+      ]
+    },
+    {
+      "actor": [
+        12,
+        17
+      ]
+    },
+    {
+      "actor": [
+        12,
+        18
+      ]
+    },
+    {
+      "actor": [
+        12,
+        19
+      ]
+    },
+    {
+      "actor": [
+        12,
+        20
+      ]
+    },
+    {
+      "actor": [
+        12,
+        21
+      ]
+    },
+    {
+      "actor": [
+        12,
+        22
+      ]
+    },
+    {
+      "actor": [
+        12,
+        23
+      ]
+    },
+    {
+      "actor": [
+        12,
+        24
+      ]
+    },
+    {
+      "actor": [
+        12,
+        25
+      ]
+    },
+    {
+      "actor": [
+        12,
+        26
+      ]
+    },
+    {
+      "actor": [
+        12,
+        27
+      ]
+    },
+    {
+      "actor": [
+        12,
+        28
+      ]
+    },
+    {
+      "actor": [
+        12,
+        29
+      ]
+    },
+    {
+      "actor": [
+        12,
+        30
+      ]
+    },
+    {
+      "actor": [
+        12,
+        31
+      ]
+    },
+    {
+      "actor": [
+        13,
+        0
+      ]
+    },
+    {
+      "actor": [
+        13,
+        1
+      ]
+    },
+    {
+      "actor": [
+        13,
+        2
+      ]
+    },
+    {
+      "actor": [
+        13,
+        3
+      ]
+    },
+    {
+      "actor": [
+        13,
+        4
+      ]
+    },
+    {
+      "actor": [
+        13,
+        5
+      ]
+    },
+    {
+      "actor": [
+        13,
+        6
+      ]
+    },
+    {
+      "actor": [
+        13,
+        7
+      ]
+    },
+    {
+      "actor": [
+        13,
+        8
+      ]
+    },
+    {
+      "actor": [
+        13,
+        9
+      ]
+    },
+    {
+      "actor": [
+        13,
+        10
+      ]
+    },
+    {
+      "actor": [
+        13,
+        11
+      ]
+    },
+    {
+      "actor": [
+        13,
+        12
+      ]
+    },
+    {
+      "actor": [
+        13,
+        13
+      ]
+    },
+    {
+      "actor": [
+        13,
+        14
+      ]
+    },
+    {
+      "actor": [
+        13,
+        15
+      ]
+    },
+    {
+      "actor": [
+        13,
+        16
+      ]
+    },
+    {
+      "actor": [
+        13,
+        17
+      ]
+    },
+    {
+      "actor": [
+        13,
+        18
+      ]
+    },
+    {
+      "actor": [
+        13,
+        19
+      ]
+    },
+    {
+      "actor": [
+        13,
+        20
+      ]
+    },
+    {
+      "actor": [
+        13,
+        21
+      ]
+    },
+    {
+      "actor": [
+        13,
+        22
+      ]
+    },
+    {
+      "actor": [
+        13,
+        23
+      ]
+    },
+    {
+      "actor": [
+        13,
+        24
+      ]
+    },
+    {
+      "actor": [
+        13,
+        25
+      ]
+    },
+    {
+      "actor": [
+        13,
+        26
+      ]
+    },
+    {
+      "actor": [
+        13,
+        27
+      ]
+    },
+    {
+      "actor": [
+        13,
+        28
+      ]
+    },
+    {
+      "actor": [
+        13,
+        29
+      ]
+    },
+    {
+      "actor": [
+        13,
+        30
+      ]
+    },
+    {
+      "actor": [
+        13,
+        31
+      ]
+    },
+    {
+      "actor": [
+        14,
+        0
+      ]
+    },
+    {
+      "actor": [
+        14,
+        1
+      ]
+    },
+    {
+      "actor": [
+        14,
+        2
+      ]
+    },
+    {
+      "actor": [
+        14,
+        3
+      ]
+    },
+    {
+      "actor": [
+        14,
+        4
+      ]
+    },
+    {
+      "actor": [
+        14,
+        5
+      ]
+    },
+    {
+      "actor": [
+        14,
+        6
+      ]
+    },
+    {
+      "actor": [
+        14,
+        7
+      ]
+    },
+    {
+      "actor": [
+        14,
+        8
+      ]
+    },
+    {
+      "actor": [
+        14,
+        9
+      ]
+    },
+    {
+      "actor": [
+        14,
+        10
+      ]
+    },
+    {
+      "actor": [
+        14,
+        11
+      ]
+    },
+    {
+      "actor": [
+        14,
+        12
+      ]
+    },
+    {
+      "actor": [
+        14,
+        13
+      ]
+    },
+    {
+      "actor": [
+        14,
+        14
+      ]
+    },
+    {
+      "actor": [
+        14,
+        15
+      ]
+    },
+    {
+      "actor": [
+        14,
+        16
+      ]
+    },
+    {
+      "actor": [
+        14,
+        17
+      ]
+    },
+    {
+      "actor": [
+        14,
+        19
+      ]
+    },
+    {
+      "actor": [
+        14,
+        20
+      ]
+    },
+    {
+      "actor": [
+        14,
+        21
+      ]
+    },
+    {
+      "actor": [
+        14,
+        22
+      ]
+    },
+    {
+      "actor": [
+        14,
+        23
+      ]
+    },
+    {
+      "actor": [
+        15,
+        0
+      ]
+    },
+    {
+      "actor": [
+        15,
+        1
+      ]
+    },
+    {
+      "actor": [
+        15,
+        3
+      ]
+    },
+    {
+      "actor": [
+        15,
+        4
+      ]
+    },
+    {
+      "actor": [
+        15,
+        5
+      ]
+    },
+    {
+      "actor": [
+        15,
+        6
+      ]
+    },
+    {
+      "actor": [
+        15,
+        7
+      ]
+    },
+    {
+      "actor": [
+        15,
+        8
+      ]
+    },
+    {
+      "actor": [
+        15,
+        9
+      ]
+    },
+    {
+      "actor": [
+        15,
+        10
+      ]
+    },
+    {
+      "actor": [
+        15,
+        11
+      ]
+    },
+    {
+      "actor": [
+        15,
+        12
+      ]
+    },
+    {
+      "actor": [
+        15,
+        13
+      ]
+    },
+    {
+      "actor": [
+        15,
+        14
+      ]
+    },
+    {
+      "actor": [
+        15,
+        15
+      ]
+    },
+    {
+      "actor": [
+        14,
+        18
+      ]
+    },
+    {
+      "actor": [
+        15,
+        2
+      ]
+    },
+    {
+      "actor": [
+        15,
+        17
+      ]
+    },
+    {
+      "actor": [
+        15,
+        18
+      ]
+    },
+    {
+      "actor": [
+        15,
+        19
+      ]
+    },
+    {
+      "actor": [
+        15,
+        20
+      ]
+    },
+    {
+      "actor": [
+        15,
+        21
+      ]
+    },
+    {
+      "actor": [
+        15,
+        22
+      ]
+    },
+    {
+      "actor": [
+        15,
+        23
+      ]
+    },
+    {
+      "actor": [
+        15,
+        16
+      ]
+    },
+    {
+      "actor": [
+        18,
+        0
+      ]
+    },
+    {
+      "actor": [
+        18,
+        1
+      ]
+    },
+    {
+      "actor": [
+        18,
+        2
+      ]
+    },
+    {
+      "actor": [
+        18,
+        3
+      ]
+    },
+    {
+      "actor": [
+        18,
+        4
+      ]
+    },
+    {
+      "actor": [
+        18,
+        5
+      ]
+    },
+    {
+      "actor": [
+        18,
+        6
+      ]
+    },
+    {
+      "actor": [
+        18,
+        7
+      ]
+    },
+    {
+      "actor": [
+        19,
+        0
+      ]
+    },
+    {
+      "actor": [
+        19,
+        1
+      ]
+    },
+    {
+      "actor": [
+        19,
+        2
+      ]
+    },
+    {
+      "actor": [
+        19,
+        3
+      ]
+    },
+    {
+      "actor": [
+        19,
+        4
+      ]
+    },
+    {
+      "actor": [
+        19,
+        5
+      ]
+    },
+    {
+      "actor": [
+        19,
+        6
+      ]
+    },
+    {
+      "actor": [
+        19,
+        7
+      ]
+    },
+    {
+      "actor": [
+        23,
+        0
+      ]
+    },
+    {
+      "actor": [
+        23,
+        1
+      ]
+    },
+    {
+      "actor": [
+        23,
+        2
+      ]
+    },
+    {
+      "actor": [
+        23,
+        3
+      ]
+    },
+    {
+      "actor": [
+        23,
+        4
+      ]
+    },
+    {
+      "actor": [
+        23,
+        5
+      ]
+    },
+    {
+      "actor": [
+        23,
+        6
+      ]
+    },
+    {
+      "actor": [
+        23,
+        7
+      ]
+    },
+    {
+      "actor": [
+        23,
+        8
+      ]
+    },
+    {
+      "actor": [
+        23,
+        9
+      ]
+    },
+    {
+      "actor": [
+        23,
+        10
+      ]
+    },
+    {
+      "actor": [
+        23,
+        11
+      ]
+    },
+    {
+      "actor": [
+        23,
+        12
+      ]
+    },
+    {
+      "actor": [
+        23,
+        13
+      ]
+    },
+    {
+      "actor": [
+        23,
+        14
+      ]
+    },
+    {
+      "actor": [
+        23,
+        15
+      ]
+    },
+    {
+      "actor": [
+        24,
+        0
+      ]
+    },
+    {
+      "actor": [
+        24,
+        1
+      ]
+    },
+    {
+      "actor": [
+        24,
+        2
+      ]
+    },
+    {
+      "actor": [
+        24,
+        3
+      ]
+    },
+    {
+      "actor": [
+        24,
+        4
+      ]
+    },
+    {
+      "actor": [
+        24,
+        5
+      ]
+    },
+    {
+      "actor": [
+        24,
+        6
+      ]
+    },
+    {
+      "actor": [
+        24,
+        7
+      ]
+    },
+    {
+      "actor": [
+        25,
+        0
+      ]
+    },
+    {
+      "actor": [
+        25,
+        1
+      ]
+    },
+    {
+      "actor": [
+        25,
+        2
+      ]
+    },
+    {
+      "actor": [
+        25,
+        3
+      ]
+    },
+    {
+      "actor": [
+        25,
+        4
+      ]
+    },
+    {
+      "actor": [
+        25,
+        5
+      ]
+    },
+    {
+      "actor": [
+        25,
+        6
+      ]
+    },
+    {
+      "actor": [
+        25,
+        7
+      ]
+    },
+    {
+      "actor": [
+        21,
+        0
+      ]
+    },
+    {
+      "actor": [
+        21,
+        1
+      ]
+    },
+    {
+      "actor": [
+        21,
+        2
+      ]
+    },
+    {
+      "actor": [
+        21,
+        3
+      ]
+    },
+    {
+      "actor": [
+        21,
+        4
+      ]
+    },
+    {
+      "actor": [
+        21,
+        5
+      ]
+    },
+    {
+      "actor": [
+        21,
+        6
+      ]
+    },
+    {
+      "actor": [
+        21,
+        7
+      ]
+    },
+    {
+      "actor": [
+        7,
+        0
+      ]
+    },
+    {
+      "actor": [
+        7,
+        1
+      ]
+    },
+    {
+      "actor": [
+        7,
+        2
+      ]
+    },
+    {
+      "actor": [
+        7,
+        3
+      ]
+    },
+    {
+      "actor": [
+        7,
+        4
+      ]
+    },
+    {
+      "actor": [
+        7,
+        5
+      ]
+    },
+    {
+      "actor": [
+        7,
+        6
+      ]
+    },
+    {
+      "actor": [
+        7,
+        7
+      ]
+    },
+    {
+      "actor": [
+        7,
+        8
+      ]
+    },
+    {
+      "actor": [
+        7,
+        9
+      ]
+    },
+    {
+      "actor": [
+        7,
+        10
+      ]
+    },
+    {
+      "actor": [
+        7,
+        11
+      ]
+    },
+    {
+      "actor": [
+        7,
+        12
+      ]
+    },
+    {
+      "actor": [
+        7,
+        13
+      ]
+    },
+    {
+      "actor": [
+        7,
+        14
+      ]
+    },
+    {
+      "actor": [
+        7,
+        15
+      ]
+    },
+    {
+      "actor": [
+        20,
+        0
+      ]
+    },
+    {
+      "actor": [
+        20,
+        1
+      ]
+    },
+    {
+      "actor": [
+        20,
+        2
+      ]
+    },
+    {
+      "actor": [
+        20,
+        3
+      ]
+    },
+    {
+      "actor": [
+        20,
+        4
+      ]
+    },
+    {
+      "actor": [
+        20,
+        5
+      ]
+    },
+    {
+      "actor": [
+        20,
+        6
+      ]
+    },
+    {
+      "actor": [
+        20,
+        7
+      ]
+    },
+    {
+      "actor": [
+        20,
+        8
+      ]
+    },
+    {
+      "actor": [
+        20,
+        9
+      ]
+    },
+    {
+      "actor": [
+        20,
+        10
+      ]
+    },
+    {
+      "actor": [
+        20,
+        11
+      ]
+    },
+    {
+      "actor": [
+        20,
+        12
+      ]
+    },
+    {
+      "actor": [
+        20,
+        13
+      ]
+    },
+    {
+      "actor": [
+        20,
+        14
+      ]
+    },
+    {
+      "actor": [
+        20,
+        15
+      ]
+    },
+    {
+      "actor": [
+        22,
+        0
+      ]
+    },
+    {
+      "actor": [
+        22,
+        1
+      ]
+    },
+    {
+      "actor": [
+        22,
+        2
+      ]
+    },
+    {
+      "actor": [
+        22,
+        3
+      ]
+    },
+    {
+      "actor": [
+        22,
+        4
+      ]
+    },
+    {
+      "actor": [
+        22,
+        5
+      ]
+    },
+    {
+      "actor": [
+        22,
+        6
+      ]
+    },
+    {
+      "actor": [
+        22,
+        7
+      ]
+    },
+    {
+      "actor": [
+        22,
+        8
+      ]
+    },
+    {
+      "actor": [
+        22,
+        9
+      ]
+    },
+    {
+      "actor": [
+        22,
+        10
+      ]
+    },
+    {
+      "actor": [
+        22,
+        11
+      ]
+    },
+    {
+      "actor": [
+        22,
+        12
+      ]
+    },
+    {
+      "actor": [
+        22,
+        13
+      ]
     }
   ],
   "production_144": {
@@ -3370,5 +10962,160 @@
     "contract": "mydocs/reports/issue-151_hd_integration.md",
     "source_entrance_phase": "1 closed,2..9 opening,0 open endpoint",
     "public_release_or_pages_updated": false
+  },
+  "complete_actors": true,
+  "production_154": {
+    "generator": "built-in image_gen",
+    "source_pixels_edited": false,
+    "original_pixels_upscaled": false,
+    "new_actor_animations": 21,
+    "new_actor_frames": 256,
+    "all_actor_animations": 28,
+    "all_actor_frames": 337,
+    "selected_source_sheets": 12,
+    "raw_pack_limit_bytes": 134217728,
+    "atlas_limit": 32,
+    "layout": "assets/manifests/hd_actors.json",
+    "scope": "Full logical character slot/frame coverage only. Other facilities/themes/effects/UI and HD-06 packaging remain follow-up; visual phase/scale verified separately; no performance qualification."
+  },
+  "phase_correction_154": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/154",
+    "reference": [
+      "crates/lemmings-core/src/simulation/motion/miner.rs",
+      "crates/lemmings-core/src/simulation/motion/basher.rs"
+    ],
+    "miner_erase_frames": [
+      1,
+      2
+    ],
+    "basher_erase_frames_modulo16": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "source_pose_order": {
+      "12": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        12,
+        11,
+        10,
+        13,
+        5,
+        14,
+        6,
+        15,
+        7,
+        8,
+        9,
+        16,
+        17,
+        18,
+        19,
+        20,
+        28,
+        27,
+        26,
+        29,
+        21,
+        30,
+        22,
+        31,
+        23,
+        24,
+        25
+      ],
+      "13": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        12,
+        11,
+        10,
+        13,
+        5,
+        14,
+        6,
+        15,
+        7,
+        8,
+        9,
+        16,
+        17,
+        18,
+        19,
+        20,
+        28,
+        27,
+        26,
+        29,
+        21,
+        30,
+        22,
+        31,
+        23,
+        24,
+        25
+      ],
+      "14": [
+        4,
+        5,
+        6,
+        12,
+        13,
+        14,
+        20,
+        21,
+        22,
+        3,
+        7,
+        11,
+        15,
+        19,
+        23,
+        0,
+        8,
+        16,
+        1,
+        9,
+        17,
+        2,
+        10,
+        18
+      ],
+      "15": [
+        4,
+        5,
+        6,
+        12,
+        13,
+        14,
+        17,
+        18,
+        21,
+        22,
+        3,
+        11,
+        0,
+        1,
+        2,
+        7,
+        8,
+        9,
+        10,
+        15,
+        16,
+        19,
+        20,
+        23
+      ]
+    },
+    "scope": "Reorder immutable selected poses only. Miner strike is down at1/2 then recovers/lifts; Basher extends during2..5 in each16-phase cycle. No core clock/mask/input changes."
   }
 }

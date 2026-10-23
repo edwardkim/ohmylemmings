@@ -30,6 +30,7 @@ check-wasm:
 
 check-desktop:
 	cargo test -p lemmings-game --example performance_probe --locked --offline
+	cargo test -p lemmings-game --example hd_character_probe --locked --offline
 	cargo build -p lemmings-desktop --release --locked --offline
 	python3 tools/check_desktop.py --binary target/release/lemmings-desktop
 	python3 tools/check_digger.py --binary target/release/lemmings-desktop

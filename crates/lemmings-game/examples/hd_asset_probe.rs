@@ -5,7 +5,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let path = std::env::args()
         .nth(1)
         .ok_or("usage: hd_asset_probe assets.hdp [--hd03b]")?;
-    let expanded = std::env::args().nth(2).as_deref() == Some("--hd03b");
+    let mode = std::env::args().nth(2);
+    let expanded = matches!(mode.as_deref(), Some("--hd03b" | "--all-actors"));
     let bytes = std::fs::read(path)?;
     let pack = AssetPack::parse(&bytes)?;
     let required: &[(u8, u16)] = if expanded {
@@ -21,6 +22,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     } else {
         &[(0, 8), (2, 8)]
     };
+    if mode.as_deref() == Some("--all-actors") && !pack.missing_actor_frames().is_empty() {
+        return Err("incomplete actor coverage".into());
+    }
     for &(slot, count) in required {
         for frame in 0..count {
             pack.frame(AssetKey::Actor { slot, frame })

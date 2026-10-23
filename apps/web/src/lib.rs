@@ -41,6 +41,7 @@ impl Source {
                 "basher" => Assets::synthetic_basher(),
                 "climber" => Assets::synthetic_climber(),
                 "floater" => Assets::synthetic_floater(),
+                "fire" => Assets::synthetic_hazards(134, false),
                 "win" if level.number() == 2 => Assets::synthetic_completion("loss"),
                 "win" | "loss" | "mixed" | "clock" | "zero" | "particles" => {
                     Assets::synthetic_completion(scene)

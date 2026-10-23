@@ -189,5 +189,39 @@ class HdAssetsTests(unittest.TestCase):
             (root/'art.png').write_bytes(b'corrupted source')
             with self.assertRaises(AssetError):runtime_pack(root=root)
 
+    def test_complete_actor_contract_requires_all_337_original_frame_keys(self):
+        from tools.hd_assets import actor_coverage, source_counts
+        frames=[dict(key=dict(actor=[slot,frame])) for slot,count in enumerate(source_counts()) for frame in range(count)]
+        self.assertEqual(actor_coverage(frames),dict(animations=28,frames=337,missing=[]))
+        partial=actor_coverage(frames[:-1]);self.assertEqual(partial['missing'],[[27,0]])
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);m=self.fixture(root);m['complete_actors']=True
+            with self.assertRaisesRegex(AssetError,'actor coverage'):compile_pack(m,root=root)
+            m['complete_actors']='yes'
+            with self.assertRaises(AssetError):compile_pack(m,root=root)
+
+    def test_expanded_atlas_count_is_bounded_and_legacy_fixture_still_builds(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);m=self.fixture(root)
+            m['atlases']*=32
+            self.assertEqual(len(compile_pack(m,root=root)[1]['atlases']),32)
+            m['atlases'].append(m['atlases'][0])
+            with self.assertRaises(AssetError):compile_pack(m,root=root)
+
+    def test_default_action_art_uses_strikes_at_original_terrain_cut_frames(self):
+        # Visual cells selected during #154 review: downward pickaxe and fully
+        # extended fists. This guards the data binding, not simulation timing.
+        from tools.hd_assets import ROOT
+        pack=json.loads((ROOT/'assets/manifests/remaster_pack.json').read_text())
+        art=json.loads((ROOT/'assets/manifests/hd_actors.json').read_text())
+        for slot,frame,name,cell in [(14,1,'mine',5),(14,2,'mine',6),
+                (15,1,'mine',29),(15,2,'mine',30),(12,5,'bash',12),
+                (12,21,'bash',52),(13,5,'bash',36),(13,21,'bashleft2',4)]:
+            group=next(g for g in art['layout'] if g['name']==name)
+            row=next(r for r in group['rows'] if r['slot']==slot and r['frame']==frame)
+            self.assertEqual(row['cell'],cell,(slot,frame))
+            bound=next(r for r in pack['frames'] if r['key'].get('actor')==[slot,frame])
+            self.assertEqual((bound['atlas'],bound['rect']),(group['atlas'],row['rect']))
+
 
 if __name__=='__main__':unittest.main()

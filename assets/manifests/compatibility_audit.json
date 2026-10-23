@@ -46,8 +46,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 3572,
-      "sha256": "d2caaa88ddf37f01062cc32727b9b163c8b37ba2bb7996015385442c16539068"
+      "bytes": 3649,
+      "sha256": "f6b866d596aa856c6bcf6fe14368403b34a27404bd7eea99458791e688837bde"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -196,8 +196,8 @@
     },
     {
       "path": "apps/web/src/lib.rs",
-      "bytes": 18341,
-      "sha256": "85718c5ef93bde1bef004ea5edfa4de9e50e7cd86bc4017ef794212c62fdcfb4"
+      "bytes": 18406,
+      "sha256": "2508277a27bbf20efc87b90f0024cbe6e44d99a6850c8a017909bf45cd6598eb"
     },
     {
       "path": "apps/web/tests/audio_output.rs",
@@ -261,8 +261,8 @@
     },
     {
       "path": "apps/web/www/index.html",
-      "bytes": 5086,
-      "sha256": "c0aac920f8fa196e97b4be1b371012a127b5d4d1c3f7116e741ae695819b134d"
+      "bytes": 5079,
+      "sha256": "0b1eff806c67fccd4a5b1e68c8d1aed4daf9811155acf473bb8e1dce1195c671"
     },
     {
       "path": "apps/web/www/style.css",
@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 46848,
-      "sha256": "1e5377ced9762a701fe13c67435e6b8a8f3905dfeb598879af49b0c64647196b"
+      "bytes": 143690,
+      "sha256": "4a34d4be364963f91446e39234a580c2b5e8e90ddbdb5bcb9b8c7bc000f6289f"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -561,8 +561,8 @@
     },
     {
       "path": "crates/lemmings-game/examples/hd_asset_probe.rs",
-      "bytes": 2355,
-      "sha256": "2a442d2135d5708a933654536084d8be783c1a30bf6acb48b73e3afd7160cef7"
+      "bytes": 2555,
+      "sha256": "b9bac2c75ff997fe749327de4590468efc2fe1ef4e7f8d1002e87eebc7cf14f5"
     },
     {
       "path": "crates/lemmings-game/examples/performance_probe.rs",
@@ -586,8 +586,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/assets.rs",
-      "bytes": 9267,
-      "sha256": "cac3d12002494ce080b0e8a03524e5aba1c41b85f528658705168c12ab700012"
+      "bytes": 10026,
+      "sha256": "e40997ad72a58483653eaf787c78458e36fdb967cacdc3cae50a102ff22f3640"
     },
     {
       "path": "crates/lemmings-game/src/hd/layout.rs",
@@ -646,8 +646,8 @@
     },
     {
       "path": "crates/lemmings-game/tests/hd_assets.rs",
-      "bytes": 6824,
-      "sha256": "6b9bc74832fca61db45aa3eb8863c2ebc255ab170dc38a71384c618d0a311699"
+      "bytes": 8205,
+      "sha256": "f5c90d7e9c6812ae60a823033b85d84c91d1faecee2174119eb8d9196c445e03"
     },
     {
       "path": "crates/lemmings-game/tests/hd_presentation.rs",
@@ -1491,13 +1491,13 @@
     },
     {
       "path": "tools/hd_assets.py",
-      "bytes": 13119,
-      "sha256": "c30f907dfc7ffbd3189bdc960672f95994d6114b0b5f47fc9f001cb46146ed44"
+      "bytes": 14015,
+      "sha256": "616fa83d2da29d60de55248b5d4bca49905d8da77d4d58e266b12ba0fd36db76"
     },
     {
       "path": "tools/hd_assets_preview.html",
-      "bytes": 8270,
-      "sha256": "e5b1306f77ac1a16091f4b0122f6d4538672d3244c09b5b13e1372dc28856dac"
+      "bytes": 8566,
+      "sha256": "99f790f9e82cae52116efb05c3686d5d0bacaffffd8614c9060be2cb772b52d9"
     },
     {
       "path": "tools/initial_reference.py",
@@ -1936,8 +1936,8 @@
     },
     {
       "path": "tools/tests/test_hd_assets.py",
-      "bytes": 10646,
-      "sha256": "f346d42bceda1baa6abb4a59883097cfcc68b220020ce9142f152b8e534163a6"
+      "bytes": 12885,
+      "sha256": "dbb4b91c208fe2551112aa688f62a69a5dfa08c589e3a4016a38250eb45d2600"
     },
     {
       "path": "tools/tests/test_initial_reference.py",
@@ -2321,8 +2321,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/scene.rs",
-      "bytes": 36536,
-      "sha256": "72e2edc0f82a357791df9d7de2d938f801a4062537f557119c0daf29e9793c13"
+      "bytes": 36721,
+      "sha256": "398b3042861389b79f381caa84ef772b78726b721d1d93661456ad353fbd21b6"
     },
     {
       "path": "crates/lemmings-game/tests/hd_scene.rs",
@@ -2346,8 +2346,8 @@
     },
     {
       "path": "tools/web/hd_check.js",
-      "bytes": 3643,
-      "sha256": "d27eb18ebe5d5fa1aadac902a17869c4808034ed4000a556e201cec6af2ff83a"
+      "bytes": 4530,
+      "sha256": "92ac78fc3214210a93e83e0ce81da52fd5c48560c70e36b28a956ee82a2edcc1"
     },
     {
       "path": "tools/web/hd_product.cjs",
@@ -2358,6 +2358,151 @@
       "path": "assets/manifests/hd_integration.json",
       "bytes": 5518,
       "sha256": "e996b8eff912fd820edb2fc784a964096659be123a2c43bb7facf23cbc87f2c0"
+    },
+    {
+      "path": "assets/manifests/hd_actors.json",
+      "bytes": 94442,
+      "sha256": "53a66805571de2f7f51d628806f02c1855774b860d120dc16ac38ee69926fd2a"
+    },
+    {
+      "path": "assets/remaster/issue-154-air-v1.png",
+      "bytes": 1168233,
+      "sha256": "4ddf96185daabd07a05d0cec5b4f7e6fc6602c5d7f3c50b227c979e699de1bab"
+    },
+    {
+      "path": "assets/remaster/issue-154-bash-v1.png",
+      "bytes": 2054662,
+      "sha256": "6dcba40ca508fe059540af9f6e4f57130e2fcaa5eeb127dfb15f711bd9ff531c"
+    },
+    {
+      "path": "assets/remaster/issue-154-bashleft2-v1.png",
+      "bytes": 1888904,
+      "sha256": "47fb309f3fed8c18ea169c38ef8f08293a0552a7f338d92a9b7a183a3d1f1d67"
+    },
+    {
+      "path": "assets/remaster/issue-154-block-v1.png",
+      "bytes": 2511139,
+      "sha256": "26dca42d4521c45d1042f8652193e1fd2c9f33e2a8b7aa8f0966b168f8b24928"
+    },
+    {
+      "path": "assets/remaster/issue-154-climb-v1.png",
+      "bytes": 2387202,
+      "sha256": "99db728e35fffc85b5416148f12966cd83a57ec66daa03705015b73bff432116"
+    },
+    {
+      "path": "assets/remaster/issue-154-exitdrown-v1.png",
+      "bytes": 1550427,
+      "sha256": "e36e33e6275deb93414703ae0bb1cb5fb790a63ef3aa5b6d63c1286dee6611b3"
+    },
+    {
+      "path": "assets/remaster/issue-154-mine-v1.png",
+      "bytes": 1792320,
+      "sha256": "1594440d33c459f58d4e59826f13f04f793d07c565d780dc16baa093a088d8b4"
+    },
+    {
+      "path": "assets/remaster/issue-154-minefix-v1.png",
+      "bytes": 1242624,
+      "sha256": "2dfc06f5484c592aca0aa7ae02656eada22485a0a218eb23086d65726b68808f"
+    },
+    {
+      "path": "assets/remaster/issue-154-mineleft-v1.png",
+      "bytes": 1104972,
+      "sha256": "0ae20c3b8f8dda72c2d7dc8ec5005dbbce793d871bc3d1c7be7ba140dd8c9d75"
+    },
+    {
+      "path": "assets/remaster/issue-154-splat-v1.png",
+      "bytes": 1467000,
+      "sha256": "7f9f60989731efe3d9ebd7ac4389192170daf7de9e59fcdcde8634c1e1ab9dbd"
+    },
+    {
+      "path": "assets/remaster/issue-154-umbrella-v1.png",
+      "bytes": 1616136,
+      "sha256": "8b5c4e1376a14836c08e902b5c4ccd3d40cc3cbdb554f7003d3ca41293c71c45"
+    },
+    {
+      "path": "assets/remaster/issue-154-vapor-v1.png",
+      "bytes": 2083691,
+      "sha256": "7a8ea3135c76b6e050d9042ddeb4005736eb876242bed4ea12ba18a800f04d0f"
+    },
+    {
+      "path": "assets/remaster/previews/issue-154_actors.png",
+      "bytes": 208682,
+      "sha256": "6d4ea6366cb25e03c966a9d84546c9aa2ade573e7da06781ea3b88d8d375df18"
+    },
+    {
+      "path": "assets/remaster/previews/issue-154_native_floater.png",
+      "bytes": 138317,
+      "sha256": "54924a43351e4974c813df5a6e29e419e7301ffe832e947f2dac90cd66a0aa38"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_air_v1.txt",
+      "bytes": 1268,
+      "sha256": "6b225ae3d803061f42d6674520709bc983ded9d8d666e1d8d8cadbdedeb6ac42"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_bash_v1.txt",
+      "bytes": 1332,
+      "sha256": "1151a3d5ed7d0516c07869b702396ee3a73e3941e9a2898e5e7ff63f5626da7b"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_bashleft2_v1.txt",
+      "bytes": 804,
+      "sha256": "7ba884862c4d5a183955555c6a494d5e436ab34cfdfa436bd079411abf782032"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_block_v1.txt",
+      "bytes": 1070,
+      "sha256": "45ad22f0a11cc3da3b2a02f2e773d988f010ac6a7fb1aca5a7ffa9501a69fc2d"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_climb_v1.txt",
+      "bytes": 1307,
+      "sha256": "862d92749edd4f0113b0f6de0a28b7eb25f9334cee4f48ba287e96ce8fd688dc"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_exitdrown_v1.txt",
+      "bytes": 1259,
+      "sha256": "1d10e61f7d7077993dc10978ae888859b7c43fb3d6677853d621817c67b5f915"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_mine_v1.txt",
+      "bytes": 1315,
+      "sha256": "8dc1d21755ba674f24f680e2bbefc74390697818854ed58a547ab397cf8dad9d"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_minefix_v1.txt",
+      "bytes": 876,
+      "sha256": "69ad4a0934b851879847a99f0425c41e35004de0e6d49d93f343494a9e0e535f"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_mineleft_v1.txt",
+      "bytes": 775,
+      "sha256": "301d97e53d3d7852b957ec10fa393bf749195c7779ae7ec5358c4fa3867c7463"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_splat_v1.txt",
+      "bytes": 1111,
+      "sha256": "239c379db61c43bfe1ca7cf2ced1c1b2562168d50aba4171bd5b3fc1e5517381"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_umbrella_v1.txt",
+      "bytes": 855,
+      "sha256": "5b94d2d19ba7cf48659bee4877c01ddfbf239cb363715d2b016a89812cc82159"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-154_vapor_v1.txt",
+      "bytes": 1113,
+      "sha256": "14b47dc1ad2747eeec4172c8ffbbf8d9b4fb3c8b6c1e0858455c5daee2a45556"
+    },
+    {
+      "path": "crates/lemmings-game/examples/hd_character_probe.rs",
+      "bytes": 5564,
+      "sha256": "f965477df6d3b32be1a2790120d862781932ab23c49bd938ca3d6245247dc583"
+    },
+    {
+      "path": "tools/hd_assets_check.cjs",
+      "bytes": 6100,
+      "sha256": "ea58a019cfdf7ded8360320eef5c0db2027426dde085d5985bc55d7d57ed35fe"
     }
   ],
   "evidence": [
@@ -5617,5 +5762,103 @@
       }
     ],
     "scope": "Partial opt-in Native/Web HD renderer and revisioned chunks/textures; common input, original-mode/fullscreen switch and packaging cache. No core simulation changes. Fresh equivalence evidence is Fun01 and synthetic HD scenarios only; historical COMP/120-level/G11/performance observations stay historical, #113 deferred and NOT READY unchanged."
+  },
+  "source_impact_154": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/154",
+    "baseline": "e7c28703dfe25aafb172ef4a0454dbc114a989c4",
+    "previous_pins": [
+      {
+        "path": "Makefile",
+        "bytes": 3572,
+        "sha256": "d2caaa88ddf37f01062cc32727b9b163c8b37ba2bb7996015385442c16539068"
+      },
+      {
+        "path": "apps/web/src/lib.rs",
+        "bytes": 18341,
+        "sha256": "85718c5ef93bde1bef004ea5edfa4de9e50e7cd86bc4017ef794212c62fdcfb4"
+      },
+      {
+        "path": "apps/web/www/index.html",
+        "bytes": 5086,
+        "sha256": "c0aac920f8fa196e97b4be1b371012a127b5d4d1c3f7116e741ae695819b134d"
+      },
+      {
+        "path": "assets/manifests/remaster_pack.json",
+        "bytes": 46848,
+        "sha256": "1e5377ced9762a701fe13c67435e6b8a8f3905dfeb598879af49b0c64647196b"
+      },
+      {
+        "path": "crates/lemmings-game/examples/hd_asset_probe.rs",
+        "bytes": 2355,
+        "sha256": "2a442d2135d5708a933654536084d8be783c1a30bf6acb48b73e3afd7160cef7"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/assets.rs",
+        "bytes": 9267,
+        "sha256": "cac3d12002494ce080b0e8a03524e5aba1c41b85f528658705168c12ab700012"
+      },
+      {
+        "path": "crates/lemmings-game/tests/hd_assets.rs",
+        "bytes": 6824,
+        "sha256": "6b9bc74832fca61db45aa3eb8863c2ebc255ab170dc38a71384c618d0a311699"
+      },
+      {
+        "path": "tools/hd_assets.py",
+        "bytes": 13119,
+        "sha256": "c30f907dfc7ffbd3189bdc960672f95994d6114b0b5f47fc9f001cb46146ed44"
+      },
+      {
+        "path": "tools/hd_assets_preview.html",
+        "bytes": 8270,
+        "sha256": "e5b1306f77ac1a16091f4b0122f6d4538672d3244c09b5b13e1372dc28856dac"
+      },
+      {
+        "path": "tools/tests/test_hd_assets.py",
+        "bytes": 10646,
+        "sha256": "f346d42bceda1baa6abb4a59883097cfcc68b220020ce9142f152b8e534163a6"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/scene.rs",
+        "bytes": 36536,
+        "sha256": "72e2edc0f82a357791df9d7de2d938f801a4062537f557119c0daf29e9793c13"
+      },
+      {
+        "path": "tools/web/hd_check.js",
+        "bytes": 3643,
+        "sha256": "d27eb18ebe5d5fa1aadac902a17869c4808034ed4000a556e201cec6af2ff83a"
+      }
+    ],
+    "added": [
+      "assets/manifests/hd_actors.json",
+      "assets/remaster/issue-154-air-v1.png",
+      "assets/remaster/issue-154-bash-v1.png",
+      "assets/remaster/issue-154-bashleft2-v1.png",
+      "assets/remaster/issue-154-block-v1.png",
+      "assets/remaster/issue-154-climb-v1.png",
+      "assets/remaster/issue-154-exitdrown-v1.png",
+      "assets/remaster/issue-154-mine-v1.png",
+      "assets/remaster/issue-154-minefix-v1.png",
+      "assets/remaster/issue-154-mineleft-v1.png",
+      "assets/remaster/issue-154-splat-v1.png",
+      "assets/remaster/issue-154-umbrella-v1.png",
+      "assets/remaster/issue-154-vapor-v1.png",
+      "assets/remaster/previews/issue-154_actors.png",
+      "assets/remaster/previews/issue-154_native_floater.png",
+      "assets/remaster/prompts/issue-154_air_v1.txt",
+      "assets/remaster/prompts/issue-154_bash_v1.txt",
+      "assets/remaster/prompts/issue-154_bashleft2_v1.txt",
+      "assets/remaster/prompts/issue-154_block_v1.txt",
+      "assets/remaster/prompts/issue-154_climb_v1.txt",
+      "assets/remaster/prompts/issue-154_exitdrown_v1.txt",
+      "assets/remaster/prompts/issue-154_mine_v1.txt",
+      "assets/remaster/prompts/issue-154_minefix_v1.txt",
+      "assets/remaster/prompts/issue-154_mineleft_v1.txt",
+      "assets/remaster/prompts/issue-154_splat_v1.txt",
+      "assets/remaster/prompts/issue-154_umbrella_v1.txt",
+      "assets/remaster/prompts/issue-154_vapor_v1.txt",
+      "crates/lemmings-game/examples/hd_character_probe.rs",
+      "tools/hd_assets_check.cjs"
+    ],
+    "scope": "Complete logical actor slot/frame asset coverage and bounded128MiB/32atlas v1 loader support, restored-state/PNG/Canvas and13 natural synthetic checks. No core physics or timing changes. Historical COMP/120-level/G11/performance observations remain historical; #113 deferred and NOT READY unchanged. Other themes/facilities/effects and support packaging remain follow-up."
   }
 }
