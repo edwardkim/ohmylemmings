@@ -16,6 +16,10 @@ pub enum AssetKey {
         frame: u16,
     },
     Rock,
+    /// General terrain sets1..4. Set0 keeps the legacy Rock key/encoding.
+    Material {
+        set: u8,
+    },
     /// Original graphics set, object ID and absolute disk frame (not level slot).
     Object {
         set: u8,
@@ -23,6 +27,15 @@ pub enum AssetKey {
         frame: u16,
     },
     Icon(Control),
+}
+impl AssetKey {
+    pub const fn material(set: u8) -> Option<Self> {
+        match set {
+            0 => Some(Self::Rock),
+            1..=4 => Some(Self::Material { set }),
+            _ => None,
+        }
+    }
 }
 
 /// Stable atlas IDs. Skill order reuses the original panel contract; numeric
@@ -235,7 +248,7 @@ impl<'a> AssetPack<'a> {
                     }
                     AssetKey::Actor { slot, frame }
                 }
-                1 if slot == 0 && frame == 0 => AssetKey::Rock,
+                1 if frame == 0 => AssetKey::material(slot).ok_or(AssetError::Key)?,
                 2 => {
                     let (set, id) = (slot / 16, slot % 16);
                     if frame >= object_frame_count(set, id).ok_or(AssetError::Key)? {

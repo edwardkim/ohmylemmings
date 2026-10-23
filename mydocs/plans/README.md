@@ -40,3 +40,5 @@
 - [#151 HD-04 실제 Fun01 Native/Web 통합](issue-151_hd_integration.md).
 
 - [#154 HD-05a 캐릭터 전체 프레임 계획](issue-154_hd_actors.md)
+
+- [#157 HD-05b 일반 지형 재질 계획](issue-157_hd_terrain.md)

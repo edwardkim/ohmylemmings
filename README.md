@@ -5,9 +5,7 @@
 [![CI](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml/badge.svg)](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml)
 [![Play on GitHub Pages](https://github.com/edwardkim/ohmylemmings/actions/workflows/pages.yml/badge.svg)](https://edwardkim.github.io/ohmylemmings/)
 
-새 기능인 [2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)를 진행합니다. [Fun 01의 첫 HD 시안과 제작/표시 계약](mydocs/reports/issue-138_hd_art_direction.md)에 이어 [#144 걷기·암석 분리 자산과 공통 팩](mydocs/reports/issue-144_hd_assets.md)을 준비했습니다. 실제 HD 플레이 모드와 다른 동작/시설·UI 자산은 후속 구현입니다.
-
-[#140 공통 HD 표시·입력 API](mydocs/reports/issue-140_hd_presentation.md)에서 읽기 전용 게임 상태·좌표/패널 계약과 합성 검증을 구현했습니다. 실제 화면과 앱 입력 연결은 다음 단계입니다.
+[2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)를 진행합니다. Native/Web에서 부분 HD 플레이와 원본 모드 전환, 전체 캐릭터28동작337프레임을 제공합니다. [#157 일반5테마 재질·일방통행 표시와 팩 정리](mydocs/reports/issue-157_hd_terrain.md)는 로컬 검증을 마치고 CI/병합을 진행합니다. 특수 배경·나머지 시설/효과·전체 UI와 지원 HD 배포는 후속입니다. 공개 v0.1.0/Pages는 기존 배포를 유지합니다.
 
 프로젝트 자체 작성 코드는 [MIT](LICENSE)로 제공합니다. [제3자 고지 전문](THIRD_PARTY_NOTICES.txt)과 [적용 범위](third_party/README.md)를 함께 확인하세요. OPL 합성기는 LGPL-2.1-or-later를 유지하며, 원본 DOS 그래픽·레벨·음악/효과음·상표에는 프로젝트 MIT 허가가 적용되지 않습니다.
 

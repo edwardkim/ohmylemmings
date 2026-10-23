@@ -127,7 +127,25 @@ fn material_keys_do_not_alias_actor_keys_and_unknown_ids_are_rejected() {
             .frame(AssetKey::Rock)
             .is_some()
     );
+    for set in 1..5 {
+        b[41] = set;
+        assert!(
+            AssetPack::parse(&b)
+                .unwrap()
+                .frame(AssetKey::Material { set })
+                .is_some()
+        );
+        assert!(
+            AssetPack::parse(&b)
+                .unwrap()
+                .frame(AssetKey::Rock)
+                .is_none()
+        );
+    }
+    b[41] = 5;
+    assert!(AssetPack::parse(&b).is_err());
     b[41] = 1;
+    b[42] = 1;
     assert!(AssetPack::parse(&b).is_err());
 }
 
