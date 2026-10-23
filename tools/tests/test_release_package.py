@@ -149,3 +149,17 @@ class ReleasePackageTests(unittest.TestCase):
                     archive.writestr(entry, data)
             Path(str(path) + '.sha256').write_text(f'{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.name}\n')
             with self.assertRaises(ValueError): verify_package(path, root=self.root)
+
+    def test_catalog_package_omits_duplicate_full_pack_and_reports_archive_identity(self):
+        from unittest.mock import patch
+        members={'catalog.hdi':b'catalog','atlas-000.hdp':b'page'}
+        (self.runtime/'hd-assets').mkdir()
+        (self.runtime/'hd-assets.hdp').write_bytes(b'whole')
+        for name,data in members.items():(self.runtime/'hd-assets'/name).write_bytes(data)
+        with patch('tools.hd_catalog.runtime_catalog',return_value=members),patch('tools.hd_assets.runtime_pack',return_value=b'whole'):
+            path=self.package('web','catalog-dist')
+            result=verify_package(path,root=self.root)
+        raw=path.read_bytes();self.assertEqual(result['archive_bytes'],len(raw));self.assertEqual(result['sha256'],hashlib.sha256(raw).hexdigest())
+        with zipfile.ZipFile(path) as archive:
+            self.assertNotIn('hd-assets.hdp',archive.namelist())
+            self.assertEqual(archive.read('hd-assets/catalog.hdi'),b'catalog')

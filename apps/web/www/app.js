@@ -4,6 +4,7 @@ import { AudioHost } from './audio.js';
 import { GameInput, readFiles } from './controls.js';
 import { loadBundled } from './bundled.js';
 import { HdCanvas } from './hd.js';
+import { HdLoader } from './hd-loader.js';
 
 const canvas = document.querySelector('#game');
 const context = canvas.getContext('2d', { alpha: false });
@@ -20,7 +21,7 @@ const openLevel = document.querySelector('#open-level');
 const errorText = document.querySelector('#error');
 const source = document.querySelector('#source');
 const presentation=document.querySelector('#presentation');
-let hd;let hdBytes;let hdMode=false;
+let hd;const hdLoader=new HdLoader();let hdScope=null;let hdPending=false;let hdMode=false;
 function screenSize(){canvas.classList.toggle('hd',hdMode);canvas.width=hdMode?1920:320;canvas.height=hdMode?1080:200;canvas.style.setProperty('--aspect',String(canvas.width/canvas.height));}
 let audio;
 let audioHeld=false;
@@ -70,7 +71,7 @@ function fail(error) {
 function draw() {
     presentations++;
     needsDraw=false;
-    if(hdMode)hd.draw(context);else present(context, game.frame(), game.width(), game.height());
+    if(!hdPending){if(hdMode)hd.draw(context);else present(context, game.frame(), game.width(), game.height());}
     const state = JSON.parse(game.state());
     const finished = state.completion && state.completion.phase !== 'Playing';
     const paused = game.paused();
@@ -91,7 +92,7 @@ function draw() {
     population.textContent = `활동 중 ${state.session.alive} · 구출 ${state.exit.saved}`;
     const rank = game.difficulty();
     source.textContent = game.original() ? `원본 파일 · ${rank[0].toUpperCase()+rank.slice(1)} ${String(game.level()).padStart(2,'0')}` : '직접 만든 자산으로 기술과 구출을 연습합니다.';
-    notify('present',{canvas});
+    if(!hdPending)notify('present',{canvas});
     if (finished || exited) stop();
     return !finished && !exited;
 }
@@ -101,7 +102,7 @@ function schedule() {
 function frame(timestamp) {
     request = null;
     try {
-        if (document.hidden) { pump.suspend(); return; }
+        if (document.hidden || loading) { pump.suspend(); return; }
         const ticks = pump.frame(timestamp);
         // Inputs and replacements already draw synchronously. Between admitted
         // ticks the pixels and UI are unchanged; still service real-time audio.
@@ -117,7 +118,13 @@ function replaced(reason) {
     errorText.textContent = '';
     if (game.original()) { difficulty.value = game.difficulty(); level.value = game.level(); scene.value = ''; }
     pump = newPump();
-    stop(); draw(); schedule();
+    stop();
+    if(hdMode && hdScope!==game.hd_scope()) {
+        loading=true;hdPending=true;draw();
+        void hdLoader.load(game).then(()=>{hdScope=game.hd_scope();hd.invalidate();})
+            .catch(error=>{hdMode=false;presentation.value='original';screenSize();recover(error);})
+            .finally(()=>{hdPending=false;loading=false;pump.suspend();draw();schedule();});
+    } else {draw();schedule();}
 }
 function action(name) {
     if(name==='restart-level'){game.restart_level();replaced('restart');return;}
@@ -147,7 +154,7 @@ files.addEventListener('change', async () => {
         game.load_original_rank(bank, difficulty.value, Number(level.value));
         replaced('load');
     } catch (error) { recover(error); }
-    finally { bank?.free(); loading = false; files.value = ''; draw(); }
+    finally { bank?.free(); if(!hdPending)loading = false; files.value = ''; draw(); }
 });
 document.addEventListener('visibilitychange', () => {
     if (!input) return;
@@ -160,13 +167,12 @@ presentation.addEventListener('change',async()=>{
     if(!game||loading)return;
     const requested=presentation.value==='hd';input.release();loading=true;draw();
     try {
-        if(requested&&!hd){
-            if(!hdBytes){const response=await fetch('./hd-assets.hdp');if(!response.ok)throw new Error('HD 자산을 불러오지 못했습니다.');hdBytes=new Uint8Array(await response.arrayBuffer());}
-            game.load_hd(hdBytes);hd=new HdCanvas(game);
+        if(requested&&(!hd||hdScope!==game.hd_scope())){
+            await hdLoader.load(game);hd=new HdCanvas(game);hdScope=game.hd_scope();
         }
         hdMode=requested;screenSize();errorText.textContent='';
     } catch(error){presentation.value=hdMode?'hd':'original';recover(error);}
-    finally {loading=false;draw();canvas.focus({preventScroll:true});}
+    finally {loading=false;pump.suspend();draw();schedule();canvas.focus({preventScroll:true});}
 });
 document.querySelector('#fullscreen').addEventListener('click',()=>{
     const screen=canvas.parentElement;

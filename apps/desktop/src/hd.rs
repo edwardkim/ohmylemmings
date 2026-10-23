@@ -97,6 +97,46 @@ impl<'a> Host<'a> {
         Ok(())
     }
 }
+/// Read bounded catalog members from a directory, or a legacy single v1 pack.
+pub fn read_pack(
+    path: &std::path::Path,
+    assets: &lemmings_game::Assets,
+) -> Result<Vec<u8>, Box<dyn Error>> {
+    use std::io::Read;
+    fn bounded(path: &std::path::Path, limit: usize) -> Result<Vec<u8>, Box<dyn Error>> {
+        let mut data = Vec::new();
+        std::fs::File::open(path)?
+            .take((limit + 1) as u64)
+            .read_to_end(&mut data)?;
+        if data.len() > limit {
+            return Err("HD file size limit".into());
+        }
+        Ok(data)
+    }
+    if !path.is_dir() {
+        return bounded(path, 128 * 1024 * 1024);
+    }
+    let catalog = lemmings_game::hd::catalog::Catalog::parse(&bounded(
+        &path.join("catalog.hdi"),
+        12 + 128 * 12,
+    )?)?;
+    let scope = lemmings_game::hd::catalog::level_scope(assets)?;
+    let entries = catalog.select(scope)?;
+    let mut result = b"LHDSET01".to_vec();
+    result.extend((entries.len() as u16).to_le_bytes());
+    result.extend(0u16.to_le_bytes());
+    for entry in entries {
+        let data = bounded(
+            &path.join(format!("atlas-{:03}.hdp", entry.index)),
+            entry.bytes,
+        )?;
+        entry.verify(&data)?;
+        result.extend((data.len() as u32).to_le_bytes());
+        result.extend(data);
+    }
+    Ok(result)
+}
+
 pub enum Routed {
     Event(Event),
     Restart,

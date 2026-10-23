@@ -1,6 +1,6 @@
 // Actual bundled Fun01 UI/HD equivalence check. Use a disposable blank browser.
 const fs=require('fs'),path=require('path');
-const [base,cdp,output]=process.argv.slice(2);if(!base||!cdp||!output)throw Error('usage: node tools/web/hd_product.cjs PRODUCT_URL DISPOSABLE_CDP_URL NEW_EVIDENCE_DIR');
+const [base,cdp,output,catalogCheck]=process.argv.slice(2);if(!base||!cdp||!output)throw Error('usage: node tools/web/hd_product.cjs PRODUCT_URL DISPOSABLE_CDP_URL NEW_EVIDENCE_DIR');
 const out=path.resolve(output),allowed=path.resolve(__dirname,'../../assets/local');if(path.relative(allowed,out).startsWith('..'))throw Error('original evidence must stay under assets/local');if(fs.existsSync(out))throw Error('evidence directory already exists');fs.mkdirSync(out,{recursive:true});const pause=ms=>new Promise(r=>setTimeout(r,ms));
 (async()=>{
  const tabs=await(await fetch(cdp+'/json/list')).json();if(tabs.filter(t=>t.type==='page').length!==1)throw Error('use a disposable single-tab QA browser');const target=tabs.find(t=>t.type==='page'&&t.url==='about:blank');if(!target)throw Error('own blank QA tab missing');
@@ -28,8 +28,29 @@ const out=path.resolve(output),allowed=path.resolve(__dirname,'../../assets/loca
  fs.writeFileSync(out+'/web-fun01-states.jsonl',(await evaluate("qaStates.join('\\n')"))+'\n');
  for(const name of ['terrain','bricks','objects']){const data=await evaluate(`Array.from(qaGame.${name}())`);fs.writeFileSync(out+'/web-'+name+'.bin',Buffer.from(data));}
  const screenshot=await cmd('Page.captureScreenshot',{format:'png'});fs.writeFileSync(out+'/web-fun01-won.png',Buffer.from(screenshot.data,'base64'));
+ const catalogTransitions=[];
+ if(catalogCheck==='catalog'){
+  await evaluate("window.qaBaseline=new (await import('./pkg/lemmings_web.js')).WebGame('builder','reference');qaBaseline.load_original(qaBank,1);qaBaseline.load_hd(new Uint8Array(await(await fetch('./hd-assets.hdp')).arrayBuffer()));window.qaBaselineHost=new (await import('./hd.js')).HdCanvas(qaBaseline);window.qaBaselineCanvas=document.createElement('canvas');qaBaselineCanvas.width=1920;qaBaselineCanvas.height=1080;");
+  for(const level of [1,2,4,5,6,22]){
+   await evaluate(`document.getElementById('level').value=${level};document.getElementById('open-level').click();`);
+   for(let n=0;!(await evaluate("!document.getElementById('presentation').disabled"));n++){if(n>300)throw Error('theme loading timeout');await pause(100);}
+   const result=await evaluate(`(()=>{if(document.getElementById('presentation').value!=='hd')throw Error('HD theme failed');qaBaseline.load_original(qaBank,${level});qaBaselineHost.invalidate();qaBaselineHost.draw(qaBaselineCanvas.getContext('2d'));const live=document.getElementById('game'),a=live.getContext('2d').getImageData(0,0,1920,1080).data,b=qaBaselineCanvas.getContext('2d').getImageData(0,0,1920,1080).data;let different=0;for(let i=0;i<a.length;i++)different+=a[i]!==b[i];if(different)throw Error('selected product pixels differ '+different);if(qaGame.state()!==qaBaseline.state())throw Error('theme state differs');return {level:${level},scope:qaGame.hd_scope(),rgba_exact:true};})()`);catalogTransitions.push(result);
+  }
+  await evaluate("document.getElementById('level').value=1;document.getElementById('open-level').click();");
+  for(let n=0;!(await evaluate("!document.getElementById('presentation').disabled"));n++){if(n>300)throw Error('theme reset timeout');await pause(100);}
+  await cmd('Network.enable');await cmd('Network.setBlockedURLs',{urls:['*atlas-016.hdp']});
+  await evaluate("document.getElementById('level').value=2;document.getElementById('open-level').click();");
+  for(let n=0;!(await evaluate("!document.getElementById('presentation').disabled"));n++){if(n>300)throw Error('theme failure timeout');await pause(100);}
+  const failedState=await evaluate("(()=>{if(document.getElementById('presentation').value!=='original'||!document.getElementById('error').textContent.includes('실패'))throw Error('failed theme did not recover to original mode');if(qaGame.level()!==2||JSON.parse(qaGame.state()).session.control_step!==0)throw Error('load failure advanced gameplay');return qaGame.state();})()");
+  await cmd('Network.setBlockedURLs',{urls:[]});
+  await evaluate("document.getElementById('presentation').value='hd';document.getElementById('presentation').dispatchEvent(new Event('change'));");
+  for(let n=0;!(await evaluate("!document.getElementById('presentation').disabled"));n++){if(n>300)throw Error('theme retry timeout');await pause(100);}
+  if(await evaluate("document.getElementById('presentation').value!=='hd'||Boolean(document.getElementById('error').textContent)"))throw Error('theme retry failed');
+  if(await evaluate('qaGame.state()')!==failedState)throw Error('theme retry changed gameplay');
+  catalogTransitions.push({failure_falls_back_to_original:true,retry_preserves_gameplay:true});
+ }
  const stable=await evaluate('qaGame.state()');await evaluate("var p=document.getElementById('presentation');p.value='original';p.dispatchEvent(new Event('change'))");await pause(150);if(await evaluate('qaGame.state()')!==stable)throw Error('return to original changed result');
  if(errors.length)throw Error('browser exception '+JSON.stringify(errors));
- const report={status:'PASS',controls,fullscreen:full,fullscreen_rect:rect,play,console_errors:errors.length,scope:'actual bundled Fun01 product UI/Canvas; fixed explicit ticks, not a performance measurement'};fs.writeFileSync(out+'/product-check.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
+ const report={status:'PASS',catalog_transitions:catalogTransitions,controls,fullscreen:full,fullscreen_rect:rect,play,console_errors:errors.length,scope:'actual bundled Fun01 product UI/Canvas; fixed explicit ticks, not a performance measurement'};fs.writeFileSync(out+'/product-check.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
  }finally{await cmd('Browser.close').catch(()=>{});ws.close();}
 })().catch(e=>{console.error(e.stack);process.exit(1);});

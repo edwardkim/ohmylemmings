@@ -204,6 +204,10 @@ impl WebGame {
     ) -> Result<String, String> {
         input::event(&mut self.run, kind, x, y, button, buttons, clicks)
     }
+    /// Product scope bits: common, one normal theme, optional special scene.
+    pub fn hd_scope(&self) -> Result<u16, String> {
+        lemmings_game::hd::catalog::level_scope(&self.run.assets).map_err(|e| e.to_string())
+    }
     /// Optional presentation assets. Construct before replacing a working pack.
     pub fn load_hd(&mut self, bytes: &[u8]) -> Result<(), String> {
         let mut renderer =

@@ -869,8 +869,8 @@
   "source": [
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 66043,
-      "sha256": "d9bbca3d3871468a4b9fc074942dcc1d65c3dca305547ce639bb3c9973a76061"
+      "bytes": 67617,
+      "sha256": "906a5316f71f99be2d2896292f204442f33f7ba43752cf15e8686ac59d184c3d"
     },
     {
       "path": "apps/desktop/src/frame_clock.rs",
@@ -1662,5 +1662,16 @@
       }
     ],
     "scope": "Current maintained host adds opt-in HD renderer/input/fullscreen and mode switches. Previous producer pins retain historical measurements. No fresh performance qualification; #113 remains deferred."
+  },
+  "source_maintenance_169": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/169",
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 66043,
+        "sha256": "d9bbca3d3871468a4b9fc074942dcc1d65c3dca305547ce639bb3c9973a76061"
+      }
+    ],
+    "scope": "Current desktop host adds bounded theme catalog loading and validates new HD pages before level replacement. Previous producer pins and measurements remain historical; no new performance qualification.113 remains deferred."
   }
 }

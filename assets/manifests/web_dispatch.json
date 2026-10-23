@@ -6,8 +6,8 @@
   "source": [
     {
       "path": "apps/web/www/app.js",
-      "bytes": 11172,
-      "sha256": "2edcbbdab5e8c24d96c9ab0de44f4cd9a6144e0a0aab631336c964119d0ad6d0"
+      "bytes": 11586,
+      "sha256": "69d64462c33c33ab4e24ee5b0711fe44903944ca180f09cb7d99a74ca281c861"
     },
     {
       "path": "apps/web/www/host.js",
@@ -542,5 +542,16 @@
       }
     ],
     "scope": "Current Web source adds opt-in HD Canvas/input/fullscreen and synthetic HD checks. FramePump/audio scheduling unchanged; previous measured producers and historical observations preserved. No new performance qualification; #113 remains deferred."
+  },
+  "source_maintenance_169": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/169",
+    "previous_pins": [
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 11172,
+        "sha256": "2edcbbdab5e8c24d96c9ab0de44f4cd9a6144e0a0aab631336c964119d0ad6d0"
+      }
+    ],
+    "scope": "Current Web host loads immutable selected theme pages. Recorded dispatch measurements and producer pins remain historical; no new performance qualification."
   }
 }

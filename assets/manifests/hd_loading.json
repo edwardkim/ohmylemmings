@@ -1,0 +1,509 @@
+{
+  "status": "PASS",
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/169",
+  "baseline": "8e2497f403e427a185397802bd9ab4f2e03f4afb",
+  "legacy_bytes": 131699864,
+  "legacy_sha256": "07e240a23f338fef77e7f9fbf6fc439ba3e0dd3972566f9e848bcbe106014ff4",
+  "source_pngs_unchanged": true,
+  "all_440_keys_preserved": true,
+  "atlas_rgba_dimensions_cutoffs_exact": true,
+  "frame_rect_display_anchor_exact": true,
+  "catalog_sha256": "2365cf2643d16fa1a06d01378a64c816d78643199d4897b8231268b7abb0458d",
+  "catalog_bytes": 336,
+  "catalog_payload_bytes": 131700512,
+  "active_selections": [
+    {
+      "theme": 0,
+      "atlases": 18,
+      "bytes": 97633576,
+      "saved_bytes": 34066288,
+      "remaining_bytes": 36584152
+    },
+    {
+      "theme": 1,
+      "atlases": 19,
+      "bytes": 100517024,
+      "saved_bytes": 31182840,
+      "remaining_bytes": 33700704
+    },
+    {
+      "theme": 2,
+      "atlases": 19,
+      "bytes": 100517336,
+      "saved_bytes": 31182528,
+      "remaining_bytes": 33700392
+    },
+    {
+      "theme": 3,
+      "atlases": 19,
+      "bytes": 94165832,
+      "saved_bytes": 37534032,
+      "remaining_bytes": 40051896
+    },
+    {
+      "theme": 4,
+      "atlases": 19,
+      "bytes": 94414300,
+      "saved_bytes": 37285564,
+      "remaining_bytes": 39803428
+    }
+  ],
+  "parts": [
+    {
+      "path": "atlas-000.hdp",
+      "bytes": 6292000,
+      "sha256": "03757a8032448f539f0f34361e4ee5828bf5b2f559952c31a91001a1f6c1f110"
+    },
+    {
+      "path": "atlas-001.hdp",
+      "bytes": 6295208,
+      "sha256": "fd4d89beec16b0dd6d564f2da1edf3fb2ac691dd53d455916f4ab2df1bac1233"
+    },
+    {
+      "path": "atlas-002.hdp",
+      "bytes": 5755664,
+      "sha256": "68e7cf0d8e6d527171b33c530a5aaeec4e23f8fce300725dda60f60ecd32d702"
+    },
+    {
+      "path": "atlas-003.hdp",
+      "bytes": 3201772,
+      "sha256": "2ea18bc3f3c43ed364b3ccb6ea250c9b2439ce36feb2ffce8a6e371cfd7b4f95"
+    },
+    {
+      "path": "atlas-004.hdp",
+      "bytes": 4451056,
+      "sha256": "fdcfb2ac44a4ad35787ca1e489fee0fccfb5fd6229a9efb70dc5c60936c3d4b3"
+    },
+    {
+      "path": "atlas-005.hdp",
+      "bytes": 4557416,
+      "sha256": "628025d13287b30cd9434dcd30d5fabb05063527a1f25479ceec281b899ab6ff"
+    },
+    {
+      "path": "atlas-006.hdp",
+      "bytes": 2843296,
+      "sha256": "1832b354f11687fd8d633749990bdb002e8c8d59b99e746cdc885a5b1f17bbaf"
+    },
+    {
+      "path": "atlas-007.hdp",
+      "bytes": 4019200,
+      "sha256": "8847d569ad3244325874fef22c0648d44ba3c4a2e0abe5cda56c7a5f94557271"
+    },
+    {
+      "path": "atlas-008.hdp",
+      "bytes": 1796760,
+      "sha256": "ff3ee5caf133db2bcfb8c531f0b5b60f919268dc96cc558bf30ae78585495528"
+    },
+    {
+      "path": "atlas-009.hdp",
+      "bytes": 5211032,
+      "sha256": "dac9fefcee54d9c1002e736c8b70e40d972a37a8575b0ed8d513bbdb49ee2ccc"
+    },
+    {
+      "path": "atlas-010.hdp",
+      "bytes": 4861284,
+      "sha256": "03da2e8e0789b95ea0c795c85eb4a64df25faa2efcc0efa067a2214438cef3ec"
+    },
+    {
+      "path": "atlas-011.hdp",
+      "bytes": 3677432,
+      "sha256": "2e588e805a42b6420353322852328a802122cb6c7fc3708c8442512896533ec5"
+    },
+    {
+      "path": "atlas-012.hdp",
+      "bytes": 3960120,
+      "sha256": "b76192a60150eb83ecac159cf8f26da9f05218235d57bfd00e7704b72e232163"
+    },
+    {
+      "path": "atlas-013.hdp",
+      "bytes": 4435960,
+      "sha256": "d78f747664081c9b737624cfe6fa11ab1b7c0ad30ea43cbe65ee2e68e2b1caaa"
+    },
+    {
+      "path": "atlas-014.hdp",
+      "bytes": 2850864,
+      "sha256": "019ad86edad1a42ac3f4a97c9e14e9fef3f99d3b62457a042c074c77cc24a4a4"
+    },
+    {
+      "path": "atlas-015.hdp",
+      "bytes": 3019536,
+      "sha256": "a355e82f97d941c271c966815a6570af725f0c2cb7900ac7239301581ecdefad"
+    },
+    {
+      "path": "atlas-016.hdp",
+      "bytes": 2813848,
+      "sha256": "da888f666e1705f8e50b970302397d47ee51a72e48705a07648a84ecf8255b55"
+    },
+    {
+      "path": "atlas-017.hdp",
+      "bytes": 3133956,
+      "sha256": "f6ad363a3dc8e7b416854d170a8ef856e7f44bb4a8cf9b769ab52b1e596ae18c"
+    },
+    {
+      "path": "atlas-018.hdp",
+      "bytes": 2436444,
+      "sha256": "8d4c749ea728d2445658d6b5731888956bf810030204199dd78e69b12712648c"
+    },
+    {
+      "path": "atlas-019.hdp",
+      "bytes": 2469024,
+      "sha256": "c9aac229a21e0f80d38ec009193f313fe2916ca7f239ac1c705a31f4fd27969c"
+    },
+    {
+      "path": "atlas-020.hdp",
+      "bytes": 2300664,
+      "sha256": "05050ef4a3e1579ccccae3a81e569e7e64c181f4143d544b0c8a3d30f0151ab0"
+    },
+    {
+      "path": "atlas-021.hdp",
+      "bytes": 2465024,
+      "sha256": "853006dbae115823604e706e11133d68a2ec36c54937cc21fc13ef6bfc1c5b61"
+    },
+    {
+      "path": "atlas-022.hdp",
+      "bytes": 2393384,
+      "sha256": "54c07c8c07d33db726951a780b84de71213e00662bd66fb91e7e574cbd6f393b"
+    },
+    {
+      "path": "atlas-023.hdp",
+      "bytes": 18930560,
+      "sha256": "2ec95b8926def44d255c63e0275ad23a4e9a69277dc5d4904c39fb1add509725"
+    },
+    {
+      "path": "atlas-024.hdp",
+      "bytes": 12620384,
+      "sha256": "b2a321be426c62140bf14c5797257429d1b3b47f7ec0354eb85b3d9032e8a1e5"
+    },
+    {
+      "path": "atlas-025.hdp",
+      "bytes": 14547712,
+      "sha256": "e867d882279e5519f01bc453b18e7238ec2f804d85137f8d4a7503557399bd3d"
+    },
+    {
+      "path": "atlas-026.hdp",
+      "bytes": 360576,
+      "sha256": "1341bf3b26a14e7de0e7fef4fbc01e13e247008b9a1cecd11fee3b1c15e2b7f5"
+    }
+  ],
+  "limits": {
+    "active_bytes": 134217728,
+    "active_atlases": 32,
+    "catalog_bytes": 536870912,
+    "catalog_atlases": 128
+  },
+  "scope": "Serialized asset payload only; no process/GPU RSS or60fps qualification. Actual SDL/Canvas checks recorded separately. No new art or BGM fix.",
+  "checks": {
+    "native_courses": {
+      "path": "assets/local/issue-169-courses/summary.json",
+      "sha256": "a48cdd943c35f9db3805042acb5963649a6736b1875bf43e99bbb9b8eec9c1c6",
+      "result": {
+        "status": "PASS",
+        "themes": 5,
+        "states": 947,
+        "saved_per_theme": 1,
+        "mode_state_inputs_masks_equal": true,
+        "baseline_hd_pixels_equal": true,
+        "scope": "invented courses with documented original portal metadata; actual SDL original/HD pairs, not original-level solutions or performance"
+      }
+    },
+    "web_courses": {
+      "path": "assets/local/issue-169-review/courses-final/summary.json",
+      "sha256": "86ad7c7cc6f64166f16ee913b341d2439c7072ed2acfb937695062e9c850c4bf",
+      "result": {
+        "status": "PASS",
+        "themes": 5,
+        "states": 947,
+        "canvas_pairs": 120,
+        "rgba_exact": true,
+        "state_masks_sound_equal": true,
+        "saved_per_theme": 1,
+        "rows": [
+          {
+            "theme": 0,
+            "states": 191,
+            "canvas_pairs": 24,
+            "saved": 1
+          },
+          {
+            "theme": 1,
+            "states": 187,
+            "canvas_pairs": 24,
+            "saved": 1
+          },
+          {
+            "theme": 2,
+            "states": 191,
+            "canvas_pairs": 24,
+            "saved": 1
+          },
+          {
+            "theme": 3,
+            "states": 191,
+            "canvas_pairs": 24,
+            "saved": 1
+          },
+          {
+            "theme": 4,
+            "states": 187,
+            "canvas_pairs": 24,
+            "saved": 1
+          }
+        ],
+        "requests": [
+          "./hd-assets/catalog.hdi",
+          "./hd-assets/atlas-000.hdp",
+          "./hd-assets/atlas-001.hdp",
+          "./hd-assets/atlas-002.hdp",
+          "./hd-assets/atlas-003.hdp",
+          "./hd-assets/atlas-004.hdp",
+          "./hd-assets/atlas-005.hdp",
+          "./hd-assets/atlas-006.hdp",
+          "./hd-assets/atlas-007.hdp",
+          "./hd-assets/atlas-008.hdp",
+          "./hd-assets/atlas-009.hdp",
+          "./hd-assets/atlas-010.hdp",
+          "./hd-assets/atlas-011.hdp",
+          "./hd-assets/atlas-012.hdp",
+          "./hd-assets/atlas-013.hdp",
+          "./hd-assets/atlas-018.hdp",
+          "./hd-assets/atlas-023.hdp",
+          "./hd-assets/atlas-025.hdp",
+          "./hd-assets/atlas-026.hdp",
+          "./hd-assets/atlas-014.hdp",
+          "./hd-assets/atlas-019.hdp",
+          "./hd-assets/atlas-015.hdp",
+          "./hd-assets/atlas-020.hdp",
+          "./hd-assets/atlas-016.hdp",
+          "./hd-assets/atlas-021.hdp",
+          "./hd-assets/atlas-024.hdp",
+          "./hd-assets/atlas-017.hdp",
+          "./hd-assets/atlas-022.hdp"
+        ],
+        "scope": "Five invented courses through actual WASM/Canvas, monolithic versus selected atlas catalog and native states. Not original-level completion or performance.",
+        "console_errors": 0
+      }
+    },
+    "native_transition": {
+      "path": "assets/local/issue-169-review/native-transition/summary.json",
+      "sha256": "a39c7c9e606de0ec7f2a7e513d5eeef6178c006f19b26e8d13cd780200cd1496",
+      "result": {
+        "status": "PASS",
+        "identical_files": 229,
+        "scope": "Actual original Fun01 rescue and Continue into Fun02; selected/whole HD pixels and diagnostics identical."
+      }
+    },
+    "product_web": {
+      "path": "assets/local/issue-169-review/product-final/product-check.json",
+      "sha256": "2533be89aa1a040eabe05c10618d0ad4ed7b9e920b845318e64f860ef01cfa27",
+      "result": {
+        "status": "PASS",
+        "catalog_transitions": [
+          {
+            "level": 1,
+            "scope": 3,
+            "rgba_exact": true
+          },
+          {
+            "level": 2,
+            "scope": 17,
+            "rgba_exact": true
+          },
+          {
+            "level": 4,
+            "scope": 9,
+            "rgba_exact": true
+          },
+          {
+            "level": 5,
+            "scope": 33,
+            "rgba_exact": true
+          },
+          {
+            "level": 6,
+            "scope": 5,
+            "rgba_exact": true
+          },
+          {
+            "level": 22,
+            "scope": 515,
+            "rgba_exact": true
+          },
+          {
+            "failure_falls_back_to_original": true,
+            "retry_preserves_gameplay": true
+          }
+        ],
+        "controls": {
+          "skills": 8,
+          "pause": true,
+          "minimap": true,
+          "restart": true,
+          "actor_assignment": true
+        },
+        "fullscreen": true,
+        "fullscreen_rect": {
+          "width": 800,
+          "height": 450
+        },
+        "play": {
+          "status": "PASS",
+          "steps": 664,
+          "states": 665,
+          "frames": 36,
+          "final": {
+            "phase": "Won",
+            "reason": "PopulationExhausted",
+            "original_total": 10,
+            "lemming_count": 10,
+            "required": 1,
+            "rescued": 10,
+            "target_percent": 10,
+            "rescued_percent": 100
+          },
+          "info": {
+            "version": 1,
+            "width": 1920,
+            "height": 1080,
+            "actor_frames_available": 337,
+            "portal_frames_available": 11,
+            "exit_effect_frames_available": 6,
+            "terrain_rebuilds": 291,
+            "source_terrain": false,
+            "terrain_material": 0,
+            "one_way_objects": 0,
+            "missing_actor_frames": [],
+            "hd_actor_frames": [],
+            "hd_portal_frames": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "original_portal_frames": [],
+            "hd_exit_effect_frames": [
+              [
+                0,
+                7,
+                2
+              ]
+            ],
+            "original_exit_effect_frames": []
+          }
+        },
+        "console_errors": 0,
+        "scope": "actual bundled Fun01 product UI/Canvas; fixed explicit ticks, not a performance measurement"
+      }
+    },
+    "web_regression": {
+      "path": "assets/local/issue-169-review/web-regression/summary.json",
+      "sha256": "d579e8e064aabe5a73d39a92d2259d48dfac526ef7a652bda133d96fd4930878",
+      "result": {
+        "measurement": {
+          "status": "PASS",
+          "fixed_capacity": true,
+          "preserves_arguments_receiver_result_and_failure": true,
+          "canvas_three_argument_overload": true
+        },
+        "dispatch": {
+          "status": "PASS",
+          "unchanged_callbacks_skip_rgb": true,
+          "audio_service_retained": true,
+          "ticks_refresh": true,
+          "input_immediate": true,
+          "single_replacement_draw": true,
+          "completion_stops": true
+        },
+        "dom": {
+          "status": "PASS",
+          "ranks": {
+            "status": "PASS",
+            "rank_selections": 8,
+            "restarts": 8,
+            "cross_rank_continues": 3,
+            "terminal_mayhem": true,
+            "atomic_file_failure": true,
+            "special_selections": 4,
+            "special_restarts": 4,
+            "special_continues": 4,
+            "special_atomic_failures": 8
+          },
+          "scaled_assignments": 8,
+          "panel_skills": 8,
+          "held_release": true,
+          "focus_release": true,
+          "double_click_capture": true,
+          "right_chord_fallback": true,
+          "local_files": true,
+          "atomic_replacement": true,
+          "result_lifecycle": true
+        },
+        "sound_commands": {
+          "startup_events": 3,
+          "ui_burst": 1100,
+          "retained": 1024,
+          "dropped": 76,
+          "lifecycle": true,
+          "simulation_unchanged": true
+        },
+        "status": "PASS",
+        "hd": {
+          "status": "PASS",
+          "wire_version": 1,
+          "scenarios": 13,
+          "frames": 821,
+          "states": 7593,
+          "actor_frames_available": 337,
+          "observed_slots": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            7,
+            10,
+            12,
+            14,
+            16,
+            17,
+            18,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27
+          ],
+          "no_actor_fallback": true,
+          "unchanged_logic_masks_audio": true,
+          "dirty_chunks": true,
+          "corrupt_pack": true,
+          "input": true,
+          "scope": "full character pack in actual WASM HD renderer/Canvas with synthetic state pairs; not a performance or all-level qualification"
+        },
+        "cases": 33,
+        "runs": 66,
+        "states": 11960,
+        "frames": 6877,
+        "canvas_readbacks": 6877,
+        "boundary_checks": true,
+        "refresh_rates": [
+          60,
+          120,
+          144
+        ],
+        "browser": "Chromium 152.0.7977.82 Arch Linux",
+        "expected_sha256": "bcfeb145620014b2eac781648617a889508525b4e9f7da1e2b727c2309b4cb20",
+        "scope": "real WASM versus native wrapper: every full diagnostic state and all terrain/brick/object bytes by SHA-256; all rendered RGB and opaque Canvas readback; synthetic and invented file bytes only"
+      }
+    }
+  },
+  "python_tests": 297,
+  "rust_tests": 697,
+  "full_remaster_ready": false
+}

@@ -474,6 +474,9 @@ def main():
     args = parser.parse_args()
     if args.command=='runtime':
         data=runtime_pack()
+        try:from .hd_catalog import runtime_catalog,write_files
+        except ImportError:from hd_catalog import runtime_catalog,write_files
+        write_files(runtime_catalog(ROOT,data),ROOT/'assets/local/hd-runtime/atlas')
         print(json.dumps(dict(status='PASS',path=str(ROOT/'assets/local/hd-runtime/assets.hdp'),bytes=len(data),sha256=hashlib.sha256(data).hexdigest())))
         return
     manifest = json.loads(args.manifest.read_text())
