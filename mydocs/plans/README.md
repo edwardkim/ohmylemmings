@@ -56,3 +56,5 @@
 - [#175 물·불 HD](issue-175_hd_hazards.md)
 
 - [#178 기계 함정 HD](issue-178_hd_traps.md):발동/재사용·원본 판정 보존과 Native/Web 검증.
+
+- [#181 깃발·일방통행 표시 HD](issue-181_hd_decor.md):방향 제한/마스크와 원본 규칙 보존.

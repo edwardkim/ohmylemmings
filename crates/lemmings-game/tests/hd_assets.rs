@@ -191,7 +191,7 @@ fn facility_frames_use_theme_and_id_without_aliasing_actors_or_materials() {
             assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
         }
     }
-    for slot in [3, 15, 80, 255] {
+    for slot in [11, 15, 80, 255] {
         let mut b = fixture();
         b[40] = 2;
         b[41] = slot;
@@ -297,7 +297,7 @@ fn expanded_character_pack_accepts_32_small_atlases_and_rejects_33() {
 }
 
 #[test]
-fn decorative_exit_flames_keep_six_frames_without_accepting_arrow_or_torch_keys() {
+fn decorative_exit_flames_keep_six_frames_and_reject_empty_keys() {
     assert_eq!(
         AssetPack::parse(&fixture())
             .unwrap()
@@ -342,7 +342,7 @@ fn decorative_exit_flames_keep_six_frames_without_accepting_arrow_or_torch_keys(
         b[42..44].copy_from_slice(&6u16.to_le_bytes());
         assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
     }
-    for slot in [2, 3, 9, 19, 35, 51, 68, 82] {
+    for slot in [11, 27, 42, 59, 75, 82] {
         let mut b = fixture();
         b[40] = 2;
         b[41] = slot;
@@ -474,10 +474,54 @@ fn mechanical_traps_accept_exact_disk_counts_and_keep_other_keys_rejected() {
             }
         }
     }
-    for (set, id) in [(0, 2), (1, 9), (2, 7), (3, 7), (4, 11)] {
+    for (set, id) in [(0, 11), (1, 11), (2, 10), (3, 11), (4, 11)] {
         let mut b = fixture();
         b[40] = 2;
         b[41] = set * 16 + id;
         assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
+    }
+}
+
+#[test]
+fn flags_and_arrows_accept_all_212_disk_frames_and_reject_boundary() {
+    let profiles = [
+        (0, 2, 14),
+        (0, 9, 14),
+        (1, 2, 14),
+        (1, 9, 14),
+        (2, 2, 14),
+        (2, 7, 14),
+        (3, 2, 14),
+        (3, 7, 14),
+        (4, 2, 14),
+        (4, 3, 14),
+        (0, 3, 7),
+        (0, 4, 7),
+        (1, 3, 8),
+        (1, 4, 8),
+        (2, 3, 7),
+        (2, 4, 7),
+        (3, 3, 7),
+        (3, 4, 7),
+        (4, 4, 7),
+        (4, 5, 7),
+    ];
+    for (set, id, count) in profiles {
+        for frame in 0u16..=count {
+            let mut b = fixture();
+            b[40] = 2;
+            b[41] = set * 16 + id;
+            b[42..44].copy_from_slice(&frame.to_le_bytes());
+            if frame < count {
+                assert!(
+                    AssetPack::parse(&b)
+                        .unwrap()
+                        .frame(AssetKey::Object { set, id, frame })
+                        .is_some()
+                );
+            } else {
+                assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
+            }
+        }
     }
 }

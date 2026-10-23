@@ -13752,6 +13752,11 @@
       "path": "assets/manifests/remaster_traps.json",
       "bytes": 62062,
       "sha256": "00e705ee129b39b45b46ad6bc2021c1c91f258fed090c37bbb2aeeef4c443a0a"
+    },
+    {
+      "path": "assets/manifests/remaster_decor.json",
+      "bytes": 79717,
+      "sha256": "540a5a721bdef5f3df6353a29a76d2ce5c2f6a417cb4c656ba38937672550a08"
     }
   ]
 }

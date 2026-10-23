@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 180804,
-      "sha256": "acf4af955963314fac91d48113cd9e27413dc4b4f2930dcddbc26a97e6976b61"
+      "bytes": 180976,
+      "sha256": "ac745f479657c7f26b35eeff13c8a302804680d4677481b5ce6b363133aaf5ca"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -586,8 +586,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/assets.rs",
-      "bytes": 14460,
-      "sha256": "44a6f70258e545440fda19752cb0aff5978bbef7721297e3689d786641fb1a85"
+      "bytes": 14989,
+      "sha256": "1ac41cc9094d406ab1c91708d15d286d89d5009cdb4e07c6ce6429adc425da5c"
     },
     {
       "path": "crates/lemmings-game/src/hd/layout.rs",
@@ -646,8 +646,8 @@
     },
     {
       "path": "crates/lemmings-game/tests/hd_assets.rs",
-      "bytes": 15264,
-      "sha256": "3135bc81ca9b25d7b2472b715cf5bd26105a7efa7de60f83182f70fb26ffe4db"
+      "bytes": 16361,
+      "sha256": "b17a4a11bbfe242fb89be7c2c2194b189eacd8893814605bb39f9429a6472303"
     },
     {
       "path": "crates/lemmings-game/tests/hd_presentation.rs",
@@ -1491,8 +1491,8 @@
     },
     {
       "path": "tools/hd_assets.py",
-      "bytes": 30994,
-      "sha256": "84d2e92a900971e52decb4622b8764a0d8d265c14fe03f98e0b768889ce34264"
+      "bytes": 32118,
+      "sha256": "0f202ca754684db6d1f6c27223c987b67e6b4d46c7ef5e6dbe5aa3eb2974c512"
     },
     {
       "path": "tools/hd_assets_preview.html",
@@ -1936,8 +1936,8 @@
     },
     {
       "path": "tools/tests/test_hd_assets.py",
-      "bytes": 21319,
-      "sha256": "07328df6115d232fa5db03a85ceba96fcb97f59a5f4a92bec123f87d8aa02485"
+      "bytes": 22810,
+      "sha256": "6ec44bb0cfd95cb3ccb699af52ea6a9753814c314643a2b91a0f8dd3803e1040"
     },
     {
       "path": "tools/tests/test_initial_reference.py",
@@ -2321,8 +2321,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/scene.rs",
-      "bytes": 65274,
-      "sha256": "ed515a49716e511942e78488421e143f23c20a4c51b4eb2577be21a3131a94d1"
+      "bytes": 70399,
+      "sha256": "56f047195a16731c703e0b3f3e50965e520cff73aa76e64349f57416f32d3b27"
     },
     {
       "path": "crates/lemmings-game/tests/hd_scene.rs",
@@ -2561,8 +2561,8 @@
     },
     {
       "path": "tools/web/hd_terrain.cjs",
-      "bytes": 7504,
-      "sha256": "9f55fa8ad6b2d551723efb7a532f747b9f0318a08ae4d561cbd3284113019e88"
+      "bytes": 8008,
+      "sha256": "b02e3cf82c2fe668b5952490e6c3c788a3d5153c76ab36a9d08949c68780074c"
     },
     {
       "path": "assets/manifests/hd_portals.json",
@@ -3088,6 +3088,66 @@
       "path": "tools/web/hd_traps.cjs",
       "bytes": 6746,
       "sha256": "e82e681cd41ed9ecf0f0743f19dc4bc4c97b697b366f27379c868c51ed49f804"
+    },
+    {
+      "path": "assets/manifests/hd_decor.json",
+      "bytes": 18062,
+      "sha256": "522160dc96e0b6d6b5e4c21e0655b405806ce410f87464b7cc0771ba2c3aa21e"
+    },
+    {
+      "path": "assets/manifests/remaster_decor.json",
+      "bytes": 79717,
+      "sha256": "540a5a721bdef5f3df6353a29a76d2ce5c2f6a417cb4c656ba38937672550a08"
+    },
+    {
+      "path": "assets/remaster/issue-181-arrows-v1.png",
+      "bytes": 1737483,
+      "sha256": "06b0476175c97d6fd4fc406833b3e1345675bd824843f13b9448bd91f61d393d"
+    },
+    {
+      "path": "assets/remaster/issue-181-flags-v1.png",
+      "bytes": 622100,
+      "sha256": "8eed10f03717a73ea5425948f7252099c15b3f4301dcd035434df6dae7112476"
+    },
+    {
+      "path": "assets/remaster/previews/issue-181_course_0.png",
+      "bytes": 249749,
+      "sha256": "f8a62d849d9f68a6c284cba68b25b70c5d89110633569e8dd80136af1772ed92"
+    },
+    {
+      "path": "assets/remaster/previews/issue-181_course_4.png",
+      "bytes": 287729,
+      "sha256": "bbbcf990db3e5db5ac4bb727e3de9d877936f2385a370637a3c7427dd058b0ad"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-181_arrows_v1.txt",
+      "bytes": 1558,
+      "sha256": "80e90572d88c3ae027e0ab08b16a189d852ff6f87847ae0933cc76af588c7f7a"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-181_flags_v1.txt",
+      "bytes": 1214,
+      "sha256": "ad018bd5894da0769c4e8d4f43ed0854fc3ea7c7d09bd2a0e01669f160f24dd4"
+    },
+    {
+      "path": "tools/check_hd_decor.py",
+      "bytes": 3628,
+      "sha256": "cf906e6e69603e471221822de7d686e2099b322dc9d8e34159d4113c72c92ed0"
+    },
+    {
+      "path": "tools/decor_fixture.py",
+      "bytes": 2324,
+      "sha256": "1944f929e7cc2b98629ce7f0e29fcbfe3eecaf30beddf140a9279ef5ca448e36"
+    },
+    {
+      "path": "tools/tests/test_decor_fixture.py",
+      "bytes": 853,
+      "sha256": "ce477b895ccc4f62f78dc9c46bd8bf4257924b1142e8562aeb4f475e2ba8d7b0"
+    },
+    {
+      "path": "tools/web/hd_decor.cjs",
+      "bytes": 7970,
+      "sha256": "db3231ee1f824b2e8367ead9e0f9d3597b044dd8a6e187c8cb3f8016b1b09996"
     }
   ],
   "evidence": [
@@ -6938,5 +6998,61 @@
       "tools/web/hd_traps.cjs"
     ],
     "scope": "Nine generated mechanical trap sheets,159 object frames, bounded typed keys and selected catalog extension. Original triggers/loop/order and simulation masks preserved; synthetic SDL/WASM death courses. No simulation/audio synthesis changes. Historical evidence remains historical; BGM165 deferred,113 NOT READY unchanged."
+  },
+  "source_impact_181": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/181",
+    "baseline": "98a70da4afbeeec10432ab966023594304784c3b",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/remaster_pack.json",
+        "bytes": 180804,
+        "sha256": "acf4af955963314fac91d48113cd9e27413dc4b4f2930dcddbc26a97e6976b61"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/assets.rs",
+        "bytes": 14460,
+        "sha256": "44a6f70258e545440fda19752cb0aff5978bbef7721297e3689d786641fb1a85"
+      },
+      {
+        "path": "crates/lemmings-game/tests/hd_assets.rs",
+        "bytes": 15264,
+        "sha256": "3135bc81ca9b25d7b2472b715cf5bd26105a7efa7de60f83182f70fb26ffe4db"
+      },
+      {
+        "path": "tools/hd_assets.py",
+        "bytes": 30994,
+        "sha256": "84d2e92a900971e52decb4622b8764a0d8d265c14fe03f98e0b768889ce34264"
+      },
+      {
+        "path": "tools/tests/test_hd_assets.py",
+        "bytes": 21319,
+        "sha256": "07328df6115d232fa5db03a85ceba96fcb97f59a5f4a92bec123f87d8aa02485"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/scene.rs",
+        "bytes": 65274,
+        "sha256": "ed515a49716e511942e78488421e143f23c20a4c51b4eb2577be21a3131a94d1"
+      },
+      {
+        "path": "tools/web/hd_terrain.cjs",
+        "bytes": 7504,
+        "sha256": "9f55fa8ad6b2d551723efb7a532f747b9f0318a08ae4d561cbd3284113019e88"
+      }
+    ],
+    "added": [
+      "assets/manifests/hd_decor.json",
+      "assets/manifests/remaster_decor.json",
+      "assets/remaster/issue-181-arrows-v1.png",
+      "assets/remaster/issue-181-flags-v1.png",
+      "assets/remaster/previews/issue-181_course_0.png",
+      "assets/remaster/previews/issue-181_course_4.png",
+      "assets/remaster/prompts/issue-181_arrows_v1.txt",
+      "assets/remaster/prompts/issue-181_flags_v1.txt",
+      "tools/check_hd_decor.py",
+      "tools/decor_fixture.py",
+      "tools/tests/test_decor_fixture.py",
+      "tools/web/hd_decor.cjs"
+    ],
+    "scope": "Two immutable flag/one-way sheets,212 object frames, bounded typed keys and selected catalog extension. Original triggers/loop/order and simulation masks preserved; synthetic SDL/WASM dig/Pause courses. No simulation/audio synthesis changes. Historical evidence remains historical; BGM165 deferred,113 NOT READY unchanged."
   }
 }

@@ -60,8 +60,8 @@ pub const ICON_CONTROLS: [Control; 13] = [
     Control::Restart,
 ];
 
-/// GROUND0O..4O.DAT portal disk-frame counts. Provenance and the exact original
-/// dimensions/first frame/trigger records are pinned in hd_portals.json (#160).
+/// All54 nonempty GROUND0O..4O.DAT objects. Exact disk records are pinned
+/// in hd_portals.json, hd_hazards.json, hd_traps.json and hd_decor.json.
 pub const fn object_frame_count(set: u8, id: u8) -> Option<u16> {
     match (set, id) {
         (0..=4, 0) => Some(1),
@@ -70,7 +70,10 @@ pub const fn object_frame_count(set: u8, id: u8) -> Option<u16> {
             Some(count) => Some(count),
             None => match hazard_frame_count(set, id) {
                 Some(count) => Some(count),
-                None => trap_frame_count(set, id),
+                None => match trap_frame_count(set, id) {
+                    Some(count) => Some(count),
+                    None => decor_frame_count(set, id),
+                },
             },
         },
     }
@@ -106,6 +109,17 @@ pub const fn trap_frame_count(set: u8, id: u8) -> Option<u16> {
         (4, 7) => Some(25),
         (4, 9) => Some(8),
         (4, 10) => Some(16),
+        _ => None,
+    }
+}
+
+/// Rotating pennants and effect7/8 arrows; exact records in hd_decor.json.
+/// Artwork selection never changes the original one-way trigger masks.
+pub const fn decor_frame_count(set: u8, id: u8) -> Option<u16> {
+    match (set, id) {
+        (0..=1, 2 | 9) | (2..=3, 2 | 7) | (4, 2 | 3) => Some(14),
+        (1, 3 | 4) => Some(8),
+        (0 | 2 | 3, 3 | 4) | (4, 4 | 5) => Some(7),
         _ => None,
     }
 }

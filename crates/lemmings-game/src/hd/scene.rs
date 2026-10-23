@@ -133,6 +133,8 @@ pub struct Renderer {
     source_hazards: Vec<(u8, u8, u16)>,
     hd_traps: Vec<(u8, u8, u16)>,
     source_traps: Vec<(u8, u8, u16)>,
+    hd_decor: Vec<(u8, u8, u16)>,
+    source_decor: Vec<(u8, u8, u16)>,
     epoch: u64,
 }
 impl Renderer {
@@ -166,6 +168,8 @@ impl Renderer {
             source_hazards: Vec::new(),
             hd_traps: Vec::new(),
             source_traps: Vec::new(),
+            hd_decor: Vec::new(),
+            source_decor: Vec::new(),
             epoch: 0,
         }
     }
@@ -223,8 +227,10 @@ impl Renderer {
         let original_hazards = portal_keys(&self.source_hazards);
         let traps = portal_keys(&self.hd_traps);
         let original_traps = portal_keys(&self.source_traps);
+        let decor = portal_keys(&self.hd_decor);
+        let original_decor = portal_keys(&self.source_decor);
         format!(
-            "{{\"version\":1,\"width\":1920,\"height\":1080,\"actor_frames_available\":{},\"portal_frames_available\":{},\"trap_frames_available\":{},\"hazard_frames_available\":{},\"exit_effect_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"special_panorama\":{},\"terrain_material\":{},\"one_way_objects\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}],\"hd_portal_frames\":[{portals}],\"original_portal_frames\":[{originals}],\"hd_exit_effect_frames\":[{effects}],\"original_exit_effect_frames\":[{original_effects}],\"hd_hazard_frames\":[{hazards}],\"original_hazard_frames\":[{original_hazards}],\"hd_trap_frames\":[{traps}],\"original_trap_frames\":[{original_traps}]}}",
+            "{{\"version\":1,\"width\":1920,\"height\":1080,\"actor_frames_available\":{},\"portal_frames_available\":{},\"trap_frames_available\":{},\"hazard_frames_available\":{},\"exit_effect_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"special_panorama\":{},\"terrain_material\":{},\"one_way_objects\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}],\"hd_portal_frames\":[{portals}],\"original_portal_frames\":[{originals}],\"hd_exit_effect_frames\":[{effects}],\"original_exit_effect_frames\":[{original_effects}],\"hd_hazard_frames\":[{hazards}],\"original_hazard_frames\":[{original_hazards}],\"hd_trap_frames\":[{traps}],\"original_trap_frames\":[{original_traps}],\"hd_decor_frames\":[{decor}],\"original_decor_frames\":[{original_decor}]}}",
             self.frames
                 .iter()
                 .filter(|f| matches!(f.key, AssetKey::Actor { .. }))
@@ -274,6 +280,8 @@ impl Renderer {
         self.source_hazards.clear();
         self.hd_traps.clear();
         self.source_traps.clear();
+        self.hd_decor.clear();
+        self.source_decor.clear();
         self.missing.clear();
         self.width = assets.width;
         self.height = assets.height;
@@ -318,8 +326,8 @@ impl Renderer {
         if let Some((set, level, ground, images)) = assets.hd_art()? {
             self.select_material(set, level.header().special_graphic_set().is_some());
             self.select_special(level.header().special_graphic_set());
-            // One-way arrows remain original object art, drawn on the current
-            // terrain below. Their trigger masks do not select terrain color.
+            // HD keys select object art, including arrows clipped to current
+            // terrain. Original trigger masks never select terrain color.
             for placement in level.objects() {
                 let meta = ground
                     .object(placement.id as usize)
@@ -563,6 +571,8 @@ impl Renderer {
         self.source_hazards.clear();
         self.hd_traps.clear();
         self.source_traps.clear();
+        self.hd_decor.clear();
+        self.source_decor.clear();
         let mask = run.session.render_terrain();
         let mut occupied = mask.to_vec();
         let mut compact = 0;
@@ -635,6 +645,14 @@ impl Renderer {
                         self.hd_traps.push(key);
                     } else {
                         self.source_traps.push(key);
+                    }
+                }
+                if super::assets::decor_frame_count(o.set, p.id).is_some() {
+                    let key = (o.set, p.id, frame as u16);
+                    if hd.is_some() {
+                        self.hd_decor.push(key);
+                    } else {
+                        self.source_decor.push(key);
                     }
                 }
                 let (w, h, ax, ay) = hd.map_or(
@@ -1242,6 +1260,116 @@ mod tests {
         legacy.frame(&run).unwrap();
         assert_eq!(legacy.source_hazards, vec![(4, 6, 0)]);
         assert!(legacy.hd_hazards.is_empty());
+    }
+
+    #[test]
+    fn flags_and_arrows_follow_all_212_disk_frames_without_mutating_masks_state_or_audio() {
+        let mut renderer = Renderer::fallback();
+        for set in 0..5 {
+            for id in 0..16 {
+                if let Some(count) = super::super::assets::decor_frame_count(set, id) {
+                    for frame in 0..count {
+                        let atlas = renderer.textures.len() as u16;
+                        renderer.textures.push(Texture::new(
+                            1,
+                            1,
+                            vec![set * 40, id * 20, frame as u8 * 13, 255],
+                        ));
+                        renderer.frames.push(AssetFrame {
+                            key: AssetKey::Object { set, id, frame },
+                            atlas,
+                            rect: [0, 0, 1, 1],
+                            display: [12, 6],
+                            anchor: [0, 0],
+                        });
+                    }
+                }
+            }
+        }
+        renderer.base = renderer.textures.len();
+        let mut seen = std::collections::BTreeSet::new();
+        for (set, id, count) in [
+            (0, 2, 14),
+            (0, 9, 14),
+            (1, 2, 14),
+            (1, 9, 14),
+            (2, 2, 14),
+            (2, 7, 14),
+            (3, 2, 14),
+            (3, 7, 14),
+            (4, 2, 14),
+            (4, 3, 14),
+            (0, 3, 7),
+            (0, 4, 7),
+            (1, 3, 8),
+            (1, 4, 8),
+            (2, 3, 7),
+            (2, 4, 7),
+            (3, 3, 7),
+            (3, 4, 7),
+            (4, 4, 7),
+            (4, 5, 7),
+        ] {
+            let mut run = run();
+            renderer.reset(&run.assets).unwrap();
+            {
+                object(&mut renderer, id, false);
+                let o = renderer.objects.last_mut().unwrap();
+                o.set = set;
+                o.placement.flags.no_overwrite = false;
+                o.meta.animation_flags = 2;
+                o.meta.frame_count = count;
+                o.meta.trigger_effect = if count == 14 {
+                    0
+                } else if id == 3 || set == 4 && id == 4 {
+                    7
+                } else {
+                    8
+                };
+                o.frames = vec![vec![255, 0, 0, 255, 0, 255, 0, 255]; count as usize];
+            }
+            let terrain = run.session.terrain().to_vec();
+            let bricks = run.session.brick_mask().to_vec();
+            let objects = run.session.object_map_data().to_vec();
+            let one_way = (
+                run.assets.one_way_left.clone(),
+                run.assets.one_way_right.clone(),
+            );
+            for _ in 0..count * 2 {
+                let state = crate::diagnostics::state(&run.session);
+                let sound = run.sound.diagnostic_json();
+                renderer.frame(&run).unwrap();
+                assert!(renderer.source_decor.is_empty());
+                assert_eq!(renderer.hd_decor.len(), 1);
+                for &(theme, id, frame) in &renderer.hd_decor {
+                    assert_eq!(
+                        u64::from(frame),
+                        (run.session.scheduler.step_state().iteration + 2) % u64::from(count)
+                    );
+                    let o = renderer
+                        .objects
+                        .iter()
+                        .find(|o| o.placement.id == id)
+                        .unwrap();
+                    assert_eq!(
+                        &renderer.textures[o.texture].rgba[..4],
+                        &[theme * 40, id * 20, frame as u8 * 13, 255]
+                    );
+                    seen.insert((theme, id, frame));
+                }
+                assert_eq!(state, crate::diagnostics::state(&run.session));
+                assert_eq!(sound, run.sound.diagnostic_json());
+                assert_eq!(run.session.terrain(), terrain);
+                assert_eq!(run.session.brick_mask(), bricks);
+                assert_eq!(run.session.object_map_data(), objects);
+                assert_eq!(
+                    (&run.assets.one_way_left, &run.assets.one_way_right),
+                    (&one_way.0, &one_way.1)
+                );
+                run.tick().unwrap();
+            }
+        }
+        assert_eq!(seen.len(), 212);
     }
 
     #[test]
