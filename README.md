@@ -139,3 +139,5 @@ Windows 전체 게임 ZIP은 [#118 패키징 안내](mydocs/reports/issue-118_wi
 **게임 다운로드:** [Releases](https://github.com/edwardkim/ohmylemmings/releases). 운영 기준은 [버전·태그 정책](mydocs/plans/issue-124_release_policy.md), 버전별 안내는 [릴리즈 기록](mydocs/releases/README.md)을 참고하세요.
 
 macOS 전체 게임 앱은 [#120 배포 안내](mydocs/reports/issue-120_macos_full_game.md)를 따릅니다. 원본120개 레벨·음원을 포함한 Apple Silicon/Intel universal2 `.app` ZIP과 실제 양쪽 Mac CI 검증 결과를 제공합니다. 현재 ad-hoc 서명이며 Developer ID/Apple 공증은 자격 확보 후의 별도 단계입니다.
+
+[#160 HD 입출구](mydocs/reports/issue-160_hd_portals.md)에서 전체5테마 입출구와 출구 불꽃을 Native/Web 개발 미리보기에 연결합니다. [생성 자산·정확한 프롬프트](assets/remaster/README.md)를 참고하세요.

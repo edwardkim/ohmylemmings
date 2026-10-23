@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 진행 중입니다. [#151 Native/Web 부분 HD 게임](reports/issue-151_hd_integration.md)에 이어 [#154 캐릭터 전체 프레임](reports/issue-154_hd_actors.md)을 PR #155·CI7개 SUCCESS·실제 병합으로 완료했습니다. 캐릭터28동작337프레임을 제공하며 다른 테마/시설/효과/글꼴과 지원 HD 배포는 후속입니다. 초기 #1 종료와 성능 #113 이월/NOT READY를 유지합니다.
+[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 진행 중입니다. [#154 전체 캐릭터337프레임](reports/issue-154_hd_actors.md), [#157 일반5테마 지형](reports/issue-157_hd_terrain.md)에 이어 [#160 전체 입출구·출구 불꽃](reports/issue-160_hd_portals.md)을 연결합니다. 특수4장면·나머지 함정/효과/글꼴/전체 UI와 지원 HD 배포는 후속입니다. 초기 #1 종료와 성능 #113 이월/NOT READY를 유지합니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 

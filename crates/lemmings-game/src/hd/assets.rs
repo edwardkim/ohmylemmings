@@ -56,12 +56,20 @@ pub const ICON_CONTROLS: [Control; 13] = [
     Control::Restart,
 ];
 
-/// HD-03b supports only the first theme's exit and entrance. These bounds are
-/// pinned GROUND0O.DAT metadata, recorded in remaster_pack.json production.source_objects (#147).
+/// GROUND0O..4O.DAT portal disk-frame counts. Provenance and the exact original
+/// dimensions/first frame/trigger records are pinned in hd_portals.json (#160).
 pub const fn object_frame_count(set: u8, id: u8) -> Option<u16> {
     match (set, id) {
-        (0, 0) => Some(1),
-        (0, 1) => Some(10),
+        (0..=4, 0) => Some(1),
+        (0..=4, 1) => Some(10),
+        _ => exit_effect_frame_count(set, id),
+    }
+}
+
+/// Exit ornament effect0 profiles; other object IDs include arrows and hazards.
+pub const fn exit_effect_frame_count(set: u8, id: u8) -> Option<u16> {
+    match (set, id) {
+        (0, 7) | (1..=3, 6) | (4, 8) => Some(6),
         _ => None,
     }
 }
@@ -316,6 +324,35 @@ impl<'a> AssetPack<'a> {
                     .is_none()
                 {
                     missing.push((slot as u8, frame));
+                }
+            }
+        }
+        missing
+    }
+    /// Producers can require all55 portals; partial legacy v1 packs still load.
+    pub fn missing_portal_frames(&self) -> Vec<(u8, u8, u16)> {
+        let mut missing = Vec::new();
+        for set in 0..5 {
+            for id in 0..2 {
+                for frame in 0..object_frame_count(set, id).expect("original portal") {
+                    if self.frame(AssetKey::Object { set, id, frame }).is_none() {
+                        missing.push((set, id, frame));
+                    }
+                }
+            }
+        }
+        missing
+    }
+    pub fn missing_exit_effect_frames(&self) -> Vec<(u8, u8, u16)> {
+        let mut missing = Vec::new();
+        for set in 0..5 {
+            for id in 0..16 {
+                if let Some(count) = exit_effect_frame_count(set, id) {
+                    for frame in 0..count {
+                        if self.frame(AssetKey::Object { set, id, frame }).is_none() {
+                            missing.push((set, id, frame));
+                        }
+                    }
                 }
             }
         }

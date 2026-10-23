@@ -173,35 +173,62 @@ fn alpha_cutoff_is_preserved_and_reserved_bits_are_rejected() {
 
 #[test]
 fn facility_frames_use_theme_and_id_without_aliasing_actors_or_materials() {
-    for (slot, count) in [(0u8, 1u16), (1, 10)] {
-        for frame in 0..count {
+    for set in 0..5 {
+        for (id, count) in [(0u8, 1u16), (1, 10)] {
+            for frame in 0..count {
+                let mut b = fixture();
+                b[40] = 2;
+                b[41] = set * 16 + id;
+                b[42..44].copy_from_slice(&frame.to_le_bytes());
+                let pack = AssetPack::parse(&b).unwrap();
+                assert!(pack.frame(AssetKey::Object { set, id, frame }).is_some());
+                assert!(pack.frame(AssetKey::Actor { slot: id, frame }).is_none());
+            }
             let mut b = fixture();
             b[40] = 2;
-            b[41] = slot;
-            b[42..44].copy_from_slice(&frame.to_le_bytes());
-            let pack = AssetPack::parse(&b).unwrap();
-            assert!(
-                pack.frame(AssetKey::Object {
-                    set: 0,
-                    id: slot,
-                    frame
-                })
-                .is_some()
-            );
-            assert!(pack.frame(AssetKey::Actor { slot, frame }).is_none());
+            b[41] = set * 16 + id;
+            b[42..44].copy_from_slice(&count.to_le_bytes());
+            assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
         }
-        let mut b = fixture();
-        b[40] = 2;
-        b[41] = slot;
-        b[42..44].copy_from_slice(&count.to_le_bytes());
-        assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
     }
-    for slot in [2, 15, 16, 255] {
+    for slot in [3, 15, 80, 255] {
         let mut b = fixture();
         b[40] = 2;
         b[41] = slot;
         assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
     }
+}
+
+#[test]
+fn all_55_portal_frames_can_be_audited_without_requiring_them_in_legacy_packs() {
+    let partial = fixture();
+    assert_eq!(
+        AssetPack::parse(&partial)
+            .unwrap()
+            .missing_portal_frames()
+            .len(),
+        55
+    );
+    let mut full = fixture();
+    full.truncate(40);
+    full[10..12].copy_from_slice(&55u16.to_le_bytes());
+    for set in 0..5 {
+        for (id, count) in [(0, 1), (1, 10)] {
+            for frame in 0u16..count {
+                let mut record = fixture()[40..].to_vec();
+                record[0] = 2;
+                record[1] = set * 16 + id;
+                record[2..4].copy_from_slice(&frame.to_le_bytes());
+                full.extend(record);
+            }
+        }
+    }
+    assert!(
+        AssetPack::parse(&full)
+            .unwrap()
+            .missing_portal_frames()
+            .is_empty()
+    );
 }
 
 #[test]
@@ -267,4 +294,58 @@ fn expanded_character_pack_accepts_32_small_atlases_and_rejects_33() {
     assert_eq!(AssetPack::parse(&bytes).unwrap().atlases().len(), 32);
     bytes[8..10].copy_from_slice(&33u16.to_le_bytes());
     assert!(AssetPack::parse(&bytes).is_err());
+}
+
+#[test]
+fn decorative_exit_flames_keep_six_frames_without_accepting_arrow_or_hazard_keys() {
+    assert_eq!(
+        AssetPack::parse(&fixture())
+            .unwrap()
+            .missing_exit_effect_frames()
+            .len(),
+        30
+    );
+    let mut full = fixture();
+    full.truncate(40);
+    full[10..12].copy_from_slice(&30u16.to_le_bytes());
+    for (set, id) in [(0, 7), (1, 6), (2, 6), (3, 6), (4, 8)] {
+        for frame in 0u16..6 {
+            let mut record = fixture()[40..].to_vec();
+            record[0] = 2;
+            record[1] = set * 16 + id;
+            record[2..4].copy_from_slice(&frame.to_le_bytes());
+            full.extend(record);
+        }
+    }
+    assert!(
+        AssetPack::parse(&full)
+            .unwrap()
+            .missing_exit_effect_frames()
+            .is_empty()
+    );
+    for (set, id) in [(0, 7), (1, 6), (2, 6), (3, 6), (4, 8)] {
+        for frame in 0u16..6 {
+            let mut b = fixture();
+            b[40] = 2;
+            b[41] = set * 16 + id;
+            b[42..44].copy_from_slice(&frame.to_le_bytes());
+            assert!(
+                AssetPack::parse(&b)
+                    .unwrap()
+                    .frame(AssetKey::Object { set, id, frame })
+                    .is_some()
+            );
+        }
+        let mut b = fixture();
+        b[40] = 2;
+        b[41] = set * 16 + id;
+        b[42..44].copy_from_slice(&6u16.to_le_bytes());
+        assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
+    }
+    for slot in [2, 3, 6, 19, 35, 51, 68, 82] {
+        let mut b = fixture();
+        b[40] = 2;
+        b[41] = slot;
+        assert_eq!(AssetPack::parse(&b).unwrap_err(), AssetError::Key);
+    }
 }

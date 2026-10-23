@@ -134,6 +134,9 @@ def source_counts():
     return [row['frame_count'] for row in metadata]
 
 
+EXIT_EFFECT_PROFILES=((0,7),(1,6),(2,6),(3,6),(4,8))
+
+
 def key_fields(key):
     require(isinstance(key,dict), 'frame key')
     if set(key) == {'actor'}:
@@ -142,7 +145,7 @@ def key_fields(key):
         return 0,slot,frame
     if set(key) == {'object'}:
         theme,id,frame = numbers(key['object'],3,0,65535)
-        count = {(0,0):1, (0,1):10}.get((theme,id))
+        count = 6 if (theme,id) in EXIT_EFFECT_PROFILES else {0:1, 1:10}.get(id) if theme < 5 else None
         require(count is not None and frame < count, 'unsupported object/frame')
         return 2,theme*16+id,frame
     if set(key) == {'icon'}:
@@ -175,6 +178,32 @@ def actor_coverage(frames):
     counts=source_counts()
     missing=[[slot,frame] for slot,count in enumerate(counts) for frame in range(count) if (slot,frame) not in actors]
     return dict(animations=sum(all((slot,frame) in actors for frame in range(count)) for slot,count in enumerate(counts)),frames=len(actors),missing=missing)
+
+
+def portal_coverage(frames):
+    """Original five GROUND sets have one exit and ten entrance disk frames."""
+    found=set()
+    for entry in frames:
+        require(isinstance(entry,dict), 'frame record')
+        kind,slot,frame=key_fields(entry.get('key'))
+        if kind==2 and slot%16<=1:found.add((slot//16,slot%16,frame))
+    missing=[[theme,id,frame] for theme in range(5) for id,count in [(0,1),(1,10)]
+             for frame in range(count) if (theme,id,frame) not in found]
+    complete=sum(not any(row[0]==theme for row in missing) for theme in range(5))
+    return dict(sets=complete,frames=len(found),missing=missing)
+
+
+def exit_effect_coverage(frames):
+    """Pure decorative exit flames; arrow/hazard object keys remain unsupported."""
+    found=set()
+    for entry in frames:
+        require(isinstance(entry,dict), 'frame record')
+        kind,slot,frame=key_fields(entry.get('key'))
+        if kind==2 and (slot//16,slot%16) in EXIT_EFFECT_PROFILES:
+            found.add((slot//16,slot%16,frame))
+    missing=[[theme,id,frame] for theme,id in EXIT_EFFECT_PROFILES
+             for frame in range(6) if (theme,id,frame) not in found]
+    return dict(frames=len(found),missing=missing)
 
 
 def pack_rectangles(width, height, rgba, rectangles):
@@ -228,6 +257,12 @@ def compile_pack(manifest, *, root=ROOT):
     coverage=actor_coverage(frames)
     require(type(manifest.get('complete_actors',False)) is bool, 'complete actors policy')
     if manifest.get('complete_actors',False):require(not coverage['missing'], 'incomplete actor coverage')
+    portals=portal_coverage(frames)
+    require(type(manifest.get('complete_portals',False)) is bool, 'complete portals policy')
+    if manifest.get('complete_portals',False):require(not portals['missing'], 'incomplete portal coverage')
+    effects=exit_effect_coverage(frames)
+    require(type(manifest.get('complete_exit_effects',False)) is bool, 'complete exit effects policy')
+    if manifest.get('complete_exit_effects',False):require(not effects['missing'], 'incomplete exit effect coverage')
     provenance = manifest.get('provenance',[])
     require(isinstance(provenance,list) and len(provenance) <= 128, 'provenance list')
     for pin in provenance: read_pin(pin,root)
@@ -276,7 +311,7 @@ def compile_pack(manifest, *, root=ROOT):
     for fields,index,rect,display,anchor in records:
         output.extend(struct.pack('<BBHHHIIIIHHhh',*fields,index,0,*mappings[index][rect],*display,*anchor))
     pack = bytes(output)
-    return pack,dict(status='PASS',atlases=atlas_report,frames=len(frames),actor_coverage=coverage,sprite_bounds=bounds,
+    return pack,dict(status='PASS',atlases=atlas_report,frames=len(frames),actor_coverage=coverage,portal_coverage=portals,exit_effect_coverage=effects,sprite_bounds=bounds,
                      bytes=len(pack),sha256=hashlib.sha256(pack).hexdigest(),packing=packing,
                      pixel_policy='unchanged referenced RGB/straight alpha RGBA8; sRGB interpretation; optional lossless rectangle relocation')
 

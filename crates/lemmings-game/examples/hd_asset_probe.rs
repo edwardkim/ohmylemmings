@@ -4,9 +4,12 @@ use lemmings_game::hd::assets::{AssetKey, AssetPack, ICON_CONTROLS, object_frame
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let path = std::env::args()
         .nth(1)
-        .ok_or("usage: hd_asset_probe assets.hdp [--hd03b]")?;
+        .ok_or("usage: hd_asset_probe assets.hdp [--hd03b|--all-actors|--all-portals]")?;
     let mode = std::env::args().nth(2);
-    let expanded = matches!(mode.as_deref(), Some("--hd03b" | "--all-actors"));
+    let expanded = matches!(
+        mode.as_deref(),
+        Some("--hd03b" | "--all-actors" | "--all-portals")
+    );
     let bytes = std::fs::read(path)?;
     let pack = AssetPack::parse(&bytes)?;
     let required: &[(u8, u16)] = if expanded {
@@ -22,7 +25,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     } else {
         &[(0, 8), (2, 8)]
     };
-    if mode.as_deref() == Some("--all-actors") && !pack.missing_actor_frames().is_empty() {
+    if matches!(mode.as_deref(), Some("--all-actors" | "--all-portals"))
+        && !pack.missing_actor_frames().is_empty()
+    {
         return Err("incomplete actor coverage".into());
     }
     for &(slot, count) in required {
@@ -30,6 +35,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             pack.frame(AssetKey::Actor { slot, frame })
                 .ok_or("missing required actor frame")?;
         }
+    }
+    if mode.as_deref() == Some("--all-portals") && !pack.missing_portal_frames().is_empty() {
+        return Err("incomplete portal coverage".into());
+    }
+    if mode.as_deref() == Some("--all-portals") && !pack.missing_exit_effect_frames().is_empty() {
+        return Err("incomplete exit effect coverage".into());
     }
     if pack.frame(AssetKey::Rock).is_none() {
         return Err("missing rock material".into());

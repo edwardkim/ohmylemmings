@@ -218,3 +218,5 @@ cargo run -p lemmings-desktop --release --locked --offline -- --hd
 [#154 전체 캐릭터 대응](../../mydocs/reports/issue-154_hd_actors.md)의 새 팩은119,548,732바이트입니다. 현재 빌드와 `make hd-assets`로 준비하며 기존64MiB/16atlas 제한의 이전 실행 파일은 새 팩을 읽지 못합니다. 전체 지원 플랫폼 HD 패키징은 HD-06 후속입니다.
 
 [#157 일반5지형 재질](../../mydocs/reports/issue-157_hd_terrain.md)을 연결하고 팩을109,503,312바이트로 정리했습니다. 현재 빌드/`make hd-assets`를 사용하세요. 원본 일방통행 화살표와 특수4배경을 유지합니다. 전체 HD 지원 패키징은 후속입니다.
+
+[#160 전체 입출구·출구 불꽃](../../mydocs/reports/issue-160_hd_portals.md)을 연결했습니다. 현재 팩은32atlas/440자산·133,385,948바이트이며 기존128MiB 한도 안입니다. `make hd-assets` 후 현재 Native/Web 빌드를 사용하세요. 원본 모드·구버전 팩을 지원하며 특수 장면·나머지 함정/효과/UI와 지원 HD 배포는 후속입니다.

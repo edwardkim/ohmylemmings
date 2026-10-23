@@ -90,3 +90,5 @@ python3 tools/check_web.py --evidence assets/local/web-original-check --original
 [#154 캐릭터 검증/메모리 범위](../../mydocs/reports/issue-154_hd_actors.md): HD 모드를 고를 때 약119.5MB RGBA 팩을 불러옵니다. 팩은 WASM에 한 번 읽고 장면 전환에서 재사용하며 변경 텍스처만 Canvas에 전송합니다. 초기 메모리 비용을 포함한 성능 합격은 후속입니다.
 
 [#157 일반 지형/팩 검증](../../mydocs/reports/issue-157_hd_terrain.md): 5재질과 일방통행 표시,120초기 장면·선택1,920틱의 Native/Web 상태 및 원본/HD 마스크·사운드를 대조했습니다. 전체120레벨 완주/성능 판정은 아닙니다.
+
+[#160 전체 입출구·출구 불꽃](../../mydocs/reports/issue-160_hd_portals.md): 5테마 문55프레임과 장식30프레임을 실제 Canvas에 연결했습니다. `make web`으로 현재 팩과 WASM을 함께 갱신합니다. 원본 판정·문 열림·장식 재생 주기를 유지합니다.

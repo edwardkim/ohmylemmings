@@ -54,3 +54,21 @@
 | 4 · 결정 | [PNG](issue-157-crystal-v1.png) | [prompt](prompts/issue-157_crystal_v1.txt) |
 
 [반복 재질 검토 화면](previews/issue-157_materials.png)은 실제 자산 Canvas 캡처다. [출처/해시·검증](../manifests/hd_terrain.json)과 [결과/재현](../../mydocs/reports/issue-157_hd_terrain.md)을 참고한다. 런타임 팩은 참조 사각형의 RGBA를 그대로 재배치해23atlas366자산/109,503,312바이트로 정리했다. 제작 PNG와 manifest의 원본 좌표는 보존한다. 원본 지형 형상은 유지하며273개 조각별 재디자인·특수4장면·나머지 시설/효과/전체 UI·지원 배포는 후속이다.
+
+## #160 HD-05c 전체 테마 입출구·출구 불꽃
+
+5테마 입출구55프레임과 순수 장식30프레임을 Native/Web 미리보기에 연결했다. 아래9장을 built-in image_gen으로 생성했다. 실제 사각형·원본 객체 메타데이터·위상·기준점·출처와 해시는 [대응 목록](../manifests/hd_portals.json), [팩](../manifests/remaster_pack.json), [결과/재현](../../mydocs/reports/issue-160_hd_portals.md)에 기록한다. 선택 PNG의 RGB/alpha는 수정하거나 재표본화하지 않았고 cutoff8은 표시할 때만 적용한다.
+
+| 자산 | PNG | 정확한 생성 프롬프트 |
+|---|---|---|
+| fire 입출구 | [PNG](issue-160-fire-v1.png) | [prompt](prompts/issue-160_fire_v1.txt) |
+| marble 입출구 | [PNG](issue-160-marble-v1.png) | [prompt](prompts/issue-160_marble_v1.txt) |
+| pillar 입출구 | [PNG](issue-160-pillar-v1.png) | [prompt](prompts/issue-160_pillar_v1.txt) |
+| crystal 입출구 | [PNG](issue-160-crystal-v1.png) | [prompt](prompts/issue-160_crystal_v1.txt) |
+| dirt 불꽃 | [PNG](issue-160-flame-dirt-v1.png) | [prompt](prompts/issue-160_flame_dirt_v1.txt) |
+| fire 불꽃 | [PNG](issue-160-flame-fire-v1.png) | [prompt](prompts/issue-160_flame_fire_v1.txt) |
+| marble 불꽃 | [PNG](issue-160-flame-marble-v1.png) | [prompt](prompts/issue-160_flame_marble_v1.txt) |
+| pillar 불꽃 | [PNG](issue-160-flame-pillar-v1.png) | [prompt](prompts/issue-160_flame_pillar_v1.txt) |
+| crystal 불꽃 | [PNG](issue-160-flame-crystal-v1.png) | [prompt](prompts/issue-160_flame_crystal_v1.txt) |
+
+[5테마 출입구 연락표](previews/issue-160_portals.png), [자체 제작 코스의 실제 Web Canvas](previews/issue-160_web_course.png), [동일 코스의 실제 Native SDL](previews/issue-160_native_course.png)을 확인할 수 있다. 원본 맵 캡처는 ignored에 보존한다. 전체 리마스터와 지원 HD 배포는 후속이다.
