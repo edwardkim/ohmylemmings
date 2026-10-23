@@ -24,7 +24,7 @@ RGBA 팩은19atlas/362자산(캐릭터337·시설11·아이콘13·암석1),119,5
 
 TDD로 Python의 전체337키 요구/누락과32atlas 경계, Rust의 전체 키 누락/32atlas 경계를 먼저 실패시킨 뒤 구현했다. `complete_actors=true` 팩은 한 프레임이라도 빠지면 제작 검사에서 실패한다. `missing_actor_frames()`는 기존 부분 팩도 계속 허용하며 누락을 명시한다. 신규 Rust2개·example1개/Python3개를 포함해 workspace Rust656/doc29·example1·Python271, format/Clippy·WASM library build·라이선스 검사 PASS다. example 테스트는 `make check-desktop`에서도 실행한다.
 
-19개 원본 RGBA atlas를 처음에 복사/업로드하는 비용이 있다. 큰 팩의 임의 상한 해제 대신128MiB를 유지하며, Web HD 검사도 한 번 로딩한 팩을 장면 전환에 재사용한다. 이후에는 기존 변경 chunk/texture revision만 갱신한다. 이번은 기능 검증이며 초기 메모리·로딩 지연·고성능 호스트60fps 인수를 대신하지 않는다.
+처음에19개 원본 RGBA atlas를 복사하는 비용이 있으며, 호스트는 참조한 텍스처만 필요할 때 업로드한다. 큰 팩의 임의 상한 해제 대신128MiB를 유지하며, Web HD 검사도 한 번 로딩한 팩을 장면 전환에 재사용한다. 이후에는 기존 변경 chunk/texture revision만 갱신한다. 이번은 기능 검증이며 초기 메모리·로딩 지연·고성능 호스트60fps 인수를 대신하지 않는다.
 
 ## 실제 검증과 범위
 
@@ -54,3 +54,10 @@ python3 tools/hd_assets.py build --output assets/local/hd-actors-preview
 [#113](https://github.com/edwardkim/ohmylemmings/issues/113) 성능 이월/NOT READY, [#142](https://github.com/edwardkim/ohmylemmings/issues/142) Chrome156 진단, #1 CLOSED·Windows11 지원과 공개 v0.1.0/Pages 유지 정책을 보존한다. 정확한 PR head/CI7개·실제 merge·완료 문서·root 동기화는 [#154 최종 기록](https://github.com/edwardkim/ohmylemmings/issues/154)에 연결한다. 로컬 통과만으로 종료하지 않는다.
 
 위상 보정 후 최종 팩으로 전수337복원/Canvas·13사례7593상태821표시·실제 Native Miner 원본/HD300step·Fun01 HD664step과 실제 전체 Web 제품 UI/Fun01을 다시 검사했다. 원본 Native와 최종 Web 공통661상태·세 맵 동일/PASS다. 기존 우산 장면의 frame binding은 보정 대상인Miner/Basher와 분리돼 있다. 최초 head의 CI는 위상 보정을 위해 취소했으며 최종 head의 검사를 별도 확인한다.
+
+
+## 최종 CI·실제 병합
+
+[PR #155](https://github.com/edwardkim/ohmylemmings/pull/155)의 최종 head `963fcea38f83cc3f2dcc6e413ef07a8a2d31e54b`를 [CI39887504382](https://github.com/edwardkim/ohmylemmings/actions/runs/39887504382) 최종 attempt1에서 확인했다. Rust native·Python tooling·WASM libraries·Web browser·Windows full game·macOS Apple Silicon/Intel의7개 검사가 모두 SUCCESS다. 최종 head는 attempt1에서 실패/재시도 없이 통과했다. Web은 Chrome155.0.8059.39에서 HD13사례7593상태821표시·기존 회귀와 전체 Web 패키지/대응 소스·새 설치 검사 PASS다. 이전 head의 위상 보정 전 CI39886077892·중복 push39886073274와 최종 head 중복 push39887500139 취소는 PASS에 포함하지 않는다.
+
+구현 PR을 merge `7d8712b4f3897c7811f8917a1af6e332b87e7243`로 실제 병합하고 검토 head와 main 전체 tree 일치를 확인했다. 완료 문서 전용 PR·실제 merge와 root 동기화의 정확한 식별자는 [#154 최종 기록](https://github.com/edwardkim/ohmylemmings/issues/154)에 연결한다. 문서/일지/상위 계획·self-review를 동기화하며 #154 범위는 완료다. #137은 다른 테마/시설/효과/UI·HD-06 후속으로 OPEN, #113 성능 이월/NOT READY와 #142 진단·#1 CLOSED·공개 v0.1.0/Pages를 유지한다.
