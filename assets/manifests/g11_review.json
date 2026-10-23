@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 206154,
-      "sha256": "37aeb0077f9119b53c2a32dc8bf50b75e8be7a15611bc87643b0b464b3e2f905",
+      "bytes": 214819,
+      "sha256": "74f2dbef7367d1e08e33d50e55884adf84507bb24cf3030a7e49b5e6775ae5ac",
       "id": "compatibility"
     },
     {
@@ -11050,5 +11050,15 @@
       "id": "compatibility"
     },
     "scope": "Update current terrain/packing asset and source inventory only; historical observations/NOT READY and #113 deferred performance stay unchanged. No new all-level/performance qualification."
+  },
+  "source_maintenance_160": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/160",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 206154,
+      "sha256": "37aeb0077f9119b53c2a32dc8bf50b75e8be7a15611bc87643b0b464b3e2f905",
+      "id": "compatibility"
+    },
+    "scope": "Update current portal/ornament asset and source inventory only; historical observations/NOT READY and #113 deferred performance stay unchanged. No new all-level/performance qualification."
   }
 }

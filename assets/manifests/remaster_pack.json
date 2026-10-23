@@ -209,6 +209,87 @@
       "width": 1254,
       "height": 1254,
       "alpha": "opaque"
+    },
+    {
+      "path": "assets/remaster/issue-160-fire-v1.png",
+      "bytes": 1712047,
+      "sha256": "e7b98f681ef5b2503755733c5d9044990914aa8ebe85e2604c0c28becf52f54d",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-160-marble-v1.png",
+      "bytes": 1791745,
+      "sha256": "2c4a06d94b6664843666e1056cb6974fe2a50864d22f864492ea6416e99a1b07",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-160-pillar-v1.png",
+      "bytes": 1773175,
+      "sha256": "71118971b80ee0591204782a78efb3654892301f79c5bd5f07d04bcceb7707d2",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-160-crystal-v1.png",
+      "bytes": 1884099,
+      "sha256": "b94926fd160c174f24d0921e588139e9b40481c4e33bd00b68983f0e2fed6e59",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-160-flame-dirt-v1.png",
+      "bytes": 1611510,
+      "sha256": "4b4460d9591a1a4c757ab19247b8e2a2549f9ccbfc49c80644d09079650f8670",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-160-flame-fire-v1.png",
+      "bytes": 1566026,
+      "sha256": "11aa768778646a73bc9fe4482246cdc186b7c486b67b324bb8ef4623cae3120b",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-160-flame-marble-v1.png",
+      "bytes": 1515591,
+      "sha256": "2e98fabf3e9ddc471afb050df075880f31637a3183fc3b375a1b8d6687c44a3d",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-160-flame-pillar-v1.png",
+      "bytes": 1624569,
+      "sha256": "5bd8a8a6fc244ae501c426f1a848adea9bf16fc4887e415ad94324db30220597",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
+    },
+    {
+      "path": "assets/remaster/issue-160-flame-crystal-v1.png",
+      "bytes": 1517572,
+      "sha256": "3260d1e9623ba2239b212f82c4366935bb3f9ea89d212b71e9b614af45fa2240",
+      "width": 1536,
+      "height": 1024,
+      "alpha": "sprite",
+      "alpha_cutoff": 8
     }
   ],
   "provenance": [
@@ -341,6 +422,51 @@
       "path": "assets/remaster/prompts/issue-157_crystal_v1.txt",
       "bytes": 1220,
       "sha256": "ddbc6faf5f3ec6e66e6f7c5ac0e3906a08487521e96dc176d5991d016d233629"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_fire_v1.txt",
+      "bytes": 2360,
+      "sha256": "34f9627a3e429065d23a7f1e749bcee669d29c522bf50ec9e990b732841ecba1"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_marble_v1.txt",
+      "bytes": 2317,
+      "sha256": "bae26ac4e442129739e5bf9b0dadc73d431af9939dbaf1bf09667654d037b825"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_pillar_v1.txt",
+      "bytes": 2339,
+      "sha256": "e50a1eabd904fd18137b1d4e2ef76dd6d847def3b731e2afe74746e149919999"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_crystal_v1.txt",
+      "bytes": 2326,
+      "sha256": "7f4ce1978026feacd7f3421a693c563c124f0da9ea9038fc6c7ba077cbd05d91"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_flame_dirt_v1.txt",
+      "bytes": 1613,
+      "sha256": "08e34988fd5e572602f8c37733081056696aa3a0d7d3f2bddaecaafb0e4aae40"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_flame_fire_v1.txt",
+      "bytes": 1626,
+      "sha256": "adcd92b8eb64ef45097ad4de4f61d1c06d039330079027fc4f16edf90dbd75b0"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_flame_marble_v1.txt",
+      "bytes": 1639,
+      "sha256": "d05608ed02cd2e20c51e7eb8d8ba298ae2e1e9d982453bd17d9a7f883853eebf"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_flame_pillar_v1.txt",
+      "bytes": 1631,
+      "sha256": "74b73052dd76baa8f359bb0f1110787796b9bcae4ca542262fd9f6ca6f9cb0d1"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_flame_crystal_v1.txt",
+      "bytes": 1629,
+      "sha256": "c00d269f8577dda4e4ffcf50168e4ffc70530265ed56bb98c2c2431f57d23dfa"
     }
   ],
   "frames": [
@@ -8718,6 +8844,1782 @@
         0,
         0
       ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          1,
+          1
+        ]
+      },
+      "atlas": 23,
+      "rect": [
+        24,
+        100,
+        348,
+        111
+      ],
+      "display": [
+        293,
+        93
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          1,
+          2
+        ]
+      },
+      "atlas": 23,
+      "rect": [
+        407,
+        99,
+        348,
+        112
+      ],
+      "display": [
+        293,
+        94
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          1,
+          3
+        ]
+      },
+      "atlas": 23,
+      "rect": [
+        790,
+        99,
+        347,
+        122
+      ],
+      "display": [
+        293,
+        103
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          1,
+          4
+        ]
+      },
+      "atlas": 23,
+      "rect": [
+        1174,
+        99,
+        345,
+        142
+      ],
+      "display": [
+        293,
+        121
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          1,
+          5
+        ]
+      },
+      "atlas": 23,
+      "rect": [
+        24,
+        417,
+        349,
+        172
+      ],
+      "display": [
+        293,
+        144
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          1,
+          6
+        ]
+      },
+      "atlas": 23,
+      "rect": [
+        406,
+        416,
+        348,
+        183
+      ],
+      "display": [
+        293,
+        154
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          1,
+          7
+        ]
+      },
+      "atlas": 23,
+      "rect": [
+        787,
+        415,
+        348,
+        185
+      ],
+      "display": [
+        293,
+        156
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          1,
+          8
+        ]
+      },
+      "atlas": 23,
+      "rect": [
+        1171,
+        415,
+        348,
+        190
+      ],
+      "display": [
+        293,
+        160
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          1,
+          9
+        ]
+      },
+      "atlas": 23,
+      "rect": [
+        24,
+        732,
+        348,
+        201
+      ],
+      "display": [
+        293,
+        169
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          1,
+          0
+        ]
+      },
+      "atlas": 23,
+      "rect": [
+        404,
+        733,
+        349,
+        200
+      ],
+      "display": [
+        293,
+        168
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          0,
+          0
+        ]
+      },
+      "atlas": 23,
+      "rect": [
+        776,
+        677,
+        368,
+        286
+      ],
+      "display": [
+        293,
+        228
+      ],
+      "anchor": [
+        14,
+        52
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          1,
+          1
+        ]
+      },
+      "atlas": 24,
+      "rect": [
+        17,
+        116,
+        352,
+        119
+      ],
+      "display": [
+        293,
+        99
+      ],
+      "anchor": [
+        2,
+        2
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          1,
+          2
+        ]
+      },
+      "atlas": 24,
+      "rect": [
+        402,
+        116,
+        351,
+        119
+      ],
+      "display": [
+        293,
+        99
+      ],
+      "anchor": [
+        2,
+        2
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          1,
+          3
+        ]
+      },
+      "atlas": 24,
+      "rect": [
+        785,
+        115,
+        351,
+        133
+      ],
+      "display": [
+        293,
+        111
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          1,
+          4
+        ]
+      },
+      "atlas": 24,
+      "rect": [
+        1169,
+        116,
+        351,
+        151
+      ],
+      "display": [
+        293,
+        126
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          1,
+          5
+        ]
+      },
+      "atlas": 24,
+      "rect": [
+        19,
+        407,
+        351,
+        190
+      ],
+      "display": [
+        293,
+        159
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          1,
+          6
+        ]
+      },
+      "atlas": 24,
+      "rect": [
+        402,
+        407,
+        350,
+        200
+      ],
+      "display": [
+        293,
+        167
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          1,
+          7
+        ]
+      },
+      "atlas": 24,
+      "rect": [
+        785,
+        407,
+        352,
+        197
+      ],
+      "display": [
+        293,
+        164
+      ],
+      "anchor": [
+        2,
+        2
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          1,
+          8
+        ]
+      },
+      "atlas": 24,
+      "rect": [
+        1168,
+        407,
+        352,
+        198
+      ],
+      "display": [
+        293,
+        165
+      ],
+      "anchor": [
+        2,
+        2
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          1,
+          9
+        ]
+      },
+      "atlas": 24,
+      "rect": [
+        19,
+        703,
+        350,
+        213
+      ],
+      "display": [
+        293,
+        178
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          1,
+          0
+        ]
+      },
+      "atlas": 24,
+      "rect": [
+        402,
+        703,
+        351,
+        213
+      ],
+      "display": [
+        293,
+        178
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          0,
+          0
+        ]
+      },
+      "atlas": 24,
+      "rect": [
+        775,
+        670,
+        370,
+        274
+      ],
+      "display": [
+        293,
+        217
+      ],
+      "anchor": [
+        -10,
+        118
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          1,
+          1
+        ]
+      },
+      "atlas": 25,
+      "rect": [
+        35,
+        100,
+        337,
+        121
+      ],
+      "display": [
+        293,
+        105
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          1,
+          2
+        ]
+      },
+      "atlas": 25,
+      "rect": [
+        410,
+        100,
+        341,
+        117
+      ],
+      "display": [
+        293,
+        101
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          1,
+          3
+        ]
+      },
+      "atlas": 25,
+      "rect": [
+        784,
+        99,
+        343,
+        128
+      ],
+      "display": [
+        293,
+        109
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          1,
+          4
+        ]
+      },
+      "atlas": 25,
+      "rect": [
+        1164,
+        99,
+        338,
+        145
+      ],
+      "display": [
+        293,
+        126
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          1,
+          5
+        ]
+      },
+      "atlas": 25,
+      "rect": [
+        35,
+        387,
+        336,
+        183
+      ],
+      "display": [
+        293,
+        160
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          1,
+          6
+        ]
+      },
+      "atlas": 25,
+      "rect": [
+        410,
+        387,
+        338,
+        189
+      ],
+      "display": [
+        293,
+        164
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          1,
+          7
+        ]
+      },
+      "atlas": 25,
+      "rect": [
+        786,
+        387,
+        342,
+        195
+      ],
+      "display": [
+        293,
+        167
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          1,
+          8
+        ]
+      },
+      "atlas": 25,
+      "rect": [
+        1165,
+        387,
+        338,
+        194
+      ],
+      "display": [
+        293,
+        168
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          1,
+          9
+        ]
+      },
+      "atlas": 25,
+      "rect": [
+        35,
+        707,
+        336,
+        195
+      ],
+      "display": [
+        293,
+        170
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          1,
+          0
+        ]
+      },
+      "atlas": 25,
+      "rect": [
+        410,
+        707,
+        338,
+        195
+      ],
+      "display": [
+        293,
+        169
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          0,
+          0
+        ]
+      },
+      "atlas": 25,
+      "rect": [
+        776,
+        668,
+        360,
+        259
+      ],
+      "display": [
+        293,
+        211
+      ],
+      "anchor": [
+        -10,
+        104
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          1,
+          1
+        ]
+      },
+      "atlas": 26,
+      "rect": [
+        31,
+        100,
+        336,
+        110
+      ],
+      "display": [
+        293,
+        96
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          1,
+          2
+        ]
+      },
+      "atlas": 26,
+      "rect": [
+        411,
+        100,
+        340,
+        118
+      ],
+      "display": [
+        293,
+        102
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          1,
+          3
+        ]
+      },
+      "atlas": 26,
+      "rect": [
+        793,
+        100,
+        338,
+        126
+      ],
+      "display": [
+        293,
+        109
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          1,
+          4
+        ]
+      },
+      "atlas": 26,
+      "rect": [
+        1175,
+        99,
+        340,
+        145
+      ],
+      "display": [
+        293,
+        125
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          1,
+          5
+        ]
+      },
+      "atlas": 26,
+      "rect": [
+        27,
+        380,
+        341,
+        183
+      ],
+      "display": [
+        293,
+        157
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          1,
+          6
+        ]
+      },
+      "atlas": 26,
+      "rect": [
+        408,
+        379,
+        344,
+        191
+      ],
+      "display": [
+        293,
+        163
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          1,
+          7
+        ]
+      },
+      "atlas": 26,
+      "rect": [
+        790,
+        379,
+        341,
+        196
+      ],
+      "display": [
+        293,
+        169
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          1,
+          8
+        ]
+      },
+      "atlas": 26,
+      "rect": [
+        1171,
+        379,
+        341,
+        200
+      ],
+      "display": [
+        293,
+        172
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          1,
+          9
+        ]
+      },
+      "atlas": 26,
+      "rect": [
+        27,
+        698,
+        340,
+        197
+      ],
+      "display": [
+        293,
+        170
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          1,
+          0
+        ]
+      },
+      "atlas": 26,
+      "rect": [
+        408,
+        697,
+        341,
+        199
+      ],
+      "display": [
+        293,
+        171
+      ],
+      "anchor": [
+        2,
+        3
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          0,
+          0
+        ]
+      },
+      "atlas": 26,
+      "rect": [
+        758,
+        670,
+        404,
+        274
+      ],
+      "display": [
+        292,
+        198
+      ],
+      "anchor": [
+        14,
+        106
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          7,
+          0
+        ]
+      },
+      "atlas": 27,
+      "rect": [
+        152,
+        31,
+        490,
+        194
+      ],
+      "display": [
+        292,
+        115
+      ],
+      "anchor": [
+        2,
+        71
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          7,
+          1
+        ]
+      },
+      "atlas": 27,
+      "rect": [
+        917,
+        22,
+        475,
+        203
+      ],
+      "display": [
+        292,
+        125
+      ],
+      "anchor": [
+        2,
+        81
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          7,
+          2
+        ]
+      },
+      "atlas": 27,
+      "rect": [
+        149,
+        275,
+        480,
+        199
+      ],
+      "display": [
+        292,
+        121
+      ],
+      "anchor": [
+        2,
+        77
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          7,
+          3
+        ]
+      },
+      "atlas": 27,
+      "rect": [
+        892,
+        281,
+        527,
+        193
+      ],
+      "display": [
+        291,
+        107
+      ],
+      "anchor": [
+        1,
+        63
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          7,
+          4
+        ]
+      },
+      "atlas": 27,
+      "rect": [
+        140,
+        530,
+        502,
+        195
+      ],
+      "display": [
+        291,
+        113
+      ],
+      "anchor": [
+        1,
+        69
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          0,
+          7,
+          5
+        ]
+      },
+      "atlas": 27,
+      "rect": [
+        910,
+        525,
+        485,
+        200
+      ],
+      "display": [
+        292,
+        120
+      ],
+      "anchor": [
+        2,
+        76
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          6,
+          0
+        ]
+      },
+      "atlas": 28,
+      "rect": [
+        138,
+        29,
+        497,
+        201
+      ],
+      "display": [
+        292,
+        118
+      ],
+      "anchor": [
+        2,
+        -22
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          6,
+          1
+        ]
+      },
+      "atlas": 28,
+      "rect": [
+        904,
+        34,
+        513,
+        196
+      ],
+      "display": [
+        291,
+        111
+      ],
+      "anchor": [
+        1,
+        -29
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          6,
+          2
+        ]
+      },
+      "atlas": 28,
+      "rect": [
+        148,
+        285,
+        489,
+        199
+      ],
+      "display": [
+        292,
+        119
+      ],
+      "anchor": [
+        2,
+        -21
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          6,
+          3
+        ]
+      },
+      "atlas": 28,
+      "rect": [
+        906,
+        291,
+        505,
+        193
+      ],
+      "display": [
+        291,
+        111
+      ],
+      "anchor": [
+        1,
+        -29
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          6,
+          4
+        ]
+      },
+      "atlas": 28,
+      "rect": [
+        141,
+        549,
+        530,
+        190
+      ],
+      "display": [
+        291,
+        104
+      ],
+      "anchor": [
+        1,
+        -36
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          1,
+          6,
+          5
+        ]
+      },
+      "atlas": 28,
+      "rect": [
+        896,
+        544,
+        502,
+        195
+      ],
+      "display": [
+        291,
+        113
+      ],
+      "anchor": [
+        1,
+        -27
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          6,
+          0
+        ]
+      },
+      "atlas": 29,
+      "rect": [
+        144,
+        60,
+        504,
+        179
+      ],
+      "display": [
+        291,
+        104
+      ],
+      "anchor": [
+        1,
+        60
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          6,
+          1
+        ]
+      },
+      "atlas": 29,
+      "rect": [
+        926,
+        41,
+        468,
+        198
+      ],
+      "display": [
+        292,
+        123
+      ],
+      "anchor": [
+        2,
+        79
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          6,
+          2
+        ]
+      },
+      "atlas": 29,
+      "rect": [
+        153,
+        292,
+        487,
+        192
+      ],
+      "display": [
+        292,
+        115
+      ],
+      "anchor": [
+        2,
+        71
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          6,
+          3
+        ]
+      },
+      "atlas": 29,
+      "rect": [
+        913,
+        291,
+        488,
+        192
+      ],
+      "display": [
+        292,
+        115
+      ],
+      "anchor": [
+        2,
+        71
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          6,
+          4
+        ]
+      },
+      "atlas": 29,
+      "rect": [
+        151,
+        551,
+        487,
+        182
+      ],
+      "display": [
+        292,
+        109
+      ],
+      "anchor": [
+        2,
+        65
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          2,
+          6,
+          5
+        ]
+      },
+      "atlas": 29,
+      "rect": [
+        907,
+        540,
+        497,
+        193
+      ],
+      "display": [
+        292,
+        113
+      ],
+      "anchor": [
+        2,
+        69
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          6,
+          0
+        ]
+      },
+      "atlas": 30,
+      "rect": [
+        142,
+        36,
+        497,
+        191
+      ],
+      "display": [
+        292,
+        112
+      ],
+      "anchor": [
+        2,
+        68
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          6,
+          1
+        ]
+      },
+      "atlas": 30,
+      "rect": [
+        906,
+        29,
+        502,
+        198
+      ],
+      "display": [
+        291,
+        115
+      ],
+      "anchor": [
+        1,
+        71
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          6,
+          2
+        ]
+      },
+      "atlas": 30,
+      "rect": [
+        149,
+        274,
+        495,
+        200
+      ],
+      "display": [
+        292,
+        118
+      ],
+      "anchor": [
+        2,
+        74
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          6,
+          3
+        ]
+      },
+      "atlas": 30,
+      "rect": [
+        900,
+        275,
+        557,
+        199
+      ],
+      "display": [
+        291,
+        104
+      ],
+      "anchor": [
+        1,
+        60
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          6,
+          4
+        ]
+      },
+      "atlas": 30,
+      "rect": [
+        132,
+        529,
+        510,
+        190
+      ],
+      "display": [
+        291,
+        109
+      ],
+      "anchor": [
+        1,
+        65
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          3,
+          6,
+          5
+        ]
+      },
+      "atlas": 30,
+      "rect": [
+        902,
+        528,
+        515,
+        191
+      ],
+      "display": [
+        291,
+        108
+      ],
+      "anchor": [
+        1,
+        64
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          8,
+          0
+        ]
+      },
+      "atlas": 31,
+      "rect": [
+        104,
+        35,
+        531,
+        190
+      ],
+      "display": [
+        291,
+        104
+      ],
+      "anchor": [
+        1,
+        60
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          8,
+          1
+        ]
+      },
+      "atlas": 31,
+      "rect": [
+        905,
+        31,
+        507,
+        195
+      ],
+      "display": [
+        291,
+        112
+      ],
+      "anchor": [
+        1,
+        68
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          8,
+          2
+        ]
+      },
+      "atlas": 31,
+      "rect": [
+        125,
+        282,
+        510,
+        194
+      ],
+      "display": [
+        291,
+        111
+      ],
+      "anchor": [
+        1,
+        67
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          8,
+          3
+        ]
+      },
+      "atlas": 31,
+      "rect": [
+        905,
+        292,
+        516,
+        186
+      ],
+      "display": [
+        291,
+        105
+      ],
+      "anchor": [
+        1,
+        61
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          8,
+          4
+        ]
+      },
+      "atlas": 31,
+      "rect": [
+        125,
+        545,
+        511,
+        182
+      ],
+      "display": [
+        291,
+        104
+      ],
+      "anchor": [
+        1,
+        60
+      ]
+    },
+    {
+      "key": {
+        "object": [
+          4,
+          8,
+          5
+        ]
+      },
+      "atlas": 31,
+      "rect": [
+        907,
+        543,
+        520,
+        184
+      ],
+      "display": [
+        291,
+        103
+      ],
+      "anchor": [
+        1,
+        59
+      ]
     }
   ],
   "required": [
@@ -10873,6 +12775,524 @@
     },
     {
       "material": 4
+    },
+    {
+      "object": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "object": [
+        1,
+        1,
+        2
+      ]
+    },
+    {
+      "object": [
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "object": [
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "object": [
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "object": [
+        1,
+        1,
+        6
+      ]
+    },
+    {
+      "object": [
+        1,
+        1,
+        7
+      ]
+    },
+    {
+      "object": [
+        1,
+        1,
+        8
+      ]
+    },
+    {
+      "object": [
+        1,
+        1,
+        9
+      ]
+    },
+    {
+      "object": [
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "object": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "object": [
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "object": [
+        2,
+        1,
+        2
+      ]
+    },
+    {
+      "object": [
+        2,
+        1,
+        3
+      ]
+    },
+    {
+      "object": [
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "object": [
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "object": [
+        2,
+        1,
+        6
+      ]
+    },
+    {
+      "object": [
+        2,
+        1,
+        7
+      ]
+    },
+    {
+      "object": [
+        2,
+        1,
+        8
+      ]
+    },
+    {
+      "object": [
+        2,
+        1,
+        9
+      ]
+    },
+    {
+      "object": [
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "object": [
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "object": [
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "object": [
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "object": [
+        3,
+        1,
+        3
+      ]
+    },
+    {
+      "object": [
+        3,
+        1,
+        4
+      ]
+    },
+    {
+      "object": [
+        3,
+        1,
+        5
+      ]
+    },
+    {
+      "object": [
+        3,
+        1,
+        6
+      ]
+    },
+    {
+      "object": [
+        3,
+        1,
+        7
+      ]
+    },
+    {
+      "object": [
+        3,
+        1,
+        8
+      ]
+    },
+    {
+      "object": [
+        3,
+        1,
+        9
+      ]
+    },
+    {
+      "object": [
+        3,
+        1,
+        0
+      ]
+    },
+    {
+      "object": [
+        3,
+        0,
+        0
+      ]
+    },
+    {
+      "object": [
+        4,
+        1,
+        1
+      ]
+    },
+    {
+      "object": [
+        4,
+        1,
+        2
+      ]
+    },
+    {
+      "object": [
+        4,
+        1,
+        3
+      ]
+    },
+    {
+      "object": [
+        4,
+        1,
+        4
+      ]
+    },
+    {
+      "object": [
+        4,
+        1,
+        5
+      ]
+    },
+    {
+      "object": [
+        4,
+        1,
+        6
+      ]
+    },
+    {
+      "object": [
+        4,
+        1,
+        7
+      ]
+    },
+    {
+      "object": [
+        4,
+        1,
+        8
+      ]
+    },
+    {
+      "object": [
+        4,
+        1,
+        9
+      ]
+    },
+    {
+      "object": [
+        4,
+        1,
+        0
+      ]
+    },
+    {
+      "object": [
+        4,
+        0,
+        0
+      ]
+    },
+    {
+      "object": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "object": [
+        0,
+        7,
+        1
+      ]
+    },
+    {
+      "object": [
+        0,
+        7,
+        2
+      ]
+    },
+    {
+      "object": [
+        0,
+        7,
+        3
+      ]
+    },
+    {
+      "object": [
+        0,
+        7,
+        4
+      ]
+    },
+    {
+      "object": [
+        0,
+        7,
+        5
+      ]
+    },
+    {
+      "object": [
+        1,
+        6,
+        0
+      ]
+    },
+    {
+      "object": [
+        1,
+        6,
+        1
+      ]
+    },
+    {
+      "object": [
+        1,
+        6,
+        2
+      ]
+    },
+    {
+      "object": [
+        1,
+        6,
+        3
+      ]
+    },
+    {
+      "object": [
+        1,
+        6,
+        4
+      ]
+    },
+    {
+      "object": [
+        1,
+        6,
+        5
+      ]
+    },
+    {
+      "object": [
+        2,
+        6,
+        0
+      ]
+    },
+    {
+      "object": [
+        2,
+        6,
+        1
+      ]
+    },
+    {
+      "object": [
+        2,
+        6,
+        2
+      ]
+    },
+    {
+      "object": [
+        2,
+        6,
+        3
+      ]
+    },
+    {
+      "object": [
+        2,
+        6,
+        4
+      ]
+    },
+    {
+      "object": [
+        2,
+        6,
+        5
+      ]
+    },
+    {
+      "object": [
+        3,
+        6,
+        0
+      ]
+    },
+    {
+      "object": [
+        3,
+        6,
+        1
+      ]
+    },
+    {
+      "object": [
+        3,
+        6,
+        2
+      ]
+    },
+    {
+      "object": [
+        3,
+        6,
+        3
+      ]
+    },
+    {
+      "object": [
+        3,
+        6,
+        4
+      ]
+    },
+    {
+      "object": [
+        3,
+        6,
+        5
+      ]
+    },
+    {
+      "object": [
+        4,
+        8,
+        0
+      ]
+    },
+    {
+      "object": [
+        4,
+        8,
+        1
+      ]
+    },
+    {
+      "object": [
+        4,
+        8,
+        2
+      ]
+    },
+    {
+      "object": [
+        4,
+        8,
+        3
+      ]
+    },
+    {
+      "object": [
+        4,
+        8,
+        4
+      ]
+    },
+    {
+      "object": [
+        4,
+        8,
+        5
+      ]
     }
   ],
   "production_144": {
@@ -11275,5 +13695,18 @@
     "packing": "lossless referenced rectangles with copied one-pixel gutters; source PNG samples unchanged",
     "source_fallback": "special scenes and absent material keys; other facilities/effects/UI still original",
     "full_remaster_ready": false
-  }
+  },
+  "complete_portals": true,
+  "production_160": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/160",
+    "portal_sets": 5,
+    "portal_frames": 55,
+    "new_portal_frames": 44,
+    "source_policy": "Selected PNG samples unchanged; actual rectangles with3px gutters and explicit cutoff8; display anchors align hatch top/center and exit doorway floor/trigger center.",
+    "full_remaster_ready": false,
+    "exit_effect_frames": 30,
+    "exit_effect_profiles": 5,
+    "source_flame_poses_per_theme": 12
+  },
+  "complete_exit_effects": true
 }

@@ -42,3 +42,5 @@
 - [#154 HD-05a 캐릭터 전체 프레임 계획](issue-154_hd_actors.md)
 
 - [#157 HD-05b 일반 지형 재질 계획](issue-157_hd_terrain.md)
+
+- [#160 HD-05c 전체 테마 입출구](issue-160_hd_portals.md)

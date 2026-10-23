@@ -769,7 +769,7 @@
     "Generated panel omits release-rate and Nuke controls; production must implement every specified panel command."
   ],
   "next_implementation": [
-    "HD-05c four special scenes and remaining facilities/effects/UI",
+    "HD-05d four special scenes and remaining hazards/effects/UI",
     "HD-06 whole equivalence/support packaging/source notice checks"
   ],
   "validation": {
@@ -824,6 +824,13 @@
     "issue": "https://github.com/edwardkim/ohmylemmings/issues/157",
     "manifest": "assets/manifests/hd_terrain.json",
     "scope": "All five normal terrain sets use HD materials with original masks; original one-way object art remains. Four special scenes retain original images. Not a per-piece terrain redesign.",
+    "runtime_ready": true,
+    "full_remaster_ready": false
+  },
+  "followup_160": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/160",
+    "manifest": "assets/manifests/hd_portals.json",
+    "scope": "All five portal sets:55 logical door frames plus30 pure decorative exit ornament frames; original phases, placement, trigger provenance and gameplay remain unchanged. Four special scenes and other hazards/effects/UI remain follow-up.",
     "runtime_ready": true,
     "full_remaster_ready": false
   }

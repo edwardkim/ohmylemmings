@@ -17,7 +17,7 @@
     {
       "path": ".github/workflows/ci.yml",
       "bytes": 12796,
-      "sha256": "0118fdc64c37cd819e4cb02dec7c12995b9a705519a54680602fed8b762e8b12"
+      "sha256": "173b3b301f33baeaba0169043124b79f4139f0ea223f840a83770e6e929ca9ea"
     },
     {
       "path": ".github/workflows/pages.yml",
@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 146997,
-      "sha256": "2783b5a555adb8a626b751799e24a43240199df0ee47e5adf4eb7e7e1a4bf789"
+      "bytes": 179152,
+      "sha256": "cbb3abd134a9706bb0872395026eec543d48705a2a25209306cd05f6e4d8aa70"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -561,8 +561,8 @@
     },
     {
       "path": "crates/lemmings-game/examples/hd_asset_probe.rs",
-      "bytes": 2583,
-      "sha256": "c04fb403e88993c6daa0c63be2d68380694805de4de92ced122bc34369f293ce"
+      "bytes": 3012,
+      "sha256": "7853315fbb4467df3b3fbb19896936ae1d829854f915d7a8053084aa711b05b0"
     },
     {
       "path": "crates/lemmings-game/examples/performance_probe.rs",
@@ -586,8 +586,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/assets.rs",
-      "bytes": 10377,
-      "sha256": "3cab0b60765f516e0d867442364364a3a970e0d6ab9647e26b92617c6786426f"
+      "bytes": 11737,
+      "sha256": "e783e403c8de1a0828c3e58065ed7549069d1284a3f59e8ab5f056967676bada"
     },
     {
       "path": "crates/lemmings-game/src/hd/layout.rs",
@@ -646,8 +646,8 @@
     },
     {
       "path": "crates/lemmings-game/tests/hd_assets.rs",
-      "bytes": 8646,
-      "sha256": "5a73ecf2021416b704a9154226855fb46bec0175647cbf400a98f8e4977cc2ed"
+      "bytes": 11215,
+      "sha256": "7c433dde0b7b04b3a7e78d61ea5e138620493216d06aa26a0d0a0b05a060fc36"
     },
     {
       "path": "crates/lemmings-game/tests/hd_presentation.rs",
@@ -1491,13 +1491,13 @@
     },
     {
       "path": "tools/hd_assets.py",
-      "bytes": 17141,
-      "sha256": "4f405f4f2021fc51e3493db0ae96dd3cf64c39eebee87395801232893aa029af"
+      "bytes": 19006,
+      "sha256": "376089f94aac0489b8141264c03d48d02b3be877616e982d4420b688b0606175"
     },
     {
       "path": "tools/hd_assets_preview.html",
-      "bytes": 9378,
-      "sha256": "7a735d51f83e853477d1d16a372c6bf1c41939ff4fd90c24a1523f76b3b767d2"
+      "bytes": 9442,
+      "sha256": "81d36c66ca69b013d5af892a4e5102acc006943a0dae16a18700370686583903"
     },
     {
       "path": "tools/initial_reference.py",
@@ -1936,8 +1936,8 @@
     },
     {
       "path": "tools/tests/test_hd_assets.py",
-      "bytes": 16213,
-      "sha256": "deec2b85790e973f1487dd042306ed73d5f65f2fa226a1836aa3f75954c5a60d"
+      "bytes": 18539,
+      "sha256": "15bf95167e7c7b025efdebbc251f8f3d9872bc27f49fde610066d2ecf9b412fc"
     },
     {
       "path": "tools/tests/test_initial_reference.py",
@@ -2321,8 +2321,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/scene.rs",
-      "bytes": 41333,
-      "sha256": "97ec07fa097147096f2c7139421a210b4baab54fbb7c7aade881c78c5590ce84"
+      "bytes": 50574,
+      "sha256": "4f9a02366cf164d737f34cc30c5f3b844ba61d86028ef7c4ea64e6f5f979d431"
     },
     {
       "path": "crates/lemmings-game/tests/hd_scene.rs",
@@ -2501,8 +2501,8 @@
     },
     {
       "path": "tools/hd_assets_check.cjs",
-      "bytes": 6910,
-      "sha256": "9d29f255b70ac63f41265517e110bbd01face6bb45a1bbd99561b61e244b0e52"
+      "bytes": 9280,
+      "sha256": "306c4d758b5ad0244dbb93a1c053ab76719481b6580b2db5768f721d7abb0a03"
     },
     {
       "path": "assets/manifests/hd_terrain.json",
@@ -2561,8 +2561,138 @@
     },
     {
       "path": "tools/web/hd_terrain.cjs",
-      "bytes": 5882,
-      "sha256": "ece048bf2f5fc81eb75ca17db0ecc1682ffe3e2cb19375d276cc49d8647a688c"
+      "bytes": 6281,
+      "sha256": "c01dd81ddf78e994b31bf4869f6e6d5316a4367c0dc9eab942ce29725eed24d6"
+    },
+    {
+      "path": "assets/manifests/hd_portals.json",
+      "bytes": 92183,
+      "sha256": "89699d82d7089c11c9b329fe2f97c200fefcc465bf2469137d03b93a29395187"
+    },
+    {
+      "path": "assets/remaster/issue-160-crystal-v1.png",
+      "bytes": 1884099,
+      "sha256": "b94926fd160c174f24d0921e588139e9b40481c4e33bd00b68983f0e2fed6e59"
+    },
+    {
+      "path": "assets/remaster/issue-160-fire-v1.png",
+      "bytes": 1712047,
+      "sha256": "e7b98f681ef5b2503755733c5d9044990914aa8ebe85e2604c0c28becf52f54d"
+    },
+    {
+      "path": "assets/remaster/issue-160-flame-crystal-v1.png",
+      "bytes": 1517572,
+      "sha256": "3260d1e9623ba2239b212f82c4366935bb3f9ea89d212b71e9b614af45fa2240"
+    },
+    {
+      "path": "assets/remaster/issue-160-flame-dirt-v1.png",
+      "bytes": 1611510,
+      "sha256": "4b4460d9591a1a4c757ab19247b8e2a2549f9ccbfc49c80644d09079650f8670"
+    },
+    {
+      "path": "assets/remaster/issue-160-flame-fire-v1.png",
+      "bytes": 1566026,
+      "sha256": "11aa768778646a73bc9fe4482246cdc186b7c486b67b324bb8ef4623cae3120b"
+    },
+    {
+      "path": "assets/remaster/issue-160-flame-marble-v1.png",
+      "bytes": 1515591,
+      "sha256": "2e98fabf3e9ddc471afb050df075880f31637a3183fc3b375a1b8d6687c44a3d"
+    },
+    {
+      "path": "assets/remaster/issue-160-flame-pillar-v1.png",
+      "bytes": 1624569,
+      "sha256": "5bd8a8a6fc244ae501c426f1a848adea9bf16fc4887e415ad94324db30220597"
+    },
+    {
+      "path": "assets/remaster/issue-160-marble-v1.png",
+      "bytes": 1791745,
+      "sha256": "2c4a06d94b6664843666e1056cb6974fe2a50864d22f864492ea6416e99a1b07"
+    },
+    {
+      "path": "assets/remaster/issue-160-pillar-v1.png",
+      "bytes": 1773175,
+      "sha256": "71118971b80ee0591204782a78efb3654892301f79c5bd5f07d04bcceb7707d2"
+    },
+    {
+      "path": "assets/remaster/previews/issue-160_native_course.png",
+      "bytes": 78191,
+      "sha256": "9764813b16c93dfae145001d7c4c65adacf75ad4d1a18b1e6ced88530fda9f82"
+    },
+    {
+      "path": "assets/remaster/previews/issue-160_portals.png",
+      "bytes": 454815,
+      "sha256": "825b469edecf58222b50f6ed26e207b780bc5b88ba260e8071fd563049fb76f1"
+    },
+    {
+      "path": "assets/remaster/previews/issue-160_web_course.png",
+      "bytes": 234274,
+      "sha256": "4c11a8b28695fa32a8e3d87298eb58dc452f3e05e4a5ad3d5024dfa0b24d7f47"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_crystal_v1.txt",
+      "bytes": 2326,
+      "sha256": "7f4ce1978026feacd7f3421a693c563c124f0da9ea9038fc6c7ba077cbd05d91"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_fire_v1.txt",
+      "bytes": 2360,
+      "sha256": "34f9627a3e429065d23a7f1e749bcee669d29c522bf50ec9e990b732841ecba1"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_flame_crystal_v1.txt",
+      "bytes": 1629,
+      "sha256": "c00d269f8577dda4e4ffcf50168e4ffc70530265ed56bb98c2c2431f57d23dfa"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_flame_dirt_v1.txt",
+      "bytes": 1613,
+      "sha256": "08e34988fd5e572602f8c37733081056696aa3a0d7d3f2bddaecaafb0e4aae40"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_flame_fire_v1.txt",
+      "bytes": 1626,
+      "sha256": "adcd92b8eb64ef45097ad4de4f61d1c06d039330079027fc4f16edf90dbd75b0"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_flame_marble_v1.txt",
+      "bytes": 1639,
+      "sha256": "d05608ed02cd2e20c51e7eb8d8ba298ae2e1e9d982453bd17d9a7f883853eebf"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_flame_pillar_v1.txt",
+      "bytes": 1631,
+      "sha256": "74b73052dd76baa8f359bb0f1110787796b9bcae4ca542262fd9f6ca6f9cb0d1"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_marble_v1.txt",
+      "bytes": 2317,
+      "sha256": "bae26ac4e442129739e5bf9b0dadc73d431af9939dbaf1bf09667654d037b825"
+    },
+    {
+      "path": "assets/remaster/prompts/issue-160_pillar_v1.txt",
+      "bytes": 2339,
+      "sha256": "e50a1eabd904fd18137b1d4e2ef76dd6d847def3b731e2afe74746e149919999"
+    },
+    {
+      "path": "tools/check_hd_portals.py",
+      "bytes": 2831,
+      "sha256": "95cdd36745c93dbf347265a6191a12abfc1ce6ae17c1683040b9a32a1cf3911b"
+    },
+    {
+      "path": "tools/portal_fixture.py",
+      "bytes": 2159,
+      "sha256": "6f2e805533a80419c9bc09e28f223154763f95ff249faa1f7e2dcc46ff0d8240"
+    },
+    {
+      "path": "tools/tests/test_portal_fixture.py",
+      "bytes": 2544,
+      "sha256": "e776f57abf5a415d7b7717cac358aae897521bf9af205e2ecb2606d3b577b03d"
+    },
+    {
+      "path": "tools/web/hd_portals.cjs",
+      "bytes": 7103,
+      "sha256": "d4bc2db8c1d2059f54a179ee21f7599a146c355bd85da10bc5fc8431cdaa736a"
     }
   ],
   "evidence": [
@@ -5986,5 +6116,95 @@
       "tools/web/hd_terrain.cjs"
     ],
     "scope": "Five normal terrain materials, original one-way object art, lossless rectangle compilation with unchanged v1 bounds, Native/Web120 initial scenes and selected1920 ticks plus7 SDL pairs. No core physics or timing changes. Historical COMP/120-level/G11/performance observations remain historical; #113 deferred and NOT READY unchanged. Special scenes/facilities/effects/UI and support packaging remain follow-up."
+  },
+  "source_impact_160": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/160",
+    "baseline": "65621317b3a72609fe3ed6253dc9b16124353725",
+    "previous_pins": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 12796,
+        "sha256": "0118fdc64c37cd819e4cb02dec7c12995b9a705519a54680602fed8b762e8b12"
+      },
+      {
+        "path": "assets/manifests/remaster_pack.json",
+        "bytes": 146997,
+        "sha256": "2783b5a555adb8a626b751799e24a43240199df0ee47e5adf4eb7e7e1a4bf789"
+      },
+      {
+        "path": "crates/lemmings-game/examples/hd_asset_probe.rs",
+        "bytes": 2583,
+        "sha256": "c04fb403e88993c6daa0c63be2d68380694805de4de92ced122bc34369f293ce"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/assets.rs",
+        "bytes": 10377,
+        "sha256": "3cab0b60765f516e0d867442364364a3a970e0d6ab9647e26b92617c6786426f"
+      },
+      {
+        "path": "crates/lemmings-game/tests/hd_assets.rs",
+        "bytes": 8646,
+        "sha256": "5a73ecf2021416b704a9154226855fb46bec0175647cbf400a98f8e4977cc2ed"
+      },
+      {
+        "path": "tools/hd_assets.py",
+        "bytes": 17141,
+        "sha256": "4f405f4f2021fc51e3493db0ae96dd3cf64c39eebee87395801232893aa029af"
+      },
+      {
+        "path": "tools/hd_assets_preview.html",
+        "bytes": 9378,
+        "sha256": "7a735d51f83e853477d1d16a372c6bf1c41939ff4fd90c24a1523f76b3b767d2"
+      },
+      {
+        "path": "tools/tests/test_hd_assets.py",
+        "bytes": 16213,
+        "sha256": "deec2b85790e973f1487dd042306ed73d5f65f2fa226a1836aa3f75954c5a60d"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/scene.rs",
+        "bytes": 41333,
+        "sha256": "97ec07fa097147096f2c7139421a210b4baab54fbb7c7aade881c78c5590ce84"
+      },
+      {
+        "path": "tools/hd_assets_check.cjs",
+        "bytes": 6910,
+        "sha256": "9d29f255b70ac63f41265517e110bbd01face6bb45a1bbd99561b61e244b0e52"
+      },
+      {
+        "path": "tools/web/hd_terrain.cjs",
+        "bytes": 5882,
+        "sha256": "ece048bf2f5fc81eb75ca17db0ecc1682ffe3e2cb19375d276cc49d8647a688c"
+      }
+    ],
+    "added": [
+      "assets/manifests/hd_portals.json",
+      "assets/remaster/issue-160-crystal-v1.png",
+      "assets/remaster/issue-160-fire-v1.png",
+      "assets/remaster/issue-160-flame-crystal-v1.png",
+      "assets/remaster/issue-160-flame-dirt-v1.png",
+      "assets/remaster/issue-160-flame-fire-v1.png",
+      "assets/remaster/issue-160-flame-marble-v1.png",
+      "assets/remaster/issue-160-flame-pillar-v1.png",
+      "assets/remaster/issue-160-marble-v1.png",
+      "assets/remaster/issue-160-pillar-v1.png",
+      "assets/remaster/previews/issue-160_native_course.png",
+      "assets/remaster/previews/issue-160_portals.png",
+      "assets/remaster/previews/issue-160_web_course.png",
+      "assets/remaster/prompts/issue-160_crystal_v1.txt",
+      "assets/remaster/prompts/issue-160_fire_v1.txt",
+      "assets/remaster/prompts/issue-160_flame_crystal_v1.txt",
+      "assets/remaster/prompts/issue-160_flame_dirt_v1.txt",
+      "assets/remaster/prompts/issue-160_flame_fire_v1.txt",
+      "assets/remaster/prompts/issue-160_flame_marble_v1.txt",
+      "assets/remaster/prompts/issue-160_flame_pillar_v1.txt",
+      "assets/remaster/prompts/issue-160_marble_v1.txt",
+      "assets/remaster/prompts/issue-160_pillar_v1.txt",
+      "tools/check_hd_portals.py",
+      "tools/portal_fixture.py",
+      "tools/tests/test_portal_fixture.py",
+      "tools/web/hd_portals.cjs"
+    ],
+    "scope": "All five portal sets55keys and actual effect0 exit ornaments30keys, original phases/provenance and Native/Web read-only rendering. New PNGs/rectangles/anchors retain source RGBA; v1/128MiB/32atlas unchanged. No core physics, timing, input or sound changes. Historical COMP/120-level/G11/performance observations remain historical; #113 deferred/NOT READY unchanged. Four special scenes and other hazards/effects/UI, support HD packaging and performance remain follow-up."
   }
 }

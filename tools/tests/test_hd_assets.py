@@ -155,13 +155,14 @@ class HdAssetsTests(unittest.TestCase):
         from tools.hd_assets import key_fields, ICON_NAMES
         self.assertEqual(key_fields({'actor':[0,0]}),(0,0,0))
         self.assertEqual(key_fields({'material':0}),(1,0,0))
-        for id,count in [(0,1),(1,10)]:
-            for frame in range(count):
-                self.assertEqual(key_fields({'object':[0,id,frame]}),(2,id,frame))
+        for theme in range(5):
+            for id,count in [(0,1),(1,10)]:
+                for frame in range(count):
+                    self.assertEqual(key_fields({'object':[theme,id,frame]}),(2,theme*16+id,frame))
         for id,name in enumerate(ICON_NAMES):
             self.assertEqual(key_fields({'icon':name}),(3,id,0))
-        for key in [{'object':[0,0,1]},{'object':[0,1,10]},{'object':[1,0,0]},
-                    {'object':[0,2,0]},{'object':[False,0,0]},{'object':[0,1]},
+        for key in [{'object':[0,0,1]},{'object':[0,1,10]},{'object':[5,0,0]},
+                    {'object':[0,5,0]},{'object':[False,0,0]},{'object':[0,1]},
                     {'icon':'minimap'},{'icon':13},{'icon':False},{'icon':[]}]:
             with self.assertRaises(AssetError): key_fields(key)
 
@@ -277,5 +278,37 @@ class HdAssetsTests(unittest.TestCase):
                     dest=((dy+y)*w+dx+x)*4
                     self.assertEqual(pixels[dest:dest+4],rgba[source:source+4])
 
+
+    def test_complete_portal_policy_requires_all_five_sets_and_55_frames(self):
+        from tools.hd_assets import portal_coverage
+        keys=[dict(object=[theme,id,frame]) for theme in range(5) for id,count in [(0,1),(1,10)] for frame in range(count)]
+        self.assertEqual(portal_coverage([dict(key=k) for k in keys]),dict(sets=5,frames=55,missing=[]))
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);m=self.fixture(root);m['complete_portals']=True
+            with self.assertRaisesRegex(AssetError,'portal coverage'):compile_pack(m,root=root)
+            f=m['frames'][0];m['frames']=[dict(f,key=k) for k in keys]
+            self.assertEqual(compile_pack(m,root=root)[1]['portal_coverage'],dict(sets=5,frames=55,missing=[]))
+            m['frames'].pop()
+            self.assertEqual(portal_coverage(m['frames'])['missing'],[[4,1,9]])
+            with self.assertRaisesRegex(AssetError,'portal coverage'):compile_pack(m,root=root)
+            m['complete_portals']='yes'
+            with self.assertRaises(AssetError):compile_pack(m,root=root)
+
+
+    def test_exit_flame_frames_keep_pure_decoration_profiles_and_complete_coverage(self):
+        from tools.hd_assets import exit_effect_coverage, key_fields
+        keys=[{'object':[theme,id,frame]} for theme,id in [(0,7),(1,6),(2,6),(3,6),(4,8)] for frame in range(6)]
+        self.assertEqual(exit_effect_coverage([{'key':key} for key in keys]),dict(frames=30,missing=[]))
+        for key in keys:
+            theme,id,frame=key['object'];self.assertEqual(key_fields(key),(2,theme*16+id,frame))
+        for key in [{'object':[0,7,6]},{'object':[0,2,0]},{'object':[3,3,0]},{'object':[4,4,0]},{'object':[5,2,0]}]:
+            with self.assertRaises(AssetError):key_fields(key)
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);m=self.fixture(root);m['complete_exit_effects']=True
+            with self.assertRaisesRegex(AssetError,'exit effect coverage'):compile_pack(m,root=root)
+            f=m['frames'][0];m['frames']=[dict(f,key=key) for key in keys]
+            report=compile_pack(m,root=root)[1]
+            self.assertEqual(report['exit_effect_coverage'],dict(frames=30,missing=[]))
+            self.assertEqual(report['portal_coverage']['frames'],0)
 
 if __name__=='__main__':unittest.main()

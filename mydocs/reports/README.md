@@ -134,3 +134,5 @@
 - [#154 HD-05a 캐릭터 전체 프레임](issue-154_hd_actors.md)
 
 - [#157 HD-05b 일반 지형 재질·무손실 팩](issue-157_hd_terrain.md)
+
+- [#160 전체 테마 입출구·출구 불꽃](issue-160_hd_portals.md)
