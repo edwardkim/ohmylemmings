@@ -1,4 +1,4 @@
-.PHONY: check check-rust check-python check-wasm check-desktop check-web web serve-web package-linux package-web
+.PHONY: hd-assets check check-rust check-python check-wasm check-desktop check-web web serve-web package-linux package-web
 
 check: check-rust check-python check-wasm check-desktop check-web
 
@@ -76,3 +76,6 @@ check-web:
 	python3 tools/sound_playthrough.py
 	python3 tools/initial_replay.py --smoke
 	python3 tools/solution_replay.py --smoke
+
+hd-assets:
+	python3 tools/hd_assets.py runtime

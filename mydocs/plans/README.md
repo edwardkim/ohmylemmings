@@ -36,3 +36,5 @@
 - [#144 HD 자산·팩 계약](issue-144_hd_assets.md): HD-03a 걷기16프레임·암석과 공통 로더/검증.
 
 - [#147 HD-03b 직업·시설·패널 자산](issue-147_hd_actions.md).
+
+- [#151 HD-04 실제 Fun01 Native/Web 통합](issue-151_hd_integration.md).

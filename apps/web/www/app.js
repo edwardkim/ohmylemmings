@@ -3,6 +3,7 @@ import { FramePump, present } from './host.js';
 import { AudioHost } from './audio.js';
 import { GameInput, readFiles } from './controls.js';
 import { loadBundled } from './bundled.js';
+import { HdCanvas } from './hd.js';
 
 const canvas = document.querySelector('#game');
 const context = canvas.getContext('2d', { alpha: false });
@@ -18,6 +19,9 @@ const difficulty = document.querySelector('#difficulty');
 const openLevel = document.querySelector('#open-level');
 const errorText = document.querySelector('#error');
 const source = document.querySelector('#source');
+const presentation=document.querySelector('#presentation');
+let hd;let hdBytes;let hdMode=false;
+function screenSize(){canvas.classList.toggle('hd',hdMode);canvas.width=hdMode?1920:320;canvas.height=hdMode?1080:200;canvas.style.setProperty('--aspect',String(canvas.width/canvas.height));}
 let audio;
 let audioHeld=false;
 let game;
@@ -43,7 +47,7 @@ export function observe(listener) {
 function invoke(op,args,fn) { needsDraw=true;notify('input',{op,args});return fn(); }
 const inputGame={
     key:(...args)=>invoke('Key',[args[0],Number(args[1])],()=>game.key(...args)),
-    pointer:(...args)=>invoke('Pointer',args,()=>game.pointer(...args)),
+    pointer:(...args)=>invoke(hdMode?'HdPointer':'Pointer',args,()=>hdMode?game.hd_pointer(...args):game.pointer(...args)),
     release_input:()=>invoke('Release',[],()=>game.release_input()),
 };
 for (let n = 1; n <= 30; n++) level.add(new Option(String(n).padStart(2,'0'), n));
@@ -66,7 +70,7 @@ function fail(error) {
 function draw() {
     presentations++;
     needsDraw=false;
-    present(context, game.frame(), game.width(), game.height());
+    if(hdMode)hd.draw(context);else present(context, game.frame(), game.width(), game.height());
     const state = JSON.parse(game.state());
     const finished = state.completion && state.completion.phase !== 'Playing';
     const paused = game.paused();
@@ -76,6 +80,7 @@ function draw() {
     pause.textContent = exited ? '게임으로 돌아가기' : paused ? '계속하기' : '멈추기';
     pause.disabled = loading || Boolean(finished);
     restart.disabled = loading;
+    presentation.disabled=loading;
     scene.disabled = files.disabled = loading;
     openLevel.disabled = loading || !game.original();
     level.disabled = difficulty.disabled = loading;
@@ -105,6 +110,7 @@ function frame(timestamp) {
     } catch (error) { fail(error); }
 }
 function replaced(reason) {
+    hd?.invalidate();
     notify('reset',{reason});
     input.release();
     exited = false;
@@ -114,6 +120,7 @@ function replaced(reason) {
     stop(); draw(); schedule();
 }
 function action(name) {
+    if(name==='restart-level'){game.restart_level();replaced('restart');return;}
     if (name === 'exit') { exited = true; input.release(); pump.suspend(); stop(); }
     else if ((name === 'restart' || name === 'continue') && game.transition(name)) replaced(name);
 }
@@ -149,6 +156,23 @@ document.addEventListener('visibilitychange', () => {
     if (!document.hidden && draw()) schedule();
 });
 
+presentation.addEventListener('change',async()=>{
+    if(!game||loading)return;
+    const requested=presentation.value==='hd';input.release();loading=true;draw();
+    try {
+        if(requested&&!hd){
+            if(!hdBytes){const response=await fetch('./hd-assets.hdp');if(!response.ok)throw new Error('HD 자산을 불러오지 못했습니다.');hdBytes=new Uint8Array(await response.arrayBuffer());}
+            game.load_hd(hdBytes);hd=new HdCanvas(game);
+        }
+        hdMode=requested;screenSize();errorText.textContent='';
+    } catch(error){presentation.value=hdMode?'hd':'original';recover(error);}
+    finally {loading=false;draw();canvas.focus({preventScroll:true});}
+});
+document.querySelector('#fullscreen').addEventListener('click',()=>{
+    const screen=canvas.parentElement;
+    const action=document.fullscreenElement?document.exitFullscreen():screen.requestFullscreen();
+    action.catch(recover);
+});
 try {
     await init();
     game = new WebGame(scene.value, 'reference');

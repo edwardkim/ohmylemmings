@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/151",
+  "parent": 137,
+  "status": "local_verified_preview",
+  "baseline_main": "f5cefc9d05847267d08d731d1c953730759bf600",
+  "runtime_ready": true,
+  "full_remaster_ready": false,
+  "publication_evidence": "Exact PR head/CI/merge recorded in GitHub #151 and report completion section",
+  "contract": {
+    "width": 1920,
+    "height": 1080,
+    "game_height": 960,
+    "wire_version": 1,
+    "command_i32_stride": 12,
+    "chunk_logical": [
+      32,
+      32
+    ],
+    "texture_revision": "upload changed textures only; invalidate dynamic host cache after scene replacement",
+    "input": "shared half-open HD coordinates; original panel/selection state machines reused"
+  },
+  "coverage": {
+    "actor_slots": [
+      0,
+      2,
+      4,
+      10,
+      11,
+      26,
+      27
+    ],
+    "hd_actor_frames": 81,
+    "remaining_actor_frames": 256,
+    "facility_frames": 11,
+    "control_icons": 13,
+    "objects_unremastered": "Fun01 object7 flame remains original",
+    "terrain": "new material for first theme without one-way terrain; other themes/one-way signs use original art"
+  },
+  "local": {
+    "rust_tests": 654,
+    "doctests": 29,
+    "python_tests": 268,
+    "format_clippy": "PASS",
+    "wasm_libraries": "PASS",
+    "web_regression": {
+      "cases": 33,
+      "runs": 66,
+      "states": 11960,
+      "readbacks": 6877,
+      "status": "PASS"
+    },
+    "hd_smoke": {
+      "status": "PASS",
+      "wire_version": 1,
+      "scenarios": 3,
+      "frames": 203,
+      "states": 783,
+      "unchanged_logic_masks_audio": true,
+      "dirty_chunks": true,
+      "corrupt_pack": true,
+      "input": true,
+      "scope": "shared WASM HD renderer/Canvas and synthetic state pairs; actual Fun01 tracked separately"
+    },
+    "product": {
+      "status": "PASS",
+      "controls": {
+        "skills": 8,
+        "pause": true,
+        "minimap": true,
+        "restart": true,
+        "actor_assignment": true
+      },
+      "fullscreen": true,
+      "fullscreen_rect": {
+        "width": 800,
+        "height": 450
+      },
+      "play": {
+        "status": "PASS",
+        "steps": 664,
+        "states": 665,
+        "frames": 36,
+        "final": {
+          "phase": "Won",
+          "reason": "PopulationExhausted",
+          "original_total": 10,
+          "lemming_count": 10,
+          "required": 1,
+          "rescued": 10,
+          "target_percent": 10,
+          "rescued_percent": 100
+        },
+        "info": {
+          "version": 1,
+          "width": 1920,
+          "height": 1080,
+          "terrain_rebuilds": 291,
+          "source_terrain": false,
+          "missing_actor_frames": []
+        }
+      },
+      "console_errors": 0,
+      "scope": "actual bundled Fun01 product UI/Canvas; fixed explicit ticks, not a performance measurement"
+    },
+    "native_equivalence": {
+      "status": "PASS",
+      "cases": 1,
+      "steps": 664,
+      "equal_files": [
+        "full.jsonl",
+        "trace.jsonl",
+        "inputs.txt",
+        "terrain-final.bin",
+        "brick-final.bin",
+        "object-map-final.bin"
+      ],
+      "full_sha256": "ea2928b414411969e486c3d775731ba9b73f2f55198d935a086ba3715428fdad"
+    },
+    "cross_native_web": {
+      "native_rows": 661,
+      "web_rows": 665,
+      "equal_prefix": true,
+      "extra_rows": "four identical frozen results",
+      "masks": "terrain/bricks/object-map identical"
+    },
+    "native_visible": {
+      "driver": "wayland",
+      "renderer": "opengl",
+      "output": [
+        1920,
+        1080
+      ],
+      "control_step": 160,
+      "iteration": 122,
+      "inputs": "Pause at122; display/input observation, not a full playthrough proof or performance qualification"
+    }
+  },
+  "public_preview": {
+    "path": "assets/remaster/previews/issue-151_native_synthetic.png",
+    "bytes": 104375,
+    "sha256": "b9adef695f2c0e03a7762bc71da96d757c7844d7084cd0367990d7b319db4e10"
+  },
+  "local_evidence": [
+    {
+      "path": "assets/local/issue-151-review/native-equivalence.json",
+      "bytes": 292,
+      "sha256": "ebb7fe9710f3544e238f396253c6a4ad50f9b31267efedfe3ff1480ef794451d"
+    },
+    {
+      "path": "assets/local/issue-151-review/final-product/product-check.json",
+      "bytes": 875,
+      "sha256": "b4a79b23569c8e7296d825b07eae93f39f0a44b78cdf1bdc0744f2f933d69238"
+    },
+    {
+      "path": "assets/local/issue-151-review/final-product/web-fun01-states.jsonl",
+      "bytes": 3488974,
+      "sha256": "725c1c39076799331123188d60652edefb530a4fcd79f1b1048cc96fbdb4ddb0"
+    },
+    {
+      "path": "assets/local/issue-151-review/web-regression/summary.json",
+      "bytes": 7620,
+      "sha256": "ccba026afac995f2fb2f00069b62613cb8c669d5dc76bddebdc755373305afb7"
+    },
+    {
+      "path": "assets/local/issue-151-review/hd-smoke/result.json",
+      "bytes": 304,
+      "sha256": "6c57ce8b40d4126b1ee047e9a0fc9954adfb710e592846ee8ed82fac11506865"
+    },
+    {
+      "path": "assets/local/issue-151-review/native-wayland/run.json",
+      "bytes": 274,
+      "sha256": "6b793d6ca6785a88bd360165bd7f33305d453dccf7ca82cff4e64e2f87fe4804"
+    }
+  ],
+  "limitations": [
+    "Only partial HD assets are available; original fallback is explicit in UI and diagnostics.",
+    "Bitmap text, original flame/other effects and contour polish remain HD-05.",
+    "No60fps/performance or physical-listening qualification is claimed.",
+    "Public v0.1.0/Pages unchanged; Windows11/full HD platform delivery remains follow-up."
+  ]
+}

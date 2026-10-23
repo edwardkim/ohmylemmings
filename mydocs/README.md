@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-새 기능 [#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 시작했습니다. 첫 [#138 Fun 01 시안·계약과 한계](reports/issue-138_hd_art_direction.md)를 참고하세요. [#140 공통 표시 snapshot·좌표/입력](reports/issue-140_hd_presentation.md)은 PR #141·최종 CI7개 통과로 완료했습니다. [#144 분리 걷기·암석과 공통 팩](reports/issue-144_hd_assets.md)은 PR #145·CI7개 통과로 완료했습니다. 다음은 입출구·직업 동작·UI 자산 제작이며, 실제 HD 게임 모드는 아직 미구현입니다. 초기 개발 #1의 종료와 성능 #113의 독립 후속은 유지합니다.
+[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 진행 중입니다. [#147 직업·시설·패널 자산](reports/issue-147_hd_actions.md)에 이어 [#151 실제 HD 게임 통합](reports/issue-151_hd_integration.md)에서 Native/Web 1920×1080 부분 HD 미리보기·원본 전환·입력·전체화면과 Fun01 동일성을 로컬 검증했습니다. 정확한 CI/병합 상태는 #151에 기록합니다. 나머지21애니메이션256프레임·시설/효과 확장과 지원 플랫폼 배포는 후속입니다. 초기 개발 #1 종료와 성능 #113의 독립 후속은 유지합니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 
@@ -106,4 +106,4 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 
 버전·태그·게시 운영은 [#124 릴리즈 정책](plans/issue-124_release_policy.md)을 따릅니다.
 
-[#147 HD-03b 직업·시설·패널 자산](reports/issue-147_hd_actions.md)에서 새65캐릭터 프레임·첫 테마 입출구11프레임·13조작 아이콘과 typed 팩을 준비했다. 현재 후보는7atlas106자산/81캐릭터 프레임이며 실제 HD 게임/GPU·Fun01 통합은 #137 후속이다.
+[#147 HD-03b 직업·시설·패널 자산](reports/issue-147_hd_actions.md)에서 새65캐릭터 프레임·첫 테마 입출구11프레임·13조작 아이콘과 typed 팩을 준비했다. 현재 후보는7atlas106자산/81캐릭터 프레임이며 실제 HD 게임/GPU·Fun01 통합은 [#151](reports/issue-151_hd_integration.md), 전체 자산 확장은 #137 후속이다.

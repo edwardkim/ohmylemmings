@@ -122,6 +122,11 @@ def build(output=OUTPUT):
     subprocess.run([str(tool), '--target', 'web', '--out-dir', str(output / 'pkg'), '--out-name', 'lemmings_web', str(ROOT / 'target/wasm32-unknown-unknown/release/lemmings_web.wasm')], check=True)
     for source in (ROOT / 'apps/web/www').iterdir():
         if source.is_file(): shutil.copyfile(source, output / source.name)
+    try:
+        from .hd_assets import runtime_pack
+    except ImportError:
+        from hd_assets import runtime_pack
+    (output/'hd-assets.hdp').write_bytes(runtime_pack(root=ROOT))
     audio_delivery(output)
     print(json.dumps(dict(status='PASS',bindgen=version,output=str(output))))
     return output

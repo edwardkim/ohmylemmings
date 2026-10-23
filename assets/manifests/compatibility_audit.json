@@ -46,8 +46,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 3514,
-      "sha256": "89d5ed2cd5dafb94dd5e71b4eb697173edf217cbeed4f20a37c745438f00a026"
+      "bytes": 3572,
+      "sha256": "d2caaa88ddf37f01062cc32727b9b163c8b37ba2bb7996015385442c16539068"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -111,8 +111,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 60575,
-      "sha256": "f7828b5c541784960c9dade4d416ef6106479e006b8393abf68b5a489250abf5"
+      "bytes": 66043,
+      "sha256": "d9bbca3d3871468a4b9fc074942dcc1d65c3dca305547ce639bb3c9973a76061"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -191,13 +191,13 @@
     },
     {
       "path": "apps/web/src/input.rs",
-      "bytes": 7170,
-      "sha256": "5ba26ad378f5e3b56be9bba24a6df9fcbab432fb743128c317abc3f2aee35639"
+      "bytes": 8049,
+      "sha256": "81606e44e1c269729f142bb321b2630ea4f69ac01fc2eeac35dac546f8de34cb"
     },
     {
       "path": "apps/web/src/lib.rs",
-      "bytes": 15826,
-      "sha256": "ddd3561b52eb9b5112eac588cd92aec1657e34f8fffea524e713153402561ff7"
+      "bytes": 18341,
+      "sha256": "85718c5ef93bde1bef004ea5edfa4de9e50e7cd86bc4017ef794212c62fdcfb4"
     },
     {
       "path": "apps/web/tests/audio_output.rs",
@@ -231,8 +231,8 @@
     },
     {
       "path": "apps/web/www/app.js",
-      "bytes": 9700,
-      "sha256": "231fde74ec6c850fbc4f6c9e1008e91cbd24f004030f74508f1cbc6653c43374"
+      "bytes": 11172,
+      "sha256": "2edcbbdab5e8c24d96c9ab0de44f4cd9a6144e0a0aab631336c964119d0ad6d0"
     },
     {
       "path": "apps/web/www/audio-license.html",
@@ -251,8 +251,8 @@
     },
     {
       "path": "apps/web/www/controls.js",
-      "bytes": 4740,
-      "sha256": "e54f235e7cf09dac1a301651bced60bace9b06e2d541bbc7dfa769bb2179ab40"
+      "bytes": 4793,
+      "sha256": "4cc84e9fc1feb7c35e267888f9c9dd840b68ec6e2a3736977dc42a6903bdad2c"
     },
     {
       "path": "apps/web/www/host.js",
@@ -261,13 +261,13 @@
     },
     {
       "path": "apps/web/www/index.html",
-      "bytes": 4653,
-      "sha256": "cb76cca7cb23dfb83412191be27e5bc1490bca8b8694b4de8bd03a3c144a07cf"
+      "bytes": 5086,
+      "sha256": "c0aac920f8fa196e97b4be1b371012a127b5d4d1c3f7116e741ae695819b134d"
     },
     {
       "path": "apps/web/www/style.css",
-      "bytes": 4566,
-      "sha256": "25b5a725ba90ceaa9366b9e5a80f5791bc82f9ef86ce859fdecc55d8910c8b85"
+      "bytes": 4846,
+      "sha256": "f6f43f6e153f8bd44009e1cac4f5df02c70d8dd7f2bbd78e12a07d50995c5a3c"
     },
     {
       "path": "assets/manifests/license_inventory.json",
@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 45868,
-      "sha256": "4d78b6b05a0c6890ea0ad70ed6bec1745b2b8502b02465191acaea821ffccd98"
+      "bytes": 46848,
+      "sha256": "1e5377ced9762a701fe13c67435e6b8a8f3905dfeb598879af49b0c64647196b"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -571,8 +571,8 @@
     },
     {
       "path": "crates/lemmings-game/src/assets.rs",
-      "bytes": 35607,
-      "sha256": "800a7bb015d44db368368385685b0c0e392bb8121b1b9ebc55cb43f5bb2ad717"
+      "bytes": 37269,
+      "sha256": "841469416812171944bc2c22040c55756e1c2d8312722047ea5d0b2d9c2b5235"
     },
     {
       "path": "crates/lemmings-game/src/audio.rs",
@@ -596,8 +596,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/mod.rs",
-      "bytes": 870,
-      "sha256": "22752bdfac7465504cdab635dc72bf99845e4272a2add3ec1c16470ffa63a56c"
+      "bytes": 943,
+      "sha256": "c6534531d2a167a27f602206cde4985e9bf78569a21deba7837937734fcce994"
     },
     {
       "path": "crates/lemmings-game/src/hd/snapshot.rs",
@@ -606,13 +606,13 @@
     },
     {
       "path": "crates/lemmings-game/src/lib.rs",
-      "bytes": 739,
-      "sha256": "5ca4eaa6ab0bdf120f0749fbc09b85fa7b0ce2402848cdb54966fceea92cbd9f"
+      "bytes": 755,
+      "sha256": "a81bc55fd474e5411cb4ea17d517d8ac111650b4fb3b50946636402dbfa0eabd"
     },
     {
       "path": "crates/lemmings-game/src/lifecycle.rs",
-      "bytes": 14922,
-      "sha256": "7042bbacbe1f3a6c96796a9b66cde2f375441a784e8c35cf987445e244999037"
+      "bytes": 15420,
+      "sha256": "284d25c73bb90fe98eeca6484028c2fb22e9c90c519038256bd53f25b61d700a"
     },
     {
       "path": "crates/lemmings-game/src/panel.rs",
@@ -1301,8 +1301,8 @@
     },
     {
       "path": "tools/check_web.py",
-      "bytes": 12247,
-      "sha256": "c52b46b3a9055c4005f437435c0004d67d5de4ca04576ab719c3b2fed9f8a55b"
+      "bytes": 12261,
+      "sha256": "997c0e59eea765aaa5299a0e2fc7aa8d1b66edb87be96f9137a02e22338604aa"
     },
     {
       "path": "tools/check_web_journey.py",
@@ -1491,8 +1491,8 @@
     },
     {
       "path": "tools/hd_assets.py",
-      "bytes": 11571,
-      "sha256": "6e9b7393577f1554cd44a0f7f81238fe11276165f770380b1229b19f68943e5e"
+      "bytes": 13119,
+      "sha256": "c30f907dfc7ffbd3189bdc960672f95994d6114b0b5f47fc9f001cb46146ed44"
     },
     {
       "path": "tools/hd_assets_preview.html",
@@ -1766,8 +1766,8 @@
     },
     {
       "path": "tools/release_package.py",
-      "bytes": 16244,
-      "sha256": "3f7b8f172f1534d5c1ab79e35a69c54ef304bb3bd33e1ba2c98bb334afa8b782"
+      "bytes": 16821,
+      "sha256": "d31f2df6a91394d835cec5e630e96694521b971a53fecb479bb30d8fff416d38"
     },
     {
       "path": "tools/release_version.py",
@@ -1936,8 +1936,8 @@
     },
     {
       "path": "tools/tests/test_hd_assets.py",
-      "bytes": 9891,
-      "sha256": "0930c3508be533694a3d90c79911b8d68dc0e094d0481ea4e5eccbcc770ca0cb"
+      "bytes": 10646,
+      "sha256": "f346d42bceda1baa6abb4a59883097cfcc68b220020ce9142f152b8e534163a6"
     },
     {
       "path": "tools/tests/test_initial_reference.py",
@@ -2181,8 +2181,8 @@
     },
     {
       "path": "tools/web/check.js",
-      "bytes": 8840,
-      "sha256": "c638861cc3e60fe032328bd6324d572d8830967ee758c8b840ce3a3fb6a545f8"
+      "bytes": 8927,
+      "sha256": "fabc8601ceec50a42321901fd4bb899c35b5dd40c35667360082ba9e3b270b3c"
     },
     {
       "path": "tools/web/dispatch_check.js",
@@ -2236,8 +2236,8 @@
     },
     {
       "path": "tools/web_build.py",
-      "bytes": 8107,
-      "sha256": "4f0b5342031246ea2edd63838c77b8f503d0e27b233ba6845996f70fb20f07ff"
+      "bytes": 8293,
+      "sha256": "e6ab5e8fcd43ef1fcd92f918a7617ca9f773f2f0ac05349db90da3b4570b781e"
     },
     {
       "path": "tools/web_deadlines.py",
@@ -2313,6 +2313,51 @@
       "path": "assets/remaster/prompts/issue-147_ui_v1.txt",
       "bytes": 2217,
       "sha256": "570c19fde3c0a0d554662cb5015fcaa77b4bc8d7e60c56a8491ebab35afb7eb1"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/input.rs",
+      "bytes": 2267,
+      "sha256": "659994fe0e8d2364b42a9f14027c3091d474c6f271b6ced9f6684864e5f1a9b8"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/scene.rs",
+      "bytes": 36536,
+      "sha256": "72e2edc0f82a357791df9d7de2d938f801a4062537f557119c0daf29e9793c13"
+    },
+    {
+      "path": "crates/lemmings-game/tests/hd_scene.rs",
+      "bytes": 2017,
+      "sha256": "8d403b75ecd91ac604e7221bcc9476d5ba08183c5a0bc8592eaed65db3fc6c75"
+    },
+    {
+      "path": "apps/desktop/src/hd.rs",
+      "bytes": 4511,
+      "sha256": "2071e577ccceb71a535e2da2f214054a36cec64b9fe045fe8f365a046565fc52"
+    },
+    {
+      "path": "apps/web/tests/hd.rs",
+      "bytes": 3216,
+      "sha256": "443f518176694179b50e051b3267886ca5cb3b5c4dbb80f6074140e5ac7e0f5c"
+    },
+    {
+      "path": "apps/web/www/hd.js",
+      "bytes": 2057,
+      "sha256": "cde13d93f33759e5bab97efce6f0bb01e2048196696e36cfa5f27a3598c4be8f"
+    },
+    {
+      "path": "tools/web/hd_check.js",
+      "bytes": 3643,
+      "sha256": "d27eb18ebe5d5fa1aadac902a17869c4808034ed4000a556e201cec6af2ff83a"
+    },
+    {
+      "path": "tools/web/hd_product.cjs",
+      "bytes": 7199,
+      "sha256": "03f0fecf030ff68d259a625123a75591503ede603e6bb8abefc31708a432c2c2"
+    },
+    {
+      "path": "assets/manifests/hd_integration.json",
+      "bytes": 5518,
+      "sha256": "e996b8eff912fd820edb2fc784a964096659be123a2c43bb7facf23cbc87f2c0"
     }
   ],
   "evidence": [
@@ -2576,10 +2621,10 @@
       "kind": "recorded-host-proof-ledger"
     },
     {
-      "id": "g11-06-display-cadence",
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 89425,
-      "sha256": "e72cc96ffbbe81c6a9e6edbc9dc4acd6b07351eaa3ebff553114a76f5f81459b"
+      "bytes": 89941,
+      "sha256": "b16a0fd5afde439a9bb21cd6f89f1e3c03b54b8c0440ef2b9ff02ae7e18b85cc",
+      "id": "g11-06-display-cadence"
     }
   ],
   "local_evidence": [
@@ -5451,5 +5496,126 @@
       "assets/remaster/prompts/issue-147_ui_v1.txt"
     ],
     "scope": "Optional HD pack extends actor candidates, first-theme entrance/exit and typed toolbar icons, preserving v1 walking/material bytes and unchanged PNG samples. No simulation/original renderer/host/replay/PCM changes or actual HD integration. Historical COMP/120-level/G11/performance observations remain historical; #113 qualification deferred."
+  },
+  "source_impact_151": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/151",
+    "baseline": "f5cefc9d05847267d08d731d1c953730759bf600",
+    "previous_pins": [
+      {
+        "path": "Makefile",
+        "bytes": 3514,
+        "sha256": "89d5ed2cd5dafb94dd5e71b4eb697173edf217cbeed4f20a37c745438f00a026"
+      },
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 60575,
+        "sha256": "f7828b5c541784960c9dade4d416ef6106479e006b8393abf68b5a489250abf5"
+      },
+      {
+        "path": "apps/web/src/input.rs",
+        "bytes": 7170,
+        "sha256": "5ba26ad378f5e3b56be9bba24a6df9fcbab432fb743128c317abc3f2aee35639"
+      },
+      {
+        "path": "apps/web/src/lib.rs",
+        "bytes": 15826,
+        "sha256": "ddd3561b52eb9b5112eac588cd92aec1657e34f8fffea524e713153402561ff7"
+      },
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 9700,
+        "sha256": "231fde74ec6c850fbc4f6c9e1008e91cbd24f004030f74508f1cbc6653c43374"
+      },
+      {
+        "path": "apps/web/www/controls.js",
+        "bytes": 4740,
+        "sha256": "e54f235e7cf09dac1a301651bced60bace9b06e2d541bbc7dfa769bb2179ab40"
+      },
+      {
+        "path": "apps/web/www/index.html",
+        "bytes": 4653,
+        "sha256": "cb76cca7cb23dfb83412191be27e5bc1490bca8b8694b4de8bd03a3c144a07cf"
+      },
+      {
+        "path": "apps/web/www/style.css",
+        "bytes": 4566,
+        "sha256": "25b5a725ba90ceaa9366b9e5a80f5791bc82f9ef86ce859fdecc55d8910c8b85"
+      },
+      {
+        "path": "assets/manifests/remaster_pack.json",
+        "bytes": 45868,
+        "sha256": "4d78b6b05a0c6890ea0ad70ed6bec1745b2b8502b02465191acaea821ffccd98"
+      },
+      {
+        "path": "crates/lemmings-game/src/assets.rs",
+        "bytes": 35607,
+        "sha256": "800a7bb015d44db368368385685b0c0e392bb8121b1b9ebc55cb43f5bb2ad717"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/mod.rs",
+        "bytes": 870,
+        "sha256": "22752bdfac7465504cdab635dc72bf99845e4272a2add3ec1c16470ffa63a56c"
+      },
+      {
+        "path": "crates/lemmings-game/src/lib.rs",
+        "bytes": 739,
+        "sha256": "5ca4eaa6ab0bdf120f0749fbc09b85fa7b0ce2402848cdb54966fceea92cbd9f"
+      },
+      {
+        "path": "crates/lemmings-game/src/lifecycle.rs",
+        "bytes": 14922,
+        "sha256": "7042bbacbe1f3a6c96796a9b66cde2f375441a784e8c35cf987445e244999037"
+      },
+      {
+        "path": "tools/check_web.py",
+        "bytes": 12247,
+        "sha256": "c52b46b3a9055c4005f437435c0004d67d5de4ca04576ab719c3b2fed9f8a55b"
+      },
+      {
+        "path": "tools/hd_assets.py",
+        "bytes": 11571,
+        "sha256": "6e9b7393577f1554cd44a0f7f81238fe11276165f770380b1229b19f68943e5e"
+      },
+      {
+        "path": "tools/release_package.py",
+        "bytes": 16244,
+        "sha256": "3f7b8f172f1534d5c1ab79e35a69c54ef304bb3bd33e1ba2c98bb334afa8b782"
+      },
+      {
+        "path": "tools/tests/test_hd_assets.py",
+        "bytes": 9891,
+        "sha256": "0930c3508be533694a3d90c79911b8d68dc0e094d0481ea4e5eccbcc770ca0cb"
+      },
+      {
+        "path": "tools/web/check.js",
+        "bytes": 8840,
+        "sha256": "c638861cc3e60fe032328bd6324d572d8830967ee758c8b840ce3a3fb6a545f8"
+      },
+      {
+        "path": "tools/web_build.py",
+        "bytes": 8107,
+        "sha256": "4f0b5342031246ea2edd63838c77b8f503d0e27b233ba6845996f70fb20f07ff"
+      }
+    ],
+    "added": [
+      "crates/lemmings-game/src/hd/input.rs",
+      "crates/lemmings-game/src/hd/scene.rs",
+      "crates/lemmings-game/tests/hd_scene.rs",
+      "apps/desktop/src/hd.rs",
+      "apps/web/tests/hd.rs",
+      "apps/web/www/hd.js",
+      "tools/web/hd_check.js",
+      "tools/web/hd_product.cjs",
+      "assets/manifests/hd_integration.json"
+    ],
+    "previous_evidence": [
+      {
+        "id": "g11-06-display-cadence",
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 89425,
+        "sha256": "e72cc96ffbbe81c6a9e6edbc9dc4acd6b07351eaa3ebff553114a76f5f81459b"
+      }
+    ],
+    "scope": "Partial opt-in Native/Web HD renderer and revisioned chunks/textures; common input, original-mode/fullscreen switch and packaging cache. No core simulation changes. Fresh equivalence evidence is Fun01 and synthetic HD scenarios only; historical COMP/120-level/G11/performance observations stay historical, #113 deferred and NOT READY unchanged."
   }
 }

@@ -55,3 +55,9 @@ footer { flex-wrap: wrap; }
 .license { max-width: 850px; line-height: 1.7; }
 .license a { color: #b1df8c; }
 .license pre { white-space: pre-wrap; padding: 16px; background: #182225; border: 1px solid #344446; border-radius: 8px; }
+
+.screen:fullscreen {width:100vw;height:100vh;background:#000;display:grid;place-items:center;}
+.screen:fullscreen canvas {width:min(100vw,calc(100vh * var(--aspect,1.6)));height:auto;max-height:none;}
+
+canvas.hd {image-rendering:auto;width:100%;}
+.screen:fullscreen {padding:0;}

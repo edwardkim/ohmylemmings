@@ -7,6 +7,7 @@ import json
 from pathlib import Path, PurePosixPath
 import shutil
 import struct
+import tempfile
 import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -206,12 +207,38 @@ def compile_pack(manifest, *, root=ROOT):
                      bytes=len(pack),sha256=hashlib.sha256(pack).hexdigest(),pixel_policy='unchanged RGB, straight alpha RGBA8; sRGB interpretation')
 
 
+def runtime_pack(*,root=ROOT):
+    """Pixel-preserving runtime cache; verify sources even on cache hits."""
+    manifest_bytes=(root/'assets/manifests/remaster_pack.json').read_bytes()
+    manifest=json.loads(manifest_bytes)
+    for pin in manifest['atlases']+manifest.get('provenance',[]):read_pin(pin,root)
+    identity=hashlib.sha256(manifest_bytes+Path(__file__).read_bytes()).hexdigest()
+    directory=root/'assets/local/hd-runtime';path=directory/'assets.hdp';meta=directory/'validation.json'
+    try:
+        cached=json.loads(meta.read_text())
+        if cached['source']==identity and path.stat().st_size==cached['bytes'] and path.stat().st_size<=MAX_BYTES:
+            data=path.read_bytes()
+            if hashlib.sha256(data).hexdigest()==cached['sha256']:return data
+    except (OSError,ValueError,KeyError,TypeError):pass
+    data,report=compile_pack(manifest,root=root);directory.mkdir(parents=True,exist_ok=True)
+    # Each writer owns its temporary file; concurrent builds produce identical bytes.
+    with tempfile.NamedTemporaryFile(dir=directory,delete=False) as stream:
+        stream.write(data);temporary=Path(stream.name)
+    temporary.replace(path)
+    meta.write_text(json.dumps(dict(source=identity,bytes=len(data),sha256=report['sha256']))+'\n')
+    return data
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command',choices=['check','build'])
+    parser.add_argument('command',choices=['check','build','runtime'])
     parser.add_argument('--manifest',type=Path,default=ROOT/'assets/manifests/remaster_pack.json')
     parser.add_argument('--output',type=Path)
     args = parser.parse_args()
+    if args.command=='runtime':
+        data=runtime_pack()
+        print(json.dumps(dict(status='PASS',path=str(ROOT/'assets/local/hd-runtime/assets.hdp'),bytes=len(data),sha256=hashlib.sha256(data).hexdigest())))
+        return
     manifest = json.loads(args.manifest.read_text())
     pack,report = compile_pack(manifest)
     if args.command == 'build':

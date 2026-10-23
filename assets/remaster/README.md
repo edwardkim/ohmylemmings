@@ -18,3 +18,5 @@
 [#147 HD-03b](https://github.com/edwardkim/ohmylemmings/issues/147)에서 [굴착](issue-147-dig-v1.png)·[계단 좌우](issue-147-build-v1.png)·[OhNo/폭발](issue-147-bomb-v1.png)·[입출구](issue-147-facilities-v1.png)·[13조작 아이콘](issue-147-ui-v1.png)을 추가했다. 정확한5개 프롬프트·실제 규격/해시·65개 새 캐릭터 프레임 대응은 [결과 보고서](../../mydocs/reports/issue-147_hd_actions.md)와 현재 팩 manifest를 따른다. 현재 후보는7애니메이션81캐릭터 프레임·11시설 프레임·13아이콘/7atlas106자산이다. 나머지21애니메이션256프레임/다른 테마·시설/효과·전체 UI는 후속이다.
 
 [동작/아이콘 미리보기](previews/issue-147_actions.png), [입구 미리보기](previews/issue-147_facilities.png)는 실제 PNG 검토 화면이다. 새 PNG도 원본 그대로 보존하며 일부 최대alpha254·여백 잔여cutoff1/4를 명시한다. 캐릭터 크기/위상과 출구 doorway·trigger 정합은 실제 게임 통합에서 검토한다. `runtime_ready=false`·실제 HD 앱 통합0개를 유지한다.
+
+[#151 HD-04](https://github.com/edwardkim/ohmylemmings/issues/151)에서 Native/Web의 실제 HD 미리보기와 원본 모드·입력을 연결했다. 현재 `runtime_ready=true`는 **부분 HD 미리보기 사용 가능**을 뜻하며 `full_remaster_ready=false`다. 원본 시안 이미지는 계속 제작 참고용이다. 원본 입구의1닫힘→2~9열기→0열림 유지에 맞춰 자산 프레임 대응도 보정했다. [실제 렌더러의 자체 합성 장면](previews/issue-151_native_synthetic.png)은 원본 바이너리를 사용하지 않은 캡처이며, 실제 Fun01 캡처는 ignored assets/local에 보존한다. [결과/남은 원본 동작·효과](../../mydocs/reports/issue-151_hd_integration.md)를 참고한다.

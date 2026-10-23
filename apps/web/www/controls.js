@@ -4,8 +4,8 @@ import { WebAssets } from './pkg/lemmings_web.js';
 export function logicalPoint(canvas, event) {
     const rect = canvas.getBoundingClientRect();
     if (!rect.width || !rect.height) return null;
-    return [Math.floor((event.clientX - rect.left) * 320 / rect.width),
-        Math.floor((event.clientY - rect.top) * 200 / rect.height)];
+    return [Math.floor((event.clientX - rect.left) * canvas.width / rect.width),
+        Math.floor((event.clientY - rect.top) * canvas.height / rect.height)];
 }
 
 export async function readFiles(files) {
@@ -63,7 +63,7 @@ export class GameInput {
                     let clicks = 1;
                     if (button === 0) {
                         const old = this.previousClick;
-                        clicks = old && event.timeStamp - old.time <= 500 && Math.abs(point[0]-old.x) <= 4 && Math.abs(point[1]-old.y) <= 4 ? 2 : 1;
+                        clicks = old && event.timeStamp - old.time <= 500 && Math.abs(point[0]-old.x) <= 4*canvas.width/320 && Math.abs(point[1]-old.y) <= 4*canvas.width/320 ? 2 : 1;
                         this.previousClick = clicks === 2 ? null : { time:event.timeStamp,x:point[0],y:point[1] };
                     }
                     const result=game.pointer('down',point[0],point[1],button,event.buttons,clicks);

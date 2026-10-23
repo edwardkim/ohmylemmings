@@ -6,8 +6,8 @@
   "source": [
     {
       "path": "apps/web/www/app.js",
-      "bytes": 9700,
-      "sha256": "231fde74ec6c850fbc4f6c9e1008e91cbd24f004030f74508f1cbc6653c43374"
+      "bytes": 11172,
+      "sha256": "2edcbbdab5e8c24d96c9ab0de44f4cd9a6144e0a0aab631336c964119d0ad6d0"
     },
     {
       "path": "apps/web/www/host.js",
@@ -16,8 +16,8 @@
     },
     {
       "path": "apps/web/www/controls.js",
-      "bytes": 4740,
-      "sha256": "e54f235e7cf09dac1a301651bced60bace9b06e2d541bbc7dfa769bb2179ab40"
+      "bytes": 4793,
+      "sha256": "4cc84e9fc1feb7c35e267888f9c9dd840b68ec6e2a3736977dc42a6903bdad2c"
     },
     {
       "path": "apps/web/www/audio.js",
@@ -61,13 +61,13 @@
     },
     {
       "path": "tools/web/check.js",
-      "bytes": 8840,
-      "sha256": "c638861cc3e60fe032328bd6324d572d8830967ee758c8b840ce3a3fb6a545f8"
+      "bytes": 8927,
+      "sha256": "fabc8601ceec50a42321901fd4bb899c35b5dd40c35667360082ba9e3b270b3c"
     },
     {
       "path": "tools/check_web.py",
-      "bytes": 12247,
-      "sha256": "c52b46b3a9055c4005f437435c0004d67d5de4ca04576ab719c3b2fed9f8a55b"
+      "bytes": 12261,
+      "sha256": "997c0e59eea765aaa5299a0e2fc7aa8d1b66edb87be96f9137a02e22338604aa"
     }
   ],
   "reference": {
@@ -516,5 +516,31 @@
       }
     ],
     "scope": "Web original bundle startup/UI and loading visibility guard only. FramePump/render/audio scheduling unchanged; prior measured pins preserved. No new performance run; #113 faster-host qualification deferred."
+  },
+  "source_maintenance_151": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/151",
+    "previous_pins": [
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 9700,
+        "sha256": "231fde74ec6c850fbc4f6c9e1008e91cbd24f004030f74508f1cbc6653c43374"
+      },
+      {
+        "path": "apps/web/www/controls.js",
+        "bytes": 4740,
+        "sha256": "e54f235e7cf09dac1a301651bced60bace9b06e2d541bbc7dfa769bb2179ab40"
+      },
+      {
+        "path": "tools/web/check.js",
+        "bytes": 8840,
+        "sha256": "c638861cc3e60fe032328bd6324d572d8830967ee758c8b840ce3a3fb6a545f8"
+      },
+      {
+        "path": "tools/check_web.py",
+        "bytes": 12247,
+        "sha256": "c52b46b3a9055c4005f437435c0004d67d5de4ca04576ab719c3b2fed9f8a55b"
+      }
+    ],
+    "scope": "Current Web source adds opt-in HD Canvas/input/fullscreen and synthetic HD checks. FramePump/audio scheduling unchanged; previous measured producers and historical observations preserved. No new performance qualification; #113 remains deferred."
   }
 }

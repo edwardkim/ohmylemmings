@@ -869,8 +869,8 @@
   "source": [
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 60575,
-      "sha256": "f7828b5c541784960c9dade4d416ef6106479e006b8393abf68b5a489250abf5"
+      "bytes": 66043,
+      "sha256": "d9bbca3d3871468a4b9fc074942dcc1d65c3dca305547ce639bb3c9973a76061"
     },
     {
       "path": "apps/desktop/src/frame_clock.rs",
@@ -1651,5 +1651,16 @@
       }
     ],
     "scope": "Linux sibling data default and end diagnostic only; clock, renderer, engine and PCM implementation unchanged. Previous measured producer pins remain recorded. No new performance execution; #113 faster-host qualification deferred."
+  },
+  "source_maintenance_151": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/151",
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 60575,
+        "sha256": "f7828b5c541784960c9dade4d416ef6106479e006b8393abf68b5a489250abf5"
+      }
+    ],
+    "scope": "Current maintained host adds opt-in HD renderer/input/fullscreen and mode switches. Previous producer pins retain historical measurements. No fresh performance qualification; #113 remains deferred."
   }
 }

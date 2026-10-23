@@ -128,3 +128,5 @@
 - [#144 분리 HD 자산·RGBA 팩](issue-144_hd_assets.md): 걷기16프레임·암석/검증·제작 한계.
 
 - [#147 HD-03b 직업·시설·패널 자산](issue-147_hd_actions.md).
+
+- [#151 HD-04 실제 Native/Web HD 미리보기](issue-151_hd_integration.md).
