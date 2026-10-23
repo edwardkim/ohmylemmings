@@ -63,7 +63,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             AssetKey::Actor { .. } => actors += 1,
             AssetKey::Object { .. } => objects += 1,
             AssetKey::Icon(_) => icons += 1,
-            AssetKey::Rock | AssetKey::Material { .. } => (),
+            AssetKey::Rock | AssetKey::Material { .. } | AssetKey::Special { .. } => (),
         }
         let atlas = &pack.atlases()[frame.atlas as usize];
         for row in 0..frame.rect[3] {

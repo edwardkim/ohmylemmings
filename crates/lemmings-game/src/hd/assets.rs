@@ -20,6 +20,10 @@ pub enum AssetKey {
     Material {
         set: u8,
     },
+    /// Whole VGASPEC panorama, positioned at logical x=304, y=0.
+    Special {
+        set: u8,
+    },
     /// Original graphics set, object ID and absolute disk frame (not level slot).
     Object {
         set: u8,
@@ -304,6 +308,7 @@ impl<'a> AssetPack<'a> {
                 3 if frame == 0 => {
                     AssetKey::Icon(*ICON_CONTROLS.get(slot as usize).ok_or(AssetError::Key)?)
                 }
+                4 if slot < 4 && frame == 0 => AssetKey::Special { set: slot },
                 _ => return Err(AssetError::Key),
             };
             let atlas = r.u16()?;

@@ -1,0 +1,431 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/172",
+  "tool": "built-in image_gen",
+  "intent": "style-transfer",
+  "transparent_background": false,
+  "pixel_policy": "Selected generated PNG files copied byte-for-byte. Rectangle metadata selects central panoramic artwork, removing black padding at runtime. Original collision mask remains authoritative; generated silhouettes are not exact.",
+  "assets": [
+    {
+      "set": 0,
+      "output": {
+        "path": "assets/remaster/issue-172-special-0-v1.png",
+        "bytes": 1173610,
+        "sha256": "06d3f3c19d5e362ff146978d370e9401ce9991dfc31b3bfa195f029d7f424f7f",
+        "width": 2172,
+        "height": 724,
+        "alpha": "opaque",
+        "alpha_cutoff": 0
+      },
+      "frame": {
+        "key": {
+          "special": 0
+        },
+        "atlas": 0,
+        "rect": [
+          0,
+          181,
+          2172,
+          362
+        ],
+        "display": [
+          3840,
+          640
+        ],
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "prompt": "Use case: style-transfer. Asset type: production 2D platform-game terrain panorama. Edit the supplied 960x160 reference into a high-definition softly hand-painted fantasy illustration. Output a very wide 6:1 panorama, ideally 3840x640. Preserve the EXACT composition, silhouettes, placement and scale of the two ornate dragon heads, intertwined long rocky scaled bodies, blue glowing eyes and small blue stars. Preserve every black gap and the positions of all terrain edges; no new platforms, actors, doors, text or UI. Keep the same rust/copper/brown stone and deep blue palette, with smooth brushwork, fine scale detail, bevelled edges, subtle warm highlights. Black void background. This image is a terrain color layer that will be clipped to the original collision mask, so positional fidelity to the reference is essential. No border, no lettering, no watermark. One complete panorama, no panels.",
+      "reference": {
+        "path": "assets/local/issue-172-review/reference-0.png",
+        "sha256": "eae79fe27643d5be97b1bacdbce9ffd28cfd23a584b895d006f8e2b1035c2007",
+        "source": "VGASPEC0.DAT",
+        "encoding": "Rust inspect_vgaspec indexed pixels, palette VGA components times4, black transparent cells;960x160; no retouching"
+      }
+    },
+    {
+      "set": 1,
+      "output": {
+        "path": "assets/remaster/issue-172-special-1-v1.png",
+        "bytes": 965475,
+        "sha256": "e69f96954b9a37e20210cc44029a8c87cb83697f8f7784827e4d2d10e203a1a7",
+        "width": 2170,
+        "height": 725,
+        "alpha": "opaque",
+        "alpha_cutoff": 0
+      },
+      "frame": {
+        "key": {
+          "special": 1
+        },
+        "atlas": 1,
+        "rect": [
+          0,
+          181,
+          2170,
+          362
+        ],
+        "display": [
+          3840,
+          640
+        ],
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "prompt": "Use case: style-transfer. Production 2D game terrain art. Repaint the supplied panoramic lava cavern in smooth high-definition hand-painted fantasy style, warm glowing red ceiling stalactites, mossy ochre stones, curling organic supports, carved circular face, skeletal ribs, suspended rock islands. EXACT reference composition, all objects at the same relative positions and scale, identical black gaps and silhouette. No new terrain, doors, actors, text or UI. Keep original red/yellow/olive palette. Deliver the full 6:1 panorama across the full image width. If output canvas is 3:1, center the 6:1 artwork in the middle HALF of its height with completely black equal top and bottom padding; do not stretch or recompose. High-definition brushwork and fine natural texture, crisp readable surfaces. Black void background, no border or watermark.",
+      "reference": {
+        "path": "assets/local/issue-172-review/reference-1.png",
+        "sha256": "29c7141be093f80ccc58d9af76d8d78d60009cae488cdd1f72b8bb63614e9ac5",
+        "source": "VGASPEC1.DAT",
+        "encoding": "Rust inspect_vgaspec indexed pixels, palette VGA components times4, black transparent cells;960x160; no retouching"
+      }
+    },
+    {
+      "set": 2,
+      "output": {
+        "path": "assets/remaster/issue-172-special-2-v1.png",
+        "bytes": 1078393,
+        "sha256": "0db92e03eccab251bdbf5bfbc575bb8e207f3d703c5fd8a34b1cf9ac0d9dd62a",
+        "width": 2170,
+        "height": 725,
+        "alpha": "opaque",
+        "alpha_cutoff": 0
+      },
+      "frame": {
+        "key": {
+          "special": 2
+        },
+        "atlas": 2,
+        "rect": [
+          0,
+          181,
+          2170,
+          362
+        ],
+        "display": [
+          3840,
+          640
+        ],
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "prompt": "Use case: style-transfer. Production 2D game terrain color panorama. Repaint this exact dark ruins scene in smooth high-definition softly hand-painted fantasy style. Keep rocky ceiling, four hanging chain platforms, left moss-covered grave slope and cross, central hollow carved trunk structure, right arched stone bridge and fence, and large tree. Preserve EXACT reference composition, relative positions, scale, empty black gaps and terrain silhouettes. Same muted moss green, grey, dark brown palette with readable subtle highlights. No new terrain, actors, doors, text, UI, border or watermark. Deliver the full 6:1 panorama across the full image width, centered in the middle HALF of a 3:1 output canvas, with perfectly black equal top/bottom padding. Do not stretch or recompose the panorama. Fine organic wood grain, rounded stone detail and painterly foliage. The result will be clipped to the original collision mask, so alignment is essential.",
+      "reference": {
+        "path": "assets/local/issue-172-review/reference-2.png",
+        "sha256": "3258fc33a8561f4ec9cf177f898b1c8455a48c2b8e7f6ce81f3e7f1ab692b13f",
+        "source": "VGASPEC2.DAT",
+        "encoding": "Rust inspect_vgaspec indexed pixels, palette VGA components times4, black transparent cells;960x160; no retouching"
+      }
+    },
+    {
+      "set": 3,
+      "output": {
+        "path": "assets/remaster/issue-172-special-3-v1.png",
+        "bytes": 1425765,
+        "sha256": "822f57fe51a44119ca0f4bd791efba996a0297709cc8fdcc4915245b0c0c9140",
+        "width": 2172,
+        "height": 724,
+        "alpha": "opaque",
+        "alpha_cutoff": 0
+      },
+      "frame": {
+        "key": {
+          "special": 3
+        },
+        "atlas": 3,
+        "rect": [
+          0,
+          181,
+          2172,
+          362
+        ],
+        "display": [
+          3840,
+          640
+        ],
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "prompt": "Use case: style-transfer. Production 2D game terrain color panorama. Repaint this exact lush green woodland scene in smooth high-definition softly hand-painted storybook style. Preserve the exact positions, scale and silhouettes of the row of trees and foliage, the low moss-covered ground with embedded stones, the short recessed wooden step section at left, the taller rounded grass terrace at right and giant tree trunks on that terrace. Preserve original dark green/brown palette with readable leaf and bark detail. EXACT composition, no added objects or terrain. Black negative space must stay black. No lettering including on the right tree, no characters, portals, UI, border or watermark. Deliver the full 6:1 panorama across the full image width centered in the middle HALF of a 3:1 output canvas, equal perfectly black top/bottom padding; do not stretch or recompose. The art will be sampled against the original collision mask, so alignment is essential.",
+      "reference": {
+        "path": "assets/local/issue-172-review/reference-3.png",
+        "sha256": "cfc73bb231fa9a9be20f17178dbf4eac9afebf4cc0bc4390aceb418375499dc0",
+        "source": "VGASPEC3.DAT",
+        "encoding": "Rust inspect_vgaspec indexed pixels, palette VGA components times4, black transparent cells;960x160; no retouching"
+      }
+    }
+  ],
+  "status": "local-validation",
+  "full_remaster_ready": false,
+  "validation": {
+    "status": "PASS",
+    "previous_pages_exact": 27,
+    "source_rgba_samples_exact": 3143608,
+    "details": [
+      {
+        "set": 0,
+        "source_dimensions": [
+          2172,
+          724
+        ],
+        "rect": [
+          0,
+          181,
+          2172,
+          362
+        ],
+        "rgba_samples": 786264,
+        "rgba_sha256": "ddfd118fd250e2e0598502dfd411336d53297a06a332fc23fbac42a1edc64b90",
+        "part_bytes": 3165408
+      },
+      {
+        "set": 1,
+        "source_dimensions": [
+          2170,
+          725
+        ],
+        "rect": [
+          0,
+          181,
+          2170,
+          362
+        ],
+        "rgba_samples": 785540,
+        "rgba_sha256": "85f721e81658a485fb1e94de46751b4c904b98cae8d8148d0a46d42e7f7246db",
+        "part_bytes": 3162496
+      },
+      {
+        "set": 2,
+        "source_dimensions": [
+          2170,
+          725
+        ],
+        "rect": [
+          0,
+          181,
+          2170,
+          362
+        ],
+        "rgba_samples": 785540,
+        "rgba_sha256": "b7c5d8edb0d06b0d6b4980a3f1b617217aec3f5330a7d657fd5c05964ff56ddd",
+        "part_bytes": 3162496
+      },
+      {
+        "set": 3,
+        "source_dimensions": [
+          2172,
+          724
+        ],
+        "rect": [
+          0,
+          181,
+          2172,
+          362
+        ],
+        "rgba_samples": 786264,
+        "rgba_sha256": "fec03a9808955d12006d1cc160afde95d05e0517aaf99573d7e588ae50546170",
+        "part_bytes": 3165408
+      }
+    ],
+    "catalog_bytes": 144356368,
+    "catalog_sha256": "ed4a60f22a9bcd1b0e160946d5a6e8d0fbe8c08ccdd27bdcc800f89e40474144",
+    "catalog_members": 32,
+    "active_scopes": [
+      {
+        "theme": 0,
+        "special": null,
+        "atlases": 18,
+        "bytes": 97633576
+      },
+      {
+        "theme": 0,
+        "special": 0,
+        "atlases": 19,
+        "bytes": 100798988
+      },
+      {
+        "theme": 0,
+        "special": 1,
+        "atlases": 19,
+        "bytes": 100796076
+      },
+      {
+        "theme": 0,
+        "special": 2,
+        "atlases": 19,
+        "bytes": 100796076
+      },
+      {
+        "theme": 0,
+        "special": 3,
+        "atlases": 19,
+        "bytes": 100798988
+      },
+      {
+        "theme": 1,
+        "special": null,
+        "atlases": 19,
+        "bytes": 100517024
+      },
+      {
+        "theme": 1,
+        "special": 0,
+        "atlases": 20,
+        "bytes": 103682436
+      },
+      {
+        "theme": 1,
+        "special": 1,
+        "atlases": 20,
+        "bytes": 103679524
+      },
+      {
+        "theme": 1,
+        "special": 2,
+        "atlases": 20,
+        "bytes": 103679524
+      },
+      {
+        "theme": 1,
+        "special": 3,
+        "atlases": 20,
+        "bytes": 103682436
+      },
+      {
+        "theme": 2,
+        "special": null,
+        "atlases": 19,
+        "bytes": 100517336
+      },
+      {
+        "theme": 2,
+        "special": 0,
+        "atlases": 20,
+        "bytes": 103682748
+      },
+      {
+        "theme": 2,
+        "special": 1,
+        "atlases": 20,
+        "bytes": 103679836
+      },
+      {
+        "theme": 2,
+        "special": 2,
+        "atlases": 20,
+        "bytes": 103679836
+      },
+      {
+        "theme": 2,
+        "special": 3,
+        "atlases": 20,
+        "bytes": 103682748
+      },
+      {
+        "theme": 3,
+        "special": null,
+        "atlases": 19,
+        "bytes": 94165832
+      },
+      {
+        "theme": 3,
+        "special": 0,
+        "atlases": 20,
+        "bytes": 97331244
+      },
+      {
+        "theme": 3,
+        "special": 1,
+        "atlases": 20,
+        "bytes": 97328332
+      },
+      {
+        "theme": 3,
+        "special": 2,
+        "atlases": 20,
+        "bytes": 97328332
+      },
+      {
+        "theme": 3,
+        "special": 3,
+        "atlases": 20,
+        "bytes": 97331244
+      },
+      {
+        "theme": 4,
+        "special": null,
+        "atlases": 19,
+        "bytes": 94414300
+      },
+      {
+        "theme": 4,
+        "special": 0,
+        "atlases": 20,
+        "bytes": 97579712
+      },
+      {
+        "theme": 4,
+        "special": 1,
+        "atlases": 20,
+        "bytes": 97576800
+      },
+      {
+        "theme": 4,
+        "special": 2,
+        "atlases": 20,
+        "bytes": 97576800
+      },
+      {
+        "theme": 4,
+        "special": 3,
+        "atlases": 20,
+        "bytes": 97579712
+      }
+    ],
+    "rust_tests": 699,
+    "python_tests": 298,
+    "native_initial_scenes": 120,
+    "native_paired_ticks": 1920,
+    "user_forest_preview_confirmed": true,
+    "web": {
+      "status": "PASS",
+      "full_portal_pack": false,
+      "special_panorama_catalog": true,
+      "scenes": 120,
+      "paired_steps": 1920,
+      "canvas_frames": 352,
+      "terrain_sets": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "special_selectors": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "one_way_scenes": 14,
+      "console_errors": 0,
+      "native_wasm_final_states_equal": true,
+      "mode_state_masks_audio_equal": true,
+      "scope": "120 initial original catalog scenes and selected120-tick pairs; actual WASM/Canvas; not completed levels or performance qualification"
+    }
+  },
+  "preview": {
+    "path": "assets/remaster/previews/issue-172_special.png",
+    "bytes": 726381,
+    "sha256": "185cce85764cd020fe7c22dc36d1eec5c9ecba4f14bc5458c1f1b581198fa8e6",
+    "scope": "Actual browser gallery of generated artwork; no original game capture."
+  }
+}

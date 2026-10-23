@@ -151,6 +151,9 @@ def key_fields(key):
     if set(key) == {'icon'}:
         require(isinstance(key['icon'],str) and key['icon'] in ICON_NAMES, 'unknown icon')
         return 3,ICON_NAMES.index(key['icon']),0
+    if set(key) == {'special'}:
+        require(type(key['special']) is int and 0 <= key['special'] < 4, 'unknown special')
+        return 4,key['special'],0
     require(set(key) == {'material'} and type(key['material']) is int and 0 <= key['material'] < 5, 'unknown material/key')
     return 1,key['material'],0
 

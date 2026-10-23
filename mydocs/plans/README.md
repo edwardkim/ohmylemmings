@@ -50,3 +50,5 @@
 - [#165 BGM 누락 조사](issue-165_bgm.md)
 
 - [#169 테마별 HD 로딩](issue-169_hd_loading.md)
+
+- [#172 특수4장면 HD](issue-172_hd_special.md)

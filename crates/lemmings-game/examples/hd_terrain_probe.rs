@@ -26,7 +26,19 @@ fn main() -> Result<()> {
     if args.len() != 3 {
         return Err("usage: hd_terrain_probe PACK ORIGINAL_ASSET_DIRECTORY".into());
     }
-    let mut renderer = Renderer::new(&fs::read(&args[1])?)?;
+    let catalog_dir = Path::new(&args[1]).is_dir();
+    let catalog_bytes = catalog_dir
+        .then(|| fs::read(Path::new(&args[1]).join("catalog.hdi")))
+        .transpose()?;
+    let catalog = catalog_bytes
+        .as_deref()
+        .map(lemmings_game::hd::catalog::Catalog::parse)
+        .transpose()?;
+    let mut renderer = if catalog_dir {
+        Renderer::fallback()
+    } else {
+        Renderer::new(&fs::read(&args[1])?)?
+    };
     let mut bank = BTreeMap::new();
     for entry in fs::read_dir(Path::new(&args[2]))? {
         let path = entry?.path();
@@ -63,7 +75,31 @@ fn main() -> Result<()> {
             let mut plain = LevelRun::new_for_level(load(&bank, id)?, id, id.next(), Pacing::Dos)?;
             let left = run.assets.one_way_left.iter().any(|&v| v != 0);
             let right = run.assets.one_way_right.iter().any(|&v| v != 0);
+            if let Some(catalog) = &catalog {
+                let selected =
+                    catalog.select(lemmings_game::hd::catalog::level_scope(&run.assets)?)?;
+                let mut bytes = b"LHDSET01".to_vec();
+                bytes.extend((selected.len() as u16).to_le_bytes());
+                bytes.extend(0u16.to_le_bytes());
+                for entry in selected {
+                    let part = fs::read(
+                        Path::new(&args[1]).join(format!("atlas-{:03}.hdp", entry.index)),
+                    )?;
+                    entry.verify(&part)?;
+                    bytes.extend((part.len() as u32).to_le_bytes());
+                    bytes.extend(part);
+                }
+                renderer = Renderer::new(&bytes)?;
+            }
             renderer.reset(&run.assets)?;
+            if catalog_dir
+                && special != 0
+                && !renderer
+                    .info()
+                    .contains(&format!("\"special_panorama\":{},", special - 1))
+            {
+                return Err("special HD panorama missing".into());
+            }
             renderer.frame(&run)?;
             let info = renderer.info();
             let expected = if special == 0 {

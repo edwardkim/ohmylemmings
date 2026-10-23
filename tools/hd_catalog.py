@@ -23,6 +23,8 @@ def split_pack(data):
         if kind in (0,3):scope=1
         elif kind in (1,2):
             theme=slot if kind==1 else slot//16;require(theme<5,'theme');scope=1<<(theme+1)
+        elif kind==4:
+            require(slot<4 and frame==0,'special');scope=1<<(6+slot)
         else:raise ValueError('unsupported asset kind')
         masks[index]|=scope;struct.pack_into('<H',row,4,0);groups[index].append(row)
     files={};catalog=bytearray(b'LHDIDX01'+struct.pack('<HH',count,0))

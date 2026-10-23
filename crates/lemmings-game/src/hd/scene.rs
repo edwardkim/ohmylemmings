@@ -120,6 +120,7 @@ pub struct Renderer {
     old_bricks: Vec<u8>,
     initial: Vec<[u8; 4]>,
     material: Option<u8>,
+    special: Option<u8>,
     mini: usize,
     terrain_rebuilds: u64,
     missing: Vec<(u8, u16)>,
@@ -148,6 +149,7 @@ impl Renderer {
             old_bricks: Vec::new(),
             initial: Vec::new(),
             material: None,
+            special: None,
             mini: 0,
             terrain_rebuilds: 0,
             missing: Vec::new(),
@@ -210,7 +212,7 @@ impl Renderer {
         let effects = portal_keys(&self.hd_exit_effects);
         let original_effects = portal_keys(&self.source_exit_effects);
         format!(
-            "{{\"version\":1,\"width\":1920,\"height\":1080,\"actor_frames_available\":{},\"portal_frames_available\":{},\"exit_effect_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"terrain_material\":{},\"one_way_objects\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}],\"hd_portal_frames\":[{portals}],\"original_portal_frames\":[{originals}],\"hd_exit_effect_frames\":[{effects}],\"original_exit_effect_frames\":[{original_effects}]}}",
+            "{{\"version\":1,\"width\":1920,\"height\":1080,\"actor_frames_available\":{},\"portal_frames_available\":{},\"exit_effect_frames_available\":{},\"terrain_rebuilds\":{},\"source_terrain\":{},\"special_panorama\":{},\"terrain_material\":{},\"one_way_objects\":{},\"missing_actor_frames\":[{missing}],\"hd_actor_frames\":[{drawn}],\"hd_portal_frames\":[{portals}],\"original_portal_frames\":[{originals}],\"hd_exit_effect_frames\":[{effects}],\"original_exit_effect_frames\":[{original_effects}]}}",
             self.frames
                 .iter()
                 .filter(|f| matches!(f.key, AssetKey::Actor { .. }))
@@ -221,7 +223,8 @@ impl Renderer {
                 .count(),
             self.frames.iter().filter(|f| matches!(f.key, AssetKey::Object { set, id, .. } if super::assets::exit_effect_frame_count(set, id).is_some())).count(),
             self.terrain_rebuilds,
-            self.material.is_none(),
+            self.material.is_none() && self.special.is_none(),
+            self.special.map_or_else(|| "null".into(), |set| set.to_string()),
             self.material
                 .map_or_else(|| "null".into(), |set| set.to_string()),
             self.objects
@@ -234,6 +237,13 @@ impl Renderer {
         self.material = (!special
             && AssetKey::material(set).is_some_and(|key| self.frames.iter().any(|f| f.key == key)))
         .then_some(set);
+    }
+    fn select_special(&mut self, set: Option<u8>) {
+        self.special = set.filter(|&set| {
+            self.frames
+                .iter()
+                .any(|f| f.key == AssetKey::Special { set })
+        });
     }
     pub fn reset(&mut self, assets: &Assets) -> Result<(), Box<dyn Error>> {
         if assets.width == 0 || assets.width > 4096 || assets.height != 160 {
@@ -286,8 +296,10 @@ impl Renderer {
         }
         self.textures.push(Texture::new(1024, 352, atlas));
         self.select_material(0, false);
+        self.select_special(None);
         if let Some((set, level, ground, images)) = assets.hd_art()? {
             self.select_material(set, level.header().special_graphic_set().is_some());
+            self.select_special(level.header().special_graphic_set());
             // One-way arrows remain original object art, drawn on the current
             // terrain below. Their trigger masks do not select terrain color.
             for placement in level.objects() {
@@ -406,6 +418,14 @@ impl Renderer {
             .and_then(AssetKey::material)
             .and_then(|key| self.frames.iter().find(|f| f.key == key))
             .copied();
+        let special = self
+            .special
+            .and_then(|set| {
+                self.frames
+                    .iter()
+                    .find(|f| f.key == AssetKey::Special { set })
+            })
+            .copied();
         for cy in 0..self.chunks_y {
             for cx in 0..self.chunks_x {
                 let x = cx * CHUNK;
@@ -435,6 +455,21 @@ impl Renderer {
                                 }
                             } else if steel[i] != 0 {
                                 [132, 150, 166, 255]
+                            } else if let Some(r) = special.filter(|_| (304..1264).contains(&wx)) {
+                                // VGASPEC is960x160 at x304 (terrain.rs). Sample in
+                                // world HD coordinates so scrolling/chunk edits never rephase it.
+                                let source = &self.textures[r.atlas as usize];
+                                let sx = r.rect[0] as usize
+                                    + (x * 6 + px - 304 * 6) * r.rect[2] as usize / (960 * 6);
+                                let sy = r.rect[1] as usize
+                                    + (y * 6 + py) * r.rect[3] as usize / (160 * 6);
+                                let at = (sy * source.width as usize + sx) * 4;
+                                [
+                                    source.rgba[at],
+                                    source.rgba[at + 1],
+                                    source.rgba[at + 2],
+                                    255,
+                                ]
                             } else if let Some(r) = material {
                                 let source = &self.textures[r.atlas as usize];
                                 let sx = r.rect[0]
@@ -1309,5 +1344,79 @@ mod tests {
         .unwrap();
         assert_eq!(texture, r.textures[r.chunk_base + 1].rgba);
         assert_eq!(r.terrain_rebuilds(), rebuilds + r.chunks_y as u64);
+    }
+    #[test]
+    fn special_panorama_is_world_aligned_masked_and_resets_to_original() {
+        let mut assets = Assets::synthetic_builder();
+        assets.width = 1600;
+        assets.terrain = vec![1; 1600 * 160];
+        assets.steel = vec![0; 1600 * 160];
+        assets.one_way_left = vec![0; 1600 * 160];
+        assets.one_way_right = vec![0; 1600 * 160];
+        let run = LevelRun::new(assets, 1, None, Pacing::Reference).unwrap();
+        let mut r = Renderer::fallback();
+        for set in 0..4 {
+            r.textures.push(Texture::new(
+                2,
+                1,
+                vec![20 + set, 30, 40, 255, 80 + set, 90, 100, 255],
+            ));
+            r.frames.push(AssetFrame {
+                key: AssetKey::Special { set },
+                atlas: set.into(),
+                rect: [0, 0, 2, 1],
+                display: [960, 160],
+                anchor: [0, 0],
+            });
+        }
+        r.base = 4;
+        r.reset(&run.assets).unwrap();
+        let state = crate::diagnostics::state(&run.session);
+        let sound = run.sound.diagnostic_json();
+        let sample = |r: &Renderer, x: usize| {
+            let id = x / 32;
+            let at = (x % 32) * 6 * 4;
+            r.textures[r.chunk_base + id].rgba[at..at + 4].to_vec()
+        };
+        for set in 0..4 {
+            r.select_special(Some(set));
+            r.dirty.fill(true);
+            for camera in [288, 768, 960] {
+                r.terrain(
+                    run.session.render_terrain(),
+                    run.session.render_bricks(),
+                    &run.assets.steel,
+                    camera,
+                    &mut Vec::new(),
+                )
+                .unwrap();
+            }
+            assert_eq!(sample(&r, 304), vec![20 + set, 30, 40, 255]);
+            assert_eq!(sample(&r, 783), vec![20 + set, 30, 40, 255]);
+            assert_eq!(sample(&r, 784), vec![80 + set, 90, 100, 255]);
+            assert_eq!(sample(&r, 1263), vec![80 + set, 90, 100, 255]);
+            assert_ne!(sample(&r, 1264), vec![80 + set, 90, 100, 255]);
+            let mut mask = run.session.render_terrain().to_vec();
+            mask[304] = 0;
+            r.terrain(
+                &mask,
+                run.session.render_bricks(),
+                &run.assets.steel,
+                288,
+                &mut Vec::new(),
+            )
+            .unwrap();
+            assert_eq!(sample(&r, 304), vec![0; 4]);
+            assert_eq!(state, crate::diagnostics::state(&run.session));
+            assert_eq!(sound, run.sound.diagnostic_json());
+        }
+        r.select_special(Some(4));
+        assert_eq!(r.special, None);
+        r.select_special(Some(2));
+        r.reset(&run.assets).unwrap();
+        assert_eq!(r.special, None);
+        let mut fallback = Renderer::fallback();
+        fallback.select_special(Some(0));
+        assert_eq!(fallback.special, None);
     }
 }
