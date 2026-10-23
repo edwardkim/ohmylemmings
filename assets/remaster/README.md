@@ -119,3 +119,9 @@
 [깃발 PNG](issue-181-flags-v1.png)·[화살표 PNG](issue-181-arrows-v1.png)를 built-in image_gen으로 제작했다. [깃발 프롬프트](prompts/issue-181_flags_v1.txt)·[화살표 프롬프트](prompts/issue-181_arrows_v1.txt), [출처/원본 메타데이터](../manifests/hd_decor.json), [확장 팩](../manifests/remaster_decor.json), [검증 보고서](../../mydocs/reports/issue-181_hd_decor.md)를 참고한다. PNG 바이트는 그대로 보존한다. 10깃발/140키는28새 포즈를 테마 간 공유하고, 10방향 표시/72키는 원본7/8프레임 주기로 대응한다. 표시 애니메이션은 새 그림의 하이라이트 변화이며 원본 화살표의 이동 픽셀을 복제하지 않는다. 지형/방향 판정과 음원은 보존한다. 초기 횃불 분류를 원본의 회전 깃발로 정정했다.
 
 [실제 Web 자체 코스0](previews/issue-181_course_0.png)·[코스4](previews/issue-181_course_4.png): 좌/우 표시, 회전 깃발과 Digger의 지형 제거 장면. 원본 레벨 데이터는 쓰지 않는다.
+
+## #184 HD 글꼴·게임 UI
+
+[공통 글꼴 atlas/출처](../manifests/hd_ui_font.json)는 고정 Noto Sans SemiBold의95 ASCII glyph coverage다. [OFL](../../third_party/NotoSans-OFL.txt)·전체 배포 고지를 보존한다. 새 손그림 이미지 대신 라이선스가 고정된 글꼴과 코드 기반 AA nine-slice panel을 사용했다. 기존13조작 아이콘은 유지한다. [결과·화면·재현](../../mydocs/reports/issue-184_hd_ui.md).
+
+[패널](previews/issue-184_play.png) · [Pause](previews/issue-184_paused.png) · [성공](previews/issue-184_won.png) · [실패](previews/issue-184_lost.png)는 새 UI의 실제 합성 코스 Canvas다.
