@@ -31,4 +31,12 @@ node tools/web/hd_terrain.cjs PRODUCT_URL DISPOSABLE_CDP_URL assets/local/web-sc
 
 검증 코스는 원본 trigger의4픽셀 높이에도 actor 발이 들어가도록 바닥/객체를 배치한다. 새 코스 배치의 초기 오류와 분사기 여백 사각형의 경계 오류를 검수 중 바로잡았다. 제품의 원본 위험 판정은 유지했다.
 
-원본120장면/선택 틱·전체 로컬 검사·감사·self-review·게시 CI와 실제 병합 결과는 완료 기록에서 추가한다. 이는 전체 레벨 완주나 성능 인증이 아니다. 기계 함정·횃불/기타 효과·글꼴/전체 UI와 HD 배포/전체 인수는 후속이다. BGM #165는 #137 이후, #113 NOT READY·#142·공개 v0.1.0/Pages는 기존 범위다.
+원본120초기 장면과 선택1,920틱·Web352Canvas에서도 모드 상태/마스크/사운드와 Native/WASM 상태가 일치했고 위험 fallback0·console exception0이었다. `make check-rust` 전체701테스트와 기준 회귀, `make check-python` 전체300테스트/583소스 감사/G11기록 무결성, `make check-web` 전체와304Markdown 링크를 통과했다. self-review에서8프레임의 청색 물 원본0/3이 모두 같은 indexed image임을 추가 확인했고 core/resources/audio 제품 소스 변경이 없음을 검토했다. 이는 전체 레벨 완주나 성능 인증이 아니다. 기계 함정·횃불/기타 효과·글꼴/전체 UI와 HD 배포/전체 인수는 후속이다. BGM #165는 #137 이후, #113 NOT READY·#142·공개 v0.1.0/Pages는 기존 범위다.
+
+## CI와 실제 병합
+
+PR #176 head `75ae0af61fe4d8e06c9be668e289daa00c6833e3` / CI39939672234의7개 SUCCESS, 실제 merge `775608d4c47c6b62eff291052144e4a2c6e76883`와 검토 head 전체 tree 일치를 확인했다.
+
+[PR #176](https://github.com/edwardkim/ohmylemmings/pull/176) · [CI39939672234](https://github.com/edwardkim/ohmylemmings/actions/runs/39939672234). Python·WASM·Rust native·Web·Windows·macOS Apple Silicon/Intel을 모두 통과했다. PR checkout `8b5ba3861a6775b2fac9f4842cf6006394415e4c`의 tree `986a662ad592111948f1bc2033cbad00be821977`도 검토 head와 동일하다. 중복 push39939666110 취소는 PASS에 포함하지 않는다. 기존 플랫폼 패키징 CI와 전체 HD 배포/성능 인수는 구분한다. 완료 문서 병합·root 개발 Native/Web 준비·기존 preview-172 보존과 이슈 종료의 마지막 근거는 [#175](https://github.com/edwardkim/ohmylemmings/issues/175)에 기록한다.
+
+로컬 Web 검사는 마지막 PASS 출력 뒤 실행 셸 종료143이 기록되어, 마지막 solution replay 명령을 증거 보존 모드로 재실행하고 종료0/성공·실패·재시작 결과를 확인했다. 통과한 앞선 검사는 반복하지 않았다.
