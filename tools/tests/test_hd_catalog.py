@@ -45,3 +45,21 @@ class HdCatalogTests(unittest.TestCase):
             self.assertEqual(len(runtime_catalog(root,self.pack())),5)
             p.write_text(p.read_text()+' ')
             with self.assertRaises(ValueError):runtime_catalog(root,self.pack())
+    def test_special_pages_only_load_for_the_matching_special_scope(self):
+        from tools.hd_catalog import split_packs
+        from tools.hd_assets import key_fields
+        packs=[self.pack()]
+        for index in range(4):
+            self.assertEqual(key_fields(dict(special=index)),(4,index,0))
+            part=bytearray(self.pack());part[-32]=4;part[-31]=index
+            # Reuse a complete valid source with a special replacing material1.
+            files=split_pack(bytes(part));packs.append(files['atlas-002.hdp'])
+        files=split_packs(packs)
+        ordinary=select_parts(files,3)
+        for index in range(4):
+            selected=select_parts(files,3|(1<<(6+index)))
+            self.assertEqual(selected[:2],ordinary)
+            self.assertEqual(len(selected),3)
+            self.assertEqual(selected[-1][-32:-28],bytes([4,index,0,0]))
+        for value in [-1,4,True]:
+            with self.assertRaises(ValueError):key_fields(dict(special=value))

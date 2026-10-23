@@ -89,7 +89,7 @@ fn versions_counts_sizes_and_pixel_checksum_are_validated() {
 fn keys_indices_rectangles_display_and_reserved_bits_are_checked() {
     // Frame starts after the12-byte header and20-byte atlas header plus8 pixels.
     for (offset, bytes) in [
-        (0, vec![4]),
+        (0, vec![5]),
         (1, vec![28]),
         (2, 8u16.to_le_bytes().to_vec()),
         (4, 1u16.to_le_bytes().to_vec()),
@@ -389,4 +389,22 @@ fn selected_parts_reject_duplicates_truncation_nesting_and_excess_atlases() {
     }
     assert!(AssetPack::parse(&selection(&[bytes])).is_err());
     assert!(AssetPack::parse(&selection(&vec![a; 33])).is_err());
+}
+
+#[test]
+fn special_panorama_keys_are_bounded_and_do_not_alias_materials() {
+    for set in 0..4 {
+        let mut bytes = fixture();
+        bytes[40] = 4;
+        bytes[41] = set;
+        let pack = AssetPack::parse(&bytes).unwrap();
+        assert!(pack.frame(AssetKey::Special { set }).is_some());
+        assert!(pack.frame(AssetKey::material(set).unwrap()).is_none());
+        bytes[42] = 1;
+        assert_eq!(AssetPack::parse(&bytes).unwrap_err(), AssetError::Key);
+    }
+    let mut bytes = fixture();
+    bytes[40] = 4;
+    bytes[41] = 4;
+    assert_eq!(AssetPack::parse(&bytes).unwrap_err(), AssetError::Key);
 }

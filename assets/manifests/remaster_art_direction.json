@@ -847,5 +847,12 @@
     "scope": "Immutable atlas pages selected by common/current theme; bounded pinned extension manifests, native/web loading and legacy v1 compatibility. No new art or BGM fix.",
     "runtime_ready": true,
     "full_remaster_ready": false
+  },
+  "followup_172": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/172",
+    "manifest": "assets/manifests/hd_special.json",
+    "scope": "Four generated special panoramas sampled at the original960x160 x304 placement and clipped to the unmodified simulation mask. Selected catalog extension; no new physics, music synthesis or full HD distribution acceptance.",
+    "runtime_ready": true,
+    "full_remaster_ready": false
   }
 }

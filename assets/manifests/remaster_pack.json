@@ -13736,5 +13736,12 @@
     "issue": "https://github.com/edwardkim/ohmylemmings/issues/163",
     "scope": "Full frame geometry, protected RGBA and host sampling phase preserved. Filter-sensitive source atlases retain their canonical rectangles-v1 layout; other equal-cutoff pages can share invisible borders. Source PNGs/production coordinates unchanged.",
     "full_remaster_ready": false
-  }
+  },
+  "catalog_extensions": [
+    {
+      "path": "assets/manifests/remaster_special.json",
+      "bytes": 2403,
+      "sha256": "c932bfd6921213e14984ca5a811ac07c8d9462b448d67cc1fa17257e7cf0deaf"
+    }
+  ]
 }

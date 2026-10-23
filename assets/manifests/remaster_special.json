@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/172",
+  "packing": "rectangles-v1",
+  "atlases": [
+    {
+      "path": "assets/remaster/issue-172-special-0-v1.png",
+      "bytes": 1173610,
+      "sha256": "06d3f3c19d5e362ff146978d370e9401ce9991dfc31b3bfa195f029d7f424f7f",
+      "width": 2172,
+      "height": 724,
+      "alpha": "opaque",
+      "alpha_cutoff": 0
+    },
+    {
+      "path": "assets/remaster/issue-172-special-1-v1.png",
+      "bytes": 965475,
+      "sha256": "e69f96954b9a37e20210cc44029a8c87cb83697f8f7784827e4d2d10e203a1a7",
+      "width": 2170,
+      "height": 725,
+      "alpha": "opaque",
+      "alpha_cutoff": 0
+    },
+    {
+      "path": "assets/remaster/issue-172-special-2-v1.png",
+      "bytes": 1078393,
+      "sha256": "0db92e03eccab251bdbf5bfbc575bb8e207f3d703c5fd8a34b1cf9ac0d9dd62a",
+      "width": 2170,
+      "height": 725,
+      "alpha": "opaque",
+      "alpha_cutoff": 0
+    },
+    {
+      "path": "assets/remaster/issue-172-special-3-v1.png",
+      "bytes": 1425765,
+      "sha256": "822f57fe51a44119ca0f4bd791efba996a0297709cc8fdcc4915245b0c0c9140",
+      "width": 2172,
+      "height": 724,
+      "alpha": "opaque",
+      "alpha_cutoff": 0
+    }
+  ],
+  "frames": [
+    {
+      "key": {
+        "special": 0
+      },
+      "atlas": 0,
+      "rect": [
+        0,
+        181,
+        2172,
+        362
+      ],
+      "display": [
+        3840,
+        640
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "key": {
+        "special": 1
+      },
+      "atlas": 1,
+      "rect": [
+        0,
+        181,
+        2170,
+        362
+      ],
+      "display": [
+        3840,
+        640
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "key": {
+        "special": 2
+      },
+      "atlas": 2,
+      "rect": [
+        0,
+        181,
+        2170,
+        362
+      ],
+      "display": [
+        3840,
+        640
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "key": {
+        "special": 3
+      },
+      "atlas": 3,
+      "rect": [
+        0,
+        181,
+        2172,
+        362
+      ],
+      "display": [
+        3840,
+        640
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    }
+  ],
+  "required": [
+    {
+      "special": 0
+    },
+    {
+      "special": 1
+    },
+    {
+      "special": 2
+    },
+    {
+      "special": 3
+    }
+  ]
+}

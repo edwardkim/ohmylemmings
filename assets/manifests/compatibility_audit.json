@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 180255,
-      "sha256": "21c779de2d25ce575e9b171afa8ae4d4ab6ce60872ac95b0f613f7b3da8be924"
+      "bytes": 180458,
+      "sha256": "51aadc0203ec25e0057914a100e0a9c5128b7891d45c9cccc53f40fe857eabdc"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -561,8 +561,8 @@
     },
     {
       "path": "crates/lemmings-game/examples/hd_asset_probe.rs",
-      "bytes": 3012,
-      "sha256": "7853315fbb4467df3b3fbb19896936ae1d829854f915d7a8053084aa711b05b0"
+      "bytes": 3039,
+      "sha256": "32d86c0dceff68e9a8ebbf3a4d4643d636294d3f69bfb4033e256f2688b2b357"
     },
     {
       "path": "crates/lemmings-game/examples/performance_probe.rs",
@@ -586,8 +586,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/assets.rs",
-      "bytes": 13229,
-      "sha256": "e6dacf0fff90de8b05e83c4aa9411e0abd74b872bdfedd201c8abe0d1a0ec4e1"
+      "bytes": 13413,
+      "sha256": "8a74f99736573b4c323c24565417d7d8a2e29601f2adb3a48de4cfc4b4d18a17"
     },
     {
       "path": "crates/lemmings-game/src/hd/layout.rs",
@@ -646,8 +646,8 @@
     },
     {
       "path": "crates/lemmings-game/tests/hd_assets.rs",
-      "bytes": 12587,
-      "sha256": "1b05acb2cbc7c9e29ccd4a004f2b78b727c9a3ec53470555a2bef2b27c395a04"
+      "bytes": 13210,
+      "sha256": "fe0cb85f65df0e4288ccdb01ccbaaa58a191a30435f58eff4c0d7ef97c4af34e"
     },
     {
       "path": "crates/lemmings-game/tests/hd_presentation.rs",
@@ -1491,8 +1491,8 @@
     },
     {
       "path": "tools/hd_assets.py",
-      "bytes": 28749,
-      "sha256": "a0c6e3d8b80419b6697e001db831f7b4d017d122769de3fb5eb3439d3b67f971"
+      "bytes": 28907,
+      "sha256": "a1e6f98636535dd32a66a39b04c6ef11ce1d5417799a8434f01dcd468b19153a"
     },
     {
       "path": "tools/hd_assets_preview.html",
@@ -2321,8 +2321,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/scene.rs",
-      "bytes": 50574,
-      "sha256": "4f9a02366cf164d737f34cc30c5f3b844ba61d86028ef7c4ea64e6f5f979d431"
+      "bytes": 55247,
+      "sha256": "e81c4de12d1bb1c05bcc9cb40078a71aa4761f4fb3a173ee8f3ef9c338e60763"
     },
     {
       "path": "crates/lemmings-game/tests/hd_scene.rs",
@@ -2556,13 +2556,13 @@
     },
     {
       "path": "crates/lemmings-game/examples/hd_terrain_probe.rs",
-      "bytes": 4269,
-      "sha256": "0da977f19bace05a8c6a8583f1739380b992c0d7ddcf96f550ab76bdd3f772a3"
+      "bytes": 5716,
+      "sha256": "d37fc2473a945fb988eb917eb5a43179b57925c16977f3355336658e6d7e2a65"
     },
     {
       "path": "tools/web/hd_terrain.cjs",
-      "bytes": 6281,
-      "sha256": "c01dd81ddf78e994b31bf4869f6e6d5316a4367c0dc9eab942ce29725eed24d6"
+      "bytes": 6984,
+      "sha256": "94995389c47b5ad2c9bfd2a33d99188d2a764b8f4a9166354035d3e327309268"
     },
     {
       "path": "assets/manifests/hd_portals.json",
@@ -2746,13 +2746,13 @@
     },
     {
       "path": "tools/hd_catalog.py",
-      "bytes": 4722,
-      "sha256": "2f5088786523d7847184030da1bff57f30736fa95e6a84a8ab915aa701c4a3e4"
+      "bytes": 4813,
+      "sha256": "800ed718dc20f2c85fb704096a358c865fb800d5c3dd3e3d782383b6725d52a6"
     },
     {
       "path": "tools/tests/test_hd_catalog.py",
-      "bytes": 3342,
-      "sha256": "5801b1486764d197dd45ace472da551c3ac527b003979bcfaf3fa106be2e7d05"
+      "bytes": 4318,
+      "sha256": "0aad6e5633ec858fed3ee2d3cb4dab45e93092a506d63e6da88877adbe6328be"
     },
     {
       "path": "tools/tests/test_hd_loader.py",
@@ -2768,6 +2768,41 @@
       "path": "tools/web/hd_loading.cjs",
       "bytes": 6563,
       "sha256": "914949aeb410c5bd67e762e22d6c1023e84de33d2b07dde1f8887d9d94ce30b2"
+    },
+    {
+      "path": "assets/manifests/hd_special.json",
+      "bytes": 13710,
+      "sha256": "f9cc2581d2b41311451aa37b08ab8b96d18a4824e7607cb577a8e6882e2c8e76"
+    },
+    {
+      "path": "assets/manifests/remaster_special.json",
+      "bytes": 2403,
+      "sha256": "c932bfd6921213e14984ca5a811ac07c8d9462b448d67cc1fa17257e7cf0deaf"
+    },
+    {
+      "path": "assets/remaster/issue-172-special-0-v1.png",
+      "bytes": 1173610,
+      "sha256": "06d3f3c19d5e362ff146978d370e9401ce9991dfc31b3bfa195f029d7f424f7f"
+    },
+    {
+      "path": "assets/remaster/issue-172-special-1-v1.png",
+      "bytes": 965475,
+      "sha256": "e69f96954b9a37e20210cc44029a8c87cb83697f8f7784827e4d2d10e203a1a7"
+    },
+    {
+      "path": "assets/remaster/issue-172-special-2-v1.png",
+      "bytes": 1078393,
+      "sha256": "0db92e03eccab251bdbf5bfbc575bb8e207f3d703c5fd8a34b1cf9ac0d9dd62a"
+    },
+    {
+      "path": "assets/remaster/issue-172-special-3-v1.png",
+      "bytes": 1425765,
+      "sha256": "822f57fe51a44119ca0f4bd791efba996a0297709cc8fdcc4915245b0c0c9140"
+    },
+    {
+      "path": "assets/remaster/previews/issue-172_special.png",
+      "bytes": 726381,
+      "sha256": "185cce85764cd020fe7c22dc36d1eec5c9ecba4f14bc5458c1f1b581198fa8e6"
     }
   ],
   "evidence": [
@@ -6407,5 +6442,71 @@
         "id": "g11-06-display-cadence"
       }
     ]
+  },
+  "source_impact_172": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/172",
+    "baseline": "1f84c886a87a18eff6f1ee3729db9235757f4ad3",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/remaster_pack.json",
+        "bytes": 180255,
+        "sha256": "21c779de2d25ce575e9b171afa8ae4d4ab6ce60872ac95b0f613f7b3da8be924"
+      },
+      {
+        "path": "crates/lemmings-game/examples/hd_asset_probe.rs",
+        "bytes": 3012,
+        "sha256": "7853315fbb4467df3b3fbb19896936ae1d829854f915d7a8053084aa711b05b0"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/assets.rs",
+        "bytes": 13229,
+        "sha256": "e6dacf0fff90de8b05e83c4aa9411e0abd74b872bdfedd201c8abe0d1a0ec4e1"
+      },
+      {
+        "path": "crates/lemmings-game/tests/hd_assets.rs",
+        "bytes": 12587,
+        "sha256": "1b05acb2cbc7c9e29ccd4a004f2b78b727c9a3ec53470555a2bef2b27c395a04"
+      },
+      {
+        "path": "tools/hd_assets.py",
+        "bytes": 28749,
+        "sha256": "a0c6e3d8b80419b6697e001db831f7b4d017d122769de3fb5eb3439d3b67f971"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/scene.rs",
+        "bytes": 50574,
+        "sha256": "4f9a02366cf164d737f34cc30c5f3b844ba61d86028ef7c4ea64e6f5f979d431"
+      },
+      {
+        "path": "crates/lemmings-game/examples/hd_terrain_probe.rs",
+        "bytes": 4269,
+        "sha256": "0da977f19bace05a8c6a8583f1739380b992c0d7ddcf96f550ab76bdd3f772a3"
+      },
+      {
+        "path": "tools/web/hd_terrain.cjs",
+        "bytes": 6281,
+        "sha256": "c01dd81ddf78e994b31bf4869f6e6d5316a4367c0dc9eab942ce29725eed24d6"
+      },
+      {
+        "path": "tools/hd_catalog.py",
+        "bytes": 4722,
+        "sha256": "2f5088786523d7847184030da1bff57f30736fa95e6a84a8ab915aa701c4a3e4"
+      },
+      {
+        "path": "tools/tests/test_hd_catalog.py",
+        "bytes": 3342,
+        "sha256": "5801b1486764d197dd45ace472da551c3ac527b003979bcfaf3fa106be2e7d05"
+      }
+    ],
+    "added": [
+      "assets/manifests/hd_special.json",
+      "assets/manifests/remaster_special.json",
+      "assets/remaster/issue-172-special-0-v1.png",
+      "assets/remaster/issue-172-special-1-v1.png",
+      "assets/remaster/issue-172-special-2-v1.png",
+      "assets/remaster/issue-172-special-3-v1.png",
+      "assets/remaster/previews/issue-172_special.png"
+    ],
+    "scope": "Four generated special panoramas, bounded typed keys and selected catalog extension. Renderer color only with original collision mask and world placement preserved. No simulation/audio synthesis changes. Historical evidence remains historical; BGM165 deferred,113 NOT READY unchanged."
   }
 }
