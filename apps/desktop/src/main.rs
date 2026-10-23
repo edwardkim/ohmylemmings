@@ -32,7 +32,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--hd] [--hd-pack FILE_OR_DIRECTORY] [--fullscreen] [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--performance NEW_JSON --performance-seconds 60] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nF8: original/HD preview (--hd-pack PATH); F11: fullscreen; --hd starts HD preview. S: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--hd | --original] [--hd-pack FILE_OR_DIRECTORY] [--fullscreen] [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--performance NEW_JSON --performance-seconds 60] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nF8: original/HD; F11: fullscreen; --hd starts HD; --original starts original presentation. S: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
     hd: bool,
     fullscreen: bool,
@@ -106,9 +106,11 @@ impl Options {
             pacing: None,
         };
         let mut specified_assets = false;
+        let mut original = false;
         while let Some(flag) = args.next() {
             match flag.as_str() {
                 "--hd" => o.hd = true,
+                "--original" => original = true,
                 "--fullscreen" => o.fullscreen = true,
                 "--hd-pack" => {
                     o.hd_pack = Some(args.next().ok_or("--hd-pack needs a path")?.into())
@@ -260,6 +262,19 @@ impl Options {
                     o.replay = Some(args.next().ok_or("--replay requires a file")?.into())
                 }
                 _ => return Err(format!("unknown option {flag}\n{USAGE}").into()),
+            }
+        }
+        if original && (o.hd || o.hd_pack.is_some()) {
+            return Err("choose --original or --hd/--hd-pack".into());
+        }
+        if !original
+            && !o.synthetic
+            && o.performance.is_none()
+            && let Some(directory) = assets::packaged_hd_directory(&std::env::current_exe()?)?
+        {
+            o.hd = true;
+            if o.hd_pack.is_none() {
+                o.hd_pack = Some(directory);
             }
         }
         if o.performance.is_some()
@@ -965,6 +980,10 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     let mut texture =
         creator.create_texture_streaming(PixelFormatEnum::RGB24, WIDTH as u32, HEIGHT as u32)?;
     let hd_path = options.hd_pack.clone().unwrap_or_else(|| {
+        let bundled = assets::presentation_root(&std::env::current_exe().unwrap_or_default());
+        if bundled.join("HD-PRESENTATION").exists() {
+            return bundled.join("hd-assets");
+        }
         let directory = PathBuf::from("assets/local/hd-runtime/atlas");
         if directory.join("catalog.hdi").is_file() {
             directory
@@ -981,7 +1000,16 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
         None
     };
     let mut hd_active = options.hd;
+    eprintln!(
+        "LEMMINGS_PRESENTATION mode={} assets={}",
+        if hd_active { "hd" } else { "original" },
+        hd_path.display()
+    );
     if hd_active {
+        eprintln!(
+            "LEMMINGS_HD {}",
+            hd_host.as_ref().ok_or("missing HD host")?.renderer.info()
+        );
         canvas.set_integer_scale(false)?;
         canvas.set_logical_size(1920, 1080)?;
     }
@@ -1637,6 +1665,20 @@ mod tests {
     }
 
     use super::*;
+    #[test]
+    fn explicit_original_mode_and_hd_options_cannot_conflict() {
+        let options = Options::parse(["--original"].into_iter().map(str::to_owned))
+            .unwrap()
+            .unwrap();
+        assert!(!options.hd);
+        assert!(options.hd_pack.is_none());
+        for arguments in [
+            vec!["--original", "--hd"],
+            vec!["--original", "--hd-pack", "pack"],
+        ] {
+            assert!(Options::parse(arguments.into_iter().map(str::to_owned)).is_err());
+        }
+    }
     #[test]
     fn cli_retains_fun_default_and_validates_rank_and_level_boundaries() {
         for rank in ["fun", "tricky", "taxing", "mayhem"] {

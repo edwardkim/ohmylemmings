@@ -105,7 +105,10 @@ pub fn read_pack(
     use std::io::Read;
     fn bounded(path: &std::path::Path, limit: usize) -> Result<Vec<u8>, Box<dyn Error>> {
         let mut data = Vec::new();
-        std::fs::File::open(path)?
+        std::fs::File::open(path)
+            .map_err(|error| {
+                std::io::Error::new(error.kind(), format!("{}: {error}", path.display()))
+            })?
             .take((limit + 1) as u64)
             .read_to_end(&mut data)?;
         if data.len() > limit {

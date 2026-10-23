@@ -869,8 +869,8 @@
   "source": [
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 67617,
-      "sha256": "906a5316f71f99be2d2896292f204442f33f7ba43752cf15e8686ac59d184c3d"
+      "bytes": 69182,
+      "sha256": "7a55407b8f77a129a0de0bcc5dfa881afa32099cf5cc78004f43175b3cd49c5d"
     },
     {
       "path": "apps/desktop/src/frame_clock.rs",
@@ -1673,5 +1673,16 @@
       }
     ],
     "scope": "Current desktop host adds bounded theme catalog loading and validates new HD pages before level replacement. Previous producer pins and measurements remain historical; no new performance qualification.113 remains deferred."
+  },
+  "source_maintenance_187": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/187",
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 67617,
+        "sha256": "906a5316f71f99be2d2896292f204442f33f7ba43752cf15e8686ac59d184c3d"
+      }
+    ],
+    "scope": "Packaged HD boot/path and validation changes; original frame clock/dispatch and simulation/audio unchanged. Frozen measurements stay historical, not HD performance qualification."
   }
 }

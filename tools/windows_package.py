@@ -16,6 +16,7 @@ from tools.reference_assets import checked_bytes, download_bytes
 from tools.release_package import archive_bytes, encoded, regular, require, sha, project_license_files, verify_project_license, PROJECT_LICENSE_FILES
 from tools.web_build import source_bundle
 from tools.release_version import workspace_version, package_name
+from tools.hd_delivery import delivery_files, verify_delivery
 
 from tools.package_assets import GAME_FILES, game_pins, manifest
 
@@ -54,6 +55,8 @@ def create(runtime, assets, sdl, output, root=ROOT):
     if path.exists() or sidecar.exists(): raise FileExistsError(path)
     files = {'OhMyLemmings.exe': regular(runtime/'lemmings-desktop.exe')}
     files.update(project_license_files(root))
+    hd_remaster = (root/'assets/manifests/remaster_pack.json').is_file()
+    if hd_remaster: files.update(delivery_files(root))
     pe64(files['OhMyLemmings.exe'])
     runtime_manifest = manifest(root, 'windows_runtime.json')
     for name in ['SDL2.dll', 'SDL2-LICENSE.txt']:
@@ -71,7 +74,9 @@ def create(runtime, assets, sdl, output, root=ROOT):
         'Oh My Lemmings - Windows x64\r\n\r\n'
         'ZIP 파일을 모두 풀고 OhMyLemmings.exe를 더블클릭하세요.\r\n'
         '원본 그래픽/전체 120개 레벨/음악과 효과음 데이터가 data 폴더에 포함되어 있습니다.\r\n'
-        'Fun 01 원본 게임이 바로 시작되며 별도 자산 다운로드나 경로 지정이 필요 없습니다.\r\n'
+        'Fun 01이 바로 시작되며 별도 자산 다운로드나 경로 지정이 필요 없습니다.\r\n'
+        'HD 패키지는 HD로 시작합니다. F8로 원본/HD 전환, --original로 원본 실행.\r\n'
+        'hd-assets 폴더와 HD-PRESENTATION, HD-ASSETS.json도 함께 유지하세요.\r\n'
         'data 폴더와 SDL2.dll을 exe 옆에 유지하세요. ZIP 내부에서 바로 실행하지 마세요.\r\n'
         '문제가 생기면 start-game.cmd를 실행하세요. 오류/로그 경로를 확인할 수 있습니다.\r\n'
         'F/C/E/K/U/M/B/D: 기술 선택, 왼쪽 클릭: 할당, Space: 일시정지, S: 음소거/재개\r\n'
@@ -102,7 +107,7 @@ def create(runtime, assets, sdl, output, root=ROOT):
         source = Path(temporary)/'source.tar.gz'; source_info = source_bundle(source, root)
         files['source.tar.gz'] = source.read_bytes()
     files['PACKAGE-MANIFEST.json'] = encoded(dict(schema_version=1, version=version, target='windows-x86_64', project_license='MIT',
-        original_game_data=True, first_level=dict(difficulty='fun',number=1), static_crt=True,
+        original_game_data=True, hd_remaster=hd_remaster, first_level=dict(difficulty='fun',number=1), static_crt=True,
         performance_qualification_deferred=True, source=source_info,
         files=[dict(path=n,bytes=len(b),sha256=sha(b)) for n,b in sorted(files.items())]))
     files['SHA256SUMS'] = ''.join(f'{sha(b)}  {n}\n' for n,b in sorted(files.items())).encode()
@@ -120,11 +125,13 @@ def verify(path, root=ROOT):
         names = archive.namelist()
         package = json.loads(archive.read('PACKAGE-MANIFEST.json'))
         license_names = PROJECT_LICENSE_FILES if 'project_license' in package else set()
-        require(len(names) == len(set(names)) and set(names) == BASE_FILES | license_names | {'data/'+n for n in GAME_FILES}, 'Invalid Windows inventory')
+        hd_names = set(delivery_files(root)) if package.get('hd_remaster', False) else set()
+        require(len(names) == len(set(names)) and set(names) == BASE_FILES | license_names | hd_names | {'data/'+n for n in GAME_FILES}, 'Invalid Windows inventory')
         require(all(not i.is_dir() and i.external_attr >> 16 == 0o100644 for i in archive.infolist()), 'Invalid Windows ZIP file type')
         files = {n:archive.read(n) for n in names}
     package = json.loads(files['PACKAGE-MANIFEST.json'])
     verify_project_license(files, package, root)
+    if package.get('hd_remaster', False): verify_delivery(files, root)
     require(package['schema_version'] == 1 and package['target'] == 'windows-x86_64'
         and package['original_game_data'] is True and package['static_crt'] is True, 'Windows package schema')
     pins = package['files']

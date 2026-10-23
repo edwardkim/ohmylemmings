@@ -6,8 +6,8 @@
   "source": [
     {
       "path": "apps/web/www/app.js",
-      "bytes": 11586,
-      "sha256": "69d64462c33c33ab4e24ee5b0711fe44903944ca180f09cb7d99a74ca281c861"
+      "bytes": 11821,
+      "sha256": "e681b1adad154f82e432d4cd6bc44013e9836ca7859688b7c31edef2b41cd11d"
     },
     {
       "path": "apps/web/www/host.js",
@@ -553,5 +553,16 @@
       }
     ],
     "scope": "Current Web host loads immutable selected theme pages. Recorded dispatch measurements and producer pins remain historical; no new performance qualification."
+  },
+  "source_maintenance_187": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/187",
+    "previous_pins": [
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 11586,
+        "sha256": "69d64462c33c33ab4e24ee5b0711fe44903944ca180f09cb7d99a74ca281c861"
+      }
+    ],
+    "scope": "Packaged HD boot/path and validation changes; original frame clock/dispatch and simulation/audio unchanged. Frozen measurements stay historical, not HD performance qualification."
   }
 }

@@ -58,7 +58,7 @@ def check(archive, evidence):
                        SDL_RENDER_DRIVER='software', LOCALAPPDATA=str(evidence/'user data'))
 
     def execute(label, arguments, *, success=True, launcher=False):
-        command = [str(binary), *map(str, arguments)]
+        command = [str(binary), '--original', *map(str, arguments)]
         if launcher:
             # /S strips the outer quotes, preserving a quoted script path containing spaces.
             command = f'cmd.exe /d /s /c ""{installed / "start-game.cmd"}" ' + subprocess.list2cmdline(list(map(str, arguments))) + '"'
@@ -93,6 +93,8 @@ def check(archive, evidence):
             process.wait(timeout=10)
 
     initial = evidence/'original-first'
+    from tools.check_hd_package import check as check_hd
+    check_hd(binary, installed, foreign, environment, evidence)
     result = execute('first', ['--steps', 2, '--fast', '--capture', initial])
     first = json.loads(result.stdout)
     config = json.loads((initial/'config.json').read_text())

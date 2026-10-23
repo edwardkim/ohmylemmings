@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Split immutable v1 atlas pages for bounded, level-scoped host loading."""
-import json,struct,zlib
+import hashlib,json,struct,tempfile,zlib
+from pathlib import Path
 MAX_BYTES=128*1024*1024
 
 def require(ok,message):
@@ -61,13 +62,42 @@ def split_packs(packs):
 def runtime_catalog(root,base):
     try:from .hd_assets import read_pin,compile_pack
     except ImportError:from hd_assets import read_pin,compile_pack
-    manifest=json.loads((root/'assets/manifests/remaster_pack.json').read_text())
+    manifest_bytes=(root/'assets/manifests/remaster_pack.json').read_bytes()
+    manifest=json.loads(manifest_bytes)
     extensions=manifest.get('catalog_extensions',[])
     require(isinstance(extensions,list) and len(extensions)<=15,'catalog extensions')
-    packs=[base]
+    identity=hashlib.sha256(base+manifest_bytes+Path(__file__).read_bytes()+Path(__file__).with_name("hd_assets.py").read_bytes())
+    sources=[]
     for pin in extensions:
-        source=json.loads(read_pin(pin,root));packs.append(compile_pack(source,root=root)[0])
-    return split_packs(packs)
+        raw=read_pin(pin,root);identity.update(raw);source=json.loads(raw)
+        # Source verification remains mandatory on a cache hit.
+        for asset in source['atlases']+source.get('provenance',[]):read_pin(asset,root)
+        sources.append(source)
+    directory=root/'assets/local/hd-catalog';meta=directory/'validation.json'
+    try:
+        report=json.loads(meta.read_text());require(report['source']==identity.hexdigest(),'stale catalog cache')
+        files={}
+        require(len(report['files'])<=129,'cached catalog limit')
+        for pin in report['files']:
+            name=pin['path'];require(name=='catalog.hdi' or (len(name)==13 and name.startswith('atlas-') and name[6:9].isdigit() and name.endswith('.hdp')),'cached catalog path')
+            path=directory/name;require(path.stat().st_size==pin['bytes']<=MAX_BYTES,'cached member size')
+            data=path.read_bytes();require(hashlib.sha256(data).hexdigest()==pin['sha256'],'cached checksum');files[name]=data
+        for theme in range(5):
+            for special in [0,64,128,256,512]:select_parts(files,1|(1<<(theme+1))|special)
+        require(len(files)==1+struct.unpack_from('<H',files['catalog.hdi'],8)[0],'cached inventory')
+        return files
+    except (OSError,ValueError,KeyError,TypeError,struct.error):pass
+    files=split_packs([base]+[compile_pack(source,root=root)[0] for source in sources])
+    directory.mkdir(parents=True,exist_ok=True)
+    for name,data in files.items():
+        with tempfile.NamedTemporaryFile(dir=directory,delete=False) as stream:
+            stream.write(data);temporary=Path(stream.name)
+        temporary.replace(directory/name)
+    report=dict(source=identity.hexdigest(),files=[dict(path=n,bytes=len(b),sha256=hashlib.sha256(b).hexdigest()) for n,b in sorted(files.items())])
+    with tempfile.NamedTemporaryFile(dir=directory,delete=False) as stream:
+        stream.write((json.dumps(report)+'\n').encode());temporary=Path(stream.name)
+    temporary.replace(meta)
+    return files
 
 def write_files(files,output):
     output.mkdir(parents=True,exist_ok=True)

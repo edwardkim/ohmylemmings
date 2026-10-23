@@ -24,7 +24,7 @@ jobs:
   macos:
     name: macOS universal app (Apple Silicon)
     runs-on: macos-15
-    timeout-minutes: 20
+    timeout-minutes: 25
     env:
       MACOSX_DEPLOYMENT_TARGET: '13.0'
     steps:
@@ -77,6 +77,7 @@ jobs:
             assets/local/macos-package-check/*.json
             assets/local/macos-package-check/*.log
             assets/local/macos-package-check/original-fun01.ppm
+            assets/local/macos-package-check/hd-default/*.ppm
           if-no-files-found: error
           retention-days: 14
           compression-level: 0
@@ -111,6 +112,7 @@ jobs:
             assets/local/macos-package-check/*.json
             assets/local/macos-package-check/*.log
             assets/local/macos-package-check/original-fun01.ppm
+            assets/local/macos-package-check/hd-default/*.ppm
           if-no-files-found: error
           retention-days: 14
           compression-level: 0
@@ -118,7 +120,7 @@ jobs:
   windows:
     name: Windows full game
     runs-on: windows-2022
-    timeout-minutes: 15
+    timeout-minutes: 25
     env:
       GIT_CONFIG_COUNT: '1'
       GIT_CONFIG_KEY_0: core.autocrlf
@@ -182,6 +184,7 @@ jobs:
             assets/local/windows-package-check/*.json
             assets/local/windows-package-check/*.log
             assets/local/windows-package-check/original-fun01.ppm
+            assets/local/windows-package-check/hd-default/*.ppm
           if-no-files-found: error
           retention-days: 14
           compression-level: 0
@@ -189,7 +192,7 @@ jobs:
   rust:
     name: Rust native
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -226,6 +229,7 @@ jobs:
             assets/local/linux-package-check/*.json
             assets/local/linux-package-check/*.log
             assets/local/linux-package-check/original-fun01.*
+            assets/local/linux-package-check/hd-default/*.ppm
           if-no-files-found: error
           retention-days: 14
           compression-level: 0
@@ -276,7 +280,7 @@ jobs:
   web:
     name: Web browser
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -311,6 +315,7 @@ jobs:
             assets/local/dist/ohmylemmings-*-web.zip*
             assets/local/web-package-check/*.json
             assets/local/web-package-check/original-fun01.*
+            assets/local/web-package-check/hd-default.png
           if-no-files-found: error
           retention-days: 14
           compression-level: 0

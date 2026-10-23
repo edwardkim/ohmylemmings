@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 252271,
-      "sha256": "111f82047f2def54b52c2c27fe9cdc963795c50ab9d3b7cf592b56d9f026a3e3",
+      "bytes": 257156,
+      "sha256": "93260bb2b8d0f4c9b7fc6a357ab7778f4a9437aa821474075b4f9fed4cbcf1b3",
       "id": "compatibility"
     },
     {
@@ -19,8 +19,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 90482,
-      "sha256": "9e69b622e66a8df2a1389bd5de4c12088a10f6096f662bba15e403c851bd03ee",
+      "bytes": 90979,
+      "sha256": "f53e3e7c189f167a571ccc6764b73d858e3d77a5b3e86e09279ec3b71525105b",
       "id": "display"
     }
   ],
@@ -11136,5 +11136,15 @@
       "id": "compatibility"
     },
     "scope": "Current HD typography and UI assets/renderer/tooling proof inventory only; no new all-level completion or performance qualification."
+  },
+  "source_maintenance_187": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/187",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 252271,
+      "sha256": "111f82047f2def54b52c2c27fe9cdc963795c50ab9d3b7cf592b56d9f026a3e3",
+      "id": "compatibility"
+    },
+    "scope": "Current HD packaging/host boot/installation validation source inventory only. No new all-level solution or performance qualification."
   }
 }

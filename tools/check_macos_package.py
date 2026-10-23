@@ -68,13 +68,16 @@ def check(archive,evidence,expected_arch):
     def execute(label,args,*,success=True,visible=False):
         env=dict(environment)
         if not visible:env['SDL_VIDEODRIVER']='dummy'
-        result=subprocess.run([str(binary),*map(str,args)],cwd=foreign,env=env,text=True,
+        result=subprocess.run([str(binary),'--original',*map(str,args)],cwd=foreign,env=env,text=True,
             capture_output=True,timeout=180)
         save(evidence/(label+'.json'),dict(arguments=list(map(str,args)),exit_code=result.returncode,stdout=result.stdout,stderr=result.stderr))
         require((result.returncode==0)==success,f'{label} exited {result.returncode}: {result.stderr}')
         return result
 
     initial=evidence/'original-first'
+    from tools.check_hd_package import check as check_hd
+    hd_environment=dict(environment,SDL_VIDEODRIVER='dummy')
+    check_hd(binary,app/'Contents/Resources',foreign,hd_environment,evidence)
     result=execute('first',['--steps',2,'--fast','--capture',initial],visible=True)
     first=json.loads(result.stdout);config=json.loads((initial/'config.json').read_text())
     require(first['synthetic'] is False and config['difficulty']=='fun' and config['level']==1 and first['video_driver']=='cocoa','Original native Fun01 not loaded')

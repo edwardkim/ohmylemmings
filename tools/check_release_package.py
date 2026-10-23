@@ -101,7 +101,7 @@ def check_web(directory, browser=None, full=False):
             with tempfile.TemporaryFile(mode='w+') as log:
                 process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT)
                 try:
-                    for _ in range(60):
+                    for _ in range(180):
                         if ready.wait(1): break
                         require(process.poll() is None, 'Package browser exited')
                     require(ready.is_set(), 'Package browser timed out')
@@ -129,6 +129,8 @@ def check(path, browser=None):
                 archive.extractall(directory)
             smoke = check_web(directory, browser, full)
             if full:
+                hd_image=smoke.pop('hd_png',None)
+                if hd_image:(evidence/'hd-default.png').write_bytes(base64.b64decode(hd_image,validate=True))
                 pixels = base64.b64decode(smoke.pop('frame_rgb'), validate=True)
                 require(len(pixels) == 320*200*3, 'Truncated browser capture')
                 (evidence / 'original-fun01.ppm').write_bytes(b'P6\n320 200\n255\n' + pixels)

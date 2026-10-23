@@ -148,3 +148,5 @@
 - [#181 깃발·일방통행 표시 HD](issue-181_hd_decor.md):방향 제한/마스크와 원본 규칙 보존.
 
 - [#184 HD 글꼴·전체 게임 UI](issue-184_hd_ui.md)
+
+- [#187 HD 패키징·최종 인수](issue-187_hd_release.md)

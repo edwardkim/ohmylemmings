@@ -13,7 +13,7 @@
         <header><a class="brand" href="./">RUSTY <span>LEMMINGS</span></a><span class="badge">브라우저 플레이</span></header>
         <div class="intro"><p class="eyebrow">작은 발걸음, 같은 목적지</p><h1>레밍들을 출구로 이끌어주세요.</h1><p>아래 패널에서 기술을 고르고 레밍을 클릭하세요. 레밍들을 안전하게 구출해 다음 레벨에 도전하세요.</p></div>
         <section class="game" aria-label="레밍즈 게임">
-            <div class="game-bar"><label for="scene">연습 장면</label><select id="scene" disabled><option value="" disabled>연습 장면 선택</option><option value="builder" selected>기술 연습</option><option value="win">구출 장면</option><option value="loss">위험물 장면</option></select><label for="presentation">화면</label><select id="presentation"><option value="original">원본</option><option value="hd">HD 미리보기</option></select><button id="fullscreen" type="button">전체화면</button><output id="status" role="status" aria-live="polite">불러오는 중…</output></div>
+            <div class="game-bar"><label for="scene">연습 장면</label><select id="scene" disabled><option value="" disabled>연습 장면 선택</option><option value="builder" selected>기술 연습</option><option value="win">구출 장면</option><option value="loss">위험물 장면</option></select><label for="presentation">화면</label><select id="presentation"><option value="original">원본</option><option value="hd">HD</option></select><button id="fullscreen" type="button">전체화면</button><output id="status" role="status" aria-live="polite">불러오는 중…</output></div>
             <div class="screen"><canvas id="game" tabindex="0" width="320" height="200" aria-label="레밍즈 게임 화면">Canvas를 지원하는 브라우저에서 실행해주세요.</canvas></div>
             <div class="controls"><button id="pause" type="button" disabled>멈추기</button><button id="restart" class="secondary" type="button" disabled>처음부터</button><button id="continue" class="secondary" type="button" hidden>다음 레벨</button><p id="population">레밍들의 이동과 구출 과정을 살펴보세요.</p></div>
             <div class="audio-controls" aria-label="소리 설정"><button id="sound" type="button" class="secondary" disabled>소리 켜기</button><label for="volume">음량</label><input id="volume" type="range" min="0" max="100" step="1" value="40" aria-label="음량"><output id="audio-status" role="status" aria-live="polite">소리는 버튼을 눌러 켤 수 있습니다.</output></div>
@@ -24,7 +24,7 @@
             <p class="hint">네 난이도의 1–30 레벨을 지원합니다. 파일을 직접 선택하는 경우 특수 배경에는 VGASPEC0–3.DAT도 필요합니다.</p>
             <p id="error" role="alert"></p>
         </section>
-        <p class="hint">HD 미리보기는 전체 캐릭터, 일반 5테마의 지형·입출구·출구 장식과 조작 아이콘을 표시합니다. 특수 배경과 나머지 함정·효과·글꼴에는 원본 그림이 표시됩니다.</p>
+        <p class="hint">HD 화면은 새 캐릭터·지형·시설·글꼴로 표시합니다. 화면을 전환해도 같은 게임을 계속합니다.</p>
         <details class="help"><summary>조작 안내</summary><p>화면을 클릭하면 키보드로 조작할 수 있습니다. C 등반 · F 낙하산 · E 폭파 · K 차단 · U 계단 · B 수평 굴착 · M 대각 굴착 · D 아래 굴착. 기술 선택 후 레밍을 클릭하세요.</p><p>S 소리 켜기/음소거 · PageUp/PageDown 음량. 일시 정지 중에도 음악은 계속됩니다.</p><p>Space 일시 정지 · ↑↓ 출현 속도 · ←→ / Home / End 화면 이동 · N 전체 폭파 · Esc 중단. 하단 패널의 속도 버튼은 누르는 동안 반복하고, 전체 폭파 버튼은 두 번 클릭합니다. 오른쪽 작은 지도를 끌어 화면을 옮길 수 있습니다. 결과 화면에서는 Enter로 다음 레벨/재도전, R로 다시 시작합니다. 우클릭을 누른 채 선택할 수도 있습니다.</p></details>
         <footer><span class="dot"></span><span id="source">직접 만든 자산으로 기술과 구출을 연습합니다.</span><a class="license-link" href="./audio-license.html" target="_blank" rel="noopener">오디오 라이선스·소스</a></footer>
     </main>

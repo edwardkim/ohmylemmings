@@ -2,10 +2,10 @@
   "schema_version": 1,
   "issue": "https://github.com/edwardkim/ohmylemmings/issues/138",
   "parent": "https://github.com/edwardkim/ohmylemmings/issues/137",
-  "status": "partial_runtime_preview",
+  "status": "full_runtime_remaster",
   "runtime_ready": true,
   "style": "soft_handpainted_2d",
-  "style_decision": "First candidate; user preference not yet reported",
+  "style_decision": "Soft handpainted 2D retained through maintainer gameplay reviews and continuing implementation approvals; no alternate style requested.",
   "target": {
     "width": 1920,
     "height": 1080,
@@ -93,8 +93,12 @@
     "available_runtime_hd_animations": 28,
     "available_hd_pack_candidate_animations": 28,
     "available_hd_pack_candidate_frames": 337,
-    "available_hd_pack_candidate_object_frames": 11,
-    "available_hd_pack_candidate_control_icons": 13
+    "available_hd_pack_candidate_object_frames": 540,
+    "available_hd_pack_candidate_control_icons": 13,
+    "available_runtime_hd_object_frames": 540,
+    "available_runtime_hd_materials": 5,
+    "available_runtime_hd_special_scenes": 4,
+    "available_runtime_hd_glyphs": 95
   },
   "animations": [
     {
@@ -108,7 +112,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 0,
@@ -126,7 +130,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 1,
@@ -144,7 +148,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 2,
@@ -162,7 +166,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 3,
@@ -180,7 +184,7 @@
       "foot_y": 12,
       "origin_x": -8,
       "origin_y": -12,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 4,
@@ -198,7 +202,7 @@
       "foot_y": 12,
       "origin_x": -8,
       "origin_y": -12,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 5,
@@ -216,7 +220,7 @@
       "foot_y": 12,
       "origin_x": -8,
       "origin_y": -12,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 6,
@@ -234,7 +238,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 7,
@@ -252,7 +256,7 @@
       "foot_y": 12,
       "origin_x": -8,
       "origin_y": -12,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 8,
@@ -270,7 +274,7 @@
       "foot_y": 12,
       "origin_x": -8,
       "origin_y": -12,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 9,
@@ -288,7 +292,7 @@
       "foot_y": 13,
       "origin_x": -8,
       "origin_y": -13,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 10,
@@ -306,7 +310,7 @@
       "foot_y": 13,
       "origin_x": -8,
       "origin_y": -13,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 11,
@@ -324,7 +328,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 12,
@@ -342,7 +346,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 13,
@@ -360,7 +364,7 @@
       "foot_y": 13,
       "origin_x": -8,
       "origin_y": -13,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 14,
@@ -378,7 +382,7 @@
       "foot_y": 13,
       "origin_x": -8,
       "origin_y": -13,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 15,
@@ -396,7 +400,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 16,
@@ -414,7 +418,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 17,
@@ -432,7 +436,7 @@
       "foot_y": 16,
       "origin_x": -8,
       "origin_y": -16,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 18,
@@ -450,7 +454,7 @@
       "foot_y": 16,
       "origin_x": -8,
       "origin_y": -16,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 19,
@@ -468,7 +472,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 20,
@@ -486,7 +490,7 @@
       "foot_y": 13,
       "origin_x": -8,
       "origin_y": -13,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 21,
@@ -504,7 +508,7 @@
       "foot_y": 14,
       "origin_x": -8,
       "origin_y": -14,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 22,
@@ -522,7 +526,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 23,
@@ -540,7 +544,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 24,
@@ -558,7 +562,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 25,
@@ -576,7 +580,7 @@
       "foot_y": 10,
       "origin_x": -8,
       "origin_y": -10,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 26,
@@ -594,7 +598,7 @@
       "foot_y": 25,
       "origin_x": -16,
       "origin_y": -25,
-      "hd_status": "integrated_preview",
+      "hd_status": "integrated_hd",
       "runtime_asset": {
         "manifest": "assets/manifests/remaster_pack.json",
         "slot": 27,
@@ -609,7 +613,7 @@
       "object_count": 11,
       "frame_count": 111,
       "preview_count": 11,
-      "hd_status": "HD material preview; original piece geometry preserved; facilities/effects partially original (#157)"
+      "hd_status": "HD material for original piece masks; all original object keys remastered; no per-piece geometry redesign"
     },
     {
       "set": 1,
@@ -617,7 +621,7 @@
       "object_count": 11,
       "frame_count": 97,
       "preview_count": 11,
-      "hd_status": "HD material preview; original piece geometry preserved; facilities/effects partially original (#157)"
+      "hd_status": "HD material for original piece masks; all original object keys remastered; no per-piece geometry redesign"
     },
     {
       "set": 2,
@@ -625,7 +629,7 @@
       "object_count": 10,
       "frame_count": 98,
       "preview_count": 10,
-      "hd_status": "HD material preview; original piece geometry preserved; facilities/effects partially original (#157)"
+      "hd_status": "HD material for original piece masks; all original object keys remastered; no per-piece geometry redesign"
     },
     {
       "set": 3,
@@ -633,7 +637,7 @@
       "object_count": 11,
       "frame_count": 118,
       "preview_count": 11,
-      "hd_status": "HD material preview; original piece geometry preserved; facilities/effects partially original (#157)"
+      "hd_status": "HD material for original piece masks; all original object keys remastered; no per-piece geometry redesign"
     },
     {
       "set": 4,
@@ -641,122 +645,122 @@
       "object_count": 11,
       "frame_count": 116,
       "preview_count": 11,
-      "hd_status": "HD material preview; original piece geometry preserved; facilities/effects partially original (#157)"
+      "hd_status": "HD material for original piece masks; all original object keys remastered; no per-piece geometry redesign"
     }
   ],
   "special_scenes": [
     {
       "set": 0,
-      "hd_status": "not_started"
+      "hd_status": "integrated_hd; original placement and simulation mask retained (#172)"
     },
     {
       "set": 1,
-      "hd_status": "not_started"
+      "hd_status": "integrated_hd; original placement and simulation mask retained (#172)"
     },
     {
       "set": 2,
-      "hd_status": "not_started"
+      "hd_status": "integrated_hd; original placement and simulation mask retained (#172)"
     },
     {
       "set": 3,
-      "hd_status": "not_started"
+      "hd_status": "integrated_hd; original placement and simulation mask retained (#172)"
     }
   ],
   "ui_families": [
     {
       "kind": "Background",
       "count": 1,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "Logo",
       "count": 1,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "Play",
       "count": 1,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "LevelCode",
       "count": 1,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "Music",
       "count": 1,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "Rating",
       "count": 1,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "Exit",
       "count": 1,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "Navigation",
       "count": 1,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "MusicIcon",
       "count": 1,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "FxIcon",
       "count": 1,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "RatingSigns",
       "count": 4,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "ScrollLeft",
       "count": 16,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "ScrollRight",
       "count": 16,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "Reel",
       "count": 1,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "MenuGlyphs",
       "count": 94,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "SkillPanel",
       "count": 1,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "PanelGlyphs",
       "count": 38,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "DigitRight",
       "count": 10,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     },
     {
       "kind": "DigitLeft",
       "count": 10,
-      "hd_status": "not_started"
+      "hd_status": "historical DOS inventory; current game UI replaced by HD-05j font/skin/icons; unused DOS menu images outside current product scope"
     }
   ],
   "review_findings": [
@@ -769,8 +773,7 @@
     "Generated panel omits release-rate and Nuke controls; production must implement every specified panel command."
   ],
   "next_implementation": [
-    "HD-05d four special scenes and remaining hazards/effects/UI",
-    "HD-06 whole equivalence/support packaging/source notice checks"
+    "HD-06 supported native/Web fresh-download acceptance (#187); BGM #165 follows remaster completion"
   ],
   "validation": {
     "status": "PASS",
@@ -806,7 +809,7 @@
     "scope": "65 new actor frames, theme0 objects0/1 (1+10 frames),13 toolbar icons; candidate, not actual HD game integration",
     "runtime_ready": false
   },
-  "full_remaster_ready": false,
+  "full_remaster_ready": true,
   "followup_151": {
     "issue": "https://github.com/edwardkim/ohmylemmings/issues/151",
     "manifest": "assets/manifests/remaster_pack.json",
@@ -854,5 +857,17 @@
     "scope": "Four generated special panoramas sampled at the original960x160 x304 placement and clipped to the unmodified simulation mask. Selected catalog extension; no new physics, music synthesis or full HD distribution acceptance.",
     "runtime_ready": true,
     "full_remaster_ready": false
+  },
+  "followup_187": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/187",
+    "coverage": "899 logical art keys:337 actors+540 object disk frames+5 terrain materials+13 control icons+4 special scenes;95 embedded Noto ASCII glyphs and runtime UI skin.",
+    "distribution": "Complete catalog in Linux/Windows11/macOS universal2/Web; default HD and original override. Local/CI/merge acceptance tracked in issue-187 report.",
+    "scope": "All current game graphics/UI;273 terrain pieces use5 HD materials with unchanged original masks. No recreation of unused DOS menus, new Korean font, BGM fix or60fps qualification.",
+    "historical_fields": "Earlier followup/validation/full_remaster_ready fields describe their dated slices; final acceptance is #187."
+  },
+  "release_acceptance_187": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/187",
+    "report": "mydocs/reports/issue-187_hd_release.md",
+    "scope": "Current native/Web game graphics and UI, complete HD download packaging. Final supported-platform CI and actual merge are recorded in the report. Historical slice metadata below remains historical. No BGM or performance qualification."
   }
 }

@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/187",
+  "parent": 137,
+  "status": "locally_verified_pending_platform_ci",
+  "baseline_main": "7de84d3ef1d80f6ef0d7c13b66637c63b8b64d02",
+  "report": "mydocs/reports/issue-187_hd_release.md",
+  "delivery": {
+    "actor_frames": 337,
+    "catalog": "hd-assets/catalog.hdi",
+    "default": "hd",
+    "files": [
+      {
+        "bytes": 6292000,
+        "path": "hd-assets/atlas-000.hdp",
+        "sha256": "03757a8032448f539f0f34361e4ee5828bf5b2f559952c31a91001a1f6c1f110"
+      },
+      {
+        "bytes": 6295208,
+        "path": "hd-assets/atlas-001.hdp",
+        "sha256": "fd4d89beec16b0dd6d564f2da1edf3fb2ac691dd53d455916f4ab2df1bac1233"
+      },
+      {
+        "bytes": 5755664,
+        "path": "hd-assets/atlas-002.hdp",
+        "sha256": "68e7cf0d8e6d527171b33c530a5aaeec4e23f8fce300725dda60f60ecd32d702"
+      },
+      {
+        "bytes": 3201772,
+        "path": "hd-assets/atlas-003.hdp",
+        "sha256": "2ea18bc3f3c43ed364b3ccb6ea250c9b2439ce36feb2ffce8a6e371cfd7b4f95"
+      },
+      {
+        "bytes": 4451056,
+        "path": "hd-assets/atlas-004.hdp",
+        "sha256": "fdcfb2ac44a4ad35787ca1e489fee0fccfb5fd6229a9efb70dc5c60936c3d4b3"
+      },
+      {
+        "bytes": 4557416,
+        "path": "hd-assets/atlas-005.hdp",
+        "sha256": "628025d13287b30cd9434dcd30d5fabb05063527a1f25479ceec281b899ab6ff"
+      },
+      {
+        "bytes": 2843296,
+        "path": "hd-assets/atlas-006.hdp",
+        "sha256": "1832b354f11687fd8d633749990bdb002e8c8d59b99e746cdc885a5b1f17bbaf"
+      },
+      {
+        "bytes": 4019200,
+        "path": "hd-assets/atlas-007.hdp",
+        "sha256": "8847d569ad3244325874fef22c0648d44ba3c4a2e0abe5cda56c7a5f94557271"
+      },
+      {
+        "bytes": 1796760,
+        "path": "hd-assets/atlas-008.hdp",
+        "sha256": "ff3ee5caf133db2bcfb8c531f0b5b60f919268dc96cc558bf30ae78585495528"
+      },
+      {
+        "bytes": 5211032,
+        "path": "hd-assets/atlas-009.hdp",
+        "sha256": "dac9fefcee54d9c1002e736c8b70e40d972a37a8575b0ed8d513bbdb49ee2ccc"
+      },
+      {
+        "bytes": 4861284,
+        "path": "hd-assets/atlas-010.hdp",
+        "sha256": "03da2e8e0789b95ea0c795c85eb4a64df25faa2efcc0efa067a2214438cef3ec"
+      },
+      {
+        "bytes": 3677432,
+        "path": "hd-assets/atlas-011.hdp",
+        "sha256": "2e588e805a42b6420353322852328a802122cb6c7fc3708c8442512896533ec5"
+      },
+      {
+        "bytes": 3960120,
+        "path": "hd-assets/atlas-012.hdp",
+        "sha256": "b76192a60150eb83ecac159cf8f26da9f05218235d57bfd00e7704b72e232163"
+      },
+      {
+        "bytes": 4435960,
+        "path": "hd-assets/atlas-013.hdp",
+        "sha256": "d78f747664081c9b737624cfe6fa11ab1b7c0ad30ea43cbe65ee2e68e2b1caaa"
+      },
+      {
+        "bytes": 2850864,
+        "path": "hd-assets/atlas-014.hdp",
+        "sha256": "019ad86edad1a42ac3f4a97c9e14e9fef3f99d3b62457a042c074c77cc24a4a4"
+      },
+      {
+        "bytes": 3019536,
+        "path": "hd-assets/atlas-015.hdp",
+        "sha256": "a355e82f97d941c271c966815a6570af725f0c2cb7900ac7239301581ecdefad"
+      },
+      {
+        "bytes": 2813848,
+        "path": "hd-assets/atlas-016.hdp",
+        "sha256": "da888f666e1705f8e50b970302397d47ee51a72e48705a07648a84ecf8255b55"
+      },
+      {
+        "bytes": 3133956,
+        "path": "hd-assets/atlas-017.hdp",
+        "sha256": "f6ad363a3dc8e7b416854d170a8ef856e7f44bb4a8cf9b769ab52b1e596ae18c"
+      },
+      {
+        "bytes": 2436444,
+        "path": "hd-assets/atlas-018.hdp",
+        "sha256": "8d4c749ea728d2445658d6b5731888956bf810030204199dd78e69b12712648c"
+      },
+      {
+        "bytes": 2469024,
+        "path": "hd-assets/atlas-019.hdp",
+        "sha256": "c9aac229a21e0f80d38ec009193f313fe2916ca7f239ac1c705a31f4fd27969c"
+      },
+      {
+        "bytes": 2300664,
+        "path": "hd-assets/atlas-020.hdp",
+        "sha256": "05050ef4a3e1579ccccae3a81e569e7e64c181f4143d544b0c8a3d30f0151ab0"
+      },
+      {
+        "bytes": 2465024,
+        "path": "hd-assets/atlas-021.hdp",
+        "sha256": "853006dbae115823604e706e11133d68a2ec36c54937cc21fc13ef6bfc1c5b61"
+      },
+      {
+        "bytes": 2393384,
+        "path": "hd-assets/atlas-022.hdp",
+        "sha256": "54c07c8c07d33db726951a780b84de71213e00662bd66fb91e7e574cbd6f393b"
+      },
+      {
+        "bytes": 18930560,
+        "path": "hd-assets/atlas-023.hdp",
+        "sha256": "2ec95b8926def44d255c63e0275ad23a4e9a69277dc5d4904c39fb1add509725"
+      },
+      {
+        "bytes": 12620384,
+        "path": "hd-assets/atlas-024.hdp",
+        "sha256": "b2a321be426c62140bf14c5797257429d1b3b47f7ec0354eb85b3d9032e8a1e5"
+      },
+      {
+        "bytes": 14547712,
+        "path": "hd-assets/atlas-025.hdp",
+        "sha256": "e867d882279e5519f01bc453b18e7238ec2f804d85137f8d4a7503557399bd3d"
+      },
+      {
+        "bytes": 360576,
+        "path": "hd-assets/atlas-026.hdp",
+        "sha256": "1341bf3b26a14e7de0e7fef4fbc01e13e247008b9a1cecd11fee3b1c15e2b7f5"
+      },
+      {
+        "bytes": 3165408,
+        "path": "hd-assets/atlas-027.hdp",
+        "sha256": "86508d9e8533790d8f4c2af83baddbcfd76e0506279e8ed82a4054dcef4ea64d"
+      },
+      {
+        "bytes": 3162496,
+        "path": "hd-assets/atlas-028.hdp",
+        "sha256": "f42ab3aa6780c427ddf95e521500be7596e28c96c041473bf3161901ac8578ab"
+      },
+      {
+        "bytes": 3162496,
+        "path": "hd-assets/atlas-029.hdp",
+        "sha256": "9e2ff301c18ec808957c8b39ad8844a73c64cada4682084be2f36f6c641a68ff"
+      },
+      {
+        "bytes": 3165408,
+        "path": "hd-assets/atlas-030.hdp",
+        "sha256": "4c164cd1667dc9def39b948b98e3f8320e9bd195b6a50271c43a5a757e91f388"
+      },
+      {
+        "bytes": 2846944,
+        "path": "hd-assets/atlas-031.hdp",
+        "sha256": "6e589d4e2622da9cf1cbf0f65fdb6b95fff3d24240247c0118a7366584944dfb"
+      },
+      {
+        "bytes": 2883168,
+        "path": "hd-assets/atlas-032.hdp",
+        "sha256": "e4656fa66159fd27d82f74d4e7c004a8738c575f0dd59ce2f24b5248a3668668"
+      },
+      {
+        "bytes": 3007488,
+        "path": "hd-assets/atlas-033.hdp",
+        "sha256": "2523e53d7275994056d6ddf615a27fb4b4983cf55468458785509473933475a7"
+      },
+      {
+        "bytes": 3932832,
+        "path": "hd-assets/atlas-034.hdp",
+        "sha256": "8845bf4ab9ff90d800183271a2e84db466aa8b9df856eab14c5413ec44faa9c2"
+      },
+      {
+        "bytes": 3218048,
+        "path": "hd-assets/atlas-035.hdp",
+        "sha256": "098fcc50e0e1ed578696433da69156c85410045418cf6885f8bdefd9cfe3095c"
+      },
+      {
+        "bytes": 5156512,
+        "path": "hd-assets/atlas-036.hdp",
+        "sha256": "2b8e64cc1b0c5617f13776fa1fc92238e6649aa810276b057dd7e0f250f3f8df"
+      },
+      {
+        "bytes": 5156512,
+        "path": "hd-assets/atlas-037.hdp",
+        "sha256": "bb9e4b35eb15be8ea294480d14bbc5163cc6ad55b04bc0e988918313654a7e24"
+      },
+      {
+        "bytes": 3321992,
+        "path": "hd-assets/atlas-038.hdp",
+        "sha256": "ce7645716ff554ba3ce520b7031aa37894e707f73ba61a96c6a517683cc7f2a1"
+      },
+      {
+        "bytes": 2002468,
+        "path": "hd-assets/atlas-039.hdp",
+        "sha256": "b171476a89ff996b16cb2828b8a0c418fa07d4ffbe188e96abbd19cf259df87e"
+      },
+      {
+        "bytes": 2883408,
+        "path": "hd-assets/atlas-040.hdp",
+        "sha256": "a96b0dbbdb0300e18959b3043e4f70add6818f75421a878088915feaadf8e0fc"
+      },
+      {
+        "bytes": 3706176,
+        "path": "hd-assets/atlas-041.hdp",
+        "sha256": "21479d664a1f01aa3f6c63dbb8acb1a1f2d8c10a532a0774fbd9dd4ee63a68db"
+      },
+      {
+        "bytes": 4120012,
+        "path": "hd-assets/atlas-042.hdp",
+        "sha256": "18a06201bb8d4af003e23deaaa04728ceaa8d4f0faed75b10796d239aafff291"
+      },
+      {
+        "bytes": 2777592,
+        "path": "hd-assets/atlas-043.hdp",
+        "sha256": "a9f8bd31904fea176a57c0ef3007412ec4e0321d652dce58579739cf83eade9c"
+      },
+      {
+        "bytes": 1789652,
+        "path": "hd-assets/atlas-044.hdp",
+        "sha256": "7d5aaac807e5429122bb64b6d20ed5184dd7fd204f67542f2720b6681d8cd00b"
+      },
+      {
+        "bytes": 3090292,
+        "path": "hd-assets/atlas-045.hdp",
+        "sha256": "ba871c0151932e640cab808b66f4b793c18a5552125788ef312258340cdef8fa"
+      },
+      {
+        "bytes": 2891352,
+        "path": "hd-assets/atlas-046.hdp",
+        "sha256": "24b72b73c5d2147552dfff8ef84acbdcdbfd68226e051a397a954d55a56d0a06"
+      },
+      {
+        "bytes": 2751404,
+        "path": "hd-assets/atlas-047.hdp",
+        "sha256": "df9fa218eae8659c50be22a9d07e15c199ac2371ffea7079da1bf9a62acc5974"
+      },
+      {
+        "bytes": 1749544,
+        "path": "hd-assets/atlas-048.hdp",
+        "sha256": "c4528d91766d44fae0bb0ff5ed09a758ea127a1b029e32c6b3ed44dfb9cc28ae"
+      },
+      {
+        "bytes": 3062720,
+        "path": "hd-assets/atlas-049.hdp",
+        "sha256": "b93f9ea1b358664368065bc21eab7f73395d19ce1e3546086df954f53708edca"
+      },
+      {
+        "bytes": 612,
+        "path": "hd-assets/catalog.hdi",
+        "sha256": "97704c7cfb4bdb9025cb6a067e37f7d3b575147e3e3b3e184cd9eceec2303a8e"
+      }
+    ],
+    "font": "Noto Sans SemiBold (embedded, SIL OFL 1.1)",
+    "glyphs": 95,
+    "logical_keys": 899,
+    "max_selected_bytes": 124698404,
+    "notices": "THIRD_PARTY_NOTICES.txt",
+    "object_frames": 540,
+    "original_available": true,
+    "schema_version": 1,
+    "selected_limit_bytes": 134217728,
+    "source_manifest": "assets/manifests/remaster_pack.json"
+  },
+  "targets": [
+    "linux-x86_64",
+    "windows11-x86_64",
+    "macos-arm64",
+    "macos-x86_64",
+    "web"
+  ],
+  "policy": {
+    "default": "hd",
+    "original_override": "--original; F8 native or Web selector",
+    "native_path": "executable siblings; macOS Contents/Resources",
+    "web_path": "hosted subdirectory-relative, no external runtime CDN",
+    "art": "51 catalog files unchanged from #184;337 actors+540 objects+5 materials+13 icons+4 special=899 keys.95 embedded ASCII glyphs.",
+    "terrain": "Original273 piece masks with5 HD materials; no273 separate terrain redesigns.",
+    "ui": "Current game status/skills/minimap/pause/nuke/result UI. Unused DOS menu inventory not recreated.",
+    "simulation_audio": "No core/resources/game/audio synthesis source changes; BGM165 deferred until137 completion.",
+    "performance": "#113 NOT READY; no60fps claim",
+    "macos": "ad-hoc; not notarized",
+    "windows": "Windows11 only; hosted CI validates WindowsServer2022 x64",
+    "public_release": "Existing v0.1.0/Pages unchanged; next publication needs a new policy-compliant version/tag"
+  },
+  "local": {
+    "rust_tests_before_added_cli_test": 710,
+    "added_cli_test": 1,
+    "python_tests": 308,
+    "format_clippy": "PASS",
+    "web": {
+      "default_hd": true,
+      "original_levels_loaded": 120,
+      "hd_sample_levels": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        22
+      ],
+      "fun01_states": 665,
+      "canvas_frames": 23,
+      "saved": 10,
+      "missing_files_rejected": 4
+    },
+    "native": {
+      "default_hd": true,
+      "original_levels_loaded": 120,
+      "hd_sample_levels": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        22
+      ],
+      "missing_and_corrupt_rejected": true,
+      "replay_states": 661,
+      "replay_phase": "Won"
+    },
+    "caveat": "120 original initial scenes and representative HD package replay checks are new. Earlier complete120 solutions and per-frame art/UI tests remain prior-phase evidence; no new120-level HD solution search."
+  }
+}
