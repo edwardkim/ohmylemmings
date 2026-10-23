@@ -7,3 +7,5 @@ HD-05 첫 절편으로21슬롯256프레임 제작/연결을 시작한다. main e
 새12PNG/256선택 포즈와 명시적 슬롯/프레임·방향/기준점을 연결해 전체28/337 누락0을 확인했다.119,548,732바이트/19atlas·128MiB/32atlas bounded 확장과 기존44MB 팩 호환 PASS. workspace Rust656/doc29+example1·Python271/format/Clippy/WASM, 전체337복원/Canvas·13자연 시나리오7593상태821표시(18슬롯 관측)·기존Web66실행·실제SDL Fun01/우산 원본HD 및 Web 공통661상태/최종맵 동일·실제 제품 UI/Fun0110구출 PASS. [결과/실패 이력/한계](../reports/issue-154_hd_actors.md)를 기록하고 소스 감사·정확한 CI/실제 병합을 진행한다.
 
 최종 미술 검토에서 Miner24/1·2와 Basher16단위2~5의 실제 지형 삭제 시점에 타격 포즈가 오도록 순서만 보정했다. Python binding guard 실패 후 수정/271개 PASS, 최종 팩337복원/Canvas·13사례·실제 Miner/NativeFun01과 Web 제품 동일성을 재검사했다. 이전 head CI는 취소하고 보정된 최종 head로 CI를 다시 실행한다.
+
+PR #155 head `963fcea38f83cc3f2dcc6e413ef07a8a2d31e54b`/CI39887504382 attempt1 최종7개 SUCCESS, 실제 merge `7d8712b4f3897c7811f8917a1af6e332b87e7243`와 전체 tree 일치로 완료했다. self-review·498개 source audit·문서 동기화와 완료 문서 PR/root 준비의 최종 식별자는 #154를 따른다. #137·#113·#142는 OPEN이다.
