@@ -32,12 +32,12 @@
     {
       "path": "Cargo.lock",
       "bytes": 5268,
-      "sha256": "70583cf110134b484a0fe31b92ab43a0fb9f3b10b7ffa3c155cd74a86229c317"
+      "sha256": "ec6804ffb3482643aa4ef83a3477caa5c6e71241f27ac7e36467d82986f8b6d5"
     },
     {
       "path": "Cargo.toml",
       "bytes": 454,
-      "sha256": "25ca695ea1b673ad54636e40c3679674d6c6df6548d1b0cbb358130a53e3d44c"
+      "sha256": "fda8d31d8cc34e50a4dd03b836e5eb84d6ac215d313c97c49fe260665a3beb7f"
     },
     {
       "path": "LICENSE",
@@ -7428,5 +7428,35 @@
       "tools/tests/test_bgm.py"
     ],
     "scope": "OPL adapter now selects existing upstream bounded buffered writes. Core, game/session/VM/rational clocks unchanged. Corrected synthetic PCM hashes independently C buffered checked; state/RGB/maps/event trace unchanged. Historical immediate-write PCM/performance evidence remains historical. New sustained/retrigger/overflow/continuation/Native/WASM checks and source notices; no hardware equivalence or113 performance acceptance."
+  },
+  "source_impact_191": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/191",
+    "baseline": "95c2e221acff5d62f530e312231b8847db22b484",
+    "previous_pins": [
+      {
+        "path": "Cargo.lock",
+        "bytes": 5268,
+        "sha256": "70583cf110134b484a0fe31b92ab43a0fb9f3b10b7ffa3c155cd74a86229c317"
+      },
+      {
+        "path": "Cargo.toml",
+        "bytes": 454,
+        "sha256": "25ca695ea1b673ad54636e40c3679674d6c6df6548d1b0cbb358130a53e3d44c"
+      }
+    ],
+    "workspace_version": "0.2.0",
+    "version_source": [
+      {
+        "path": "Cargo.toml",
+        "bytes": 454,
+        "sha256": "fda8d31d8cc34e50a4dd03b836e5eb84d6ac215d313c97c49fe260665a3beb7f"
+      },
+      {
+        "path": "Cargo.lock",
+        "bytes": 5268,
+        "sha256": "ec6804ffb3482643aa4ef83a3477caa5c6e71241f27ac7e36467d82986f8b6d5"
+      }
+    ],
+    "scope": "Maintainer-selected remaster version;9 local packages and release note. External dependencies, BGM fix, gameplay, art and audio code unchanged. Existing0.1.0/tag/Pages preserved; no publication or performance/listening claim."
   }
 }
