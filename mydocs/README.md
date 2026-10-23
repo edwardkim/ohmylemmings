@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 진행 중입니다. [#147 직업·시설·패널 자산](reports/issue-147_hd_actions.md)에 이어 [#151 실제 HD 게임 통합](reports/issue-151_hd_integration.md)에서 Native/Web 1920×1080 부분 HD 미리보기·원본 전환·입력·전체화면과 Fun01 동일성을 로컬 검증했습니다. 정확한 CI/병합 상태는 #151에 기록합니다. 나머지21애니메이션256프레임·시설/효과 확장과 지원 플랫폼 배포는 후속입니다. 초기 개발 #1 종료와 성능 #113의 독립 후속은 유지합니다.
+[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 진행 중입니다. [#147 직업·시설·패널 자산](reports/issue-147_hd_actions.md)에 이어 [#151 실제 HD 게임 통합](reports/issue-151_hd_integration.md)에서 Native/Web 1920×1080 부분 HD 미리보기·원본 전환·입력·전체화면과 Fun01 동일성을 검증하고 PR #152·CI7개 SUCCESS·실제 병합으로 완료했습니다. 나머지21애니메이션256프레임·시설/효과 확장과 지원 플랫폼 배포는 후속입니다. 초기 개발 #1 종료와 성능 #113의 독립 후속은 유지합니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 

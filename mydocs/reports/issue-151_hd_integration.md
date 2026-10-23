@@ -55,3 +55,12 @@ node tools/web/hd_product.cjs http://127.0.0.1:19051/ http://127.0.0.1:19052 ass
 `runtime_ready=true`는 현재 부분 HD 미리보기의 사용 가능을 뜻하며 `full_remaster_ready=false`다. 원본 fallback을 UI/진단에 표시하고 나머지21애니메이션256프레임·다른 시설/효과·테마·bitmap 문자/윤곽 다듬기를 HD-05로 유지한다. 기존 #113 성능/메모리 이월과 NOT READY·#142 Chrome156 진단·#1 CLOSED를 변경하지 않았다. 저사양60fps 반복은 재개하지 않았다.
 
 정확한 PR head의 CI7개·실제 merge와 완료 문서/일지 동기화는 [#151 최종 기록](https://github.com/edwardkim/ohmylemmings/issues/151)에 연결한다. 로컬 통과만으로 완료 처리하지 않는다. #137은 전체 제작/동일성/지원 배포 인수까지 OPEN이다.
+
+
+## 최종 CI·병합
+
+[PR #152](https://github.com/edwardkim/ohmylemmings/pull/152)의 최종 head `efadab1f241061f102d2a96cc0cb190fa1f4c920`를 [CI39876930568](https://github.com/edwardkim/ohmylemmings/actions/runs/39876930568) 최종 attempt2에서 확인했다. Rust native·Python tooling·WASM libraries·Web browser·Windows full game·macOS Apple Silicon/Intel의7개 검사가 모두 SUCCESS다. Web은 Chrome155.0.8059.39에서 HD783상태/203표시와 기존 회귀·전체 게임 패키지 새 설치 검사를 통과했다. 같은 커밋의 중복 push39876926424 취소는 PASS에 포함하지 않는다. 첫 Intel 실행은 macOS15.7.9/x86_64의120레벨 로딩·새 설치·표시·전환·음원 검사가 PASS였으나 증거 업로드에서 DNS `ENOTFOUND`로 실패했다. 실패 로그를 보존하고 동일 head의 Intel job만 재실행했다. 다른 성공 job을 실패로 세거나 첫 업로드 실패를 PASS로 세지 않는다.
+
+구현 PR을 merge `3147601e06b12b67289fc5c105ed19163bf09203`로 실제 병합하고 검토 head와 main의 전체 tree 일치를 확인했다. 완료 문서 전용 PR·병합과 root main 동기화의 정확한 식별자는 [#151 최종 기록](https://github.com/edwardkim/ohmylemmings/issues/151)에 연결한다. #151 범위는 완료이며 상위 #137·#113·#142는 OPEN이다. 공개 v0.1.0/Pages와 #1 CLOSED를 유지한다.
+
+최종 소스 감사에서 이전 maintained display/dispatch pin을 갱신하고 과거 측정 producer pin·관측·NOT READY를 보존했다. make check-python 전체와469개 source pin·문서 링크/공백·self-review를 통과했다. 기능 동일성/부분 HD 검증과 성능 합격은 구분한다.

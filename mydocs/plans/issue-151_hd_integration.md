@@ -11,3 +11,5 @@ main f5cefc9와 이슈 OPEN/번호·URL을 확인하고 별도 worktree에서 �
 5. 실패 테스트 뒤 구현하고 실제 화면/입력·변경 구간 캐시·누락/손상과 로컬/CI7개·self-review·병합/문서 근거를 기록한다. Web/Native 개발 빌드에 팩 준비 명령과 파일을 연결하지만 공개 v0.1.0/Pages를 배포하지 않는다.
 
 저사양 호스트의60fps 장기 반복은 하지 않는다. #113 이월/NOT READY·#142 Chrome156 진단·#1 CLOSED와 Windows11 지원 정책을 유지한다. 전체337프레임/5테마/특수 장면·효과·새 공개 패키지/전체화면 시각 인수는 별도 범위를 정확히 기록한다.
+
+완료: PR #152/merge `3147601e06b12b67289fc5c105ed19163bf09203`, CI39876930568 최종 attempt2의 최종7개 SUCCESS와 검토 head/tree 일치. 구현·재현/한계·후속은 [결과](../reports/issue-151_hd_integration.md)를 따른다.
