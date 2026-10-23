@@ -10,4 +10,6 @@
 
 현재 조사: 혼합 atlas는 전체 페이지를 유지한다. 재배치/잘라내기는 Canvas 샘플 위상을 바꿀 수 있으므로 하지 않는다. 이는 새 그림 제작이 아니라 이후 특수 장면·효과/UI 확장을 위한 로딩 기반이다. 성능 인수/장시간60fps·BGM 수정은 범위 밖이다.
 
-구현/로컬 검증: 현재18~19atlas/94.2~100.5MB 선택,440키/원본 atlas 좌표·RGBA 보존, Native/Web5코스 및 제품 전환/실패 복구 PASS. [결과·한계](../reports/issue-169_hd_loading.md). 소스 감사·CI/실제 병합 진행 중.
+구현/로컬 검증: 현재18~19atlas/94.2~100.5MB 선택,440키/원본 atlas 좌표·RGBA 보존, Native/Web5코스 및 제품 전환/실패 복구 PASS. [결과·한계](../reports/issue-169_hd_loading.md). 소스 감사·CI7개·실제 병합 완료.
+
+완료: PR #170 head `8fb1d0916333200acdf92ad2ce6f21bdd6940e5c` / CI39922131331의7개 SUCCESS, 실제 merge `b7a5e73dfb15c2b7a2171e3740520cfc0d7f4a04`와 검토 head 전체 tree 일치를 확인했다.

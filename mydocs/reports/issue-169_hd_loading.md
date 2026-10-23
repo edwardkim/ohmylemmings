@@ -30,10 +30,18 @@
 
 ![전체 팩과 선택 테마의 실제 Canvas 비교](../../assets/remaster/previews/issue-169_loading.png)
 
-게임 코어/틱/충돌/입력 규칙·음악 합성은 바꾸지 않았다. #165 BGM의 알려진 재시작 결함은 그대로 후속이며 기존 sound-state 동일성 검사를 BGM 정상 판정으로 확대하지 않는다. #113 성능 이월/NOT READY, #142 진단은 유지한다. 특수4장면·나머지 함정/효과·글꼴/전체 UI·지원 HD 배포를 완료하기 전 #137을 닫지 않는다. 소스 감사·최종 CI/실제 병합과 root 준비는 이어서 기록한다.
+게임 코어/틱/충돌/입력 규칙·음악 합성은 바꾸지 않았다. #165 BGM의 알려진 재시작 결함은 그대로 후속이며 기존 sound-state 동일성 검사를 BGM 정상 판정으로 확대하지 않는다. #113 성능 이월/NOT READY, #142 진단은 유지한다. 특수4장면·나머지 함정/효과·글꼴/전체 UI·지원 HD 배포를 완료하기 전 #137을 닫지 않는다. 소스 감사·최종 CI7개와 실제 병합을 완료했으며 root 준비 식별자는 이슈에 기록한다.
 
 Web 패키지에서 catalog/27페이지만 포장하고 전체 팩 중복을 제외함을 로컬 검증했다. 검증 보고서의 archive 변수에 catalog member가 덮어써지던 초기 오류는 실패 테스트를 추가해 수정했다. 최종 PR CI에서 다시 생성한 패키지를 인수 근거로 사용한다.
 
 최종 소스551pin 감사·G11 기록 검증·298문서 상대 링크 PASS. 변경된 Native host의 이전 producer pin은 display_cadence/source_maintenance_169에 보존하고 현재 source/evidence pin을 동기화했다. 기존 성능 관측값이나 NOT READY 판정은 바꾸지 않았다.
 
 첫 PR #170 CI에서 Python297테스트와 주 소스 감사는 통과했지만 `web_dispatch.json`의 app.js 현재 소스 pin이 이전 버전으로 남아 후속 감사가 실패했다. 이전 pin과 성능 관측값을 보존하고 현재 source pin만 동기화했다. 실패 실행39921409631은 최종 통과 근거에 포함하지 않는다.
+
+## CI와 실제 병합
+
+PR #170 head `8fb1d0916333200acdf92ad2ce6f21bdd6940e5c` / CI39922131331의7개 SUCCESS, 실제 merge `b7a5e73dfb15c2b7a2171e3740520cfc0d7f4a04`와 검토 head 전체 tree 일치를 확인했다.
+
+[PR #170](https://github.com/edwardkim/ohmylemmings/pull/170) · [CI39922131331](https://github.com/edwardkim/ohmylemmings/actions/runs/39922131331). Rust native·Python tooling·WASM libraries·Web browser·Windows full game·macOS Apple Silicon/Intel이 모두 통과했다. CI checkout `66b651b690041bb8a0410dde2f66b30c2331c9bc`도 검토 head와 tree가 같다. 첫 실행의 Python 감사 실패와 이후 취소, 중복 push 취소는 PASS에 포함하지 않는다. 수정 후 로컬 `make check-python` 전체 검사를 통과했다. 기존 전체 게임 패키지 CI와 전체 HD 배포/성능 인수는 구분한다. 완료 문서 병합·root Native/8080 준비·종료 증거는 [#169](https://github.com/edwardkim/ohmylemmings/issues/169)에 기록한다.
+
+최종 CI에서 재생성한 전체 팩은 SHA-256 `07e240a23f338fef77e7f9fbf6fc439ba3e0dd3972566f9e848bcbe106014ff4`로 로컬과 동일하다. Web ZIP은133,689,984바이트/SHA-256 `9901ac02b7547eac24cd15097bed247b10587bcac682c292a3a1ed115cfcc01f`,78파일·956소스·28게임 파일이다. 새 설치120레벨 로딩·재시작/전환·하위 경로·소스/고지 전달을 통과했다. 오디오 비영 PCM 검사는 BGM 지속 청취 판정이 아니다.
