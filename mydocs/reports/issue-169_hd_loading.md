@@ -35,3 +35,5 @@
 Web 패키지에서 catalog/27페이지만 포장하고 전체 팩 중복을 제외함을 로컬 검증했다. 검증 보고서의 archive 변수에 catalog member가 덮어써지던 초기 오류는 실패 테스트를 추가해 수정했다. 최종 PR CI에서 다시 생성한 패키지를 인수 근거로 사용한다.
 
 최종 소스551pin 감사·G11 기록 검증·298문서 상대 링크 PASS. 변경된 Native host의 이전 producer pin은 display_cadence/source_maintenance_169에 보존하고 현재 source/evidence pin을 동기화했다. 기존 성능 관측값이나 NOT READY 판정은 바꾸지 않았다.
+
+첫 PR #170 CI에서 Python297테스트와 주 소스 감사는 통과했지만 `web_dispatch.json`의 app.js 현재 소스 pin이 이전 버전으로 남아 후속 감사가 실패했다. 이전 pin과 성능 관측값을 보존하고 현재 source pin만 동기화했다. 실패 실행39921409631은 최종 통과 근거에 포함하지 않는다.
