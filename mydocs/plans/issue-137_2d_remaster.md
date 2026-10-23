@@ -49,4 +49,4 @@ HD-05b [#157 일반 지형](../reports/issue-157_hd_terrain.md)은 일반5재질
 
 HD-05c [#160 전체 입출구·출구 장식](../reports/issue-160_hd_portals.md)은5테마55문/30장식과 Native/Web 위상·구출/원본 동일성을 PR #161·CI7개 SUCCESS·실제 병합으로 완료했다. 다음은 특수4장면·나머지 함정/효과/글꼴/전체 UI와 지원 HD 패키징/인수 HD-06이다. #137은 OPEN이다.
 
-HD-05d [#163 팩 정리](../reports/issue-163_hd_pack.md): 화면을 보존한27atlas/440키·131,699,864바이트 후보의 로컬 검증 완료, 게시 CI/병합 진행 중.
+HD-05d [#163 팩 정리](../reports/issue-163_hd_pack.md): 화면을 보존한27atlas/440키·131,699,864바이트 의 로컬 검증·PR #164 CI7개·실제 병합 완료.

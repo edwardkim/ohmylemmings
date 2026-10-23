@@ -14,6 +14,8 @@ main `f8e06fce1c072f69db56de25ef17a3266bda2968`과 #163 OPEN/번호·URL을 확�
 
 새 그림/의존성·특수4배경·효과/UI·지원 HD 배포와 성능 인수는 이 절편에 포함하지 않는다. #113 성능 이월/NOT READY·#142 진단·공개 Releases/Pages를 유지한다.
 
-Canvas 검증 보정: 23개 원본 atlas는 소수 축소 필터의 샘플 위상을 보존하기 위해 `sampling_locked: true`로 기존 `rectangles-v1` 페이지 전체를 유지한다. 나머지9개만 통합한다. 후보27atlas/131,699,864바이트는 전체440프레임·2배경의880Canvas 비교에서 픽셀 차이0을 통과했다. 원본 PNG 재빌드·플레이 회귀·CI는 진행 중이다.
+Canvas 검증 보정: 23개 원본 atlas는 소수 축소 필터의 샘플 위상을 보존하기 위해 `sampling_locked: true`로 기존 `rectangles-v1` 페이지 전체를 유지한다. 나머지9개만 통합한다. 후보27atlas/131,699,864바이트는 전체440프레임·2배경의880Canvas 비교에서 픽셀 차이0을 통과했다. 원본 PNG 재빌드·플레이 회귀·CI7개를 통과했다.
 
-최종 로컬 검증: 원본 PNG 재빌드 SHA 동일,291테스트·542소스 pin·292문서 링크·Native/Web 픽셀/상태 및 제품 Fun01/기존 Web 회귀 PASS. [검증 보고서](../reports/issue-163_hd_pack.md)에 수치를 기록했다. exact-head CI와 실제 병합은 진행 중이다.
+최종 로컬 검증: 원본 PNG 재빌드 SHA 동일,291테스트·542소스 pin·292문서 링크·Native/Web 픽셀/상태 및 제품 Fun01/기존 Web 회귀 PASS. [검증 보고서](../reports/issue-163_hd_pack.md)에 수치를 기록했다. exact-head CI7개와 실제 병합을 완료했다.
+
+완료: PR #164 head `7908209698feb738d19e7f75804e22e167a96c8a` / CI39911107894 attempt1의7개 SUCCESS, 실제 merge `232853111944acc48f23da043b8357da83cf4c47`와 검토 head 전체 tree 일치를 확인했다. 중복 push CI39911103477 취소는 PASS에 포함하지 않는다. [결과와 한계](../reports/issue-163_hd_pack.md)를 따른다.
