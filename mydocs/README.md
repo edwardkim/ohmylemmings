@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 진행 중입니다. 캐릭터337프레임·일반5테마 재질·특수4장면에 이어 [#181 깃발·일방통행 표시](reports/issue-181_hd_decor.md)를 PR #182·CI7개 SUCCESS·실제 병합으로 완료해 원본54객체/540디스크 키를 모두 갖췄습니다. 다음은 글꼴/전체 UI·지원 HD 배포와 전체 인수입니다. BGM #165는 리마스터 이후이며 성능 #113 NOT READY는 유지합니다.
+[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 진행 중입니다. 캐릭터337프레임·일반5테마 재질·특수4장면·원본54객체/540키에 이어 [#184 HD 글꼴·현재 게임 UI](reports/issue-184_hd_ui.md)를 PR #185·CI7개 SUCCESS·실제 병합으로 완료했습니다. 다음은 지원 HD 패키징과 전체 인수 HD-06입니다. BGM #165는 리마스터 이후이며 성능 #113 NOT READY는 유지합니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 
