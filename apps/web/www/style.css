@@ -61,3 +61,19 @@ footer { flex-wrap: wrap; }
 
 canvas.hd {image-rendering:auto;width:100%;}
 .screen:fullscreen {padding:0;}
+
+.download {padding:16px 20px;border-top:1px solid #344446;background:#182225;}
+.download-heading,.download-detail {display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.download label {font-size:13px;font-weight:650;color:#c5e4b2;}
+.download output {font-size:12px;font-variant-numeric:tabular-nums;color:#c7d6d0;}
+.download progress {display:block;width:100%;height:10px;margin:12px 0;accent-color:#b1df8c;}
+.download p {margin:0;font-size:12px;color:#a2b2b1;}
+.download button {flex:none;padding:7px 12px;}
+.download[data-status="error"] p {color:#ffb69f;}
+.download[data-phase="background"] {padding-top:10px;padding-bottom:10px;}
+.download[data-phase="background"] progress {height:6px;margin:8px 0;}
+.screen:fullscreen {position:relative;}
+.screen:fullscreen .download {position:absolute;z-index:2;top:24px;left:50%;transform:translateX(-50%);width:min(620px,calc(100% - 32px));border:1px solid #48605c;border-radius:8px;background:#182225f5;}
+.screen:fullscreen .download[data-phase="background"] {top:12px;left:auto;right:12px;transform:none;width:min(380px,calc(100% - 24px));}
+.screen:fullscreen .download[data-status="ready"] {display:none;}
+@media (max-width:600px) {.download {padding:12px;}.download-heading {flex-wrap:wrap;gap:5px;}.download-detail {align-items:flex-start;}}

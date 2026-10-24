@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 263441,
-      "sha256": "bfccbc5c9b9dae1c327e0ed525517f09b8ab208ce661118032faa11a866d5f3b",
+      "bytes": 268482,
+      "sha256": "453e195b4ab255c24829a0daa5de4d98a18598b3ce0bc2c7f796af7d7e5a0554",
       "id": "compatibility"
     },
     {
@@ -11176,5 +11176,15 @@
       "id": "compatibility"
     },
     "scope": "HD Web release staging/release notes only; historical performance remains historical,113 NOT READY unchanged."
+  },
+  "source_maintenance_196": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/196",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 263441,
+      "sha256": "bfccbc5c9b9dae1c327e0ed525517f09b8ab208ce661118032faa11a866d5f3b",
+      "id": "compatibility"
+    },
+    "scope": "Level metadata planning and Web download/UX only. Bounded functional/pixel checks, no new full-level/FPS/human listening qualification; historical performance and113 NOT READY retained."
   }
 }

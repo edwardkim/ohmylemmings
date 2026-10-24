@@ -8,6 +8,7 @@ DOS 레밍즈를 Rust로 옮긴 토이프로젝트의2D 리마스터 릴리즈�
 
 - 캐릭터28동작337프레임·일반5재질·특수4장면·54객체540키·13조작 아이콘,95개 AA 글꼴과 게임 패널/결과 UI를1920×1080급 화면에 합성합니다. 원본 지형 마스크·충돌·레벨·입력은 유지합니다.
 - Linux/Windows/macOS/Web 패키지에 전체 HD 카탈로그와 원본 게임을 넣고 HD로 시작합니다. Native는 F8 또는 `--original`, Web은 화면 선택으로 같은 게임의 원본 화면을 사용할 수 있습니다.
+- Web은 레벨별 필수 HD 자산을 먼저 받고 플레이 중 다음 레벨을 준비합니다. 첫 Fun01 HD는약19.8MB이며 엔진/게임 데이터는 별도입니다. 실제 용량·진행률·재시도를 표시하고 준비한 자산은 재사용합니다. 다운로드/검증 중에는 게임 시간이 정지합니다. [#196](https://github.com/edwardkim/ohmylemmings/issues/196).
 - 공통 OPL의 음표 재시작을 복원해 진행 중 BGM이 감쇠하던 문제를 수정했습니다. 원본21곡×60초·효과음 혼합, 고정 C buffered 및 Native/WASM 대조를 수행했습니다. 실제 사람의 청취 확인은 #165에서 계속 추적합니다.
 - 프로젝트 MIT·제3자 고지·글꼴 OFL·OPL LGPL 대응 소스/재빌드 안내와 원본 데이터의 출처/해시를 포함합니다. 원본 게임 데이터와 상표는 프로젝트 MIT 허가의 대상이 아닙니다.
 
@@ -28,7 +29,7 @@ DOS 레밍즈를 Rust로 옮긴 토이프로젝트의2D 리마스터 릴리즈�
 
 ## 확인 범위와 제약
 
-HD 리마스터는 [#187](../reports/issue-187_hd_release.md), BGM은 [#165](../reports/issue-165_bgm.md), 릴리즈는 [#194](../reports/issue-194_release_v020.md)를 따릅니다. 동일 릴리즈 소스 tree의7개 CI·4플랫폼 새 설치·120원본 레벨 로딩·HD/원본 선택·재시작/다음 레벨·소스/체크섬을 검증합니다. hosted Windows 환경은 Server2022이며 이전 Windows11 인수를 이번 버전의 새 수동 판정으로 확대하지 않습니다. Windows10은 지원하지 않습니다.
+HD 리마스터는 [#187](https://github.com/edwardkim/ohmylemmings/blob/v0.2.0/mydocs/reports/issue-187_hd_release.md), BGM은 [#165](https://github.com/edwardkim/ohmylemmings/blob/v0.2.0/mydocs/reports/issue-165_bgm.md), 릴리즈는 [#194](https://github.com/edwardkim/ohmylemmings/blob/v0.2.0/mydocs/reports/issue-194_release_v020.md)를 따릅니다. 동일 릴리즈 소스 tree의7개 CI·4플랫폼 새 설치·120원본 레벨 로딩·HD/원본 선택·재시작/다음 레벨·소스/체크섬을 검증합니다. hosted Windows 환경은 Server2022이며 이전 Windows11 인수를 이번 버전의 새 수동 판정으로 확대하지 않습니다. Windows10은 지원하지 않습니다.
 
 Mac은 ad-hoc 서명/미공증이며 Apple Developer ID 서명은 없습니다. 차단되는 경우 앱을 열어 본 뒤 시스템 설정 > 개인정보 보호 및 보안의 «그래도 열기»는 [Apple 안내](https://support.apple.com/102445)를 참고하세요.60fps/고성능 호스트 성능은 #113 NOT READY로 유지합니다. 디지털 PCM·장치 smoke를 실제 스피커 청취나 전체120레벨의 새 HD 완주 판정으로 간주하지 않습니다.
 

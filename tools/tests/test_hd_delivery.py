@@ -27,6 +27,9 @@ def install_fixture(root, runtime=None):
     if runtime is not None:
         base=runtime_pack(root=root);(runtime/'hd-assets.hdp').write_bytes(base)
         write_files(runtime_catalog(root,base),runtime/'hd-assets')
+        from tools.web_hd import delivery
+        for name,data in delivery(runtime_catalog(root,base)).items():
+            path=runtime/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data)
 
 
 class HdDeliveryTests(unittest.TestCase):

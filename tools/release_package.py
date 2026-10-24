@@ -22,7 +22,7 @@ from tools.hd_delivery import delivery_files, verify_delivery
 
 WEB_FILES = (
     'index.html', 'app.js', 'audio.js', 'audio-license.html', 'controls.js',
-    'host.js', 'hd.js', 'hd-loader.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
+    'host.js', 'hd.js', 'hd-loader.js', 'progressive-hd.js', 'download.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
 )
 COMMON_FILES = {'README.md', 'REBUILD.md', 'LGPL-2.1-or-later.txt'}
 PROJECT_LICENSE_FILES = {'LICENSE', 'THIRD_PARTY_NOTICES.txt'}
@@ -110,7 +110,8 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
             expected=runtime_catalog(root,regular(runtime/'hd-assets.hdp'))
             for name,data in expected.items():
                 require(regular(runtime/'hd-assets'/name)==data,'HD catalog member differs')
-                files['hd-assets/'+name]=data
+                if not (root/'assets/manifests/remaster_pack.json').is_file():files['hd-assets/'+name]=data
+            del expected
         require(files['pkg/lemmings_web_bg.wasm'][:8] == b'\0asm\1\0\0\0', 'Invalid WebAssembly header')
     else:
         binary = regular(runtime)
@@ -119,10 +120,16 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
         files['lemmings-desktop'] = binary
     hd_remaster = (root/'assets/manifests/remaster_pack.json').is_file()
     if hd_remaster:
-        files.update(delivery_files(root))
+        hd_files=delivery_files(root,web=kind=='web')
+        if kind=='web':
+            for name,data in hd_files.items():
+                if name=='HD-WEB.json' or name.startswith('web-hd/'):
+                    require(regular(runtime/name)==data,'Stale Web HD transport: '+name)
+        files.update(hd_files)
         if kind == 'web':
             require(files['index.html'].count(b'<head>') == 1, 'Expected one Web document head')
             files['index.html'] = files['index.html'].replace(b'<head>', b'<head>\n    <meta name="game-presentation" content="hd">', 1)
+            files['index.html'] = files['index.html'].replace(b'<head>', b'<head>\n    <meta name="game-hd-stream" content="./HD-WEB.json">', 1)
     if assets is not None:
         if kind == 'web':
             require(files['index.html'].count(b'<head>') == 1, 'Expected one Web document head')
@@ -235,9 +242,10 @@ def verify_package(path, root=ROOT):
         allowed |= PROJECT_LICENSE_FILES
     allowed |= set(WEB_FILES) | {'audio-source.json'} if target == 'web' else {'lemmings-desktop'}
     if manifest.get('hd_remaster', False):
-        allowed |= verify_delivery(files, root)
+        allowed |= verify_delivery(files, root,web=target=='web')
         if target == 'web':
             require(b'<meta name="game-presentation" content="hd">' in files['index.html'], 'Missing HD presentation marker')
+            require(b'<meta name="game-hd-stream" content="./HD-WEB.json">' in files['index.html'], 'Missing progressive HD marker')
     elif target=='web' and ('hd-assets.hdp' in files or 'hd-assets/catalog.hdi' in files):
         try:from .hd_assets import runtime_pack
         except ImportError:from hd_assets import runtime_pack

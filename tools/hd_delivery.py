@@ -11,7 +11,7 @@ def catalog_files(root):
     return runtime_catalog(root, runtime_pack(root=root))
 
 
-def delivery_files(root):
+def delivery_files(root, *, web=False):
     members = catalog_files(root)
     keys = set()
     for name, data in members.items():
@@ -36,13 +36,19 @@ def delivery_files(root):
                 files=[dict(path='hd-assets/'+name, bytes=len(data),
                             sha256=hashlib.sha256(data).hexdigest())
                        for name, data in sorted(members.items())])
-    return {**{'hd-assets/'+name: data for name, data in members.items()},
+    delivered={'hd-assets/'+name: data for name, data in members.items()}
+    if web:
+        from tools.web_hd import delivery
+        delivered=delivery(members)
+        info.update(catalog='HD-WEB.json',transport='progressive-gzip-v1',
+                    files=[dict(path=name,bytes=len(data),sha256=hashlib.sha256(data).hexdigest()) for name,data in sorted(delivered.items())])
+    return {**delivered,
             'HD-PRESENTATION': b'hd\n',
             'HD-ASSETS.json': (json.dumps(info, indent=2, sort_keys=True)+'\n').encode()}
 
 
-def verify_delivery(files, root, prefix=''):
-    expected = delivery_files(root)
+def verify_delivery(files, root, prefix='', *, web=False):
+    expected = delivery_files(root, web=web)
     for name, data in expected.items():
         if files.get(prefix+name) != data:
             raise ValueError('HD delivery member differs: '+prefix+name)

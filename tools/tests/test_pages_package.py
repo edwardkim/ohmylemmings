@@ -131,6 +131,10 @@ class PagesPackageTests(unittest.TestCase):
         (self.runtime/'hd-assets.hdp').write_bytes(b'base fixture')
         (self.runtime/'hd-assets').mkdir()
         for name,data in members.items():(self.runtime/'hd-assets'/name).write_bytes(data)
+        from tools.web_hd import delivery
+        transport=delivery(members)
+        for name,data in transport.items():
+            path=self.runtime/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data)
         with patch('tools.hd_catalog.runtime_catalog',return_value=members),patch('tools.hd_delivery.catalog_files',return_value=members):
             self.archive=fixtures.FullReleasePackageTests.package(self,'web','full-hd')
             self.inputs[self.archive.name]=self.archive.read_bytes()
@@ -140,7 +144,7 @@ class PagesPackageTests(unittest.TestCase):
             self.manifest['packages'][0]['sha256']=sha(self.archive.read_bytes());self.repin_manifest()
             with zipfile.ZipFile(self.archive) as archive:self.assertGreater(len(archive.namelist()),100)
             self.run_stage()
-            for name,data in members.items():self.assertEqual((self.output/'hd-assets'/name).read_bytes(),data)
+            for name,data in transport.items():self.assertEqual((self.output/name).read_bytes(),data)
 
     def test_expansion_limit_is_checked_before_verification_or_output(self):
         from unittest.mock import patch
