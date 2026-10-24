@@ -107,3 +107,44 @@ class PagesPackageTests(unittest.TestCase):
         before = (self.output / 'deployment.json').read_bytes()
         with self.assertRaises(FileExistsError): self.run_stage()
         self.assertEqual((self.output / 'deployment.json').read_bytes(), before)
+
+    def test_hd_download_metadata_accepts_the_current_archive_size_but_remains_bounded(self):
+        from tools.pages_package import asset_rows, MAX_DOWNLOAD
+        archive = next(row for row in self.release['assets'] if row['name'].endswith('.zip'))
+        archive['size'] = 200*1024*1024
+        asset_rows('v0.1.0', self.release)
+        archive['size'] = MAX_DOWNLOAD+1
+        with self.assertRaises(ValueError): asset_rows('v0.1.0', self.release)
+
+    def test_complete_scoped_hd_catalog_over_one_hundred_files_is_promoted_byte_exact(self):
+        from unittest.mock import patch
+        import struct
+        from tools.tests import test_hd_catalog as hd
+        from tools.hd_catalog import split_pack, split_packs
+        template=split_pack(hd.HdCatalogTests().pack())['atlas-001.hdp']
+        parts=[]
+        for theme in range(5):
+            for frame in range(10):
+                part=bytearray(template);struct.pack_into('<BBH',part,len(part)-32,2,theme*16+1,frame);parts.append(bytes(part))
+        members=split_packs(parts)
+        (self.root/'assets/manifests/remaster_pack.json').write_text('{}')
+        (self.runtime/'hd-assets.hdp').write_bytes(b'base fixture')
+        (self.runtime/'hd-assets').mkdir()
+        for name,data in members.items():(self.runtime/'hd-assets'/name).write_bytes(data)
+        with patch('tools.hd_catalog.runtime_catalog',return_value=members),patch('tools.hd_delivery.catalog_files',return_value=members):
+            self.archive=fixtures.FullReleasePackageTests.package(self,'web','full-hd')
+            self.inputs[self.archive.name]=self.archive.read_bytes()
+            self.inputs[self.archive.name+'.sha256']=Path(str(self.archive)+'.sha256').read_bytes()
+            for pin in self.manifest['files']:
+                data=self.inputs[pin['path']];pin.update(bytes=len(data),sha256=sha(data))
+            self.manifest['packages'][0]['sha256']=sha(self.archive.read_bytes());self.repin_manifest()
+            with zipfile.ZipFile(self.archive) as archive:self.assertGreater(len(archive.namelist()),100)
+            self.run_stage()
+            for name,data in members.items():self.assertEqual((self.output/'hd-assets'/name).read_bytes(),data)
+
+    def test_expansion_limit_is_checked_before_verification_or_output(self):
+        from unittest.mock import patch
+        with patch('tools.pages_package.MAX_SITE',1),patch('tools.pages_package.verify_package') as verify:
+            with self.assertRaisesRegex(ValueError,'budget'):self.run_stage()
+            verify.assert_not_called()
+        self.assertFalse(self.output.exists())

@@ -19,8 +19,9 @@ from tools.release_version import package_name, parse_version
 
 REPOSITORY = 'edwardkim/ohmylemmings'
 RELEASES = f'https://github.com/{REPOSITORY}/releases'
-MAX_DOWNLOAD = 50 * 1024 * 1024
-MAX_SITE = 100 * 1024 * 1024
+MAX_DOWNLOAD = 256 * 1024 * 1024
+MAX_SITE = 512 * 1024 * 1024
+MAX_FILES = 256
 
 
 def stable_version(tag):
@@ -71,7 +72,7 @@ def stage(tag, release, latest_tag, inputs, output, root=ROOT):
             and packages[0]['path'] == name and packages[0]['sha256'] == sha(inputs[name]), 'Web package identity differs')
     # Bound expansion before the full package verifier reads archive members.
     with zipfile.ZipFile(io.BytesIO(inputs[name])) as archive:
-        require(len(archive.infolist()) <= 100 and sum(row.file_size for row in archive.infolist()) <= MAX_SITE,
+        require(len(archive.infolist()) <= MAX_FILES and sum(row.file_size for row in archive.infolist()) <= MAX_SITE,
                 'Web package exceeds the Pages staging budget')
     with tempfile.TemporaryDirectory() as temporary:
         path = Path(temporary) / name

@@ -64,3 +64,5 @@
 - [#187 HD 패키징·최종 인수](issue-187_hd_release.md)
 
 - [#191 리마스터 v0.2.0 버전 적용](issue-191_remaster_version.md)
+
+- [#194 v0.2.0 릴리즈·Pages](issue-194_release_v020.md)

@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 262261,
-      "sha256": "7ebd08b102ac87de7b0222109129423751e45a36bca2bc0f73ac87cc358fc696",
+      "bytes": 263441,
+      "sha256": "bfccbc5c9b9dae1c327e0ed525517f09b8ab208ce661118032faa11a866d5f3b",
       "id": "compatibility"
     },
     {
@@ -11166,5 +11166,15 @@
       "id": "compatibility"
     },
     "scope": "Version0.2.0 and release preparation only; prior performance remains historical and113 NOT READY."
+  },
+  "source_maintenance_194": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/194",
+    "previous_compatibility_pin": {
+      "path": "assets/manifests/compatibility_audit.json",
+      "bytes": 262261,
+      "sha256": "7ebd08b102ac87de7b0222109129423751e45a36bca2bc0f73ac87cc358fc696",
+      "id": "compatibility"
+    },
+    "scope": "HD Web release staging/release notes only; historical performance remains historical,113 NOT READY unchanged."
   }
 }

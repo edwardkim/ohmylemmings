@@ -21,13 +21,13 @@
     },
     {
       "path": ".github/workflows/pages.yml",
-      "bytes": 1503,
-      "sha256": "8188f63aadeb7b69a47f3912ec229cbaf8f5acfb6165863b2e117638775e0ebb"
+      "bytes": 1536,
+      "sha256": "b22f8435c01d9de9b79fc8a3347890c5967b160f33e4816e2e9509468566510f"
     },
     {
       "path": ".github/workflows/release.yml",
-      "bytes": 1864,
-      "sha256": "2ae2047a0f88b70277b61ccf156376f80dd2d9eb644f9db7ceac4101c2cab202"
+      "bytes": 2234,
+      "sha256": "db3de0b094257a31d7f35e37a8e008da4a4f8328ef2fe1129ae970feadf6bb48"
     },
     {
       "path": "Cargo.lock",
@@ -1696,8 +1696,8 @@
     },
     {
       "path": "tools/pages_package.py",
-      "bytes": 6554,
-      "sha256": "5f572e4b9496e372fb87ee38df957147723077bc6dd0fbe256d5fbca84f5482b"
+      "bytes": 6577,
+      "sha256": "d20cd8ae343d4c37796c937cc9179a5b1d10d6cc971d1b6b7c94c16ac518d90d"
     },
     {
       "path": "tools/performance.py",
@@ -1976,8 +1976,8 @@
     },
     {
       "path": "tools/tests/test_pages_package.py",
-      "bytes": 5904,
-      "sha256": "70c222169c305b22df5a610b2e7e26cdbc42f8bbff9a6ead9e67952483158a8c"
+      "bytes": 8505,
+      "sha256": "3a9f27672e4978f8fc64068c9697de584a2d646428a2aff3289e5dd86903d50a"
     },
     {
       "path": "tools/tests/test_panel.py",
@@ -7458,5 +7458,32 @@
       }
     ],
     "scope": "Maintainer-selected remaster version;9 local packages and release note. External dependencies, BGM fix, gameplay, art and audio code unchanged. Existing0.1.0/tag/Pages preserved; no publication or performance/listening claim."
+  },
+  "source_impact_194": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/194",
+    "baseline": "316d86980778af940c6ee38d54d83ed8a43f5d1b",
+    "previous_pins": [
+      {
+        "path": ".github/workflows/pages.yml",
+        "bytes": 1503,
+        "sha256": "8188f63aadeb7b69a47f3912ec229cbaf8f5acfb6165863b2e117638775e0ebb"
+      },
+      {
+        "path": ".github/workflows/release.yml",
+        "bytes": 1864,
+        "sha256": "2ae2047a0f88b70277b61ccf156376f80dd2d9eb644f9db7ceac4101c2cab202"
+      },
+      {
+        "path": "tools/pages_package.py",
+        "bytes": 6554,
+        "sha256": "5f572e4b9496e372fb87ee38df957147723077bc6dd0fbe256d5fbca84f5482b"
+      },
+      {
+        "path": "tools/tests/test_pages_package.py",
+        "bytes": 5904,
+        "sha256": "70c222169c305b22df5a610b2e7e26cdbc42f8bbff9a6ead9e67952483158a8c"
+      }
+    ],
+    "scope": "Public0.2.0 notes and bounded HD Pages staging (256MiB archive/512MiB expansion/256files). Source/license/origin/latest/full-game/digest checks retained. Preflight-only workflow before annotated tag/publication. No game/art/audio changes, no new performance or human listening verdict."
   }
 }
