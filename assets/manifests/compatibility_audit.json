@@ -1756,8 +1756,8 @@
     },
     {
       "path": "tools/publish_release.py",
-      "bytes": 12779,
-      "sha256": "cdda7e749af64e71f9d388b907c4cf36d6e9f10faa54e829fc89d8cca1e324ec"
+      "bytes": 12822,
+      "sha256": "c6e6f15bdb05eb79ed1ab7e9363d7d63676afec469959b5da4e9ce7b106cc21e"
     },
     {
       "path": "tools/reference_assets.py",
@@ -3846,13 +3846,13 @@
     },
     {
       "path": "tools/detached_source.py",
-      "bytes": 8211,
-      "sha256": "710b9e12549d57f204327ee5ca8390a77059f2e7a337234564ad8dce1b60c22f"
+      "bytes": 9797,
+      "sha256": "9310942f64acfdbd5b9a69bbacc1fb2cc5b2c5321285a64218f157e06ea233c8"
     },
     {
       "path": "tools/tests/test_detached_source.py",
-      "bytes": 3313,
-      "sha256": "f52b4303e588f148f1fb435b32942d26ba3e49ad8602d88f8725ff25d69fff0a"
+      "bytes": 4569,
+      "sha256": "fdf547df48e4a1786825ad7ad9760c8fe40a0b020b0dfc9f44e56451e91b1f9c"
     },
     {
       "path": "tools/tests/test_source_selection.py",

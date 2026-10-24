@@ -32,6 +32,8 @@ def source_location(version):
 
 
 def read_package(path):
+    require(path.is_file() and not path.is_symlink() and not any(p.is_symlink() for p in path.parents),
+            'Missing or linked package input')
     files, modes = {}, {}
     if path.suffix == '.zip':
         with zipfile.ZipFile(path) as archive:
@@ -96,7 +98,25 @@ def source_bytes(path, files, manifest):
     return raw
 
 
-def detach(path, output):
+def source_identity(raw):
+    """Check actual source bytes; compression headers and host modes are not content."""
+    with tarfile.open(fileobj=io.BytesIO(raw), mode='r:gz') as archive:
+        entries = archive.getmembers()
+        require(all(e.isfile() and not Path(e.name).is_absolute() and '..' not in Path(e.name).parts
+                    and not e.name.startswith(('assets/local/', 'target/')) for e in entries), 'Invalid source member')
+        pins = json.load(archive.extractfile('SOURCE-MANIFEST.json'))
+        names = {p['path'] for p in pins}
+        require(len(names) == len(pins) and len(entries) == len(names) + 1
+                and {e.name for e in entries} == names | {'SOURCE-MANIFEST.json'}, 'Source inventory differs')
+        result = {}
+        for pin in pins:
+            data = archive.extractfile(pin['path']).read()
+            require(len(data) == pin['bytes'] and digest(data) == pin['sha256'], 'Source content checksum differs')
+            result[pin['path']] = (len(data), digest(data))
+        return result
+
+
+def detach(path, output, *, canonical_source=None):
     """Called only after the embedded CI package has passed its full verifier/smoke."""
     require(not output.exists() and not Path(str(output) + '.sha256').exists(), 'Output already exists')
     files, modes = read_package(path)
@@ -106,6 +126,11 @@ def detach(path, output):
     raw = files.pop(embedded)
     require(digest(raw) == manifest['source']['archive_sha256'] and len(raw) == manifest['source']['archive_bytes'],
             'Embedded source checksum differs')
+    if canonical_source is not None:
+        identity = source_identity(raw)
+        require(identity == source_identity(canonical_source), 'Platform source contents differ')
+        raw = canonical_source
+        manifest['source'] = dict(archive_sha256=digest(raw), archive_bytes=len(raw), source_files=len(identity))
     name, url = source_location(manifest['version'])
     manifest['source_delivery'] = dict(mode='external', path=name, url=url, bytes=len(raw), sha256=digest(raw))
     notice = ('Corresponding source is a separate download (required to modify/relink):\n'
@@ -116,6 +141,7 @@ def detach(path, output):
             files[member] = notice + files[member]
     if manifest['target'] == 'web':
         info = json.loads(files['audio-source.json']);info['archive'] = url
+        info.update(manifest['source'])
         files['audio-source.json'] = encoded(info)
         # A visible link is also supplied if a synthetic fixture has no HTML anchor.
         files['audio-license.html'] = files['audio-license.html'].replace(b'./audio-source.tar.gz', url.encode())

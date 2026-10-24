@@ -53,3 +53,23 @@ class DetachedSourceTests(unittest.TestCase):
         detached_source.repin(files,manifest)
         detached_source.write_package(output,files,modes)
         with self.assertRaisesRegex(ValueError,'source location'):linux_web.verify_package(output,root=case.root)
+
+    def test_equivalent_source_containers_are_normalized_without_accepting_changed_code(self):
+        import gzip
+        from tools.web_build import source_bundle
+        case,archive=self.fixture('web')
+        files,_=detached_source.read_package(archive)
+        original=files['audio-source.tar.gz']
+        canonical=gzip.compress(gzip.decompress(original),compresslevel=1,mtime=123)
+        self.assertNotEqual(original,canonical)
+        output=case.base/'canonical'/archive.name
+        detached_source.detach(archive,output,canonical_source=canonical)
+        after,_=detached_source.read_package(output)
+        m=json.loads(after['PACKAGE-MANIFEST.json'])
+        self.assertEqual((output.parent/m['source_delivery']['path']).read_bytes(),canonical)
+        self.assertEqual(m['source']['archive_sha256'],detached_source.digest(canonical))
+        linux_web.verify_package(output,root=case.root)
+        (case.root/'crates/lemmings-opl/src/core.rs').write_text('different source')
+        changed=case.base/'changed.tar.gz';source_bundle(changed,case.root)
+        with self.assertRaisesRegex(ValueError,'source contents differ'):
+            detached_source.detach(archive,case.base/'bad'/archive.name,canonical_source=changed.read_bytes())
