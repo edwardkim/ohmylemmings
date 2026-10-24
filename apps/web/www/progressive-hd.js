@@ -24,8 +24,8 @@ export function selectWebHd(info,plan){
     require([...needed].every(k=>covered.has(k))&&rows.length>0&&rows.length<=32&&12+rows.reduce((n,r)=>n+4+r.bytes,0)<=MAX,'Incomplete or excessive level HD assets');return rows;
 }
 export class ProgressiveHdLoader {
-    constructor({fetcher=(...args)=>globalThis.fetch(...args),cacheStorage=globalThis.caches,onProgress=()=>{}}={}){
-        this.fetcher=fetcher;this.storage=cacheStorage;this.onProgress=onProgress;this.info=null;this.cache=null;this.memory=new Map();this.memoryBytes=0;this.generation=0;this.foreground=null;this.background=null;
+    constructor({fetcher=(...args)=>globalThis.fetch(...args),cacheStorage=globalThis.caches,onProgress=()=>{},idleTimeoutMs=120000}={}){
+        this.fetcher=fetcher;this.storage=cacheStorage;this.onProgress=onProgress;this.idleTimeoutMs=idleTimeoutMs;this.info=null;this.cache=null;this.memory=new Map();this.memoryBytes=0;this.generation=0;this.foreground=null;this.background=null;
     }
     cancelBackground(){this.background?.abort();this.background=null;}
     cancel(){this.cancelBackground();this.foreground?.abort();this.foreground=null;this.generation++;}
@@ -56,8 +56,9 @@ export class ProgressiveHdLoader {
         let bytes=this.memory.get(row.path);
         if(!bytes){try{const response=await this.cache?.match('./'+row.path);if(response)bytes=await readDownload(response,row.download_bytes,()=>{},signal);}catch(error){signal.throwIfAborted();await this.forget(row.path);}}
         if(bytes){try{await this.verify(row,bytes);signal.throwIfAborted();progress(bytes.length,true);return bytes;}catch{signal.throwIfAborted();await this.forget(row.path);}}
-        const timer=setTimeout(()=>{const controller=this.foreground?.signal===signal?this.foreground:this.background?.signal===signal?this.background:null;controller?.abort(new DOMException('Download timed out','TimeoutError'));},120000);
-        try{bytes=await readDownload(await this.fetcher('./'+row.path,{signal,priority}),row.download_bytes,n=>progress(n,false),signal);await this.verify(row,bytes);signal.throwIfAborted();}
+        let timer;
+        const arm=()=>{clearTimeout(timer);timer=setTimeout(()=>{const controller=this.foreground?.signal===signal?this.foreground:this.background?.signal===signal?this.background:null;controller?.abort(new DOMException('Download timed out','TimeoutError'));},this.idleTimeoutMs);};arm();
+        try{bytes=await readDownload(await this.fetcher('./'+row.path,{signal,priority}),row.download_bytes,n=>{arm();progress(n,false);},signal);await this.verify(row,bytes);signal.throwIfAborted();}
         finally{clearTimeout(timer);}
         this.remember(row.path,bytes);
         try{await this.cache?.put('./'+row.path,new Response(bytes));}catch{/* Quota/private mode may disable persistent caching. */}

@@ -3281,8 +3281,8 @@
     },
     {
       "path": "apps/web/www/progressive-hd.js",
-      "bytes": 9357,
-      "sha256": "cbd88fc2523a33540e050995b460fca4b8de94fff2129e793b5653db380ffad7"
+      "bytes": 9488,
+      "sha256": "f541acce9833cf3191f9b0251f5b76abf5a47cb00d4e9a09ba47df64bd3ff652"
     },
     {
       "path": "crates/lemmings-game/src/hd/download.rs",
@@ -3306,8 +3306,8 @@
     },
     {
       "path": "tools/web/progressive_loader.cjs",
-      "bytes": 3774,
-      "sha256": "71001f61369e1905cfa3275d84f52190421a74653c63bce965376cf1904ef707"
+      "bytes": 4758,
+      "sha256": "8ca703c4400c44fafecbde25e9eb2dd4906efb4ea42febfda9da1debdbc501c1"
     },
     {
       "path": "tools/web_hd.py",
@@ -3316,8 +3316,8 @@
     },
     {
       "path": "assets/manifests/web_progressive.json",
-      "bytes": 8740,
-      "sha256": "a4b29828b2c3d34c0cc94bb2a2adb9bfd5ba19d6babd90589584355e5e659305"
+      "bytes": 9110,
+      "sha256": "aadc9ca0e37f7df2d8cd439d5494e43dd46edc6dbb8c21e7f8d985a04bec1d8c"
     }
   ],
   "evidence": [
@@ -7626,8 +7626,8 @@
     "scope": "Web presentation dependencies, lossless gzip transport and progressive download UX. No game rules, canonical art, OPL or performance/listening verdict changes.",
     "validation_manifest": {
       "path": "assets/manifests/web_progressive.json",
-      "bytes": 8740,
-      "sha256": "a4b29828b2c3d34c0cc94bb2a2adb9bfd5ba19d6babd90589584355e5e659305"
+      "bytes": 9110,
+      "sha256": "aadc9ca0e37f7df2d8cd439d5494e43dd46edc6dbb8c21e7f8d985a04bec1d8c"
     }
   }
 }

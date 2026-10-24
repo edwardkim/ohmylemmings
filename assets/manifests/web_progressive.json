@@ -41,8 +41,8 @@
     },
     {
       "path": "apps/web/www/progressive-hd.js",
-      "bytes": 9357,
-      "sha256": "cbd88fc2523a33540e050995b460fca4b8de94fff2129e793b5653db380ffad7"
+      "bytes": 9488,
+      "sha256": "f541acce9833cf3191f9b0251f5b76abf5a47cb00d4e9a09ba47df64bd3ff652"
     },
     {
       "path": "apps/web/www/style.css",
@@ -106,8 +106,8 @@
     },
     {
       "path": "tools/web/progressive_loader.cjs",
-      "bytes": 3774,
-      "sha256": "71001f61369e1905cfa3275d84f52190421a74653c63bce965376cf1904ef707"
+      "bytes": 4758,
+      "sha256": "8ca703c4400c44fafecbde25e9eb2dd4906efb4ea42febfda9da1debdbc501c1"
     },
     {
       "path": "tools/web_build.py",
@@ -154,7 +154,8 @@
     "current_source_ci": "pending final same-tree CI before release",
     "performance_113": "NOT READY",
     "human_bgm_165": "pending",
-    "full_make_check_python": "PASS: all Makefile checks including HD art,317 tests,COMP/G11/deadline/dispatch and motion reference"
+    "full_make_check_python": "PASS: all Makefile checks including HD art,317 tests,COMP/G11/deadline/dispatch and motion reference",
+    "continuous_slow_stream": "PASS: transfer longer than80ms idle window succeeds while bytes arrive; stopped stream rejects at30ms; previous absolute timeout fails accelerated regression"
   },
   "local_evidence": [
     {
@@ -204,8 +205,8 @@
     },
     {
       "path": "assets/local/issue-196-review/loader-final.log",
-      "bytes": 207,
-      "sha256": "34384b68b2e024703d1dd3f7fba2e47a737365fde17fa05af3b2b316d32a1da6"
+      "bytes": 271,
+      "sha256": "dc29e581424c08cc9adefaba35d5aab43fa279eb674eeab1ee0ff5e3342034ee"
     },
     {
       "path": "assets/local/issue-196-review/planner-final.log",
@@ -241,6 +242,11 @@
       "path": "assets/local/issue-196-review/make-check-python.log",
       "bytes": 225350,
       "sha256": "ed9d8162dcd8d3535af1f9910898d14399a89cc97ede3b3e8d67350a18553f2d"
+    },
+    {
+      "path": "assets/local/issue-196-review/timeout-red.log",
+      "bytes": 378,
+      "sha256": "4507867a9b7cfcca285cefb578a3b266f07f3bc48f104cfdd596e85e03f6aca2"
     }
   ],
   "current_provenance": [

@@ -30,5 +30,13 @@ const fs=require('fs'),path=require('path'),zlib=require('zlib'),crypto=require(
  await loader.load(game);await pending;assert.equal(commits,4,'foreground failed to preempt background');slow=false;
  const noStorage=new ProgressiveHdLoader({fetcher,cacheStorage:{open:async()=>{throw Error('quota');},keys:async()=>[]}});
  await noStorage.load(game);assert.equal(commits,5,'storage failure stopped play');
- console.log(JSON.stringify({status:'PASS',initial_assets_only:true,byte_progress:true,cache_reuse:true,background_does_not_commit:true,foreground_preempts:true,corrupt_rejected:true,retry:true,storage_optional:true}));
+ const streaming=async(url,options={})=>{
+  if(url==='./HD-WEB.json')return new Response(JSON.stringify(info));
+  let cancelled=false;return new Response(new ReadableStream({async start(c){for(let at=0;at<wire[0].length&&!cancelled;at+=5){c.enqueue(wire[0].subarray(at,at+5));await new Promise(r=>setTimeout(r,40));}if(!cancelled)c.close();},cancel(){cancelled=true;}}));
+ };
+ const slowLoader=new ProgressiveHdLoader({fetcher:streaming,cacheStorage:null,idleTimeoutMs:80});
+ await slowLoader.load(game);assert.equal(commits,6,'continuously slow transfer hit an absolute timeout');
+ const stalled=new ProgressiveHdLoader({fetcher:async url=>url==='./HD-WEB.json'?new Response(JSON.stringify(info)):new Response(new ReadableStream({start(c){c.enqueue(wire[0].subarray(0,3));}})),cacheStorage:null,idleTimeoutMs:30});
+ await assert.rejects(stalled.load(game),/timed out/);assert.equal(commits,6,'stalled resource committed');
+ console.log(JSON.stringify({status:'PASS',initial_assets_only:true,byte_progress:true,cache_reuse:true,background_does_not_commit:true,foreground_preempts:true,corrupt_rejected:true,retry:true,storage_optional:true,continuous_slow_transfer:true,stalled_transfer_timeout:true}));
 })().catch(e=>{console.error(e);process.exitCode=1;});
