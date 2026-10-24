@@ -19,6 +19,7 @@ from tools.package_assets import GAME_FILES, game_pins
 from tools.reference_assets import checked_bytes
 from tools.release_version import workspace_version, package_name
 from tools.hd_delivery import delivery_files, verify_delivery
+from tools.app_icons import icon_bytes, MANIFEST as ICON_MANIFEST
 
 WEB_FILES = (
     'index.html', 'app.js', 'audio.js', 'local-music.js', 'audio-license.html', 'controls.js',
@@ -118,6 +119,8 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
         require(len(binary) >= 64 and binary[:6] == b'\x7fELF\x02\x01'
                 and int.from_bytes(binary[18:20], 'little') == 62, 'Expected a Linux x86_64 ELF executable')
         files['lemmings-desktop'] = binary
+        if (root/ICON_MANIFEST).is_file():
+            files['app-icon.png'] = icon_bytes(root, 'app-icon.png')
     hd_remaster = (root/'assets/manifests/remaster_pack.json').is_file()
     if hd_remaster:
         hd_files=delivery_files(root,web=kind=='web')
@@ -241,6 +244,9 @@ def verify_package(path, root=ROOT):
     if verify_project_license(files, manifest, root):
         allowed |= PROJECT_LICENSE_FILES
     allowed |= set(WEB_FILES) | {'audio-source.json'} if target == 'web' else {'lemmings-desktop'}
+    if target == 'linux-x86_64' and 'app-icon.png' in files:
+        require(files['app-icon.png'] == icon_bytes(root, 'app-icon.png'), 'Linux app icon differs')
+        allowed.add('app-icon.png')
     if manifest.get('hd_remaster', False):
         allowed |= verify_delivery(files, root,web=target=='web')
         if target == 'web':

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/208",
+  "license": "MIT",
+  "author": "Oh My Lemmings contributors",
+  "provenance": "Original vector drawing; no original DOS pixels, font or downloaded artwork",
+  "generator": "python3 tools/app_icons.py generate",
+  "renderer": "rsvg-convert version 2.62.3\n\nlibraries used:\n  cairo 1.18.4\n  pango 1.58.2\n  harfbuzz 14.4.0\n  fontconfig 2.18.3",
+  "files": [
+    {
+      "path": "apps/desktop/resources/app-icon.icns",
+      "bytes": 214141,
+      "sha256": "a8a4c9ecc49cdbf348aa2982758de3fcaa9068e2ad3e291340ba03905a153d75"
+    },
+    {
+      "path": "apps/desktop/resources/app-icon.ico",
+      "bytes": 44658,
+      "sha256": "08e2baf47d2946850f9890d97f9b0e68b887d88319e2d7baa2f46016a7417fcd"
+    },
+    {
+      "path": "apps/desktop/resources/app-icon.png",
+      "bytes": 23346,
+      "sha256": "58a1ef2eee7ab2f39504b3215bfee1a4c16ad62de0d5c970a12569a2cf4db283"
+    },
+    {
+      "path": "apps/desktop/resources/app-icon.rgba",
+      "bytes": 16384,
+      "sha256": "622df5438623cfba46b94e94d09ddc9426852edfc14bad1be9c8e70575e15550"
+    },
+    {
+      "path": "apps/desktop/resources/app-icon.svg",
+      "bytes": 2207,
+      "sha256": "1fffcc867935abc4583d4e2d69279ed943fe5426f1497d23baad6e44c4cfc963"
+    }
+  ]
+}

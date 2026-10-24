@@ -18,6 +18,7 @@ check-rust:
 check-python:
 	python3 tools/release_version.py check
 	python3 tools/license_policy.py
+	python3 tools/app_icons.py verify
 	python3 tools/hd_assets.py check
 	python3 -m unittest discover -s tools/tests -v
 	python3 tools/compatibility_audit.py

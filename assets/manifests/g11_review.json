@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 276649,
-      "sha256": "61ec9f7131cf506f8ad39a45c4f54cbef9cd77240d22ef552f5aec3e064fc054",
+      "bytes": 300737,
+      "sha256": "5382709345a284e8bbace89527175ced413c893976d114e71abfd0d8158c9416",
       "id": "compatibility"
     },
     {
@@ -19,8 +19,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 91598,
-      "sha256": "49738661affd35b1df5e48badbb126e7b184eef655f9c65fd04209f5a2cd3c14",
+      "bytes": 92256,
+      "sha256": "0e374aa4afb367e261c95a654fd7b95c65086d8381585898d94df655ab930831",
       "id": "display"
     }
   ],
@@ -11216,5 +11216,23 @@
       }
     ],
     "scope": "Version0.3.0/release source index only. Historical observations, recorded producer and113 NOT READY remain unchanged."
+  },
+  "source_maintenance_208": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/208",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 276649,
+        "sha256": "61ec9f7131cf506f8ad39a45c4f54cbef9cd77240d22ef552f5aec3e064fc054",
+        "id": "compatibility"
+      },
+      {
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 91598,
+        "sha256": "49738661affd35b1df5e48badbb126e7b184eef655f9c65fd04209f5a2cd3c14",
+        "id": "display"
+      }
+    ],
+    "scope": "Functional source index after Native chooser/icon/version0.3.1; historical performance observations and113 NOT READY unchanged."
   }
 }

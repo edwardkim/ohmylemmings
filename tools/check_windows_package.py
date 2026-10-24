@@ -54,6 +54,14 @@ def check(archive, evidence):
     with zipfile.ZipFile(archive) as zipped:
         zipped.extractall(installed)  # Inventory, file types and all hashes verified above.
     binary = installed/'OhMyLemmings.exe'
+    version = json.loads((installed/'PACKAGE-MANIFEST.json').read_text())['version']
+    native_icon = subprocess.run(['powershell.exe', '-NoLogo', '-NoProfile', '-NonInteractive',
+        '-ExecutionPolicy', 'Bypass', '-File', str(ROOT/'tools/check_windows_icon.ps1'),
+        '-Executable', str(binary), '-Destination', str(evidence/'app-icon-native.png'),
+        '-Version', version], check=True, capture_output=True, text=True, timeout=30)
+    icon = json.loads(native_icon.stdout)
+    require(icon['status'] == 'PASS' and icon['width'] > 0 and icon['height'] > 0, 'Native Windows icon decode failed')
+    save(evidence/'app-icon.json', icon)
     environment = dict(os.environ, SDL_VIDEODRIVER='dummy', SDL_AUDIODRIVER='dummy',
                        SDL_RENDER_DRIVER='software', LOCALAPPDATA=str(evidence/'user data'))
 

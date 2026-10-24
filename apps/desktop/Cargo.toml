@@ -13,8 +13,12 @@ lemmings-game = { path = "../../crates/lemmings-game" }
 lemmings-core = { path = "../../crates/lemmings-core" }
 lemmings-resources = { path = "../../crates/lemmings-resources" }
 lemmings-session = { path = "../../crates/lemmings-session" }
-sdl2 = "=0.38.0"
+sdl2 = { version = "=0.38.0", features = ["raw-window-handle"] }
+rfd = { version = "=0.17.2", default-features = false, features = ["xdg-portal"] }
 symphonia = { version = "=0.5.5", default-features = false, features = ["mp3"] }
+
+[build-dependencies]
+embed-resource = "=3.0.12"
 
 [dev-dependencies]
 lemmings-web = { path = "../web" }

@@ -19,6 +19,7 @@ from tools.release_version import workspace_version, package_name
 from tools.hd_delivery import delivery_files, verify_delivery
 
 from tools.package_assets import GAME_FILES, game_pins, manifest
+from tools.app_icons import icon_bytes, verify_pe_icon
 
 BASE_FILES = {'OhMyLemmings.exe', 'SDL2.dll', 'SDL2-LICENSE.txt', 'LGPL-2.1-or-later.txt',
               'source.tar.gz', 'README.txt', 'REBUILD.md', 'start-game.cmd',
@@ -58,6 +59,8 @@ def create(runtime, assets, sdl, output, root=ROOT):
     hd_remaster = (root/'assets/manifests/remaster_pack.json').is_file()
     if hd_remaster: files.update(delivery_files(root))
     pe64(files['OhMyLemmings.exe'])
+    app_icon = True
+    verify_pe_icon(files['OhMyLemmings.exe'], icon_bytes(root, 'app-icon.ico'))
     runtime_manifest = manifest(root, 'windows_runtime.json')
     for name in ['SDL2.dll', 'SDL2-LICENSE.txt']:
         pin = next(row for row in runtime_manifest['files'] if row['name'] == name)
@@ -75,6 +78,9 @@ def create(runtime, assets, sdl, output, root=ROOT):
         'ZIP 파일을 모두 풀고 OhMyLemmings.exe를 더블클릭하세요.\r\n'
         '원본 그래픽/전체 120개 레벨/음악과 효과음 데이터가 data 폴더에 포함되어 있습니다.\r\n'
         'Fun 01이 바로 시작되며 별도 자산 다운로드나 경로 지정이 필요 없습니다.\r\n'
+        'F4 또는 Ctrl+O: MP3 파일 선택 창. 선택한 한 곡을 반복하며 취소 시 기존 음악을 유지합니다.\r\n'
+        'MP3를 게임 창에 드롭해도 됩니다. F6: 원본/MP3/끄기, F5: 파일 해제, F7: 재시도\r\n'
+        '[ / ]: 음악 음량, , / .: 효과음 음량. 파일 선택 중 게임과 소리는 잠시 멈춥니다.\r\n'
         'HD 패키지는 HD로 시작합니다. F8로 원본/HD 전환, --original로 원본 실행.\r\n'
         'hd-assets 폴더와 HD-PRESENTATION, HD-ASSETS.json도 함께 유지하세요.\r\n'
         'data 폴더와 SDL2.dll을 exe 옆에 유지하세요. ZIP 내부에서 바로 실행하지 마세요.\r\n'
@@ -107,7 +113,7 @@ def create(runtime, assets, sdl, output, root=ROOT):
         source = Path(temporary)/'source.tar.gz'; source_info = source_bundle(source, root)
         files['source.tar.gz'] = source.read_bytes()
     files['PACKAGE-MANIFEST.json'] = encoded(dict(schema_version=1, version=version, target='windows-x86_64', project_license='MIT',
-        original_game_data=True, hd_remaster=hd_remaster, first_level=dict(difficulty='fun',number=1), static_crt=True,
+        original_game_data=True, hd_remaster=hd_remaster, app_icon=app_icon, first_level=dict(difficulty='fun',number=1), static_crt=True,
         performance_qualification_deferred=True, source=source_info,
         files=[dict(path=n,bytes=len(b),sha256=sha(b)) for n,b in sorted(files.items())]))
     files['SHA256SUMS'] = ''.join(f'{sha(b)}  {n}\n' for n,b in sorted(files.items())).encode()
@@ -131,6 +137,8 @@ def verify(path, root=ROOT):
         files = {n:archive.read(n) for n in names}
     package = json.loads(files['PACKAGE-MANIFEST.json'])
     verify_project_license(files, package, root)
+    if package.get('app_icon', False):
+        verify_pe_icon(files['OhMyLemmings.exe'], icon_bytes(root, 'app-icon.ico'))
     if package.get('hd_remaster', False): verify_delivery(files, root)
     require(package['schema_version'] == 1 and package['target'] == 'windows-x86_64'
         and package['original_game_data'] is True and package['static_crt'] is True, 'Windows package schema')

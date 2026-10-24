@@ -31,13 +31,13 @@
     },
     {
       "path": "Cargo.lock",
-      "bytes": 8091,
-      "sha256": "e6572fa7b5a847b4cd50d8161f3f1635c58d94cbb41b5d9b4ed233aab2df4ed7"
+      "bytes": 18361,
+      "sha256": "0a9a7a138a8f92f6b613c401588a54f868a5694d9fcd254daa6e3eaa0a648a1a"
     },
     {
       "path": "Cargo.toml",
       "bytes": 454,
-      "sha256": "50057db665baeea234f7e12c1c8d8681db9aeb9ff210fa358e6f3ec37308a4fd"
+      "sha256": "2aa20e2ba63855644b30e3886706ece3afa120260462c613ad682c1e4cd2b877"
     },
     {
       "path": "LICENSE",
@@ -46,13 +46,13 @@
     },
     {
       "path": "Makefile",
-      "bytes": 3809,
-      "sha256": "1590b14968e6cccf0dac05d041eaa41dab896ee86f7d3e897fcf37326841117a"
+      "bytes": 3844,
+      "sha256": "43b0f4cff29359c9ea911c5258b6af944c464a0b925ec1a5615cc54c86438454"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
-      "bytes": 364273,
-      "sha256": "22868d847da52191b39317125c710bc1d490334e4ea5817286204844ecb5e93a"
+      "bytes": 723887,
+      "sha256": "2dc76e587845536042df5cf82ec94d2c362e3f1e97fc157cfff17da327794597"
     },
     {
       "path": "apps/audio-probe/Cargo.toml",
@@ -81,8 +81,8 @@
     },
     {
       "path": "apps/desktop/Cargo.toml",
-      "bytes": 698,
-      "sha256": "ed274c7f47124c00b724cffafb09c9a800e79bc62b6f88d9bee2358b87fafcf1"
+      "bytes": 878,
+      "sha256": "7413f78c613b009181aeaccbb422e62f0bbd57ee3370db7db1e6a2e15fb5f3a2"
     },
     {
       "path": "apps/desktop/src/assets.rs",
@@ -91,8 +91,8 @@
     },
     {
       "path": "apps/desktop/src/audio.rs",
-      "bytes": 17808,
-      "sha256": "0995e8a43923630f0a81787b035dca403863a068231eb954bbbe922d4dd7bfd7"
+      "bytes": 18816,
+      "sha256": "90ab3c8816bc7251ebf91a1e247caddf5a9e4c0583d8d1a89173cd28e2db1b1d"
     },
     {
       "path": "apps/desktop/src/frame_clock.rs",
@@ -111,8 +111,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 69837,
-      "sha256": "86346d22ec4afa877c4d9fa0fb43952470744f9bde9c0b303ce067d213ab8bd3"
+      "bytes": 71202,
+      "sha256": "6251389370dd3fea3c41043ad9f3641385ff691eca262d7772ac6847a6d76caa"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -271,8 +271,8 @@
     },
     {
       "path": "assets/manifests/license_inventory.json",
-      "bytes": 26331,
-      "sha256": "14ecfff45538034756b135cb9290c35df4a49bd469c4abae2ab104aa025087aa"
+      "bytes": 65145,
+      "sha256": "9caf3d4043528674681abf71220363b6c23ffa931a3cbc047645f4a5ba85c355"
     },
     {
       "path": "assets/manifests/macos_runtime.json",
@@ -1246,8 +1246,8 @@
     },
     {
       "path": "tools/check_macos_package.py",
-      "bytes": 9643,
-      "sha256": "61f84066e0410358c8e1be9784803905049c0887e5457fca97017b499dec950d"
+      "bytes": 10106,
+      "sha256": "2ffc5886ba5a087cf56734ec889025f740bbba3e90cd810d6bcc7cbd59908e5c"
     },
     {
       "path": "tools/check_miner.py",
@@ -1311,8 +1311,8 @@
     },
     {
       "path": "tools/check_windows_package.py",
-      "bytes": 10432,
-      "sha256": "14467949691af7de5648e5367890f92f2aa3d88eda18b069b41edc7ef6c766a1"
+      "bytes": 11080,
+      "sha256": "63d0b908cb171fda63cd045aff6242abd28315cc9ea8af1dd7194aaa81232dca"
     },
     {
       "path": "tools/compare_basher_dos.py",
@@ -1606,8 +1606,8 @@
     },
     {
       "path": "tools/macos_package.py",
-      "bytes": 14818,
-      "sha256": "355a9c12b27a9ed6814fec34234ffc5b426dd1f1f088b59023933c07d07d512f"
+      "bytes": 15423,
+      "sha256": "9e4c28277388ab38c30a795b82e98e5ecf9351d6e446d6f917bebd82673bf481"
     },
     {
       "path": "tools/macos_window.swift",
@@ -1766,8 +1766,8 @@
     },
     {
       "path": "tools/release_package.py",
-      "bytes": 19386,
-      "sha256": "eb894486be712bc79987043f5ac09195d8bf48fea3f1a5bd41f100ba82a6b5aa"
+      "bytes": 19762,
+      "sha256": "f9b6938d4d245aff4e9c23a1db00cc6ec841ce3580ff95a665799e70684c8b57"
     },
     {
       "path": "tools/release_version.py",
@@ -1952,12 +1952,12 @@
     {
       "path": "tools/tests/test_license_policy.py",
       "bytes": 2511,
-      "sha256": "be79c560c2630b231e4c87fb3eeafb8de8635526b252b62877e2daca72f3af83"
+      "sha256": "a68439dfd589ca73b69b1ebb50a7433cd95abc7acfc0ebe7fe8adf6d02001aa1"
     },
     {
       "path": "tools/tests/test_macos_package.py",
-      "bytes": 5219,
-      "sha256": "99aa651563c8c6c4b1a495cc3753f911f2acbc47c9c8e55bf0edf1ffa5994382"
+      "bytes": 5432,
+      "sha256": "dc2f5fd0e930c45ff4d551acae9d2e19911f739f862e5fb8a21c4a84dbbdfd8a"
     },
     {
       "path": "tools/tests/test_miner.py",
@@ -2061,8 +2061,8 @@
     },
     {
       "path": "tools/tests/test_windows_package.py",
-      "bytes": 6186,
-      "sha256": "82fc0eeb141503e656c7810788edcc426a50ebd1e102f09943f671c28d772897"
+      "bytes": 6749,
+      "sha256": "b3a56e6c56ac13c2d2134a5fe599ac436f225d57133a8be475cefc98488788a7"
     },
     {
       "path": "tools/verify_adlib_timing.py",
@@ -2261,8 +2261,8 @@
     },
     {
       "path": "tools/windows_package.py",
-      "bytes": 12147,
-      "sha256": "6584da2fc820d5b7f6366ce1c8a26bfae0cea7975bbf6bf3bc8b8fd1994355c9"
+      "bytes": 12813,
+      "sha256": "1e750c26fdef34aead078c6026d4da442c77a30e49c0209f421fcd4038e9fdf9"
     },
     {
       "path": "assets/remaster/issue-147-dig-v1.png",
@@ -3351,8 +3351,443 @@
     },
     {
       "path": "tools/check_local_music.py",
+      "bytes": 1130,
+      "sha256": "3ae7d5be46b243c531f38a714532c1193e75d09d5e9ccbdc5870d236dcbbbfb2"
+    },
+    {
+      "path": "apps/desktop/build.rs",
+      "bytes": 1696,
+      "sha256": "3077b1115fb83ac870f3e45aa9f1c7467ae7ea1fe82539265d6106c292738bbc"
+    },
+    {
+      "path": "apps/desktop/resources/app-icon.icns",
+      "bytes": 214141,
+      "sha256": "a8a4c9ecc49cdbf348aa2982758de3fcaa9068e2ad3e291340ba03905a153d75"
+    },
+    {
+      "path": "apps/desktop/resources/app-icon.ico",
+      "bytes": 44658,
+      "sha256": "08e2baf47d2946850f9890d97f9b0e68b887d88319e2d7baa2f46016a7417fcd"
+    },
+    {
+      "path": "apps/desktop/resources/app-icon.png",
+      "bytes": 23346,
+      "sha256": "58a1ef2eee7ab2f39504b3215bfee1a4c16ad62de0d5c970a12569a2cf4db283"
+    },
+    {
+      "path": "apps/desktop/resources/app-icon.rgba",
+      "bytes": 16384,
+      "sha256": "622df5438623cfba46b94e94d09ddc9426852edfc14bad1be9c8e70575e15550"
+    },
+    {
+      "path": "apps/desktop/resources/app-icon.svg",
+      "bytes": 2207,
+      "sha256": "1fffcc867935abc4583d4e2d69279ed943fe5426f1497d23baad6e44c4cfc963"
+    },
+    {
+      "path": "apps/desktop/src/app_icon.rs",
+      "bytes": 418,
+      "sha256": "8c598b64897881ae8d16510aac44ad0d796504141c332e8614d40c610c7c31d5"
+    },
+    {
+      "path": "apps/desktop/src/music_dialog.rs",
+      "bytes": 2991,
+      "sha256": "d4b8def50e80d56c357aa2b3211156c5fec6c6d4966ee3625fd23b68c879703b"
+    },
+    {
+      "path": "assets/manifests/app_icon.json",
+      "bytes": 1315,
+      "sha256": "26ca01c2f1ce98ea6d6bef347e2de8dfd455159bad027768322acbac05d997d7"
+    },
+    {
+      "path": "third_party/rust/bitflags-2.13.2/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/rust/bitflags-2.13.2/LICENSE-MIT",
+      "bytes": 1071,
+      "sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    },
+    {
+      "path": "third_party/rust/block2-0.6.2/LICENSE.md",
+      "bytes": 1339,
+      "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54"
+    },
+    {
+      "path": "third_party/rust/cc-1.10.0/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/rust/cc-1.10.0/LICENSE-MIT",
+      "bytes": 1057,
+      "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+    },
+    {
+      "path": "third_party/rust/dispatch2-0.3.1/LICENSE.md",
+      "bytes": 1339,
+      "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54"
+    },
+    {
+      "path": "third_party/rust/embed-resource-3.0.12/LICENSE",
+      "bytes": 1081,
+      "sha256": "1abdbbd4e3f95e56c79d4a8af190254c23ddb14db34aadadfafef9c3af041113"
+    },
+    {
+      "path": "third_party/rust/equivalent-1.0.3/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/rust/equivalent-1.0.3/LICENSE-MIT",
+      "bytes": 1049,
+      "sha256": "7365cc8878a1d7ce155a58c4ca09c3d7a6be413efa5334a80ea842912b669349"
+    },
+    {
+      "path": "third_party/rust/find-msvc-tools-0.1.15/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/rust/find-msvc-tools-0.1.15/LICENSE-MIT",
+      "bytes": 1057,
+      "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+    },
+    {
+      "path": "third_party/rust/futures-core-0.3.34/LICENSE-APACHE",
+      "bytes": 10874,
+      "sha256": "275c491d6d1160553c32fd6127061d7f9606c3ea25abfad6ca3f6ed088785427"
+    },
+    {
+      "path": "third_party/rust/futures-core-0.3.34/LICENSE-MIT",
       "bytes": 1094,
-      "sha256": "49354e027c3690f0400d72800e7abd976f77d256621e2ef28bf383a216dab677"
+      "sha256": "6652c868f35dfe5e8ef636810a4e576b9d663f3a17fb0f5613ad73583e1b88fd"
+    },
+    {
+      "path": "third_party/rust/futures-task-0.3.34/LICENSE-APACHE",
+      "bytes": 10874,
+      "sha256": "275c491d6d1160553c32fd6127061d7f9606c3ea25abfad6ca3f6ed088785427"
+    },
+    {
+      "path": "third_party/rust/futures-task-0.3.34/LICENSE-MIT",
+      "bytes": 1094,
+      "sha256": "6652c868f35dfe5e8ef636810a4e576b9d663f3a17fb0f5613ad73583e1b88fd"
+    },
+    {
+      "path": "third_party/rust/futures-util-0.3.34/LICENSE-APACHE",
+      "bytes": 10874,
+      "sha256": "275c491d6d1160553c32fd6127061d7f9606c3ea25abfad6ca3f6ed088785427"
+    },
+    {
+      "path": "third_party/rust/futures-util-0.3.34/LICENSE-MIT",
+      "bytes": 1094,
+      "sha256": "6652c868f35dfe5e8ef636810a4e576b9d663f3a17fb0f5613ad73583e1b88fd"
+    },
+    {
+      "path": "third_party/rust/hashbrown-0.17.1/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/rust/hashbrown-0.17.1/LICENSE-MIT",
+      "bytes": 1060,
+      "sha256": "ff8f68cb076caf8cefe7a6430d4ac086ce6af2ca8ce2c4e5a2004d4552ef52a2"
+    },
+    {
+      "path": "third_party/rust/indexmap-2.14.2/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/rust/indexmap-2.14.2/LICENSE-MIT",
+      "bytes": 1049,
+      "sha256": "ecc269ef87fd38a1d98e30bfac9ba964a9dbd9315c3770fed98d4d7cb5882055"
+    },
+    {
+      "path": "third_party/rust/js-sys-0.3.106/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/rust/js-sys-0.3.106/LICENSE-MIT",
+      "bytes": 1057,
+      "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+    },
+    {
+      "path": "third_party/rust/memchr-2.8.3/COPYING",
+      "bytes": 126,
+      "sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    },
+    {
+      "path": "third_party/rust/memchr-2.8.3/LICENSE-MIT",
+      "bytes": 1081,
+      "sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+    },
+    {
+      "path": "third_party/rust/memchr-2.8.3/UNLICENSE",
+      "bytes": 1211,
+      "sha256": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c"
+    },
+    {
+      "path": "third_party/rust/objc2-0.6.5/LICENSE.md",
+      "bytes": 1339,
+      "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54"
+    },
+    {
+      "path": "third_party/rust/objc2-app-kit-0.3.2/LICENSE.md",
+      "bytes": 1339,
+      "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54"
+    },
+    {
+      "path": "third_party/rust/objc2-core-foundation-0.3.2/LICENSE.md",
+      "bytes": 1339,
+      "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54"
+    },
+    {
+      "path": "third_party/rust/objc2-encode-4.1.0/LICENSE.md",
+      "bytes": 1339,
+      "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54"
+    },
+    {
+      "path": "third_party/rust/objc2-foundation-0.3.2/LICENSE.md",
+      "bytes": 1339,
+      "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54"
+    },
+    {
+      "path": "third_party/rust/percent-encoding-2.3.2/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/rust/percent-encoding-2.3.2/LICENSE-MIT",
+      "bytes": 1072,
+      "sha256": "b38f11f6096706e6de553dabe2a7ed142d59b6fa8c97e290c67496154745cdd5"
+    },
+    {
+      "path": "third_party/rust/pin-project-lite-0.2.17/LICENSE-APACHE",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": "third_party/rust/pin-project-lite-0.2.17/LICENSE-MIT",
+      "bytes": 1023,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "third_party/rust/pollster-0.4.0/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/rust/pollster-0.4.0/LICENSE-MIT",
+      "bytes": 1064,
+      "sha256": "cc02a53316678ca2575cc69d12daa7b1833935d4b7742c31fbab7bd74a481077"
+    },
+    {
+      "path": "third_party/rust/raw-window-handle-0.6.2/LICENSE-APACHE.md",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": "third_party/rust/raw-window-handle-0.6.2/LICENSE-MIT.md",
+      "bytes": 1064,
+      "sha256": "9c5a80639a57c1c945570e7ebbca0706305849ce3c098021325cca9db2f7acc4"
+    },
+    {
+      "path": "third_party/rust/raw-window-handle-0.6.2/LICENSE-ZLIB.md",
+      "bytes": 836,
+      "sha256": "ae895c8576e682f310fb70d93d9f99b1dd82872094c54a8f6cdfe2ca5c2d6ecb"
+    },
+    {
+      "path": "third_party/rust/rfd-0.17.2/LICENSE",
+      "bytes": 1079,
+      "sha256": "65fc947f4bac882a2cd104ef73c246b1b037059df9f2b3a58b7f77f0b9e56071"
+    },
+    {
+      "path": "third_party/rust/rustc_version-0.4.1/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/rust/rustc_version-0.4.1/LICENSE-MIT",
+      "bytes": 1071,
+      "sha256": "c9a75f18b9ab2927829a208fc6aa2cf4e63b8420887ba29cdb265d6619ae82d5"
+    },
+    {
+      "path": "third_party/rust/semver-1.0.28/LICENSE-APACHE",
+      "bytes": 9723,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "third_party/rust/semver-1.0.28/LICENSE-MIT",
+      "bytes": 1023,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "third_party/rust/serde_core-1.0.229/LICENSE-APACHE",
+      "bytes": 9723,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "third_party/rust/serde_core-1.0.229/LICENSE-MIT",
+      "bytes": 1023,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "third_party/rust/serde_derive-1.0.229/LICENSE-APACHE",
+      "bytes": 9723,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "path": "third_party/rust/serde_derive-1.0.229/LICENSE-MIT",
+      "bytes": 1023,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "path": "third_party/rust/serde_spanned-1.1.2/LICENSE-APACHE",
+      "bytes": 11349,
+      "sha256": "249fdb6694467dd615b259f7ddde07be3f8ae5a72cecebb0e24f6629af4215fe"
+    },
+    {
+      "path": "third_party/rust/serde_spanned-1.1.2/LICENSE-MIT",
+      "bytes": 1062,
+      "sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "third_party/rust/shlex-2.0.1/LICENSE-APACHE",
+      "bytes": 566,
+      "sha256": "553fffcd9b1cb158bc3e9edc35da85ca5c3b3d7d2e61c883ebcfa8a65814b583"
+    },
+    {
+      "path": "third_party/rust/shlex-2.0.1/LICENSE-MIT",
+      "bytes": 1092,
+      "sha256": "4455bf75a91154108304cb283e0fea9948c14f13e20d60887cf2552449dea3b1"
+    },
+    {
+      "path": "third_party/rust/slab-0.4.12/LICENSE",
+      "bytes": 1055,
+      "sha256": "8ce0830173fdac609dfb4ea603fdc002c2f4af0dc9b1a005653f5da9cf534b18"
+    },
+    {
+      "path": "third_party/rust/tokio-1.54.1/LICENSE",
+      "bytes": 1070,
+      "sha256": "253cd04c6714889df2d32f3f64d669179a1c95c76ac43c40882c52eb06bc3552"
+    },
+    {
+      "path": "third_party/rust/toml-1.1.8+spec-1.1.0/LICENSE-APACHE",
+      "bytes": 11349,
+      "sha256": "249fdb6694467dd615b259f7ddde07be3f8ae5a72cecebb0e24f6629af4215fe"
+    },
+    {
+      "path": "third_party/rust/toml-1.1.8+spec-1.1.0/LICENSE-MIT",
+      "bytes": 1062,
+      "sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "third_party/rust/toml_datetime-1.1.2+spec-1.1.0/LICENSE-APACHE",
+      "bytes": 11349,
+      "sha256": "249fdb6694467dd615b259f7ddde07be3f8ae5a72cecebb0e24f6629af4215fe"
+    },
+    {
+      "path": "third_party/rust/toml_datetime-1.1.2+spec-1.1.0/LICENSE-MIT",
+      "bytes": 1062,
+      "sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "third_party/rust/toml_parser-1.1.5+spec-1.1.0/LICENSE-APACHE",
+      "bytes": 11349,
+      "sha256": "249fdb6694467dd615b259f7ddde07be3f8ae5a72cecebb0e24f6629af4215fe"
+    },
+    {
+      "path": "third_party/rust/toml_parser-1.1.5+spec-1.1.0/LICENSE-MIT",
+      "bytes": 1062,
+      "sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "third_party/rust/toml_writer-1.1.3+spec-1.1.0/LICENSE-APACHE",
+      "bytes": 11349,
+      "sha256": "249fdb6694467dd615b259f7ddde07be3f8ae5a72cecebb0e24f6629af4215fe"
+    },
+    {
+      "path": "third_party/rust/toml_writer-1.1.3+spec-1.1.0/LICENSE-MIT",
+      "bytes": 1062,
+      "sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+    },
+    {
+      "path": "third_party/rust/vswhom-0.1.0/LICENSE",
+      "bytes": 1082,
+      "sha256": "b9b7e5d4bf8857061fbecab39ef1923644eba639337af22d7ad0bb9b3ce59c49"
+    },
+    {
+      "path": "third_party/rust/vswhom-sys-0.1.3/LICENSE",
+      "bytes": 1082,
+      "sha256": "b9b7e5d4bf8857061fbecab39ef1923644eba639337af22d7ad0bb9b3ce59c49"
+    },
+    {
+      "path": "third_party/rust/wasm-bindgen-futures-0.4.79/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/rust/wasm-bindgen-futures-0.4.79/LICENSE-MIT",
+      "bytes": 1057,
+      "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+    },
+    {
+      "path": "third_party/rust/web-sys-0.3.106/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/rust/web-sys-0.3.106/LICENSE-MIT",
+      "bytes": 1057,
+      "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+    },
+    {
+      "path": "third_party/rust/windows-link-0.2.1/license-apache-2.0",
+      "bytes": 11351,
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    },
+    {
+      "path": "third_party/rust/windows-link-0.2.1/license-mit",
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    {
+      "path": "third_party/rust/windows-sys-0.61.2/license-apache-2.0",
+      "bytes": 11351,
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    },
+    {
+      "path": "third_party/rust/windows-sys-0.61.2/license-mit",
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    {
+      "path": "third_party/rust/winnow-1.0.4/LICENSE-MIT",
+      "bytes": 1023,
+      "sha256": "cb5aedb296c5246d1f22e9099f925a65146f9f0d6b4eebba97fd27a6cdbbab2d"
+    },
+    {
+      "path": "third_party/rust/winreg-0.56.0/LICENSE",
+      "bytes": 1055,
+      "sha256": "ea021d8c6383c84d19c15ce90d3b1602cf448fdcc0bf3772c98e43c7bf1bf1d1"
+    },
+    {
+      "path": "tools/app_icons.py",
+      "bytes": 10121,
+      "sha256": "81ed9eec1a8f471a74006d49f627a6f2f7a27d8abfb68a8db2cd30483886b788"
+    },
+    {
+      "path": "tools/check_windows_icon.ps1",
+      "bytes": 1227,
+      "sha256": "33547c8d5ac588766a81a101db38cc0f5ed3cbd108ccc2ca4ea5de525b6680c5"
+    },
+    {
+      "path": "tools/tests/test_app_icons.py",
+      "bytes": 4546,
+      "sha256": "96517eb160b0a55db1d457381ca4d8a7d1f18a598c4b3c2f4a2e0a97743e8995"
     }
   ],
   "evidence": [
@@ -3616,8 +4051,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 91598,
-      "sha256": "49738661affd35b1df5e48badbb126e7b184eef655f9c65fd04209f5a2cd3c14",
+      "bytes": 92256,
+      "sha256": "0e374aa4afb367e261c95a654fd7b95c65086d8381585898d94df655ab930831",
       "id": "g11-06-display-cadence"
     }
   ],
@@ -7859,5 +8294,191 @@
       }
     ],
     "scope": "Workspace/lock version0.3.0 and release notes/preparation only. Local MP3 implementation and game/assets/PCM unchanged. Earlier measurements remain historical;113 NOT READY and202 physical-listening follow-up retained."
+  },
+  "source_impact_208": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/208",
+    "previous_pins": [
+      {
+        "path": "Cargo.lock",
+        "bytes": 8091,
+        "sha256": "e6572fa7b5a847b4cd50d8161f3f1635c58d94cbb41b5d9b4ed233aab2df4ed7"
+      },
+      {
+        "path": "Cargo.toml",
+        "bytes": 454,
+        "sha256": "50057db665baeea234f7e12c1c8d8681db9aeb9ff210fa358e6f3ec37308a4fd"
+      },
+      {
+        "path": "Makefile",
+        "bytes": 3809,
+        "sha256": "1590b14968e6cccf0dac05d041eaa41dab896ee86f7d3e897fcf37326841117a"
+      },
+      {
+        "path": "THIRD_PARTY_NOTICES.txt",
+        "bytes": 364273,
+        "sha256": "22868d847da52191b39317125c710bc1d490334e4ea5817286204844ecb5e93a"
+      },
+      {
+        "path": "apps/desktop/Cargo.toml",
+        "bytes": 698,
+        "sha256": "ed274c7f47124c00b724cffafb09c9a800e79bc62b6f88d9bee2358b87fafcf1"
+      },
+      {
+        "path": "apps/desktop/src/audio.rs",
+        "bytes": 17808,
+        "sha256": "0995e8a43923630f0a81787b035dca403863a068231eb954bbbe922d4dd7bfd7"
+      },
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 69837,
+        "sha256": "86346d22ec4afa877c4d9fa0fb43952470744f9bde9c0b303ce067d213ab8bd3"
+      },
+      {
+        "path": "assets/manifests/license_inventory.json",
+        "bytes": 26331,
+        "sha256": "14ecfff45538034756b135cb9290c35df4a49bd469c4abae2ab104aa025087aa"
+      },
+      {
+        "path": "tools/check_macos_package.py",
+        "bytes": 9643,
+        "sha256": "61f84066e0410358c8e1be9784803905049c0887e5457fca97017b499dec950d"
+      },
+      {
+        "path": "tools/check_windows_package.py",
+        "bytes": 10432,
+        "sha256": "14467949691af7de5648e5367890f92f2aa3d88eda18b069b41edc7ef6c766a1"
+      },
+      {
+        "path": "tools/macos_package.py",
+        "bytes": 14818,
+        "sha256": "355a9c12b27a9ed6814fec34234ffc5b426dd1f1f088b59023933c07d07d512f"
+      },
+      {
+        "path": "tools/release_package.py",
+        "bytes": 19386,
+        "sha256": "eb894486be712bc79987043f5ac09195d8bf48fea3f1a5bd41f100ba82a6b5aa"
+      },
+      {
+        "path": "tools/tests/test_license_policy.py",
+        "bytes": 2511,
+        "sha256": "be79c560c2630b231e4c87fb3eeafb8de8635526b252b62877e2daca72f3af83"
+      },
+      {
+        "path": "tools/tests/test_macos_package.py",
+        "bytes": 5219,
+        "sha256": "99aa651563c8c6c4b1a495cc3753f911f2acbc47c9c8e55bf0edf1ffa5994382"
+      },
+      {
+        "path": "tools/tests/test_windows_package.py",
+        "bytes": 6186,
+        "sha256": "82fc0eeb141503e656c7810788edcc426a50ebd1e102f09943f671c28d772897"
+      },
+      {
+        "path": "tools/windows_package.py",
+        "bytes": 12147,
+        "sha256": "6584da2fc820d5b7f6366ce1c8a26bfae0cea7975bbf6bf3bc8b8fd1994355c9"
+      },
+      {
+        "path": "tools/check_local_music.py",
+        "bytes": 1094,
+        "sha256": "49354e027c3690f0400d72800e7abd976f77d256621e2ef28bf383a216dab677"
+      },
+      {
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 91598,
+        "sha256": "49738661affd35b1df5e48badbb126e7b184eef655f9c65fd04209f5a2cd3c14",
+        "id": "g11-06-display-cadence"
+      }
+    ],
+    "added_sources": [
+      "apps/desktop/build.rs",
+      "apps/desktop/resources/app-icon.icns",
+      "apps/desktop/resources/app-icon.ico",
+      "apps/desktop/resources/app-icon.png",
+      "apps/desktop/resources/app-icon.rgba",
+      "apps/desktop/resources/app-icon.svg",
+      "apps/desktop/src/app_icon.rs",
+      "apps/desktop/src/music_dialog.rs",
+      "assets/manifests/app_icon.json",
+      "third_party/rust/bitflags-2.13.2/LICENSE-APACHE",
+      "third_party/rust/bitflags-2.13.2/LICENSE-MIT",
+      "third_party/rust/block2-0.6.2/LICENSE.md",
+      "third_party/rust/cc-1.10.0/LICENSE-APACHE",
+      "third_party/rust/cc-1.10.0/LICENSE-MIT",
+      "third_party/rust/dispatch2-0.3.1/LICENSE.md",
+      "third_party/rust/embed-resource-3.0.12/LICENSE",
+      "third_party/rust/equivalent-1.0.3/LICENSE-APACHE",
+      "third_party/rust/equivalent-1.0.3/LICENSE-MIT",
+      "third_party/rust/find-msvc-tools-0.1.15/LICENSE-APACHE",
+      "third_party/rust/find-msvc-tools-0.1.15/LICENSE-MIT",
+      "third_party/rust/futures-core-0.3.34/LICENSE-APACHE",
+      "third_party/rust/futures-core-0.3.34/LICENSE-MIT",
+      "third_party/rust/futures-task-0.3.34/LICENSE-APACHE",
+      "third_party/rust/futures-task-0.3.34/LICENSE-MIT",
+      "third_party/rust/futures-util-0.3.34/LICENSE-APACHE",
+      "third_party/rust/futures-util-0.3.34/LICENSE-MIT",
+      "third_party/rust/hashbrown-0.17.1/LICENSE-APACHE",
+      "third_party/rust/hashbrown-0.17.1/LICENSE-MIT",
+      "third_party/rust/indexmap-2.14.2/LICENSE-APACHE",
+      "third_party/rust/indexmap-2.14.2/LICENSE-MIT",
+      "third_party/rust/js-sys-0.3.106/LICENSE-APACHE",
+      "third_party/rust/js-sys-0.3.106/LICENSE-MIT",
+      "third_party/rust/memchr-2.8.3/COPYING",
+      "third_party/rust/memchr-2.8.3/LICENSE-MIT",
+      "third_party/rust/memchr-2.8.3/UNLICENSE",
+      "third_party/rust/objc2-0.6.5/LICENSE.md",
+      "third_party/rust/objc2-app-kit-0.3.2/LICENSE.md",
+      "third_party/rust/objc2-core-foundation-0.3.2/LICENSE.md",
+      "third_party/rust/objc2-encode-4.1.0/LICENSE.md",
+      "third_party/rust/objc2-foundation-0.3.2/LICENSE.md",
+      "third_party/rust/percent-encoding-2.3.2/LICENSE-APACHE",
+      "third_party/rust/percent-encoding-2.3.2/LICENSE-MIT",
+      "third_party/rust/pin-project-lite-0.2.17/LICENSE-APACHE",
+      "third_party/rust/pin-project-lite-0.2.17/LICENSE-MIT",
+      "third_party/rust/pollster-0.4.0/LICENSE-APACHE",
+      "third_party/rust/pollster-0.4.0/LICENSE-MIT",
+      "third_party/rust/raw-window-handle-0.6.2/LICENSE-APACHE.md",
+      "third_party/rust/raw-window-handle-0.6.2/LICENSE-MIT.md",
+      "third_party/rust/raw-window-handle-0.6.2/LICENSE-ZLIB.md",
+      "third_party/rust/rfd-0.17.2/LICENSE",
+      "third_party/rust/rustc_version-0.4.1/LICENSE-APACHE",
+      "third_party/rust/rustc_version-0.4.1/LICENSE-MIT",
+      "third_party/rust/semver-1.0.28/LICENSE-APACHE",
+      "third_party/rust/semver-1.0.28/LICENSE-MIT",
+      "third_party/rust/serde_core-1.0.229/LICENSE-APACHE",
+      "third_party/rust/serde_core-1.0.229/LICENSE-MIT",
+      "third_party/rust/serde_derive-1.0.229/LICENSE-APACHE",
+      "third_party/rust/serde_derive-1.0.229/LICENSE-MIT",
+      "third_party/rust/serde_spanned-1.1.2/LICENSE-APACHE",
+      "third_party/rust/serde_spanned-1.1.2/LICENSE-MIT",
+      "third_party/rust/shlex-2.0.1/LICENSE-APACHE",
+      "third_party/rust/shlex-2.0.1/LICENSE-MIT",
+      "third_party/rust/slab-0.4.12/LICENSE",
+      "third_party/rust/tokio-1.54.1/LICENSE",
+      "third_party/rust/toml-1.1.8+spec-1.1.0/LICENSE-APACHE",
+      "third_party/rust/toml-1.1.8+spec-1.1.0/LICENSE-MIT",
+      "third_party/rust/toml_datetime-1.1.2+spec-1.1.0/LICENSE-APACHE",
+      "third_party/rust/toml_datetime-1.1.2+spec-1.1.0/LICENSE-MIT",
+      "third_party/rust/toml_parser-1.1.5+spec-1.1.0/LICENSE-APACHE",
+      "third_party/rust/toml_parser-1.1.5+spec-1.1.0/LICENSE-MIT",
+      "third_party/rust/toml_writer-1.1.3+spec-1.1.0/LICENSE-APACHE",
+      "third_party/rust/toml_writer-1.1.3+spec-1.1.0/LICENSE-MIT",
+      "third_party/rust/vswhom-0.1.0/LICENSE",
+      "third_party/rust/vswhom-sys-0.1.3/LICENSE",
+      "third_party/rust/wasm-bindgen-futures-0.4.79/LICENSE-APACHE",
+      "third_party/rust/wasm-bindgen-futures-0.4.79/LICENSE-MIT",
+      "third_party/rust/web-sys-0.3.106/LICENSE-APACHE",
+      "third_party/rust/web-sys-0.3.106/LICENSE-MIT",
+      "third_party/rust/windows-link-0.2.1/license-apache-2.0",
+      "third_party/rust/windows-link-0.2.1/license-mit",
+      "third_party/rust/windows-sys-0.61.2/license-apache-2.0",
+      "third_party/rust/windows-sys-0.61.2/license-mit",
+      "third_party/rust/winnow-1.0.4/LICENSE-MIT",
+      "third_party/rust/winreg-0.56.0/LICENSE",
+      "tools/app_icons.py",
+      "tools/tests/test_app_icons.py",
+      "tools/check_windows_icon.ps1"
+    ],
+    "scope": "Native MP3 chooser/host modal time and input boundaries, app icon/build and package verification, dependency notices and version0.3.1. Simulation and existing default OPL/PCM unchanged; historical performance/producer observations and113 NOT READY retained."
   }
 }

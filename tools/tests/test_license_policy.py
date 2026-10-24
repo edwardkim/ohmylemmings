@@ -29,7 +29,7 @@ class LicensePolicyTests(unittest.TestCase):
         result = check(self.root)
         self.assertEqual(result['project_license'], 'MIT')
         self.assertEqual(result['inherited_crates'], 8)
-        self.assertEqual(result['cargo_dependencies'], 30)
+        self.assertEqual(result['cargo_dependencies'], 74)
 
     def test_missing_or_modified_third_party_notice_is_rejected(self):
         path = self.root / 'third_party/lemmix__Licence.txt'

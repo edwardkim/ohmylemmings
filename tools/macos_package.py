@@ -20,6 +20,7 @@ from tools.web_build import source_bundle
 from tools.release_version import workspace_version, package_name, parse_version
 from tools.hd_delivery import delivery_files, verify_delivery
 from tools.windows_package import GAME_FILES, game_pins, manifest
+from tools.app_icons import icon_bytes
 
 APP='OhMyLemmings.app'
 EXE=APP+'/Contents/MacOS/OhMyLemmings'
@@ -27,7 +28,7 @@ LIB=APP+'/Contents/Frameworks/libSDL2-2.0.0.dylib'
 RES=APP+'/Contents/Resources/'
 SIGNATURE=APP+'/Contents/_CodeSignature/CodeResources'
 APP_FILES={EXE,LIB,APP+'/Contents/Info.plist',SIGNATURE,RES+'GAME-DATA.json',
-           RES+'SDL2-LICENSE.txt',RES+'LGPL-2.1-or-later.txt'} | {RES+'data/'+n for n in GAME_FILES}
+           RES+'SDL2-LICENSE.txt',RES+'LGPL-2.1-or-later.txt',RES+'app-icon.icns'} | {RES+'data/'+n for n in GAME_FILES}
 LICENSE_APP_FILES={RES+n for n in PROJECT_LICENSE_FILES}
 OUTSIDE={'README.txt','REBUILD.md','source.tar.gz','PACKAGE-MANIFEST.json','SHA256SUMS'}
 
@@ -74,7 +75,7 @@ def app_info(version):
         CFBundleName='Oh My Lemmings',CFBundleDisplayName='Oh My Lemmings',CFBundlePackageType='APPL',
         CFBundleShortVersionString=parse_version(version)['base'],CFBundleVersion=parse_version(version)['base'],
         CFBundleGetInfoString='Oh My Lemmings '+version,LSMinimumSystemVersion='13.0',
-        NSHighResolutionCapable=True,NSPrincipalClass='NSApplication')
+        NSHighResolutionCapable=True,NSPrincipalClass='NSApplication',CFBundleIconFile='app-icon.icns')
 
 
 def stage(binary,assets,sdl,destination,root=ROOT):
@@ -83,6 +84,7 @@ def stage(binary,assets,sdl,destination,root=ROOT):
     version=workspace_version(root)
     files={EXE:regular(binary),LIB:regular(sdl/'libSDL2-2.0.0.dylib'),
            APP+'/Contents/Info.plist':plistlib.dumps(app_info(version)),
+           RES+'app-icon.icns':icon_bytes(root, 'app-icon.icns'),
            RES+'SDL2-LICENSE.txt':checked_bytes(regular(sdl/'SDL2-LICENSE.txt'),manifest(root,'macos_runtime.json')['license'],'SDL license'),
            RES+'LGPL-2.1-or-later.txt':regular(root/'crates/lemmings-opl/LICENSE')}
     files.update({RES+n:data for n,data in project_license_files(root).items()})
@@ -101,6 +103,7 @@ def stage(binary,assets,sdl,destination,root=ROOT):
 def validate_app(files,version,root):
     universal_arches(files[EXE]);universal_arches(files[LIB],6)
     require(plistlib.loads(files[APP+'/Contents/Info.plist'])==app_info(version),'Application Info.plist differs')
+    require(files[RES+'app-icon.icns']==icon_bytes(root, 'app-icon.icns'),'Mac app icon differs')
     original,pins=game_pins(root)
     require(json.loads(files[RES+'GAME-DATA.json'])==dict(profile=original['profile'],original_game_data=True,levels=120,files=pins,sources=original.get('sources',[])),'Mac game provenance differs')
     for pin in pins:checked_bytes(files[RES+'data/'+pin['name']],pin,pin['name'])
@@ -126,6 +129,9 @@ def create(app,output,root=ROOT):
         'Oh My Lemmings - macOS universal2 (Apple Silicon / Intel, macOS 13+)\n\n'
         'ZIP을 모두 풀고 OhMyLemmings.app을 Applications에 복사한 뒤 여세요.\n'
         '원본 그래픽·120개 레벨·음원이 포함되며 Fun01을 바로 시작합니다. SDL 설치는 필요 없습니다.\n'
+        'F4/Ctrl+O/Cmd+O: MP3 선택 창. 한 곡 반복, 취소 시 현재 음악 유지. 선택 중 게임/소리 일시 정지.\n'
+        'MP3 드롭/--bgm도 지원합니다. F6: 원본/MP3/끄기, F5: 해제, F7: 재시도.\n'
+        '[ / ]: 음악 음량, , / .: 효과음 음량. 음원은 업로드/패키지 복사하지 않습니다.\n'
         'HD 패키지는 HD로 시작합니다. F8: 원본/HD 전환, --original: 원본 실행. 앱 전체를 유지하세요.\n'
         '현재 시험 패키지는 ad-hoc 서명이며 Apple Developer ID/공증은 아직 적용하지 않았습니다.\n'
         '최초 다운로드 실행이 차단되면 앱을 열어 본 뒤 시스템 설정 > 개인정보 보호 및 보안 > 그래도 열기를 사용합니다.\n'

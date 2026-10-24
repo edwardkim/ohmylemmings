@@ -168,3 +168,5 @@
 - [#202 로컬 MP3 구현·CI 완료/청취 인수 대기](issue-202_local_mp3.md)
 
 - [#205 v0.3.0 정식 게시·공개 Pages 최종 인수](issue-205_release_v030_completion.md)
+
+- [#208 Native MP3 선택·앱 아이콘 / v0.3.1](issue-208_native_polish.md)
