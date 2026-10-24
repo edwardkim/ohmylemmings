@@ -182,3 +182,5 @@
 - [#222 한국어·영어 README와 개발 취지](issue-222_bilingual_readme.md)
 
 - [#224 Web 배포 용량 증가 조사](issue-224_web_size.md)
+
+- [#226 배포 중복 소스·미사용 파일 제거 결과](issue-226_package_size.md)
