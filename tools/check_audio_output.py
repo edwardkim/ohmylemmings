@@ -49,6 +49,7 @@ def validate_fixture(data):
 
 def validate_browser(row,expected,secure):
     if row.get('status')!='PASS' or row.get('offline_context') is not True or row.get('worklet_required') is not False or row.get('secure_context') is not secure:raise ValueError('actual Web Audio context evidence incomplete')
+    if row.get('local_mp3')!={key:True for key in ['stereo','loop','independent_gain','hide_resume','corrupt_file','cleanup']}:raise ValueError('local MP3 graph/lifecycle incomplete')
     if row.get('source_delivery')!={'license':True,'archive':True,'wasm_pair':True}:raise ValueError('source/license/WASM delivery incomplete')
     want=[dict(name=r['name'],frames=r['frames'],sha256=r['pcm_sha256']) for r in expected]
     if row.get('cases')!=want:raise ValueError('native/actual WASM output differs')
@@ -92,6 +93,7 @@ def native_cases(directory,original=None):
 def browser_check(directory,rows,host,original=None):
     build(directory)
     for name in ['output-check.html','output-check.js']:shutil.copyfile(ROOT/'tools/audio'/name,directory/name)
+    shutil.copyfile(ROOT/'apps/desktop/tests/fixtures/local-tone.mp3',directory/'local-tone.mp3')
     selected=[]
     if original:
         (directory/'original').mkdir()
@@ -133,7 +135,7 @@ def browser_check(directory,rows,host,original=None):
                     except subprocess.TimeoutExpired:process.kill();process.wait()
                 server.shutdown();worker.join(timeout=5)
     (directory/'browser-result.json').write_text(json.dumps(result,indent=2)+'\n');validate_browser(result,rows,secure)
-    return dict(status='PASS',cases=len(rows),frames=sum(r['frames'] for r in rows),secure_context=secure,offline_context=True,source_delivery=result['source_delivery'],live=result['live'],browser=subprocess.check_output([browser,'--version'],text=True).strip(),autoplay_policy='headless no-user-gesture-required; separate blocked/race mocks; trusted gesture checked separately')
+    return dict(status='PASS',cases=len(rows),frames=sum(r['frames'] for r in rows),secure_context=secure,offline_context=True,source_delivery=result['source_delivery'],live=result['live'],local_mp3=result['local_mp3'],browser=subprocess.check_output([browser,'--version'],text=True).strip(),autoplay_policy='headless no-user-gesture-required; separate blocked/race mocks; trusted gesture checked separately')
 
 def check(directory,*,wasm=False,binary=DESKTOP,original=None,host='127.0.0.1',write_fixture=False):
     if original:

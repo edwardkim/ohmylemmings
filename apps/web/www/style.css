@@ -77,3 +77,14 @@ canvas.hd {image-rendering:auto;width:100%;}
 .screen:fullscreen .download[data-phase="background"] {top:12px;left:auto;right:12px;transform:none;width:min(380px,calc(100% - 24px));}
 .screen:fullscreen .download[data-status="ready"] {display:none;}
 @media (max-width:600px) {.download {padding:12px;}.download-heading {flex-wrap:wrap;gap:5px;}.download-detail {align-items:flex-start;}}
+
+.music-controls {margin-top:1rem;padding:1rem;border:1px solid #374747;border-radius:12px;background:#121d1b;}
+.music-heading h2 {margin:0;font-size:1rem;color:#d9eedb;}
+.music-heading p, #music-status {margin:.5rem 0;color:#b7c6be;font-size:.85rem;overflow-wrap:anywhere;}
+.music-settings,.music-levels {display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-top:.7rem;}
+.music-settings select {padding:.65rem;border-radius:8px;background:#1b2925;color:#eff7ed;border:1px solid #54675c;}
+.music-levels label {min-width:6rem;font-size:.85rem;}
+.music-levels input {flex:1;min-width:100px;max-width:240px;accent-color:#b3e96b;}
+#music-progress {width:100%;accent-color:#b3e96b;}
+.music-controls button,.music-controls .file-button {font-size:.85rem;}
+.music-controls [hidden] {display:none;}

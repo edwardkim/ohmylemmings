@@ -21,7 +21,13 @@
             </section>
             <div class="screen"><canvas id="game" tabindex="0" width="320" height="200" aria-label="레밍즈 게임 화면">Canvas를 지원하는 브라우저에서 실행해주세요.</canvas></div>
             <div class="controls"><button id="pause" type="button" disabled>멈추기</button><button id="restart" class="secondary" type="button" disabled>처음부터</button><button id="continue" class="secondary" type="button" hidden>다음 레벨</button><p id="population">레밍들의 이동과 구출 과정을 살펴보세요.</p></div>
-            <div class="audio-controls" aria-label="소리 설정"><button id="sound" type="button" class="secondary" disabled>소리 켜기</button><label for="volume">음량</label><input id="volume" type="range" min="0" max="100" step="1" value="40" aria-label="음량"><output id="audio-status" role="status" aria-live="polite">소리는 버튼을 눌러 켤 수 있습니다.</output></div>
+            <div class="audio-controls" aria-label="소리 설정"><button id="sound" type="button" class="secondary" disabled>소리 켜기</button><label for="volume">전체 음량</label><input id="volume" type="range" min="0" max="100" step="1" value="40" aria-label="음량"><output id="audio-status" role="status" aria-live="polite">소리는 버튼을 눌러 켤 수 있습니다.</output></div>
+            <section class="music-controls" aria-labelledby="music-title">
+                <div class="music-heading"><h2 id="music-title">배경 음악</h2><p>내 MP3를 이 탭에서만 재생합니다. 파일은 업로드하지 않습니다.</p></div>
+                <div class="music-settings"><label for="music-mode">음악 선택</label><select id="music-mode"><option value="original">원본 음악</option><option value="custom">내 MP3</option><option value="off">BGM 끄기</option></select><label class="file-button" for="music-file">MP3 선택<input id="music-file" type="file" accept=".mp3,audio/mpeg"></label><button id="music-retry" class="secondary" type="button" hidden>음악 재생</button><button id="music-clear" class="secondary" type="button" hidden>파일 해제</button></div>
+                <div class="music-levels"><label for="music-volume">음악 <output id="music-volume-value">100%</output></label><input id="music-volume" type="range" min="0" max="100" value="100"><label for="effects-volume">효과음 <output id="effects-volume-value">100%</output></label><input id="effects-volume" type="range" min="0" max="100" value="100"></div>
+                <p id="music-status" role="status" aria-live="polite">원본 음악을 재생합니다. 내 MP3는 한 곡을 반복 재생합니다.</p><progress id="music-progress" aria-label="음악 준비 중" hidden></progress>
+            </section>
         </section>
         <section class="local-assets" aria-labelledby="original-title">
             <div><h2 id="original-title">원본 레벨 플레이</h2><p id="asset-help">보유한 DOS 게임 폴더의 DAT 파일과 VGALEMMI.EXE를 함께 선택하세요.<br>소리를 재생하려면 ADLIB.DAT도 함께 선택하세요.<br>파일은 이 탭에서만 읽습니다. 새로고침하면 다시 선택해주세요.</p></div>

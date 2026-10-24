@@ -50,6 +50,7 @@ check-desktop:
 	python3 tools/check_results.py --binary target/release/lemmings-desktop
 	python3 tools/check_panel.py --binary target/release/lemmings-desktop
 	python3 tools/check_pointer.py --binary target/release/lemmings-desktop
+	SDL_AUDIODRIVER=dummy SDL_VIDEODRIVER=dummy target/release/lemmings-desktop --local-music-probe
 	python3 tools/check_audio_output.py --binary target/release/lemmings-desktop
 	python3 tools/performance.py --smoke
 

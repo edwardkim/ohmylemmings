@@ -243,6 +243,138 @@
       "path": "third_party/NotoSans-OFL.txt",
       "bytes": 4377,
       "sha256": "0dab92d0544f7b233403f14b84a663bdbfa746982eda629e7f4f9ffe1b036feb"
+    },
+    {
+      "path": "third_party/rust/arrayvec-0.7.8/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "origin": "https://crates.io/crates/arrayvec/0.7.8"
+    },
+    {
+      "path": "third_party/rust/arrayvec-0.7.8/LICENSE-MIT",
+      "bytes": 1071,
+      "sha256": "4da95ec4ecb65b738d470b7d762894ad9c97da93e6cbfb18b570fc2c96f4b871",
+      "origin": "https://crates.io/crates/arrayvec/0.7.8"
+    },
+    {
+      "path": "third_party/rust/bytemuck-1.25.2/LICENSE-APACHE",
+      "bytes": 10398,
+      "sha256": "e3ba223bb1423f0aad8c3dfce0fe3148db48926d41e6fbc3afbbf5ff9e1c89cb",
+      "origin": "https://crates.io/crates/bytemuck/1.25.2"
+    },
+    {
+      "path": "third_party/rust/bytemuck-1.25.2/LICENSE-MIT",
+      "bytes": 1110,
+      "sha256": "9df9ba60a11af705f2e451b53762686e615d86f76b169cf075c3237730dbd7e2",
+      "origin": "https://crates.io/crates/bytemuck/1.25.2"
+    },
+    {
+      "path": "third_party/rust/bytemuck-1.25.2/LICENSE-ZLIB",
+      "bytes": 851,
+      "sha256": "84b34dd7608f7fb9b17bd588a6bf392bf7de504e2716f024a77d89f1b145a151",
+      "origin": "https://crates.io/crates/bytemuck/1.25.2"
+    },
+    {
+      "path": "third_party/rust/core_detect-1.0.0/LICENSE-APACHE",
+      "bytes": 10846,
+      "sha256": "769f80b5bcb42ed0af4e4d2fd74e1ac9bf843cb80c5a29219d1ef3544428a6bb",
+      "origin": "https://crates.io/crates/core_detect/1.0.0"
+    },
+    {
+      "path": "third_party/rust/core_detect-1.0.0/LICENSE-MIT",
+      "bytes": 1076,
+      "sha256": "8569ebf6bf52937b961d9c9c934d8400a2bb6b09651a9afacbb3fc18fe5c09b1",
+      "origin": "https://crates.io/crates/core_detect/1.0.0"
+    },
+    {
+      "path": "third_party/rust/encoding_rs-0.8.42/LICENSE-APACHE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "origin": "https://crates.io/crates/encoding_rs/0.8.42"
+    },
+    {
+      "path": "third_party/rust/encoding_rs-0.8.42/LICENSE-MIT",
+      "bytes": 1053,
+      "sha256": "3fa4ca83dcc9237839b1bdeb2e6d16bdfb5ec0c5ce42b24694d8bbf0dcbef72c",
+      "origin": "https://crates.io/crates/encoding_rs/0.8.42"
+    },
+    {
+      "path": "third_party/rust/encoding_rs-0.8.42/LICENSE-WHATWG",
+      "bytes": 1501,
+      "sha256": "838118388fe5c2e7f1dbbaeed13e1c7f3ebf88be91319c7c1d77c18e987d1a50",
+      "origin": "https://crates.io/crates/encoding_rs/0.8.42"
+    },
+    {
+      "path": "third_party/rust/log-0.4.34/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "origin": "https://crates.io/crates/log/0.4.34"
+    },
+    {
+      "path": "third_party/rust/log-0.4.34/LICENSE-MIT",
+      "bytes": 1071,
+      "sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb",
+      "origin": "https://crates.io/crates/log/0.4.34"
+    },
+    {
+      "path": "third_party/rust/multiversion_no_op-1.0.0/LICENSE-APACHE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "origin": "https://crates.io/crates/multiversion_no_op/1.0.0"
+    },
+    {
+      "path": "third_party/rust/multiversion_no_op-1.0.0/LICENSE-MIT",
+      "bytes": 1053,
+      "sha256": "3fa4ca83dcc9237839b1bdeb2e6d16bdfb5ec0c5ce42b24694d8bbf0dcbef72c",
+      "origin": "https://crates.io/crates/multiversion_no_op/1.0.0"
+    },
+    {
+      "path": "third_party/rust/scopeguard-1.2.0/LICENSE-APACHE",
+      "bytes": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "origin": "https://crates.io/crates/scopeguard/1.2.0"
+    },
+    {
+      "path": "third_party/rust/scopeguard-1.2.0/LICENSE-MIT",
+      "bytes": 1097,
+      "sha256": "fb77f0a9c53e473abe5103c8632ef9f0f2874d4fb3f17cb2d8c661aab9cee9d7",
+      "origin": "https://crates.io/crates/scopeguard/1.2.0"
+    },
+    {
+      "path": "third_party/rust/simdutf8-0.1.5/LICENSE-Apache",
+      "bytes": 10173,
+      "sha256": "0cec06e0e55fbc3dc5cee4fca9b607f66cb8f4e4dbcf3b3c013594dd156732e9",
+      "origin": "https://crates.io/crates/simdutf8/0.1.5"
+    },
+    {
+      "path": "third_party/rust/simdutf8-0.1.5/LICENSE-MIT",
+      "bytes": 1035,
+      "sha256": "1847e0e0698142ed4347c1441a9fa81c8fbddd44b1d8bbcd5e3647f991759d7f",
+      "origin": "https://crates.io/crates/simdutf8/0.1.5"
+    },
+    {
+      "path": "third_party/rust/symphonia-0.5.5/LICENSE",
+      "bytes": 16725,
+      "sha256": "c76f740d1521b9bed9ca7a04ad526c310493c62621b1341d623b431736533b30",
+      "origin": "https://raw.githubusercontent.com/pdeljanov/Symphonia/v0.5.5/LICENSE"
+    },
+    {
+      "path": "third_party/rust/symphonia-bundle-mp3-0.5.5/LICENSE",
+      "bytes": 16725,
+      "sha256": "c76f740d1521b9bed9ca7a04ad526c310493c62621b1341d623b431736533b30",
+      "origin": "https://raw.githubusercontent.com/pdeljanov/Symphonia/v0.5.5/LICENSE"
+    },
+    {
+      "path": "third_party/rust/symphonia-core-0.5.5/LICENSE",
+      "bytes": 16725,
+      "sha256": "c76f740d1521b9bed9ca7a04ad526c310493c62621b1341d623b431736533b30",
+      "origin": "https://raw.githubusercontent.com/pdeljanov/Symphonia/v0.5.5/LICENSE"
+    },
+    {
+      "path": "third_party/rust/symphonia-metadata-0.5.5/LICENSE",
+      "bytes": 16725,
+      "sha256": "c76f740d1521b9bed9ca7a04ad526c310493c62621b1341d623b431736533b30",
+      "origin": "https://raw.githubusercontent.com/pdeljanov/Symphonia/v0.5.5/LICENSE"
     }
   ],
   "cargo_dependencies": [
@@ -424,6 +556,124 @@
         "third_party/rust/wasm-bindgen-shared-0.2.129/LICENSE-APACHE",
         "third_party/rust/wasm-bindgen-shared-0.2.129/LICENSE-MIT"
       ]
+    },
+    {
+      "name": "arrayvec",
+      "version": "0.7.8",
+      "license": "MIT OR Apache-2.0",
+      "checksum": "d3fb67a6e08acf24fdeccbac2cb6ac4305825bd1f117462e0e6f2f193345ad56",
+      "notices": [
+        "third_party/rust/arrayvec-0.7.8/LICENSE-APACHE",
+        "third_party/rust/arrayvec-0.7.8/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "bytemuck",
+      "version": "1.25.2",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "checksum": "95832e849adfb21180ccb6826a99da14e5d266ae5c2e668e1602cf234f153797",
+      "notices": [
+        "third_party/rust/bytemuck-1.25.2/LICENSE-APACHE",
+        "third_party/rust/bytemuck-1.25.2/LICENSE-MIT",
+        "third_party/rust/bytemuck-1.25.2/LICENSE-ZLIB"
+      ]
+    },
+    {
+      "name": "core_detect",
+      "version": "1.0.0",
+      "license": "MIT/Apache-2.0",
+      "checksum": "7f8f80099a98041a3d1622845c271458a2d73e688351bf3cb999266764b81d48",
+      "notices": [
+        "third_party/rust/core_detect-1.0.0/LICENSE-APACHE",
+        "third_party/rust/core_detect-1.0.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "encoding_rs",
+      "version": "0.8.42",
+      "license": "(Apache-2.0 OR MIT) AND BSD-3-Clause",
+      "checksum": "8e985e0451871ad22fb8d2b6b076e2028a502a0d3950998c2c5c0a4f9b5d9679",
+      "notices": [
+        "third_party/rust/encoding_rs-0.8.42/LICENSE-APACHE",
+        "third_party/rust/encoding_rs-0.8.42/LICENSE-MIT",
+        "third_party/rust/encoding_rs-0.8.42/LICENSE-WHATWG"
+      ]
+    },
+    {
+      "name": "log",
+      "version": "0.4.34",
+      "license": "MIT OR Apache-2.0",
+      "checksum": "f9f8bd3e56ce4dfc153cf470fffbfa98c7620958b312ca5c3a4b8d5181fd13c6",
+      "notices": [
+        "third_party/rust/log-0.4.34/LICENSE-APACHE",
+        "third_party/rust/log-0.4.34/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "multiversion_no_op",
+      "version": "1.0.0",
+      "license": "Apache-2.0 OR MIT",
+      "checksum": "743fb55ba31b18fb1ecef6bdc9aa2743314978ac084044301a7eee33fb99a20d",
+      "notices": [
+        "third_party/rust/multiversion_no_op-1.0.0/LICENSE-APACHE",
+        "third_party/rust/multiversion_no_op-1.0.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "scopeguard",
+      "version": "1.2.0",
+      "license": "MIT OR Apache-2.0",
+      "checksum": "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49",
+      "notices": [
+        "third_party/rust/scopeguard-1.2.0/LICENSE-APACHE",
+        "third_party/rust/scopeguard-1.2.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "simdutf8",
+      "version": "0.1.5",
+      "license": "MIT OR Apache-2.0",
+      "checksum": "e3a9fe34e3e7a50316060351f37187a3f546bce95496156754b601a5fa71b76e",
+      "notices": [
+        "third_party/rust/simdutf8-0.1.5/LICENSE-Apache",
+        "third_party/rust/simdutf8-0.1.5/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "symphonia",
+      "version": "0.5.5",
+      "license": "MPL-2.0",
+      "checksum": "5773a4c030a19d9bfaa090f49746ff35c75dfddfa700df7a5939d5e076a57039",
+      "notices": [
+        "third_party/rust/symphonia-0.5.5/LICENSE"
+      ]
+    },
+    {
+      "name": "symphonia-bundle-mp3",
+      "version": "0.5.5",
+      "license": "MPL-2.0",
+      "checksum": "4872dd6bb56bf5eac799e3e957aa1981086c3e613b27e0ac23b176054f7c57ed",
+      "notices": [
+        "third_party/rust/symphonia-bundle-mp3-0.5.5/LICENSE"
+      ]
+    },
+    {
+      "name": "symphonia-core",
+      "version": "0.5.5",
+      "license": "MPL-2.0",
+      "checksum": "ea00cc4f79b7f6bb7ff87eddc065a1066f3a43fe1875979056672c9ef948c2af",
+      "notices": [
+        "third_party/rust/symphonia-core-0.5.5/LICENSE"
+      ]
+    },
+    {
+      "name": "symphonia-metadata",
+      "version": "0.5.5",
+      "license": "MPL-2.0",
+      "checksum": "36306ff42b9ffe6e5afc99d49e121e0bd62fe79b9db7b9681d48e29fa19e6b16",
+      "notices": [
+        "third_party/rust/symphonia-metadata-0.5.5/LICENSE"
+      ]
     }
   ],
   "scope": "Source/notice inventory and package delivery; not an independent-rights determination for all referenced material. Published v0.1.0 remains unchanged.",
@@ -434,8 +684,8 @@
   },
   "notice_bundle": {
     "path": "THIRD_PARTY_NOTICES.txt",
-    "bytes": 194710,
-    "sha256": "c291104495e4a77b96529bcde7ab72f59c7762260b9d083b32ac86bcfabc22bc"
+    "bytes": 364273,
+    "sha256": "22868d847da52191b39317125c710bc1d490334e4ea5817286204844ecb5e93a"
   },
   "retained_library_notices": [
     {

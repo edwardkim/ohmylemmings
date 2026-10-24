@@ -118,3 +118,48 @@ fn volume_scaling_and_output_partitioning_are_exact_and_zero_is_silent() {
     a.render(&mut x).unwrap();
     assert_eq!(x, [0; 4096]);
 }
+
+#[test]
+fn music_can_be_silent_while_all_effects_and_the_driver_clock_continue() {
+    for effect in 0..18 {
+        let mut output = AudioOutput::new(demo_image(), 44100).unwrap();
+        output.set_mix(0, 100).unwrap();
+        output.set_volume(100).unwrap();
+        output.synchronize(&batch(0, 0, None), true).unwrap();
+        let mut samples = [0; 4096];
+        output.render(&mut samples).unwrap();
+        assert!(samples.iter().all(|&v| v == 0), "original music leaked");
+        output
+            .synchronize(&batch(0, 1, Some(AdlibCommand::Effect(effect))), true)
+            .unwrap();
+        output.render(&mut samples).unwrap();
+        assert!(
+            samples.iter().any(|&v| v != 0),
+            "effect {effect} was silenced"
+        );
+        assert_eq!(output.frames(), 8192);
+    }
+}
+
+#[test]
+fn independent_gains_preserve_default_pcm_and_reject_invalid_changes_atomically() {
+    let mut unchanged = AudioOutput::new(demo_image(), 48000).unwrap();
+    let mut explicit = AudioOutput::new(demo_image(), 48000).unwrap();
+    explicit.set_mix(100, 100).unwrap();
+    for output in [&mut unchanged, &mut explicit] {
+        output.synchronize(&batch(0, 0, None), true).unwrap();
+    }
+    let mut a = [0; 4096];
+    let mut b = [0; 4096];
+    assert!(explicit.set_mix(101, 0).is_err());
+    assert!(explicit.set_mix(0, 101).is_err());
+    unchanged.render(&mut a).unwrap();
+    explicit.render(&mut b).unwrap();
+    assert_eq!(a, b);
+    explicit.set_mix(0, 0).unwrap();
+    explicit.render(&mut b).unwrap();
+    // The bounded native/resampler pipeline drains before absolute silence.
+    explicit.render(&mut b).unwrap();
+    assert!(b.iter().all(|&v| v == 0));
+    assert_eq!(explicit.frames(), 12288);
+}

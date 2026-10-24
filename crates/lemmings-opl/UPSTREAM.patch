@@ -6,19 +6,36 @@
 @@ -28 +30 @@
 -const CHANNEL_SAMPLE_DELAY: bool = !cfg!(feature = "stereo-ext");
 +const CHANNEL_SAMPLE_DELAY: bool = !false;
-@@ -529 +531 @@
+@@ -256,0 +259 @@
++    pub(crate) channel_gain: [u8; 18],
+@@ -298,0 +302 @@
++            channel_gain: [100; 18],
+@@ -529 +533 @@
 -                            if cfg!(feature = "stereo-ext") {
 +                            if false {
-@@ -595 +597 @@
+@@ -595 +599 @@
 -            0xd0 if cfg!(feature = "stereo-ext") && (regm & 0x0f) < 9 => {
 +            0xd0 if false && (regm & 0x0f) < 9 => {
-@@ -864 +866 @@
+@@ -864 +868 @@
 -            let main = if cfg!(feature = "stereo-ext") {
 +            let main = if false {
-@@ -1186 +1188 @@
+@@ -876,2 +880,10 @@
+-            mix[0] += main as i32;
+-            mix[1] += masked_accm(accm, rear_mask) as i32;
++            // Project output control only; oscillator/envelope/feedback and
++            // register timing advance unchanged even for inaudible channels.
++            let gain = i32::from(self.channel_gain[channel.ch_num]);
++            if gain == 100 {
++                mix[0] += main as i32;
++                mix[1] += masked_accm(accm, rear_mask) as i32;
++            } else if gain != 0 {
++                mix[0] += main as i32 * gain / 100;
++                mix[1] += masked_accm(accm, rear_mask) as i32 * gain / 100;
++            }
+@@ -1186 +1198 @@
 -        if cfg!(feature = "stereo-ext") && self.stereoext == 0 {
 +        if false && self.stereoext == 0 {
-@@ -1193,7 +1195,2 @@
+@@ -1193,7 +1205,2 @@
 -    fn channel_write_d0(&mut self, channel: usize, data: u8) {
 -        if self.stereoext != 0 {
 -            self.channels[channel].leftpan = panpot(data ^ 0xff);
@@ -28,13 +45,13 @@
 -    }
 +    // stereo-ext is fixed off; this register cannot be reached in OPL2 mode.
 +    fn channel_write_d0(&mut self, _channel: usize, _data: u8) {}
-@@ -1203 +1200 @@
+@@ -1203 +1210 @@
 -        let left_active = if cfg!(feature = "stereo-ext") {
 +        let left_active = if false {
-@@ -1208 +1205 @@
+@@ -1208 +1215 @@
 -        let right_active = if cfg!(feature = "stereo-ext") {
 +        let right_active = if false {
-@@ -1406,4 +1402,0 @@
+@@ -1406,4 +1412,0 @@
 -fn panpot(value: u8) -> i32 {
 -    ((value as f64 * std::f64::consts::PI / 512.0).sin() * 65536.0) as i32
 -}

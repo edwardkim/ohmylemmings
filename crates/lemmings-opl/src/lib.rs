@@ -36,6 +36,13 @@ impl Opl2 {
         // 1024-entry ring/overflow policy and clock are owned by the integer core.
         self.chip.write_reg_buffered(u16::from(register), value);
     }
+    /// Output-only OPL2 channel gains. Synthesis state and buffered writes keep
+    /// advancing at zero gain. Unity preserves the original integer PCM exactly.
+    pub fn set_channel_gains(&mut self, gains: [u8; 9]) {
+        for (target, gain) in self.chip.channel_gain[..9].iter_mut().zip(gains) {
+            *target = gain.min(100);
+        }
+    }
     /// Signed stereo pipeline values widened from the core's saturated i16 output.
     /// The native OPL pipeline can introduce a small left/right sample delay even
     /// in OPL2 mode; consumers explicitly choose the left signal for mono PCM.

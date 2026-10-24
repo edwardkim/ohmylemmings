@@ -9,6 +9,7 @@ pub struct WebAudio {
     generation: Option<u64>,
     rate: u32,
     volume: u8,
+    mix: [u8; 2],
 }
 #[cfg_attr(target_arch = "wasm32", wasm_bindgen)]
 impl WebAudio {
@@ -22,6 +23,7 @@ impl WebAudio {
             generation: None,
             rate: rate as u32,
             volume: 40,
+            mix: [100; 2],
         })
     }
     /// Consume the single sound queue only after a replacement audio bank validates.
@@ -40,6 +42,7 @@ impl WebAudio {
             };
             let mut next = AudioOutput::new(image, self.rate)?;
             next.set_volume(self.volume)?;
+            next.set_mix(self.mix[0], self.mix[1])?;
             let batch = game.run.sound.drain();
             next.synchronize(&batch, active)?;
             self.output = next;
@@ -54,6 +57,16 @@ impl WebAudio {
         }
         self.output.set_volume(volume as u8)?;
         self.volume = volume as u8;
+        Ok(())
+    }
+    pub fn set_mix(&mut self, music: f64, effects: f64) -> Result<(), String> {
+        for value in [music, effects] {
+            if !value.is_finite() || value.fract() != 0.0 || !(0.0..=100.0).contains(&value) {
+                return Err("music/effects volume must be integer 0..=100".into());
+            }
+        }
+        self.output.set_mix(music as u8, effects as u8)?;
+        self.mix = [music as u8, effects as u8];
         Ok(())
     }
     pub fn suspend(&mut self) {

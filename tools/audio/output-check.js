@@ -44,6 +44,30 @@ async function mockChecks() {
     const waiting=race.activate();race.mute();resolve();await waiting;assert(race.muted&&race.sources.size===0&&race.timer===null,'stale activation restarted audio');await race.dispose();
     return {bounded:true,blocked:true,activation_race:true,mute_hide_resume:true,volume:true,clock_jump:true,context_recreation:true};
 }
+async function localMp3Checks() {
+    const {LocalMusic}=await import('./local-music.js');
+    const context=new AudioContext();await context.resume();
+    const player=new LocalMusic(()=>context);
+    const bytes=await(await fetch('./local-tone.mp3')).arrayBuffer();
+    const until=async check=>{for(let n=0;n<200;n++){if(check())return;await sleep(25);}throw Error('local MP3 timeout: '+player.state);};
+    try {
+        player.choose(new File([bytes],'local-tone.mp3',{type:'audio/mpeg'}));
+        await until(()=>player.media.readyState>=2);player.sync(true,0,true);
+        await until(()=>player.state==='playing');
+        const splitter=context.createChannelSplitter(2),analysers=[context.createAnalyser(),context.createAnalyser()];
+        player.source.connect(splitter);analysers.forEach((a,i)=>{a.fftSize=2048;splitter.connect(a,i);});
+        await sleep(650);
+        const waves=analysers.map(a=>{const values=new Float32Array(2048);a.getFloatTimeDomainData(values);return values;});
+        assert(waves.every(a=>a.some(v=>v!==0))&&waves[0].some((v,i)=>Math.abs(v-waves[1][i])>0.001),'local stereo graph silent');
+        assert(player.media.loop,'local MP3 does not repeat');
+        player.setVolume(23);player.setMasterVolume(40);assert(player.gain.gain.value===Math.fround(.092),'independent local gain');
+        player.sync(false,0,true);assert(player.media.paused&&player.media.currentTime===0,'local hide did not stop');
+        player.sync(true,1,true);await until(()=>player.state==='playing');
+        player.choose(new File(['broken audio'],'broken.mp3',{type:'audio/mpeg'}));await until(()=>player.state==='error');
+        player.dispose();assert(!player.media&&!player.url,'local file URL retained');
+        return {stereo:true,loop:true,independent_gain:true,hide_resume:true,corrupt_file:true,cleanup:true};
+    } finally {player.dispose();await context.close();}
+}
 try {
     await init();
     const delivery=await(await fetch('./audio-source.json')).json();
@@ -90,6 +114,7 @@ try {
         liveResult={state:live.context.state,nonzero:values.filter(v=>v!==0).length,queued_nodes:live.sources.size,queue_seconds:Math.max(0,live.nextTime-live.context.currentTime)};
         live.mute();assert(live.sources.size===0,'real mute retained nodes');
     }finally{await live.dispose();game.free();bank.free();}
-    const result={status:'PASS',cases:results,offline_context:true,source_delivery:{license:true,archive:true,wasm_pair:true},mocks,live:liveResult,secure_context:isSecureContext,worklet_required:false};
+    const local_mp3=await localMp3Checks();
+    const result={status:'PASS',local_mp3,cases:results,offline_context:true,source_delivery:{license:true,archive:true,wasm_pair:true},mocks,live:liveResult,secure_context:isSecureContext,worklet_required:false};
     document.querySelector('#result').textContent=JSON.stringify(result);await fetch('/__result',{method:'POST',body:JSON.stringify(result)});
 }catch(error){const result={status:'FAIL',error:String(error),stack:error.stack};document.querySelector('#result').textContent=JSON.stringify(result);await fetch('/__result',{method:'POST',body:JSON.stringify(result)});}

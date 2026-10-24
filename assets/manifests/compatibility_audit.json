@@ -31,8 +31,8 @@
     },
     {
       "path": "Cargo.lock",
-      "bytes": 5268,
-      "sha256": "ec6804ffb3482643aa4ef83a3477caa5c6e71241f27ac7e36467d82986f8b6d5"
+      "bytes": 8091,
+      "sha256": "c35ad44bfed0d32dba4b475e76ea647ce28c56d529e5679c78dbb66481a7a17a"
     },
     {
       "path": "Cargo.toml",
@@ -46,13 +46,13 @@
     },
     {
       "path": "Makefile",
-      "bytes": 3712,
-      "sha256": "e332794d644641a972a7eab7b53e20381c7c4af1f6d226bce9cbb50fa9f9f9e2"
+      "bytes": 3809,
+      "sha256": "1590b14968e6cccf0dac05d041eaa41dab896ee86f7d3e897fcf37326841117a"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
-      "bytes": 194710,
-      "sha256": "c291104495e4a77b96529bcde7ab72f59c7762260b9d083b32ac86bcfabc22bc"
+      "bytes": 364273,
+      "sha256": "22868d847da52191b39317125c710bc1d490334e4ea5817286204844ecb5e93a"
     },
     {
       "path": "apps/audio-probe/Cargo.toml",
@@ -81,8 +81,8 @@
     },
     {
       "path": "apps/desktop/Cargo.toml",
-      "bytes": 617,
-      "sha256": "f1564d65e1ba17eadbd4a8259b5483f31e0bd3c0b9dec99d4fd5350017883918"
+      "bytes": 698,
+      "sha256": "ed274c7f47124c00b724cffafb09c9a800e79bc62b6f88d9bee2358b87fafcf1"
     },
     {
       "path": "apps/desktop/src/assets.rs",
@@ -91,8 +91,8 @@
     },
     {
       "path": "apps/desktop/src/audio.rs",
-      "bytes": 8216,
-      "sha256": "e97552314cfd3769eed20e611ab17aca9e9034dd755f637f570cb5b9091f71f0"
+      "bytes": 17808,
+      "sha256": "0995e8a43923630f0a81787b035dca403863a068231eb954bbbe922d4dd7bfd7"
     },
     {
       "path": "apps/desktop/src/frame_clock.rs",
@@ -111,8 +111,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 69182,
-      "sha256": "7a55407b8f77a129a0de0bcc5dfa881afa32099cf5cc78004f43175b3cd49c5d"
+      "bytes": 69837,
+      "sha256": "86346d22ec4afa877c4d9fa0fb43952470744f9bde9c0b303ce067d213ab8bd3"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -166,8 +166,8 @@
     },
     {
       "path": "apps/web/src/audio.rs",
-      "bytes": 3215,
-      "sha256": "520e3df17475063858c5d6065cdbd93e4f2b1e6dc7e491ae6783134b01d56a5e"
+      "bytes": 3763,
+      "sha256": "62a598b83e813e93af9bd1a6572daec135ec7af0d86d87ae07911fb1d1772387"
     },
     {
       "path": "apps/web/src/bin/audio_trace.rs",
@@ -231,8 +231,8 @@
     },
     {
       "path": "apps/web/www/app.js",
-      "bytes": 14642,
-      "sha256": "a417529949c10ee3d1d56c6084996d666e79e6789d998dac982a360a19a13a4b"
+      "bytes": 17341,
+      "sha256": "38f297316f906c5f8c81aea0c66df397bb2d1b5cd0f2d23126f647ab4c5efdf2"
     },
     {
       "path": "apps/web/www/audio-license.html",
@@ -241,8 +241,8 @@
     },
     {
       "path": "apps/web/www/audio.js",
-      "bytes": 5537,
-      "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+      "bytes": 6893,
+      "sha256": "49238d57ca15e4458112eafd90057f1ebac0f31079daf6b8a7cd5f162108d0db"
     },
     {
       "path": "apps/web/www/bundled.js",
@@ -261,18 +261,18 @@
     },
     {
       "path": "apps/web/www/index.html",
-      "bytes": 5590,
-      "sha256": "f666d08e7db62fb1dedc467868f668c701ba9214d1717d27c46c13554e6f9195"
+      "bytes": 7022,
+      "sha256": "b6e02c73f53d42df99e98232c27e45e3b0fa64fa9f947a4fa2745226f72f207d"
     },
     {
       "path": "apps/web/www/style.css",
-      "bytes": 6157,
-      "sha256": "311ff54fdba1fe8f5d553cea23021d2905d99f37148239506824a00c65fcaf9a"
+      "bytes": 6959,
+      "sha256": "3cfbf5058b76fc139b30f0ced39ebfe6881444ce378c6833056e5e4cf4554388"
     },
     {
       "path": "assets/manifests/license_inventory.json",
-      "bytes": 16978,
-      "sha256": "abc7e631e937b8f793732e00c26f446fb31f2f672867ec147b3b55388cb0d0a3"
+      "bytes": 26331,
+      "sha256": "14ecfff45538034756b135cb9290c35df4a49bd469c4abae2ab104aa025087aa"
     },
     {
       "path": "assets/manifests/macos_runtime.json",
@@ -321,8 +321,8 @@
     },
     {
       "path": "crates/lemmings-audio/src/lib.rs",
-      "bytes": 10627,
-      "sha256": "f44ebde8ba9c452c0f01cb01ceb4086ebaaa55601ab510219ac2e5c300cfcebb"
+      "bytes": 11693,
+      "sha256": "909fa326ba0e72520dafb7b4c83284ee6be369a597c4fd743b6a94d029008bb2"
     },
     {
       "path": "crates/lemmings-audio/tests/pcm.rs",
@@ -576,8 +576,8 @@
     },
     {
       "path": "crates/lemmings-game/src/audio.rs",
-      "bytes": 7403,
-      "sha256": "f4d5f5ae176cb71555c1965d984febd748c8bad5452e2df6cef80662fba1265b"
+      "bytes": 7757,
+      "sha256": "03718a9507602cbf9bf0bf156d56e99a610e4456b6f6359583e890c2757b5340"
     },
     {
       "path": "crates/lemmings-game/src/diagnostics.rs",
@@ -636,8 +636,8 @@
     },
     {
       "path": "crates/lemmings-game/tests/audio_output.rs",
-      "bytes": 4221,
-      "sha256": "d2e82377524c7249c9fbe93f164b50995fad27b89ea2fa23bfe98885727608b9"
+      "bytes": 5960,
+      "sha256": "f6f8dbd01c3ba2ffb4fc5729940101dcfa1e90c0343b565d350fe27d784bf3d7"
     },
     {
       "path": "crates/lemmings-game/tests/byte_source.rs",
@@ -671,13 +671,13 @@
     },
     {
       "path": "crates/lemmings-opl/src/core.rs",
-      "bytes": 55342,
-      "sha256": "001d976818b828e7124ce1b289cff9089a18413fb25e2e2625844ba35f3584f9"
+      "bytes": 55855,
+      "sha256": "c19333123ddc0cdd1b239bee62637ce23f0b4262150aa261c79c88fb283b4394"
     },
     {
       "path": "crates/lemmings-opl/src/lib.rs",
-      "bytes": 5130,
-      "sha256": "6980a4f832e1782aba12ce2a8ca789243615c06739906f84754293fb5230ddbe"
+      "bytes": 5486,
+      "sha256": "a1059b12b02851819a700a530468c208c1639a1d30814debd270451d698376e1"
     },
     {
       "path": "crates/lemmings-resources/Cargo.toml",
@@ -911,8 +911,8 @@
     },
     {
       "path": "third_party/README.md",
-      "bytes": 1971,
-      "sha256": "1ed2b542b506368db19e38e96e3d37e609e7e73ce28bc52346634d59e04d1e47"
+      "bytes": 2364,
+      "sha256": "1521ae5a5c637928f7975723d00ccb482ce84a602880e59a2206e796c4e2ba5a"
     },
     {
       "path": "third_party/SDL2-2.32.10-LICENSE.txt",
@@ -1136,8 +1136,8 @@
     },
     {
       "path": "tools/audio/output-check.js",
-      "bytes": 9356,
-      "sha256": "a83d98ec1175b832f1bf3ff0c146d8b7bf227a4607bf3e9c936f999f66d81e34"
+      "bytes": 11313,
+      "sha256": "2a8f1f796b2ee7812fb29bc8541aef8d0fbc3e70b72a412f0d24ee751860f7f3"
     },
     {
       "path": "tools/audio/playthrough-check.html",
@@ -1176,8 +1176,8 @@
     },
     {
       "path": "tools/check_audio_output.py",
-      "bytes": 12203,
-      "sha256": "7ceca78f6c688977409524a28d87c8cbb0cf3a3dbe231dad972ef328e3e526f3"
+      "bytes": 12515,
+      "sha256": "609f5193c1506de51a15ab37ca838cafe9ac441b81e0f9926bb510bc45e04821"
     },
     {
       "path": "tools/check_basher.py",
@@ -1246,8 +1246,8 @@
     },
     {
       "path": "tools/check_macos_package.py",
-      "bytes": 9535,
-      "sha256": "624834489925e1ce55ab5f45a57721f6ee0debddcb76ce8ecc4571b1fbe58831"
+      "bytes": 9643,
+      "sha256": "61f84066e0410358c8e1be9784803905049c0887e5457fca97017b499dec950d"
     },
     {
       "path": "tools/check_miner.py",
@@ -1281,8 +1281,8 @@
     },
     {
       "path": "tools/check_release_package.py",
-      "bytes": 7727,
-      "sha256": "fc8ee9616b97996a26a91865edd18e0dc143088552d7c7dd4f200cd931752ad9"
+      "bytes": 7824,
+      "sha256": "46938640737510426c16ce7d642839cc56f104c5fcdd9ab5176933a0812c1726"
     },
     {
       "path": "tools/check_results.py",
@@ -1311,8 +1311,8 @@
     },
     {
       "path": "tools/check_windows_package.py",
-      "bytes": 10324,
-      "sha256": "54c5a3f105d3662eb948006f49bbcee657c7008aeae3a783348e17e140baf7ea"
+      "bytes": 10432,
+      "sha256": "14467949691af7de5648e5367890f92f2aa3d88eda18b069b41edc7ef6c766a1"
     },
     {
       "path": "tools/compare_basher_dos.py",
@@ -1766,8 +1766,8 @@
     },
     {
       "path": "tools/release_package.py",
-      "bytes": 19368,
-      "sha256": "29113da1e9b141ceddac34ddb0b0b6e72ee3d3b0a000578c7c113d5a73454a32"
+      "bytes": 19386,
+      "sha256": "eb894486be712bc79987043f5ac09195d8bf48fea3f1a5bd41f100ba82a6b5aa"
     },
     {
       "path": "tools/release_version.py",
@@ -1831,8 +1831,8 @@
     },
     {
       "path": "tools/tests/test_audio_output.py",
-      "bytes": 2571,
-      "sha256": "f5aaa64eb354571895023e628bf4c7009d8e9ba8c8a9ed60604aded11ab91cd1"
+      "bytes": 2696,
+      "sha256": "536eaca7b6fdc7587e2f4e67fc049a31fb99b0b4a865ba202a35a5196b2b5c3c"
     },
     {
       "path": "tools/tests/test_audio_timing.py",
@@ -1952,7 +1952,7 @@
     {
       "path": "tools/tests/test_license_policy.py",
       "bytes": 2511,
-      "sha256": "f226621eb60f062d2c6f4732379acd608ea145ff1a0ccc4938cb8dc25622369f"
+      "sha256": "be79c560c2630b231e4c87fb3eeafb8de8635526b252b62877e2daca72f3af83"
     },
     {
       "path": "tools/tests/test_macos_package.py",
@@ -3318,6 +3318,41 @@
       "path": "assets/manifests/web_progressive.json",
       "bytes": 9110,
       "sha256": "aadc9ca0e37f7df2d8cd439d5494e43dd46edc6dbb8c21e7f8d985a04bec1d8c"
+    },
+    {
+      "path": "apps/desktop/src/local_music.rs",
+      "bytes": 9421,
+      "sha256": "75f96f01af3cdfc4265793d2281f685a4368430c1cb0854e2098e2473c42e51c"
+    },
+    {
+      "path": "apps/web/www/local-music.js",
+      "bytes": 5183,
+      "sha256": "07961b4995fa5952db1d0bb8c65ed88c4b5141a5559a93d3cddbb69c38d68a6d"
+    },
+    {
+      "path": "tools/tests/local-music.cjs",
+      "bytes": 2274,
+      "sha256": "04f89f6e521916f10e9b05507e5a17636d584c41154c83bd79dd189bf385dcd7"
+    },
+    {
+      "path": "tools/tests/test_local_music.py",
+      "bytes": 1037,
+      "sha256": "57db85278f5415e63536a053def683f9b93319f31eacd1c021665ad92e058ede"
+    },
+    {
+      "path": "assets/manifests/local_music_fixture.json",
+      "bytes": 624,
+      "sha256": "ac9b8e64593e48e9fe3734ba2973e677ea97a121afd6d1857d6d3ebee0c01b98"
+    },
+    {
+      "path": "apps/desktop/tests/fixtures/local-tone.mp3",
+      "bytes": 4013,
+      "sha256": "1babda28f1f491fb9ee399dc3a7486615463c6b928cfb20e6e06c456f06d751e"
+    },
+    {
+      "path": "tools/check_local_music.py",
+      "bytes": 1094,
+      "sha256": "49354e027c3690f0400d72800e7abd976f77d256621e2ef28bf383a216dab677"
     }
   ],
   "evidence": [
@@ -3581,8 +3616,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 90979,
-      "sha256": "f53e3e7c189f167a571ccc6764b73d858e3d77a5b3e86e09279ec3b71525105b",
+      "bytes": 91598,
+      "sha256": "49738661affd35b1df5e48badbb126e7b184eef655f9c65fd04209f5a2cd3c14",
       "id": "g11-06-display-cadence"
     }
   ],
@@ -7629,5 +7664,184 @@
       "bytes": 9110,
       "sha256": "aadc9ca0e37f7df2d8cd439d5494e43dd46edc6dbb8c21e7f8d985a04bec1d8c"
     }
+  },
+  "source_impact_202": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/202",
+    "previous_pins": [
+      {
+        "path": "Cargo.lock",
+        "bytes": 5268,
+        "sha256": "ec6804ffb3482643aa4ef83a3477caa5c6e71241f27ac7e36467d82986f8b6d5"
+      },
+      {
+        "path": "Makefile",
+        "bytes": 3712,
+        "sha256": "e332794d644641a972a7eab7b53e20381c7c4af1f6d226bce9cbb50fa9f9f9e2"
+      },
+      {
+        "path": "THIRD_PARTY_NOTICES.txt",
+        "bytes": 194710,
+        "sha256": "c291104495e4a77b96529bcde7ab72f59c7762260b9d083b32ac86bcfabc22bc"
+      },
+      {
+        "path": "apps/desktop/Cargo.toml",
+        "bytes": 617,
+        "sha256": "f1564d65e1ba17eadbd4a8259b5483f31e0bd3c0b9dec99d4fd5350017883918"
+      },
+      {
+        "path": "apps/desktop/src/audio.rs",
+        "bytes": 8216,
+        "sha256": "e97552314cfd3769eed20e611ab17aca9e9034dd755f637f570cb5b9091f71f0"
+      },
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 69182,
+        "sha256": "7a55407b8f77a129a0de0bcc5dfa881afa32099cf5cc78004f43175b3cd49c5d"
+      },
+      {
+        "path": "apps/web/src/audio.rs",
+        "bytes": 3215,
+        "sha256": "520e3df17475063858c5d6065cdbd93e4f2b1e6dc7e491ae6783134b01d56a5e"
+      },
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 14642,
+        "sha256": "a417529949c10ee3d1d56c6084996d666e79e6789d998dac982a360a19a13a4b"
+      },
+      {
+        "path": "apps/web/www/audio.js",
+        "bytes": 5537,
+        "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+      },
+      {
+        "path": "apps/web/www/index.html",
+        "bytes": 5590,
+        "sha256": "f666d08e7db62fb1dedc467868f668c701ba9214d1717d27c46c13554e6f9195"
+      },
+      {
+        "path": "apps/web/www/style.css",
+        "bytes": 6157,
+        "sha256": "311ff54fdba1fe8f5d553cea23021d2905d99f37148239506824a00c65fcaf9a"
+      },
+      {
+        "path": "assets/manifests/license_inventory.json",
+        "bytes": 16978,
+        "sha256": "abc7e631e937b8f793732e00c26f446fb31f2f672867ec147b3b55388cb0d0a3"
+      },
+      {
+        "path": "crates/lemmings-audio/src/lib.rs",
+        "bytes": 10627,
+        "sha256": "f44ebde8ba9c452c0f01cb01ceb4086ebaaa55601ab510219ac2e5c300cfcebb"
+      },
+      {
+        "path": "crates/lemmings-game/src/audio.rs",
+        "bytes": 7403,
+        "sha256": "f4d5f5ae176cb71555c1965d984febd748c8bad5452e2df6cef80662fba1265b"
+      },
+      {
+        "path": "crates/lemmings-game/tests/audio_output.rs",
+        "bytes": 4221,
+        "sha256": "d2e82377524c7249c9fbe93f164b50995fad27b89ea2fa23bfe98885727608b9"
+      },
+      {
+        "path": "crates/lemmings-opl/src/core.rs",
+        "bytes": 55342,
+        "sha256": "001d976818b828e7124ce1b289cff9089a18413fb25e2e2625844ba35f3584f9"
+      },
+      {
+        "path": "crates/lemmings-opl/src/lib.rs",
+        "bytes": 5130,
+        "sha256": "6980a4f832e1782aba12ce2a8ca789243615c06739906f84754293fb5230ddbe"
+      },
+      {
+        "path": "third_party/README.md",
+        "bytes": 1971,
+        "sha256": "1ed2b542b506368db19e38e96e3d37e609e7e73ce28bc52346634d59e04d1e47"
+      },
+      {
+        "path": "tools/audio/output-check.js",
+        "bytes": 9356,
+        "sha256": "a83d98ec1175b832f1bf3ff0c146d8b7bf227a4607bf3e9c936f999f66d81e34"
+      },
+      {
+        "path": "tools/check_audio_output.py",
+        "bytes": 12203,
+        "sha256": "7ceca78f6c688977409524a28d87c8cbb0cf3a3dbe231dad972ef328e3e526f3"
+      },
+      {
+        "path": "tools/check_macos_package.py",
+        "bytes": 9535,
+        "sha256": "624834489925e1ce55ab5f45a57721f6ee0debddcb76ce8ecc4571b1fbe58831"
+      },
+      {
+        "path": "tools/check_release_package.py",
+        "bytes": 7727,
+        "sha256": "fc8ee9616b97996a26a91865edd18e0dc143088552d7c7dd4f200cd931752ad9"
+      },
+      {
+        "path": "tools/check_windows_package.py",
+        "bytes": 10324,
+        "sha256": "54c5a3f105d3662eb948006f49bbcee657c7008aeae3a783348e17e140baf7ea"
+      },
+      {
+        "path": "tools/release_package.py",
+        "bytes": 19368,
+        "sha256": "29113da1e9b141ceddac34ddb0b0b6e72ee3d3b0a000578c7c113d5a73454a32"
+      },
+      {
+        "path": "tools/tests/test_audio_output.py",
+        "bytes": 2571,
+        "sha256": "f5aaa64eb354571895023e628bf4c7009d8e9ba8c8a9ed60604aded11ab91cd1"
+      },
+      {
+        "path": "tools/tests/test_license_policy.py",
+        "bytes": 2511,
+        "sha256": "f226621eb60f062d2c6f4732379acd608ea145ff1a0ccc4938cb8dc25622369f"
+      },
+      {
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 90979,
+        "sha256": "f53e3e7c189f167a571ccc6764b73d858e3d77a5b3e86e09279ec3b71525105b",
+        "id": "g11-06-display-cadence"
+      }
+    ],
+    "added": [
+      {
+        "path": "apps/desktop/src/local_music.rs",
+        "bytes": 9421,
+        "sha256": "75f96f01af3cdfc4265793d2281f685a4368430c1cb0854e2098e2473c42e51c"
+      },
+      {
+        "path": "apps/web/www/local-music.js",
+        "bytes": 5183,
+        "sha256": "07961b4995fa5952db1d0bb8c65ed88c4b5141a5559a93d3cddbb69c38d68a6d"
+      },
+      {
+        "path": "tools/tests/local-music.cjs",
+        "bytes": 2274,
+        "sha256": "04f89f6e521916f10e9b05507e5a17636d584c41154c83bd79dd189bf385dcd7"
+      },
+      {
+        "path": "tools/tests/test_local_music.py",
+        "bytes": 1037,
+        "sha256": "57db85278f5415e63536a053def683f9b93319f31eacd1c021665ad92e058ede"
+      },
+      {
+        "path": "assets/manifests/local_music_fixture.json",
+        "bytes": 624,
+        "sha256": "ac9b8e64593e48e9fe3734ba2973e677ea97a121afd6d1857d6d3ebee0c01b98"
+      },
+      {
+        "path": "apps/desktop/tests/fixtures/local-tone.mp3",
+        "bytes": 4013,
+        "sha256": "1babda28f1f491fb9ee399dc3a7486615463c6b928cfb20e6e06c456f06d751e"
+      },
+      {
+        "path": "tools/check_local_music.py",
+        "bytes": 1094,
+        "sha256": "49354e027c3690f0400d72800e7abd976f77d256621e2ef28bf383a216dab677"
+      }
+    ],
+    "scope": "Local user MP3 and independent channel output gains. Original VM/channel/event/simulation logic retained; unity PCM rechecked against fixed buffered C. Historical evidence remains scoped; no new human listening or performance certification."
   }
 }

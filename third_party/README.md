@@ -30,3 +30,5 @@ MIT grant. GAME-DATA records provenance/hashes, not a new license grant.
   [Its complete OFL notice](NotoSans-OFL.txt) and the generated atlas retain the
   upstream font terms; the game uses shared embedded coverage, with no runtime
   system-font or FreeType dependency. See [font provenance](../assets/manifests/hd_ui_font.json).
+
+#202 local MP3 playback uses unmodified Symphonia0.5.5 (MP3 only) in the Native host under MPL-2.0. The exact registry dependencies, source URLs/checksums and complete license texts are recorded in `assets/manifests/license_inventory.json` and `THIRD_PARTY_NOTICES.txt`. These dependency terms remain separate from project-authored MIT code. User-selected songs are not included or uploaded.

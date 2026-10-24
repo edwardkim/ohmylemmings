@@ -70,6 +70,9 @@ def check(archive, evidence):
         require((result.returncode == 0) == success, f'{label}: unexpected exit {result.returncode}: {result.stderr}')
         return result
 
+    from tools.check_local_music import check as check_local_music
+    check_local_music(binary, evidence)
+
     # Genuine zero-argument launch with the normal Windows video driver/window.
     visible_env = dict(environment)
     del visible_env['SDL_VIDEODRIVER']
