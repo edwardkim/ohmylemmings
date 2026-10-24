@@ -32,12 +32,12 @@
     {
       "path": "Cargo.lock",
       "bytes": 18361,
-      "sha256": "0a9a7a138a8f92f6b613c401588a54f868a5694d9fcd254daa6e3eaa0a648a1a"
+      "sha256": "599ba02b67509d2f879bb8d87cdbac5c99691b1574b7810210c0c10fda2bf008"
     },
     {
       "path": "Cargo.toml",
       "bytes": 454,
-      "sha256": "2aa20e2ba63855644b30e3886706ece3afa120260462c613ad682c1e4cd2b877"
+      "sha256": "af28e611912ead2743c044b1c4d0daa19b9ddfc82ee450f04b80e07bc06e5984"
     },
     {
       "path": "LICENSE",
