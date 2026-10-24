@@ -1,5 +1,7 @@
 # 작업 결과 보고서
 
+- [#215 HD 지형·지물 품질](issue-215_hd_surface_quality.md): 5재질·55입출구·수직벽 윤곽, 메인테이너 시각 인수.
+
 - [#113 플레이 FPS·피드백 복사](issue-113_player_feedback.md): Web/Native 선택 표시·일시 보류·수동 복사·실제 앱 검증. 기존 성능 자격 검증은 별도다.
 
 - [#140 공통 HD 표시 snapshot·좌표/입력](issue-140_hd_presentation.md): 경계·mask·원본 상태/화면/사운드 불변 검증.

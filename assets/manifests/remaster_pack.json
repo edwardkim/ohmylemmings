@@ -17,9 +17,9 @@
       "alpha_cutoff": 1
     },
     {
-      "path": "assets/remaster/issue-144-rock-v1.png",
-      "bytes": 2800649,
-      "sha256": "bc3827ea867384c62fe5f9c8f75f6ca724770d817d8749167131a9d17bbbfe32",
+      "path": "assets/remaster/issue-215-rock-v2.png",
+      "bytes": 2717298,
+      "sha256": "aa5eed8fbe3692fdecdf4c2fec73716a9e3547bba78b82897288c14d6f0638d8",
       "width": 1254,
       "height": 1254,
       "alpha": "opaque",
@@ -56,13 +56,13 @@
       "sampling_locked": true
     },
     {
-      "path": "assets/remaster/issue-147-facilities-v1.png",
-      "bytes": 1562112,
-      "sha256": "a3beea2a58b8df958456aae58203cf44e3604aff2c28ff6cbdfc51991552df70",
+      "path": "assets/remaster/issue-215-facilities-v2.png",
+      "bytes": 1651535,
+      "sha256": "db73b4af8f74dd65611884de523b3d7c2d1d92f1025e84704aa6d833e0be5c33",
       "width": 1536,
       "height": 1024,
       "alpha": "sprite",
-      "alpha_cutoff": 1
+      "alpha_cutoff": 8
     },
     {
       "path": "assets/remaster/issue-147-ui-v1.png",
@@ -193,41 +193,45 @@
       "sampling_locked": true
     },
     {
-      "path": "assets/remaster/issue-157-fire-v1.png",
-      "bytes": 2751967,
-      "sha256": "f9474d28d0fd965f59a10519b934329f055f8e460ef92bcef84827c94c64e0c3",
+      "path": "assets/remaster/issue-215-fire-v2.png",
+      "bytes": 2918714,
+      "sha256": "aeab8a2a55dffdfe0fb9d68c1f8095234e4f28a34cba1186a6cda1790afa421b",
       "width": 1254,
       "height": 1254,
-      "alpha": "opaque"
+      "alpha": "opaque",
+      "alpha_cutoff": 0
     },
     {
-      "path": "assets/remaster/issue-157-marble-v1.png",
-      "bytes": 2677744,
-      "sha256": "d9a6396459a7285c4557b5e34cf6abe30a921ea53d904557ef0aab99a07dde38",
+      "path": "assets/remaster/issue-215-marble-v2.png",
+      "bytes": 2903370,
+      "sha256": "17362acf3bad56b0612ce6eedf90cc9e2dcd518865f36f989acd7a5849d0a0e6",
       "width": 1254,
       "height": 1254,
-      "alpha": "opaque"
+      "alpha": "opaque",
+      "alpha_cutoff": 0
     },
     {
-      "path": "assets/remaster/issue-157-pillar-v1.png",
-      "bytes": 2971032,
-      "sha256": "b30f4fb8042e90d94c0cd98dba90f5617a598c0f5d5792611868fccab1c363a8",
+      "path": "assets/remaster/issue-215-pillar-v2.png",
+      "bytes": 2829259,
+      "sha256": "4c237916145572cf27e7731845f48c38ed350264764dee3f8c13548a83cc5f28",
       "width": 1254,
       "height": 1254,
-      "alpha": "opaque"
+      "alpha": "opaque",
+      "alpha_cutoff": 0
     },
     {
-      "path": "assets/remaster/issue-157-crystal-v1.png",
-      "bytes": 2798974,
-      "sha256": "9c460f24a16c2a019d2f6715ee08fc37887423431281adab5721178592d7c459",
+      "path": "assets/remaster/issue-215-crystal-v2.png",
+      "bytes": 3272655,
+      "sha256": "caff311061d400459bb3ec18adb886564174fb2102188760483f132f05554a65",
       "width": 1254,
       "height": 1254,
-      "alpha": "opaque"
+      "alpha": "opaque",
+      "alpha_cutoff": 0
     },
     {
-      "path": "assets/remaster/issue-160-fire-v1.png",
-      "bytes": 1712047,
-      "sha256": "e7b98f681ef5b2503755733c5d9044990914aa8ebe85e2604c0c28becf52f54d",
+      "path": "assets/remaster/issue-215-portals-fire-v2.png",
+      "bytes": 1851048,
+      "sha256": "ed883a8eaf13ff996916bb5444741e3b6c47da6c4e86323e5f1211e58caf8dbc",
       "width": 1536,
       "height": 1024,
       "alpha": "sprite",
@@ -235,9 +239,9 @@
       "sampling_locked": true
     },
     {
-      "path": "assets/remaster/issue-160-marble-v1.png",
-      "bytes": 1791745,
-      "sha256": "2c4a06d94b6664843666e1056cb6974fe2a50864d22f864492ea6416e99a1b07",
+      "path": "assets/remaster/issue-215-portals-marble-v2.png",
+      "bytes": 1848022,
+      "sha256": "8a82219f8ad2633654273a01234d17e00c68d623a3b66365d6ceae683b250eb4",
       "width": 1536,
       "height": 1024,
       "alpha": "sprite",
@@ -245,9 +249,9 @@
       "sampling_locked": true
     },
     {
-      "path": "assets/remaster/issue-160-pillar-v1.png",
-      "bytes": 1773175,
-      "sha256": "71118971b80ee0591204782a78efb3654892301f79c5bd5f07d04bcceb7707d2",
+      "path": "assets/remaster/issue-215-portals-pillar-v2.png",
+      "bytes": 1900783,
+      "sha256": "28f0778e51bd3d54c823ef803882c976a6ca84e1bb20ce8da1dbc5e07eb4b9b1",
       "width": 1536,
       "height": 1024,
       "alpha": "sprite",
@@ -255,9 +259,9 @@
       "sampling_locked": true
     },
     {
-      "path": "assets/remaster/issue-160-crystal-v1.png",
-      "bytes": 1884099,
-      "sha256": "b94926fd160c174f24d0921e588139e9b40481c4e33bd00b68983f0e2fed6e59",
+      "path": "assets/remaster/issue-215-portals-crystal-v2.png",
+      "bytes": 1898270,
+      "sha256": "bfe7b56de730fbd08d5cc0077e466c66c0817e4768dc6a1ed88cfc9bfa148465",
       "width": 1536,
       "height": 1024,
       "alpha": "sprite",
@@ -490,6 +494,11 @@
       "path": "assets/remaster/prompts/issue-160_flame_crystal_v1.txt",
       "bytes": 1629,
       "sha256": "c00d269f8577dda4e4ffcf50168e4ffc70530265ed56bb98c2c2431f57d23dfa"
+    },
+    {
+      "path": "assets/manifests/hd_surface_quality.json",
+      "bytes": 58029,
+      "sha256": "8f499998d6ffc3f98fc1cc0334fd3c26e2fe9c5ce1e05a90e782482b6b0bfa61"
     }
   ],
   "frames": [
@@ -873,8 +882,8 @@
         1254
       ],
       "display": [
-        256,
-        256
+        768,
+        768
       ],
       "anchor": [
         0,
@@ -2386,18 +2395,18 @@
       },
       "atlas": 5,
       "rect": [
-        384,
-        512,
-        384,
-        256
+        416,
+        553,
+        323,
+        184
       ],
       "display": [
-        288,
-        150
+        236,
+        104
       ],
       "anchor": [
-        6,
-        30
+        -22,
+        4
       ]
     },
     {
@@ -2410,18 +2419,18 @@
       },
       "atlas": 5,
       "rect": [
-        0,
-        0,
-        384,
-        256
+        45,
+        72,
+        320,
+        100
       ],
       "display": [
-        288,
-        150
+        234,
+        54
       ],
       "anchor": [
-        6,
-        47
+        -31,
+        2
       ]
     },
     {
@@ -2434,18 +2443,18 @@
       },
       "atlas": 5,
       "rect": [
-        384,
-        0,
-        384,
-        256
+        418,
+        70,
+        319,
+        102
       ],
       "display": [
-        288,
-        150
+        234,
+        55
       ],
       "anchor": [
-        6,
-        46
+        -23,
+        3
       ]
     },
     {
@@ -2458,18 +2467,18 @@
       },
       "atlas": 5,
       "rect": [
-        768,
-        0,
-        384,
-        256
+        797,
+        67,
+        323,
+        112
       ],
       "display": [
-        288,
-        150
+        237,
+        59
       ],
       "anchor": [
-        6,
-        43
+        -20,
+        2
       ]
     },
     {
@@ -2482,18 +2491,18 @@
       },
       "atlas": 5,
       "rect": [
-        1152,
-        0,
-        384,
-        256
+        1183,
+        65,
+        324,
+        126
       ],
       "display": [
-        288,
-        150
+        236,
+        67
       ],
       "anchor": [
-        6,
-        43
+        -22,
+        3
       ]
     },
     {
@@ -2506,18 +2515,18 @@
       },
       "atlas": 5,
       "rect": [
-        0,
-        256,
-        384,
-        256
+        38,
+        304,
+        327,
+        159
       ],
       "display": [
-        288,
-        150
+        238,
+        88
       ],
       "anchor": [
-        6,
-        33
+        -26,
+        4
       ]
     },
     {
@@ -2530,18 +2539,18 @@
       },
       "atlas": 5,
       "rect": [
-        384,
-        256,
-        384,
-        256
+        419,
+        301,
+        324,
+        168
       ],
       "display": [
-        288,
-        150
+        237,
+        94
       ],
       "anchor": [
-        6,
-        33
+        -24,
+        5
       ]
     },
     {
@@ -2554,18 +2563,18 @@
       },
       "atlas": 5,
       "rect": [
-        768,
-        256,
-        384,
-        256
+        798,
+        295,
+        325,
+        173
       ],
       "display": [
-        288,
-        150
+        240,
+        97
       ],
       "anchor": [
-        6,
-        32
+        -19,
+        6
       ]
     },
     {
@@ -2578,18 +2587,18 @@
       },
       "atlas": 5,
       "rect": [
-        1152,
-        256,
-        384,
-        256
+        1184,
+        293,
+        324,
+        168
       ],
       "display": [
-        288,
-        150
+        238,
+        95
       ],
       "anchor": [
-        6,
-        32
+        -20,
+        9
       ]
     },
     {
@@ -2602,18 +2611,18 @@
       },
       "atlas": 5,
       "rect": [
-        0,
-        512,
-        384,
-        256
+        38,
+        556,
+        325,
+        179
       ],
       "display": [
-        288,
-        150
+        238,
+        101
       ],
       "anchor": [
-        6,
-        32
+        -24,
+        5
       ]
     },
     {
@@ -2626,18 +2635,18 @@
       },
       "atlas": 5,
       "rect": [
-        768,
-        512,
-        384,
-        256
+        792,
+        516,
+        329,
+        247
       ],
       "display": [
-        288,
-        180
+        241,
+        169
       ],
       "anchor": [
-        0,
-        78
+        -20,
+        72
       ]
     },
     {
@@ -8800,8 +8809,8 @@
         1254
       ],
       "display": [
-        256,
-        256
+        768,
+        768
       ],
       "anchor": [
         0,
@@ -8820,8 +8829,8 @@
         1254
       ],
       "display": [
-        256,
-        256
+        768,
+        768
       ],
       "anchor": [
         0,
@@ -8840,8 +8849,8 @@
         1254
       ],
       "display": [
-        256,
-        256
+        768,
+        768
       ],
       "anchor": [
         0,
@@ -8860,8 +8869,8 @@
         1254
       ],
       "display": [
-        256,
-        256
+        768,
+        768
       ],
       "anchor": [
         0,
@@ -8878,14 +8887,14 @@
       },
       "atlas": 23,
       "rect": [
-        24,
-        100,
-        348,
-        111
+        16,
+        92,
+        363,
+        123
       ],
       "display": [
         293,
-        93
+        92
       ],
       "anchor": [
         2,
@@ -8902,14 +8911,14 @@
       },
       "atlas": 23,
       "rect": [
-        407,
-        99,
-        348,
-        112
+        398,
+        91,
+        361,
+        126
       ],
       "display": [
         293,
-        94
+        93
       ],
       "anchor": [
         2,
@@ -8926,14 +8935,14 @@
       },
       "atlas": 23,
       "rect": [
-        790,
-        99,
-        347,
-        122
+        782,
+        91,
+        360,
+        140
       ],
       "display": [
         293,
-        103
+        102
       ],
       "anchor": [
         2,
@@ -8950,14 +8959,14 @@
       },
       "atlas": 23,
       "rect": [
-        1174,
-        99,
-        345,
-        142
+        1164,
+        91,
+        360,
+        162
       ],
       "display": [
         293,
-        121
+        120
       ],
       "anchor": [
         2,
@@ -8974,10 +8983,10 @@
       },
       "atlas": 23,
       "rect": [
-        24,
-        417,
-        349,
-        172
+        17,
+        380,
+        363,
+        188
       ],
       "display": [
         293,
@@ -8998,10 +9007,10 @@
       },
       "atlas": 23,
       "rect": [
-        406,
-        416,
-        348,
-        183
+        400,
+        380,
+        359,
+        197
       ],
       "display": [
         293,
@@ -9022,10 +9031,10 @@
       },
       "atlas": 23,
       "rect": [
-        787,
-        415,
-        348,
-        185
+        782,
+        380,
+        358,
+        197
       ],
       "display": [
         293,
@@ -9046,10 +9055,10 @@
       },
       "atlas": 23,
       "rect": [
-        1171,
-        415,
-        348,
-        190
+        1164,
+        379,
+        360,
+        199
       ],
       "display": [
         293,
@@ -9070,10 +9079,10 @@
       },
       "atlas": 23,
       "rect": [
-        24,
-        732,
-        348,
-        201
+        17,
+        697,
+        362,
+        212
       ],
       "display": [
         293,
@@ -9094,10 +9103,10 @@
       },
       "atlas": 23,
       "rect": [
-        404,
-        733,
-        349,
-        200
+        397,
+        697,
+        361,
+        212
       ],
       "display": [
         293,
@@ -9118,10 +9127,10 @@
       },
       "atlas": 23,
       "rect": [
-        776,
-        677,
-        368,
-        286
+        771,
+        641,
+        380,
+        295
       ],
       "display": [
         293,
@@ -9142,10 +9151,10 @@
       },
       "atlas": 24,
       "rect": [
-        17,
-        116,
-        352,
-        119
+        16,
+        113,
+        356,
+        126
       ],
       "display": [
         293,
@@ -9166,10 +9175,10 @@
       },
       "atlas": 24,
       "rect": [
-        402,
-        116,
-        351,
-        119
+        399,
+        113,
+        356,
+        126
       ],
       "display": [
         293,
@@ -9190,10 +9199,10 @@
       },
       "atlas": 24,
       "rect": [
-        785,
-        115,
-        351,
-        133
+        783,
+        113,
+        355,
+        142
       ],
       "display": [
         293,
@@ -9214,10 +9223,10 @@
       },
       "atlas": 24,
       "rect": [
-        1169,
-        116,
-        351,
-        151
+        1167,
+        113,
+        356,
+        159
       ],
       "display": [
         293,
@@ -9238,10 +9247,10 @@
       },
       "atlas": 24,
       "rect": [
-        19,
-        407,
-        351,
-        190
+        16,
+        403,
+        356,
+        200
       ],
       "display": [
         293,
@@ -9262,10 +9271,10 @@
       },
       "atlas": 24,
       "rect": [
-        402,
-        407,
-        350,
-        200
+        399,
+        403,
+        355,
+        208
       ],
       "display": [
         293,
@@ -9286,10 +9295,10 @@
       },
       "atlas": 24,
       "rect": [
-        785,
-        407,
-        352,
-        197
+        783,
+        403,
+        355,
+        206
       ],
       "display": [
         293,
@@ -9310,10 +9319,10 @@
       },
       "atlas": 24,
       "rect": [
-        1168,
-        407,
-        352,
-        198
+        1167,
+        403,
+        355,
+        207
       ],
       "display": [
         293,
@@ -9334,10 +9343,10 @@
       },
       "atlas": 24,
       "rect": [
-        19,
-        703,
-        350,
-        213
+        16,
+        701,
+        356,
+        222
       ],
       "display": [
         293,
@@ -9358,10 +9367,10 @@
       },
       "atlas": 24,
       "rect": [
-        402,
-        703,
-        351,
-        213
+        399,
+        701,
+        356,
+        221
       ],
       "display": [
         293,
@@ -9382,10 +9391,10 @@
       },
       "atlas": 24,
       "rect": [
-        775,
-        670,
-        370,
-        274
+        772,
+        668,
+        377,
+        279
       ],
       "display": [
         293,
@@ -9406,10 +9415,10 @@
       },
       "atlas": 25,
       "rect": [
-        35,
-        100,
-        337,
-        121
+        31,
+        93,
+        347,
+        131
       ],
       "display": [
         293,
@@ -9430,14 +9439,14 @@
       },
       "atlas": 25,
       "rect": [
-        410,
-        100,
-        341,
-        117
+        405,
+        93,
+        350,
+        131
       ],
       "display": [
         293,
-        101
+        100
       ],
       "anchor": [
         2,
@@ -9454,10 +9463,10 @@
       },
       "atlas": 25,
       "rect": [
-        784,
-        99,
-        343,
-        128
+        780,
+        93,
+        354,
+        139
       ],
       "display": [
         293,
@@ -9478,10 +9487,10 @@
       },
       "atlas": 25,
       "rect": [
-        1164,
-        99,
-        338,
-        145
+        1159,
+        93,
+        348,
+        157
       ],
       "display": [
         293,
@@ -9502,10 +9511,10 @@
       },
       "atlas": 25,
       "rect": [
-        35,
-        387,
-        336,
-        183
+        30,
+        374,
+        348,
+        199
       ],
       "display": [
         293,
@@ -9526,10 +9535,10 @@
       },
       "atlas": 25,
       "rect": [
-        410,
-        387,
-        338,
-        189
+        405,
+        374,
+        350,
+        205
       ],
       "display": [
         293,
@@ -9550,10 +9559,10 @@
       },
       "atlas": 25,
       "rect": [
-        786,
-        387,
-        342,
-        195
+        778,
+        374,
+        355,
+        211
       ],
       "display": [
         293,
@@ -9574,10 +9583,10 @@
       },
       "atlas": 25,
       "rect": [
-        1165,
-        387,
-        338,
-        194
+        1158,
+        374,
+        349,
+        211
       ],
       "display": [
         293,
@@ -9598,10 +9607,10 @@
       },
       "atlas": 25,
       "rect": [
-        35,
-        707,
-        336,
-        195
+        32,
+        697,
+        345,
+        209
       ],
       "display": [
         293,
@@ -9622,10 +9631,10 @@
       },
       "atlas": 25,
       "rect": [
-        410,
-        707,
-        338,
-        195
+        405,
+        697,
+        349,
+        209
       ],
       "display": [
         293,
@@ -9646,10 +9655,10 @@
       },
       "atlas": 25,
       "rect": [
-        776,
-        668,
-        360,
-        259
+        766,
+        658,
+        377,
+        273
       ],
       "display": [
         293,
@@ -9670,10 +9679,10 @@
       },
       "atlas": 26,
       "rect": [
-        31,
-        100,
-        336,
-        110
+        29,
+        98,
+        342,
+        114
       ],
       "display": [
         293,
@@ -9694,10 +9703,10 @@
       },
       "atlas": 26,
       "rect": [
-        411,
-        100,
-        340,
-        118
+        409,
+        97,
+        346,
+        124
       ],
       "display": [
         293,
@@ -9718,10 +9727,10 @@
       },
       "atlas": 26,
       "rect": [
-        793,
-        100,
-        338,
-        126
+        790,
+        97,
+        346,
+        131
       ],
       "display": [
         293,
@@ -9742,10 +9751,10 @@
       },
       "atlas": 26,
       "rect": [
-        1175,
-        99,
-        340,
-        145
+        1172,
+        97,
+        348,
+        148
       ],
       "display": [
         293,
@@ -9766,10 +9775,10 @@
       },
       "atlas": 26,
       "rect": [
-        27,
-        380,
-        341,
-        183
+        24,
+        377,
+        347,
+        189
       ],
       "display": [
         293,
@@ -9790,10 +9799,10 @@
       },
       "atlas": 26,
       "rect": [
-        408,
-        379,
-        344,
-        191
+        405,
+        377,
+        350,
+        196
       ],
       "display": [
         293,
@@ -9814,10 +9823,10 @@
       },
       "atlas": 26,
       "rect": [
-        790,
-        379,
-        341,
-        196
+        787,
+        377,
+        349,
+        201
       ],
       "display": [
         293,
@@ -9838,10 +9847,10 @@
       },
       "atlas": 26,
       "rect": [
-        1171,
-        379,
-        341,
-        200
+        1168,
+        377,
+        349,
+        205
       ],
       "display": [
         293,
@@ -9862,10 +9871,10 @@
       },
       "atlas": 26,
       "rect": [
-        27,
-        698,
-        340,
-        197
+        24,
+        695,
+        347,
+        204
       ],
       "display": [
         293,
@@ -9886,10 +9895,10 @@
       },
       "atlas": 26,
       "rect": [
-        408,
-        697,
-        341,
-        199
+        405,
+        695,
+        348,
+        204
       ],
       "display": [
         293,
@@ -9910,10 +9919,10 @@
       },
       "atlas": 26,
       "rect": [
-        758,
-        670,
-        404,
-        274
+        756,
+        668,
+        411,
+        277
       ],
       "display": [
         292,
@@ -13763,5 +13772,14 @@
     "issue": "https://github.com/edwardkim/ohmylemmings/issues/187",
     "report": "mydocs/reports/issue-187_hd_release.md",
     "scope": "Current native/Web game graphics and UI, complete HD download packaging. Final supported-platform CI and actual merge are recorded in the report. Historical slice metadata below remains historical. No BGM or performance qualification."
+  },
+  "production_215": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/215",
+    "profile": {
+      "path": "assets/manifests/hd_surface_quality.json",
+      "bytes": 58029,
+      "sha256": "8f499998d6ffc3f98fc1cc0334fd3c26e2fe9c5ce1e05a90e782482b6b0bfa61"
+    },
+    "scope": "5 material surfaces and55 entrance/exit frames; gameplay and remaining object animation artwork preserved"
   }
 }

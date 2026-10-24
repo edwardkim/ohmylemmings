@@ -3,7 +3,7 @@
 use super::{
     Control,
     assets::{AssetFrame, AssetKey, AssetPack},
-    font, snapshot,
+    font, snapshot, surface,
     ui::{self, Ink},
 };
 use crate::{Assets, LevelRun, assets::object_frame, panel};
@@ -121,6 +121,7 @@ pub struct Renderer {
     old_bricks: Vec<u8>,
     initial: Vec<[u8; 4]>,
     material: Option<u8>,
+    surface: Option<(AssetFrame, u32, surface::Material)>,
     special: Option<u8>,
     mini: usize,
     terrain_rebuilds: u64,
@@ -158,6 +159,7 @@ impl Renderer {
             old_bricks: Vec::new(),
             initial: Vec::new(),
             material: None,
+            surface: None,
             special: None,
             mini: 0,
             terrain_rebuilds: 0,
@@ -440,8 +442,14 @@ impl Renderer {
         let mut changed = false;
         for i in 0..mask.len() {
             if mask[i] != self.old_mask[i] || bricks[i] != self.old_bricks[i] {
-                self.dirty[(i / self.width / CHUNK) * self.chunks_x + (i % self.width / CHUNK)] =
-                    true;
+                // A cut changes edge lighting up to two cells away, including
+                // the adjacent cached chunk at a boundary.
+                let (x, y) = (i % self.width, i / self.width);
+                for cy in y.saturating_sub(2) / CHUNK..=(y + 2).min(self.height - 1) / CHUNK {
+                    for cx in x.saturating_sub(2) / CHUNK..=(x + 2).min(self.width - 1) / CHUNK {
+                        self.dirty[cy * self.chunks_x + cx] = true;
+                    }
+                }
                 changed = true;
             }
         }
@@ -463,6 +471,20 @@ impl Renderer {
                     .find(|f| f.key == AssetKey::Special { set })
             })
             .copied();
+        if let Some(frame) = material {
+            let texture = &self.textures[frame.atlas as usize];
+            if self.surface.as_ref().is_none_or(|(cached, revision, _)| {
+                *cached != frame || *revision != texture.revision
+            }) {
+                self.surface = Some((
+                    frame,
+                    texture.revision,
+                    surface::Material::new(texture, frame),
+                ));
+            }
+        } else {
+            self.surface = None;
+        }
         for cy in 0..self.chunks_y {
             for cx in 0..self.chunks_x {
                 let x = cx * CHUNK;
@@ -507,23 +529,21 @@ impl Renderer {
                                     source.rgba[at + 2],
                                     255,
                                 ]
-                            } else if let Some(r) = material {
-                                let source = &self.textures[r.atlas as usize];
-                                let sx = r.rect[0]
-                                    + (((x * 6 + px) * r.rect[2] as usize / 256)
-                                        % r.rect[2] as usize)
-                                        as u32;
-                                let sy = r.rect[1]
-                                    + (((y * 6 + py) * r.rect[3] as usize / 256)
-                                        % r.rect[3] as usize)
-                                        as u32;
-                                let at = (sy as usize * source.width as usize + sx as usize) * 4;
-                                [
-                                    source.rgba[at],
-                                    source.rgba[at + 1],
-                                    source.rgba[at + 2],
-                                    255,
-                                ]
+                            } else if let Some((_, _, surface)) = &self.surface {
+                                surface::contour(
+                                    surface::shade(
+                                        surface.pixel(x * 6 + px, y * 6 + py),
+                                        mask,
+                                        self.width,
+                                        x * 6 + px,
+                                        y * 6 + py,
+                                    ),
+                                    mask,
+                                    self.width,
+                                    x * 6 + px,
+                                    y * 6 + py,
+                                    self.material.unwrap_or(0),
+                                )
                             } else {
                                 let mut c = self.initial[i];
                                 c[3] = 255;
@@ -1970,10 +1990,13 @@ mod tests {
         r.reset(&run.assets).unwrap();
         r.frame(&run).unwrap();
         assert_eq!(
-            &r.textures[r.chunk_base].rgba[191 * 4..192 * 4],
+            &r.textures[r.chunk_base].rgba[(18 * 192 + 191) * 4..(18 * 192 + 192) * 4],
             &[40, 50, 60, 255]
         );
-        assert_eq!(&r.textures[r.chunk_base + 1].rgba[..4], &[40, 50, 60, 255]);
+        assert_eq!(
+            &r.textures[r.chunk_base + 1].rgba[18 * 192 * 4..18 * 192 * 4 + 4],
+            &[40, 50, 60, 255]
+        );
         let texture = r.textures[r.chunk_base + 1].rgba.clone();
         let rebuilds = r.terrain_rebuilds();
         r.terrain(
@@ -1986,6 +2009,50 @@ mod tests {
         .unwrap();
         assert_eq!(texture, r.textures[r.chunk_base + 1].rgba);
         assert_eq!(r.terrain_rebuilds(), rebuilds + r.chunks_y as u64);
+    }
+    #[test]
+    fn a_cut_at_a_chunk_boundary_relights_the_neighbor_without_mutating_the_run() {
+        let mut assets = Assets::synthetic_builder();
+        assets.terrain.fill(1);
+        let run = LevelRun::new(assets, 1, None, Pacing::Reference).unwrap();
+        let mut renderer = Renderer::fallback();
+        renderer
+            .textures
+            .push(Texture::new(1, 1, vec![128, 128, 128, 255]));
+        renderer.frames.push(AssetFrame {
+            key: AssetKey::Rock,
+            atlas: 0,
+            rect: [0, 0, 1, 1],
+            display: [768, 768],
+            anchor: [0, 0],
+        });
+        renderer.base = 1;
+        renderer.reset(&run.assets).unwrap();
+        renderer.frame(&run).unwrap();
+        let state = crate::diagnostics::state(&run.session);
+        let untouched = renderer.textures[renderer.chunk_base + 2].rgba.clone();
+        let at = (123 * 192 + 191) * 4;
+        assert_eq!(renderer.textures[renderer.chunk_base].rgba[at], 128);
+        let before = renderer.terrain_rebuilds();
+        let mut mask = run.session.render_terrain().to_vec();
+        mask[20 * run.assets.width + 32] = 0;
+        renderer
+            .terrain(
+                &mask,
+                run.session.render_bricks(),
+                &run.assets.steel,
+                0,
+                &mut Vec::new(),
+            )
+            .unwrap();
+        assert_eq!(renderer.terrain_rebuilds(), before + 2);
+        assert!(renderer.textures[renderer.chunk_base].rgba[at] < 128);
+        assert_eq!(renderer.textures[renderer.chunk_base + 2].rgba, untouched);
+        assert_eq!(state, crate::diagnostics::state(&run.session));
+        assert_eq!(
+            renderer.textures[renderer.chunk_base + 1].rgba[(123 * 192) * 4 + 3],
+            0
+        );
     }
     #[test]
     fn special_panorama_is_world_aligned_masked_and_resets_to_original() {

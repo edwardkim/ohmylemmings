@@ -46,8 +46,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 3844,
-      "sha256": "43b0f4cff29359c9ea911c5258b6af944c464a0b925ec1a5615cc54c86438454"
+      "bytes": 3881,
+      "sha256": "f5484cafae29d3212f4788bf51b6e23a1df5865de11ec89de86587aefbeabf15"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -281,8 +281,8 @@
     },
     {
       "path": "assets/manifests/remaster_pack.json",
-      "bytes": 181384,
-      "sha256": "63cbb1c6b6d231ad965c4a8787ad21c79886ac8b8c793aa68fb90a44b4ffefa9"
+      "bytes": 182101,
+      "sha256": "107d9ec5b9efc4f9854ec4c9a9dec83f23195648c1974dd04ca36aba7855ddfd"
     },
     {
       "path": "assets/manifests/windows_runtime.json",
@@ -596,8 +596,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/mod.rs",
-      "bytes": 997,
-      "sha256": "89c2167df431a27f9671740c8fdb6020046e341969022d7bf9d0f23d8cd5e5c8"
+      "bytes": 1010,
+      "sha256": "788312548ad41aa69cf08c693dc50d4201693f326e06492d3b647d0b0a87078c"
     },
     {
       "path": "crates/lemmings-game/src/hd/snapshot.rs",
@@ -1281,8 +1281,8 @@
     },
     {
       "path": "tools/check_release_package.py",
-      "bytes": 7824,
-      "sha256": "46938640737510426c16ce7d642839cc56f104c5fcdd9ab5176933a0812c1726"
+      "bytes": 8753,
+      "sha256": "a99dc377eeeefcb27b85cf050f093591b637435ccb68675b3907f052898f7d09"
     },
     {
       "path": "tools/check_results.py",
@@ -2321,8 +2321,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/scene.rs",
-      "bytes": 80289,
-      "sha256": "5b81dc738d6e9aaf05dc33778e8a784047e14f3a8c5191216ff07205899ea256"
+      "bytes": 82942,
+      "sha256": "f070bd67ee34efd2d0273d6423e64c0be95253c47a8bd118665ae30bbe20a3ce"
     },
     {
       "path": "crates/lemmings-game/tests/hd_scene.rs",
@@ -2686,8 +2686,8 @@
     },
     {
       "path": "tools/tests/test_portal_fixture.py",
-      "bytes": 2544,
-      "sha256": "e776f57abf5a415d7b7717cac358aae897521bf9af205e2ecb2606d3b577b03d"
+      "bytes": 3068,
+      "sha256": "d512a84ab56506fef35040b3fa6a5ba7d5cc8ed4205599e44c9c5a7ea981da55"
     },
     {
       "path": "tools/web/hd_portals.cjs",
@@ -3813,6 +3813,31 @@
       "path": "tools/tests/test_frame_feedback.py",
       "bytes": 511,
       "sha256": "8e6e7acfd53685dc0f300cf628d80df6bc95daeda68f326c5f49caf8692d7f04"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/surface.rs",
+      "bytes": 10764,
+      "sha256": "73d4bdb6e1e242889e906d02cd210eb749465c7952207b637812bae8674836e8"
+    },
+    {
+      "path": "tools/hd_surface_quality.py",
+      "bytes": 5002,
+      "sha256": "6931e457e6a01104d3c3214a7919f88f1ea5edc50c3a6f730adcd4547d3cca10"
+    },
+    {
+      "path": "tools/tests/test_hd_surface_quality.py",
+      "bytes": 1779,
+      "sha256": "acff92c51886cf3817849e3deb5013734db32f3b98e2c6b32b1c598f5b8dd289"
+    },
+    {
+      "path": "assets/manifests/hd_surface_quality.json",
+      "bytes": 58029,
+      "sha256": "8f499998d6ffc3f98fc1cc0334fd3c26e2fe9c5ce1e05a90e782482b6b0bfa61"
+    },
+    {
+      "path": "tools/tests/test_package_smoke_transport.py",
+      "bytes": 1677,
+      "sha256": "68bd77c2b9426cc3652357369467ac54492f3d27574c3d4ac288d53791e5a605"
     }
   ],
   "evidence": [
@@ -8551,5 +8576,36 @@
       }
     ],
     "scope": "Opt-in player FPS/feedback UI. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "surface_quality_215": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/215",
+    "previous_pins": [
+      {
+        "path": "Makefile",
+        "bytes": 3844,
+        "sha256": "43b0f4cff29359c9ea911c5258b6af944c464a0b925ec1a5615cc54c86438454"
+      },
+      {
+        "path": "assets/manifests/remaster_pack.json",
+        "bytes": 181384,
+        "sha256": "63cbb1c6b6d231ad965c4a8787ad21c79886ac8b8c793aa68fb90a44b4ffefa9"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/mod.rs",
+        "bytes": 997,
+        "sha256": "89c2167df431a27f9671740c8fdb6020046e341969022d7bf9d0f23d8cd5e5c8"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/scene.rs",
+        "bytes": 80289,
+        "sha256": "5b81dc738d6e9aaf05dc33778e8a784047e14f3a8c5191216ff07205899ea256"
+      },
+      {
+        "path": "tools/tests/test_portal_fixture.py",
+        "bytes": 2544,
+        "sha256": "e776f57abf5a415d7b7717cac358aae897521bf9af205e2ecb2606d3b577b03d"
+      }
+    ],
+    "scope": "HD surface quality and portal artwork refresh. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
   }
 }

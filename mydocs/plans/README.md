@@ -1,5 +1,7 @@
 # 계획 문서
 
+- [#215 HD 지형·지물 질감/완성도](issue-215_hd_surface_quality.md).
+
 - [#140 HD 표시 snapshot·좌표/입력 구현](issue-140_hd_presentation.md).
 
 - [#137 2D HD 리마스터](issue-137_2d_remaster.md), [#138 Fun 01 HD 아트/표시 계약](issue-138_hd_art_contract.md).
