@@ -7,6 +7,8 @@
 
 [2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)는 [#187 전체 인수](mydocs/reports/issue-187_hd_release.md)를 거쳐 **v0.2.0**으로 게시했습니다. 캐릭터337·객체540·5재질·특수4장면·13아이콘·HD 글꼴/전체 UI를 포함하고 HD로 시작하며, 원본 화면과 규칙/조작도 유지합니다. Web은 첫 Fun01 HD 약19.8MB를 우선 준비하고 플레이 중 다음 레벨을 받습니다. 실제 용량·진행률·재시도와 캐시 재사용을 제공하며 엔진/게임 데이터는 별도입니다. [BGM #165 지속 재생 수정](mydocs/reports/issue-165_bgm.md)도 포함합니다. [릴리즈 노트](mydocs/releases/issue-191_v0.2.0.md)·[게시/공개 검증](mydocs/reports/issue-194_release_v020_completion.md)을 참고하세요.
 
+main 개발 버전은 [사용자 로컬 MP3 배경 음악](mydocs/reports/issue-202_local_mp3.md)을 지원합니다. Web의 MP3 선택 또는 Native의 파일 드롭/`--bgm FILE`로 한 곡을 반복하고 음악·효과음 음량을 따로 조절합니다. 준비/오류/재시도를 안내하며 음원은 업로드하거나 배포본에 포함하지 않습니다.
+
 프로젝트 자체 작성 코드는 [MIT](LICENSE)로 제공합니다. [제3자 고지 전문](THIRD_PARTY_NOTICES.txt)과 [적용 범위](third_party/README.md)를 함께 확인하세요. OPL 합성기는 LGPL-2.1-or-later를 유지하며, 원본 DOS 그래픽·레벨·음악/효과음·상표에는 프로젝트 MIT 허가가 적용되지 않습니다.
 
 고전 DOS 게임 레밍즈(Lemmings)의 데이터와 게임 동작을 Rust로 재현하는 프로젝트입니다. 렌더링·입출력과 분리된 코어 엔진을 만들고, SDL2 기반 데스크톱 환경과 WebAssembly 기반 웹 환경을 지원하는 것이 목표입니다.
