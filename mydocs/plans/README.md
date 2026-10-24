@@ -68,3 +68,5 @@
 - [#194 v0.2.0 릴리즈·Pages](issue-194_release_v020.md)
 
 - [#196 웹 점진적 자산 다운로드](issue-196_web_progressive.md)
+
+- [#200 사용자 K-pop BGM 교체 검토 계획](issue-200_custom_bgm_review.md)

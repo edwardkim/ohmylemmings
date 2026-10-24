@@ -162,3 +162,5 @@
 - [#196 웹 점진적 다운로드·진행률 UX](issue-196_web_progressive.md)
 
 - [#194·#196 v0.2.0 정식 게시·공개 Pages 최종 인수](issue-194_release_v020_completion.md)
+
+- [#200 사용자 K-pop BGM 교체 기술 검토](issue-200_custom_bgm_review.md)
