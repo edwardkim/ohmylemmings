@@ -32,12 +32,12 @@
     {
       "path": "Cargo.lock",
       "bytes": 18361,
-      "sha256": "0a9a7a138a8f92f6b613c401588a54f868a5694d9fcd254daa6e3eaa0a648a1a"
+      "sha256": "599ba02b67509d2f879bb8d87cdbac5c99691b1574b7810210c0c10fda2bf008"
     },
     {
       "path": "Cargo.toml",
       "bytes": 454,
-      "sha256": "2aa20e2ba63855644b30e3886706ece3afa120260462c613ad682c1e4cd2b877"
+      "sha256": "af28e611912ead2743c044b1c4d0daa19b9ddfc82ee450f04b80e07bc06e5984"
     },
     {
       "path": "LICENSE",
@@ -101,8 +101,8 @@
     },
     {
       "path": "apps/desktop/src/input.rs",
-      "bytes": 40154,
-      "sha256": "7fe6b172c61682d3d440c10988cb963d24e4866fa2a02f71f982a31a8d288fea"
+      "bytes": 40764,
+      "sha256": "ba65fb78ee0e32f3e2099766a6866799f77f13adbc79a826db913172132f3c52"
     },
     {
       "path": "apps/desktop/src/lifecycle.rs",
@@ -471,8 +471,8 @@
     },
     {
       "path": "crates/lemmings-core/src/sound.rs",
-      "bytes": 484,
-      "sha256": "f79fe9d1f79bcabf310a57a336aed2c3d63b7eb736c2eb05e1b86475c1c88c86"
+      "bytes": 578,
+      "sha256": "788381cb876f53b80ecf41515615b74441c803a35a4081092d9f1e9a3935e209"
     },
     {
       "path": "crates/lemmings-core/src/terrain.rs",
@@ -576,8 +576,8 @@
     },
     {
       "path": "crates/lemmings-game/src/audio.rs",
-      "bytes": 7757,
-      "sha256": "03718a9507602cbf9bf0bf156d56e99a610e4456b6f6359583e890c2757b5340"
+      "bytes": 9149,
+      "sha256": "b2baa2367e1c891a756c8d8670ba83bba5f8e95114c6a175e78bcece3e291d21"
     },
     {
       "path": "crates/lemmings-game/src/diagnostics.rs",
@@ -596,8 +596,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/mod.rs",
-      "bytes": 1010,
-      "sha256": "788312548ad41aa69cf08c693dc50d4201693f326e06492d3b647d0b0a87078c"
+      "bytes": 1024,
+      "sha256": "e6147a0e711dd7246aae0028c363295805372c566f18a6c0c8b1284bf8312db1"
     },
     {
       "path": "crates/lemmings-game/src/hd/snapshot.rs",
@@ -611,13 +611,13 @@
     },
     {
       "path": "crates/lemmings-game/src/lifecycle.rs",
-      "bytes": 15420,
-      "sha256": "284d25c73bb90fe98eeca6484028c2fb22e9c90c519038256bd53f25b61d700a"
+      "bytes": 19164,
+      "sha256": "06c65bb7024f09829ead38613802fb9473a250d5a8b203c556204d5d27afaf4c"
     },
     {
       "path": "crates/lemmings-game/src/panel.rs",
-      "bytes": 16602,
-      "sha256": "cf3af71d41e1a6dc83d58320cd3707ae7dfe0101ed98aadd359892f2410c3e8f"
+      "bytes": 18087,
+      "sha256": "e3abad76ad8c50c0da526878c334e1fc971e2eb0ec6ead399cdbac21c125ea84"
     },
     {
       "path": "crates/lemmings-game/src/pointer.rs",
@@ -636,8 +636,8 @@
     },
     {
       "path": "crates/lemmings-game/tests/audio_output.rs",
-      "bytes": 5960,
-      "sha256": "f6f8dbd01c3ba2ffb4fc5729940101dcfa1e90c0343b565d350fe27d784bf3d7"
+      "bytes": 7186,
+      "sha256": "380530a4079585144fad84c01f3f6a2187e178b86bba7bb1130ae62039de4477"
     },
     {
       "path": "crates/lemmings-game/tests/byte_source.rs",
@@ -821,8 +821,8 @@
     },
     {
       "path": "crates/lemmings-resources/src/sound.rs",
-      "bytes": 3648,
-      "sha256": "cd5f5b5046ffb716dc371683c1f660a3f3d9229107e57f92c003d412ec0ad319"
+      "bytes": 3670,
+      "sha256": "e6a71e2e9dbb226c1458e26fbcae07841699486f6990ccecb2e5af4949a2aa5f"
     },
     {
       "path": "crates/lemmings-resources/src/sprites.rs",
@@ -1812,7 +1812,7 @@
     {
       "path": "tools/tests/fixtures/game_sound.json",
       "bytes": 1097,
-      "sha256": "09b63051c3e5902d0e1c5d1ea54b63cfd88ae331b9ef5062e325cfcb9fc99ff0"
+      "sha256": "6266d032e733d34e18e97ae1afc997fc73aeb015a48c68b124b78f5d6721023f"
     },
     {
       "path": "tools/tests/test_adlib.py",
@@ -2321,8 +2321,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/scene.rs",
-      "bytes": 82942,
-      "sha256": "f070bd67ee34efd2d0273d6423e64c0be95253c47a8bd118665ae30bbe20a3ce"
+      "bytes": 85504,
+      "sha256": "b8aec1605ce3664cb17b259fa18b8c5787891a1d91886b96dc0cbe0f1aaff886"
     },
     {
       "path": "crates/lemmings-game/tests/hd_scene.rs",
@@ -2351,8 +2351,8 @@
     },
     {
       "path": "tools/web/hd_product.cjs",
-      "bytes": 11309,
-      "sha256": "22cd824c03aacb748bf53cb21e623c796a115231ffac1a451f3153d40ef77b66"
+      "bytes": 11635,
+      "sha256": "c9005d808163a983967e12492417c428fc212994eb526110bf4dda3a750609a6"
     },
     {
       "path": "assets/manifests/hd_integration.json",
@@ -3838,6 +3838,11 @@
       "path": "tools/tests/test_package_smoke_transport.py",
       "bytes": 1677,
       "sha256": "68bd77c2b9426cc3652357369467ac54492f3d27574c3d4ac288d53791e5a605"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/feedback.rs",
+      "bytes": 2592,
+      "sha256": "50b7176e8e278016fbbefcd43d5a3cd1df74b6381aed279589dbd55eb23a6b25"
     }
   ],
   "evidence": [
@@ -8607,5 +8612,66 @@
       }
     ],
     "scope": "HD surface quality and portal artwork refresh. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "play_feedback_216": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/216",
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/input.rs",
+        "bytes": 40154,
+        "sha256": "7fe6b172c61682d3d440c10988cb963d24e4866fa2a02f71f982a31a8d288fea"
+      },
+      {
+        "path": "crates/lemmings-core/src/sound.rs",
+        "bytes": 484,
+        "sha256": "f79fe9d1f79bcabf310a57a336aed2c3d63b7eb736c2eb05e1b86475c1c88c86"
+      },
+      {
+        "path": "crates/lemmings-game/src/audio.rs",
+        "bytes": 7757,
+        "sha256": "03718a9507602cbf9bf0bf156d56e99a610e4456b6f6359583e890c2757b5340"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/mod.rs",
+        "bytes": 1010,
+        "sha256": "788312548ad41aa69cf08c693dc50d4201693f326e06492d3b647d0b0a87078c"
+      },
+      {
+        "path": "crates/lemmings-game/src/lifecycle.rs",
+        "bytes": 15420,
+        "sha256": "284d25c73bb90fe98eeca6484028c2fb22e9c90c519038256bd53f25b61d700a"
+      },
+      {
+        "path": "crates/lemmings-game/src/panel.rs",
+        "bytes": 16602,
+        "sha256": "cf3af71d41e1a6dc83d58320cd3707ae7dfe0101ed98aadd359892f2410c3e8f"
+      },
+      {
+        "path": "crates/lemmings-game/tests/audio_output.rs",
+        "bytes": 5960,
+        "sha256": "f6f8dbd01c3ba2ffb4fc5729940101dcfa1e90c0343b565d350fe27d784bf3d7"
+      },
+      {
+        "path": "crates/lemmings-resources/src/sound.rs",
+        "bytes": 3648,
+        "sha256": "cd5f5b5046ffb716dc371683c1f660a3f3d9229107e57f92c003d412ec0ad319"
+      },
+      {
+        "path": "tools/tests/fixtures/game_sound.json",
+        "bytes": 1097,
+        "sha256": "09b63051c3e5902d0e1c5d1ea54b63cfd88ae331b9ef5062e325cfcb9fc99ff0"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/scene.rs",
+        "bytes": 82942,
+        "sha256": "f070bd67ee34efd2d0273d6423e64c0be95253c47a8bd118665ae30bbe20a3ce"
+      },
+      {
+        "path": "tools/web/hd_product.cjs",
+        "bytes": 11309,
+        "sha256": "22cd824c03aacb748bf53cb21e623c796a115231ffac1a451f3153d40ef77b66"
+      }
+    ],
+    "scope": "Player input, impact feedback and synthesized digging sound. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
   }
 }

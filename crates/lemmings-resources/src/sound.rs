@@ -51,7 +51,7 @@ pub fn adlib_effect_for_cue(
             }
             trap_raw
         } // 2fe9..2ff5
-        SoundCue::MusicStart | SoundCue::LevelFinished => return Ok(None),
+        SoundCue::MusicStart | SoundCue::LevelFinished | SoundCue::DigStroke => return Ok(None),
     };
     match raw {
         0 => Ok(None),

@@ -1,5 +1,7 @@
 # 진행 중 작업
 
+- [#216 플레이 피드백](issue-216_play_feel.md): 5개 사용자 피드백의 원인 확인과 단계별 구현.
+
 - [#215 HD 지형·지물 품질 개선](issue-215_hd_surface_quality.md): 대표 장면 전후 비교 후5테마 확장.
 
 - [#113 플레이 중 FPS·피드백](issue-113_player_feedback.md): Web/Native 선택 표시·수동 요약 복사. 기존 성능 미통과 판정은 유지한다.

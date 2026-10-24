@@ -140,6 +140,7 @@ pub struct Renderer {
     epoch: u64,
     font: usize,
     skin: usize,
+    reticle: usize,
 }
 impl Renderer {
     pub fn fallback() -> Self {
@@ -147,6 +148,7 @@ impl Renderer {
             textures: Vec::new(),
             frames: Vec::new(),
             base: 0,
+            reticle: 0,
             fallback_frames: Vec::new(),
             objects: Vec::new(),
             width: 0,
@@ -291,6 +293,14 @@ impl Renderer {
         self.textures
             .push(Texture::new(ui::SKIN_WIDTH, ui::SKIN_HEIGHT, ui::skin()));
         self.fallback_frames.clear();
+        self.reticle = self.textures.len();
+        for unavailable in [false, true] {
+            self.textures.push(Texture::new(
+                super::feedback::SIZE,
+                super::feedback::SIZE,
+                super::feedback::reticle(unavailable),
+            ));
+        }
         self.objects.clear();
         self.hd_portals.clear();
         self.source_portals.clear();
@@ -798,6 +808,17 @@ impl Renderer {
         self.objects(run, s.camera, &mut out)?;
         self.missing.clear();
         self.drawn_hd.clear();
+        let target = run
+            .view
+            .selection
+            .assignment(crate::pointer::skill(s.hud.selected))
+            .and_then(|request| {
+                s.actors
+                    .iter()
+                    .find(|a| a.state.id == request.primary)
+                    .and_then(|a| request.target(a.state))
+            });
+        let marker = target.or(s.hud.hits.primary);
         for actor in &s.actors {
             let a = actor.state;
             if a.removed.is_some() {
@@ -846,6 +867,33 @@ impl Renderer {
                 })
                 .ok_or("actor frame out of range")?;
             Self::blit(&mut out, frame, actor.foot.0 as i32, actor.foot.1 as i32);
+            if let Some(Draw::Blit { dest, .. }) = out.last_mut() {
+                super::feedback::impact_pose(dest, a.action, a.frame.into());
+            }
+            let impact = match a.action {
+                MotionAction::Digging if a.frame % 8 < 4 => {
+                    Some((a.frame % 8, [211, 172, 112, 255]))
+                }
+                MotionAction::Splatting if a.frame < 6 => Some((a.frame, [244, 214, 147, 255])),
+                _ => None,
+            };
+            if let Some((phase, color)) = impact {
+                for side in [-1, 1] {
+                    for i in 0..3 {
+                        let p = i32::from(phase);
+                        Self::fill(
+                            &mut out,
+                            [
+                                actor.foot.0 as i32 + side * (12 + i * 8 + p * 7),
+                                actor.foot.1 as i32 - 3 - i * 5 - p * 3 + p * p,
+                                4,
+                                4,
+                            ],
+                            color,
+                        );
+                    }
+                }
+            }
             if let Some(digit) = a.countdown_digit() {
                 self.text(
                     &mut out,
@@ -856,12 +904,14 @@ impl Renderer {
                     Ink::Accent,
                 );
             }
-            if s.hud.hits.primary == Some(a.id) {
-                Self::fill(
-                    &mut out,
-                    [actor.foot.0 as i32 - 15, actor.foot.1 as i32 + 3, 30, 3],
-                    [116, 238, 163, 255],
-                );
+            if marker == Some(a.id) {
+                let unavailable =
+                    target.is_none() || panel::remaining(&run.session, s.hud.selected) == 0;
+                out.push(Draw::Blit {
+                    texture: self.reticle + usize::from(unavailable),
+                    source: [0, 0, super::feedback::SIZE, super::feedback::SIZE],
+                    dest: [actor.foot.0 as i32 - 42, actor.foot.1 as i32 - 72, 84, 84],
+                });
             }
         }
         out.push(Draw::GameClip(false));
@@ -919,7 +969,11 @@ impl Renderer {
             &mut out,
             212,
             1052,
-            "Select skill, click a lemming",
+            if panel::remaining(&run.session, s.hud.selected) == 0 {
+                "No skills left - choose another"
+            } else {
+                "Select skill, click a lemming"
+            },
             12,
             Ink::Subtle,
         );
@@ -930,7 +984,7 @@ impl Renderer {
             }
             let x = region.rect.x as i32;
             let w = region.rect.width as i32;
-            let active = matches!(c,Control::Skill(skill) if skill==s.hud.selected)
+            let active = matches!(c,Control::Skill(skill) if skill==s.hud.selected && panel::remaining(&run.session, skill)>0)
                 || c == Control::Pause && s.hud.paused
                 || c == Control::Nuke && s.hud.nuked;
             ui::card(
@@ -956,7 +1010,16 @@ impl Renderer {
                     let (name, key) = skill_name(skill);
                     let count =
                         s.hud.skills[panel::SKILLS.iter().position(|&v| v == skill).unwrap()];
-                    (name, key, count.to_string(), count > 0)
+                    (
+                        name,
+                        key,
+                        if count == 0 {
+                            "EMPTY".into()
+                        } else {
+                            count.to_string()
+                        },
+                        count > 0,
+                    )
                 }
                 Control::Pause => (
                     "Pause",

@@ -1,5 +1,7 @@
 # 계획 문서
 
+- [#216 플레이 타격감·조작 피드백](issue-216_play_feel.md): 굴착음·원형 타깃·추락사·기술 적용 불가 안내.
+
 - [#215 HD 지형·지물 질감/완성도](issue-215_hd_surface_quality.md).
 
 - [#140 HD 표시 snapshot·좌표/입력 구현](issue-140_hd_presentation.md).
@@ -78,3 +80,5 @@
 - [#205 v0.3.0 릴리즈·Pages 계획](issue-205_release_v030.md)
 
 - [#208 Native MP3 선택·앱 아이콘 / v0.3.1](issue-208_native_polish.md)
+
+- [#219 v0.3.2 릴리즈·Pages](issue-219_release_v032.md)

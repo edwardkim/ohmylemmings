@@ -3,6 +3,8 @@ use crate::AssignmentSkill;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum SoundCue {
+    /// Enhanced presentation cue; no original AdLib resource ID.
+    DigStroke,
     BuilderWarning,
     AssignSkill(AssignmentSkill),
     AssignmentBlocked(AssignmentSkill),
@@ -16,7 +18,9 @@ pub enum SoundCue {
     HitsSteel,
     OhNo,
     SkillButtonSelect,
-    Trap { slot: u8 },
+    Trap {
+        slot: u8,
+    },
     MusicStart,
     LevelFinished,
 }

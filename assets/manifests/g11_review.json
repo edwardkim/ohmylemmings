@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 305270,
-      "sha256": "1c5b5636488738f4f803d8db6586b3f69a4d17f5fbac70bdfa24c895113a1531",
+      "bytes": 307753,
+      "sha256": "bd0f96d6afc788e72cd836c0b703969da9ca5f2c645dd7a8f423c32d5040dc9d",
       "id": "compatibility"
     },
     {
@@ -11264,5 +11264,17 @@
       }
     ],
     "scope": "HD surface quality and portal artwork refresh. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "play_feedback_216": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/216",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 305270,
+        "sha256": "1c5b5636488738f4f803d8db6586b3f69a4d17f5fbac70bdfa24c895113a1531",
+        "id": "compatibility"
+      }
+    ],
+    "scope": "Player input, impact feedback and synthesized digging sound. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
   }
 }
