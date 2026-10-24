@@ -68,9 +68,25 @@ impl Controls {
 /// Selection affects presentation immediately; its optional logical cue is
 /// recorded for the next control boundary, including while paused.
 pub fn select_skill(session: &mut Session, view: &mut View, skill: SelectedSkill, emit_cue: bool) {
+    if remaining(session, skill) == 0 {
+        return;
+    }
     view.selected_skill = skill;
     if emit_cue {
         session.notify_skill_selection();
+    }
+}
+
+pub fn remaining(session: &Session, skill: SelectedSkill) -> u16 {
+    match skill {
+        SelectedSkill::Climber => session.remaining_climbers,
+        SelectedSkill::Floater => session.remaining_floaters,
+        SelectedSkill::Bomber => session.remaining_bombers,
+        SelectedSkill::Blocker => session.remaining_blockers,
+        SelectedSkill::Builder => session.remaining_builders,
+        SelectedSkill::Basher => session.remaining_bashers,
+        SelectedSkill::Miner => session.remaining_miners,
+        SelectedSkill::Digger => session.remaining_diggers,
     }
 }
 
@@ -498,5 +514,32 @@ mod tests {
         ] {
             assert_eq!(minimap_camera(x, y, 1584), None);
         }
+    }
+}
+
+#[cfg(test)]
+mod availability_tests {
+    use super::*;
+    #[test]
+    fn empty_skill_cannot_replace_an_available_selection() {
+        let mut run = crate::LevelRun::new(
+            Assets::synthetic_builder(),
+            1,
+            None,
+            crate::pacing::Pacing::Reference,
+        )
+        .unwrap();
+        run.session.remaining_floaters = 10;
+        run.session.remaining_diggers = 0;
+        select_skill(
+            &mut run.session,
+            &mut run.view,
+            SelectedSkill::Floater,
+            true,
+        );
+        select_skill(&mut run.session, &mut run.view, SelectedSkill::Digger, true);
+        assert_eq!(run.view.selected_skill, SelectedSkill::Floater);
+        assert_eq!(remaining(&run.session, SelectedSkill::Digger), 0);
+        assert_eq!(run.session.remaining_floaters, 10);
     }
 }

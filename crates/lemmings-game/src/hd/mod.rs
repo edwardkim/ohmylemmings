@@ -23,6 +23,7 @@ pub use snapshot::{
 
 pub mod catalog;
 pub mod download;
+mod feedback;
 mod font;
 mod surface;
 mod ui;

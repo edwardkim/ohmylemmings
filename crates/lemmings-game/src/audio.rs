@@ -66,6 +66,9 @@ pub struct AudioOutput {
     generation: Option<u64>,
     last_sequence: Option<u64>,
     frames: u64,
+    whoosh: u32,
+    noise: u32,
+    filtered: i32,
 }
 impl AudioOutput {
     pub fn new(bytes: Vec<u8>, rate: u32) -> Result<Self, String> {
@@ -84,6 +87,9 @@ impl AudioOutput {
             generation: None,
             last_sequence: None,
             frames: 0,
+            whoosh: 0,
+            noise: 0x216d19,
+            filtered: 0,
         })
     }
     pub const fn frames(&self) -> u64 {
@@ -107,6 +113,9 @@ impl AudioOutput {
         self.active = false;
     }
     fn reset(&mut self) {
+        self.whoosh = 0;
+        self.noise = 0x216d19;
+        self.filtered = 0;
         let image = AdlibImage::parse(&self.bytes).expect("private validated immutable image");
         self.state = Some(
             AdlibPcm::new(image, self.rate, AudioRate::DOS_VGA)
@@ -164,6 +173,11 @@ impl AudioOutput {
                 }
             } else {
                 for event in &batch.events {
+                    if event.source.cue == lemmings_core::SoundCue::DigStroke {
+                        // One bounded voice coalesces simultaneous digging;
+                        // synthesized here, not a sampled third-party asset.
+                        self.whoosh = self.rate / 10;
+                    }
                     if let Some(command) = event.command {
                         self.apply(command)?;
                     }
@@ -173,9 +187,15 @@ impl AudioOutput {
         self.generation = Some(batch.generation);
         self.last_sequence = previous;
         self.active = active;
+        if !active {
+            self.whoosh = 0;
+        }
         Ok(flush)
     }
     fn apply(&mut self, command: AdlibCommand) -> Result<(), String> {
+        if command == AdlibCommand::Stop {
+            self.whoosh = 0;
+        }
         let image = AdlibImage::parse(&self.bytes).expect("private validated immutable image");
         let mut pcm = AdlibPcm::resume(image, self.state.take().expect("owned continuation"));
         let result = pcm.apply(command).map_err(|e| e.to_string());
@@ -203,6 +223,19 @@ impl AudioOutput {
         self.state = Some(pcm.into_continuation());
         result?;
         for sample in output {
+            if self.whoosh > 0 {
+                self.noise ^= self.noise << 13;
+                self.noise ^= self.noise >> 17;
+                self.noise ^= self.noise << 5;
+                let noise = (self.noise >> 16) as i16 as i32;
+                self.filtered = (self.filtered * 3 + noise) / 4;
+                let duration = self.rate / 10;
+                let envelope = self.whoosh.min((duration - self.whoosh) * 20);
+                let effect = (noise - self.filtered) * envelope as i32 / duration as i32 / 5;
+                *sample = (i32::from(*sample) + effect * i32::from(self.mix[1]) / 100)
+                    .clamp(i16::MIN as i32, i16::MAX as i32) as i16;
+                self.whoosh -= 1;
+            }
             *sample = (i32::from(*sample) * i32::from(self.volume) / 100) as i16;
         }
         Ok(())

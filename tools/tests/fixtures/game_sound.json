@@ -1,6 +1,6 @@
 {
   "scope": "Synthetic game trace and PCM only; original x86 oracle metadata separately pinned in dos_sound.json",
-  "trace_sha256": "7fd0d4d1c324d868387b77e03c65b87e4d0dea0d22113527eb033cadb854b64c",
+  "trace_sha256": "f62a1c52d9c755598750529ada97a1686edd64fa6c2f5fbf96a51c51dda474ed",
   "pcm": [
     {
       "name": "startup-56",

@@ -519,11 +519,25 @@ mod tests {
         }
     }
     fn setup() -> (Session, View) {
-        let a = Assets::synthetic();
-        (
-            Session::new(a.config, a.entrances, a.width, a.height, a.terrain).unwrap(),
-            View::new(0),
+        // Input-selection tests need the fixture's actual skill inventory.
+        let run = crate::lifecycle::LevelRun::new(
+            Assets::synthetic(),
+            1,
+            None,
+            crate::pacing::Pacing::Reference,
         )
+        .unwrap();
+        (run.session, run.view)
+    }
+    #[test]
+    fn empty_skill_is_disabled_for_both_keyboard_and_toolbar() {
+        let (mut s, mut v) = setup();
+        s.remaining_diggers = 0;
+        handle(key(Keycode::F, false), &mut s, &mut v, 640, false).unwrap();
+        handle(key(Keycode::D, false), &mut s, &mut v, 640, false).unwrap();
+        handle(click(145, 190, 1), &mut s, &mut v, 640, false).unwrap();
+        assert_eq!(v.selected_skill, SelectedSkill::Floater);
+        assert!(s.inputs.is_empty());
     }
     fn click(x: i32, y: i32, clicks: u8) -> Event {
         Event::MouseButtonDown {

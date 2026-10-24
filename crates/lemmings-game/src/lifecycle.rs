@@ -91,9 +91,63 @@ impl LevelRun {
 
     /// Collect every boundary before a host batches or renders another update.
     pub fn tick(&mut self) -> Result<(), Box<dyn Error>> {
+        let iteration = self.session.scheduler.step_state().iteration;
+        let control_step = self.session.scheduler.step_state().control_step;
+        let signature = |session: &Session, x: i32, y: i32| {
+            let mut bits = 0u32;
+            for dy in -2..=0 {
+                for dx in -4..=4 {
+                    let (px, py) = (x + dx, y + dy);
+                    bits = (bits << 1)
+                        | u32::from(
+                            px >= 0
+                                && py >= 0
+                                && (px as usize) < self.assets.width
+                                && (py as usize) < self.assets.height
+                                && session.render_terrain()
+                                    [py as usize * self.assets.width + px as usize]
+                                    != 0,
+                        );
+                }
+            }
+            bits
+        };
+        let before: Vec<_> = self
+            .session
+            .actors
+            .iter()
+            .map(|actor| {
+                let a = actor.state();
+                (a.id, a.x, a.y, signature(&self.session, a.x, a.y))
+            })
+            .collect();
         self.session.tick()?;
         self.sound.report_dropped(self.session.sound_dropped());
         self.sound.collect(self.session.sounds());
+        let step = self.session.scheduler.step_state();
+        if step.iteration != iteration {
+            let mut boundary_sequence = self.session.sounds().len() as u64;
+            for actor in &self.session.actors {
+                let a = actor.state();
+                if a.removed.is_none()
+                    && a.action == lemmings_core::MotionAction::Digging
+                    && a.frame % 8 == 0
+                    && before.iter().any(|&(id, x, y, mask)| {
+                        id == a.id && mask != signature(&self.session, x, y)
+                    })
+                {
+                    self.sound.collect(&[lemmings_session::SessionSound {
+                        control_step,
+                        iteration: step.iteration,
+                        sequence: boundary_sequence,
+                        input_sequence: None,
+                        actor_id: Some(a.id),
+                        cue: lemmings_core::SoundCue::DigStroke,
+                    }]);
+                    boundary_sequence += 1;
+                }
+            }
+        }
         Ok(())
     }
 
@@ -131,6 +185,46 @@ mod tests {
     use super::*;
     use lemmings_core::{InputCommand, StartupCommand};
     use std::time::Duration;
+    #[test]
+    fn digging_feedback_occurs_on_terrain_edits_and_never_while_paused() {
+        let mut run = LevelRun::new(Assets::synthetic(), 1, None, Pacing::Reference).unwrap();
+        for _ in 0..80 {
+            run.tick().unwrap();
+        }
+        run.sound.drain();
+        run.session
+            .queue(InputCommand::Custom(StartupCommand::AssignDigger(0)))
+            .unwrap();
+        let mut strokes = 0;
+        for _ in 0..24 {
+            let before = run.session.render_terrain().to_vec();
+            let control_step = run.session.scheduler.step_state().control_step;
+            run.tick().unwrap();
+            let events = run.sound.drain();
+            for e in events
+                .events
+                .iter()
+                .filter(|e| e.source.cue == lemmings_core::SoundCue::DigStroke)
+            {
+                assert_eq!(e.source.actor_id, Some(0));
+                assert_eq!(e.source.control_step, control_step);
+                assert_ne!(before, run.session.render_terrain());
+                strokes += 1;
+            }
+        }
+        assert!(strokes >= 2);
+        run.session.queue(InputCommand::Pause).unwrap();
+        for _ in 0..10 {
+            run.tick().unwrap();
+            assert!(
+                run.sound
+                    .drain()
+                    .events
+                    .iter()
+                    .all(|e| e.source.cue != lemmings_core::SoundCue::DigStroke)
+            );
+        }
+    }
 
     #[test]
     fn rank_boundary_continue_keeps_full_identity_and_advances_music_once() {

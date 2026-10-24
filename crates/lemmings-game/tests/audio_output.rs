@@ -163,3 +163,34 @@ fn independent_gains_preserve_default_pcm_and_reject_invalid_changes_atomically(
     assert!(b.iter().all(|&v| v == 0));
     assert_eq!(explicit.frames(), 12288);
 }
+
+#[test]
+fn digging_whoosh_is_audible_chunk_independent_and_respects_effects_volume() {
+    let mut a = AudioOutput::new(demo_image(), 48000).unwrap();
+    let mut initial = batch(7, 0, None);
+    initial.music_playing = false;
+    a.synchronize(&initial, true).unwrap();
+    let mut stroke = batch(7, 1, Some(AdlibCommand::Stop));
+    stroke.music_playing = false;
+    stroke.events[0].command = None;
+    stroke.events[0].source.cue = SoundCue::DigStroke;
+    a.synchronize(&stroke, true).unwrap();
+    let mut pcm = [0; 8192];
+    a.render(&mut pcm).unwrap();
+    assert!(pcm.iter().any(|&v| v != 0));
+    assert!(pcm[6000..].iter().all(|&v| v == 0));
+    let mut b = AudioOutput::new(demo_image(), 48000).unwrap();
+    b.synchronize(&initial, true).unwrap();
+    b.synchronize(&stroke, true).unwrap();
+    let mut split = [0; 8192];
+    for chunk in split.chunks_mut(127) {
+        b.render(chunk).unwrap();
+    }
+    assert_eq!(pcm, split);
+    let mut muted = AudioOutput::new(demo_image(), 48000).unwrap();
+    muted.set_mix(100, 0).unwrap();
+    muted.synchronize(&initial, true).unwrap();
+    muted.synchronize(&stroke, true).unwrap();
+    muted.render(&mut pcm).unwrap();
+    assert!(pcm.iter().all(|&v| v == 0));
+}
