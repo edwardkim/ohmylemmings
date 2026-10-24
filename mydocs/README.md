@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-[#215 HD 지형·지물 품질](reports/issue-215_hd_surface_quality.md)의 현재 질감·수직벽 윤곽 수준을 메인테이너가 인수했다. PR/CI/병합을 진행하며 공식 배포는 변경하지 않는다.
+[#215 HD 지형·지물 품질](reports/issue-215_hd_surface_quality.md)의 현재 질감·수직벽 윤곽 수준을 메인테이너가 인수했다. PR #217 병합과 전체 플랫폼 CI7개를 완료했다. 공식 배포는 변경하지 않았다.
 
 [#113 플레이 FPS·피드백](reports/issue-113_player_feedback.md)의 Web/Native F3 표시·F2 요약 복사를 구현하고 플랫폼 CI7개·PR #213 병합·메인테이너 동작 테스트 인수를 완료했다. 고성능 환경의 잔여 성능/메모리 검증과 NOT READY/OPEN 판정은 유지한다.
 

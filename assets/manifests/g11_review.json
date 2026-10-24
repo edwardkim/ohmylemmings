@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 305092,
-      "sha256": "e06b8cc2a9644fffed5aeb2620cc9d9bd63cddf608e7f7aabfa4c1144b3874ef",
+      "bytes": 305270,
+      "sha256": "1c5b5636488738f4f803d8db6586b3f69a4d17f5fbac70bdfa24c895113a1531",
       "id": "compatibility"
     },
     {

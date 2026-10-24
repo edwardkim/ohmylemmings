@@ -1281,8 +1281,8 @@
     },
     {
       "path": "tools/check_release_package.py",
-      "bytes": 7824,
-      "sha256": "46938640737510426c16ce7d642839cc56f104c5fcdd9ab5176933a0812c1726"
+      "bytes": 8753,
+      "sha256": "a99dc377eeeefcb27b85cf050f093591b637435ccb68675b3907f052898f7d09"
     },
     {
       "path": "tools/check_results.py",
@@ -3833,6 +3833,11 @@
       "path": "assets/manifests/hd_surface_quality.json",
       "bytes": 58029,
       "sha256": "8f499998d6ffc3f98fc1cc0334fd3c26e2fe9c5ce1e05a90e782482b6b0bfa61"
+    },
+    {
+      "path": "tools/tests/test_package_smoke_transport.py",
+      "bytes": 1677,
+      "sha256": "68bd77c2b9426cc3652357369467ac54492f3d27574c3d4ac288d53791e5a605"
     }
   ],
   "evidence": [

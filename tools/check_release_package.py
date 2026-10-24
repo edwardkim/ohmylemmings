@@ -16,6 +16,9 @@ import threading
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
+# Full HD RGBA PNG can approach8MiB before base64, plus original RGB and JSON.
+# Keep a finite transport bound while allowing high-detail1920x1080 captures.
+MAX_RESULT_BYTES = 16 * 1024 * 1024
 if __package__ in (None, ''):
     sys.path.insert(0, str(ROOT))
 from tools.release_package import require, verify_package
@@ -84,11 +87,28 @@ def check_web(directory, browser=None, full=False):
             self.wfile.write(body)
 
         def do_POST(self):
-            size = int(self.headers.get('Content-Length', '0'))
-            if self.path != '/__result' or not 0 < size < 2000000:
+            if self.path != '/__result':
                 self.send_error(400)
                 return
-            result.update(json.loads(self.rfile.read(size)))
+            try:
+                size = int(self.headers.get('Content-Length', '0'))
+                if not 0 < size <= MAX_RESULT_BYTES:
+                    raise ValueError('Package result size exceeds transport bounds')
+            except ValueError as error:
+                result.update(status='FAIL', error=f'Package result size: {error}')
+                ready.set()
+                self.send_error(413)
+                return
+            try:
+                received = json.loads(self.rfile.read(size))
+                if not isinstance(received, dict):
+                    raise ValueError('expected an object')
+            except (ValueError, UnicodeError) as error:
+                result.update(status='FAIL', error=f'Package result JSON: {error}')
+                ready.set()
+                self.send_error(400)
+                return
+            result.update(received)
             self.send_response(200)
             self.end_headers()
             self.wfile.write(b'OK')
