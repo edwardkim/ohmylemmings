@@ -1,5 +1,7 @@
 # 계획 문서
 
+- [#216 플레이 타격감·조작 피드백](issue-216_play_feel.md): 굴착음·원형 타깃·추락사·기술 적용 불가 안내.
+
 - [#215 HD 지형·지물 질감/완성도](issue-215_hd_surface_quality.md).
 
 - [#140 HD 표시 snapshot·좌표/입력 구현](issue-140_hd_presentation.md).
