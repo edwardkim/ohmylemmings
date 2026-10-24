@@ -2,7 +2,7 @@
 
 이슈: https://github.com/edwardkim/ohmylemmings/issues/202
 
-상태: 구현·로컬/플랫폼 검증·self-review·실제 병합 완료. 메인테이너의 새 MP3 청취 확인 대기로 #202 OPEN. 기준 main `3ee06c63bd33fab9456c3383c7422b7a97231cf4`. [계획](../plans/issue-202_local_mp3.md) · [선행 검토](issue-200_custom_bgm_review.md).
+상태: 구현·로컬/플랫폼 검증·self-review·실제 병합·배포와 메인테이너 최종 사용 확인까지 완료. #202를 완료 처리한다. 기준 main `3ee06c63bd33fab9456c3383c7422b7a97231cf4`. [계획](../plans/issue-202_local_mp3.md) · [선행 검토](issue-200_custom_bgm_review.md).
 
 Web은 별도 MP3 선택과 원본/내 음악/끄기, 음악·효과음·전체 음량, 한 곡 반복, 준비/재생/차단/오류/재시도·파일 해제를 제공한다. HTMLMediaElement와 object URL을 사용하며 업로드·영구 파일 복사·전곡 WASM/AudioBuffer 디코딩을 하지 않는다. 새로고침 후 재선택한다.512MB 이하 DRM 없는 MP3가 대상이다.
 
@@ -45,3 +45,9 @@ main 개발 버전과 로컬 개발 서버/`preview-202/`에 반영한다. **#20
 ## v0.3.0 정식 게시 (2026-10-24)
 
 메인테이너 지시로 [#205 정식 릴리즈/Pages](issue-205_release_v030_completion.md)를 완료했다. 위 main 개발 버전/별도 게시 문구는 당시 기록이다. 실제 공개 HTTPS 게임에서 제공 MP3 두 파일의 재생·곡 끝 반복·교체·숨김/복귀·효과음 동시 출력과 업로드/예외0을 다시 확인했다. #202는 새 MP3의 사람 청취 응답만 기다리며 OPEN을 유지한다.
+
+## 메인테이너 최종 인수 완료 (2026-10-24)
+
+메인테이너가 #202 종료 여부를 확인하며 “확인은 했습니다.”라고 실제 사용 확인을 전달했다. 구현/자동 검사/제공 MP3 디지털 출력·배포는 이미 완료했고, 마지막으로 남겨 두었던 사람의 사용·청취 확인도 충족했으므로 #202를 완료 처리한다. 위 OPEN/응답 대기 문구는 확인 전 당시 기록이다.
+
+기능은 [v0.3.0 정식 배포](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.0)에 포함했고 [#208 v0.3.1](issue-208_native_polish.md)에서 Native F4/Ctrl+O/Cmd+O 파일 선택 창·앱 아이콘까지 개선했다. [최신 다운로드](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.1) · [웹 플레이](https://edwardkim.github.io/ohmylemmings/). 게시된 버전 노트·태그·asset은 당시 기록으로 보존한다. #113 성능 NOT READY는 별도다.
