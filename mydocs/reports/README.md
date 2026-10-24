@@ -180,3 +180,5 @@
 - [#219 v0.3.2 릴리즈·Pages 및 #216 인수 완료](issue-219_release_v032.md)
 
 - [#222 한국어·영어 README와 개발 취지](issue-222_bilingual_readme.md)
+
+- [#224 Web 배포 용량 증가 조사](issue-224_web_size.md)
