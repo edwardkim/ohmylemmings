@@ -1756,8 +1756,8 @@
     },
     {
       "path": "tools/publish_release.py",
-      "bytes": 12607,
-      "sha256": "634f997eb685be32562a535916a543f2a2ae467d2bd0b8b760771bbaef356218"
+      "bytes": 12779,
+      "sha256": "cdda7e749af64e71f9d388b907c4cf36d6e9f10faa54e829fc89d8cca1e324ec"
     },
     {
       "path": "tools/reference_assets.py",

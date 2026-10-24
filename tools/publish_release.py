@@ -84,7 +84,7 @@ def prepare(tag,run_id,output):
     validate_run(run,jobs,repository,tree(run['head_sha']),release_tree)
     artifacts=api(f'repos/{repository}/actions/runs/{run_id}/artifacts?per_page=100')['artifacts']
     output.mkdir(parents=True)
-    files={};packages=[];builds=[]
+    files={};packages=[];builds=[];common_source=None
     with tempfile.TemporaryDirectory(dir=output,prefix='build-inputs-') as temporary:
         temporary=Path(temporary)
         source_bundle(temporary/'expected-source.tar.gz')
@@ -117,6 +117,8 @@ def prepare(tag,run_id,output):
                     source=archive.extractfile('source.tar.gz').read()
             require(manifest['version']==version and manifest['original_game_data'] is True,'Package version/data differs')
             count=verify_sources(source,expected)
+            if common_source is None: common_source=source
+            require(source == common_source, 'Platform corresponding-source archives differ')
             evidence=json.loads((installed/EVIDENCE[target]/'summary.json').read_text())
             smoke=evidence.get('smoke',evidence)
             require(evidence['package']['sha256']==report['sha256'] and smoke['status']=='PASS'
