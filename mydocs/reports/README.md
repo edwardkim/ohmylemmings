@@ -178,3 +178,5 @@
 - [#142 과거 Chrome156 CI 진단 추적 중단 (Not planned)](issue-142_browser_ci_retirement.md)
 
 - [#219 v0.3.2 릴리즈·Pages 및 #216 인수 완료](issue-219_release_v032.md)
+
+- [#222 한국어·영어 README와 개발 취지](issue-222_bilingual_readme.md)
