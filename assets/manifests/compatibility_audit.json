@@ -111,8 +111,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 73886,
-      "sha256": "ba4b3bf2d10ca6f427698bec139a3bb1382eb4dc030c41785e45b98ec6c0b058"
+      "bytes": 74109,
+      "sha256": "788b4c2bab4dd7d39b68c28aad85aaacfddc1d9e6fc7e4f60f46bfe9007c521c"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -4077,7 +4077,7 @@
     {
       "path": "assets/manifests/display_cadence.json",
       "bytes": 92906,
-      "sha256": "0b0f8555908bf50e14bdf31b5dcd6d5cdf683d401896280ff539a7b0b2ca968a",
+      "sha256": "f08a25c9adaa4ed09072cafcf7857db8711b805fd105669147c6554fcd001809",
       "id": "g11-06-display-cadence"
     }
   ],

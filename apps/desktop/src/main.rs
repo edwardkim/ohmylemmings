@@ -1161,8 +1161,13 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                     if *key == Keycode::F3 {
                         feedback.toggle();
                     } else if feedback.enabled {
+                        let level = if options.synthetic {
+                            format!("practice {}", game.assets.title)
+                        } else {
+                            format!("{} {}", game.level.difficulty().name(), game.level.number())
+                        };
                         let report = feedback.feedback(
-                            &format!("{} {}", game.level.difficulty().name(), game.level.number()),
+                            &level,
                             hd_active,
                             canvas.output_size()?,
                             &format!(
