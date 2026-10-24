@@ -19,7 +19,10 @@
                 <progress id="download-progress" max="1" aria-describedby="download-hint"></progress>
                 <div class="download-detail"><p id="download-hint" role="status" aria-live="polite"></p><button id="download-retry" class="secondary" type="button" hidden>다시 시도</button></div>
             </section>
-            <div class="screen"><canvas id="game" tabindex="0" width="320" height="200" aria-label="레밍즈 게임 화면">Canvas를 지원하는 브라우저에서 실행해주세요.</canvas></div>
+            <div class="screen"><canvas id="game" tabindex="0" width="320" height="200" aria-label="레밍즈 게임 화면">Canvas를 지원하는 브라우저에서 실행해주세요.</canvas>
+                <aside id="fps-hud" class="fps-hud" aria-label="플레이 성능" hidden><output id="fps-values" aria-live="off"></output><p id="fps-message" role="status"></p><textarea id="fps-report" aria-label="복사할 성능 피드백" readonly hidden></textarea></aside>
+            </div>
+            <div class="fps-controls"><button id="fps-toggle" class="secondary" type="button" aria-pressed="false">FPS 보기 (F3)</button><button id="fps-copy" class="secondary" type="button" disabled>피드백 복사 (F2)</button><span>rAF 빈도와 화면 갱신은 다릅니다. 측정값에 체감 의견을 덧붙여주세요.</span></div>
             <div class="controls"><button id="pause" type="button" disabled>멈추기</button><button id="restart" class="secondary" type="button" disabled>처음부터</button><button id="continue" class="secondary" type="button" hidden>다음 레벨</button><p id="population">레밍들의 이동과 구출 과정을 살펴보세요.</p></div>
             <div class="audio-controls" aria-label="소리 설정"><button id="sound" type="button" class="secondary" disabled>소리 켜기</button><label for="volume">전체 음량</label><input id="volume" type="range" min="0" max="100" step="1" value="40" aria-label="음량"><output id="audio-status" role="status" aria-live="polite">소리는 버튼을 눌러 켤 수 있습니다.</output></div>
             <section class="music-controls" aria-labelledby="music-title">

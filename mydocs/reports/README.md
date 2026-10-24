@@ -1,5 +1,7 @@
 # 작업 결과 보고서
 
+- [#113 플레이 FPS·피드백 복사](issue-113_player_feedback.md): Web/Native 선택 표시·일시 보류·수동 복사·실제 앱 검증. 기존 성능 자격 검증은 별도다.
+
 - [#140 공통 HD 표시 snapshot·좌표/입력](issue-140_hd_presentation.md): 경계·mask·원본 상태/화면/사운드 불변 검증.
 
 - [#138 Fun 01 HD 아트 디렉션](issue-138_hd_art_direction.md): 새 손그림풍2D 시안·출처/규격·전체 자산 대응과 실제 구현 전 한계.

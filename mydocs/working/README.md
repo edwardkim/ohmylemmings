@@ -1,5 +1,7 @@
 # 진행 중 작업
 
+- [#113 플레이 중 FPS·피드백](issue-113_player_feedback.md): Web/Native 선택 표시·수동 요약 복사. 기존 성능 미통과 판정은 유지한다.
+
 - [#140 HD 공통 표시·입력 계약](issue-140_hd_presentation.md): typed snapshot·좌표/패널과 읽기 전용 합성 검증.
 
 - [#137 2D HD 리마스터](issue-137_2d_remaster.md): 첫 Fun 01 디자인 후보·자산/표시 계약, 실제 HD 모드 후속.
