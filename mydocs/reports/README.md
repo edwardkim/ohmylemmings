@@ -165,4 +165,4 @@
 
 - [#200 사용자 K-pop BGM 교체 기술 검토](issue-200_custom_bgm_review.md)
 
-- [#202 사용자 로컬 MP3 BGM 구현·검증](issue-202_local_mp3.md)
+- [#202 로컬 MP3 구현·CI 완료/청취 인수 대기](issue-202_local_mp3.md)
