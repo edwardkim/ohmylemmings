@@ -135,7 +135,7 @@
 
 - [#163 HD 자산 팩 정리 진행 기록](issue-163_hd_pack.md)
 
-- [#165 BGM 누락 조사](issue-165_bgm.md)
+- [#165 BGM 수정·청취 인수 완료](issue-165_bgm.md)
 
 - [#169 테마별 HD 로딩](issue-169_hd_loading.md)
 

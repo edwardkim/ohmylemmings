@@ -2,6 +2,8 @@
 
 이슈: https://github.com/edwardkim/ohmylemmings/issues/165
 
+현재: 제품 수정·CI·병합·v0.2.0 배포와 메인테이너의 BGM 정상 재생 확인을 완료했다. #165 종료 지시를 반영한다. 아래 OPEN/대기 문구는 이전 단계의 기록이며, 최종 인수는 문서 마지막과 [보고서](../reports/issue-165_bgm.md)를 따른다.
+
 메인테이너가 개발 Web, Native, 배포 패키지 모두에서 효과음은 들리지만 BGM이 들리지 않는다고 확인했다. #163과 별도 worktree에서 공통 음악 시작 이벤트→AdLib 음악 채널→PCM 합성→플랫폼 출력 순으로 조사한다. 원본 ADLIB 데이터는 ignored 경로만 사용하고 공개 문서에는 해시·측정치만 기록한다. 기존 비영 PCM 검사가 효과음만으로도 통과할 가능성을 구분하며, BGM 단독·장시간 지속 출력과 효과음 후 음악 지속을 확인한다.
 
 1. 원본 실행 설정·음악 시작 이벤트와 음악 전용 PCM 재현.
@@ -21,3 +23,7 @@
 BGM [PR #190](https://github.com/edwardkim/ohmylemmings/pull/190) 실제 merge `9a0ab3bb4e1c4607ee3500445e1cc3ceedc911f7`. head `95c2e221acff5d62f530e312231b8847db22b484`의 [CI39982379823](https://github.com/edwardkim/ohmylemmings/actions/runs/39982379823)에서7개 모두 SUCCESS. CI checkout `6c571f10202c3897f09d965a4df6a26567ef5b62`/실제 merge tree `25a01ea4e47454f856ce457a1a9b4b921e8bffb0`가 같다. 버전 [PR #192](https://github.com/edwardkim/ohmylemmings/pull/192) 실제 merge `c7da0071cd8d056bea4bad83fa912b70be407e60`. head `232019603a36d487149c1cd9b8f93732c3111b15`의 [CI39984622798](https://github.com/edwardkim/ohmylemmings/actions/runs/39984622798)에서7개 모두 SUCCESS. CI checkout `d405a53a140de2c6ded78ea5c1c1a0be8a92a231`/실제 merge tree `daac94826be9b8fd15c084eb364dd06d00635c4e`가 같다.
 
 메인테이너의 실제 청취 응답은 아직 없다. 디지털/장치 검증 및 제품 수정은 완료했으며 #165는 청취 확인 대기로 OPEN을 유지한다. 버전0.2.0 선택을 청취 정상 판정으로 간주하지 않았다. [결과·범위](../reports/issue-165_bgm.md). #113 NOT READY와 기존 공개 배포/OS 정책은 유지한다.
+
+## 메인테이너 청취 인수 완료 (2026-10-24)
+
+v0.2.0 공개 후 메인테이너가 “bgm 도 잘 나옵니다. 이슈를 close 하면 되겠습니다.”라고 정상 재생을 확인하고 종료를 지시했다. 기존 제품 수정·회귀·플랫폼 CI·병합·배포 검증에 실제 청취 인수를 더해 #165를 완료한다. 이 응답은 메인테이너의 재생 확인으로 기록하며, 새로 모든 기기·곡을 청취했다고 확대하지 않는다. 문서 내 청취 대기/OPEN 문구는 이번 응답 전의 기록이다.
