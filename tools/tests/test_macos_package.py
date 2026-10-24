@@ -44,6 +44,8 @@ class MacPackageTests(unittest.TestCase):
             info=plistlib.loads(z.read(APP+'/Contents/Info.plist'))
             self.assertEqual(info['CFBundleExecutable'],'OhMyLemmings')
             self.assertEqual(info['LSMinimumSystemVersion'],'13.0')
+            self.assertEqual(info['CFBundleIconFile'],'app-icon.icns')
+            self.assertEqual(z.read(APP+'/Contents/Resources/app-icon.icns'),(self.root/'apps/desktop/resources/app-icon.icns').read_bytes())
             self.assertIn(APP+'/Contents/Resources/data/ADLIB.DAT',z.namelist())
             self.assertIn('source.tar.gz',z.namelist())
             self.assertEqual(z.read(APP+'/Contents/Resources/HD-PRESENTATION'), b'hd\n')

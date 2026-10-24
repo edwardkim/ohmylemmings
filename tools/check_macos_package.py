@@ -27,6 +27,12 @@ def check(archive,evidence,expected_arch):
     installed=evidence/'압축 해제 game folder';foreign=evidence/'다른 작업 folder';foreign.mkdir()
     subprocess.run(['ditto','-x','-k',str(archive),str(installed)],check=True)
     app=installed/APP;binary=installed/EXE;library=installed/LIB
+    iconset=evidence/'app-icon.iconset'
+    subprocess.run(['iconutil','-c','iconset',str(app/'Contents/Resources/app-icon.icns'),'-o',str(iconset)],check=True)
+    decoded_icons=sorted(iconset.glob('*.png'))
+    require(bool(decoded_icons),'Native macOS ICNS decoder returned no images')
+    save(evidence/'app-icon.json',dict(status='PASS',native_icns_decode=True,
+        representations=[dict(name=p.name,sha256=sha(p.read_bytes())) for p in decoded_icons]))
     environment={k:v for k,v in os.environ.items() if not k.startswith('DYLD_') and k!='SDL_VIDEODRIVER'}
     environment.update(SDL_AUDIODRIVER='dummy',SDL_RENDER_DRIVER='software')
     subprocess.run(['codesign','--verify','--deep','--strict','--verbose=2',str(app)],check=True)

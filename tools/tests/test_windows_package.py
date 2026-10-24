@@ -10,6 +10,9 @@ from tools.web_build import SOURCE_REQUIRED
 
 
 def pe(dll=False):
+    if not dll:
+        from tools.tests.test_app_icons import icon_pe
+        return icon_pe()
     data = bytearray(256)
     data[:2] = b'MZ'; data[60:64] = (128).to_bytes(4, 'little')
     data[128:132] = b'PE\0\0'; data[132:134] = (0x8664).to_bytes(2, 'little')
@@ -25,6 +28,8 @@ class WindowsPackageTests(unittest.TestCase):
         for name in SOURCE_REQUIRED:
             path = self.root/name; path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(b'public\n')
         (self.root/'Cargo.toml').write_text('[workspace.package]\nversion="0.1.0"\n')
+        from tools.tests.test_app_icons import install_fixture as install_icons
+        install_icons(self.root)
         launcher = self.root/'apps/desktop/windows/start-game.cmd'; launcher.parent.mkdir(parents=True)
         launcher.write_bytes(b'@echo off\r\n"%~dp0OhMyLemmings.exe" %*\r\n')
         self.runtime = self.base/'runtime'; self.runtime.mkdir()
@@ -89,6 +94,13 @@ class WindowsPackageTests(unittest.TestCase):
         data = bytearray(pe()); data[132:134] = (0x14c).to_bytes(2,'little'); path.write_bytes(data)
         with self.assertRaises(ValueError): self.package()
         path.write_bytes(pe()); (self.sdl/'SDL2.dll').unlink()
+        with self.assertRaises(ValueError): self.package()
+
+    def test_missing_or_modified_executable_icon_fails_packaging(self):
+        path = self.runtime/'lemmings-desktop.exe'; data = pe()
+        path.write_bytes(data[:512])
+        with self.assertRaises(ValueError): self.package()
+        path.write_bytes(data[:-1] + bytes([data[-1] ^ 255]))
         with self.assertRaises(ValueError): self.package()
 
     def test_identical_inputs_are_deterministic_and_evidence_is_not_overwritten(self):

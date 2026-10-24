@@ -14,7 +14,7 @@ def check(binary, evidence=None):
                             capture_output=True, text=True, check=True, timeout=30)
     row = json.loads(result.stdout)
     if (row.get('status') != 'PASS' or any(row.get(key) is not True for key in
-            ['stereo', 'device_consumed', 'hide_clears_queue', 'modes'])
+            ['stereo', 'device_consumed', 'hide_clears_queue', 'modes', 'dialog_pause_preserves_selection'])
             or type(row.get('peak')) is not int or not 0 < row['peak'] <= 32767):
         raise ValueError('Packaged local MP3 audio path incomplete')
     if evidence:

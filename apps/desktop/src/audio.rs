@@ -121,7 +121,7 @@ impl AudioService {
     }
     pub fn label(&self) -> String {
         if self.failed {
-            "Sound unavailable (S retries)".into()
+            "Sound unavailable (S retries) | F4 choose MP3".into()
         } else if self.enabled {
             let mode = match self.music_mode {
                 MusicMode::Original => "Original",
@@ -144,11 +144,11 @@ impl AudioService {
                 .map(|s| s.to_string_lossy())
                 .unwrap_or_default();
             format!(
-                "Sound {}% | {mode} BGM {}% FX {}% {file} {state} | F6 music / drop MP3",
+                "Sound {}% | {mode} BGM {}% FX {}% {file} {state} | F4 choose MP3 / F6 music",
                 self.volume, self.music_volume, self.effects_volume
             )
         } else {
-            "Sound off (S enables)".into()
+            "Sound off (S enables) | F4 choose MP3".into()
         }
     }
     pub fn input(&mut self, event: &Event, sdl: &Sdl, options: &Options) -> bool {
@@ -275,7 +275,16 @@ impl AudioService {
             None
         };
     }
-    fn select_music(&mut self, path: PathBuf, sdl: &Sdl, options: &Options) {
+    pub fn selected_music(&self) -> Option<&std::path::Path> {
+        self.music_path.as_deref()
+    }
+    pub fn pause_for_dialog(&self) {
+        if let Some(queue) = &self.queue {
+            queue.pause();
+            queue.clear();
+        }
+    }
+    pub fn select_music(&mut self, path: PathBuf, sdl: &Sdl, options: &Options) {
         if !path
             .extension()
             .is_some_and(|s| s.eq_ignore_ascii_case("mp3"))
@@ -484,6 +493,21 @@ pub fn local_probe(fixture: Option<PathBuf>) -> Result<String, Box<dyn Error>> {
         std::thread::sleep(Duration::from_millis(5));
         consumed |= service.queue.as_ref().unwrap().size() < before;
     }
+    let selected = service.music_path.clone();
+    let mode = service.music_mode;
+    service.pause_for_dialog();
+    if service.queue.as_ref().unwrap().status() != sdl2::audio::AudioStatus::Paused
+        || service.queue.as_ref().unwrap().size() != 0
+        || service.music_path != selected
+        || service.music_mode != mode
+        || service.music.is_none()
+    {
+        return Err("dialog pause changed music selection or failed to silence device".into());
+    }
+    service.service(&mut game, true);
+    if service.queue.as_ref().unwrap().status() != sdl2::audio::AudioStatus::Playing {
+        return Err("dialog return did not resume audio".into());
+    }
     service.service(&mut game, false);
     if peak == 0 || !stereo || !consumed || service.queue.as_ref().unwrap().size() != 0 {
         return Err("local MP3 stereo/queue lifecycle failed".into());
@@ -495,6 +519,6 @@ pub fn local_probe(fixture: Option<PathBuf>) -> Result<String, Box<dyn Error>> {
     service.music_mode = MusicMode::Original;
     service.service(&mut game, true);
     Ok(format!(
-        "{{\"status\":\"PASS\",\"stereo\":true,\"peak\":{peak},\"device_consumed\":true,\"hide_clears_queue\":true,\"modes\":true}}"
+        "{{\"status\":\"PASS\",\"stereo\":true,\"peak\":{peak},\"device_consumed\":true,\"hide_clears_queue\":true,\"modes\":true,\"dialog_pause_preserves_selection\":true}}"
     ))
 }

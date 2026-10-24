@@ -162,3 +162,5 @@
 - [#202 로컬 MP3 BGM 구현](issue-202_local_mp3.md)
 
 - [#205 v0.3.0 릴리즈 진행](issue-205_release_v030.md)
+
+- [#208 Native MP3 선택·앱 아이콘 / v0.3.1](issue-208_native_polish.md)
