@@ -2,6 +2,8 @@
 
 이슈: https://github.com/edwardkim/ohmylemmings/issues/205
 
+상태: 정식/latest 릴리즈·GitHub Pages 공개 검증 완료. [최종 결과](../reports/issue-205_release_v030_completion.md). 아래는 수행한 계획이다.
+
 메인테이너가0.3.0으로 정식 릴리즈와 ghpage 게시를 지시했다. 기준 main `dca8b2dc2b2c166e4e0cf8600d165f83402d587d`, 기능 [#202](../reports/issue-202_local_mp3.md), 정책 [#124](issue-124_release_policy.md)를 따른다.
 
 1. workspace/lock의9개 crate를0.3.0으로 맞추고 불변 버전 노트·실행 안내를 작성한다. #202 기능 코드와 원본/HD 자산은 유지한다.

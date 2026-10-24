@@ -166,3 +166,5 @@
 - [#200 사용자 K-pop BGM 교체 기술 검토](issue-200_custom_bgm_review.md)
 
 - [#202 로컬 MP3 구현·CI 완료/청취 인수 대기](issue-202_local_mp3.md)
+
+- [#205 v0.3.0 정식 게시·공개 Pages 최종 인수](issue-205_release_v030_completion.md)
