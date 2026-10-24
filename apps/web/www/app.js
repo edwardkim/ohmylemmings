@@ -261,7 +261,7 @@ try {
         document.querySelector('#music-volume-value').textContent=musicVolume.value+'%';document.querySelector('#effects-volume-value').textContent=effectsVolume.value+'%';
     };
     musicVolume.addEventListener('input',mixChanged);effectsVolume.addEventListener('input',mixChanged);
-    if(!audioSupported){for(const element of [musicMode,musicFile,musicVolume,effectsVolume])element.disabled=true;}
+    for(const element of [musicMode,musicFile,musicVolume,effectsVolume])element.disabled=!audioSupported;
     const toggleSound=()=>{if(!audioSupported)return;if(audio.muted)void audio.activate();else audio.mute();};
     sound.addEventListener('click',toggleSound);
     canvas.addEventListener('keydown',event=>{

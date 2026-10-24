@@ -6,8 +6,8 @@
   "source": [
     {
       "path": "apps/web/www/app.js",
-      "bytes": 17341,
-      "sha256": "38f297316f906c5f8c81aea0c66df397bb2d1b5cd0f2d23126f647ab4c5efdf2"
+      "bytes": 17331,
+      "sha256": "b34e0c27c7f276ce6fc14888388b8e54bc05910e93ea4d8fa273490a282b8de6"
     },
     {
       "path": "apps/web/www/host.js",

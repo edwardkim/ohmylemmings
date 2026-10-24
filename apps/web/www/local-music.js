@@ -73,6 +73,7 @@ export class LocalMusic {
                 this.source.connect(this.gain);this.gain.connect(context.destination);
             } catch(error) {this.notify('error',String(error));return;}
         }
+        if(media.readyState<2)this.notify('loading');
         const ticket=++this.ticket;this.pending=true;
         let attempt;
         try {attempt=media.play();}catch(error){attempt=Promise.reject(error);}

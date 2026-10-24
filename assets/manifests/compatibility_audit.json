@@ -231,8 +231,8 @@
     },
     {
       "path": "apps/web/www/app.js",
-      "bytes": 17341,
-      "sha256": "38f297316f906c5f8c81aea0c66df397bb2d1b5cd0f2d23126f647ab4c5efdf2"
+      "bytes": 17331,
+      "sha256": "b34e0c27c7f276ce6fc14888388b8e54bc05910e93ea4d8fa273490a282b8de6"
     },
     {
       "path": "apps/web/www/audio-license.html",
@@ -261,8 +261,8 @@
     },
     {
       "path": "apps/web/www/index.html",
-      "bytes": 7022,
-      "sha256": "b6e02c73f53d42df99e98232c27e45e3b0fa64fa9f947a4fa2745226f72f207d"
+      "bytes": 7058,
+      "sha256": "ca2376b3af7dc2522938804b1216e5d08eb94b7d0f59f3f698601b9c6b92b6b5"
     },
     {
       "path": "apps/web/www/style.css",
@@ -3326,8 +3326,8 @@
     },
     {
       "path": "apps/web/www/local-music.js",
-      "bytes": 5183,
-      "sha256": "07961b4995fa5952db1d0bb8c65ed88c4b5141a5559a93d3cddbb69c38d68a6d"
+      "bytes": 5237,
+      "sha256": "f5be169cbaf49c34cf5aa585b5a1291623d93ef809cbeca5e27c94a10b507f8b"
     },
     {
       "path": "tools/tests/local-music.cjs",
