@@ -6,8 +6,8 @@
   "source": [
     {
       "path": "apps/web/www/app.js",
-      "bytes": 17331,
-      "sha256": "b34e0c27c7f276ce6fc14888388b8e54bc05910e93ea4d8fa273490a282b8de6"
+      "bytes": 18098,
+      "sha256": "c3875912bea24469c6fca4ee7786c6014cf11597dd6f6a3a2917680c8cca538a"
     },
     {
       "path": "apps/web/www/host.js",
@@ -61,13 +61,33 @@
     },
     {
       "path": "tools/web/check.js",
-      "bytes": 8927,
-      "sha256": "fabc8601ceec50a42321901fd4bb899c35b5dd40c35667360082ba9e3b270b3c"
+      "bytes": 9037,
+      "sha256": "815c7144cde8031c4c2e85cfcd46f43a039283405c0aaa932d29853ffcf0611e"
     },
     {
       "path": "tools/check_web.py",
-      "bytes": 12261,
-      "sha256": "997c0e59eea765aaa5299a0e2fc7aa8d1b66edb87be96f9137a02e22338604aa"
+      "bytes": 12281,
+      "sha256": "a1dab1c629e2a1b68afe252a81ce50850e79ed99f1b6c5251ddad5e637b0fef1"
+    },
+    {
+      "path": "apps/web/www/frame-feedback.js",
+      "bytes": 5530,
+      "sha256": "b78e0c91ec40eb97f8074ef78950be8c4183a2d0fe30e91cd8d89122f06870af"
+    },
+    {
+      "path": "tools/web/feedback_check.js",
+      "bytes": 3800,
+      "sha256": "8290ba269fee2378b2a4f46063bb4449511030cf7711df957317cc91db113eeb"
+    },
+    {
+      "path": "tools/web/frame_feedback.cjs",
+      "bytes": 1711,
+      "sha256": "5662a65cf0de4e9aa0f75efb78d26fb674203ea5c9f6dc256cfe38bdd33433cd"
+    },
+    {
+      "path": "tools/tests/test_frame_feedback.py",
+      "bytes": 511,
+      "sha256": "8e6e7acfd53685dc0f300cf628d80df6bc95daeda68f326c5f49caf8692d7f04"
     }
   ],
   "reference": {
@@ -591,5 +611,42 @@
       }
     ],
     "scope": "Current host adds local MP3 UI/audio. Original recorded producer/timing/deadline/memory observations remain historical,113 qualification deferred."
+  },
+  "source_maintenance_113_player_feedback": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/113",
+    "previous_pins": [
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 17331,
+        "sha256": "b34e0c27c7f276ce6fc14888388b8e54bc05910e93ea4d8fa273490a282b8de6"
+      },
+      {
+        "path": "tools/web/check.js",
+        "bytes": 8927,
+        "sha256": "fabc8601ceec50a42321901fd4bb899c35b5dd40c35667360082ba9e3b270b3c"
+      },
+      {
+        "path": "tools/check_web.py",
+        "bytes": 12261,
+        "sha256": "997c0e59eea765aaa5299a0e2fc7aa8d1b66edb87be96f9137a02e22338604aa"
+      }
+    ],
+    "scope": "Opt-in player cadence HUD/feedback. Original recorded_producer, runs, initial misses, timing/memory evidence and NOT READY remain historical and unchanged. Current source pins do not constitute a new performance qualification."
+  },
+  "player_feedback_113": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/113",
+    "previous_pins": [
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 18067,
+        "sha256": "5b896022ed6afb930950df1eabbb11af989e15ddc4189074cd50d3e2ec98c122"
+      },
+      {
+        "path": "tools/tests/test_frame_feedback.py",
+        "bytes": 403,
+        "sha256": "ecd6a6766fc921ea89fdb586ddabe518af6047913e1b7ab3112fab635abf20da"
+      }
+    ],
+    "scope": "Opt-in player FPS/feedback UI. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
   }
 }

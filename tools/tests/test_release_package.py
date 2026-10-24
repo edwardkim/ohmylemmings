@@ -59,11 +59,20 @@ class ReleasePackageTests(unittest.TestCase):
             self.assertNotIn('MAIN.DAT', names)
             self.assertFalse(any(n.startswith('performance/') for n in names))
             self.assertIn('audio-source.tar.gz', names)
+            self.assertIn('frame-feedback.js', names)
             self.assertIn('LGPL-2.1-or-later.txt', names)
             info = json.loads(archive.read('audio-source.json'))
             self.assertEqual(info['wasm_sha256'], hashlib.sha256(archive.read('pkg/lemmings_web_bg.wasm')).hexdigest())
         self.assertTrue(result['development'])
         self.assertTrue(result['performance_qualification_deferred'])
+
+    def test_web_feedback_version_is_added_after_verifying_unchanged_runtime(self):
+        page=b'<!doctype html><html><head></head><body></body></html>'
+        (self.runtime/'index.html').write_bytes(page)
+        (self.root/'apps/web/www/index.html').write_bytes(page)
+        with zipfile.ZipFile(self.package('web')) as archive:
+            self.assertIn(b'<meta name="game-version" content="0.1.0">', archive.read('index.html'))
+        self.assertEqual((self.runtime/'index.html').read_bytes(),page)
 
     def test_new_hd_packages_deliver_complete_profile_on_both_targets(self):
         from tools.tests.test_hd_delivery import install_fixture

@@ -4,6 +4,7 @@ mod app_icon;
 mod assets;
 mod audio;
 mod frame_clock;
+mod frame_feedback;
 mod hd;
 mod input;
 mod lifecycle;
@@ -35,7 +36,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--hd | --original] [--hd-pack FILE_OR_DIRECTORY] [--fullscreen] [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--performance NEW_JSON --performance-seconds 60] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nF8: original/HD; F11: fullscreen; --hd starts HD; --original starts original presentation. S: sound on/off; PageUp/PageDown: volume; F4/Ctrl+O/Cmd+O: choose MP3; drop MP3 or --bgm FILE: local music; F6: original/local/off; F7: retry; F5: clear local music; [ ]: music volume; , .: effects volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--hd | --original] [--hd-pack FILE_OR_DIRECTORY] [--fullscreen] [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--performance NEW_JSON --performance-seconds 60] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nF3: FPS on/off; F2: copy performance feedback; F8: original/HD; F11: fullscreen; --hd starts HD; --original starts original presentation. S: sound on/off; PageUp/PageDown: volume; F4/Ctrl+O/Cmd+O: choose MP3; drop MP3 or --bgm FILE: local music; F6: original/local/off; F7: retry; F5: clear local music; [ ]: music volume; , .: effects volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
     hd: bool,
     fullscreen: bool,
@@ -986,6 +987,11 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     let creator = canvas.texture_creator();
     let mut texture =
         creator.create_texture_streaming(PixelFormatEnum::RGB24, WIDTH as u32, HEIGHT as u32)?;
+    let mut feedback = frame_feedback::Hud::default();
+    let feedback_allowed = !options.fast && options.performance.is_none() && capture.is_none();
+    let mut feedback_texture =
+        creator.create_texture_streaming(PixelFormatEnum::RGBA32, 160, 28)?;
+    feedback_texture.set_blend_mode(sdl2::render::BlendMode::Blend);
     let hd_path = options.hd_pack.clone().unwrap_or_else(|| {
         let bundled = assets::presentation_root(&std::env::current_exe().unwrap_or_default());
         if bundled.join("HD-PRESENTATION").exists() {
@@ -1102,10 +1108,12 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                 use sdl2::event::WindowEvent;
                 match win_event {
                     WindowEvent::Hidden | WindowEvent::Minimized => {
+                        feedback.set_active(false);
                         audio_visible = false;
                         frame_clock.set_visible(false, Instant::now());
                     }
                     WindowEvent::Shown | WindowEvent::Restored => {
+                        feedback.set_active(false);
                         audio_visible = true;
                         frame_clock.set_visible(true, Instant::now());
                     }
@@ -1113,6 +1121,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                 }
             }
             if !options.fast && music_dialog::requested(&event) {
+                feedback.set_active(false);
                 game.view.panel.release();
                 game.view.panel.pointer = None;
                 game.view.right_mouse = false;
@@ -1129,6 +1138,48 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                 frame_clock.reset(previous);
                 presentation_dirty = true;
                 dialog_opened = true;
+                continue;
+            }
+            if let Event::KeyDown {
+                keycode: Some(key @ (Keycode::F2 | Keycode::F3)),
+                keymod,
+                repeat: false,
+                ..
+            } = &event
+                && !keymod.intersects(
+                    sdl2::keyboard::Mod::LCTRLMOD
+                        | sdl2::keyboard::Mod::RCTRLMOD
+                        | sdl2::keyboard::Mod::LALTMOD
+                        | sdl2::keyboard::Mod::RALTMOD
+                        | sdl2::keyboard::Mod::LGUIMOD
+                        | sdl2::keyboard::Mod::RGUIMOD
+                        | sdl2::keyboard::Mod::LSHIFTMOD
+                        | sdl2::keyboard::Mod::RSHIFTMOD,
+                )
+            {
+                if feedback_allowed {
+                    if *key == Keycode::F3 {
+                        feedback.toggle();
+                    } else if feedback.enabled {
+                        let level = if options.synthetic {
+                            format!("practice {}", game.assets.title)
+                        } else {
+                            format!("{} {}", game.level.difficulty().name(), game.level.number())
+                        };
+                        let report = feedback.feedback(
+                            &level,
+                            hd_active,
+                            canvas.output_size()?,
+                            &format!(
+                                "SDL {} / {}",
+                                video.current_video_driver(),
+                                canvas.info().name
+                            ),
+                        );
+                        feedback.copied(video.clipboard().set_clipboard_text(&report).is_ok());
+                    }
+                    presentation_dirty = true;
+                }
                 continue;
             }
             if matches!(
@@ -1157,6 +1208,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                     }
                 }
                 hd_active = !hd_active;
+                feedback.reset();
                 game.view.panel.release();
                 game.view.panel.pointer = None;
                 game.view.right_mouse = false;
@@ -1187,6 +1239,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                         sdl2::video::FullscreenType::Off
                     },
                 )?;
+                feedback.reset();
                 presentation_dirty = true;
                 continue;
             }
@@ -1337,6 +1390,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
                     }
                     previous = Instant::now();
                     frame_clock.reset(previous);
+                    feedback.reset();
                 }
                 Ok(None) if scripted => {
                     return Err("requested result transition is unavailable".into());
@@ -1421,13 +1475,22 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             }
         }
         let audio_begin = performance.as_ref().map(|_| Instant::now());
+        feedback.set_active(
+            audio_visible
+                && !game.session.scheduler.step_state().paused
+                && game.session.result().is_none(),
+        );
         let audio_state = performance.as_ref().and_then(|_| audio.performance_state());
         audio.service(&mut game, audio_visible);
         if let (Some(p), Some(begin)) = (&mut performance, audio_begin) {
             p.audio(audio_state, begin.elapsed().as_nanos());
         }
         if !options.fast {
-            let title = format!("Oh My Lemmings - {} · {}", game.assets.title, audio.label());
+            let title = format!(
+                "Oh My Lemmings - {} · F3 FPS · {}",
+                game.assets.title,
+                audio.label()
+            );
             if canvas.window().title() != title {
                 canvas.window_mut().set_title(&title)?;
             }
@@ -1533,7 +1596,11 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
             }
             let upload_ns = upload_begin.map_or(0, |t| t.elapsed().as_nanos());
             let present_begin = performance.as_ref().map(|_| Instant::now());
+            feedback.draw(&mut canvas, &mut feedback_texture, hd_active)?;
             canvas.present();
+            if feedback.enabled {
+                feedback.frame(Instant::now());
+            }
             let present_ns = present_begin.map_or(0, |t| t.elapsed().as_nanos());
             let skipped = if budget.is_some() {
                 frame_clock.finish(Instant::now())

@@ -88,3 +88,12 @@ canvas.hd {image-rendering:auto;width:100%;}
 #music-progress {width:100%;accent-color:#b3e96b;}
 .music-controls button,.music-controls .file-button {font-size:.85rem;}
 .music-controls [hidden] {display:none;}
+
+.screen {position:relative;}
+.fps-controls {display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:12px 20px;font-size:12px;color:#a2b2b1;}
+.fps-controls button {padding:7px 10px;}
+.fps-hud {position:absolute;top:10px;left:10px;z-index:3;max-width:calc(100% - 20px);padding:8px 10px;border:1px solid #66825e;border-radius:6px;background:#0b1418eb;pointer-events:none;}
+.fps-hud output {display:block;margin:0;white-space:pre-line;font:12px/1.5 ui-monospace,monospace;font-variant-numeric:tabular-nums;color:#d1f5b6;}
+.fps-hud p {max-width:340px;margin:4px 0 0;font-size:12px;}
+.fps-hud p:empty {display:none;}
+.fps-hud textarea {display:block;width:min(360px,65vw);height:150px;max-height:30vh;margin-top:8px;background:#101719;color:#e7eeed;pointer-events:auto;}

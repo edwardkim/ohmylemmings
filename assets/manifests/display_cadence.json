@@ -869,8 +869,8 @@
   "source": [
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 71202,
-      "sha256": "6251389370dd3fea3c41043ad9f3641385ff691eca262d7772ac6847a6d76caa"
+      "bytes": 74109,
+      "sha256": "788b4c2bab4dd7d39b68c28aad85aaacfddc1d9e6fc7e4f60f46bfe9007c521c"
     },
     {
       "path": "apps/desktop/src/frame_clock.rs",
@@ -886,6 +886,11 @@
       "path": "apps/desktop/src/audio.rs",
       "bytes": 18816,
       "sha256": "90ab3c8816bc7251ebf91a1e247caddf5a9e4c0583d8d1a89173cd28e2db1b1d"
+    },
+    {
+      "path": "apps/desktop/src/frame_feedback.rs",
+      "bytes": 9892,
+      "sha256": "4a45f68d65d488d9866524770c3921c71be88dc21934bde12283f306513ee6c9"
     }
   ],
   "identity": {
@@ -1716,5 +1721,16 @@
       }
     ],
     "scope": "Native MP3 dialog/icon/version host only. Modal wall time excluded from live ticks; no historical measurement, producer, render cadence or113 NOT READY verdict changed."
+  },
+  "player_feedback_113": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/113",
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 71202,
+        "sha256": "6251389370dd3fea3c41043ad9f3641385ff691eca262d7772ac6847a6d76caa"
+      }
+    ],
+    "scope": "Opt-in player FPS/feedback UI. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
   }
 }

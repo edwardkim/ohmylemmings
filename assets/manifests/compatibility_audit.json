@@ -111,8 +111,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 71202,
-      "sha256": "6251389370dd3fea3c41043ad9f3641385ff691eca262d7772ac6847a6d76caa"
+      "bytes": 74109,
+      "sha256": "788b4c2bab4dd7d39b68c28aad85aaacfddc1d9e6fc7e4f60f46bfe9007c521c"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -231,8 +231,8 @@
     },
     {
       "path": "apps/web/www/app.js",
-      "bytes": 17331,
-      "sha256": "b34e0c27c7f276ce6fc14888388b8e54bc05910e93ea4d8fa273490a282b8de6"
+      "bytes": 18098,
+      "sha256": "c3875912bea24469c6fca4ee7786c6014cf11597dd6f6a3a2917680c8cca538a"
     },
     {
       "path": "apps/web/www/audio-license.html",
@@ -261,13 +261,13 @@
     },
     {
       "path": "apps/web/www/index.html",
-      "bytes": 7058,
-      "sha256": "ca2376b3af7dc2522938804b1216e5d08eb94b7d0f59f3f698601b9c6b92b6b5"
+      "bytes": 7695,
+      "sha256": "22f456947979ca5cbe589c8277e972b23316a161854f0e6c5306500b75a494b2"
     },
     {
       "path": "apps/web/www/style.css",
-      "bytes": 6959,
-      "sha256": "3cfbf5058b76fc139b30f0ced39ebfe6881444ce378c6833056e5e4cf4554388"
+      "bytes": 7733,
+      "sha256": "f4f522665221ff38816d068cf6798fbacb7d5318306978e72276ab99dfb4c9d3"
     },
     {
       "path": "assets/manifests/license_inventory.json",
@@ -1301,8 +1301,8 @@
     },
     {
       "path": "tools/check_web.py",
-      "bytes": 12261,
-      "sha256": "997c0e59eea765aaa5299a0e2fc7aa8d1b66edb87be96f9137a02e22338604aa"
+      "bytes": 12281,
+      "sha256": "a1dab1c629e2a1b68afe252a81ce50850e79ed99f1b6c5251ddad5e637b0fef1"
     },
     {
       "path": "tools/check_web_journey.py",
@@ -1766,8 +1766,8 @@
     },
     {
       "path": "tools/release_package.py",
-      "bytes": 19762,
-      "sha256": "f9b6938d4d245aff4e9c23a1db00cc6ec841ce3580ff95a665799e70684c8b57"
+      "bytes": 19952,
+      "sha256": "8ac136d674c455b8a316c6972c0c1c501e4999010b532aeb4969359d7fa5bb06"
     },
     {
       "path": "tools/release_version.py",
@@ -2011,8 +2011,8 @@
     },
     {
       "path": "tools/tests/test_release_package.py",
-      "bytes": 10321,
-      "sha256": "7207c7c492f3c55319fdb7ed8375ee9dbb3dd3d63ff03d7d94efef8ed0fbff01"
+      "bytes": 10884,
+      "sha256": "d27df6705c89648f65071005409b2e9b0157e2375c6305f36f30066aad320726"
     },
     {
       "path": "tools/tests/test_release_version.py",
@@ -2181,8 +2181,8 @@
     },
     {
       "path": "tools/web/check.js",
-      "bytes": 8927,
-      "sha256": "fabc8601ceec50a42321901fd4bb899c35b5dd40c35667360082ba9e3b270b3c"
+      "bytes": 9037,
+      "sha256": "815c7144cde8031c4c2e85cfcd46f43a039283405c0aaa932d29853ffcf0611e"
     },
     {
       "path": "tools/web/dispatch_check.js",
@@ -3788,6 +3788,31 @@
       "path": "tools/tests/test_app_icons.py",
       "bytes": 4546,
       "sha256": "96517eb160b0a55db1d457381ca4d8a7d1f18a598c4b3c2f4a2e0a97743e8995"
+    },
+    {
+      "path": "apps/desktop/src/frame_feedback.rs",
+      "bytes": 9892,
+      "sha256": "4a45f68d65d488d9866524770c3921c71be88dc21934bde12283f306513ee6c9"
+    },
+    {
+      "path": "apps/web/www/frame-feedback.js",
+      "bytes": 5530,
+      "sha256": "b78e0c91ec40eb97f8074ef78950be8c4183a2d0fe30e91cd8d89122f06870af"
+    },
+    {
+      "path": "tools/web/feedback_check.js",
+      "bytes": 3800,
+      "sha256": "8290ba269fee2378b2a4f46063bb4449511030cf7711df957317cc91db113eeb"
+    },
+    {
+      "path": "tools/web/frame_feedback.cjs",
+      "bytes": 1711,
+      "sha256": "5662a65cf0de4e9aa0f75efb78d26fb674203ea5c9f6dc256cfe38bdd33433cd"
+    },
+    {
+      "path": "tools/tests/test_frame_feedback.py",
+      "bytes": 511,
+      "sha256": "8e6e7acfd53685dc0f300cf628d80df6bc95daeda68f326c5f49caf8692d7f04"
     }
   ],
   "evidence": [
@@ -4051,8 +4076,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 92256,
-      "sha256": "0e374aa4afb367e261c95a654fd7b95c65086d8381585898d94df655ab930831",
+      "bytes": 92906,
+      "sha256": "f08a25c9adaa4ed09072cafcf7857db8711b805fd105669147c6554fcd001809",
       "id": "g11-06-display-cadence"
     }
   ],
@@ -8480,5 +8505,51 @@
       "tools/check_windows_icon.ps1"
     ],
     "scope": "Native MP3 chooser/host modal time and input boundaries, app icon/build and package verification, dependency notices and version0.3.1. Simulation and existing default OPL/PCM unchanged; historical performance/producer observations and113 NOT READY retained."
+  },
+  "player_feedback_113": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/113",
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 71202,
+        "sha256": "6251389370dd3fea3c41043ad9f3641385ff691eca262d7772ac6847a6d76caa"
+      },
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 17331,
+        "sha256": "b34e0c27c7f276ce6fc14888388b8e54bc05910e93ea4d8fa273490a282b8de6"
+      },
+      {
+        "path": "apps/web/www/index.html",
+        "bytes": 7058,
+        "sha256": "ca2376b3af7dc2522938804b1216e5d08eb94b7d0f59f3f698601b9c6b92b6b5"
+      },
+      {
+        "path": "apps/web/www/style.css",
+        "bytes": 6959,
+        "sha256": "3cfbf5058b76fc139b30f0ced39ebfe6881444ce378c6833056e5e4cf4554388"
+      },
+      {
+        "path": "tools/check_web.py",
+        "bytes": 12261,
+        "sha256": "997c0e59eea765aaa5299a0e2fc7aa8d1b66edb87be96f9137a02e22338604aa"
+      },
+      {
+        "path": "tools/release_package.py",
+        "bytes": 19762,
+        "sha256": "f9b6938d4d245aff4e9c23a1db00cc6ec841ce3580ff95a665799e70684c8b57"
+      },
+      {
+        "path": "tools/web/check.js",
+        "bytes": 8927,
+        "sha256": "fabc8601ceec50a42321901fd4bb899c35b5dd40c35667360082ba9e3b270b3c"
+      },
+      {
+        "path": "tools/web_build.py",
+        "bytes": 8760,
+        "sha256": "37a928c110489ae62a24b5583405bcf0c0c943fc235d22298aed19f68a9dfbd4"
+      }
+    ],
+    "scope": "Opt-in player FPS/feedback UI. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
   }
 }

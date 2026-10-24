@@ -1,5 +1,11 @@
 # Desktop preview
 
+## 플레이 FPS와 피드백
+
+F3으로 성능 패널을 켜고 F2로 버전·OS/CPU 아키텍처·SDL 드라이버/renderer·레벨·화면 크기·측정값을 클립보드에 복사합니다. 체감 의견을 덧붙여 전달하세요. 전체화면에서도 사용하며 기본은 OFF, 자동 전송은 없습니다. `PRESENT FPS`는 SDL present 완료 간격으로 계산하며 물리 화면 주사율/논리 틱/실제 유실 프레임 수를 뜻하지 않습니다.
+
+최근 최대240개 간격의 FPS·p95·최대와 이번 측정 전체의50ms 초과 횟수를 표시합니다. 숨김·일시정지·파일 선택·결과는 보류하고 레벨/화면 모드/전체화면 교체와 다시 켜기는 새로 측정합니다. 텍스트는 최대 초당2회 갱신한 캐시를 사용합니다. 기존 `--fast`·캡처·정식 `--performance` 실행에서는 이 플레이용 표시를 사용하지 않습니다. [#113 계약](../../mydocs/working/issue-113_player_feedback.md).
+
 Linux SDL2 어댑터로 원본 **Fun 01 — Just dig!**의 지형·입구·출구 이미지와 생성·걷기·낙하를 표시합니다. Digger·Basher·Miner·Builder·Blocker·Bomber·Climber·Floater 할당과 Nuke를 지원합니다. 출구·위험물·승패·결과 화면·재시작과 SDL 음향을 지원합니다. `--difficulty fun|tricky|taxing|mayhem --level 1..30`으로 특수4개를 포함한 레벨을 선택합니다. 생략하면 Fun1입니다. 전수 완주 인증은 후속입니다.
 
 ## 준비와 실행

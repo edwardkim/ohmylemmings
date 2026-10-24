@@ -7,6 +7,7 @@ import { HdCanvas } from './hd.js';
 import { HdLoader } from './hd-loader.js';
 import { ProgressiveHdLoader } from './progressive-hd.js';
 import { DownloadProgress, readDownload } from './download.js';
+import { FrameFeedback } from './frame-feedback.js';
 
 const canvas = document.querySelector('#game');
 const context = canvas.getContext('2d', { alpha: false });
@@ -49,6 +50,12 @@ let exited = false;
 let observer = null;
 let presentations = 0;
 let needsDraw = false;
+const feedback=new FrameFeedback(document,()=>({
+    version:document.querySelector('meta[name="game-version"]')?.content||'development',platform:'Web',
+    level:game?.original()?`${game.difficulty()} ${game.level()}`:`practice ${scene.value}`,
+    presentation:hdMode?'HD':'original',viewport:`${canvas.clientWidth}x${canvas.clientHeight} CSS px @${devicePixelRatio}`,
+    runtime:navigator.userAgent,
+}));
 function notify(type, detail = {}) { if (observer) observer(type, game, detail); }
 const tickObserver = phase => notify(phase);
 function newPump() { return new FramePump(game,64,observer ? tickObserver : null); }
@@ -76,6 +83,7 @@ function recover(error) {
     errorText.textContent = `불러오기 실패: ${String(error)} 현재 게임에서 계속할 수 있습니다.`;
 }
 function fail(error) {
+    feedback.setActive(false);
     stop();
     audio?.mute();
     console.error(error);
@@ -91,6 +99,8 @@ function draw() {
     const state = JSON.parse(game.state());
     const finished = state.completion && state.completion.phase !== 'Playing';
     const paused = game.paused();
+    feedback.setActive(!loading&&!document.hidden&&!finished&&!paused&&!exited);
+    if(!hdPending)feedback.present();
     audioHeld=loading||Boolean(finished)||exited;
     audio?.service();
     audio?.hold(document.hidden||audioHeld);
@@ -120,6 +130,7 @@ function frame(timestamp) {
     request = null;
     try {
         if (document.hidden || loading) { pump.suspend(); return; }
+        if(feedback.enabled)feedback.frame(performance.now());
         const ticks = pump.frame(timestamp);
         // Inputs and replacements already draw synchronously. Between admitted
         // ticks the pixels and UI are unchanged; still service real-time audio.
@@ -128,6 +139,7 @@ function frame(timestamp) {
     } catch (error) { fail(error); }
 }
 function replaced(reason) {
+    feedback.reset();
     clearTimeout(backgroundTimer);hdLoader.cancelBackground?.();
     hd?.invalidate();
     notify('reset',{reason});
@@ -181,6 +193,7 @@ files.addEventListener('change', async () => {
 });
 document.addEventListener('visibilitychange', () => {
     if (!input) return;
+    feedback.setActive(false);
     input.release(); pump.suspend(); stop();
     audio?.hold(document.hidden||audioHeld);
     if(document.hidden){clearTimeout(backgroundTimer);hdLoader.cancelBackground?.();}else queueNext();
@@ -196,7 +209,7 @@ presentation.addEventListener('change',async()=>{
         if(requested&&(!hd||hdScope!==game.hd_scope()||hdPlan!==currentPlan())){
             await hdLoader.load(game);hd=new HdCanvas(game);hdScope=game.hd_scope();hdPlan=currentPlan();
         }
-        hdMode=requested;screenSize();errorText.textContent='';
+        hdMode=requested;screenSize();feedback.reset();errorText.textContent='';
     } catch(error){presentation.value=hdMode?'hd':'original';recover(error);}
     finally {loading=false;pump.suspend();draw();schedule();queueNext();canvas.focus({preventScroll:true});}
 });
@@ -206,6 +219,7 @@ fullscreen.addEventListener('click',()=>{
     action.catch(recover);
 });
 document.addEventListener('fullscreenchange',()=>{
+    feedback.reset();
     const screen=canvas.parentElement;
     if(document.fullscreenElement===screen)screen.prepend(downloadUI.root);
     else screen.before(downloadUI.root);

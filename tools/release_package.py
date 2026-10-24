@@ -23,7 +23,7 @@ from tools.app_icons import icon_bytes, MANIFEST as ICON_MANIFEST
 
 WEB_FILES = (
     'index.html', 'app.js', 'audio.js', 'local-music.js', 'audio-license.html', 'controls.js',
-    'host.js', 'hd.js', 'hd-loader.js', 'progressive-hd.js', 'download.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
+    'host.js', 'frame-feedback.js', 'hd.js', 'hd-loader.js', 'progressive-hd.js', 'download.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
 )
 COMMON_FILES = {'README.md', 'REBUILD.md', 'LGPL-2.1-or-later.txt'}
 PROJECT_LICENSE_FILES = {'LICENSE', 'THIRD_PARTY_NOTICES.txt'}
@@ -122,6 +122,8 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
         if (root/ICON_MANIFEST).is_file():
             files['app-icon.png'] = icon_bytes(root, 'app-icon.png')
     hd_remaster = (root/'assets/manifests/remaster_pack.json').is_file()
+    if kind == 'web':
+        files['index.html'] = files['index.html'].replace(b'<head>', b'<head>\n    <meta name="game-version" content="'+version.encode()+b'">', 1)
     if hd_remaster:
         hd_files=delivery_files(root,web=kind=='web')
         if kind=='web':

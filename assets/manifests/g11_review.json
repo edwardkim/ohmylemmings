@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 300737,
-      "sha256": "5382709345a284e8bbace89527175ced413c893976d114e71abfd0d8158c9416",
+      "bytes": 303205,
+      "sha256": "e1b2c4beeb373f83a298a287d82bcebd1ddac712069068f1ef21f27bd8cc0125",
       "id": "compatibility"
     },
     {
@@ -19,8 +19,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 92256,
-      "sha256": "0e374aa4afb367e261c95a654fd7b95c65086d8381585898d94df655ab930831",
+      "bytes": 92906,
+      "sha256": "f08a25c9adaa4ed09072cafcf7857db8711b805fd105669147c6554fcd001809",
       "id": "display"
     }
   ],
@@ -11234,5 +11234,23 @@
       }
     ],
     "scope": "Functional source index after Native chooser/icon/version0.3.1; historical performance observations and113 NOT READY unchanged."
+  },
+  "player_feedback_113": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/113",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 300737,
+        "sha256": "5382709345a284e8bbace89527175ced413c893976d114e71abfd0d8158c9416",
+        "id": "compatibility"
+      },
+      {
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 92256,
+        "sha256": "0e374aa4afb367e261c95a654fd7b95c65086d8381585898d94df655ab930831",
+        "id": "display"
+      }
+    ],
+    "scope": "Opt-in player FPS/feedback UI. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
   }
 }

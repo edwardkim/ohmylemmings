@@ -1,5 +1,7 @@
 # Hyper-Waterfall 문서 안내
 
+[#113 플레이 FPS·피드백](reports/issue-113_player_feedback.md)을 추가한다. Web/Native F3 표시·F2 요약 복사를 제공하며 고성능 환경의 잔여 성능/메모리 검증과 NOT READY 판정은 유지한다.
+
 [#208 Native MP3 선택 대화상자·앱 아이콘](reports/issue-208_native_polish.md)을 포함한 **v0.3.1 정식 릴리즈·Pages**를 게시했습니다. [릴리즈](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.1)·[웹 플레이](https://edwardkim.github.io/ohmylemmings/)를 제공합니다. 동일 tree CI7개·4플랫폼/12파일과 Windows Shell/Mac ICNS·실제 Native 파일 선택을 검증했습니다. [#202 로컬 MP3](reports/issue-202_local_mp3.md)·[2D HD](plans/issue-137_2d_remaster.md)·[점진적 다운로드/진행률](reports/issue-196_web_progressive.md)도 포함합니다. #202는 메인테이너 최종 사용 확인으로 완료했으며 #113 성능 NOT READY를 유지한다.  아래 단계별 문구는 당시 기록입니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
