@@ -17,7 +17,7 @@
 
 직접 작성한 SVG를 바탕으로 Windows EXE의16~256픽셀 내장 아이콘과 Cargo 버전 정보, macOS 앱의16~1024픽셀 ICNS, SDL 창 아이콘·Linux PNG를 제공합니다. 외부 폰트/원본 DOS 픽셀을 아이콘에 사용하지 않았으며 프로젝트 MIT를 따릅니다. 실행 시 별도 아이콘 파일을 고를 필요가 없습니다.
 
-Windows11 x64 ZIP은 전부 풀고 OhMyLemmings.exe, macOS universal2는 앱 전체를 Applications에 복사해 실행합니다. Linux는 압축을 풀고 SDL2 runtime이 설치된 환경에서 `./lemmings-desktop`으로 실행합니다. Web은 [공개 게임](https://edwardkim.github.io/ohmylemmings/) 또는 ZIP 전체를 HTTP로 제공합니다. 자세한 기존 실행/음악 안내는 [v0.3.0 노트](issue-205_v0.3.0.md)를 참고하세요.
+Windows11 x64 ZIP은 전부 풀고 OhMyLemmings.exe, macOS universal2는 앱 전체를 Applications에 복사해 실행합니다. Linux는 압축을 풀고 SDL2 runtime이 설치된 환경에서 `./lemmings-desktop`으로 실행합니다. Web은 [공개 게임](https://edwardkim.github.io/ohmylemmings/) 또는 ZIP 전체를 HTTP로 제공합니다. 자세한 기존 실행/음악 안내는 [v0.3.0 노트](https://github.com/edwardkim/ohmylemmings/blob/v0.3.0/mydocs/releases/issue-205_v0.3.0.md)를 참고하세요.
 
 패키지에는 전체 게임/HD와 대응 소스·체크섬·LICENSE/THIRD_PARTY_NOTICES를 포함합니다. 파일/태그/CI/소스 계보는 동봉 RELEASE-MANIFEST.json을 따릅니다. rfd는 MIT, embed-resource는 MIT이며 Native에만 파일 선택/빌드 자원을 연결합니다. OPL LGPL·Symphonia MPL 고지를 유지합니다.
 
