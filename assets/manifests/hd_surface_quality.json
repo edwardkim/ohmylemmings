@@ -1,0 +1,3033 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/215",
+  "generator": "built-in image_gen",
+  "style": "soft_handpainted_2d",
+  "pixel_policy": "Generated PNGs are unchanged; runtime pack preserves source RGBA. Material presentation uses bounded bilinear/seam blending and mask-local lighting.",
+  "materials": [
+    {
+      "set": 0,
+      "atlas": 1,
+      "previous_image": {
+        "path": "assets/remaster/issue-144-rock-v1.png",
+        "bytes": 2800649,
+        "sha256": "bc3827ea867384c62fe5f9c8f75f6ca724770d817d8749167131a9d17bbbfe32"
+      },
+      "image": {
+        "path": "assets/remaster/issue-215-rock-v2.png",
+        "bytes": 2717298,
+        "sha256": "aa5eed8fbe3692fdecdf4c2fec73716a9e3547bba78b82897288c14d6f0638d8"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-215_rock_v2.txt",
+        "bytes": 1703,
+        "sha256": "94e851352f29bf4cf8c909e45425b7431cf18c6e98ddc20e8156736109fb35c9"
+      },
+      "size": [
+        1254,
+        1254
+      ],
+      "period": [
+        768,
+        768
+      ]
+    },
+    {
+      "set": 1,
+      "atlas": 19,
+      "previous_image": {
+        "path": "assets/remaster/issue-157-fire-v1.png",
+        "bytes": 2751967,
+        "sha256": "f9474d28d0fd965f59a10519b934329f055f8e460ef92bcef84827c94c64e0c3"
+      },
+      "image": {
+        "path": "assets/remaster/issue-215-fire-v2.png",
+        "bytes": 2918714,
+        "sha256": "aeab8a2a55dffdfe0fb9d68c1f8095234e4f28a34cba1186a6cda1790afa421b"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-215_fire_v2.txt",
+        "bytes": 1319,
+        "sha256": "3b2404df534e985177a036ef2fb9a81ddbf10f20ec343c436986442ec343c9ac"
+      },
+      "size": [
+        1254,
+        1254
+      ],
+      "period": [
+        768,
+        768
+      ]
+    },
+    {
+      "set": 2,
+      "atlas": 20,
+      "previous_image": {
+        "path": "assets/remaster/issue-157-marble-v1.png",
+        "bytes": 2677744,
+        "sha256": "d9a6396459a7285c4557b5e34cf6abe30a921ea53d904557ef0aab99a07dde38"
+      },
+      "image": {
+        "path": "assets/remaster/issue-215-marble-v2.png",
+        "bytes": 2903370,
+        "sha256": "17362acf3bad56b0612ce6eedf90cc9e2dcd518865f36f989acd7a5849d0a0e6"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-215_marble_v2.txt",
+        "bytes": 1334,
+        "sha256": "efb39cc933d001de7539edc757927a9e850a4e9a70f9fad7dab76e9982fb4761"
+      },
+      "size": [
+        1254,
+        1254
+      ],
+      "period": [
+        768,
+        768
+      ]
+    },
+    {
+      "set": 3,
+      "atlas": 21,
+      "previous_image": {
+        "path": "assets/remaster/issue-157-pillar-v1.png",
+        "bytes": 2971032,
+        "sha256": "b30f4fb8042e90d94c0cd98dba90f5617a598c0f5d5792611868fccab1c363a8"
+      },
+      "image": {
+        "path": "assets/remaster/issue-215-pillar-v2.png",
+        "bytes": 2829259,
+        "sha256": "4c237916145572cf27e7731845f48c38ed350264764dee3f8c13548a83cc5f28"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-215_pillar_v2.txt",
+        "bytes": 1337,
+        "sha256": "a466185a3223282c81506fcfc8471e30bc0fd5b47e3ac8b764b13205184b2989"
+      },
+      "size": [
+        1254,
+        1254
+      ],
+      "period": [
+        768,
+        768
+      ]
+    },
+    {
+      "set": 4,
+      "atlas": 22,
+      "previous_image": {
+        "path": "assets/remaster/issue-157-crystal-v1.png",
+        "bytes": 2798974,
+        "sha256": "9c460f24a16c2a019d2f6715ee08fc37887423431281adab5721178592d7c459"
+      },
+      "image": {
+        "path": "assets/remaster/issue-215-crystal-v2.png",
+        "bytes": 3272655,
+        "sha256": "caff311061d400459bb3ec18adb886564174fb2102188760483f132f05554a65"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-215_crystal_v2.txt",
+        "bytes": 1348,
+        "sha256": "562aefd4365e083b593b82df173c499647537bb6af3534d5eb9de3073e9a592e"
+      },
+      "size": [
+        1254,
+        1254
+      ],
+      "period": [
+        768,
+        768
+      ]
+    }
+  ],
+  "facilities": [
+    {
+      "set": 0,
+      "atlas": 5,
+      "previous_image": {
+        "path": "assets/remaster/issue-147-facilities-v1.png",
+        "bytes": 1562112,
+        "sha256": "a3beea2a58b8df958456aae58203cf44e3604aff2c28ff6cbdfc51991552df70"
+      },
+      "image": {
+        "path": "assets/remaster/issue-215-facilities-v2.png",
+        "bytes": 1651535,
+        "sha256": "db73b4af8f74dd65611884de523b3d7c2d1d92f1025e84704aa6d833e0be5c33"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-215_facilities_v2.txt",
+        "bytes": 1651,
+        "sha256": "48c51968c632fb8f2478e43afd8102377d29be32f694c6fcb50a24243d0a1ecb"
+      },
+      "size": [
+        1536,
+        1024
+      ],
+      "cutoff": 8,
+      "previous_alpha_cutoff": 1,
+      "frames": [
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                0,
+                1,
+                0
+              ]
+            },
+            "atlas": 5,
+            "rect": [
+              384,
+              512,
+              384,
+              256
+            ],
+            "display": [
+              288,
+              150
+            ],
+            "anchor": [
+              6,
+              30
+            ]
+          },
+          "previous_cell": [
+            384,
+            559,
+            372,
+            171
+          ],
+          "cell": [
+            384,
+            556,
+            372,
+            178
+          ],
+          "previous_bounds": [
+            424,
+            559,
+            733,
+            730
+          ],
+          "bounds": [
+            419,
+            556,
+            736,
+            734
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                0,
+                1,
+                1
+              ]
+            },
+            "atlas": 5,
+            "rect": [
+              0,
+              0,
+              384,
+              256
+            ],
+            "display": [
+              288,
+              150
+            ],
+            "anchor": [
+              6,
+              47
+            ]
+          },
+          "previous_cell": [
+            0,
+            79,
+            384,
+            87
+          ],
+          "cell": [
+            0,
+            75,
+            384,
+            94
+          ],
+          "previous_bounds": [
+            52,
+            79,
+            358,
+            166
+          ],
+          "bounds": [
+            48,
+            75,
+            362,
+            169
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                0,
+                1,
+                2
+              ]
+            },
+            "atlas": 5,
+            "rect": [
+              384,
+              0,
+              384,
+              256
+            ],
+            "display": [
+              288,
+              150
+            ],
+            "anchor": [
+              6,
+              46
+            ]
+          },
+          "previous_cell": [
+            384,
+            76,
+            384,
+            89
+          ],
+          "cell": [
+            384,
+            73,
+            384,
+            96
+          ],
+          "previous_bounds": [
+            426,
+            76,
+            732,
+            165
+          ],
+          "bounds": [
+            421,
+            73,
+            734,
+            169
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                0,
+                1,
+                3
+              ]
+            },
+            "atlas": 5,
+            "rect": [
+              768,
+              0,
+              384,
+              256
+            ],
+            "display": [
+              288,
+              150
+            ],
+            "anchor": [
+              6,
+              43
+            ]
+          },
+          "previous_cell": [
+            768,
+            72,
+            384,
+            96
+          ],
+          "cell": [
+            768,
+            70,
+            384,
+            106
+          ],
+          "previous_bounds": [
+            805,
+            72,
+            1115,
+            168
+          ],
+          "bounds": [
+            800,
+            70,
+            1117,
+            176
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                0,
+                1,
+                4
+              ]
+            },
+            "atlas": 5,
+            "rect": [
+              1152,
+              0,
+              384,
+              256
+            ],
+            "display": [
+              288,
+              150
+            ],
+            "anchor": [
+              6,
+              43
+            ]
+          },
+          "previous_cell": [
+            1152,
+            71,
+            384,
+            109
+          ],
+          "cell": [
+            1152,
+            68,
+            384,
+            120
+          ],
+          "previous_bounds": [
+            1192,
+            71,
+            1501,
+            180
+          ],
+          "bounds": [
+            1186,
+            68,
+            1504,
+            188
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                0,
+                1,
+                5
+              ]
+            },
+            "atlas": 5,
+            "rect": [
+              0,
+              256,
+              384,
+              256
+            ],
+            "display": [
+              288,
+              150
+            ],
+            "anchor": [
+              6,
+              33
+            ]
+          },
+          "previous_cell": [
+            0,
+            308,
+            384,
+            144
+          ],
+          "cell": [
+            0,
+            307,
+            384,
+            153
+          ],
+          "previous_bounds": [
+            46,
+            308,
+            357,
+            452
+          ],
+          "bounds": [
+            41,
+            307,
+            362,
+            460
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                0,
+                1,
+                6
+              ]
+            },
+            "atlas": 5,
+            "rect": [
+              384,
+              256,
+              384,
+              256
+            ],
+            "display": [
+              288,
+              150
+            ],
+            "anchor": [
+              6,
+              33
+            ]
+          },
+          "previous_cell": [
+            384,
+            306,
+            384,
+            155
+          ],
+          "cell": [
+            384,
+            304,
+            384,
+            162
+          ],
+          "previous_bounds": [
+            427,
+            306,
+            737,
+            461
+          ],
+          "bounds": [
+            422,
+            304,
+            740,
+            466
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                0,
+                1,
+                7
+              ]
+            },
+            "atlas": 5,
+            "rect": [
+              768,
+              256,
+              384,
+              256
+            ],
+            "display": [
+              288,
+              150
+            ],
+            "anchor": [
+              6,
+              32
+            ]
+          },
+          "previous_cell": [
+            768,
+            303,
+            384,
+            159
+          ],
+          "cell": [
+            768,
+            298,
+            384,
+            167
+          ],
+          "previous_bounds": [
+            804,
+            303,
+            1118,
+            462
+          ],
+          "bounds": [
+            801,
+            298,
+            1120,
+            465
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                0,
+                1,
+                8
+              ]
+            },
+            "atlas": 5,
+            "rect": [
+              1152,
+              256,
+              384,
+              256
+            ],
+            "display": [
+              288,
+              150
+            ],
+            "anchor": [
+              6,
+              32
+            ]
+          },
+          "previous_cell": [
+            1152,
+            299,
+            384,
+            156
+          ],
+          "cell": [
+            1152,
+            296,
+            384,
+            162
+          ],
+          "previous_bounds": [
+            1190,
+            299,
+            1502,
+            455
+          ],
+          "bounds": [
+            1187,
+            296,
+            1505,
+            458
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                0,
+                1,
+                9
+              ]
+            },
+            "atlas": 5,
+            "rect": [
+              0,
+              512,
+              384,
+              256
+            ],
+            "display": [
+              288,
+              150
+            ],
+            "anchor": [
+              6,
+              32
+            ]
+          },
+          "previous_cell": [
+            0,
+            561,
+            384,
+            167
+          ],
+          "cell": [
+            0,
+            559,
+            384,
+            173
+          ],
+          "previous_bounds": [
+            43,
+            561,
+            355,
+            728
+          ],
+          "bounds": [
+            41,
+            559,
+            360,
+            732
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                0,
+                0,
+                0
+              ]
+            },
+            "atlas": 5,
+            "rect": [
+              768,
+              512,
+              384,
+              256
+            ],
+            "display": [
+              288,
+              180
+            ],
+            "anchor": [
+              0,
+              78
+            ]
+          },
+          "previous_cell": [
+            756,
+            523,
+            780,
+            235
+          ],
+          "cell": [
+            756,
+            519,
+            780,
+            241
+          ],
+          "previous_bounds": [
+            798,
+            523,
+            1113,
+            758
+          ],
+          "bounds": [
+            795,
+            519,
+            1118,
+            760
+          ]
+        }
+      ]
+    },
+    {
+      "set": 1,
+      "atlas": 23,
+      "previous_image": {
+        "path": "assets/remaster/issue-160-fire-v1.png",
+        "bytes": 1712047,
+        "sha256": "e7b98f681ef5b2503755733c5d9044990914aa8ebe85e2604c0c28becf52f54d"
+      },
+      "image": {
+        "path": "assets/remaster/issue-215-portals-fire-v2.png",
+        "bytes": 1851048,
+        "sha256": "ed883a8eaf13ff996916bb5444741e3b6c47da6c4e86323e5f1211e58caf8dbc"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-215_portals_fire_v2.txt",
+        "bytes": 1626,
+        "sha256": "897ea5b8712ea8b0a72490164d80a23110a58af1444fca7824a653df87d3fa93"
+      },
+      "size": [
+        1536,
+        1024
+      ],
+      "cutoff": 8,
+      "previous_alpha_cutoff": 8,
+      "frames": [
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                1,
+                1,
+                1
+              ]
+            },
+            "atlas": 23,
+            "rect": [
+              24,
+              100,
+              348,
+              111
+            ],
+            "display": [
+              293,
+              93
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            0,
+            103,
+            384,
+            105
+          ],
+          "cell": [
+            0,
+            95,
+            384,
+            117
+          ],
+          "previous_bounds": [
+            27,
+            103,
+            369,
+            208
+          ],
+          "bounds": [
+            19,
+            95,
+            376,
+            212
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                1,
+                1,
+                2
+              ]
+            },
+            "atlas": 23,
+            "rect": [
+              407,
+              99,
+              348,
+              112
+            ],
+            "display": [
+              293,
+              94
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            384,
+            102,
+            384,
+            106
+          ],
+          "cell": [
+            384,
+            94,
+            384,
+            120
+          ],
+          "previous_bounds": [
+            410,
+            102,
+            752,
+            208
+          ],
+          "bounds": [
+            401,
+            94,
+            756,
+            214
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                1,
+                1,
+                3
+              ]
+            },
+            "atlas": 23,
+            "rect": [
+              790,
+              99,
+              347,
+              122
+            ],
+            "display": [
+              293,
+              103
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            768,
+            102,
+            384,
+            116
+          ],
+          "cell": [
+            768,
+            94,
+            384,
+            134
+          ],
+          "previous_bounds": [
+            793,
+            102,
+            1134,
+            218
+          ],
+          "bounds": [
+            785,
+            94,
+            1139,
+            228
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                1,
+                1,
+                4
+              ]
+            },
+            "atlas": 23,
+            "rect": [
+              1174,
+              99,
+              345,
+              142
+            ],
+            "display": [
+              293,
+              121
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            1152,
+            102,
+            384,
+            136
+          ],
+          "cell": [
+            1152,
+            94,
+            384,
+            156
+          ],
+          "previous_bounds": [
+            1177,
+            102,
+            1516,
+            238
+          ],
+          "bounds": [
+            1167,
+            94,
+            1521,
+            250
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                1,
+                1,
+                5
+              ]
+            },
+            "atlas": 23,
+            "rect": [
+              24,
+              417,
+              349,
+              172
+            ],
+            "display": [
+              293,
+              144
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            0,
+            420,
+            384,
+            166
+          ],
+          "cell": [
+            0,
+            383,
+            384,
+            182
+          ],
+          "previous_bounds": [
+            27,
+            420,
+            370,
+            586
+          ],
+          "bounds": [
+            20,
+            383,
+            377,
+            565
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                1,
+                1,
+                6
+              ]
+            },
+            "atlas": 23,
+            "rect": [
+              406,
+              416,
+              348,
+              183
+            ],
+            "display": [
+              293,
+              154
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            384,
+            419,
+            384,
+            177
+          ],
+          "cell": [
+            384,
+            383,
+            384,
+            191
+          ],
+          "previous_bounds": [
+            409,
+            419,
+            751,
+            596
+          ],
+          "bounds": [
+            403,
+            383,
+            756,
+            574
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                1,
+                1,
+                7
+              ]
+            },
+            "atlas": 23,
+            "rect": [
+              787,
+              415,
+              348,
+              185
+            ],
+            "display": [
+              293,
+              156
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            768,
+            418,
+            384,
+            179
+          ],
+          "cell": [
+            768,
+            383,
+            384,
+            191
+          ],
+          "previous_bounds": [
+            790,
+            418,
+            1132,
+            597
+          ],
+          "bounds": [
+            785,
+            383,
+            1137,
+            574
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                1,
+                1,
+                8
+              ]
+            },
+            "atlas": 23,
+            "rect": [
+              1171,
+              415,
+              348,
+              190
+            ],
+            "display": [
+              293,
+              160
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            1152,
+            418,
+            384,
+            184
+          ],
+          "cell": [
+            1152,
+            382,
+            384,
+            193
+          ],
+          "previous_bounds": [
+            1174,
+            418,
+            1516,
+            602
+          ],
+          "bounds": [
+            1167,
+            382,
+            1521,
+            575
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                1,
+                1,
+                9
+              ]
+            },
+            "atlas": 23,
+            "rect": [
+              24,
+              732,
+              348,
+              201
+            ],
+            "display": [
+              293,
+              169
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            0,
+            735,
+            384,
+            195
+          ],
+          "cell": [
+            0,
+            700,
+            384,
+            206
+          ],
+          "previous_bounds": [
+            27,
+            735,
+            369,
+            930
+          ],
+          "bounds": [
+            20,
+            700,
+            376,
+            906
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                1,
+                1,
+                0
+              ]
+            },
+            "atlas": 23,
+            "rect": [
+              404,
+              733,
+              349,
+              200
+            ],
+            "display": [
+              293,
+              168
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            384,
+            736,
+            372,
+            194
+          ],
+          "cell": [
+            384,
+            700,
+            372,
+            206
+          ],
+          "previous_bounds": [
+            407,
+            736,
+            750,
+            930
+          ],
+          "bounds": [
+            400,
+            700,
+            755,
+            906
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                1,
+                0,
+                0
+              ]
+            },
+            "atlas": 23,
+            "rect": [
+              776,
+              677,
+              368,
+              286
+            ],
+            "display": [
+              293,
+              228
+            ],
+            "anchor": [
+              14,
+              52
+            ]
+          },
+          "previous_cell": [
+            756,
+            680,
+            780,
+            280
+          ],
+          "cell": [
+            756,
+            644,
+            780,
+            289
+          ],
+          "previous_bounds": [
+            779,
+            680,
+            1141,
+            960
+          ],
+          "bounds": [
+            774,
+            644,
+            1148,
+            933
+          ]
+        }
+      ]
+    },
+    {
+      "set": 2,
+      "atlas": 24,
+      "previous_image": {
+        "path": "assets/remaster/issue-160-marble-v1.png",
+        "bytes": 1791745,
+        "sha256": "2c4a06d94b6664843666e1056cb6974fe2a50864d22f864492ea6416e99a1b07"
+      },
+      "image": {
+        "path": "assets/remaster/issue-215-portals-marble-v2.png",
+        "bytes": 1848022,
+        "sha256": "8a82219f8ad2633654273a01234d17e00c68d623a3b66365d6ceae683b250eb4"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-215_portals_marble_v2.txt",
+        "bytes": 1628,
+        "sha256": "9eebfcbf310b6319edc7efc9da918ba4c2e827dc7d3cece1a77d2ece2a411c43"
+      },
+      "size": [
+        1536,
+        1024
+      ],
+      "cutoff": 8,
+      "previous_alpha_cutoff": 8,
+      "frames": [
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                2,
+                1,
+                1
+              ]
+            },
+            "atlas": 24,
+            "rect": [
+              17,
+              116,
+              352,
+              119
+            ],
+            "display": [
+              293,
+              99
+            ],
+            "anchor": [
+              2,
+              2
+            ]
+          },
+          "previous_cell": [
+            0,
+            119,
+            384,
+            113
+          ],
+          "cell": [
+            0,
+            116,
+            384,
+            120
+          ],
+          "previous_bounds": [
+            20,
+            119,
+            366,
+            232
+          ],
+          "bounds": [
+            19,
+            116,
+            369,
+            236
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                2,
+                1,
+                2
+              ]
+            },
+            "atlas": 24,
+            "rect": [
+              402,
+              116,
+              351,
+              119
+            ],
+            "display": [
+              293,
+              99
+            ],
+            "anchor": [
+              2,
+              2
+            ]
+          },
+          "previous_cell": [
+            384,
+            119,
+            384,
+            113
+          ],
+          "cell": [
+            384,
+            116,
+            384,
+            120
+          ],
+          "previous_bounds": [
+            405,
+            119,
+            750,
+            232
+          ],
+          "bounds": [
+            402,
+            116,
+            752,
+            236
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                2,
+                1,
+                3
+              ]
+            },
+            "atlas": 24,
+            "rect": [
+              785,
+              115,
+              351,
+              133
+            ],
+            "display": [
+              293,
+              111
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            768,
+            118,
+            384,
+            127
+          ],
+          "cell": [
+            768,
+            116,
+            384,
+            136
+          ],
+          "previous_bounds": [
+            788,
+            118,
+            1133,
+            245
+          ],
+          "bounds": [
+            786,
+            116,
+            1135,
+            252
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                2,
+                1,
+                4
+              ]
+            },
+            "atlas": 24,
+            "rect": [
+              1169,
+              116,
+              351,
+              151
+            ],
+            "display": [
+              293,
+              126
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            1152,
+            119,
+            384,
+            145
+          ],
+          "cell": [
+            1152,
+            116,
+            384,
+            153
+          ],
+          "previous_bounds": [
+            1172,
+            119,
+            1517,
+            264
+          ],
+          "bounds": [
+            1170,
+            116,
+            1520,
+            269
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                2,
+                1,
+                5
+              ]
+            },
+            "atlas": 24,
+            "rect": [
+              19,
+              407,
+              351,
+              190
+            ],
+            "display": [
+              293,
+              159
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            0,
+            410,
+            384,
+            184
+          ],
+          "cell": [
+            0,
+            406,
+            384,
+            194
+          ],
+          "previous_bounds": [
+            22,
+            410,
+            367,
+            594
+          ],
+          "bounds": [
+            19,
+            406,
+            369,
+            600
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                2,
+                1,
+                6
+              ]
+            },
+            "atlas": 24,
+            "rect": [
+              402,
+              407,
+              350,
+              200
+            ],
+            "display": [
+              293,
+              167
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            384,
+            410,
+            384,
+            194
+          ],
+          "cell": [
+            384,
+            406,
+            384,
+            202
+          ],
+          "previous_bounds": [
+            405,
+            410,
+            749,
+            604
+          ],
+          "bounds": [
+            402,
+            406,
+            751,
+            608
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                2,
+                1,
+                7
+              ]
+            },
+            "atlas": 24,
+            "rect": [
+              785,
+              407,
+              352,
+              197
+            ],
+            "display": [
+              293,
+              164
+            ],
+            "anchor": [
+              2,
+              2
+            ]
+          },
+          "previous_cell": [
+            768,
+            410,
+            384,
+            191
+          ],
+          "cell": [
+            768,
+            406,
+            384,
+            200
+          ],
+          "previous_bounds": [
+            788,
+            410,
+            1134,
+            601
+          ],
+          "bounds": [
+            786,
+            406,
+            1135,
+            606
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                2,
+                1,
+                8
+              ]
+            },
+            "atlas": 24,
+            "rect": [
+              1168,
+              407,
+              352,
+              198
+            ],
+            "display": [
+              293,
+              165
+            ],
+            "anchor": [
+              2,
+              2
+            ]
+          },
+          "previous_cell": [
+            1152,
+            410,
+            384,
+            192
+          ],
+          "cell": [
+            1152,
+            406,
+            384,
+            201
+          ],
+          "previous_bounds": [
+            1171,
+            410,
+            1517,
+            602
+          ],
+          "bounds": [
+            1170,
+            406,
+            1519,
+            607
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                2,
+                1,
+                9
+              ]
+            },
+            "atlas": 24,
+            "rect": [
+              19,
+              703,
+              350,
+              213
+            ],
+            "display": [
+              293,
+              178
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            0,
+            706,
+            384,
+            207
+          ],
+          "cell": [
+            0,
+            704,
+            384,
+            216
+          ],
+          "previous_bounds": [
+            22,
+            706,
+            366,
+            913
+          ],
+          "bounds": [
+            19,
+            704,
+            369,
+            920
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                2,
+                1,
+                0
+              ]
+            },
+            "atlas": 24,
+            "rect": [
+              402,
+              703,
+              351,
+              213
+            ],
+            "display": [
+              293,
+              178
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            384,
+            706,
+            372,
+            207
+          ],
+          "cell": [
+            384,
+            704,
+            372,
+            215
+          ],
+          "previous_bounds": [
+            405,
+            706,
+            750,
+            913
+          ],
+          "bounds": [
+            402,
+            704,
+            752,
+            919
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                2,
+                0,
+                0
+              ]
+            },
+            "atlas": 24,
+            "rect": [
+              775,
+              670,
+              370,
+              274
+            ],
+            "display": [
+              293,
+              217
+            ],
+            "anchor": [
+              -10,
+              118
+            ]
+          },
+          "previous_cell": [
+            756,
+            673,
+            780,
+            268
+          ],
+          "cell": [
+            756,
+            671,
+            780,
+            273
+          ],
+          "previous_bounds": [
+            778,
+            673,
+            1142,
+            941
+          ],
+          "bounds": [
+            775,
+            671,
+            1146,
+            944
+          ]
+        }
+      ]
+    },
+    {
+      "set": 3,
+      "atlas": 25,
+      "previous_image": {
+        "path": "assets/remaster/issue-160-pillar-v1.png",
+        "bytes": 1773175,
+        "sha256": "71118971b80ee0591204782a78efb3654892301f79c5bd5f07d04bcceb7707d2"
+      },
+      "image": {
+        "path": "assets/remaster/issue-215-portals-pillar-v2.png",
+        "bytes": 1900783,
+        "sha256": "28f0778e51bd3d54c823ef803882c976a6ca84e1bb20ce8da1dbc5e07eb4b9b1"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-215_portals_pillar_v2.txt",
+        "bytes": 1624,
+        "sha256": "afe3225c488c0661121ac0ee8bbbe7e3e19e3bd210b28645ecb18ec08055824d"
+      },
+      "size": [
+        1536,
+        1024
+      ],
+      "cutoff": 8,
+      "previous_alpha_cutoff": 8,
+      "frames": [
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                3,
+                1,
+                1
+              ]
+            },
+            "atlas": 25,
+            "rect": [
+              35,
+              100,
+              337,
+              121
+            ],
+            "display": [
+              293,
+              105
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            0,
+            103,
+            384,
+            115
+          ],
+          "cell": [
+            0,
+            96,
+            384,
+            125
+          ],
+          "previous_bounds": [
+            38,
+            103,
+            369,
+            218
+          ],
+          "bounds": [
+            34,
+            96,
+            375,
+            221
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                3,
+                1,
+                2
+              ]
+            },
+            "atlas": 25,
+            "rect": [
+              410,
+              100,
+              341,
+              117
+            ],
+            "display": [
+              293,
+              101
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            384,
+            103,
+            384,
+            111
+          ],
+          "cell": [
+            384,
+            96,
+            384,
+            125
+          ],
+          "previous_bounds": [
+            413,
+            103,
+            748,
+            214
+          ],
+          "bounds": [
+            408,
+            96,
+            752,
+            221
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                3,
+                1,
+                3
+              ]
+            },
+            "atlas": 25,
+            "rect": [
+              784,
+              99,
+              343,
+              128
+            ],
+            "display": [
+              293,
+              109
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            768,
+            102,
+            384,
+            122
+          ],
+          "cell": [
+            768,
+            96,
+            384,
+            133
+          ],
+          "previous_bounds": [
+            787,
+            102,
+            1124,
+            224
+          ],
+          "bounds": [
+            783,
+            96,
+            1131,
+            229
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                3,
+                1,
+                4
+              ]
+            },
+            "atlas": 25,
+            "rect": [
+              1164,
+              99,
+              338,
+              145
+            ],
+            "display": [
+              293,
+              126
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            1152,
+            102,
+            384,
+            139
+          ],
+          "cell": [
+            1152,
+            96,
+            384,
+            151
+          ],
+          "previous_bounds": [
+            1167,
+            102,
+            1499,
+            241
+          ],
+          "bounds": [
+            1162,
+            96,
+            1504,
+            247
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                3,
+                1,
+                5
+              ]
+            },
+            "atlas": 25,
+            "rect": [
+              35,
+              387,
+              336,
+              183
+            ],
+            "display": [
+              293,
+              160
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            0,
+            390,
+            384,
+            177
+          ],
+          "cell": [
+            0,
+            377,
+            384,
+            193
+          ],
+          "previous_bounds": [
+            38,
+            390,
+            368,
+            567
+          ],
+          "bounds": [
+            33,
+            377,
+            375,
+            570
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                3,
+                1,
+                6
+              ]
+            },
+            "atlas": 25,
+            "rect": [
+              410,
+              387,
+              338,
+              189
+            ],
+            "display": [
+              293,
+              164
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            384,
+            390,
+            384,
+            183
+          ],
+          "cell": [
+            384,
+            377,
+            384,
+            199
+          ],
+          "previous_bounds": [
+            413,
+            390,
+            745,
+            573
+          ],
+          "bounds": [
+            408,
+            377,
+            752,
+            576
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                3,
+                1,
+                7
+              ]
+            },
+            "atlas": 25,
+            "rect": [
+              786,
+              387,
+              342,
+              195
+            ],
+            "display": [
+              293,
+              167
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            768,
+            390,
+            384,
+            189
+          ],
+          "cell": [
+            768,
+            377,
+            384,
+            205
+          ],
+          "previous_bounds": [
+            789,
+            390,
+            1125,
+            579
+          ],
+          "bounds": [
+            781,
+            377,
+            1130,
+            582
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                3,
+                1,
+                8
+              ]
+            },
+            "atlas": 25,
+            "rect": [
+              1165,
+              387,
+              338,
+              194
+            ],
+            "display": [
+              293,
+              168
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            1152,
+            390,
+            384,
+            188
+          ],
+          "cell": [
+            1152,
+            377,
+            384,
+            205
+          ],
+          "previous_bounds": [
+            1168,
+            390,
+            1500,
+            578
+          ],
+          "bounds": [
+            1161,
+            377,
+            1504,
+            582
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                3,
+                1,
+                9
+              ]
+            },
+            "atlas": 25,
+            "rect": [
+              35,
+              707,
+              336,
+              195
+            ],
+            "display": [
+              293,
+              170
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            0,
+            710,
+            384,
+            189
+          ],
+          "cell": [
+            0,
+            700,
+            384,
+            203
+          ],
+          "previous_bounds": [
+            38,
+            710,
+            368,
+            899
+          ],
+          "bounds": [
+            35,
+            700,
+            374,
+            903
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                3,
+                1,
+                0
+              ]
+            },
+            "atlas": 25,
+            "rect": [
+              410,
+              707,
+              338,
+              195
+            ],
+            "display": [
+              293,
+              169
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            384,
+            710,
+            372,
+            189
+          ],
+          "cell": [
+            384,
+            700,
+            372,
+            203
+          ],
+          "previous_bounds": [
+            413,
+            710,
+            745,
+            899
+          ],
+          "bounds": [
+            408,
+            700,
+            751,
+            903
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                3,
+                0,
+                0
+              ]
+            },
+            "atlas": 25,
+            "rect": [
+              776,
+              668,
+              360,
+              259
+            ],
+            "display": [
+              293,
+              211
+            ],
+            "anchor": [
+              -10,
+              104
+            ]
+          },
+          "previous_cell": [
+            756,
+            671,
+            780,
+            253
+          ],
+          "cell": [
+            756,
+            661,
+            780,
+            267
+          ],
+          "previous_bounds": [
+            779,
+            671,
+            1133,
+            924
+          ],
+          "bounds": [
+            769,
+            661,
+            1140,
+            928
+          ]
+        }
+      ]
+    },
+    {
+      "set": 4,
+      "atlas": 26,
+      "previous_image": {
+        "path": "assets/remaster/issue-160-crystal-v1.png",
+        "bytes": 1884099,
+        "sha256": "b94926fd160c174f24d0921e588139e9b40481c4e33bd00b68983f0e2fed6e59"
+      },
+      "image": {
+        "path": "assets/remaster/issue-215-portals-crystal-v2.png",
+        "bytes": 1898270,
+        "sha256": "bfe7b56de730fbd08d5cc0077e466c66c0817e4768dc6a1ed88cfc9bfa148465"
+      },
+      "prompt": {
+        "path": "assets/remaster/prompts/issue-215_portals_crystal_v2.txt",
+        "bytes": 1688,
+        "sha256": "71c13c0fd39a802d2f096d69f0e5f65a60514b4cde6466e8e67d5ba12f13a73e"
+      },
+      "size": [
+        1536,
+        1024
+      ],
+      "cutoff": 8,
+      "previous_alpha_cutoff": 8,
+      "frames": [
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                4,
+                1,
+                1
+              ]
+            },
+            "atlas": 26,
+            "rect": [
+              31,
+              100,
+              336,
+              110
+            ],
+            "display": [
+              293,
+              96
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            0,
+            103,
+            384,
+            104
+          ],
+          "cell": [
+            0,
+            101,
+            384,
+            108
+          ],
+          "previous_bounds": [
+            34,
+            103,
+            364,
+            207
+          ],
+          "bounds": [
+            32,
+            101,
+            368,
+            209
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                4,
+                1,
+                2
+              ]
+            },
+            "atlas": 26,
+            "rect": [
+              411,
+              100,
+              340,
+              118
+            ],
+            "display": [
+              293,
+              102
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            384,
+            103,
+            384,
+            112
+          ],
+          "cell": [
+            384,
+            100,
+            384,
+            118
+          ],
+          "previous_bounds": [
+            414,
+            103,
+            748,
+            215
+          ],
+          "bounds": [
+            412,
+            100,
+            752,
+            218
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                4,
+                1,
+                3
+              ]
+            },
+            "atlas": 26,
+            "rect": [
+              793,
+              100,
+              338,
+              126
+            ],
+            "display": [
+              293,
+              109
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            768,
+            103,
+            384,
+            120
+          ],
+          "cell": [
+            768,
+            100,
+            384,
+            125
+          ],
+          "previous_bounds": [
+            796,
+            103,
+            1128,
+            223
+          ],
+          "bounds": [
+            793,
+            100,
+            1133,
+            225
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                4,
+                1,
+                4
+              ]
+            },
+            "atlas": 26,
+            "rect": [
+              1175,
+              99,
+              340,
+              145
+            ],
+            "display": [
+              293,
+              125
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            1152,
+            102,
+            384,
+            139
+          ],
+          "cell": [
+            1152,
+            100,
+            384,
+            142
+          ],
+          "previous_bounds": [
+            1178,
+            102,
+            1512,
+            241
+          ],
+          "bounds": [
+            1175,
+            100,
+            1517,
+            242
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                4,
+                1,
+                5
+              ]
+            },
+            "atlas": 26,
+            "rect": [
+              27,
+              380,
+              341,
+              183
+            ],
+            "display": [
+              293,
+              157
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            0,
+            383,
+            384,
+            177
+          ],
+          "cell": [
+            0,
+            380,
+            384,
+            183
+          ],
+          "previous_bounds": [
+            30,
+            383,
+            365,
+            560
+          ],
+          "bounds": [
+            27,
+            380,
+            368,
+            563
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                4,
+                1,
+                6
+              ]
+            },
+            "atlas": 26,
+            "rect": [
+              408,
+              379,
+              344,
+              191
+            ],
+            "display": [
+              293,
+              163
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            384,
+            382,
+            384,
+            185
+          ],
+          "cell": [
+            384,
+            380,
+            384,
+            190
+          ],
+          "previous_bounds": [
+            411,
+            382,
+            749,
+            567
+          ],
+          "bounds": [
+            408,
+            380,
+            752,
+            570
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                4,
+                1,
+                7
+              ]
+            },
+            "atlas": 26,
+            "rect": [
+              790,
+              379,
+              341,
+              196
+            ],
+            "display": [
+              293,
+              169
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            768,
+            382,
+            384,
+            190
+          ],
+          "cell": [
+            768,
+            380,
+            384,
+            195
+          ],
+          "previous_bounds": [
+            793,
+            382,
+            1128,
+            572
+          ],
+          "bounds": [
+            790,
+            380,
+            1133,
+            575
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                4,
+                1,
+                8
+              ]
+            },
+            "atlas": 26,
+            "rect": [
+              1171,
+              379,
+              341,
+              200
+            ],
+            "display": [
+              293,
+              172
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            1152,
+            382,
+            384,
+            194
+          ],
+          "cell": [
+            1152,
+            380,
+            384,
+            199
+          ],
+          "previous_bounds": [
+            1174,
+            382,
+            1509,
+            576
+          ],
+          "bounds": [
+            1171,
+            380,
+            1514,
+            579
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                4,
+                1,
+                9
+              ]
+            },
+            "atlas": 26,
+            "rect": [
+              27,
+              698,
+              340,
+              197
+            ],
+            "display": [
+              293,
+              170
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            0,
+            701,
+            384,
+            191
+          ],
+          "cell": [
+            0,
+            698,
+            384,
+            198
+          ],
+          "previous_bounds": [
+            30,
+            701,
+            364,
+            892
+          ],
+          "bounds": [
+            27,
+            698,
+            368,
+            896
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                4,
+                1,
+                0
+              ]
+            },
+            "atlas": 26,
+            "rect": [
+              408,
+              697,
+              341,
+              199
+            ],
+            "display": [
+              293,
+              171
+            ],
+            "anchor": [
+              2,
+              3
+            ]
+          },
+          "previous_cell": [
+            384,
+            700,
+            372,
+            237
+          ],
+          "cell": [
+            384,
+            698,
+            372,
+            242
+          ],
+          "previous_bounds": [
+            411,
+            700,
+            746,
+            893
+          ],
+          "bounds": [
+            408,
+            698,
+            750,
+            896
+          ]
+        },
+        {
+          "previous_frame": {
+            "key": {
+              "object": [
+                4,
+                0,
+                0
+              ]
+            },
+            "atlas": 26,
+            "rect": [
+              758,
+              670,
+              404,
+              274
+            ],
+            "display": [
+              292,
+              198
+            ],
+            "anchor": [
+              14,
+              106
+            ]
+          },
+          "previous_cell": [
+            756,
+            673,
+            780,
+            268
+          ],
+          "cell": [
+            756,
+            671,
+            780,
+            271
+          ],
+          "previous_bounds": [
+            761,
+            673,
+            1159,
+            941
+          ],
+          "bounds": [
+            759,
+            671,
+            1164,
+            942
+          ]
+        }
+      ]
+    }
+  ],
+  "preserved": "Collision, terrain edits, object IDs/phase/triggers, game/audio logic and original mode",
+  "acceptance": "Maintainer accepted current material and vertical contour quality on 2026-10-24; further shape/art refinements deferred."
+}

@@ -125,3 +125,18 @@
 [공통 글꼴 atlas/출처](../manifests/hd_ui_font.json)는 고정 Noto Sans SemiBold의95 ASCII glyph coverage다. [OFL](../../third_party/NotoSans-OFL.txt)·전체 배포 고지를 보존한다. 새 손그림 이미지 대신 라이선스가 고정된 글꼴과 코드 기반 AA nine-slice panel을 사용했다. 기존13조작 아이콘은 유지한다. [결과·화면·재현](../../mydocs/reports/issue-184_hd_ui.md).
 
 [패널](previews/issue-184_play.png) · [Pause](previews/issue-184_paused.png) · [성공](previews/issue-184_won.png) · [실패](previews/issue-184_lost.png)는 새 UI의 실제 합성 코스 Canvas다.
+
+
+## #215 지형·입출구 표면 품질 개선
+
+기존5재질의256HD px 반복을 개선하고 새768px 표시 크기의 표면/경계 조명을 검토한다. 아래 생성 PNG는 원본 그대로 보존한다. 팩의 RGB/straight alpha는 수정하지 않으며 런타임 표면 합성에서 보간/이음새와 지형 내부 조명을 처리한다. 기존 이미지도 과거 버전의 출처로 유지한다. [제작/검증 프로필](../manifests/hd_surface_quality.json)·[계획](../../mydocs/plans/issue-215_hd_surface_quality.md)을 따른다. built-in image_gen으로 생성/편집했으며 CLI fallback은 사용하지 않았다.
+
+| 테마 | 재질 PNG / 최종 프롬프트 | 입출구 PNG / 최종 프롬프트 |
+|---|---|---|
+| 흙/암석 | [PNG](issue-215-rock-v2.png) · [prompt](prompts/issue-215_rock_v2.txt) | [PNG](issue-215-facilities-v2.png) · [prompt](prompts/issue-215_facilities_v2.txt) |
+| 화산암 | [PNG](issue-215-fire-v2.png) · [prompt](prompts/issue-215_fire_v2.txt) | [PNG](issue-215-portals-fire-v2.png) · [prompt](prompts/issue-215_portals_fire_v2.txt) |
+| 대리석 | [PNG](issue-215-marble-v2.png) · [prompt](prompts/issue-215_marble_v2.txt) | [PNG](issue-215-portals-marble-v2.png) · [prompt](prompts/issue-215_portals_marble_v2.txt) |
+| 사암 | [PNG](issue-215-pillar-v2.png) · [prompt](prompts/issue-215_pillar_v2.txt) | [PNG](issue-215-portals-pillar-v2.png) · [prompt](prompts/issue-215_portals_pillar_v2.txt) |
+| 결정 | [PNG](issue-215-crystal-v2.png) · [prompt](prompts/issue-215_crystal_v2.txt) | [PNG](issue-215-portals-crystal-v2.png) · [prompt](prompts/issue-215_portals_crystal_v2.txt) |
+
+실제 출력은 재질1254×1254/불투명, 시설1536×1024/straight alpha다. 재질의2K 요청과 실제 생성 해상도를 구분한다. 입출구55키는 실제 잉크 영역을 찾아 기존 화면 경계/기준점을1.5HD px 이내로 유지한다. 특수4장면과 함정/위험물/깃발의 기존 아트는 유지한다. 실제 게임 검토와 인수는 #215에서 진행한다.

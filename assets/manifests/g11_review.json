@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 303205,
-      "sha256": "e1b2c4beeb373f83a298a287d82bcebd1ddac712069068f1ef21f27bd8cc0125",
+      "bytes": 305092,
+      "sha256": "e06b8cc2a9644fffed5aeb2620cc9d9bd63cddf608e7f7aabfa4c1144b3874ef",
       "id": "compatibility"
     },
     {
@@ -11252,5 +11252,17 @@
       }
     ],
     "scope": "Opt-in player FPS/feedback UI. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "surface_quality_215": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/215",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 303205,
+        "sha256": "e1b2c4beeb373f83a298a287d82bcebd1ddac712069068f1ef21f27bd8cc0125",
+        "id": "compatibility"
+      }
+    ],
+    "scope": "HD surface quality and portal artwork refresh. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
   }
 }

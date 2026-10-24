@@ -24,4 +24,5 @@ pub use snapshot::{
 pub mod catalog;
 pub mod download;
 mod font;
+mod surface;
 mod ui;
