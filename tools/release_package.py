@@ -223,6 +223,10 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
 
 
 def verify_package(path, root=ROOT):
+    from tools.detached_source import verify_external
+    external = verify_external(path, root, verify_package)
+    if external is not None:
+        return external
     data = regular(path)
     require(regular(Path(str(path) + '.sha256')).decode() == f'{sha(data)}  {path.name}\n', 'Archive checksum differs')
     if path.suffix == '.zip':

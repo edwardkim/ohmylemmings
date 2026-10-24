@@ -31,6 +31,34 @@ SOURCE_REQUIRED = {
 }
 
 
+def runtime_art_sources(root):
+    """Follow the same direct inputs as runtime_pack/runtime_catalog, not history pins."""
+    result = set()
+    seen = set()
+    pending = ['assets/manifests/remaster_pack.json']
+    while pending:
+        name = pending.pop()
+        if name in seen:
+            continue
+        seen.add(name)
+        path = Path(name)
+        if path.is_absolute() or '..' in path.parts or name.startswith(('assets/local/', 'target/')):
+            raise ValueError('Invalid HD source path')
+        if not (root / name).exists() and name == 'assets/manifests/remaster_pack.json':
+            continue  # Synthetic/original-free source fixture.
+        result.add(name)
+        info = json.loads((root / name).read_text())
+        for row in info.get('atlases', []) + info.get('provenance', []):
+            source = row['path']
+            if Path(source).is_absolute() or '..' in Path(source).parts or source.startswith(('assets/local/', 'target/')):
+                raise ValueError('Invalid HD source path')
+            if not (root / source).is_file():
+                raise ValueError('Missing required HD source: ' + source)
+            result.add(source)
+        pending.extend(row['path'] for row in info.get('catalog_extensions', []))
+    return result
+
+
 def source_bundle(destination, root=ROOT):
     """Deliver public build source, including current modifications, never local data."""
     if (root / '.git').exists():
@@ -44,12 +72,24 @@ def source_bundle(destination, root=ROOT):
     names = set(tracked)
     names.update(n for n in new if Path(n).suffix in {'.rs', '.toml', '.js', '.css', '.html', '.py'} or n.startswith('tools/tests/fixtures/') and n.endswith('.json'))
     files = {}; modes = {}
-    public_roots = {'AGENTS.md', 'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'Makefile', 'README.md', 'LICENSE', 'THIRD_PARTY_NOTICES.txt', '.gitignore', '.github', 'apps', 'crates', 'tools', 'third_party', 'assets', 'mydocs'}
+    art_sources = runtime_art_sources(root)
+    try:
+        from .release_version import workspace_version
+    except ImportError:
+        from release_version import workspace_version
+    version = workspace_version(root)
+    public_roots = {'README.en.md', 'AGENTS.md', 'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'Makefile', 'README.md', 'LICENSE', 'THIRD_PARTY_NOTICES.txt', '.gitignore', '.github', 'apps', 'crates', 'tools', 'third_party', 'assets', 'mydocs'}
     for name in sorted(names):
         p = Path(name)
         if not name or p.is_absolute() or '..' in p.parts or p.parts[0] not in public_roots or '.git' in p.parts:
             continue
         if name.startswith(('assets/local/', 'target/')) or any(part.startswith('.') for part in p.parts[1:]):
+            continue
+        if name.startswith('assets/manifests/') and name.endswith('.jsonl'):
+            continue  # Historical measurement/replay logs are not build inputs.
+        if name.startswith('assets/remaster/') and name not in art_sources:
+            continue
+        if name.startswith('mydocs/') and not (version and name.startswith('mydocs/releases/issue-') and name.endswith(f'_v{version}.md')):
             continue
         path = root / name
         if path.is_symlink() or not path.is_file():
@@ -132,10 +172,9 @@ def build(output=OUTPUT):
     except ImportError:from hd_catalog import runtime_catalog,write_files
     members=runtime_catalog(ROOT,data)
     write_files(members,output/'hd-assets')
-    try:from .web_hd import delivery
-    except ImportError:from web_hd import delivery
-    for name,content in delivery(members).items():
-        path=output/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(content)
+    try:from .web_hd import delivery,write_delivery
+    except ImportError:from web_hd import delivery,write_delivery
+    write_delivery(delivery(members),output)
     audio_delivery(output)
     print(json.dumps(dict(status='PASS',bindgen=version,output=str(output))))
     return output

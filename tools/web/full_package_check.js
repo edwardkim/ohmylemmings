@@ -113,8 +113,15 @@ try {
     for(const broken of faults){const failed=await open(broken);failed.detach();failed.frame.remove();}
     const packageInfo=await (await fetch('./PACKAGE-MANIFEST.json')).json();
     const licenseFiles=packageInfo.project_license==='MIT'?['LICENSE','THIRD_PARTY_NOTICES.txt']:[];
-    for(const name of ['audio-license.html','LGPL-2.1-or-later.txt','audio-source.json','audio-source.tar.gz',...licenseFiles]) {
+    for(const name of ['audio-license.html','LGPL-2.1-or-later.txt','audio-source.json',...(packageInfo.source_delivery?[]:['audio-source.tar.gz']),...licenseFiles]) {
         const response=await fetch('./'+name);assert(response.ok&&(await response.arrayBuffer()).byteLength>0,'source/license HTTP delivery failed');
+    }
+    if(packageInfo.source_delivery){
+        const info=await (await fetch('./audio-source.json')).json();
+        const notice=await (await fetch('./audio-license.html')).text();
+        assert(info.archive===packageInfo.source_delivery.url&&info.archive_sha256===packageInfo.source_delivery.sha256
+            &&info.archive_bytes===packageInfo.source_delivery.bytes&&notice.includes(info.archive),'external source link/pin differs');
+        // The host verifier checked the separate source bytes before this browser smoke.
     }
     result={status:'PASS',loader,download_ui,original_levels_loaded:loaded,first_frame_sha256:digest,frame_rgb,audio,transitions,hd_png,
         hd:{default:hdDefault,info:hdInfo,levels:hdLevels,play:hdPlay,original_switch:true},

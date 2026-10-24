@@ -65,6 +65,7 @@ class AudioSourceDeliveryTests(unittest.TestCase):
         subprocess.run(['git','init','-q',str(root)],check=True)
         for name in SOURCE_REQUIRED:
             p=root/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text('public source '+name+'\n')
+        (root/'Cargo.toml').write_text('[workspace.package]\nversion = "0.1.0"\n')
         subprocess.run(['git','-C',str(root),'add','--',*sorted(SOURCE_REQUIRED)],check=True)
         return subprocess
     def test_delivery_contains_dirty_and_new_source_but_excludes_originals_private_files_and_links(self):

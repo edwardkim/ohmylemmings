@@ -53,3 +53,16 @@ class WebHdTests(unittest.TestCase):
         for raw in [b'broken',mixed()[:-1]]:
             with self.assertRaises(ValueError):delivery({'catalog.hdi':b'c','atlas-000.hdp':raw})
         with self.assertRaises(ValueError):delivery({'catalog.hdi':b'c','atlas-000.hdp':mixed(),'atlas-001.hdp':mixed()})
+
+    def test_write_removes_only_stale_content_addressed_generated_pages(self):
+        import tempfile
+        from pathlib import Path
+        from tools.web_hd import write_delivery
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);folder=root/'web-hd';folder.mkdir()
+            stale=folder/('a'*64+'.hdp.gz');stale.write_bytes(b'old')
+            user=folder/'notes.txt';user.write_text('keep')
+            files={'HD-WEB.json':b'{}','web-hd/'+'b'*64+'.hdp.gz':b'new'}
+            write_delivery(files,root)
+            self.assertFalse(stale.exists());self.assertEqual(user.read_text(),'keep')
+            self.assertEqual((root/('web-hd/'+'b'*64+'.hdp.gz')).read_bytes(),b'new')

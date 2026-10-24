@@ -125,6 +125,10 @@ def create(runtime, assets, sdl, output, root=ROOT):
 
 
 def verify(path, root=ROOT):
+    from tools.detached_source import verify_external
+    external = verify_external(path, root, verify)
+    if external is not None:
+        return external
     raw = regular(path)
     require(regular(Path(str(path)+'.sha256')).decode() == f'{sha(raw)}  {path.name}\n', 'Archive checksum differs')
     with zipfile.ZipFile(io.BytesIO(raw)) as archive:

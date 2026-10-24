@@ -173,6 +173,10 @@ def create(app,output,root=ROOT):
 
 
 def verify(path,root=ROOT):
+    from tools.detached_source import verify_external
+    external = verify_external(path, root, verify)
+    if external is not None:
+        return external
     raw=regular(path);require(regular(Path(str(path)+'.sha256'))==f'{sha(raw)}  {path.name}\n'.encode(),'ZIP checksum differs')
     with zipfile.ZipFile(io.BytesIO(raw)) as z:
         package=json.loads(z.read('PACKAGE-MANIFEST.json'))
