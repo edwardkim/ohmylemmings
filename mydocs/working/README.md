@@ -160,3 +160,5 @@
 - [#200 사용자 K-pop BGM 교체 검토 완료](issue-200_custom_bgm_review.md)
 
 - [#202 로컬 MP3 BGM 구현](issue-202_local_mp3.md)
+
+- [#205 v0.3.0 릴리즈 진행](issue-205_release_v030.md)

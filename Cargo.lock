@@ -60,7 +60,7 @@ checksum = "20870f649af7073d53e38067b2a84312175d56ea15217e1b15bc83506ec50afb"
 
 [[package]]
 name = "lemmings-audio"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "lemmings-opl",
  "lemmings-resources",
@@ -68,7 +68,7 @@ dependencies = [
 
 [[package]]
 name = "lemmings-audio-probe"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "lemmings-audio",
  "lemmings-core",
@@ -80,11 +80,11 @@ dependencies = [
 
 [[package]]
 name = "lemmings-core"
-version = "0.2.0"
+version = "0.3.0"
 
 [[package]]
 name = "lemmings-desktop"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "lemmings-core",
  "lemmings-game",
@@ -97,7 +97,7 @@ dependencies = [
 
 [[package]]
 name = "lemmings-game"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "lemmings-audio",
  "lemmings-core",
@@ -107,25 +107,25 @@ dependencies = [
 
 [[package]]
 name = "lemmings-opl"
-version = "0.2.0"
+version = "0.3.0"
 
 [[package]]
 name = "lemmings-resources"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "lemmings-core",
 ]
 
 [[package]]
 name = "lemmings-session"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "lemmings-core",
 ]
 
 [[package]]
 name = "lemmings-web"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "lemmings-core",
  "lemmings-game",

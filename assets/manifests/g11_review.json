@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 275978,
-      "sha256": "58042f60c078a0ea7f19902971b14337ee7e8252c9e3d1dc80309dfc938e02d5",
+      "bytes": 276649,
+      "sha256": "61ec9f7131cf506f8ad39a45c4f54cbef9cd77240d22ef552f5aec3e064fc054",
       "id": "compatibility"
     },
     {
@@ -11204,5 +11204,17 @@
       }
     ],
     "scope": "Current compatibility/source pins refreshed for local MP3. Historical performance and113 NOT READY preserved."
+  },
+  "source_maintenance_205": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/205",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 275978,
+        "sha256": "58042f60c078a0ea7f19902971b14337ee7e8252c9e3d1dc80309dfc938e02d5",
+        "id": "compatibility"
+      }
+    ],
+    "scope": "Version0.3.0/release source index only. Historical observations, recorded producer and113 NOT READY remain unchanged."
   }
 }

@@ -32,12 +32,12 @@
     {
       "path": "Cargo.lock",
       "bytes": 8091,
-      "sha256": "c35ad44bfed0d32dba4b475e76ea647ce28c56d529e5679c78dbb66481a7a17a"
+      "sha256": "e6572fa7b5a847b4cd50d8161f3f1635c58d94cbb41b5d9b4ed233aab2df4ed7"
     },
     {
       "path": "Cargo.toml",
       "bytes": 454,
-      "sha256": "fda8d31d8cc34e50a4dd03b836e5eb84d6ac215d313c97c49fe260665a3beb7f"
+      "sha256": "50057db665baeea234f7e12c1c8d8681db9aeb9ff210fa358e6f3ec37308a4fd"
     },
     {
       "path": "LICENSE",
@@ -7843,5 +7843,21 @@
       }
     ],
     "scope": "Local user MP3 and independent channel output gains. Original VM/channel/event/simulation logic retained; unity PCM rechecked against fixed buffered C. Historical evidence remains scoped; no new human listening or performance certification."
+  },
+  "source_impact_205": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/205",
+    "previous_pins": [
+      {
+        "path": "Cargo.lock",
+        "bytes": 8091,
+        "sha256": "c35ad44bfed0d32dba4b475e76ea647ce28c56d529e5679c78dbb66481a7a17a"
+      },
+      {
+        "path": "Cargo.toml",
+        "bytes": 454,
+        "sha256": "fda8d31d8cc34e50a4dd03b836e5eb84d6ac215d313c97c49fe260665a3beb7f"
+      }
+    ],
+    "scope": "Workspace/lock version0.3.0 and release notes/preparation only. Local MP3 implementation and game/assets/PCM unchanged. Earlier measurements remain historical;113 NOT READY and202 physical-listening follow-up retained."
   }
 }
