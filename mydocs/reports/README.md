@@ -176,3 +176,5 @@
 - [#208 Native MP3 선택·앱 아이콘 / v0.3.1](issue-208_native_polish.md)
 
 - [#142 과거 Chrome156 CI 진단 추적 중단 (Not planned)](issue-142_browser_ci_retirement.md)
+
+- [#219 v0.3.2 릴리즈·Pages 및 #216 인수 완료](issue-219_release_v032.md)

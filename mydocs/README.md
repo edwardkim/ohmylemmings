@@ -1,5 +1,7 @@
 # Hyper-Waterfall 문서 안내
 
+[v0.3.2 릴리즈·GitHub Pages 게시](reports/issue-219_release_v032.md)를 완료했다. #215 지형 질감/수직벽, #216 굴착·조준·추락·수량0 선택 피드백과 #113 FPS 표시를 포함한다. #216은 메인테이너 전체 통과 판정 후 PR#220/플랫폼 CI7개를 통과해 병합·종료했다. 아래 과거 배포 기록은 당시 상태다.
+
 [#215 HD 지형·지물 품질](reports/issue-215_hd_surface_quality.md)의 현재 질감·수직벽 윤곽 수준을 메인테이너가 인수했다. PR #217 병합과 전체 플랫폼 CI7개를 완료했다. 공식 배포는 변경하지 않았다.
 
 [#113 플레이 FPS·피드백](reports/issue-113_player_feedback.md)의 Web/Native F3 표시·F2 요약 복사를 구현하고 플랫폼 CI7개·PR #213 병합·메인테이너 동작 테스트 인수를 완료했다. 고성능 환경의 잔여 성능/메모리 검증과 NOT READY/OPEN 판정은 유지한다.
