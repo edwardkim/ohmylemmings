@@ -3316,8 +3316,8 @@
     },
     {
       "path": "assets/manifests/web_progressive.json",
-      "bytes": 8218,
-      "sha256": "23ba1cb0ff963014afacf9ba5d1cc0e6a7dbaa9f6250a4622be0cf43efa11ee5"
+      "bytes": 8740,
+      "sha256": "a4b29828b2c3d34c0cc94bb2a2adb9bfd5ba19d6babd90589584355e5e659305"
     }
   ],
   "evidence": [
@@ -7626,8 +7626,8 @@
     "scope": "Web presentation dependencies, lossless gzip transport and progressive download UX. No game rules, canonical art, OPL or performance/listening verdict changes.",
     "validation_manifest": {
       "path": "assets/manifests/web_progressive.json",
-      "bytes": 8218,
-      "sha256": "23ba1cb0ff963014afacf9ba5d1cc0e6a7dbaa9f6250a4622be0cf43efa11ee5"
+      "bytes": 8740,
+      "sha256": "a4b29828b2c3d34c0cc94bb2a2adb9bfd5ba19d6babd90589584355e5e659305"
     }
   }
 }

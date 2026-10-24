@@ -6,8 +6,8 @@
   "source": [
     {
       "path": "apps/web/www/app.js",
-      "bytes": 11821,
-      "sha256": "e681b1adad154f82e432d4cd6bc44013e9836ca7859688b7c31edef2b41cd11d"
+      "bytes": 14642,
+      "sha256": "a417529949c10ee3d1d56c6084996d666e79e6789d998dac982a360a19a13a4b"
     },
     {
       "path": "apps/web/www/host.js",
@@ -564,5 +564,16 @@
       }
     ],
     "scope": "Packaged HD boot/path and validation changes; original frame clock/dispatch and simulation/audio unchanged. Frozen measurements stay historical, not HD performance qualification."
+  },
+  "source_maintenance_196": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/196",
+    "previous_source": [
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 11821,
+        "sha256": "e681b1adad154f82e432d4cd6bc44013e9836ca7859688b7c31edef2b41cd11d"
+      }
+    ],
+    "scope": "Web level metadata planning/progressive downloads/progress and retry UX. Current source pins refreshed; original recorded_producer, observations, timing/deadline/memory results and deferred NOT READY verdict preserved. Functional byte/clock/pixel checks do not recertify performance."
   }
 }

@@ -33,3 +33,5 @@ Web은 여러 테마가 섞인 지형을 나누고, 원래 RGBA·크기·앵커�
 - 사용자19222/8080/preview-172/preview-165는 보존한다. BGM #165 청취 미확인·성능 #113 NOT READY는 유지한다. 이번 결과는 새120레벨 HD 완주, FPS 또는 사람의 청취 합격 판정이 아니다.
 
 로컬 원시 파일의 해시/소스 영향은 [검증 manifest](../../assets/manifests/web_progressive.json)에 고정한다. 코드 PR/최종 동일 tree CI·병합과 공개 Pages 인수는 #196/#194 후속 완료 기록에 남긴다.
+
+최초 최종 CI40050018517에서317개 단위 테스트·COMP/G11/기한 감사는 통과했으나 Web dispatch의 현행 app.js 출처 pin 갱신 누락을 거절했다. source_maintenance_196에 이전 pin을 보존하고 현재 연결을 갱신했다. 성능 관측/producer/NOT READY는 그대로다. 전체 `make check-python`(HD 자산·317테스트·모든 감사·322,560 모션 전이/108통합 재생) 로컬 통과 후 새 동일 tree CI7개를 실행한다.

@@ -13,3 +13,5 @@
 ## 구현/로컬 인수
 
 레벨별 기술/객체 계획·gzip/지형 분할·다음 레벨 큐/캐시·실제 바이트 진행률/재시도/전체화면을 구현했다. Python317·Rust 계획/API7·clippy·120계획 대조·실제 Web 패키지120로딩/Fun01완주·10Mbps UX/픽셀 비교가 통과했다. [보고서](../reports/issue-196_web_progressive.md)를 따른다. 다음은 self-review·최종 소스 CI7개·병합 후 #194 태그/preflight/게시·공개 Pages 인수다. #165 청취/113 NOT READY는 유지한다.
+
+최초 최종 CI40050018517에서317개 단위 테스트·COMP/G11/기한 감사는 통과했으나 Web dispatch의 현행 app.js 출처 pin 갱신 누락을 거절했다. source_maintenance_196에 이전 pin을 보존하고 현재 연결을 갱신했다. 성능 관측/producer/NOT READY는 그대로다. 전체 `make check-python`(HD 자산·317테스트·모든 감사·322,560 모션 전이/108통합 재생) 로컬 통과 후 새 동일 tree CI7개를 실행한다.

@@ -153,7 +153,8 @@
     "local_candidate_package_files": 108,
     "current_source_ci": "pending final same-tree CI before release",
     "performance_113": "NOT READY",
-    "human_bgm_165": "pending"
+    "human_bgm_165": "pending",
+    "full_make_check_python": "PASS: all Makefile checks including HD art,317 tests,COMP/G11/deadline/dispatch and motion reference"
   },
   "local_evidence": [
     {
@@ -235,6 +236,18 @@
       "path": "assets/local/issue-196-review/play-exact.png",
       "bytes": 1005701,
       "sha256": "7b6a0ae32d78c9930fe7fc0a7435fb11aabde182823c0edd8ab660c85ca9a2c6"
+    },
+    {
+      "path": "assets/local/issue-196-review/make-check-python.log",
+      "bytes": 225350,
+      "sha256": "ed9d8162dcd8d3535af1f9910898d14399a89cc97ede3b3e8d67350a18553f2d"
+    }
+  ],
+  "current_provenance": [
+    {
+      "path": "assets/manifests/web_dispatch.json",
+      "bytes": 20696,
+      "sha256": "c15a669a5288401efa73643d8530a1ecd2e1351e5e508ec98c15b58a0561d38f"
     }
   ]
 }
