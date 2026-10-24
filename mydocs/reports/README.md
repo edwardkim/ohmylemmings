@@ -170,3 +170,5 @@
 - [#205 v0.3.0 정식 게시·공개 Pages 최종 인수](issue-205_release_v030_completion.md)
 
 - [#208 Native MP3 선택·앱 아이콘 / v0.3.1](issue-208_native_polish.md)
+
+- [#142 과거 Chrome156 CI 진단 추적 중단 (Not planned)](issue-142_browser_ci_retirement.md)

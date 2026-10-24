@@ -125,3 +125,5 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 [#205 v0.3.0 정식 릴리즈·Pages](reports/issue-205_release_v030_completion.md)를 완료했습니다. [버전별 노트](releases/issue-205_v0.3.0.md)는 사용자 로컬 MP3와 실행/인수 범위를 안내합니다.
 
 [#208 v0.3.1 Native 편의 개선·배포](reports/issue-208_native_polish.md)를 완료했습니다. F4/Ctrl+O/Cmd+O 선택·취소/모달 처리·Windows EXE/Mac/SDL 아이콘을 제공합니다.
+
+[#142 과거 Chrome156 CI 타임아웃](reports/issue-142_browser_ci_retirement.md)은 메인테이너 승인으로 Not planned/추적 중단 처리합니다. 현재 WASM/정식 CI는 정상이며 Chrome156 원인 해결 판정은 아닙니다. 동일 현상 재발 시 로그/환경을 보존해 재개합니다. 과거 #142 OPEN 문구는 당시 기록입니다.
