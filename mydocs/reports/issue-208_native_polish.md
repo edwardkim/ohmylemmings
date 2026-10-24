@@ -2,7 +2,7 @@
 
 이슈: https://github.com/edwardkim/ohmylemmings/issues/208
 
-상태: 구현·로컬 Rust/Python·실제 Native UI 검증 완료. 플랫폼 CI·병합·패키징/게시 검증은 후속 절에 고정한다. [계획](../plans/issue-208_native_polish.md) · [v0.3.1 실행 안내](../releases/issue-208_v0.3.1.md). 기준 main `0a7ddaca3675d575a2ffb67ed261fa7e202c5431`.
+상태: 구현·플랫폼 CI7개·실제 Native UI·병합·v0.3.1 정식 릴리즈/Pages 게시 완료. 최종 고정 계보와 공개 검증은 아래에 기록한다. [계획](../plans/issue-208_native_polish.md) · [v0.3.1 실행 안내](../releases/issue-208_v0.3.1.md). 기준 main `0a7ddaca3675d575a2ffb67ed261fa7e202c5431`.
 
 ## 파일 선택 동작
 
@@ -37,3 +37,42 @@ rfd0.17.2를 정확히 고정했다. Windows Common Item Dialog·macOS NSOpenPan
 no_std 코어·게임 규칙·기본 OPL/PCM 합성은 변경하지 않았다. 외부 registry74개/고지136개를 기록하며 기존61개 고지/번들 원문을 보존했다. objc2 계열 crate에 누락된 LICENSE.md는 각 archive의 cargo_vcs_info 커밋에 고정한 공식 저장소 원문을 보관했다. 기능 소스 인덱스만 갱신하고 과거 producer/측정값은 유지했다.
 
 사용자19222/8080·기존 미리보기와 Music 원본, 게시된0.1.0/0.2.0/0.3.0 태그·asset·버전 노트를 보존한다. #202 사람 청취 응답과 #113 NOT READY를 별도로 유지한다.
+
+## 최종 CI·병합·v0.3.1 배포
+
+[정식/latest 다운로드](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.1) · [공개 Web](https://edwardkim.github.io/ohmylemmings/) · [deployment.json](https://edwardkim.github.io/ohmylemmings/deployment.json).
+
+| 항목 | 고정 값 |
+|---|---|
+| 구현 PR | [#209](https://github.com/edwardkim/ohmylemmings/pull/209), self-review·실제 merge 완료 |
+| 최종 head | `3769a4a9a6d834df7353c31fc6a990b42b1c111a` |
+| 실제 CI checkout | `a882732b6987dae01c7602e722d5bb5a902e1484` |
+| main/tag commit | `8828e94f82d730e78a763bd0fbe53159d69910ae` |
+| 공통 source tree | `e55538ac619dfe05139e9834487e0b12b78cd594` |
+| annotated tag object | `7900819580cfe3e4b1323f293583f7e757416689` |
+| CI7개 | [40067006448](https://github.com/edwardkim/ohmylemmings/actions/runs/40067006448), 모두 SUCCESS |
+| 태그 전 prepare-only | [40068383688](https://github.com/edwardkim/ohmylemmings/actions/runs/40068383688), SUCCESS·게시/Pages SKIPPED |
+| 정식 게시/Pages | [40068722434](https://github.com/edwardkim/ohmylemmings/actions/runs/40068722434), publish/Pages 모두 SUCCESS |
+
+CI Web의 실제 checkout log와 로컬 merge ref/main tree를 대조했다. Windows 전체 패키지·macOS ARM64/Intel·Linux·Web·WASM·Python7개를 전부 통과했다. Windows Shell 아이콘 추출/FileVersion·ProductVersion0.3.1과 macOS 두 아키텍처의 iconutil ICNS 디코딩도 성공했다. 배포 노트 링크를 독립 PLAY/Release에서 열리는 절대 링크로 바로잡은 최종 head3769a4a를 사용하며 이전/중복 취소 실행을 성공으로 집계하지 않았다.
+
+전체 Native 회귀(8직업/상호작용/객체/승패/패널/포인터·오디오·표시 스모크)와 WASM 로컬 검증을 완료했다. 메인테이너 제공 MP3 두 파일도0.3.1 실행파일의 실제 SDL stereo/장치 소비·모달 pause/복귀 probe를 통과했고 원본 내용은 유지했다. 실제 사람 청취 응답은 #202에서 별도다.
+
+4개 아카이브·각 체크섬·공통 소스·PLAY.md·RELEASE-MANIFEST.json·SHA256SUMS의12파일을 검증했다. 각 플랫폼은1231개 대응 소스를 포함하며 사전 검증/게시/공개 manifest와 아카이브 digest가 같다.
+
+| 플랫폼 | 공개 아카이브 SHA-256 |
+|---|---|
+| linux-x86_64 | `74485c5a42dbde47228f451fb4071fb4f1525b42e5abc75f420da1b64437b4a7` |
+| web | `b6658a9a56f8ff47b9df2cbdcbb62a193b27f1390e0ed775050823bfc90c9ea2` |
+| windows-x86_64 | `68dcafea2d0f97dd19ad8baa9647c6dbbbc07dab070977267d9e0be41179cf23` |
+| macos-universal2 | `1cba22765858bf654a2749b7e8ffa1f963bbcbf71691eff1fd70cbb222f3c076` |
+
+공개 [RELEASE-MANIFEST.json](https://github.com/edwardkim/ohmylemmings/releases/download/v0.3.1/RELEASE-MANIFEST.json) · [SHA256SUMS](https://github.com/edwardkim/ohmylemmings/releases/download/v0.3.1/SHA256SUMS).
+
+draft의12파일을 재다운로드해 일치를 확인한 후 공개했고, 게시 도구가12개 공개 URL도 인증 없이 전부 검증했다. 별도 검사에서도 공개 PLAY/MF/체크섬·Web ZIP의 모든 내부 pin과 WASM/대응 소스 쌍, 배포된 HTML/JS/WASM/설정18파일·WASM MIME을 확인했다. Pages는 재빌드 없이 동일 Web ZIP109파일을 승격했다.
+
+실제 공개 HTTPS0.3.1에서 기본 HD1920×1080·95글꼴·현재99캐릭터 프레임/전체337카탈로그·진행률·8필수 페이지19,751,567바이트·원본 전환을 확인했다. Fun01 664틱/665상태·23표시에서 원본과 상태가 같고10구출 Won이었다. 원본 WebAudio context running·4,096제출/4,036비영 PCM·예외0을 확인했다. Web MP3 기능 코드는0.3.0과 동일하며 기존 검증을 유지하고 전체 플랫폼 CI를 통과했다.
+
+v0.1.0/0.2.0/0.3.0의 tag object/target·각12asset ID/크기/digest/게시·수정 시각·릴리즈 본문을 전후 대조해 불변을 확인했다. 기존/새0.3.1 버전 노트도 게시 후 수정하지 않는다. 로컬 main/Native/Web을0.3.1로 동기화하고 실제 공개 ZIP의 WASM/대응 소스를 사용한다. 사용자19222/8080·preview-172/165/196/202와 Music 원본을 보존했다. 개인 검증 자료는 ignored assets/local/에만 유지한다.
+
+#208 구현·게시 요구를 완료한다. #202 사람 청취 응답 OPEN과 #113 NOT READY는 별도다.

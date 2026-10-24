@@ -1,7 +1,9 @@
-# #208 Native 완성도 개선 진행
+# #208 Native MP3 선택·앱 아이콘 완료
 
 이슈: https://github.com/edwardkim/ohmylemmings/issues/208
 
-[계획](../plans/issue-208_native_polish.md). 버전0.3.1, MP3 선택 대화상자와 앱 아이콘을 구현한다. F4/Ctrl+O/Cmd+O·선택/취소/전체화면 경계와 Windows EXE/Mac bundle/SDL 아이콘을 검증하고 CI·self-review·소스/고지/문서를 동기화한다.
+[계획](../plans/issue-208_native_polish.md) · [최종 결과](../reports/issue-208_native_polish.md) · [v0.3.1 릴리즈](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.1) · [웹 플레이](https://edwardkim.github.io/ohmylemmings/).
 
-구현·실제 Native 파일 선택/취소/Unicode 경로·전체화면/SDL 아이콘·Rust726/Python325를 통과했다. [결과](../reports/issue-208_native_polish.md)에 화면/범위를 기록했다. Windows Shell icon/version과 Mac iconutil 검사를 포함한 플랫폼 CI·병합·0.3.1 패키지를 이어간다. #202 사람 청취와 #113 NOT READY는 별도다.
+F4/Ctrl+O/Cmd+O MP3 선택·취소/모달 시간·음악/입력/전체화면 복원, Windows PE/버전·Mac ICNS·SDL 창/Linux PNG 아이콘을구현했다. Rust726/Python325·실제 Native UI/제공 MP3 두 파일·동일 tree CI7개·4패키지/12파일·prepare-only·정식/latest 게시와 Pages 공개 검증을 완료했다. 기존0.1.0/0.2.0/0.3.0 배포·사용자 환경/미리보기/음악 원본은 보존했다. 게시된0.3.1 태그·asset·버전 노트도 이후 덮어쓰지 않는다.
+
+#208은 완료한다. #202의 사람 청취 응답과 #113 NOT READY는 별도다.

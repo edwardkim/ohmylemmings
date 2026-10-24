@@ -2,6 +2,8 @@
 
 이슈: https://github.com/edwardkim/ohmylemmings/issues/208
 
+상태: 구현·플랫폼 CI7개·병합·v0.3.1 릴리즈/Pages를 완료했다. [최종 결과](../reports/issue-208_native_polish.md). 아래는 수행한 계획이다.
+
 메인테이너가 Native MP3 선택 대화상자와 실행파일 아이콘을 요청하고 버전0.3.1을 확정했다. 기준 main `0a7ddaca3675d575a2ffb67ed261fa7e202c5431`. [기존 MP3 기능](../reports/issue-202_local_mp3.md)과 [릴리즈 정책](issue-124_release_policy.md)을 따른다.
 
 1. F4/Ctrl+O(macOS Cmd+O 포함)로 부모 게임 창에 연결한 MP3 단일 파일 선택 창을 연다. rfd0.17.2의 Windows Common Item Dialog·macOS NSOpenPanel·Linux XDG portal을 사용한다. Linux는 libdbus/portal 또는 zenity가 필요하다. 취소 시 음악 선택을 유지하며 대화상자 동안 시뮬레이션/장치 출력을 멈추고 경과시간과 오래된 입력을 재생하지 않는다. 기존 Pause/결과/전체화면·드롭/CLI를 보존한다.
