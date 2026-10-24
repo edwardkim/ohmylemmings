@@ -5,7 +5,7 @@
 [![CI](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml/badge.svg)](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml)
 [![Play on GitHub Pages](https://github.com/edwardkim/ohmylemmings/actions/workflows/pages.yml/badge.svg)](https://edwardkim.github.io/ohmylemmings/)
 
-[2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)는 [#187 HD 패키징·전체 인수](mydocs/reports/issue-187_hd_release.md), PR #188·7개 플랫폼 CI·실제 병합으로 완료했습니다. 새 개발 패키지는 캐릭터337·객체540·5재질·특수4장면·13아이콘과 HD 글꼴/현재 전체 UI를 포함하고 HD로 시작합니다. 원본 모드와 기존 규칙/조작을 유지합니다. 현재 공개 v0.1.0/Pages는 기존 배포이며 신규 버전 게시 전입니다. [BGM #165 지속 재생 수정](mydocs/reports/issue-165_bgm.md)과 메인테이너가 지정한 리마스터 버전 **0.2.0**을 반영했고7개 플랫폼 CI로 시험 패키지를 검증했습니다. [0.2.0 후보 노트](mydocs/releases/issue-191_v0.2.0.md)는 공개 게시 전 상태입니다.
+[2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)는 [#187 HD 패키징·전체 인수](mydocs/reports/issue-187_hd_release.md), PR #188·7개 플랫폼 CI·실제 병합으로 완료했습니다. 새 개발 패키지는 캐릭터337·객체540·5재질·특수4장면·13아이콘과 HD 글꼴/현재 전체 UI를 포함하고 HD로 시작합니다. 원본 모드와 기존 규칙/조작을 유지합니다. 현재 공개 v0.1.0/Pages는 기존 배포이며 신규 버전 게시 전입니다. [BGM #165 지속 재생 수정](mydocs/reports/issue-165_bgm.md)과 메인테이너가 지정한 리마스터 버전 **0.2.0**을 반영했고7개 플랫폼 CI로 시험 패키지를 검증했습니다. [0.2.0 릴리즈 노트](mydocs/releases/issue-191_v0.2.0.md)와 [릴리즈·Pages 추적 #194](mydocs/reports/issue-194_release_v020.md)에 다운로드/실행 안내와 게시 검증을 기록합니다.
 
 프로젝트 자체 작성 코드는 [MIT](LICENSE)로 제공합니다. [제3자 고지 전문](THIRD_PARTY_NOTICES.txt)과 [적용 범위](third_party/README.md)를 함께 확인하세요. OPL 합성기는 LGPL-2.1-or-later를 유지하며, 원본 DOS 그래픽·레벨·음악/효과음·상표에는 프로젝트 MIT 허가가 적용되지 않습니다.
 

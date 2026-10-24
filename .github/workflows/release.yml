@@ -6,9 +6,14 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Existing annotated version tag (vX.Y.Z or vX.Y.Z-rc.N)'
+        description: 'Version tag; prepare-only verifies current main before this tag exists'
         required: true
         type: string
+      prepare_only:
+        description: 'Verify the current main release candidate without creating a tag or release'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -21,27 +26,28 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 30
     env:
       GH_TOKEN: ${{ github.token }}
       RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ (inputs.prepare_only && 'refs/heads/main') || inputs.tag || github.ref }}
           fetch-depth: 0
           persist-credentials: false
-      - name: Check version and tagged source
+      - name: Check release version and source
         run: python3 tools/release_version.py check --tag "$RELEASE_TAG"
       - name: Prepare all four verified CI packages
         run: python3 tools/publish_release.py prepare --tag "$RELEASE_TAG" --directory assets/local/release
       - name: Verify draft and publish the player downloads
+        if: ${{ !inputs.prepare_only }}
         run: python3 tools/publish_release.py publish --directory assets/local/release
       - name: Preserve publication provenance
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: release-publication
+          name: ${{ inputs.prepare_only && 'release-preflight' || 'release-publication' }}
           path: |
             assets/local/release/RELEASE-MANIFEST.json
             assets/local/release/SHA256SUMS
@@ -51,7 +57,7 @@ jobs:
 
   pages:
     needs: publish
-    if: ${{ !contains(inputs.tag || github.ref_name, '-') }}
+    if: ${{ !inputs.prepare_only && !contains(inputs.tag || github.ref_name, '-') }}
     permissions:
       contents: read
       pages: write
