@@ -1,13 +1,13 @@
 # Rusty Lemmings
 
-2026-10-24 개발 상태: G00~G10과 [배포 준비 #115](mydocs/reports/issue-115_release_preparation.md)를 완료했고, [v0.2.0 2D 리마스터](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.2.0)의 Windows/macOS/Linux/Web 다운로드와 [GitHub Pages 플레이](https://edwardkim.github.io/ohmylemmings/)를 제공합니다. G11 성능 재검증은 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에 이월했습니다. 자체 코드에는 [#129의 MIT 정책](mydocs/reports/issue-129_project_license.md)을 적용했고, [#130](mydocs/reports/issue-130_maintainer_acceptance.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정을 받았습니다. Windows 지원 대상은 **Windows 11 x64**이며 **Windows 10은 지원하지 않습니다**. [#1은 초기 구현·첫 플레이 배포의 상위 추적을 종료](mydocs/reports/issue-1_initial_development_closure.md)하며, 남은 성능·메모리는 #113에서 계속합니다.
+2026-10-24 개발 상태: G00~G10과 [배포 준비 #115](mydocs/reports/issue-115_release_preparation.md)를 완료했고, [v0.3.0 로컬 MP3 BGM](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.0)의 Windows/macOS/Linux/Web 다운로드와 [GitHub Pages 플레이](https://edwardkim.github.io/ohmylemmings/)를 제공합니다. G11 성능 재검증은 더 좋은 호스트의 [#113](https://github.com/edwardkim/ohmylemmings/issues/113)에 이월했습니다. 자체 코드에는 [#129의 MIT 정책](mydocs/reports/issue-129_project_license.md)을 적용했고, [#130](mydocs/reports/issue-130_maintainer_acceptance.md)은 메인테이너의 Windows 11·웹브라우저 직접 테스트 성공 판정을 받았습니다. Windows 지원 대상은 **Windows 11 x64**이며 **Windows 10은 지원하지 않습니다**. [#1은 초기 구현·첫 플레이 배포의 상위 추적을 종료](mydocs/reports/issue-1_initial_development_closure.md)하며, 남은 성능·메모리는 #113에서 계속합니다.
 
 [![CI](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml/badge.svg)](https://github.com/edwardkim/ohmylemmings/actions/workflows/ci.yml)
 [![Play on GitHub Pages](https://github.com/edwardkim/ohmylemmings/actions/workflows/pages.yml/badge.svg)](https://edwardkim.github.io/ohmylemmings/)
 
 [2D HD 리마스터 #137](mydocs/plans/issue-137_2d_remaster.md)는 [#187 전체 인수](mydocs/reports/issue-187_hd_release.md)를 거쳐 **v0.2.0**으로 게시했습니다. 캐릭터337·객체540·5재질·특수4장면·13아이콘·HD 글꼴/전체 UI를 포함하고 HD로 시작하며, 원본 화면과 규칙/조작도 유지합니다. Web은 첫 Fun01 HD 약19.8MB를 우선 준비하고 플레이 중 다음 레벨을 받습니다. 실제 용량·진행률·재시도와 캐시 재사용을 제공하며 엔진/게임 데이터는 별도입니다. [BGM #165 지속 재생 수정](mydocs/reports/issue-165_bgm.md)도 포함합니다. [릴리즈 노트](mydocs/releases/issue-191_v0.2.0.md)·[게시/공개 검증](mydocs/reports/issue-194_release_v020_completion.md)을 참고하세요.
 
-main 개발 버전은 [사용자 로컬 MP3 배경 음악](mydocs/reports/issue-202_local_mp3.md)을 지원합니다. Web의 MP3 선택 또는 Native의 파일 드롭/`--bgm FILE`로 한 곡을 반복하고 음악·효과음 음량을 따로 조절합니다. 준비/오류/재시도를 안내하며 음원은 업로드하거나 배포본에 포함하지 않습니다.
+**v0.3.0**은 [사용자 로컬 MP3 배경 음악](mydocs/reports/issue-202_local_mp3.md)을 지원합니다. Web의 MP3 선택 또는 Native의 파일 드롭/`--bgm FILE`로 한 곡을 반복하고 음악·효과음 음량을 따로 조절합니다. 준비/오류/재시도를 안내하며 음원은 업로드하거나 배포본에 포함하지 않습니다. [v0.3.0 실행 안내](mydocs/releases/issue-205_v0.3.0.md)·[게시 검증](mydocs/reports/issue-205_release_v030_completion.md)을 참고하세요.
 
 프로젝트 자체 작성 코드는 [MIT](LICENSE)로 제공합니다. [제3자 고지 전문](THIRD_PARTY_NOTICES.txt)과 [적용 범위](third_party/README.md)를 함께 확인하세요. OPL 합성기는 LGPL-2.1-or-later를 유지하며, 원본 DOS 그래픽·레벨·음악/효과음·상표에는 프로젝트 MIT 허가가 적용되지 않습니다.
 

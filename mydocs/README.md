@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)와 [BGM #165 제품 수정](reports/issue-165_bgm.md)·[#191 버전 적용](reports/issue-191_remaster_version.md)을 바탕으로 **v0.2.0 정식 릴리즈·Pages**를 게시했습니다. [#194·#196 최종 인수](reports/issue-194_release_v020_completion.md)에서 동일 tree CI7개·4플랫폼/12파일 검증·공개 웹 완주와 [점진적 다운로드·진행률 UX](reports/issue-196_web_progressive.md)를 확인합니다. [릴리즈](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.2.0)·[웹 플레이](https://edwardkim.github.io/ohmylemmings/)를 제공합니다. #165는 메인테이너의 BGM 정상 재생 확인으로 청취 인수를 완료했습니다. #113 성능은 NOT READY로 유지하며 Mac 미공증·Windows11 지원 범위도 같습니다. 아래 단계별 OPEN/예정 문구는 당시 기록입니다.
+[#202 사용자 로컬 MP3 BGM](reports/issue-202_local_mp3.md)을 포함한 **v0.3.0 정식 릴리즈·Pages**를 게시했습니다. [#205 최종 인수](reports/issue-205_release_v030_completion.md)에서 동일 tree CI7개·4플랫폼/12파일·공개 게임 완주와 제공 MP3 두 파일의 디지털 재생을 확인합니다. [릴리즈](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.0)·[웹 플레이](https://edwardkim.github.io/ohmylemmings/)를 제공합니다. [2D HD](plans/issue-137_2d_remaster.md)·[점진적 다운로드/진행률](reports/issue-196_web_progressive.md)도 포함합니다. #165 원본 BGM 청취 인수는 완료했으며 #202 새 MP3 사람 청취 응답은 별도 OPEN입니다. #113 성능 NOT READY·Mac 미공증·Windows11 지원 범위를 유지합니다. 아래 단계별 OPEN/예정 문구는 당시 기록입니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 
@@ -120,6 +120,6 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 
 [#200 사용자 K-pop BGM 교체 검토](reports/issue-200_custom_bgm_review.md): Web/Native에서 외부 음악 교체 가능. 첫 구현은 사용자 로컬 MP3 선택을 권고하며, 원본 BGM/효과음 분리·음악 버퍼링/UX와 공개 음원 사용 권한을 검토했다. 제품 구현은 후속 작업이다.
 
-[#202 로컬 MP3 BGM](reports/issue-202_local_mp3.md)은 main 개발 버전에 구현·CI7개·병합을 완료했습니다. Web 파일 선택과 Native 드롭/실행 옵션, 효과음 유지/개별 음량·반복·오류/재시도를 제공합니다. 제공받은 두 파일의 실제 디지털 출력을 확인했으며 메인테이너의 새 MP3 청취 응답을 기다립니다. 새 릴리즈/Pages 게시는 별도입니다.
+[#202 로컬 MP3 BGM](reports/issue-202_local_mp3.md)은 main 개발 버전에 구현·CI7개·병합을 완료했습니다. Web 파일 선택과 Native 드롭/실행 옵션, 효과음 유지/개별 음량·반복·오류/재시도를 제공합니다. 제공받은 두 파일의 실제 디지털 출력을 확인했으며 메인테이너의 새 MP3 청취 응답을 기다립니다. [v0.3.0/Pages 게시](reports/issue-205_release_v030_completion.md)까지 완료했습니다.
 
-[#205 v0.3.0 정식 릴리즈·Pages](plans/issue-205_release_v030.md)를 준비합니다. [버전별 노트](releases/issue-205_v0.3.0.md)는 사용자 로컬 MP3와 실행/인수 범위를 안내합니다.
+[#205 v0.3.0 정식 릴리즈·Pages](reports/issue-205_release_v030_completion.md)를 완료했습니다. [버전별 노트](releases/issue-205_v0.3.0.md)는 사용자 로컬 MP3와 실행/인수 범위를 안내합니다.
