@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)와 [BGM #165 제품 수정](reports/issue-165_bgm.md)·[#191 버전 적용](reports/issue-191_remaster_version.md)을 바탕으로 **v0.2.0 정식 릴리즈·Pages**를 게시했습니다. [#194·#196 최종 인수](reports/issue-194_release_v020_completion.md)에서 동일 tree CI7개·4플랫폼/12파일 검증·공개 웹 완주와 [점진적 다운로드·진행률 UX](reports/issue-196_web_progressive.md)를 확인합니다. [릴리즈](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.2.0)·[웹 플레이](https://edwardkim.github.io/ohmylemmings/)를 제공합니다. #165 청취 확인은 OPEN, #113 성능은 NOT READY로 유지하며 Mac 미공증·Windows11 지원 범위도 같습니다. 아래 단계별 OPEN/예정 문구는 당시 기록입니다.
+[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)와 [BGM #165 제품 수정](reports/issue-165_bgm.md)·[#191 버전 적용](reports/issue-191_remaster_version.md)을 바탕으로 **v0.2.0 정식 릴리즈·Pages**를 게시했습니다. [#194·#196 최종 인수](reports/issue-194_release_v020_completion.md)에서 동일 tree CI7개·4플랫폼/12파일 검증·공개 웹 완주와 [점진적 다운로드·진행률 UX](reports/issue-196_web_progressive.md)를 확인합니다. [릴리즈](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.2.0)·[웹 플레이](https://edwardkim.github.io/ohmylemmings/)를 제공합니다. #165는 메인테이너의 BGM 정상 재생 확인으로 청취 인수를 완료했습니다. #113 성능은 NOT READY로 유지하며 Mac 미공증·Windows11 지원 범위도 같습니다. 아래 단계별 OPEN/예정 문구는 당시 기록입니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 
