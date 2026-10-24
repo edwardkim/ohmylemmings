@@ -66,3 +66,5 @@
 - [#191 리마스터 v0.2.0 버전 적용](issue-191_remaster_version.md)
 
 - [#194 v0.2.0 릴리즈·Pages](issue-194_release_v020.md)
+
+- [#196 웹 점진적 자산 다운로드](issue-196_web_progressive.md)

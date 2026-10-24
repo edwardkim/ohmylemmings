@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/196",
+  "baseline": "b5d0d4d36a89d404768e08bfcca4f3005de06895",
+  "scope": "Web presentation dependencies, lossless gzip transport and progressive download UX. No game rules, canonical art, OPL or performance/listening verdict changes.",
+  "product": [
+    {
+      "path": "apps/web/src/bin/hd_download_probe.rs",
+      "bytes": 2048,
+      "sha256": "8d2cd85c5e88d5ff13ed745782b912253f327c7fc33575cd4b45a1244b1d214f"
+    },
+    {
+      "path": "apps/web/src/lib.rs",
+      "bytes": 19754,
+      "sha256": "f2b9246bb3abcbdccd52ff05c5cfea9d3c3f4016ac49b2b337f3dba8db6e3b1f"
+    },
+    {
+      "path": "apps/web/tests/hd.rs",
+      "bytes": 4684,
+      "sha256": "a68af1e87b8bf97de0146a505a9ba411bae3469f3f956aa3d7d7c1f0d8fccc61"
+    },
+    {
+      "path": "apps/web/www/app.js",
+      "bytes": 14642,
+      "sha256": "a417529949c10ee3d1d56c6084996d666e79e6789d998dac982a360a19a13a4b"
+    },
+    {
+      "path": "apps/web/www/bundled.js",
+      "bytes": 2660,
+      "sha256": "b1bcccb7a2bd5dfe7d7f88c7ccbbd7cb0482ddc94f7b6a2394af6b84a96c547e"
+    },
+    {
+      "path": "apps/web/www/download.js",
+      "bytes": 3483,
+      "sha256": "40f7d01ca1255a83eb38aeae701c8eded1cfd8fe99fb8cfb141f18a13c57ddc2"
+    },
+    {
+      "path": "apps/web/www/index.html",
+      "bytes": 5590,
+      "sha256": "f666d08e7db62fb1dedc467868f668c701ba9214d1717d27c46c13554e6f9195"
+    },
+    {
+      "path": "apps/web/www/progressive-hd.js",
+      "bytes": 9488,
+      "sha256": "f541acce9833cf3191f9b0251f5b76abf5a47cb00d4e9a09ba47df64bd3ff652"
+    },
+    {
+      "path": "apps/web/www/style.css",
+      "bytes": 6157,
+      "sha256": "311ff54fdba1fe8f5d553cea23021d2905d99f37148239506824a00c65fcaf9a"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/download.rs",
+      "bytes": 4875,
+      "sha256": "0b52824a083e803f426939940201e1800cf0c0126e147145ca48e5857a430006"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/mod.rs",
+      "bytes": 997,
+      "sha256": "89c2167df431a27f9671740c8fdb6020046e341969022d7bf9d0f23d8cd5e5c8"
+    },
+    {
+      "path": "crates/lemmings-game/tests/hd_download.rs",
+      "bytes": 2099,
+      "sha256": "661c67a61fa9ef8aa32604eefdab8eb4e8c5f437d10bb872fd330f02b4b4fb91"
+    },
+    {
+      "path": "tools/check_release_package.py",
+      "bytes": 7727,
+      "sha256": "fc8ee9616b97996a26a91865edd18e0dc143088552d7c7dd4f200cd931752ad9"
+    },
+    {
+      "path": "tools/hd_delivery.py",
+      "bytes": 2539,
+      "sha256": "4a0942b00dcf0cf04398569d07f9d5868becf8dfa921c175db644c82cbcbf00a"
+    },
+    {
+      "path": "tools/release_package.py",
+      "bytes": 19368,
+      "sha256": "29113da1e9b141ceddac34ddb0b0b6e72ee3d3b0a000578c7c113d5a73454a32"
+    },
+    {
+      "path": "tools/tests/test_hd_delivery.py",
+      "bytes": 3172,
+      "sha256": "53510a8cd063893abac00a7874604a987db4ff8e58633bf1f0893af8f1e20219"
+    },
+    {
+      "path": "tools/tests/test_pages_package.py",
+      "bytes": 8721,
+      "sha256": "99448e35e7cbaca735886f4c5222883a92856147f4f7a061af54a7182336e778"
+    },
+    {
+      "path": "tools/tests/test_web_hd.py",
+      "bytes": 2577,
+      "sha256": "e6ad8f2496eb4a7c7f06a73262d417ae93788941511fc4f641ff46df13de3b28"
+    },
+    {
+      "path": "tools/web/download_check.js",
+      "bytes": 2100,
+      "sha256": "3979294236972f1c7312d3ff3fc5e77a7eecc4e730c099da97a07ae8f3efdd0e"
+    },
+    {
+      "path": "tools/web/full_package_check.js",
+      "bytes": 10089,
+      "sha256": "15cb4c5b1d4c9aa7b5c651c77e179f18b50cae0b6dbbfe4607792ac8c9099c7c"
+    },
+    {
+      "path": "tools/web/progressive_loader.cjs",
+      "bytes": 4758,
+      "sha256": "8ca703c4400c44fafecbde25e9eb2dd4906efb4ea42febfda9da1debdbc501c1"
+    },
+    {
+      "path": "tools/web_build.py",
+      "bytes": 8760,
+      "sha256": "37a928c110489ae62a24b5583405bcf0c0c943fc235d22298aed19f68a9dfbd4"
+    },
+    {
+      "path": "tools/web_hd.py",
+      "bytes": 3372,
+      "sha256": "b7769d2cb8d3f31919ec523e9f964e9c24b63a1f85c8bcdf267bd1bd6ec7d62a"
+    }
+  ],
+  "screenshot": {
+    "path": "mydocs/reports/issue-196_download-progress.png",
+    "bytes": 194106,
+    "sha256": "a5f2aa336d21a17837b4ac64f273ba297c91261f64ccd08709c3c003890e1b86"
+  },
+  "validation": {
+    "python_tests": 317,
+    "rust_target_tests": 7,
+    "original_current_plans": 120,
+    "original_next_plans": 119,
+    "logical_keys": 899,
+    "transport_pages": 53,
+    "old_scope_3_raw_bytes": 113884752,
+    "initial_hd_bytes": 19751567,
+    "initial_hd_pages": 8,
+    "max_level_wire_bytes": 44211596,
+    "emulator_mbps": 10,
+    "cold_seconds": 19.068,
+    "progress_samples": 152,
+    "waiting_control_step": 0,
+    "next_level_additional_files": 4,
+    "warm_hd_network_requests": 0,
+    "canonical_fun01_states": 665,
+    "canonical_rgba_pairs": 23,
+    "saved": 10,
+    "fullscreen_progress": true,
+    "initial_controls_held": true,
+    "same_level_retry": true,
+    "actual_package_levels_loaded": 120,
+    "local_candidate_package_sha256": "493faafc60f561d5aa814c1051da92edf84180308027af527ac35421b430d405",
+    "local_candidate_package_files": 108,
+    "current_source_ci": "pending final same-tree CI before release",
+    "performance_113": "NOT READY",
+    "human_bgm_165": "pending",
+    "full_make_check_python": "PASS: all Makefile checks including HD art,317 tests,COMP/G11/deadline/dispatch and motion reference",
+    "continuous_slow_stream": "PASS: transfer longer than80ms idle window succeeds while bytes arrive; stopped stream rejects at30ms; previous absolute timeout fails accelerated regression"
+  },
+  "local_evidence": [
+    {
+      "path": "assets/local/issue-196-review/ui-check.cjs",
+      "bytes": 10628,
+      "sha256": "de0dc9a2646d66c8100c349d43c6915011890e402acf0935f41cedefd9423925"
+    },
+    {
+      "path": "assets/local/issue-196-review/serve-ui.py",
+      "bytes": 856,
+      "sha256": "2acae0eb79906123797d1e4a7c28aaf0a8dbf03c464442fbb0c3628f242b2ae4"
+    },
+    {
+      "path": "assets/local/issue-196-review/ui-check.json",
+      "bytes": 781,
+      "sha256": "c796e1250081de188b4374516102bf5d703c2f4a2e12be3b97990d8150f0dc89"
+    },
+    {
+      "path": "assets/local/issue-196-review/ui-check-fourth.log",
+      "bytes": 1065,
+      "sha256": "4e8d5a7f61f006a7db62334e50c25b8c1cd6f031519f78f4b3b01b46c03fd890"
+    },
+    {
+      "path": "assets/local/issue-196-review/catalog-baseline.json",
+      "bytes": 12404,
+      "sha256": "7764d0466987798655c09297ea9cc2ad4f65aec5cc6a501b0821bb473e143de9"
+    },
+    {
+      "path": "assets/local/issue-196-review/original-plans.jsonl",
+      "bytes": 37950,
+      "sha256": "60fc1dc0a822784417e9ab7b8a71cb22f113a3bac552f60a7861133401e36054"
+    },
+    {
+      "path": "assets/local/issue-196-review/original-plans.log",
+      "bytes": 262,
+      "sha256": "7139dade98134a8996043a5b04ff2767d32c769c1755ca4574ed35739c6f6cc6"
+    },
+    {
+      "path": "assets/local/issue-196-review/selected-transfers.json",
+      "bytes": 187381,
+      "sha256": "b5ba5a384765fa2fcaac586c43e6d31c5421a5f20c93d968a68113df2a681935"
+    },
+    {
+      "path": "assets/local/issue-196-review/python-final.log",
+      "bytes": 417,
+      "sha256": "7d09b2891809a4348798cbd170be0d76afcce1e466785c0022953f66874588b5"
+    },
+    {
+      "path": "assets/local/issue-196-review/loader-final.log",
+      "bytes": 271,
+      "sha256": "dc29e581424c08cc9adefaba35d5aab43fa279eb674eeab1ee0ff5e3342034ee"
+    },
+    {
+      "path": "assets/local/issue-196-review/planner-final.log",
+      "bytes": 1206,
+      "sha256": "077c2e547779341cfc04eb9e0e4ad7f84c543fa6a6691e2c192cbfb20f44176a"
+    },
+    {
+      "path": "assets/local/issue-196-review/clippy.log",
+      "bytes": 803,
+      "sha256": "acf4db70337f21a12301391166e422e74e9b77e0179a3294305838abc70a071a"
+    },
+    {
+      "path": "assets/local/issue-196-review/full-package.log",
+      "bytes": 2264,
+      "sha256": "5a0c35dc8e0bb9cfdc2bfe97a3b6354e55c6ed6b3e216c03ecfba93c66a34e00"
+    },
+    {
+      "path": "assets/local/issue-196-review/progress-cold.png",
+      "bytes": 194106,
+      "sha256": "a5f2aa336d21a17837b4ac64f273ba297c91261f64ccd08709c3c003890e1b86"
+    },
+    {
+      "path": "assets/local/issue-196-review/progress-error.png",
+      "bytes": 484447,
+      "sha256": "b97e78586090e1f34a72195ace0a94b913cd88aae21c53f38c798934d87e97ac"
+    },
+    {
+      "path": "assets/local/issue-196-review/play-exact.png",
+      "bytes": 1005701,
+      "sha256": "7b6a0ae32d78c9930fe7fc0a7435fb11aabde182823c0edd8ab660c85ca9a2c6"
+    },
+    {
+      "path": "assets/local/issue-196-review/make-check-python.log",
+      "bytes": 225350,
+      "sha256": "ed9d8162dcd8d3535af1f9910898d14399a89cc97ede3b3e8d67350a18553f2d"
+    },
+    {
+      "path": "assets/local/issue-196-review/timeout-red.log",
+      "bytes": 378,
+      "sha256": "4507867a9b7cfcca285cefb578a3b266f07f3bc48f104cfdd596e85e03f6aca2"
+    }
+  ],
+  "current_provenance": [
+    {
+      "path": "assets/manifests/web_dispatch.json",
+      "bytes": 20696,
+      "sha256": "c15a669a5288401efa73643d8530a1ecd2e1351e5e508ec98c15b58a0561d38f"
+    }
+  ]
+}

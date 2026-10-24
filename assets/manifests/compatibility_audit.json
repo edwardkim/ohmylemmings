@@ -196,8 +196,8 @@
     },
     {
       "path": "apps/web/src/lib.rs",
-      "bytes": 18635,
-      "sha256": "f4b2a1fd552272601d7c010692f5703bb408cc5f2b9b057852160ca7fed2f55b"
+      "bytes": 19754,
+      "sha256": "f2b9246bb3abcbdccd52ff05c5cfea9d3c3f4016ac49b2b337f3dba8db6e3b1f"
     },
     {
       "path": "apps/web/tests/audio_output.rs",
@@ -231,8 +231,8 @@
     },
     {
       "path": "apps/web/www/app.js",
-      "bytes": 11821,
-      "sha256": "e681b1adad154f82e432d4cd6bc44013e9836ca7859688b7c31edef2b41cd11d"
+      "bytes": 14642,
+      "sha256": "a417529949c10ee3d1d56c6084996d666e79e6789d998dac982a360a19a13a4b"
     },
     {
       "path": "apps/web/www/audio-license.html",
@@ -246,8 +246,8 @@
     },
     {
       "path": "apps/web/www/bundled.js",
-      "bytes": 2067,
-      "sha256": "3998f197339247a182574a7e6e1d41d23e5bcfe9a6efc41b84ee3b610529348f"
+      "bytes": 2660,
+      "sha256": "b1bcccb7a2bd5dfe7d7f88c7ccbbd7cb0482ddc94f7b6a2394af6b84a96c547e"
     },
     {
       "path": "apps/web/www/controls.js",
@@ -261,13 +261,13 @@
     },
     {
       "path": "apps/web/www/index.html",
-      "bytes": 5013,
-      "sha256": "b7ed19b4c0c7eda676a5a0d65342358f9e3d3b1228c9b0c5ad785023ed229b1c"
+      "bytes": 5590,
+      "sha256": "f666d08e7db62fb1dedc467868f668c701ba9214d1717d27c46c13554e6f9195"
     },
     {
       "path": "apps/web/www/style.css",
-      "bytes": 4846,
-      "sha256": "f6f43f6e153f8bd44009e1cac4f5df02c70d8dd7f2bbd78e12a07d50995c5a3c"
+      "bytes": 6157,
+      "sha256": "311ff54fdba1fe8f5d553cea23021d2905d99f37148239506824a00c65fcaf9a"
     },
     {
       "path": "assets/manifests/license_inventory.json",
@@ -596,8 +596,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/mod.rs",
-      "bytes": 979,
-      "sha256": "8f731a707e21321b077be7ff7040df89e31fe76be9dd3749af4daf21abb72b4f"
+      "bytes": 997,
+      "sha256": "89c2167df431a27f9671740c8fdb6020046e341969022d7bf9d0f23d8cd5e5c8"
     },
     {
       "path": "crates/lemmings-game/src/hd/snapshot.rs",
@@ -1281,8 +1281,8 @@
     },
     {
       "path": "tools/check_release_package.py",
-      "bytes": 7657,
-      "sha256": "ed0a89999c2d582c32cbdf74abb3ffa5e1ebeec68aabfc6b05d18b7f39ea8a9d"
+      "bytes": 7727,
+      "sha256": "fc8ee9616b97996a26a91865edd18e0dc143088552d7c7dd4f200cd931752ad9"
     },
     {
       "path": "tools/check_results.py",
@@ -1766,8 +1766,8 @@
     },
     {
       "path": "tools/release_package.py",
-      "bytes": 18677,
-      "sha256": "c02917590f91d27d3c4b74ad22b83d2f59054e15ac0f1f25d9ae2098240d8cac"
+      "bytes": 19368,
+      "sha256": "29113da1e9b141ceddac34ddb0b0b6e72ee3d3b0a000578c7c113d5a73454a32"
     },
     {
       "path": "tools/release_version.py",
@@ -1976,8 +1976,8 @@
     },
     {
       "path": "tools/tests/test_pages_package.py",
-      "bytes": 8505,
-      "sha256": "3a9f27672e4978f8fc64068c9697de584a2d646428a2aff3289e5dd86903d50a"
+      "bytes": 8721,
+      "sha256": "99448e35e7cbaca735886f4c5222883a92856147f4f7a061af54a7182336e778"
     },
     {
       "path": "tools/tests/test_panel.py",
@@ -2196,8 +2196,8 @@
     },
     {
       "path": "tools/web/full_package_check.js",
-      "bytes": 9261,
-      "sha256": "47563721899450d8b1aefaa43b120f32b248ffa9406be53a2875bed7043b7963"
+      "bytes": 10089,
+      "sha256": "15cb4c5b1d4c9aa7b5c651c77e179f18b50cae0b6dbbfe4607792ac8c9099c7c"
     },
     {
       "path": "tools/web/initial_replay.html",
@@ -2236,8 +2236,8 @@
     },
     {
       "path": "tools/web_build.py",
-      "bytes": 8504,
-      "sha256": "15b9a9a9f613e7f0447096e47e63dc918768bbd8f9dbe85afe4140f01230ba50"
+      "bytes": 8760,
+      "sha256": "37a928c110489ae62a24b5583405bcf0c0c943fc235d22298aed19f68a9dfbd4"
     },
     {
       "path": "tools/web_deadlines.py",
@@ -2336,8 +2336,8 @@
     },
     {
       "path": "apps/web/tests/hd.rs",
-      "bytes": 4029,
-      "sha256": "5b412d01d89c82e540886a9fbe9a9882e21ef6a375262ff4f82470e5c73cd079"
+      "bytes": 4684,
+      "sha256": "a68af1e87b8bf97de0146a505a9ba411bae3469f3f956aa3d7d7c1f0d8fccc61"
     },
     {
       "path": "apps/web/www/hd.js",
@@ -3236,13 +3236,13 @@
     },
     {
       "path": "tools/hd_delivery.py",
-      "bytes": 2169,
-      "sha256": "ef29ef4be7702a0cc3f6a78e41e2a599a76dbb3c64be1ec82463831bf6d4b036"
+      "bytes": 2539,
+      "sha256": "4a0942b00dcf0cf04398569d07f9d5868becf8dfa921c175db644c82cbcbf00a"
     },
     {
       "path": "tools/tests/test_hd_delivery.py",
-      "bytes": 2960,
-      "sha256": "b0b1f621fa2bb69a9357f738591c607e0589e15283c8817d0fb86514b5459499"
+      "bytes": 3172,
+      "sha256": "53510a8cd063893abac00a7874604a987db4ff8e58633bf1f0893af8f1e20219"
     },
     {
       "path": "apps/audio-probe/src/bin/opl_trace.rs",
@@ -3268,6 +3268,56 @@
       "path": "tools/tests/test_bgm.py",
       "bytes": 1294,
       "sha256": "fe0e359b0999652720c988c00f76f0ace98cf83b69f9d5b15222deaebdc9876f"
+    },
+    {
+      "path": "apps/web/src/bin/hd_download_probe.rs",
+      "bytes": 2048,
+      "sha256": "8d2cd85c5e88d5ff13ed745782b912253f327c7fc33575cd4b45a1244b1d214f"
+    },
+    {
+      "path": "apps/web/www/download.js",
+      "bytes": 3483,
+      "sha256": "40f7d01ca1255a83eb38aeae701c8eded1cfd8fe99fb8cfb141f18a13c57ddc2"
+    },
+    {
+      "path": "apps/web/www/progressive-hd.js",
+      "bytes": 9488,
+      "sha256": "f541acce9833cf3191f9b0251f5b76abf5a47cb00d4e9a09ba47df64bd3ff652"
+    },
+    {
+      "path": "crates/lemmings-game/src/hd/download.rs",
+      "bytes": 4875,
+      "sha256": "0b52824a083e803f426939940201e1800cf0c0126e147145ca48e5857a430006"
+    },
+    {
+      "path": "crates/lemmings-game/tests/hd_download.rs",
+      "bytes": 2099,
+      "sha256": "661c67a61fa9ef8aa32604eefdab8eb4e8c5f437d10bb872fd330f02b4b4fb91"
+    },
+    {
+      "path": "tools/tests/test_web_hd.py",
+      "bytes": 2577,
+      "sha256": "e6ad8f2496eb4a7c7f06a73262d417ae93788941511fc4f641ff46df13de3b28"
+    },
+    {
+      "path": "tools/web/download_check.js",
+      "bytes": 2100,
+      "sha256": "3979294236972f1c7312d3ff3fc5e77a7eecc4e730c099da97a07ae8f3efdd0e"
+    },
+    {
+      "path": "tools/web/progressive_loader.cjs",
+      "bytes": 4758,
+      "sha256": "8ca703c4400c44fafecbde25e9eb2dd4906efb4ea42febfda9da1debdbc501c1"
+    },
+    {
+      "path": "tools/web_hd.py",
+      "bytes": 3372,
+      "sha256": "b7769d2cb8d3f31919ec523e9f964e9c24b63a1f85c8bcdf267bd1bd6ec7d62a"
+    },
+    {
+      "path": "assets/manifests/web_progressive.json",
+      "bytes": 9110,
+      "sha256": "aadc9ca0e37f7df2d8cd439d5494e43dd46edc6dbb8c21e7f8d985a04bec1d8c"
     }
   ],
   "evidence": [
@@ -7485,5 +7535,99 @@
       }
     ],
     "scope": "Public0.2.0 notes and bounded HD Pages staging (256MiB archive/512MiB expansion/256files). Source/license/origin/latest/full-game/digest checks retained. Preflight-only workflow before annotated tag/publication. No game/art/audio changes, no new performance or human listening verdict."
+  },
+  "source_impact_196": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/196",
+    "baseline": "b5d0d4d36a89d404768e08bfcca4f3005de06895",
+    "previous_pins": [
+      {
+        "path": "apps/web/src/lib.rs",
+        "bytes": 18635,
+        "sha256": "f4b2a1fd552272601d7c010692f5703bb408cc5f2b9b057852160ca7fed2f55b"
+      },
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 11821,
+        "sha256": "e681b1adad154f82e432d4cd6bc44013e9836ca7859688b7c31edef2b41cd11d"
+      },
+      {
+        "path": "apps/web/www/bundled.js",
+        "bytes": 2067,
+        "sha256": "3998f197339247a182574a7e6e1d41d23e5bcfe9a6efc41b84ee3b610529348f"
+      },
+      {
+        "path": "apps/web/www/index.html",
+        "bytes": 5013,
+        "sha256": "b7ed19b4c0c7eda676a5a0d65342358f9e3d3b1228c9b0c5ad785023ed229b1c"
+      },
+      {
+        "path": "apps/web/www/style.css",
+        "bytes": 4846,
+        "sha256": "f6f43f6e153f8bd44009e1cac4f5df02c70d8dd7f2bbd78e12a07d50995c5a3c"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/mod.rs",
+        "bytes": 979,
+        "sha256": "8f731a707e21321b077be7ff7040df89e31fe76be9dd3749af4daf21abb72b4f"
+      },
+      {
+        "path": "tools/check_release_package.py",
+        "bytes": 7657,
+        "sha256": "ed0a89999c2d582c32cbdf74abb3ffa5e1ebeec68aabfc6b05d18b7f39ea8a9d"
+      },
+      {
+        "path": "tools/release_package.py",
+        "bytes": 18677,
+        "sha256": "c02917590f91d27d3c4b74ad22b83d2f59054e15ac0f1f25d9ae2098240d8cac"
+      },
+      {
+        "path": "tools/tests/test_pages_package.py",
+        "bytes": 8505,
+        "sha256": "3a9f27672e4978f8fc64068c9697de584a2d646428a2aff3289e5dd86903d50a"
+      },
+      {
+        "path": "tools/web/full_package_check.js",
+        "bytes": 9261,
+        "sha256": "47563721899450d8b1aefaa43b120f32b248ffa9406be53a2875bed7043b7963"
+      },
+      {
+        "path": "tools/web_build.py",
+        "bytes": 8504,
+        "sha256": "15b9a9a9f613e7f0447096e47e63dc918768bbd8f9dbe85afe4140f01230ba50"
+      },
+      {
+        "path": "apps/web/tests/hd.rs",
+        "bytes": 4029,
+        "sha256": "5b412d01d89c82e540886a9fbe9a9882e21ef6a375262ff4f82470e5c73cd079"
+      },
+      {
+        "path": "tools/hd_delivery.py",
+        "bytes": 2169,
+        "sha256": "ef29ef4be7702a0cc3f6a78e41e2a599a76dbb3c64be1ec82463831bf6d4b036"
+      },
+      {
+        "path": "tools/tests/test_hd_delivery.py",
+        "bytes": 2960,
+        "sha256": "b0b1f621fa2bb69a9357f738591c607e0589e15283c8817d0fb86514b5459499"
+      }
+    ],
+    "added_product_sources": [
+      "apps/web/src/bin/hd_download_probe.rs",
+      "apps/web/www/download.js",
+      "apps/web/www/progressive-hd.js",
+      "crates/lemmings-game/src/hd/download.rs",
+      "crates/lemmings-game/tests/hd_download.rs",
+      "tools/tests/test_web_hd.py",
+      "tools/web/download_check.js",
+      "tools/web/progressive_loader.cjs",
+      "tools/web_hd.py",
+      "assets/manifests/web_progressive.json"
+    ],
+    "scope": "Web presentation dependencies, lossless gzip transport and progressive download UX. No game rules, canonical art, OPL or performance/listening verdict changes.",
+    "validation_manifest": {
+      "path": "assets/manifests/web_progressive.json",
+      "bytes": 9110,
+      "sha256": "aadc9ca0e37f7df2d8cd439d5494e43dd46edc6dbb8c21e7f8d985a04bec1d8c"
+    }
   }
 }

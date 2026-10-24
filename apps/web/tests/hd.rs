@@ -1,4 +1,18 @@
 use lemmings_web::WebGame;
+
+#[test]
+fn download_plans_do_not_change_the_current_game_or_audio() {
+    let mut game = WebGame::new("builder", "reference").unwrap();
+    let before = (game.state(), game.sound_state(), game.input_log());
+    let plan = game.hd_download_plan(false).unwrap();
+    assert!(plan.contains("\"keys\":"));
+    assert_eq!(game.hd_download_plan(true).unwrap(), "null");
+    assert_eq!((game.state(), game.sound_state(), game.input_log()), before);
+    game.step(60.).unwrap();
+    assert_eq!(game.hd_download_plan(false).unwrap(), plan);
+    let game = WebGame::new("win", "reference").unwrap();
+    assert_ne!(game.hd_download_plan(true).unwrap(), "null");
+}
 fn pack() -> Vec<u8> {
     let mut b = b"LHDPAK01".to_vec();
     b.extend(1u16.to_le_bytes());

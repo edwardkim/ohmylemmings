@@ -1,15 +1,17 @@
 import {checkBundled} from './__bundled_check.js';
 import {loadBundled} from './bundled.js';
+import {checkDownload} from './__download_check.js';
 const assert=(ok,message)=>{if(!ok)throw Error(message);};
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 let result;
 try {
     const loader=await checkBundled(loadBundled,assert);
+    const download_ui=await checkDownload(assert);
     const html=await (await fetch('./index.html')).text();
     const clock='<script>window.requestAnimationFrame=()=>1;window.cancelAnimationFrame=()=>{};</script>';
     async function open(broken=null) {
         const frame=document.createElement('iframe');
-        const fault=broken?`<script>const originalFetch=window.fetch;window.fetch=(url,options)=>String(url).endsWith(${JSON.stringify(broken)})?Promise.resolve(new Response('',{status:404})):originalFetch(url,options);</script>`:'';
+        const fault=broken?`<script>Object.defineProperty(window,'caches',{value:undefined});const originalFetch=window.fetch;window.fetch=(url,options)=>String(url).endsWith(${JSON.stringify(broken)})?Promise.resolve(new Response('',{status:404})):originalFetch(url,options);</script>`:'';
         frame.srcdoc=html.replace('<script type="module" src="./app.js">',clock+fault+'<script type="module" src="./app.js">');
         const loaded=new Promise(resolve=>frame.onload=resolve);
         document.body.append(frame);await loaded;
@@ -24,11 +26,16 @@ try {
     let {win,doc,game}=first;
     assert(game.difficulty()==='fun'&&game.level()===1&&!doc.querySelector('#open-level').disabled,'default is not original Fun01');
     const hdDefault=doc.querySelector('meta[name="game-presentation"][content="hd"]')!==null;
+    const streamed=doc.querySelector('meta[name="game-hd-stream"]')!==null;
+    const streamInfo=streamed?await(await fetch('./HD-WEB.json')).json():null;
     let hdInfo=null,hd_png=null,hdPlay=null;const hdLevels=[];
     async function settled(){for(let n=0;n<3000&&doc.querySelector('#presentation').disabled;n++)await pause(10);assert(!doc.querySelector('#presentation').disabled&&!doc.querySelector('#error').textContent,'HD loading failed: '+doc.querySelector('#error').textContent);}
     if(hdDefault){
         assert(doc.querySelector('#presentation').value==='hd'&&doc.querySelector('#game').width===1920,'package did not start in HD');
-        hdInfo=JSON.parse(game.hd_info());assert(hdInfo.ui_glyphs===95&&hdInfo.actor_frames_available===337,'HD character/font delivery incomplete');
+        hdInfo=JSON.parse(game.hd_info());
+        let actors=337;
+        if(streamed){const {selectWebHd}=await import('./progressive-hd.js');const pages=selectWebHd(streamInfo,JSON.parse(game.hd_download_plan(false)));actors=pages.reduce((n,p)=>n+p.keys.filter(k=>k[0]===0).length,0);assert(streamInfo.actor_frames===337&&pages.length<streamInfo.pages.length,'Web did not select level dependencies');}
+        assert(hdInfo.ui_glyphs===95&&hdInfo.actor_frames_available===actors,'HD character/font delivery incomplete');
         hd_png=doc.querySelector('#game').toDataURL('image/png').split(',')[1];
         const api=await win.eval('import("./pkg/lemmings_web.js")');
         const bank=await loadBundled(api.WebAssets),plain=new api.WebGame('builder','reference');
@@ -101,14 +108,15 @@ try {
     await host.dispose();first.detach();first.frame.remove();
     const refreshed=await open();assert(refreshed.game.level()===1,'fresh page did not reload bundled game');
     refreshed.detach();refreshed.frame.remove();
-    const faults=['GAME-DATA.json','data/MAIN.DAT',...(hdDefault?['hd-assets/catalog.hdi','hd-assets/atlas-000.hdp']:[])];
+    const firstPage=streamInfo?.pages.find(p=>p.keys.some(k=>k[0]===0&&k[1]===0))?.path;
+    const faults=['GAME-DATA.json','data/MAIN.DAT',...(hdDefault?(streamed?['HD-WEB.json',firstPage]:['hd-assets/catalog.hdi','hd-assets/atlas-000.hdp']):[])];
     for(const broken of faults){const failed=await open(broken);failed.detach();failed.frame.remove();}
     const packageInfo=await (await fetch('./PACKAGE-MANIFEST.json')).json();
     const licenseFiles=packageInfo.project_license==='MIT'?['LICENSE','THIRD_PARTY_NOTICES.txt']:[];
     for(const name of ['audio-license.html','LGPL-2.1-or-later.txt','audio-source.json','audio-source.tar.gz',...licenseFiles]) {
         const response=await fetch('./'+name);assert(response.ok&&(await response.arrayBuffer()).byteLength>0,'source/license HTTP delivery failed');
     }
-    result={status:'PASS',loader,original_levels_loaded:loaded,first_frame_sha256:digest,frame_rgb,audio,transitions,hd_png,
+    result={status:'PASS',loader,download_ui,original_levels_loaded:loaded,first_frame_sha256:digest,frame_rgb,audio,transitions,hd_png,
         hd:{default:hdDefault,info:hdInfo,levels:hdLevels,play:hdPlay,original_switch:true},
         source_delivery:true,project_license:packageInfo.project_license??'not declared in historical package',refresh:true,subdirectory:true,missing_file_errors:faults.length,scope:'Extracted full game; actual WASM/DOM/Canvas and original WebAudio PCM, automatic activation flag; no physical audibility or performance qualification'};
 } catch(error){result={status:'FAIL',error:String(error),stack:error.stack};}

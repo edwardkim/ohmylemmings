@@ -158,3 +158,5 @@
 - [#191 리마스터 v0.2.0 버전 적용](issue-191_remaster_version.md)
 
 - [#194 v0.2.0 정식 게시·Pages](issue-194_release_v020.md)
+
+- [#196 웹 점진적 다운로드·진행률 UX](issue-196_web_progressive.md)

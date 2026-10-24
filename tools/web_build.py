@@ -130,7 +130,12 @@ def build(output=OUTPUT):
     (output/'hd-assets.hdp').write_bytes(data)
     try:from .hd_catalog import runtime_catalog,write_files
     except ImportError:from hd_catalog import runtime_catalog,write_files
-    write_files(runtime_catalog(ROOT,data),output/'hd-assets')
+    members=runtime_catalog(ROOT,data)
+    write_files(members,output/'hd-assets')
+    try:from .web_hd import delivery
+    except ImportError:from web_hd import delivery
+    for name,content in delivery(members).items():
+        path=output/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(content)
     audio_delivery(output)
     print(json.dumps(dict(status='PASS',bindgen=version,output=str(output))))
     return output

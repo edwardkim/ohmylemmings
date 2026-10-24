@@ -9,3 +9,6 @@ Pages의 기존50MiB 다운로드·100MiB 확장·100파일 제한은 약190MB�
 Release workflow에 main 후보를 검증만 하는 `prepare_only` 수동 경로를 추가한다. 태그/릴리즈/Pages를 만들지 않고 동일 tree CI 산출물 전체를 prepare하고 manifest/체크섬 증거를 남긴다. 이 사전 검증 성공 후에만 annotated 태그를 push한다. 기존 tag/default publish 경로는 draft 업로드·재다운로드 일치 후 공개하고 Pages를 승격한다. Pages 검증 도구와 자산은 입력한 공개 태그에서 checkout하여 source와 일치시킨다. HD 전체 다운로드/검증을 위해 게시 job30분·Pages job20분으로 한정하며 GitHub Pages의 실제 deployment 제한을 바꾸지 않는다.
 
 공개용0.2.0 노트는 기존191 파일을 게시 전 확정하며 이후 태그/asset/버전별 노트를 덮어쓰지 않는다.0.1.0은 보존한다. source tree·CI7개·preflight·annotated tag·draft/익명 다운로드·공개 Pages 버전/해시·실제 Web 플레이 결과는 작업 종료 시 이슈 및 후속 완료 기록에 고정한다. 이 소스 스냅샷은 게시 준비 단계의 기록이다.
+
+
+#195 준비 PR은 CI40045197480의7개 SUCCESS 후 main b5d0d4d에 병합했다. 이후 메인테이너가 웹 점진적 다운로드와 진행률 UX를 필수로 지정하여 태그/공개를 보류하고 [#196](issue-196_web_progressive.md)을 먼저 반영한다. 새 소스 tree CI7개와 전체4패키지 preflight 성공 후 기존 승인 범위에서 v0.2.0 게시를 계속한다.

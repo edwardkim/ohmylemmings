@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 [#187 지원 HD 패키징·최종 인수](reports/issue-187_hd_release.md), PR #188·CI7개 SUCCESS·실제 병합으로 완료했습니다.899HD 키·95글꼴/현재 전체 UI·새 다운로드 기본 HD와 원본 선택을 제공합니다. [BGM #165 제품 수정](reports/issue-165_bgm.md)·[리마스터0.2.0 버전 적용 #191](reports/issue-191_remaster_version.md)과7개 플랫폼 시험 패키지 검증을 완료했습니다. 실제 청취 상태는 #165 보고서를 따르며 [0.2.0 정식 게시·Pages #194](reports/issue-194_release_v020.md)를 진행합니다. 공개 v0.1.0/Pages·Mac 미공증·성능 #113 NOT READY는 유지합니다. 아래 단계별 후속/OPEN 표기는 당시 기록입니다.
+[#137 2D HD 리마스터](plans/issue-137_2d_remaster.md)를 [#187 지원 HD 패키징·최종 인수](reports/issue-187_hd_release.md), PR #188·CI7개 SUCCESS·실제 병합으로 완료했습니다.899HD 키·95글꼴/현재 전체 UI·새 다운로드 기본 HD와 원본 선택을 제공합니다. [BGM #165 제품 수정](reports/issue-165_bgm.md)·[리마스터0.2.0 버전 적용 #191](reports/issue-191_remaster_version.md)과7개 플랫폼 시험 패키지 검증을 완료했습니다. 실제 청취 상태는 #165 보고서를 따르며 [0.2.0 정식 게시·Pages #194](reports/issue-194_release_v020.md)를 진행합니다. 게시 전 [#196 웹 점진적 다운로드·진행률 UX](reports/issue-196_web_progressive.md)를 반영하고 최종 CI/공개 인수를 확인합니다. 공개 v0.1.0/Pages·Mac 미공증·성능 #113 NOT READY는 유지합니다. 아래 단계별 후속/OPEN 표기는 당시 기록입니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 

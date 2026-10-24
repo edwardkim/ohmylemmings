@@ -5,6 +5,8 @@ import { GameInput, readFiles } from './controls.js';
 import { loadBundled } from './bundled.js';
 import { HdCanvas } from './hd.js';
 import { HdLoader } from './hd-loader.js';
+import { ProgressiveHdLoader } from './progressive-hd.js';
+import { DownloadProgress, readDownload } from './download.js';
 
 const canvas = document.querySelector('#game');
 const context = canvas.getContext('2d', { alpha: false });
@@ -21,7 +23,20 @@ const openLevel = document.querySelector('#open-level');
 const errorText = document.querySelector('#error');
 const source = document.querySelector('#source');
 const presentation=document.querySelector('#presentation');
-let hd;const hdLoader=new HdLoader();let hdScope=null;let hdPending=false;let hdMode=false;
+const fullscreen=document.querySelector('#fullscreen');
+const downloadUI=new DownloadProgress(document.querySelector('#download'));
+const streamed=Boolean(document.querySelector('meta[name="game-hd-stream"]'));
+let retryDownload=()=>location.reload();
+let hd;const hdLoader=streamed?new ProgressiveHdLoader({onProgress:event=>downloadUI.update(event,event.phase==='background'?()=>queueNext():()=>retryDownload())}):new HdLoader();
+let hdScope=null,hdPlan=null;let hdPending=false;let hdMode=false;let backgroundTimer=null;
+function currentPlan(){return streamed?game.hd_download_plan(false):null;}
+function queueNext(){
+    clearTimeout(backgroundTimer);hdLoader.cancelBackground?.();
+    const connection=navigator.connection;
+    if(!hdMode&&downloadUI.root.dataset.phase==='background')downloadUI.root.hidden=true;
+    if(!streamed||!hdMode||loading||document.hidden||connection?.saveData||['slow-2g','2g'].includes(connection?.effectiveType))return;
+    backgroundTimer=setTimeout(()=>{backgroundTimer=null;void hdLoader.prefetch(game);},250);
+}
 function screenSize(){canvas.classList.toggle('hd',hdMode);canvas.width=hdMode?1920:320;canvas.height=hdMode?1080:200;canvas.style.setProperty('--aspect',String(canvas.width/canvas.height));}
 let audio;
 let audioHeld=false;
@@ -29,7 +44,7 @@ let game;
 let pump;
 let input;
 let request = null;
-let loading = false;
+let loading = true;
 let exited = false;
 let observer = null;
 let presentations = 0;
@@ -65,8 +80,9 @@ function fail(error) {
     audio?.mute();
     console.error(error);
     status.textContent = '시작 실패';
-    errorText.textContent = `게임을 실행하지 못했습니다: ${String(error)} 파일을 모두 압축 해제했는지 확인하고 새로고침해주세요.`;
-    for (const control of document.querySelectorAll('button,select,input')) control.disabled = true;
+    errorText.textContent = '게임을 준비하지 못했습니다. 연결 상태와 게임 파일을 확인하고 다시 시도해주세요.';
+    for (const control of document.querySelectorAll('button,select,input')) if(control.id!=='download-retry')control.disabled = true;
+    if(!input)downloadUI.update({...downloadUI.event,phase:'foreground',status:'error'},()=>location.reload());
 }
 function draw() {
     presentations++;
@@ -82,6 +98,7 @@ function draw() {
     pause.disabled = loading || Boolean(finished);
     restart.disabled = loading;
     presentation.disabled=loading;
+    fullscreen.disabled=loading;
     scene.disabled = files.disabled = loading;
     openLevel.disabled = loading || !game.original();
     level.disabled = difficulty.disabled = loading;
@@ -111,6 +128,7 @@ function frame(timestamp) {
     } catch (error) { fail(error); }
 }
 function replaced(reason) {
+    clearTimeout(backgroundTimer);hdLoader.cancelBackground?.();
     hd?.invalidate();
     notify('reset',{reason});
     input.release();
@@ -119,12 +137,17 @@ function replaced(reason) {
     if (game.original()) { difficulty.value = game.difficulty(); level.value = game.level(); scene.value = ''; }
     pump = newPump();
     stop();
-    if(hdMode && hdScope!==game.hd_scope()) {
-        loading=true;hdPending=true;draw();
-        void hdLoader.load(game).then(()=>{hdScope=game.hd_scope();hd.invalidate();})
-            .catch(error=>{hdMode=false;presentation.value='original';screenSize();recover(error);})
-            .finally(()=>{hdPending=false;loading=false;pump.suspend();draw();schedule();});
-    } else {draw();schedule();}
+    if(hdMode && (hdScope!==game.hd_scope()||hdPlan!==currentPlan()))void prepareLevelHd();
+    else {draw();schedule();queueNext();}
+}
+async function prepareLevelHd(){
+    loading=true;hdPending=true;stop();draw();retryDownload=()=>void prepareLevelHd();
+    try{await hdLoader.load(game);hd=new HdCanvas(game);hdScope=game.hd_scope();hdPlan=currentPlan();errorText.textContent='';}
+    catch(error){
+        if(streamed){errorText.textContent='레벨 리소스를 준비하지 못했습니다. 다시 시도하면 이 레벨에서 계속합니다.';draw();return;}
+        hdMode=false;presentation.value='original';screenSize();recover(error);
+    }
+    hdPending=false;loading=false;pump.suspend();draw();schedule();queueNext();
 }
 function action(name) {
     if(name==='restart-level'){game.restart_level();replaced('restart');return;}
@@ -160,29 +183,41 @@ document.addEventListener('visibilitychange', () => {
     if (!input) return;
     input.release(); pump.suspend(); stop();
     audio?.hold(document.hidden||audioHeld);
+    if(document.hidden){clearTimeout(backgroundTimer);hdLoader.cancelBackground?.();}else queueNext();
     if (!document.hidden && draw()) schedule();
 });
 
 presentation.addEventListener('change',async()=>{
     if(!game||loading)return;
     const requested=presentation.value==='hd';input.release();loading=true;draw();
+    clearTimeout(backgroundTimer);hdLoader.cancelBackground?.();
+    retryDownload=()=>{presentation.value='hd';presentation.dispatchEvent(new Event('change'));};
     try {
-        if(requested&&(!hd||hdScope!==game.hd_scope())){
-            await hdLoader.load(game);hd=new HdCanvas(game);hdScope=game.hd_scope();
+        if(requested&&(!hd||hdScope!==game.hd_scope()||hdPlan!==currentPlan())){
+            await hdLoader.load(game);hd=new HdCanvas(game);hdScope=game.hd_scope();hdPlan=currentPlan();
         }
         hdMode=requested;screenSize();errorText.textContent='';
     } catch(error){presentation.value=hdMode?'hd':'original';recover(error);}
-    finally {loading=false;pump.suspend();draw();schedule();canvas.focus({preventScroll:true});}
+    finally {loading=false;pump.suspend();draw();schedule();queueNext();canvas.focus({preventScroll:true});}
 });
-document.querySelector('#fullscreen').addEventListener('click',()=>{
+fullscreen.addEventListener('click',()=>{
     const screen=canvas.parentElement;
     const action=document.fullscreenElement?document.exitFullscreen():screen.requestFullscreen();
     action.catch(recover);
 });
+document.addEventListener('fullscreenchange',()=>{
+    const screen=canvas.parentElement;
+    if(document.fullscreenElement===screen)screen.prepend(downloadUI.root);
+    else screen.before(downloadUI.root);
+});
 try {
-    await init();
+    downloadUI.update({phase:'foreground',label:'게임 엔진 준비',status:'loading',loaded:0,total:null});
+    const wasmResponse=await fetch('./pkg/lemmings_web_bg.wasm');
+    const length=wasmResponse.headers.get('content-encoding')?null:Number(wasmResponse.headers.get('content-length'))||null;
+    const wasm=await readDownload(wasmResponse,16*1024*1024,loaded=>downloadUI.update({phase:'foreground',label:'게임 엔진 준비',status:'loading',loaded,total:length}));
+    await init({module_or_path:wasm});
     game = new WebGame(scene.value, 'reference');
-    const bundled = await loadBundled(WebAssets, fetch, Boolean(document.querySelector('meta[name="game-data"]')));
+    const bundled = await loadBundled(WebAssets, fetch, Boolean(document.querySelector('meta[name="game-data"]')),event=>downloadUI.update(event));
     if (bundled) {
         try { game.load_original_rank(bundled, 'fun', 1); } finally { bundled.free(); }
         difficulty.value = 'fun'; level.value = '1'; scene.value = '';
@@ -191,7 +226,7 @@ try {
     pump = newPump();
     if(document.querySelector('meta[name="game-presentation"][content="hd"]')) {
         await hdLoader.load(game);
-        hd=new HdCanvas(game);hdScope=game.hd_scope();hdMode=true;
+        hd=new HdCanvas(game);hdScope=game.hd_scope();hdPlan=currentPlan();hdMode=true;
         presentation.value='hd';screenSize();
     }
     const sound=document.querySelector('#sound'),volume=document.querySelector('#volume'),audioStatus=document.querySelector('#audio-status');
@@ -211,6 +246,8 @@ try {
     volume.addEventListener('input',()=>audio.setVolume(Number(volume.value)));
     audio.setVolume(Number(volume.value));
     window.addEventListener('pagehide',()=>void audio.dispose());
+    window.addEventListener('pagehide',()=>{clearTimeout(backgroundTimer);hdLoader.cancel?.();});
+    loading=false;
     input = new GameInput(canvas, () => inputGame, action, draw, recover, () => !loading && !exited);
-    draw(); schedule();
+    draw(); schedule();queueNext();
 } catch (error) { fail(error); }

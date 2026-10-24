@@ -53,6 +53,7 @@ def check_web(directory, browser=None, full=False):
         '/__package_check.js': ROOT / ('tools/web/full_package_check.js' if full else 'tools/web/package_check.js'),
         '/__bundled_check.js': ROOT / 'tools/web/bundled_check.js',
         '/__dispatch_check.js': ROOT / 'tools/web/dispatch_check.js',
+        '/__download_check.js': ROOT / 'tools/web/download_check.js',
         '/dispatch_events.js': ROOT / 'tools/performance/dispatch_events.js',
         '/measure.js': ROOT / 'tools/performance/measure.js',
     }

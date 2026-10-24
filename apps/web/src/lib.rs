@@ -208,6 +208,34 @@ impl WebGame {
     pub fn hd_scope(&self) -> Result<u16, String> {
         lemmings_game::hd::catalog::level_scope(&self.run.assets).map_err(|e| e.to_string())
     }
+    /// Asset dependency metadata for this level, or its immediate successor.
+    /// Background planning never replaces or advances the active game.
+    pub fn hd_download_plan(&self, next: bool) -> Result<String, String> {
+        use lemmings_game::hd::download;
+        let keys = if next {
+            let Some(level) = self.run.next else {
+                return Ok("null".into());
+            };
+            match &self.source {
+                Source::Original(files) => {
+                    download::from_source(&mut |name: &str| Ok(files.get(name).cloned()), level)
+                }
+                Source::Synthetic(_) => self
+                    .source
+                    .load(level)
+                    .and_then(|(assets, _)| download::for_assets(&assets)),
+            }
+        } else {
+            download::for_assets(&self.run.assets)
+        }
+        .map_err(|e| e.to_string())?;
+        let rows = keys
+            .iter()
+            .map(|key| format!("[{},{}]", key[0], key[1]))
+            .collect::<Vec<_>>()
+            .join(",");
+        Ok(format!("{{\"keys\":[{rows}]}}"))
+    }
     /// Optional presentation assets. Construct before replacing a working pack.
     pub fn load_hd(&mut self, bytes: &[u8]) -> Result<(), String> {
         let mut renderer =
