@@ -22,10 +22,18 @@ Web/Native에서 **F3**으로 패널을 켜고 **F2**로 요약을 복사한다.
 ## 검증과 자체 검토
 
 - JS 모듈/Rust Samples·Hud 부재를 먼저 실패시킨 뒤 통계·보류·상한·reset·피드백 허용 목록을 구현했다. Rust workspace728개, desktop clippy/format 통과.
-- Python 최종327개와 `make check-python`의 자산/라이선스/compatibility/G11/Web 인덱스 검사를 통과했다. 패키지 버전 주입도 검증했다. 최종 CI 기록은 게시 후 추가한다.
+- Python 최종327개와 `make check-python`의 자산/라이선스/compatibility/G11/Web 인덱스 검사를 통과했다. 패키지 버전 주입도 검증했다. 최종 플랫폼 CI7개를 모두 통과했다.
 - 실제 Chromium152/WASM/native33사례×2,11,960상태·6,877전체 RGB/Canvas 통과. HD13시나리오/7,593상태·821프레임과 기존 DOM/오디오/dirty draw 회귀를 유지했다. 새 실제 앱 검사는 기본 OFF·F3/F2·반복/수정키·추가 Canvas draw 없음·수치 분리·멈춤/재개·레벨 reset·클립보드/수동 복사를 확인했다.
 - 첫 브라우저 검사에서 cross-realm clipboard Promise 완료 전 포커스를 확인한 테스트를 보정했다. JS 후속 검사는 같은 빌드의 변경 없는 WASM/HD 자산과 갱신한 JS/테스트로 전체66회를 통과했다. CI는 깨끗한 빌드를 수행한다.
 - Xvfb/실제 SDL release 원본 Fun01에서 HD/원본·F3/F2·별도 X11 소비자의 실제 클립보드·Pause/Resume·F11·reset을 통과했다. dummy 오디오 장치의 기능 검사이며 성능 측정은 아니다. 보조 소비자의 조기 종료와 가상 서버/창 교체는 응답 대기와 준비된 창 재조회로 보완했다.
 - 소유 headless 브라우저의 일반/전체화면 HUD와 Native 캡처를 눈으로 확인했다. 합성 화면만 문서에 첨부하며 원본 장면/로그는 ignored `assets/local/issue-113-player-feedback/`에 둔다. 사용자 CDP19222/HTTP8080·MP3 파일은 보존했다.
 
 플랫폼 경계·observer/캡처/오디오·버퍼·보류/재개·패키지 허용 목록과 버전 주입 순서를 자체 검토했다. 과거 producer/실행/timing은 보존하고 현행 소스 인덱스만 별도 유지 보수 기록으로 연결한다. 공개 태그/릴리즈/버전별 노트는 변경하지 않는다.
+
+## 병합과 메인테이너 인수 / 2026-10-24
+
+메인테이너가 “동작 테스트 통과 판정입니다.”라고 직접 기능 테스트 통과를 확인했다. Native 합성 연습의 복사 데이터도 실제 원본 레벨과 구분하도록 보완하고 별도 SDL 실행에서 확인했다.
+
+[PR #213](https://github.com/edwardkim/ohmylemmings/pull/213)의 최종 head `132994ae35303c234b6270523953986f632e41ec`, [CI40075609313](https://github.com/edwardkim/ohmylemmings/actions/runs/40075609313)에서 Rust/Linux·Windows·macOS Apple Silicon/Intel·Python·WASM·Web7개가 모두 SUCCESS다. 실제 CI checkout `e7800a779a58385a28548433c91c65c00c694a06`과 실제 merge `4d0f1edf1e2cf28e4092c7b3ebfbe25236cb15f7`의 tree는 `f5b5c7ce8244fe721dbea5aa80aa58e9d996bfb5`로 같다. 동일 제품 tree의 중복 main CI는 생략했다.
+
+플레이 FPS·피드백 기능은 구현/플랫폼 검증/사용자 인수/병합을 완료했다. #113은 고성능 환경의 잔여 성능·구간 메모리 검증을 위해 OPEN이며 기능 인수를60fps 마감 합격으로 해석하지 않는다. 기존 정식 릴리즈와 Pages는 유지하고 별도 로컬 `preview-113`을 제공한다.

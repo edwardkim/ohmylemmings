@@ -17,4 +17,4 @@
 2. 실제 앱에서 F3/F2·수동 복사·전체화면·멈춤/재시작과 논리/화면/오디오 회귀를 확인한다.
 3. UI 스크린샷·체크 결과·자체 검토를 보고서에 기록하고 PR/CI로 전달한다. #113의 고성능 환경 재검증은 별도 잔여다.
 
-구현·로컬 검증·자체 검토 완료. [보고서](../reports/issue-113_player_feedback.md)에 사용법/통계 계약/실제 검사를 기록했다. 작업 분기는 `issue-113-player-feedback`, 기준 main은 `05b6607ea01634ab998e93e3092bd07be7bda828`이다. PR/플랫폼 CI·병합은 게시 절차에서 확인한다. #113은 잔여 성능 검증을 위해 OPEN을 유지한다.
+구현·로컬 검증·자체 검토·플랫폼 CI7개·메인테이너 동작 테스트 인수 완료. [보고서](../reports/issue-113_player_feedback.md)에 사용법/통계 계약/실제 검사와 정확한 CI/병합을 기록했다. [PR #213](https://github.com/edwardkim/ohmylemmings/pull/213) merge `4d0f1edf1e2cf28e4092c7b3ebfbe25236cb15f7`을 확인했다. 작업 분기는 `issue-113-player-feedback`, 기준 main은 `05b6607ea01634ab998e93e3092bd07be7bda828`이다. #113은 잔여 성능 검증을 위해 OPEN을 유지한다.
