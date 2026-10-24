@@ -869,8 +869,8 @@
   "source": [
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 69182,
-      "sha256": "7a55407b8f77a129a0de0bcc5dfa881afa32099cf5cc78004f43175b3cd49c5d"
+      "bytes": 69837,
+      "sha256": "86346d22ec4afa877c4d9fa0fb43952470744f9bde9c0b303ce067d213ab8bd3"
     },
     {
       "path": "apps/desktop/src/frame_clock.rs",
@@ -884,8 +884,8 @@
     },
     {
       "path": "apps/desktop/src/audio.rs",
-      "bytes": 8216,
-      "sha256": "e97552314cfd3769eed20e611ab17aca9e9034dd755f637f570cb5b9091f71f0"
+      "bytes": 17808,
+      "sha256": "0995e8a43923630f0a81787b035dca403863a068231eb954bbbe922d4dd7bfd7"
     }
   ],
   "identity": {
@@ -1684,5 +1684,21 @@
       }
     ],
     "scope": "Packaged HD boot/path and validation changes; original frame clock/dispatch and simulation/audio unchanged. Frozen measurements stay historical, not HD performance qualification."
+  },
+  "source_maintenance_202": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/202",
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 69182,
+        "sha256": "7a55407b8f77a129a0de0bcc5dfa881afa32099cf5cc78004f43175b3cd49c5d"
+      },
+      {
+        "path": "apps/desktop/src/audio.rs",
+        "bytes": 8216,
+        "sha256": "e97552314cfd3769eed20e611ab17aca9e9034dd755f637f570cb5b9091f71f0"
+      }
+    ],
+    "scope": "Optional local MP3 host input/output. Recorded producer/identity/performance remain historical, not new MP3 or FPS qualification."
   }
 }

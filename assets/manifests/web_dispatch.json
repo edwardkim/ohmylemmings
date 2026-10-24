@@ -6,8 +6,8 @@
   "source": [
     {
       "path": "apps/web/www/app.js",
-      "bytes": 14642,
-      "sha256": "a417529949c10ee3d1d56c6084996d666e79e6789d998dac982a360a19a13a4b"
+      "bytes": 17331,
+      "sha256": "b34e0c27c7f276ce6fc14888388b8e54bc05910e93ea4d8fa273490a282b8de6"
     },
     {
       "path": "apps/web/www/host.js",
@@ -21,8 +21,8 @@
     },
     {
       "path": "apps/web/www/audio.js",
-      "bytes": 5537,
-      "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+      "bytes": 6893,
+      "sha256": "49238d57ca15e4458112eafd90057f1ebac0f31079daf6b8a7cd5f162108d0db"
     },
     {
       "path": "tools/performance/live.js",
@@ -575,5 +575,21 @@
       }
     ],
     "scope": "Web level metadata planning/progressive downloads/progress and retry UX. Current source pins refreshed; original recorded_producer, observations, timing/deadline/memory results and deferred NOT READY verdict preserved. Functional byte/clock/pixel checks do not recertify performance."
+  },
+  "source_maintenance_202": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/202",
+    "previous_pins": [
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 14642,
+        "sha256": "a417529949c10ee3d1d56c6084996d666e79e6789d998dac982a360a19a13a4b"
+      },
+      {
+        "path": "apps/web/www/audio.js",
+        "bytes": 5537,
+        "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+      }
+    ],
+    "scope": "Current host adds local MP3 UI/audio. Original recorded producer/timing/deadline/memory observations remain historical,113 qualification deferred."
   }
 }

@@ -21,7 +21,7 @@ from tools.release_version import workspace_version, package_name
 from tools.hd_delivery import delivery_files, verify_delivery
 
 WEB_FILES = (
-    'index.html', 'app.js', 'audio.js', 'audio-license.html', 'controls.js',
+    'index.html', 'app.js', 'audio.js', 'local-music.js', 'audio-license.html', 'controls.js',
     'host.js', 'hd.js', 'hd-loader.js', 'progressive-hd.js', 'download.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
 )
 COMMON_FILES = {'README.md', 'REBUILD.md', 'LGPL-2.1-or-later.txt'}

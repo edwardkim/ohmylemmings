@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 268482,
-      "sha256": "ee8b7f1e00fad3c53874b87961601dc0b23c10765418a5c2c6c3c075b1a4c214",
+      "bytes": 275978,
+      "sha256": "58042f60c078a0ea7f19902971b14337ee7e8252c9e3d1dc80309dfc938e02d5",
       "id": "compatibility"
     },
     {
@@ -19,8 +19,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 90979,
-      "sha256": "f53e3e7c189f167a571ccc6764b73d858e3d77a5b3e86e09279ec3b71525105b",
+      "bytes": 91598,
+      "sha256": "49738661affd35b1df5e48badbb126e7b184eef655f9c65fd04209f5a2cd3c14",
       "id": "display"
     }
   ],
@@ -11186,5 +11186,23 @@
       "id": "compatibility"
     },
     "scope": "Level metadata planning and Web download/UX only. Bounded functional/pixel checks, no new full-level/FPS/human listening qualification; historical performance and113 NOT READY retained."
+  },
+  "source_maintenance_202": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/202",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 268482,
+        "sha256": "ee8b7f1e00fad3c53874b87961601dc0b23c10765418a5c2c6c3c075b1a4c214",
+        "id": "compatibility"
+      },
+      {
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 90979,
+        "sha256": "f53e3e7c189f167a571ccc6764b73d858e3d77a5b3e86e09279ec3b71525105b",
+        "id": "display"
+      }
+    ],
+    "scope": "Current compatibility/source pins refreshed for local MP3. Historical performance and113 NOT READY preserved."
   }
 }

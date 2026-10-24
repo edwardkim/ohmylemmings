@@ -6,6 +6,7 @@ mod frame_clock;
 mod hd;
 mod input;
 mod lifecycle;
+mod local_music;
 mod pacing;
 mod panel;
 mod performance;
@@ -32,7 +33,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const USAGE: &str = "Usage: lemmings-desktop [--hd | --original] [--hd-pack FILE_OR_DIRECTORY] [--fullscreen] [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--performance NEW_JSON --performance-seconds 60] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nF8: original/HD; F11: fullscreen; --hd starts HD; --original starts original presentation. S: sound on/off; PageUp/PageDown: volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
+const USAGE: &str = "Usage: lemmings-desktop [--hd | --original] [--hd-pack FILE_OR_DIRECTORY] [--fullscreen] [--assets DIR [--difficulty fun|tricky|taxing|mayhem] --level NUMBER | --synthetic | --synthetic-basher | --synthetic-builder | --synthetic-blocker | --synthetic-bomber | --synthetic-climber | --synthetic-floater | --synthetic-nuke | --synthetic-exit | --synthetic-exit-drop | --synthetic-water | --synthetic-fire | --synthetic-trap | --synthetic-trap-slow | --synthetic-trap-continuous | --synthetic-water-drop | --synthetic-fire-drop | --synthetic-water-late | --synthetic-fire-late | --synthetic-outcome win|loss|clock|particles|zero|mixed] [--performance NEW_JSON --performance-seconds 60] [--steps N] [--fast] [--render-every N] [--pacing dos|reference] [--capture NEW_DIR] [--replay FILE | --demo-input] [--capture-stream --elapsed-replay FILE] [--result-actions restart,continue]\nF8: original/HD; F11: fullscreen; --hd starts HD; --original starts original presentation. S: sound on/off; PageUp/PageDown: volume; drop MP3 or --bgm FILE: local music; F6: original/local/off; F7: retry; F5: clear local music; [ ]: music volume; , .: effects volume; --mute/--volume 0..100; --fast disables devices. F/C/E/K/U/M/B/D: select Floater/Climber/Bomber/Blocker/Builder/Miner/Basher/Digger; left click: assign selected skill; N: nuke; Space: pause/resume; Up/Down: release rate; Left/Right/Home/End: camera; Esc: quit. On results: Enter/left click: retry or next; R: restart; Esc/right click: quit.\nReplay: CONTROL_STEP SEQUENCE Pause|Resume|Nuke|SetReleaseRate RATE|AssignDigger ACTOR_ID|AssignBasher ACTOR_ID|AssignMiner ACTOR_ID|AssignBuilder ACTOR_ID|AssignBlocker ACTOR_ID|AssignBomber ACTOR_ID|AssignClimber ACTOR_ID|AssignFloater ACTOR_ID.";
 struct Options {
     hd: bool,
     fullscreen: bool,
@@ -42,6 +43,7 @@ struct Options {
     assets: PathBuf,
     mute: bool,
     volume: u8,
+    bgm: Option<PathBuf>,
     synthetic: bool,
     basher_scene: bool,
     builder_scene: bool,
@@ -83,6 +85,7 @@ impl Options {
             },
             mute: false,
             volume: 40,
+            bgm: None,
             synthetic: false,
             basher_scene: false,
             builder_scene: false,
@@ -214,6 +217,7 @@ impl Options {
                         .ok_or("--performance-seconds requires duration")?
                         .parse()?
                 }
+                "--bgm" => o.bgm = Some(args.next().ok_or("--bgm requires an MP3 path")?.into()),
                 "--mute" => o.mute = true,
                 "--volume" => {
                     o.volume = args.next().ok_or("--volume requires 0..100")?.parse()?;
@@ -1590,6 +1594,16 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 fn entry() -> Result<(), Box<dyn Error>> {
+    if std::env::args().nth(1).as_deref() == Some("--local-music-probe") {
+        if std::env::args().count() > 3 {
+            return Err("local music probe accepts one fixture path".into());
+        }
+        println!(
+            "{}",
+            audio::local_probe(std::env::args().nth(2).map(PathBuf::from))?
+        );
+        return Ok(());
+    }
     if std::env::args().skip(1).eq(["--audio-probe"]) {
         println!("{}", audio::probe()?);
         return Ok(());

@@ -42,6 +42,9 @@ def check(archive,evidence,expected_arch):
         dependencies[path.name]=deps
     save(evidence/'dependencies.json',dependencies)
 
+    from tools.check_local_music import check as check_local_music
+    check_local_music(binary, evidence)
+
     # LaunchServices follows the same .app entry point as Finder, without game arguments.
     probe=evidence/'window-probe'
     subprocess.run(['swiftc',str(ROOT/'tools/macos_window.swift'),'-o',str(probe)],check=True)

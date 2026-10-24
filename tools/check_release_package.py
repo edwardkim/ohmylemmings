@@ -37,6 +37,8 @@ def check_native(directory):
     require(phases == ['Won', 'Won', 'Lost'], 'Packaged completion/restart differs')
     probe = subprocess.run([str(binary), '--audio-probe'], cwd=directory, env=env,
                            capture_output=True, text=True, check=True, timeout=20)
+    from tools.check_local_music import check as check_local_music
+    check_local_music(binary)
     from tools.check_audio_output import validate_sdl
     audio = json.loads(probe.stdout)
     validate_sdl(audio)

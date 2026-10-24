@@ -1,0 +1,10 @@
+{
+  "issue": "https://github.com/edwardkim/ohmylemmings/issues/202",
+  "path": "apps/desktop/tests/fixtures/local-tone.mp3",
+  "bytes": 4013,
+  "sha256": "1babda28f1f491fb9ee399dc3a7486615463c6b928cfb20e6e06c456f06d751e",
+  "source": "Project-authored independent sine tones; no third-party recording",
+  "license": "MIT",
+  "recipe": "ffmpeg -f lavfi -i 'aevalsrc=0.2*sin(2*PI*440*t)|0.2*sin(2*PI*660*t):s=22050:d=0.4' -codec:a libmp3lame -b:a 64k -map_metadata -1 local-tone.mp3",
+  "scope": "440/660Hz stereo 0.4-second synthetic fixture; MP3 gapless decode, loop, local-file lifecycle; no K-pop or original DOS audio"
+}

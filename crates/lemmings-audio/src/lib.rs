@@ -109,6 +109,8 @@ pub struct AdlibPcm<'a> {
     sample_rate: u32,
     call_rate: AudioRate,
     position: PcmPosition,
+    channel_roles: [u8; 9],
+    mix: [u8; 2],
 }
 /// Asset-independent, opaque playback state. Owning adapters retain immutable
 /// image bytes separately; no leaked allocation or self-referential borrow.
@@ -118,6 +120,8 @@ pub struct PcmContinuation {
     sample_rate: u32,
     call_rate: AudioRate,
     position: PcmPosition,
+    channel_roles: [u8; 9],
+    mix: [u8; 2],
 }
 impl<'a> AdlibPcm<'a> {
     pub fn into_continuation(self) -> PcmContinuation {
@@ -127,6 +131,8 @@ impl<'a> AdlibPcm<'a> {
             sample_rate: self.sample_rate,
             call_rate: self.call_rate,
             position: self.position,
+            channel_roles: self.channel_roles,
+            mix: self.mix,
         }
     }
     /// Resume using the same immutable image contents, possibly at a new address.
@@ -139,6 +145,8 @@ impl<'a> AdlibPcm<'a> {
             sample_rate: saved.sample_rate,
             call_rate: saved.call_rate,
             position: saved.position,
+            channel_roles: saved.channel_roles,
+            mix: saved.mix,
         }
     }
     pub fn new(
@@ -156,7 +164,27 @@ impl<'a> AdlibPcm<'a> {
             sample_rate,
             call_rate,
             position: PcmPosition::default(),
+            channel_roles: [1; 9],
+            mix: [100; 2],
         })
+    }
+    /// Set output gains without changing VM commands or channel allocation.
+    /// Inactive voices retain their role so release tails follow the same bus.
+    pub fn set_mix(&mut self, music: u8, effects: u8) {
+        self.mix = [music.min(100), effects.min(100)];
+        self.update_mix();
+    }
+    fn update_mix(&mut self) {
+        let state = self.driver.state();
+        let mut gains = [100; 9];
+        for (i, gain) in gains.iter_mut().enumerate() {
+            let role = state.channels[i][16];
+            if role != 0 {
+                self.channel_roles[i] = role;
+            }
+            *gain = self.mix[usize::from(self.channel_roles[i] == 2)];
+        }
+        self.chip.set_channel_gains(gains);
     }
     pub const fn position(&self) -> PcmPosition {
         self.position
@@ -244,6 +272,7 @@ impl<'a> AdlibPcm<'a> {
                     .driver
                     .step(scratch, command_budget)
                     .expect("preflight validated immutable ADLIB calls");
+                self.update_mix();
                 for write in &scratch[..count] {
                     self.chip.write_reg(write.register, write.value);
                 }

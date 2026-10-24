@@ -61,6 +61,7 @@ pub struct AudioOutput {
     scratch: Vec<AdlibWrite>,
     rate: u32,
     volume: u8,
+    mix: [u8; 2],
     active: bool,
     generation: Option<u64>,
     last_sequence: Option<u64>,
@@ -78,6 +79,7 @@ impl AudioOutput {
             scratch: vec![AdlibWrite::default(); 4096],
             rate,
             volume: 40,
+            mix: [100; 2],
             active: false,
             generation: None,
             last_sequence: None,
@@ -92,6 +94,13 @@ impl AudioOutput {
             return Err("volume must be in 0..=100".into());
         }
         self.volume = volume;
+        Ok(())
+    }
+    pub fn set_mix(&mut self, music: u8, effects: u8) -> Result<(), String> {
+        if music > 100 || effects > 100 {
+            return Err("music/effects volume must be in 0..=100".into());
+        }
+        self.mix = [music, effects];
         Ok(())
     }
     pub fn suspend(&mut self) {
@@ -186,6 +195,7 @@ impl AudioOutput {
         }
         let image = AdlibImage::parse(&self.bytes).expect("private validated immutable image");
         let mut pcm = AdlibPcm::resume(image, self.state.take().expect("owned continuation"));
+        pcm.set_mix(self.mix[0], self.mix[1]);
         let result = pcm
             .render(output, &mut self.scratch, 4096)
             .map_err(|e| e.to_string());

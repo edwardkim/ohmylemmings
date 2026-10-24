@@ -16,9 +16,10 @@
       "sha256": "e0b1430ff18410ea21a0283beceb6328652bcc5fa1991f9dfb608227e7a254e6"
     },
     {
-      "path": "apps/web/www/audio.js",
+      "path": "tools/performance/reference/issue111-audio.js",
       "bytes": 5537,
-      "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+      "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e",
+      "original_path": "apps/web/www/audio.js"
     },
     {
       "path": "tools/performance/reference/issue111-live.js",
@@ -860,5 +861,16 @@
         "sha256": "6acd5e3af8b673acc658b256ecf68109ebbd32f870b1da0147ccf02e8596d00b"
       }
     ]
+  },
+  "source_maintenance_202": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/202",
+    "previous_pins": [
+      {
+        "path": "apps/web/www/audio.js",
+        "bytes": 5537,
+        "sha256": "2cded6e2e0e566dbed97305d5df5fcd01ba773fef08db6e959b813dc28b3090e"
+      }
+    ],
+    "scope": "Relocate original issue111 audio producer to an exact public snapshot. Historical recorded producers, deadline/callback/memory observations and deferred qualification remain unchanged; current local MP3 host has separate feature checks."
   }
 }

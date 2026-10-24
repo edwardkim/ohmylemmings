@@ -14,6 +14,7 @@ lemmings-core = { path = "../../crates/lemmings-core" }
 lemmings-resources = { path = "../../crates/lemmings-resources" }
 lemmings-session = { path = "../../crates/lemmings-session" }
 sdl2 = "=0.38.0"
+symphonia = { version = "=0.5.5", default-features = false, features = ["mp3"] }
 
 [dev-dependencies]
 lemmings-web = { path = "../web" }

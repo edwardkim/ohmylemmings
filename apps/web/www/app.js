@@ -236,6 +236,32 @@ try {
         sound.disabled=state==='starting';sound.textContent=muted?'소리 켜기':'음소거';
         audioStatus.textContent=state==='on'?`소리 켜짐 · ${volume}%`:state==='held'?'소리 일시 중지':state==='starting'?'소리를 준비하는 중…':state==='error'?(error.includes('ADLIB.DAT')?'ADLIB.DAT 파일을 함께 선택한 후 소리를 켜주세요.':'소리를 재생하지 못했습니다. 소리 켜기로 다시 시도해주세요.'):'소리는 버튼을 눌러 켤 수 있습니다.';
     },()=>!audioHeld&&!document.hidden);
+    const musicMode=document.querySelector('#music-mode'),musicFile=document.querySelector('#music-file'),musicStatus=document.querySelector('#music-status'),musicRetry=document.querySelector('#music-retry'),musicClear=document.querySelector('#music-clear'),musicProgress=document.querySelector('#music-progress');
+    const musicVolume=document.querySelector('#music-volume'),effectsVolume=document.querySelector('#effects-volume');
+    const musicChanged=({state,name,error})=>{
+        const labels={empty:'MP3를 선택해주세요. 한 곡을 반복 재생합니다.',loading:'음악을 준비하고 있습니다…',ready:'음악 준비 완료 · 게임 음악이 시작되면 재생합니다.',playing:'반복 재생 중',paused:'음악 대기 중',blocked:'음악 재생 버튼을 눌러주세요.',error:error||'이 MP3를 재생하지 못했습니다. 다른 파일을 선택해주세요.'};
+        musicStatus.textContent=musicMode.value==='original'?'원본 음악을 재생합니다.':musicMode.value==='off'?'배경 음악을 껐습니다. 효과음은 계속 재생합니다.':(name?name+' · ':'')+labels[state];
+        musicProgress.hidden=musicMode.value!=='custom'||state!=='loading';
+        musicRetry.hidden=musicMode.value!=='custom'||!['blocked','error','ready','paused'].includes(state)||!name;
+        musicClear.hidden=!name;
+    };
+    audio.music.changed=musicChanged;
+    const updateMusic=()=>musicChanged({state:audio.music.state,name:audio.music.name,error:audio.music.error});
+    musicMode.addEventListener('change',()=>{audio.setMusicMode(musicMode.value);updateMusic();});
+    musicFile.addEventListener('change',()=>{
+        if(!musicFile.files.length)return;
+        try {audio.music.choose(musicFile.files[0]);musicMode.value='custom';audio.setMusicMode('custom');updateMusic();}
+        catch(error){musicStatus.textContent=String(error.message||error);}
+        finally{musicFile.value='';}
+    });
+    musicClear.addEventListener('click',()=>{audio.music.dispose();musicMode.value='original';audio.setMusicMode('original');updateMusic();});
+    musicRetry.addEventListener('click',()=>{if(audio.muted)void audio.activate();audio.music.retry();});
+    const mixChanged=()=>{
+        audio.setMix(Number(musicVolume.value),Number(effectsVolume.value));
+        document.querySelector('#music-volume-value').textContent=musicVolume.value+'%';document.querySelector('#effects-volume-value').textContent=effectsVolume.value+'%';
+    };
+    musicVolume.addEventListener('input',mixChanged);effectsVolume.addEventListener('input',mixChanged);
+    for(const element of [musicMode,musicFile,musicVolume,effectsVolume])element.disabled=!audioSupported;
     const toggleSound=()=>{if(!audioSupported)return;if(audio.muted)void audio.activate();else audio.mute();};
     sound.addEventListener('click',toggleSound);
     canvas.addEventListener('keydown',event=>{

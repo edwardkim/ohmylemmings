@@ -164,3 +164,5 @@
 - [#194·#196 v0.2.0 정식 게시·공개 Pages 최종 인수](issue-194_release_v020_completion.md)
 
 - [#200 사용자 K-pop BGM 교체 기술 검토](issue-200_custom_bgm_review.md)
+
+- [#202 사용자 로컬 MP3 BGM 구현·검증](issue-202_local_mp3.md)

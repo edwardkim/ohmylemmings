@@ -256,6 +256,7 @@ pub(crate) struct Chip {
     noise_hh: u8,
     noise_sd: u8,
     mixbuff: [i32; 4],
+    pub(crate) channel_gain: [u8; 18],
     rm_hh_bit2: u8,
     rm_hh_bit3: u8,
     rm_hh_bit7: u8,
@@ -298,6 +299,7 @@ impl Default for Chip {
             noise_hh: 0,
             noise_sd: 0,
             mixbuff: [0; 4],
+            channel_gain: [100; 18],
             rm_hh_bit2: 0,
             rm_hh_bit3: 0,
             rm_hh_bit7: 0,
@@ -875,8 +877,16 @@ impl Chip {
                 masked_accm(accm, main_mask)
             };
             let rear_mask = if right { channel.chd } else { channel.chc };
-            mix[0] += main as i32;
-            mix[1] += masked_accm(accm, rear_mask) as i32;
+            // Project output control only; oscillator/envelope/feedback and
+            // register timing advance unchanged even for inaudible channels.
+            let gain = i32::from(self.channel_gain[channel.ch_num]);
+            if gain == 100 {
+                mix[0] += main as i32;
+                mix[1] += masked_accm(accm, rear_mask) as i32;
+            } else if gain != 0 {
+                mix[0] += main as i32 * gain / 100;
+                mix[1] += masked_accm(accm, rear_mask) as i32 * gain / 100;
+            }
         }
         mix
     }

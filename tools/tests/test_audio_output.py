@@ -11,9 +11,9 @@ class AudioOutputTests(unittest.TestCase):
             with self.assertRaises(ValueError):check.validate_sdl(bad)
     def test_browser_requires_every_native_pcm_hash_and_real_context_evidence(self):
         expected=[dict(name='x',frames=1,pcm_sha256='a'*64)]
-        good=dict(status='PASS',cases=[dict(name='x',frames=1,sha256='a'*64)],offline_context=True,source_delivery=dict(license=True,archive=True,wasm_pair=True),mocks=dict(bounded=True,blocked=True,activation_race=True,mute_hide_resume=True,volume=True,clock_jump=True,context_recreation=True),live=dict(state='running',nonzero=20,queued_nodes=3,queue_seconds=0.05),worklet_required=False,secure_context=False)
+        good=dict(local_mp3={key:True for key in ['stereo','loop','independent_gain','hide_resume','corrupt_file','cleanup']},status='PASS',cases=[dict(name='x',frames=1,sha256='a'*64)],offline_context=True,source_delivery=dict(license=True,archive=True,wasm_pair=True),mocks=dict(bounded=True,blocked=True,activation_race=True,mute_hide_resume=True,volume=True,clock_jump=True,context_recreation=True),live=dict(state='running',nonzero=20,queued_nodes=3,queue_seconds=0.05),worklet_required=False,secure_context=False)
         check.validate_browser(good,expected,False)
-        for key,value in [('cases',[]),('offline_context',False),('live',dict(good['live'],nonzero=0)),('live',dict(good['live'],queued_nodes=9)),('mocks',{}),('secure_context',True)]:
+        for key,value in [('local_mp3',{}),('cases',[]),('offline_context',False),('live',dict(good['live'],nonzero=0)),('live',dict(good['live'],queued_nodes=9)),('mocks',{}),('secure_context',True)]:
             bad=copy.deepcopy(good);bad[key]=value
             with self.assertRaises(ValueError):check.validate_browser(bad,expected,False)
     def test_original_evidence_cannot_be_exported_outside_ignored_directory(self):

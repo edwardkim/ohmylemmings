@@ -1,9 +1,12 @@
+import {LocalMusic} from './local-music.js';
 // Bounded AudioBufferSource scheduling works on LAN HTTP without a worklet.
 // Rust owns decoding/OPL/PCM; this adapter owns activation, nodes and device time.
 export class AudioHost {
     constructor(getGame, WebAudio, changed = () => {}, active = () => true,
-        createContext = () => new globalThis.AudioContext({latencyHint:'interactive'})) {
+        createContext = () => new globalThis.AudioContext({latencyHint:'interactive'}), musicChanged = () => {}) {
         this.getGame=getGame;this.WebAudio=WebAudio;this.changed=changed;this.active=active;this.createContext=createContext;
+        this.music=new LocalMusic(()=>this.context,musicChanged);
+        this.musicMode='original';this.musicVolume=100;this.effectsVolume=100;
         this.context=null;this.pipe=null;this.sources=new Set();this.nextTime=0;
         this.muted=true;this.held=false;this.starting=false;this.volume=40;this.ticket=0;this.timer=null;
         this.submitted=0;this.underruns=0;this.error=null;
@@ -22,6 +25,7 @@ export class AudioHost {
         try {
             if(!this.context||this.context.state==='closed') {
                 this.pipe?.free();this.pipe=null;
+                this.music.resetContext();
                 this.context=this.createContext();
                 this.context.onstatechange=()=>{
                     if(!this.muted&&!this.held&&!this.starting&&this.context.state!=='running')this.failure(new Error('audio context interrupted'));
@@ -36,7 +40,7 @@ export class AudioHost {
             if(ticket!==this.ticket||this.muted||this.held||context!==this.context)return;
             if(context.state!=='running')throw new Error('audio context suspended');
             if(!this.pipe)this.pipe=new this.WebAudio(context.sampleRate);
-            this.pipe.set_volume(this.volume);this.pipe.suspend();this.clear();
+            this.pipe.set_volume(this.volume);this.applyMix();this.pipe.suspend();this.clear();
             this.starting=false;
             this.service();
             if(!this.muted) {
@@ -45,21 +49,35 @@ export class AudioHost {
         } catch(error) {if(ticket===this.ticket)this.failure(error);}
     }
     mute() {
-        ++this.ticket;this.muted=true;this.starting=false;this.stopTimer();this.clear();this.pipe?.suspend();
+        ++this.ticket;this.muted=true;this.starting=false;this.stopTimer();this.clear();this.pipe?.suspend();this.music.sync(false,null,false);
         this.context?.suspend().catch(()=>{});this.notify('off');
     }
     hold(value) {
         if(this.held===value)return;
         this.held=value;
-        if(value) {++this.ticket;this.starting=false;this.stopTimer();this.clear();this.pipe?.suspend();this.context?.suspend().catch(()=>{});if(!this.muted)this.notify('held');}
+        if(value) {this.music.sync(false,null,false);++this.ticket;this.starting=false;this.stopTimer();this.clear();this.pipe?.suspend();this.context?.suspend().catch(()=>{});if(!this.muted)this.notify('held');}
         else if(!this.muted)void this.activate();
     }
     setVolume(value) {
         if(!Number.isInteger(value)||value<0||value>100)throw new Error('volume must be in 0..=100');
-        this.pipe?.set_volume(value);this.volume=value;this.clear();
+        this.pipe?.set_volume(value);this.volume=value;this.applyMix();this.clear();
         this.notify(this.muted?'off':this.held?'held':this.starting?'starting':'on');
     }
+    applyMix() {
+        this.pipe?.set_mix?.(this.musicMode==='original'?this.musicVolume:0,this.effectsVolume);
+        this.music.setVolume(this.musicVolume);this.music.setMasterVolume(this.volume);
+    }
+    setMusicMode(mode) {
+        if(!['original','custom','off'].includes(mode))throw new Error('invalid music mode');
+        this.musicMode=mode;this.music.sync(false,null,false);this.applyMix();this.clear();
+        this.service();
+    }
+    setMix(music,effects) {
+        for(const value of [music,effects])if(!Number.isInteger(value)||value<0||value>100)throw new Error('volume must be in 0..=100');
+        this.musicVolume=music;this.effectsVolume=effects;this.applyMix();this.clear();
+    }
     failure(error) {
+        this.music.sync(false,null,false);
         ++this.ticket;this.error=String(error);this.muted=true;this.starting=false;
         this.stopTimer();this.clear();this.pipe?.suspend();this.context?.suspend().catch(()=>{});this.notify('error');
     }
@@ -70,7 +88,10 @@ export class AudioHost {
             if(this.nextTime&&this.nextTime<this.context.currentTime-0.15) {
                 this.underruns++;this.clear();this.pipe.suspend();
             }
-            if(this.pipe.prepare(this.getGame(),audible))this.clear();
+            const game=this.getGame();
+            if(this.pipe.prepare(game,audible))this.clear();
+            const state=game.sound_state?JSON.parse(game.sound_state()):{generation:0,playing:true};
+            this.music.sync(audible&&this.musicMode==='custom',state.generation,state.playing);
             if(!audible){this.clear();return;}
             const now=this.context.currentTime;
             // Each call schedules at most eight small mono buffers. Neither
@@ -90,7 +111,7 @@ export class AudioHost {
         }catch(error){this.failure(error);}
     }
     async dispose() {
-        this.mute();this.pipe?.free();this.pipe=null;
+        this.mute();this.music.dispose();this.pipe?.free();this.pipe=null;
         const context=this.context;this.context=null;
         if(context){context.onstatechange=null;try{await context.close();}catch{}}
     }
