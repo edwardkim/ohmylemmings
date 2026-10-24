@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 307753,
-      "sha256": "bd0f96d6afc788e72cd836c0b703969da9ca5f2c645dd7a8f423c32d5040dc9d",
+      "bytes": 310614,
+      "sha256": "bdc65356b0805e3dd710f58d9a8737db3aa1b50b5140c30166ed1ddb230aa6aa",
       "id": "compatibility"
     },
     {
@@ -11276,5 +11276,17 @@
       }
     ],
     "scope": "Player input, impact feedback and synthesized digging sound. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "package_size_226": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/226",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 307753,
+        "sha256": "bd0f96d6afc788e72cd836c0b703969da9ca5f2c645dd7a8f423c32d5040dc9d",
+        "id": "compatibility"
+      }
+    ],
+    "scope": "Distribution/source selection and separate corresponding-source delivery. Historical runtime measurements and NOT READY verdicts are preserved; no new performance qualification."
   }
 }

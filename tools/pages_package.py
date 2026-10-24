@@ -39,6 +39,9 @@ def asset_rows(tag, release):
     names = [row['name'] for row in release['assets']]
     require(len(names) == len(set(names)), 'Duplicate release assets')
     expected = [package_name('web', version), package_name('web', version) + '.sha256', 'RELEASE-MANIFEST.json']
+    source_name = f'ohmylemmings-{version}-source.tar.gz'
+    if source_name in names:
+        expected.append(source_name)
     rows = {row['name']: row for row in release['assets'] if row['name'] in expected}
     require(set(rows) == set(expected), 'Missing Web release assets')
     for name, row in rows.items():
@@ -78,6 +81,16 @@ def stage(tag, release, latest_tag, inputs, output, root=ROOT):
         path = Path(temporary) / name
         path.write_bytes(inputs[name])
         Path(str(path) + '.sha256').write_bytes(inputs[name + '.sha256'])
+        with zipfile.ZipFile(path) as package_zip:
+            package_info = json.loads(package_zip.read('PACKAGE-MANIFEST.json'))
+        if 'source_delivery' in package_info:
+            from tools.detached_source import source_location
+            source_name, _ = source_location(version)
+            require(source_name in inputs and source_name in pins, 'Missing public corresponding source')
+            source = inputs[source_name]
+            require(pins[source_name]['bytes'] == len(source) and pins[source_name]['sha256'] == sha(source),
+                    'Public corresponding source pin differs')
+            (Path(temporary) / source_name).write_bytes(source)
         checked = verify_package(path, root=root)
     require(checked['target'] == 'web' and checked['original_game_data'] and checked['game_files'] == 28,
             'Pages requires the full original game package')

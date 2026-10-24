@@ -152,3 +152,25 @@ class PagesPackageTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'budget'):self.run_stage()
             verify.assert_not_called()
         self.assertFalse(self.output.exists())
+
+    def test_detached_release_verifies_source_but_does_not_duplicate_it_on_pages(self):
+        from tools.detached_source import detach, source_location
+        slim=self.base/'slim'/self.archive.name
+        detach(self.archive,slim)
+        source_name,_=source_location('0.1.0')
+        self.inputs[self.archive.name]=slim.read_bytes()
+        self.inputs[self.archive.name+'.sha256']=Path(str(slim)+'.sha256').read_bytes()
+        self.inputs[source_name]=(slim.parent/source_name).read_bytes()
+        self.manifest['files']=[dict(path=n,bytes=len(b),sha256=sha(b)) for n,b in self.inputs.items() if n!='RELEASE-MANIFEST.json']
+        self.manifest['packages'][0]['sha256']=sha(slim.read_bytes())
+        self.release['assets'].append(dict(name=source_name,size=len(self.inputs[source_name]),digest='sha256:'+sha(self.inputs[source_name]),browser_download_url=f'https://github.com/{REPOSITORY}/releases/download/v0.1.0/{source_name}'))
+        self.repin_manifest()
+        self.run_stage()
+        self.assertFalse((self.output/'audio-source.tar.gz').exists())
+        self.assertFalse((self.output/source_name).exists())
+        info=json.loads((self.output/'audio-source.json').read_text())
+        self.assertTrue(info['archive'].endswith('/'+source_name))
+        self.output=self.base/'missing-source-pages'
+        del self.inputs[source_name]
+        with self.assertRaises((ValueError,KeyError)):self.run_stage()
+        self.assertFalse(self.output.exists())

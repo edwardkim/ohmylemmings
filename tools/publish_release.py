@@ -121,10 +121,17 @@ def prepare(tag,run_id,output):
             smoke=evidence.get('smoke',evidence)
             require(evidence['package']['sha256']==report['sha256'] and smoke['status']=='PASS'
                     and smoke['original_levels_loaded']==120,'CI install evidence does not match package')
-            files[path.name]=path.read_bytes()
-            files[path.name+'.sha256']=Path(str(path)+'.sha256').read_bytes()
+            from tools.detached_source import detach
+            ci_package_sha256 = report['sha256']
+            slim = temporary/'detached'/target/path.name
+            detach(path, slim)
+            if target == 'windows-x86_64': report = verify_windows(slim)
+            elif target == 'macos-universal2': report = verify_macos(slim)
+            else: report = verify_package(slim)
+            files[path.name]=slim.read_bytes()
+            files[path.name+'.sha256']=Path(str(slim)+'.sha256').read_bytes()
             if target=='linux-x86_64':files[f'ohmylemmings-{version}-source.tar.gz']=source
-            packages.append(dict(target=target,version=version,path=path.name,sha256=report['sha256'],source_files=count))
+            packages.append(dict(target=target,version=version,path=path.name,sha256=report['sha256'],source_files=count,ci_package_sha256=ci_package_sha256,source_delivery='external'))
             builds.append(dict(target=target,artifact_id=artifact['id'],artifact_digest=artifact['digest']))
     validate_inventory(packages,version)
     notes=next((ROOT/'mydocs/releases').glob(f'issue-*_v{version}.md'))

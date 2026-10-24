@@ -82,3 +82,5 @@
 - [#208 Native MP3 선택·앱 아이콘 / v0.3.1](issue-208_native_polish.md)
 
 - [#219 v0.3.2 릴리즈·Pages](issue-219_release_v032.md)
+
+- [#226 배포 용량 최적화](issue-226_package_size.md)

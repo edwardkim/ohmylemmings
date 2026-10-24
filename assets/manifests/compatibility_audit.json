@@ -1606,8 +1606,8 @@
     },
     {
       "path": "tools/macos_package.py",
-      "bytes": 15423,
-      "sha256": "9e4c28277388ab38c30a795b82e98e5ecf9351d6e446d6f917bebd82673bf481"
+      "bytes": 15581,
+      "sha256": "915cc0c7d2ab6c2c9a76678602abc916e78b05c59a686e42908cd379912d337f"
     },
     {
       "path": "tools/macos_window.swift",
@@ -1696,8 +1696,8 @@
     },
     {
       "path": "tools/pages_package.py",
-      "bytes": 6577,
-      "sha256": "d20cd8ae343d4c37796c937cc9179a5b1d10d6cc971d1b6b7c94c16ac518d90d"
+      "bytes": 7379,
+      "sha256": "6ace0a37c7e06ba13de209b367ab04eed70d42de2ffeb1d3326f700ca78c23e8"
     },
     {
       "path": "tools/performance.py",
@@ -1756,8 +1756,8 @@
     },
     {
       "path": "tools/publish_release.py",
-      "bytes": 12158,
-      "sha256": "05213855217dad00fb990265fa7acb26cec22b9c0b638a4d046ae12e5f8880d0"
+      "bytes": 12607,
+      "sha256": "634f997eb685be32562a535916a543f2a2ae467d2bd0b8b760771bbaef356218"
     },
     {
       "path": "tools/reference_assets.py",
@@ -1766,8 +1766,8 @@
     },
     {
       "path": "tools/release_package.py",
-      "bytes": 19952,
-      "sha256": "8ac136d674c455b8a316c6972c0c1c501e4999010b532aeb4969359d7fa5bb06"
+      "bytes": 20118,
+      "sha256": "8bdaecac1cce84aca2a7e651db35a37f97a7c05f56bf50491ade28bfd73727ef"
     },
     {
       "path": "tools/release_version.py",
@@ -1976,8 +1976,8 @@
     },
     {
       "path": "tools/tests/test_pages_package.py",
-      "bytes": 8721,
-      "sha256": "99448e35e7cbaca735886f4c5222883a92856147f4f7a061af54a7182336e778"
+      "bytes": 10198,
+      "sha256": "dcd71b230a2763f8e9b1768cc6ea5558a3d6c45753a026fbea884c4a4d11c946"
     },
     {
       "path": "tools/tests/test_panel.py",
@@ -2041,8 +2041,8 @@
     },
     {
       "path": "tools/tests/test_web_build.py",
-      "bytes": 7627,
-      "sha256": "663bff1374f6e066242d29a87f304551825985c4b65c65c2ba34a2659aefbcd4"
+      "bytes": 7710,
+      "sha256": "beb85ccb74770dbcda34aa58b53836f22c158752269dea5626c2755813219228"
     },
     {
       "path": "tools/tests/test_web_deadlines.py",
@@ -2196,8 +2196,8 @@
     },
     {
       "path": "tools/web/full_package_check.js",
-      "bytes": 10089,
-      "sha256": "15cb4c5b1d4c9aa7b5c651c77e179f18b50cae0b6dbbfe4607792ac8c9099c7c"
+      "bytes": 10660,
+      "sha256": "b6d195de6adf6fda61dd4b9e580d728d944b5163de425fe787b24ad99ab4fc1f"
     },
     {
       "path": "tools/web/initial_replay.html",
@@ -2226,8 +2226,8 @@
     },
     {
       "path": "tools/web/package_check.js",
-      "bytes": 1699,
-      "sha256": "7ab518a0acfc90f001a8b93669b5402199cd00f97ec35061933adbd571c4f325"
+      "bytes": 1818,
+      "sha256": "1d8617aea806cf77c28ea43c946400b190c952e4fedff90fe20a5a33a84528b6"
     },
     {
       "path": "tools/web/sound_check.js",
@@ -2236,8 +2236,8 @@
     },
     {
       "path": "tools/web_build.py",
-      "bytes": 8760,
-      "sha256": "37a928c110489ae62a24b5583405bcf0c0c943fc235d22298aed19f68a9dfbd4"
+      "bytes": 10628,
+      "sha256": "61e3129d5c3baa5863c0014cb256e68e260b7b313290b00222cf8c0494239f32"
     },
     {
       "path": "tools/web_deadlines.py",
@@ -2261,8 +2261,8 @@
     },
     {
       "path": "tools/windows_package.py",
-      "bytes": 12813,
-      "sha256": "1e750c26fdef34aead078c6026d4da442c77a30e49c0209f421fcd4038e9fdf9"
+      "bytes": 12971,
+      "sha256": "65028a00467c78e8272c317a49e41add05a163e6c5bd96889b4e67043a5e9a3a"
     },
     {
       "path": "assets/remaster/issue-147-dig-v1.png",
@@ -3296,8 +3296,8 @@
     },
     {
       "path": "tools/tests/test_web_hd.py",
-      "bytes": 2577,
-      "sha256": "e6ad8f2496eb4a7c7f06a73262d417ae93788941511fc4f641ff46df13de3b28"
+      "bytes": 3288,
+      "sha256": "d8f64cd3455b7fcafe7a46436c178d9d67f324dccf434d26dbeb39b9b686f883"
     },
     {
       "path": "tools/web/download_check.js",
@@ -3311,8 +3311,8 @@
     },
     {
       "path": "tools/web_hd.py",
-      "bytes": 3372,
-      "sha256": "b7769d2cb8d3f31919ec523e9f964e9c24b63a1f85c8bcdf267bd1bd6ec7d62a"
+      "bytes": 3913,
+      "sha256": "ac5c018fc082ce18c983e84f1ebe2a4eca2c90dcdc9acedac8d3d4d6a36b4d00"
     },
     {
       "path": "assets/manifests/web_progressive.json",
@@ -3843,6 +3843,21 @@
       "path": "crates/lemmings-game/src/hd/feedback.rs",
       "bytes": 2592,
       "sha256": "50b7176e8e278016fbbefcd43d5a3cd1df74b6381aed279589dbd55eb23a6b25"
+    },
+    {
+      "path": "tools/detached_source.py",
+      "bytes": 8211,
+      "sha256": "710b9e12549d57f204327ee5ca8390a77059f2e7a337234564ad8dce1b60c22f"
+    },
+    {
+      "path": "tools/tests/test_detached_source.py",
+      "bytes": 3313,
+      "sha256": "f52b4303e588f148f1fb435b32942d26ba3e49ad8602d88f8725ff25d69fff0a"
+    },
+    {
+      "path": "tools/tests/test_source_selection.py",
+      "bytes": 2030,
+      "sha256": "896ad87d3216c94d4d0e0e45b0f1974746278972397d15d7b573a1ae2c31bc92"
     }
   ],
   "evidence": [
@@ -8673,5 +8688,71 @@
       }
     ],
     "scope": "Player input, impact feedback and synthesized digging sound. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "package_size_226": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/226",
+    "previous_pins": [
+      {
+        "path": "tools/macos_package.py",
+        "bytes": 15423,
+        "sha256": "9e4c28277388ab38c30a795b82e98e5ecf9351d6e446d6f917bebd82673bf481"
+      },
+      {
+        "path": "tools/pages_package.py",
+        "bytes": 6577,
+        "sha256": "d20cd8ae343d4c37796c937cc9179a5b1d10d6cc971d1b6b7c94c16ac518d90d"
+      },
+      {
+        "path": "tools/publish_release.py",
+        "bytes": 12158,
+        "sha256": "05213855217dad00fb990265fa7acb26cec22b9c0b638a4d046ae12e5f8880d0"
+      },
+      {
+        "path": "tools/release_package.py",
+        "bytes": 19952,
+        "sha256": "8ac136d674c455b8a316c6972c0c1c501e4999010b532aeb4969359d7fa5bb06"
+      },
+      {
+        "path": "tools/tests/test_pages_package.py",
+        "bytes": 8721,
+        "sha256": "99448e35e7cbaca735886f4c5222883a92856147f4f7a061af54a7182336e778"
+      },
+      {
+        "path": "tools/tests/test_web_build.py",
+        "bytes": 7627,
+        "sha256": "663bff1374f6e066242d29a87f304551825985c4b65c65c2ba34a2659aefbcd4"
+      },
+      {
+        "path": "tools/web/full_package_check.js",
+        "bytes": 10089,
+        "sha256": "15cb4c5b1d4c9aa7b5c651c77e179f18b50cae0b6dbbfe4607792ac8c9099c7c"
+      },
+      {
+        "path": "tools/web/package_check.js",
+        "bytes": 1699,
+        "sha256": "7ab518a0acfc90f001a8b93669b5402199cd00f97ec35061933adbd571c4f325"
+      },
+      {
+        "path": "tools/web_build.py",
+        "bytes": 8760,
+        "sha256": "37a928c110489ae62a24b5583405bcf0c0c943fc235d22298aed19f68a9dfbd4"
+      },
+      {
+        "path": "tools/windows_package.py",
+        "bytes": 12813,
+        "sha256": "1e750c26fdef34aead078c6026d4da442c77a30e49c0209f421fcd4038e9fdf9"
+      },
+      {
+        "path": "tools/tests/test_web_hd.py",
+        "bytes": 2577,
+        "sha256": "e6ad8f2496eb4a7c7f06a73262d417ae93788941511fc4f641ff46df13de3b28"
+      },
+      {
+        "path": "tools/web_hd.py",
+        "bytes": 3372,
+        "sha256": "b7769d2cb8d3f31919ec523e9f964e9c24b63a1f85c8bcdf267bd1bd6ec7d62a"
+      }
+    ],
+    "scope": "Distribution/source selection and separate corresponding-source delivery. Historical runtime measurements and NOT READY verdicts are preserved; no new performance qualification."
   }
 }

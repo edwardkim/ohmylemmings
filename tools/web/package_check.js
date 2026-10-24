@@ -17,7 +17,8 @@ try {
         audio.mute();
         await audio.activate();
         assert(!audio.error&&audio.context.state==='running','packaged sound could not resume');
-        for(const name of ['audio-license.html','LGPL-2.1-or-later.txt','audio-source.json','audio-source.tar.gz']) {
+        const packageInfo=await (await fetch('./PACKAGE-MANIFEST.json')).json();
+        for(const name of ['audio-license.html','LGPL-2.1-or-later.txt','audio-source.json',...(packageInfo.source_delivery?[]:['audio-source.tar.gz'])]) {
             const response=await fetch('./'+name);
             assert(response.ok&&(await response.arrayBuffer()).byteLength>0,'packaged source/license HTTP delivery failed: '+name);
         }

@@ -64,3 +64,15 @@ def delivery(members):
     files['HD-WEB.json']=(json.dumps(info,sort_keys=True,indent=2)+'\n').encode()
     require(len(files['HD-WEB.json'])<=128*1024,'Web HD metadata size limit')
     return files
+
+
+def write_delivery(files, output):
+    """Remove only obsolete generated hash pages after the new delivery is written."""
+    import re
+    for name, content in files.items():
+        path=output/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(content)
+    folder=output/'web-hd'
+    if folder.exists():
+        for path in folder.iterdir():
+            if re.fullmatch(r'[a-f0-9]{64}\.hdp\.gz',path.name) and 'web-hd/'+path.name not in files and path.is_file() and not path.is_symlink():
+                path.unlink()
