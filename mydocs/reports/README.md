@@ -160,3 +160,5 @@
 - [#194 v0.2.0 정식 게시·Pages](issue-194_release_v020.md)
 
 - [#196 웹 점진적 다운로드·진행률 UX](issue-196_web_progressive.md)
+
+- [#194·#196 v0.2.0 정식 게시·공개 Pages 최종 인수](issue-194_release_v020_completion.md)

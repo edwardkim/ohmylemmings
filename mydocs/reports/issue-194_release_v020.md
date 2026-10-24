@@ -2,6 +2,9 @@
 
 이슈: https://github.com/edwardkim/ohmylemmings/issues/194
 
+
+상태: **2026-10-24 완료**. [정식 게시·공개 인수](../reports/issue-194_release_v020_completion.md)를 따른다. 아래 내용은 구현/게시 준비 당시 기록이다.
+
 메인테이너가0.2.0 릴리즈 작업 시작을 지시했다. 기준 main316d869의 HD/BGM 수정·버전 적용을 유지하고 공개 노트/다운로드·배포 제한을 확정한다. #165 청취 미확인을 명시하며 릴리즈 지시를 청취 정상으로 간주하지 않는다.
 
 Pages의 기존50MiB 다운로드·100MiB 확장·100파일 제한은 약190MB대/103파일 HD Web 패키지를 거절했다. 먼저 실제 형태의103파일 합성 HD 카탈로그와200MiB 다운로드 메타데이터에서 실패를 확인했다.256MiB 다운로드/512MiB 확장/256파일로 범위를 조정하고 변조·누락·출처·해시·full game·최신 안정 릴리즈 검사를 유지했다. 초과 확장은 전체 검증/출력 전에 거절하는 경계를 별도로 검사했다. 사이트 예산은 [GitHub 공식1GB 제한](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits) 이내다.

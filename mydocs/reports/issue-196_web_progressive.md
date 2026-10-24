@@ -2,6 +2,9 @@
 
 이슈: https://github.com/edwardkim/ohmylemmings/issues/196
 
+
+상태: **2026-10-24 완료**. [정식 게시·공개 인수](../reports/issue-194_release_v020_completion.md)를 따른다. 아래 내용은 구현/게시 준비 당시 기록이다.
+
 ## 요구와 기준
 
 메인테이너가 #194 게시 도중 웹 초기 용량 축소·플레이 중 백그라운드 준비와 다운로드 진행률 UI/UX를 요구했다. v0.2.0 태그/공개를 보류하고 구현했다. #195 준비 PR은 CI [40045197480](https://github.com/edwardkim/ohmylemmings/actions/runs/40045197480) 7개 성공 후 main `b5d0d4d36a89d404768e08bfcca4f3005de06895`에 병합됐으며 그 tree는 `5d5425d43e1527e49b321e6abb4fdc27605a2676`다. 이번 추가 변경은 별도 동일 tree CI를 통과해야 게시할 수 있다.
