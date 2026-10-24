@@ -1,6 +1,6 @@
 # Hyper-Waterfall 문서 안내
 
-[#208 Native MP3 선택 대화상자·앱 아이콘](reports/issue-208_native_polish.md)을 포함한 **v0.3.1 정식 릴리즈·Pages**를 게시했습니다. [릴리즈](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.1)·[웹 플레이](https://edwardkim.github.io/ohmylemmings/)를 제공합니다. 동일 tree CI7개·4플랫폼/12파일과 Windows Shell/Mac ICNS·실제 Native 파일 선택을 검증했습니다. [#202 로컬 MP3](reports/issue-202_local_mp3.md)·[2D HD](plans/issue-137_2d_remaster.md)·[점진적 다운로드/진행률](reports/issue-196_web_progressive.md)도 포함합니다. #202 새 MP3 사람 청취 응답 OPEN·#113 성능 NOT READY를 유지하며 아래 단계별 문구는 당시 기록입니다.
+[#208 Native MP3 선택 대화상자·앱 아이콘](reports/issue-208_native_polish.md)을 포함한 **v0.3.1 정식 릴리즈·Pages**를 게시했습니다. [릴리즈](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.1)·[웹 플레이](https://edwardkim.github.io/ohmylemmings/)를 제공합니다. 동일 tree CI7개·4플랫폼/12파일과 Windows Shell/Mac ICNS·실제 Native 파일 선택을 검증했습니다. [#202 로컬 MP3](reports/issue-202_local_mp3.md)·[2D HD](plans/issue-137_2d_remaster.md)·[점진적 다운로드/진행률](reports/issue-196_web_progressive.md)도 포함합니다. #202는 메인테이너 최종 사용 확인으로 완료했으며 #113 성능 NOT READY를 유지한다.  아래 단계별 문구는 당시 기록입니다.
 
 프로젝트 기획은 [전체 기획서 / #1](plans/issue-1_rusty_lemmings.md), 기여 지침은 [AGENTS.md](../AGENTS.md)를 기준으로 합니다.
 
@@ -120,7 +120,7 @@ G08은 #60/PR #61과 main CI까지 확인해 완료했습니다. [G09-01 / #62 �
 
 [#200 사용자 K-pop BGM 교체 검토](reports/issue-200_custom_bgm_review.md): Web/Native에서 외부 음악 교체 가능. 첫 구현은 사용자 로컬 MP3 선택을 권고하며, 원본 BGM/효과음 분리·음악 버퍼링/UX와 공개 음원 사용 권한을 검토했다. 제품 구현은 후속 작업이다.
 
-[#202 로컬 MP3 BGM](reports/issue-202_local_mp3.md)은 main 개발 버전에 구현·CI7개·병합을 완료했습니다. Web 파일 선택과 Native 드롭/실행 옵션, 효과음 유지/개별 음량·반복·오류/재시도를 제공합니다. 제공받은 두 파일의 실제 디지털 출력을 확인했으며 메인테이너의 새 MP3 청취 응답을 기다립니다. [v0.3.0/Pages 게시](reports/issue-205_release_v030_completion.md)까지 완료했습니다.
+[#202 로컬 MP3 BGM](reports/issue-202_local_mp3.md)은 main 개발 버전에 구현·CI7개·병합을 완료했습니다. Web 파일 선택과 Native 드롭/실행 옵션, 효과음 유지/개별 음량·반복·오류/재시도를 제공합니다. 제공받은 두 파일의 디지털 출력과 메인테이너의 최종 사용 확인까지 마쳐 #202를 완료했습니다. [v0.3.0/Pages 게시](reports/issue-205_release_v030_completion.md)까지 완료했습니다.
 
 [#205 v0.3.0 정식 릴리즈·Pages](reports/issue-205_release_v030_completion.md)를 완료했습니다. [버전별 노트](releases/issue-205_v0.3.0.md)는 사용자 로컬 MP3와 실행/인수 범위를 안내합니다.
 
