@@ -4,7 +4,7 @@
 
 - [#215 HD 지형·지물 품질 개선](issue-215_hd_surface_quality.md): 대표 장면 전후 비교 후5테마 확장.
 
-- [#113 플레이 중 FPS·피드백](issue-113_player_feedback.md): Web/Native 선택 표시·수동 요약 복사. 기존 성능 미통과 판정은 유지한다.
+- [#113 플레이 중 FPS·피드백](issue-113_player_feedback.md): 기능 인수 완료. #113 추적은 메인테이너 지시로 종료(Not planned).
 
 - [#140 HD 공통 표시·입력 계약](issue-140_hd_presentation.md): typed snapshot·좌표/패널과 읽기 전용 합성 검증.
 
@@ -112,7 +112,7 @@
 
 - [#111 Web 표시 마감·메모리 보완](issue-111_web_deadlines.md)
 
-- [#113 Web rAF 지연·추가 그리기 진단](issue-113_web_dispatch.md): 입력·그리기·rAF 상관 관측부터 착수.
+- [#113 Web rAF 지연·추가 그리기 진단](issue-113_web_dispatch.md): 종료(Not planned). 기존 진단·측정은 역사 자료로 보존.
 
 - [#115 G12 배포 준비](issue-115_release_preparation.md): 사용자 승인으로 성능 재검증을 다른 호스트에 이월하고 패키징 계약부터 진행.
 

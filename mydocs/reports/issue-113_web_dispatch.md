@@ -1,5 +1,7 @@
 # Web 반복 그리기 보정·성능 검증 이월
 
+현재 상태: 2026-10-25 메인테이너 지시로 #113 추적을 종료했다(Not planned). [종료 근거](../reports/issue-113_closure.md)를 따른다. 아래 OPEN/잔여/NOT READY 표현은 종료 전 기록이다.
+
 담당 [#113](https://github.com/edwardkim/ohmylemmings/issues/113), 상위 [#1](https://github.com/edwardkim/ohmylemmings/issues/1), 다음 [#115 배포 준비](../plans/issue-115_release_preparation.md).
 
 **현재 장비의 60fps 판정은 미통과이며, 사용자 지시로 더 좋은 호스트에 재검증을 이월한다.** G12 준비 착수는 사용자 승인에 따른 선행 조건 예외다. G11 성능 합격이나 G12 완료로 바꾸지 않는다. 현재 장비의 추가 최적화·60초 반복은 중단했다.

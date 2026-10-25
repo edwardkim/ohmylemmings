@@ -35,7 +35,7 @@ As of 2026-10-25, the latest stable release is **v0.3.3**. Please also read the 
 - Includes 120 original levels, eight skills, HD/original presentation switching, and improved terrain textures and vertical edges.
 - Adds digging impact, dust and sound, a circular targeting marker, fatal-fall impact feedback, and disabled selection of skills with zero remaining uses.
 - The web app downloads the HD assets needed for current play first, then loads upcoming level assets in the background. Progress, retries, and cache reuse are supported.
-- Press F3 to show FPS and F2 to copy a feedback summary. [Performance and memory qualification #113](https://github.com/edwardkim/ohmylemmings/issues/113) remains open; 60 fps is not guaranteed.
+- Press F3 to show FPS and F2 to copy a feedback summary. [Performance tracking #113](https://github.com/edwardkim/ohmylemmings/issues/113) was closed by the maintainer after accepting the native 40 FPS target. The [closure record](mydocs/reports/issue-113_closure.md) preserves earlier observations and explains the scope.
 
 Windows support is **Windows 11 x64**; Windows 10 is not supported. macOS requires **13+**, with an **Apple Silicon/Intel universal2** app that is ad-hoc signed and not notarized. Linux requires the SDL2 runtime. Extract the entire archive before launching.
 

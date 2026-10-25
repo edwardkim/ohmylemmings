@@ -1,5 +1,7 @@
 # Web rAF 지연·추가 그리기 진단
 
+현재 상태: 2026-10-25 메인테이너 지시로 #113 추적을 종료했다(Not planned). [종료 근거](../reports/issue-113_closure.md)를 따른다. 아래 OPEN/잔여/NOT READY 표현은 종료 전 기록이다.
+
 담당 [#113](https://github.com/edwardkim/ohmylemmings/issues/113), 상위 [#1](https://github.com/edwardkim/ohmylemmings/issues/1), 선행 [#111 보고서](../reports/issue-111_web_deadlines.md).
 
 ## 착수
