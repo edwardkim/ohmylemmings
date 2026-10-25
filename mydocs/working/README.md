@@ -180,3 +180,5 @@
 - [#235 GPU 시작 선택](issue-235_gpu_startup.md)
 
 - [#238 이 PC Native GPU FPS 실측](issue-238_native_gpu_fps.md)
+
+- [#240 Native40FPS 표시](issue-240_native_40fps.md)

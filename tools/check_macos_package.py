@@ -146,7 +146,7 @@ def check(archive,evidence,expected_arch):
         launch_services_visible_window=True,unicode_space_install=True,foreign_cwd=True,
         original_frame_sha256=sha(logical),original_transitions=transitions,audio=audio,
         signing='ad-hoc',notarized=False,gatekeeper_assessment='rejected-as-expected',
-        scope='Native hosted Mac functional packaging; Developer ID/notarization, physical listening, older deployment OS and 60fps qualification remain separate.')
+        scope='Native hosted Mac functional packaging; Developer ID/notarization, physical listening, older deployment OS and performance qualification remain separate.')
     save(evidence/'summary.json',report);print(json.dumps(report))
 
 

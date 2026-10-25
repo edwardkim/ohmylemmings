@@ -86,3 +86,5 @@
 - [#226 배포 용량 최적화](issue-226_package_size.md)
 
 - [#235 Native 시작 가속 렌더러 선택](issue-235_gpu_startup.md)
+
+- [#240 Native 표시 목표40FPS](issue-240_native_40fps.md)

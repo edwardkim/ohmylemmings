@@ -25,6 +25,8 @@ def run(binary, directory, driver, software, accelerated=False):
     if software and 'software requested' not in result.stderr:
         raise AssertionError('explicit software choice not reported')
     summary = json.loads(result.stdout)
+    if summary.get('presentation_base_fps') != 40:
+        raise AssertionError('native presentation target is not40FPS')
     if (summary['renderer'] != 'software') != accelerated:
         raise AssertionError('actual SDL renderer differs from startup selection')
     states = [json.loads(row) for row in (directory/'trace.jsonl').read_text().splitlines()]

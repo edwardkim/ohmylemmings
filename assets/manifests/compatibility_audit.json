@@ -96,8 +96,8 @@
     },
     {
       "path": "apps/desktop/src/frame_clock.rs",
-      "bytes": 4752,
-      "sha256": "1c3db05122cd596c243f9b8403b623813fc5880722c2db75454cb09a69f326e4"
+      "bytes": 5174,
+      "sha256": "325e0a83fb2cd8c45262c73ede4b78d1480280ee631267a63a38efab46a0cd5d"
     },
     {
       "path": "apps/desktop/src/input.rs",
@@ -111,8 +111,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 74040,
-      "sha256": "c9493cfe247ec41c985afb41142884415bb55506526cd58210062892bdf566e1"
+      "bytes": 74147,
+      "sha256": "93e8afebefb62a3dac5c93a325b79cf92c6cc771a5152a02304da21ec95d91ac"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -126,8 +126,8 @@
     },
     {
       "path": "apps/desktop/src/performance.rs",
-      "bytes": 5317,
-      "sha256": "8596aef98702f858afea5d90b5d397f6354cad60b00f4f903a9128625059d29d"
+      "bytes": 5435,
+      "sha256": "8ae9234a7e697c06d6772c42661aee002bff9593c9dbd0c01fb2af9a049ee250"
     },
     {
       "path": "apps/desktop/src/playthrough_tests.rs",
@@ -1246,8 +1246,8 @@
     },
     {
       "path": "tools/check_macos_package.py",
-      "bytes": 10106,
-      "sha256": "2ffc5886ba5a087cf56734ec889025f740bbba3e90cd810d6bcc7cbd59908e5c"
+      "bytes": 10112,
+      "sha256": "bb9f8238604ada5f42fe04141f43cf880bae1fec0e7d3e706c5d89aa050630db"
     },
     {
       "path": "tools/check_miner.py",
@@ -1311,8 +1311,8 @@
     },
     {
       "path": "tools/check_windows_package.py",
-      "bytes": 11080,
-      "sha256": "63d0b908cb171fda63cd045aff6242abd28315cc9ea8af1dd7194aaa81232dca"
+      "bytes": 11086,
+      "sha256": "b4b9cf3f2b9153903113baa60105f2fced3068a5054c65d8e63c055c5c38d477"
     },
     {
       "path": "tools/compare_basher_dos.py",
@@ -1767,7 +1767,7 @@
     {
       "path": "tools/release_package.py",
       "bytes": 20118,
-      "sha256": "8bdaecac1cce84aca2a7e651db35a37f97a7c05f56bf50491ade28bfd73727ef"
+      "sha256": "76570d62377565deceff2327dd033ad1fd808ebad60c489ab6ebb170deed11e0"
     },
     {
       "path": "tools/release_version.py",
@@ -3791,8 +3791,8 @@
     },
     {
       "path": "apps/desktop/src/frame_feedback.rs",
-      "bytes": 9892,
-      "sha256": "4a45f68d65d488d9866524770c3921c71be88dc21934bde12283f306513ee6c9"
+      "bytes": 10008,
+      "sha256": "f32966924fae382fcd793c0924a6de880353b3edbd974b1af3035dd7a8fe2793"
     },
     {
       "path": "apps/web/www/frame-feedback.js",
@@ -3866,8 +3866,8 @@
     },
     {
       "path": "tools/check_renderer.py",
-      "bytes": 3275,
-      "sha256": "ae477233625325a187788f39d51bcba5418d292b4d42ed96e9cb4fad38f9098b"
+      "bytes": 3397,
+      "sha256": "78053abe1ac2c1b1d5a44e8e48af82da473fb9ddd2c41f32687762c650ede3b4"
     }
   ],
   "evidence": [
@@ -4131,8 +4131,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 93436,
-      "sha256": "ccc5880abd84a597eb3c6a1aae0c1762a737adef45d3d2d87cd6c9cde8cf34bd",
+      "bytes": 94486,
+      "sha256": "2c86c57bf6906542eb307ef22cc2ee61de17a47fe9117714f48de164b2ccfbf0",
       "id": "g11-06-display-cadence"
     }
   ],
@@ -6402,7 +6402,7 @@
     "tests": [
       {
         "path": "apps/desktop/src/frame_clock.rs",
-        "name": "processing_time_does_not_accumulate_in_sixty_hz_deadlines"
+        "name": "processing_time_does_not_accumulate_in_forty_hz_deadlines"
       },
       {
         "path": "apps/desktop/src/frame_clock.rs",
@@ -6410,7 +6410,7 @@
       },
       {
         "path": "apps/desktop/src/frame_clock.rs",
-        "name": "forced_frames_do_not_postpone_grid_and_render_every_scales_sixty_hz"
+        "name": "forced_frames_do_not_postpone_grid_and_render_every_scales_forty_hz"
       },
       {
         "path": "apps/desktop/src/frame_clock.rs",
@@ -8792,5 +8792,67 @@
       }
     ],
     "scope": "Native startup now selects an initialized SDL accelerated renderer for original/HD presentation and falls back to software. Existing historical timing/NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "presentation_target_240": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/240",
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/frame_clock.rs",
+        "bytes": 4752,
+        "sha256": "1c3db05122cd596c243f9b8403b623813fc5880722c2db75454cb09a69f326e4"
+      },
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 74040,
+        "sha256": "c9493cfe247ec41c985afb41142884415bb55506526cd58210062892bdf566e1"
+      },
+      {
+        "path": "apps/desktop/src/performance.rs",
+        "bytes": 5317,
+        "sha256": "8596aef98702f858afea5d90b5d397f6354cad60b00f4f903a9128625059d29d"
+      },
+      {
+        "path": "tools/check_macos_package.py",
+        "bytes": 10106,
+        "sha256": "2ffc5886ba5a087cf56734ec889025f740bbba3e90cd810d6bcc7cbd59908e5c"
+      },
+      {
+        "path": "tools/check_windows_package.py",
+        "bytes": 11080,
+        "sha256": "63d0b908cb171fda63cd045aff6242abd28315cc9ea8af1dd7194aaa81232dca"
+      },
+      {
+        "path": "tools/release_package.py",
+        "bytes": 20118,
+        "sha256": "8bdaecac1cce84aca2a7e651db35a37f97a7c05f56bf50491ade28bfd73727ef"
+      },
+      {
+        "path": "apps/desktop/src/frame_feedback.rs",
+        "bytes": 9892,
+        "sha256": "4a45f68d65d488d9866524770c3921c71be88dc21934bde12283f306513ee6c9"
+      },
+      {
+        "path": "tools/check_renderer.py",
+        "bytes": 3275,
+        "sha256": "ae477233625325a187788f39d51bcba5418d292b4d42ed96e9cb4fad38f9098b"
+      },
+      {
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 93436,
+        "sha256": "ccc5880abd84a597eb3c6a1aae0c1762a737adef45d3d2d87cd6c9cde8cf34bd",
+        "id": "g11-06-display-cadence"
+      }
+    ],
+    "scope": "Maintainer accepted40FPS native presentation target. Display deadlines change; simulation pacing and archived60Hz measurements/NOT READY verdicts are preserved. Web keeps changed-state-only drawing.",
+    "previous_clock_test_anchors": [
+      {
+        "path": "apps/desktop/src/frame_clock.rs",
+        "name": "processing_time_does_not_accumulate_in_sixty_hz_deadlines"
+      },
+      {
+        "path": "apps/desktop/src/frame_clock.rs",
+        "name": "forced_frames_do_not_postpone_grid_and_render_every_scales_sixty_hz"
+      }
+    ]
   }
 }

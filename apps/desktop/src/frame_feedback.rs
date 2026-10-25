@@ -136,8 +136,9 @@ impl Hud {
     }
     pub fn feedback(&self, level: &str, hd: bool, size: (u32, u32), runtime: &str) -> String {
         let s = self.samples.summary();
+        let presentation_base_fps = crate::frame_clock::TARGET_FPS;
         format!(
-            "Oh My Lemmings performance feedback\nversion: {}\nplatform: Native {}/{}\nlevel: {level}\npresentation: {}\nviewport: {}x{}\nruntime: {runtime}\ncadence: SDL present completion (not physical display FPS)\nwindow: last 240 active intervals\nfps: {}\np95_ms: {}\nmax_ms: {}\nrecent_intervals: {}\nintervals: {}\nactive_seconds: {:.3}\nslow_intervals (>50ms): {}\n체감: 부드러움 / 끊김이 느껴진 상황을 적어주세요.\n",
+            "Oh My Lemmings performance feedback\nversion: {}\nplatform: Native {}/{}\nlevel: {level}\npresentation: {}\nviewport: {}x{}\nruntime: {runtime}\npresentation_base_fps: {presentation_base_fps}\ncadence: SDL present completion (not physical display FPS)\nwindow: last 240 active intervals\nfps: {}\np95_ms: {}\nmax_ms: {}\nrecent_intervals: {}\nintervals: {}\nactive_seconds: {:.3}\nslow_intervals (>50ms): {}\n체감: 부드러움 / 끊김이 느껴진 상황을 적어주세요.\n",
             env!("CARGO_PKG_VERSION"),
             std::env::consts::OS,
             std::env::consts::ARCH,
