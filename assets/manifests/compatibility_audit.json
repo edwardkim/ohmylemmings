@@ -32,12 +32,12 @@
     {
       "path": "Cargo.lock",
       "bytes": 18361,
-      "sha256": "599ba02b67509d2f879bb8d87cdbac5c99691b1574b7810210c0c10fda2bf008"
+      "sha256": "ebefab383b5685dd8d665598942768516f1a94b41ecd014e0545ade90b47a80d"
     },
     {
       "path": "Cargo.toml",
       "bytes": 454,
-      "sha256": "af28e611912ead2743c044b1c4d0daa19b9ddfc82ee450f04b80e07bc06e5984"
+      "sha256": "d6d217b64d2c2b4cac9e4c2daf67cbaf294d5d3e3e857c3d0403464afbae8190"
     },
     {
       "path": "LICENSE",
@@ -8754,5 +8754,21 @@
       }
     ],
     "scope": "Distribution/source selection and separate corresponding-source delivery. Historical runtime measurements and NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "release_230": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/230",
+    "previous_pins": [
+      {
+        "path": "Cargo.lock",
+        "bytes": 18361,
+        "sha256": "599ba02b67509d2f879bb8d87cdbac5c99691b1574b7810210c0c10fda2bf008"
+      },
+      {
+        "path": "Cargo.toml",
+        "bytes": 454,
+        "sha256": "af28e611912ead2743c044b1c4d0daa19b9ddfc82ee450f04b80e07bc06e5984"
+      }
+    ],
+    "scope": "Workspace version and release documentation update to 0.3.3. Historical runtime measurements and NOT READY verdicts are preserved; no new performance qualification."
   }
 }

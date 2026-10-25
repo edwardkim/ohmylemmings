@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 310614,
-      "sha256": "5dd2c72b39b5ffa55018f2f239bbb4f2d45cb834b4cf9093606cd7e5e730aead",
+      "bytes": 311226,
+      "sha256": "6ece96887ca5b1762bf0ff9edeb0d3914f63efab39a25ef716e0e79b48456956",
       "id": "compatibility"
     },
     {
@@ -11288,5 +11288,17 @@
       }
     ],
     "scope": "Distribution/source selection and separate corresponding-source delivery. Historical runtime measurements and NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "release_230": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/230",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 310614,
+        "sha256": "5dd2c72b39b5ffa55018f2f239bbb4f2d45cb834b4cf9093606cd7e5e730aead",
+        "id": "compatibility"
+      }
+    ],
+    "scope": "Workspace version and release documentation update to 0.3.3. Historical runtime measurements and NOT READY verdicts are preserved; no new performance qualification."
   }
 }
