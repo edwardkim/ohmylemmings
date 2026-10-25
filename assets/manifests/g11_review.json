@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 311226,
-      "sha256": "6ece96887ca5b1762bf0ff9edeb0d3914f63efab39a25ef716e0e79b48456956",
+      "bytes": 312136,
+      "sha256": "c0ccf9eec0451687d4f23e2c3bc05a468f193208387aa3d2d18117135bded562",
       "id": "compatibility"
     },
     {
@@ -19,8 +19,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 92906,
-      "sha256": "f08a25c9adaa4ed09072cafcf7857db8711b805fd105669147c6554fcd001809",
+      "bytes": 93436,
+      "sha256": "ccc5880abd84a597eb3c6a1aae0c1762a737adef45d3d2d87cd6c9cde8cf34bd",
       "id": "display"
     }
   ],
@@ -11300,5 +11300,23 @@
       }
     ],
     "scope": "Workspace version and release documentation update to 0.3.3. Historical runtime measurements and NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "gpu_startup_235": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/235",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 311226,
+        "sha256": "6ece96887ca5b1762bf0ff9edeb0d3914f63efab39a25ef716e0e79b48456956",
+        "id": "compatibility"
+      },
+      {
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 92906,
+        "sha256": "f08a25c9adaa4ed09072cafcf7857db8711b805fd105669147c6554fcd001809",
+        "id": "display"
+      }
+    ],
+    "scope": "Native startup now selects an initialized SDL accelerated renderer for original/HD presentation and falls back to software. Existing historical timing/NOT READY verdicts are preserved; no new performance qualification."
   }
 }

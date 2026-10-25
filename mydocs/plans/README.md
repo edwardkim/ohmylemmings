@@ -84,3 +84,5 @@
 - [#219 v0.3.2 릴리즈·Pages](issue-219_release_v032.md)
 
 - [#226 배포 용량 최적화](issue-226_package_size.md)
+
+- [#235 Native 시작 가속 렌더러 선택](issue-235_gpu_startup.md)

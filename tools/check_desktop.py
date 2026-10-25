@@ -46,6 +46,8 @@ def run_case(binary, directory, render_every, demo=False, replay=None):
     if replay:
         command += ['--replay', str(replay)]
     result = subprocess.run(command, check=True, capture_output=True, text=True, cwd=ROOT, env=env)
+    if 'LEMMINGS_RENDERER mode=software ' not in result.stderr:
+        raise AssertionError('missing startup software fallback diagnostic')
     summary = json.loads(result.stdout)
     if summary['video_driver'] != 'dummy' or summary['renderer'] != 'software':
         raise AssertionError('expected actual SDL2 dummy video/software renderer')

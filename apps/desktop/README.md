@@ -1,5 +1,13 @@
 # Desktop preview
 
+## 시작 시 GPU 가속 선택
+
+원본/HD 모드 모두 시작 시 SDL 가속 렌더러를 열거하고 실제 창에서 생성해 사용합니다. 첫 후보가 실패하면 다른 가속 후보를 시도하고, 사용 가능한 가속 경로가 없으면 software로 계속 실행합니다. `SDL_RENDER_DRIVER=software`로 소프트웨어 렌더링을 명시할 수 있습니다. 다른 SDL renderer 선호 설정은 해당 가속 후보를 먼저 시도합니다.
+
+시작 로그 `LEMMINGS_RENDERER`에 accelerated/software, SDL video driver·renderer, flags·최대texture·선택 사유가 표시됩니다. 가속 판단은 SDL의 ACCELERATED 지원과 실제 초기화 성공을 기준으로 합니다. 드라이버가 내부에서 소프트웨어 GL을 제공하는지나 물리 GPU 모델을 식별하는 진단은 아닙니다. F2 피드백에도 실제 선택된 SDL renderer 이름이 포함됩니다. 이 변경은 표시 backend 선택이며 CPU 시뮬레이션/지형 질감 생성을 GPU compute로 옮기지는 않습니다.
+
+`python3 tools/check_renderer.py`는 GPU 부재/강제software를 검증합니다. 가속 가능한 Linux 검사 환경에서는 `--gpu-video-driver offscreen`을 추가해 가속과software의 동일 상태·정확한 원본 픽셀을 비교할 수 있습니다.
+
 ## 플레이 FPS와 피드백
 
 F3으로 성능 패널을 켜고 F2로 버전·OS/CPU 아키텍처·SDL 드라이버/renderer·레벨·화면 크기·측정값을 클립보드에 복사합니다. 체감 의견을 덧붙여 전달하세요. 전체화면에서도 사용하며 기본은 OFF, 자동 전송은 없습니다. `PRESENT FPS`는 SDL present 완료 간격으로 계산하며 물리 화면 주사율/논리 틱/실제 유실 프레임 수를 뜻하지 않습니다.

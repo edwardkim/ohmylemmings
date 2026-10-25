@@ -46,8 +46,8 @@
     },
     {
       "path": "Makefile",
-      "bytes": 3881,
-      "sha256": "f5484cafae29d3212f4788bf51b6e23a1df5865de11ec89de86587aefbeabf15"
+      "bytes": 3955,
+      "sha256": "a21a09c594d99f9450edbc84c5dcc82c85c7e919268179c4c9699dec242f36b6"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -111,8 +111,8 @@
     },
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 74109,
-      "sha256": "788b4c2bab4dd7d39b68c28aad85aaacfddc1d9e6fc7e4f60f46bfe9007c521c"
+      "bytes": 74040,
+      "sha256": "c9493cfe247ec41c985afb41142884415bb55506526cd58210062892bdf566e1"
     },
     {
       "path": "apps/desktop/src/pacing.rs",
@@ -1211,8 +1211,8 @@
     },
     {
       "path": "tools/check_desktop.py",
-      "bytes": 5484,
-      "sha256": "eb6cc74bfbe21bb7f3dfe62869f1ab12fc9839c2f1b5af74d3cb91e8dc4b86fa"
+      "bytes": 5625,
+      "sha256": "18bc8e96f2c78ec351c6e8e2e4190512f5766b0b4dadc76f12a1376a1e64fa6b"
     },
     {
       "path": "tools/check_digger.py",
@@ -3858,6 +3858,16 @@
       "path": "tools/tests/test_source_selection.py",
       "bytes": 2030,
       "sha256": "896ad87d3216c94d4d0e0e45b0f1974746278972397d15d7b573a1ae2c31bc92"
+    },
+    {
+      "path": "apps/desktop/src/video_renderer.rs",
+      "bytes": 6788,
+      "sha256": "7a2a3e9de2479b2150551a58476e44ddf402d8a12dfde39eec78abbe330f9a83"
+    },
+    {
+      "path": "tools/check_renderer.py",
+      "bytes": 3275,
+      "sha256": "ae477233625325a187788f39d51bcba5418d292b4d42ed96e9cb4fad38f9098b"
     }
   ],
   "evidence": [
@@ -4121,8 +4131,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 92906,
-      "sha256": "f08a25c9adaa4ed09072cafcf7857db8711b805fd105669147c6554fcd001809",
+      "bytes": 93436,
+      "sha256": "ccc5880abd84a597eb3c6a1aae0c1762a737adef45d3d2d87cd6c9cde8cf34bd",
       "id": "g11-06-display-cadence"
     }
   ],
@@ -8770,5 +8780,17 @@
       }
     ],
     "scope": "Workspace version and release documentation update to 0.3.3. Historical runtime measurements and NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "gpu_startup_235": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/235",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 92906,
+        "sha256": "f08a25c9adaa4ed09072cafcf7857db8711b805fd105669147c6554fcd001809",
+        "id": "g11-06-display-cadence"
+      }
+    ],
+    "scope": "Native startup now selects an initialized SDL accelerated renderer for original/HD presentation and falls back to software. Existing historical timing/NOT READY verdicts are preserved; no new performance qualification."
   }
 }

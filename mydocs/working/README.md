@@ -176,3 +176,5 @@
 - [#230 v0.3.3 릴리즈·Pages](issue-230_release_v033.md)
 
 - [#233 Linux 그래픽 확장 조사](issue-233_linux_graphics.md)
+
+- [#235 GPU 시작 선택](issue-235_gpu_startup.md)
