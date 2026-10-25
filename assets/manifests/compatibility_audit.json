@@ -2321,8 +2321,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/scene.rs",
-      "bytes": 85504,
-      "sha256": "b8aec1605ce3664cb17b259fa18b8c5787891a1d91886b96dc0cbe0f1aaff886"
+      "bytes": 88776,
+      "sha256": "06bfe9c459196331866cdd92967d5ec207bf5ea16f9b26e11d1a52656e4e6ead"
     },
     {
       "path": "crates/lemmings-game/tests/hd_scene.rs",
@@ -3136,8 +3136,8 @@
     },
     {
       "path": "tools/decor_fixture.py",
-      "bytes": 2324,
-      "sha256": "1944f929e7cc2b98629ce7f0e29fcbfe3eecaf30beddf140a9279ef5ca448e36"
+      "bytes": 3061,
+      "sha256": "3d9fffc13654048824ab3573c298d356a6ab7d3c3ec809cb1730fb92a20a7b74"
     },
     {
       "path": "tools/tests/test_decor_fixture.py",
@@ -3816,8 +3816,8 @@
     },
     {
       "path": "crates/lemmings-game/src/hd/surface.rs",
-      "bytes": 10764,
-      "sha256": "73d4bdb6e1e242889e906d02cd210eb749465c7952207b637812bae8674836e8"
+      "bytes": 20692,
+      "sha256": "d146945b74f8e7ba7afbde6c18dee17b2ba746e63d16c47ef915b71f07d2c52f"
     },
     {
       "path": "tools/hd_surface_quality.py",
@@ -8911,5 +8911,26 @@
       }
     ],
     "scope": "Optional browser WebGPU presentation with Canvas2D fallback. Current source-index pins only; historical executions, performance/NOT READY verdicts and the maintainer closure of113 are preserved. No renewed all-level or performance qualification."
+  },
+  "hd_material_quality_249": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/249",
+    "previous_pins": [
+      {
+        "path": "crates/lemmings-game/src/hd/scene.rs",
+        "bytes": 85504,
+        "sha256": "b8aec1605ce3664cb17b259fa18b8c5787891a1d91886b96dc0cbe0f1aaff886"
+      },
+      {
+        "path": "tools/decor_fixture.py",
+        "bytes": 2324,
+        "sha256": "1944f929e7cc2b98629ce7f0e29fcbfe3eecaf30beddf140a9279ef5ca448e36"
+      },
+      {
+        "path": "crates/lemmings-game/src/hd/surface.rs",
+        "bytes": 10764,
+        "sha256": "73d4bdb6e1e242889e906d02cd210eb749465c7952207b637812bae8674836e8"
+      }
+    ],
+    "scope": "Shared HD presentation only: themed procedural steel/masonry, premultiplied frame-clamped bilinear scenery/panorama sampling and raised crystal-arrow ink. Original simulation, masks, animation phases and audio are unchanged. Current source-index pins only; all historical executions/NOT READY verdicts and the maintainer closure of113 are preserved. New120 initial-scene,54-object and representative saved-solution checks are scoped to249, not renewed all-level completion or FPS qualification."
   }
 }

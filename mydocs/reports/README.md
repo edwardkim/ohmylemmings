@@ -1,5 +1,7 @@
 # 작업 결과 보고서
 
+- [#249 HD 지형·지물 공통 품질](issue-249_hd_material_quality.md): 강철/계단·지물/특수 배경 보간·결정 표지, 전체 자산/120초기 장면 점검.
+
 - [#246 WebGPU 구현·v0.3.4 배포](issue-246_webgpu.md)
 
 - [#215 HD 지형·지물 품질](issue-215_hd_surface_quality.md): 5재질·55입출구·수직벽 윤곽, 메인테이너 시각 인수.

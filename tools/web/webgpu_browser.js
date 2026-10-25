@@ -1,5 +1,7 @@
-import init, { WebGame } from './pkg/lemmings_web.js';
+import init, { WebGame, WebAssets } from './pkg/lemmings_web.js';
 import { HdCanvas } from './hd.js';
+import { HdLoader } from './hd-loader.js';
+import { loadBundled } from './bundled.js';
 import { WebRenderer } from './renderer.js';
 
 const assert = (value, message) => {if (!value) throw Error(message);};
@@ -88,9 +90,10 @@ try {
     const game = new WebGame('builder','reference');
     const pack=await(await fetch('./hd-assets.hdp')).arrayBuffer();game.load_hd(new Uint8Array(pack));
     const host=new HdCanvas(game);
-    for(const [scene,skill,ticks] of [['builder','AssignDigger',180],['builder','AssignBomber',190],['win',null,240],['loss',null,300]]) {
+    for(const [scene,skill,ticks] of [['builder','AssignDigger',180],['builder','AssignBuilder',260],['builder','AssignBomber',190],['win',null,240],['loss',null,300]]) {
         game.reset(scene,'reference');host.invalidate();renderer.invalidate();
         for(let tick=0;tick<ticks;tick++){if(tick===80&&skill)game.command(skill,0);game.step(1);}
+        if(skill==='AssignBuilder')assert(game.bricks().some(v=>v!==0),'Builder did not place masonry');
         const state=game.state(),sound=game.sound_state();
         host.draw(ctx);renderer.draw(game,true,host);
         const pixels=await readGpu(renderer);
@@ -106,6 +109,33 @@ try {
             await fetch('/__screenshot',{method:'POST',body:blob});
         }
     }
+    const scenery=[];
+    const bundled=await loadBundled(WebAssets),loader=new HdLoader();
+    const renderScenery=async label=>{
+        host.invalidate();renderer.invalidate();const state=game.state(),sound=game.sound_state();
+        host.draw(ctx);renderer.draw(game,true,host);
+        const comparison=compare(await readGpu(renderer),read(cpu),3,label);comparisons.push(comparison);
+        assert(comparison.mean<1&&comparison.over<cpu.width*cpu.height*.03,JSON.stringify(comparison));
+        assert(game.state()===state&&game.sound_state()===sound,'scenery rendering changed game');
+        scenery.push(label);
+    };
+    if(bundled){
+        game.load_original_rank(bundled,'mayhem',8);await loader.load(game);await renderScenery('Mayhem08 steel');
+        bundled.free();
+    }
+    // Optional invented courses exercise all metal palettes and the crystal
+    // outline decal without needing any original level or image bytes.
+    const fixtureIndex=await fetch('./scenery-courses/FILES.json');
+    if(fixtureIndex.ok){
+        const names=await fixtureIndex.json();
+        for(let theme=0;theme<5;theme++){
+            const bank=new WebAssets();
+            try{
+                for(const name of names[theme])bank.insert(name,new Uint8Array(await(await fetch(`./scenery-courses/${theme}/${name}`)).arrayBuffer()));
+                game.load_original_rank(bank,'fun',1);await loader.load(game);await renderScenery(`invented scenery ${theme}`);
+            }finally{bank.free();}
+        }
+    }else assert(fixtureIndex.status===404,'scenery fixture index failed');
     c.width=320;c.height=200;renderer.resize(320,200);
     renderer.draw(game,false,null);
     const raw=game.frame(),got=await readGpu(renderer);
@@ -162,7 +192,7 @@ try {
     detach();frame.remove();
     game.free();renderer.dispose();
     result={status:'PASS',adapter:{vendor:info?.vendor,architecture:info?.architecture,device:info?.device,description:info?.description,isFallbackAdapter:info?.isFallbackAdapter},
-        comparisons,original_pixel_exact:true,revision_cache:true,device_loss:true,state_audio_unchanged:true,
+        comparisons,scenery,original_pixel_exact:true,revision_cache:true,device_loss:true,state_audio_unchanged:true,
         product:{gpu_selected:true,hd_original_switch:true,input_preserved:true,surface_geometry:true,loss_while_paused:true,restart_after_loss:true,
             original_levels:levels.length?[1,...levels]:[]}};
 } catch(error) {result={status:'FAIL',error:String(error),stack:error.stack};}

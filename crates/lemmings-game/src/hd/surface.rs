@@ -2,6 +2,166 @@
 
 use super::{assets::AssetFrame, scene::Texture};
 
+// Fixed u32 arithmetic keeps the material identical on native and WASM hosts.
+fn grain(x: usize, y: usize) -> u32 {
+    let mut n = (x as u32).wrapping_mul(0x9e37_79b9) ^ (y as u32).wrapping_mul(0x85eb_ca6b);
+    n ^= n >> 16;
+    n = n.wrapping_mul(0x7feb_352d);
+    n ^ (n >> 15)
+}
+
+/// Opaque, brushed plates with inset joints, rivets and restrained weathering.
+/// Coordinates are HD world pixels, never viewport or chunk-local pixels.
+pub(super) fn steel_pixel(x: usize, y: usize, theme: u8) -> [u8; 4] {
+    let base = match theme {
+        1 => [110, 113, 119],
+        2 => [156, 164, 174],
+        3 => [142, 126, 110],
+        4 => [123, 149, 174],
+        _ => [110, 128, 145],
+    };
+    let shifted = x + y / 48 % 2 * 48;
+    let (px, py) = (shifted % 96, y % 48);
+    let mut gain = (grain(shifted / 96, y / 48) % 11) as i32 - 5 + (grain(x / 3, y) % 7) as i32 - 3
+        + 7
+        - py as i32 / 3
+        + (16 - (px as i32 - 30).abs()).max(0) / 2;
+    gain += match py {
+        0 => 34,
+        1 => 17,
+        46 => -17,
+        47 => -34,
+        _ => 0,
+    };
+    gain += match px {
+        0 => -30,
+        1 => 19,
+        94 => -12,
+        95 => -29,
+        _ => 0,
+    };
+    let dx = (px as i32 - 7).abs().min((px as i32 - 88).abs());
+    let dy = (py as i32 - 7).abs().min((py as i32 - 40).abs());
+    let radius = dx * dx + dy * dy;
+    if radius <= 9 {
+        gain = if radius >= 5 { -42 } else { 27 - dy * 9 };
+    }
+    let weathered = grain(x / 9, y / 7).is_multiple_of(13);
+    let mut color = [0, 0, 0, 255];
+    for c in 0..3 {
+        let patina = if weathered { [5, -2, -9][c] } else { 0 };
+        color[c] = (base[c] + gain + patina).clamp(0, 255) as u8;
+    }
+    color
+}
+
+/// Fine mortar, worn edges and mineral variation at the six-pixel stair height.
+pub(super) fn masonry_pixel(x: usize, y: usize) -> [u8; 4] {
+    let shifted = x + y / 6 % 2 * 18;
+    let (px, py) = (shifted % 36, y % 6);
+    let mut gain = (grain(shifted / 36, y / 6) % 17) as i32 - 8 + (grain(x / 2, y) % 11) as i32 - 5;
+    gain += match py {
+        0 => 25,
+        1 => 9,
+        4 => -9,
+        5 => -31,
+        _ => 0,
+    };
+    gain += match px {
+        0 | 35 => -33,
+        1 => 13,
+        34 => -9,
+        _ => 0,
+    };
+    [
+        (192 + gain).clamp(0, 255) as u8,
+        (137 + gain * 4 / 5).clamp(0, 255) as u8,
+        (80 + gain * 3 / 5).clamp(0, 255) as u8,
+        255,
+    ]
+}
+
+/// Center-aligned bilinear filtering inside one atlas frame. Interpolate in
+/// premultiplied space, then return straight RGBA for every shared host.
+pub(super) fn sample_rgba(
+    source: &Texture,
+    rect: [u32; 4],
+    x: usize,
+    y: usize,
+    display: [usize; 2],
+) -> [u8; 4] {
+    let axis = |at: usize, size: usize, extent: u32| {
+        let p = (((at as u64 * 2 + 1) * u64::from(extent) * 128 / size as u64).saturating_sub(128))
+            .min(u64::from(extent - 1) * 256) as usize;
+        (p / 256, (p / 256 + 1).min(extent as usize - 1), p % 256)
+    };
+    let (x0, x1, fx) = axis(x, display[0], rect[2]);
+    let (y0, y1, fy) = axis(y, display[1], rect[3]);
+    let mut alpha = 0_u64;
+    let mut rgb = [0_u64; 3];
+    for (sx, sy, weight) in [
+        (x0, y0, (256 - fx) * (256 - fy)),
+        (x1, y0, fx * (256 - fy)),
+        (x0, y1, (256 - fx) * fy),
+        (x1, y1, fx * fy),
+    ] {
+        let at = ((rect[1] as usize + sy) * source.width as usize + rect[0] as usize + sx) * 4;
+        let a = u64::from(source.rgba[at + 3]) * weight as u64;
+        alpha += a;
+        for (c, total) in rgb.iter_mut().enumerate() {
+            *total += u64::from(source.rgba[at + c]) * a;
+        }
+    }
+    if alpha == 0 {
+        return [0; 4];
+    }
+    [
+        ((rgb[0] + alpha / 2) / alpha) as u8,
+        ((rgb[1] + alpha / 2) / alpha) as u8,
+        ((rgb[2] + alpha / 2) / alpha) as u8,
+        ((alpha + 32768) / 65536) as u8,
+    ]
+}
+
+/// Give the crystal theme's flat red outline a raised enamel rim. The source
+/// silhouette and its transparent center remain exactly the sampled alpha.
+pub(super) fn ruby_arrow(
+    source: &Texture,
+    rect: [u32; 4],
+    x: usize,
+    y: usize,
+    display: [usize; 2],
+    color: [u8; 4],
+) -> [u8; 4] {
+    if color[3] == 0 {
+        return [0; 4];
+    }
+    // Only the existing red outline needs this treatment. Preserve differently
+    // colored replacement art and its original highlights.
+    if color[0] < 128 || color[1] >= 48 || color[2] >= 48 {
+        return color;
+    }
+    let alpha = |x: i32, y: i32| {
+        if x < 0 || y < 0 || x >= display[0] as i32 || y >= display[1] as i32 {
+            return 0;
+        }
+        let sx = rect[0] as usize + (x as usize * 2 + 1) * rect[2] as usize / (display[0] * 2);
+        let sy = rect[1] as usize + (y as usize * 2 + 1) * rect[3] as usize / (display[1] * 2);
+        i32::from(source.rgba[(sy * source.width as usize + sx) * 4 + 3])
+    };
+    let (ix, iy) = (x as i32, y as i32);
+    let bevel =
+        (alpha(ix + 2, iy) - alpha(ix - 2, iy) + 2 * (alpha(ix, iy + 2) - alpha(ix, iy - 2))) / 12;
+    let sheen = (12 - ((x + y) % 48) as i32).max(0);
+    let variation = (grain(x / 2, y / 2) % 7) as i32 - 3 + (i32::from(color[0]) - 224) / 4;
+    [
+        (176 + bevel + sheen + variation).clamp(70, 245) as u8,
+        (44 + bevel * 3 / 4 + sheen / 2 + variation).clamp(15, 112) as u8,
+        (38 + bevel / 2 + variation).clamp(18, 85) as u8,
+        color[3],
+    ]
+}
+
 pub(super) struct Material {
     pub rgba: Vec<u8>,
     width: usize,
@@ -198,6 +358,128 @@ mod tests {
         assets::{AssetFrame, AssetKey},
         scene::Texture,
     };
+    fn texture(width: u32, height: u32, rgba: Vec<u8>) -> Texture {
+        Texture {
+            width,
+            height,
+            rgba,
+            revision: 1,
+        }
+    }
+    #[test]
+    fn steel_and_masonry_have_world_aligned_detail_and_stay_opaque() {
+        use std::collections::BTreeSet;
+        let mut themes = BTreeSet::new();
+        for theme in 0..5 {
+            let mut colors = BTreeSet::new();
+            for y in 0..48 {
+                for x in 0..96 {
+                    let color = steel_pixel(x, y, theme);
+                    assert_eq!(color[3], 255);
+                    assert_eq!(color, steel_pixel(x, y, theme));
+                    colors.insert(color);
+                }
+            }
+            assert!(colors.len() > 50, "steel must have grain, seams and rivets");
+            themes.insert(steel_pixel(25, 20, theme));
+        }
+        assert_eq!(themes.len(), 5);
+        let mut bricks = BTreeSet::new();
+        for y in 0..18 {
+            for x in 0..72 {
+                let color = masonry_pixel(x, y);
+                assert_eq!(color[3], 255);
+                bricks.insert(color);
+            }
+        }
+        assert!(
+            bricks.len() > 30,
+            "masonry must have material and edge detail"
+        );
+    }
+
+    #[test]
+    fn sprite_filter_blends_premultiplied_color_without_transparent_halos() {
+        let source = texture(2, 1, vec![255, 0, 0, 255, 0, 0, 255, 0]);
+        assert_eq!(
+            sample_rgba(&source, [0, 0, 2, 1], 0, 0, [1, 1]),
+            [255, 0, 0, 128]
+        );
+        let solid = texture(2, 1, vec![20, 40, 60, 255, 80, 100, 120, 255]);
+        assert_eq!(
+            sample_rgba(&solid, [0, 0, 2, 1], 0, 0, [1, 1]),
+            [50, 70, 90, 255]
+        );
+        assert_eq!(
+            sample_rgba(&solid, [0, 0, 2, 1], 0, 0, [4, 1]),
+            [20, 40, 60, 255]
+        );
+        assert_eq!(
+            sample_rgba(&solid, [0, 0, 2, 1], 3, 0, [4, 1]),
+            [80, 100, 120, 255]
+        );
+        let empty = texture(2, 1, vec![255, 255, 0, 0, 0, 255, 255, 0]);
+        assert_eq!(sample_rgba(&empty, [0, 0, 2, 1], 0, 0, [1, 1]), [0; 4]);
+    }
+
+    #[test]
+    fn sprite_filter_clamps_to_its_atlas_rect_and_mirrors_without_phase_drift() {
+        let source = texture(
+            4,
+            1,
+            vec![
+                255, 0, 255, 255, 20, 40, 60, 255, 80, 100, 120, 255, 0, 255, 0, 255,
+            ],
+        );
+        for x in 0..8 {
+            let color = sample_rgba(&source, [1, 0, 2, 1], x, 0, [8, 1]);
+            assert!((20..=80).contains(&color[0]));
+            assert!((40..=100).contains(&color[1]));
+            assert!((60..=120).contains(&color[2]));
+        }
+        let source = texture(1, 2, vec![20, 40, 60, 255, 80, 100, 120, 255]);
+        for y in 0..8 {
+            let forward = sample_rgba(&source, [0, 0, 1, 2], 0, y, [1, 8]);
+            let reverse = sample_rgba(&source, [0, 0, 1, 2], 0, 7 - y, [1, 8]);
+            // Two independently rounded samples can differ by one intensity.
+            assert!((100..=101).contains(&(u16::from(forward[0]) + u16::from(reverse[0]))));
+        }
+    }
+
+    #[test]
+    fn ruby_arrow_bevel_preserves_every_alpha_sample_and_transparent_center() {
+        let mut pixels = vec![0; 12 * 12 * 4];
+        for y in 1..11 {
+            for x in 1..11 {
+                if !(4..8).contains(&x) || !(4..8).contains(&y) {
+                    pixels[(y * 12 + x) * 4..(y * 12 + x) * 4 + 4]
+                        .copy_from_slice(&[240, 0, 0, 255]);
+                }
+            }
+        }
+        let source = texture(12, 12, pixels);
+        let mut colors = std::collections::BTreeSet::new();
+        for y in 0..24 {
+            for x in 0..24 {
+                let color = sample_rgba(&source, [0, 0, 12, 12], x, y, [24, 24]);
+                let shaded = ruby_arrow(&source, [0, 0, 12, 12], x, y, [24, 24], color);
+                assert_eq!(shaded[3], color[3]);
+                if shaded[3] > 0 {
+                    assert!(shaded[0] > shaded[1] && shaded[0] > shaded[2]);
+                    colors.insert(shaded);
+                }
+            }
+        }
+        assert!(colors.len() > 30);
+        assert_eq!(
+            ruby_arrow(&source, [0, 0, 12, 12], 12, 12, [24, 24], [0; 4]),
+            [0; 4]
+        );
+        assert_eq!(
+            ruby_arrow(&source, [0, 0, 12, 12], 2, 2, [24, 24], [30, 200, 80, 255]),
+            [30, 200, 80, 255]
+        );
+    }
     #[test]
     fn vertical_contours_vary_inside_one_cell_and_preserve_walkable_caps_and_thin_walls() {
         let mut mask = vec![0; 40 * 80];
