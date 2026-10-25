@@ -174,3 +174,5 @@
 - [#226 배포 소스·패키지 최적화](issue-226_package_size.md)
 
 - [#230 v0.3.3 릴리즈·Pages](issue-230_release_v033.md)
+
+- [#233 Linux 그래픽 확장 조사](issue-233_linux_graphics.md)
