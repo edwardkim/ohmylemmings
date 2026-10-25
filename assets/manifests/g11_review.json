@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 314965,
-      "sha256": "e591ebb7c6806e67af2c4512d2151d87c325d7aeb307ecd449d6d1d3f8f90ae9",
+      "bytes": 316643,
+      "sha256": "1d60f3a11476af9ce4f76fd6288ac24603200d9b5ae1557bfdce65c04f2809df",
       "id": "compatibility"
     },
     {
@@ -11348,5 +11348,17 @@
       }
     ],
     "scope": "Maintainer stopped residual performance tracking after accepting the native40FPS target. Documentation/package wording and current source pins only; archived NOT READY verdicts and measurements are unchanged."
+  },
+  "webgpu_246": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/246",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 314965,
+        "sha256": "e591ebb7c6806e67af2c4512d2151d87c325d7aeb307ecd449d6d1d3f8f90ae9",
+        "id": "compatibility"
+      }
+    ],
+    "scope": "Optional browser WebGPU presentation with Canvas2D fallback. Current source-index pins only; historical executions, performance/NOT READY verdicts and the maintainer closure of113 are preserved. No renewed all-level or performance qualification."
   }
 }

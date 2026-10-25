@@ -90,6 +90,10 @@ canvas.hd {image-rendering:auto;width:100%;}
 .music-controls [hidden] {display:none;}
 
 .screen {position:relative;}
+.screen canvas {grid-area:1 / 1;}
+.screen canvas[data-webgpu] {pointer-events:none;}
+.screen:focus-within canvas[data-webgpu] {outline:2px solid #b1df8c;outline-offset:4px;}
+#renderer-status {color:#b1df8c;font:12px ui-monospace,monospace;}
 .fps-controls {display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:12px 20px;font-size:12px;color:#a2b2b1;}
 .fps-controls button {padding:7px 10px;}
 .fps-hud {position:absolute;top:10px;left:10px;z-index:3;max-width:calc(100% - 20px);padding:8px 10px;border:1px solid #66825e;border-radius:6px;background:#0b1418eb;pointer-events:none;}

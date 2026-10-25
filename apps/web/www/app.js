@@ -1,5 +1,5 @@
 import init, { WebGame, WebAudio, WebAssets } from './pkg/lemmings_web.js';
-import { FramePump, present } from './host.js';
+import { FramePump } from './host.js';
 import { AudioHost } from './audio.js';
 import { GameInput, readFiles } from './controls.js';
 import { loadBundled } from './bundled.js';
@@ -8,9 +8,17 @@ import { HdLoader } from './hd-loader.js';
 import { ProgressiveHdLoader } from './progressive-hd.js';
 import { DownloadProgress, readDownload } from './download.js';
 import { FrameFeedback } from './frame-feedback.js';
+import { WebRenderer } from './renderer.js';
 
 const canvas = document.querySelector('#game');
-const context = canvas.getContext('2d', { alpha: false });
+let renderer;
+const rendererStatus = document.querySelector('#renderer-status');
+function rendererChanged() {
+    if (!renderer) return;
+    rendererStatus.textContent = renderer.kind === 'webgpu' ? 'WebGPU' : 'Canvas2D';
+    rendererStatus.title = renderer.reason;
+    if (game) { feedback.reset(); needsDraw = true; queueMicrotask(() => draw()); }
+}
 const status = document.querySelector('#status');
 const scene = document.querySelector('#scene');
 const pause = document.querySelector('#pause');
@@ -38,7 +46,7 @@ function queueNext(){
     if(!streamed||!hdMode||loading||document.hidden||connection?.saveData||['slow-2g','2g'].includes(connection?.effectiveType))return;
     backgroundTimer=setTimeout(()=>{backgroundTimer=null;void hdLoader.prefetch(game);},250);
 }
-function screenSize(){canvas.classList.toggle('hd',hdMode);canvas.width=hdMode?1920:320;canvas.height=hdMode?1080:200;canvas.style.setProperty('--aspect',String(canvas.width/canvas.height));}
+function screenSize(){canvas.classList.toggle('hd',hdMode);canvas.width=hdMode?1920:320;canvas.height=hdMode?1080:200;canvas.style.setProperty('--aspect',String(canvas.width/canvas.height));renderer?.resize(canvas.width,canvas.height);renderer?.surface.style.setProperty('--aspect',String(canvas.width/canvas.height));}
 let audio;
 let audioHeld=false;
 let game;
@@ -54,7 +62,7 @@ const feedback=new FrameFeedback(document,()=>({
     version:document.querySelector('meta[name="game-version"]')?.content||'development',platform:'Web',
     level:game?.original()?`${game.difficulty()} ${game.level()}`:`practice ${scene.value}`,
     presentation:hdMode?'HD':'original',viewport:`${canvas.clientWidth}x${canvas.clientHeight} CSS px @${devicePixelRatio}`,
-    runtime:navigator.userAgent,
+    runtime:`${navigator.userAgent}; renderer=${renderer?.kind}; ${renderer?.reason || ''}`,
 }));
 function notify(type, detail = {}) { if (observer) observer(type, game, detail); }
 const tickObserver = phase => notify(phase);
@@ -95,7 +103,7 @@ function fail(error) {
 function draw() {
     presentations++;
     needsDraw=false;
-    if(!hdPending){if(hdMode)hd.draw(context);else present(context, game.frame(), game.width(), game.height());}
+    if(!hdPending)renderer.draw(game,hdMode,hd);
     const state = JSON.parse(game.state());
     const finished = state.completion && state.completion.phase !== 'Playing';
     const paused = game.paused();
@@ -119,7 +127,7 @@ function draw() {
     population.textContent = `활동 중 ${state.session.alive} · 구출 ${state.exit.saved}`;
     const rank = game.difficulty();
     source.textContent = game.original() ? `원본 파일 · ${rank[0].toUpperCase()+rank.slice(1)} ${String(game.level()).padStart(2,'0')}` : '직접 만든 자산으로 기술과 구출을 연습합니다.';
-    if(!hdPending)notify('present',{canvas});
+    if(!hdPending)notify('present',{canvas:renderer.surface});
     if (finished || exited) stop();
     return !finished && !exited;
 }
@@ -142,6 +150,7 @@ function replaced(reason) {
     feedback.reset();
     clearTimeout(backgroundTimer);hdLoader.cancelBackground?.();
     hd?.invalidate();
+    renderer.invalidate();
     notify('reset',{reason});
     input.release();
     exited = false;
@@ -209,7 +218,7 @@ presentation.addEventListener('change',async()=>{
         if(requested&&(!hd||hdScope!==game.hd_scope()||hdPlan!==currentPlan())){
             await hdLoader.load(game);hd=new HdCanvas(game);hdScope=game.hd_scope();hdPlan=currentPlan();
         }
-        hdMode=requested;screenSize();feedback.reset();errorText.textContent='';
+        hdMode=requested;renderer.invalidate();screenSize();feedback.reset();errorText.textContent='';
     } catch(error){presentation.value=hdMode?'hd':'original';recover(error);}
     finally {loading=false;pump.suspend();draw();schedule();queueNext();canvas.focus({preventScroll:true});}
 });
@@ -225,6 +234,11 @@ document.addEventListener('fullscreenchange',()=>{
     else screen.before(downloadUI.root);
 });
 try {
+    renderer = await WebRenderer.create(canvas, {
+        preference:new URLSearchParams(location.search).get('renderer') || 'auto',
+        onChange:rendererChanged,
+    });
+    rendererChanged();
     downloadUI.update({phase:'foreground',label:'게임 엔진 준비',status:'loading',loaded:0,total:null});
     const wasmResponse=await fetch('./pkg/lemmings_web_bg.wasm');
     const length=wasmResponse.headers.get('content-encoding')?null:Number(wasmResponse.headers.get('content-length'))||null;
@@ -287,6 +301,7 @@ try {
     audio.setVolume(Number(volume.value));
     window.addEventListener('pagehide',()=>void audio.dispose());
     window.addEventListener('pagehide',()=>{clearTimeout(backgroundTimer);hdLoader.cancel?.();});
+    window.addEventListener('pagehide',event=>{if(!event.persisted)renderer.dispose();});
     loading=false;
     input = new GameInput(canvas, () => inputGame, action, draw, recover, () => !loading && !exited);
     draw(); schedule();queueNext();

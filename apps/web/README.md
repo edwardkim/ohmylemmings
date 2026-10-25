@@ -109,6 +109,18 @@ python3 tools/check_web.py --evidence assets/local/web-original-check --original
 
 파일은 서버에 업로드하거나 브라우저 영구 저장소에 복사하지 않습니다.512MB 이하의 DRM 없는 MP3를 브라우저 미디어 경로로 재생하며 전곡을 WASM/AudioBuffer로 선디코딩하지 않습니다. 파일 해제로 원본 음악에 복귀합니다. 새로고침하면 다시 선택해야 합니다. 게임 Pause 중 음악은 계속되고 결과/숨김에서 정지, 새 레벨/재시작/복귀에서 처음부터 재생합니다. MP3 오류는 게임/효과음을 중단하지 않습니다. [구현/검증](../../mydocs/plans/issue-202_local_mp3.md).
 
+## WebGPU 표시 (#246)
+
+웹은 시작할 때 보안 컨텍스트와 WebGPU adapter/device/파이프라인을 확인하여 사용 가능하면 WebGPU로 그립니다. 원본 RGB 화면과 HD draw-list 모두 지원합니다. HD는 텍스처 revision이 달라질 때만 premultiplied RGBA를 업로드하며, 레벨/표시 모드 교체 때 GPU 캐시를 해제합니다. 시뮬레이션·지형 생성은 기존 Rust/WASM에서 실행합니다.
+
+미지원, 일반 LAN HTTP, 초기화 실패/3초 시간 초과, 장치 손실 또는 GPU 오류에는 Canvas2D로 실행하거나 현재 게임을 그대로 다시 표시합니다. `HTTPS` 또는 `http://localhost`로 접속해야 WebGPU 사용을 시도할 수 있습니다. 브라우저/OS/드라이버 정책에 따라 API가 있더라도 adapter가 없을 수 있습니다. 게임이 사용자 브라우저 설정을 변경하지 않습니다. [Chrome 공식 진단 안내](https://developer.chrome.com/docs/web-platform/webgpu/troubleshooting-tips).
+
+FPS 버튼 옆에 실제 사용 중인 `WebGPU`/`Canvas2D`가 표시되고, Canvas2D 표시 위에 마우스를 올리면 선택 사유를 확인할 수 있습니다. F2 피드백의 runtime에도 renderer와 사유가 포함됩니다. 비교/진단 시 URL에 `?renderer=canvas2d`를 추가하면 기존 경로로 실행합니다. WebGPU 표시는 API 선택을 뜻하며, 물리 GPU 가속 여부/성능은 브라우저가 선택한 adapter에 따라 달라집니다.
+
+입력 대상 `#game`은 유지하고, WebGPU에서는 같은 위치의 표시 전용 canvas를 직접 출력합니다. 입력 좌표·포커스·전체화면을 보존하고 GPU→Canvas2D 매 프레임 복사는 하지 않습니다. 개발 관찰 API `observe()`의 `present` 이벤트는 실제 출력 canvas를 전달합니다. 캡처 도구는 `[data-game-display]`를 사용하며, 과거 Canvas2D 픽셀 대조 도구에는 위 진단 URL을 사용합니다. 필터링/블렌딩 구현 차이로 HD Canvas2D/WebGPU의 모든 픽셀이 같지는 않습니다.
+
+실제 GPU 검증은 `python3 tools/check_webgpu.py --runtime <개발 Web 폴더> --evidence assets/local/<새 폴더>`로 실행합니다. WebGPU가 없으면 실패로 보고하며 skip을 통과로 기록하지 않습니다. Linux headless 검증에 필요한 경우 `--browser-arg=--enable-unsafe-webgpu --browser-arg=--enable-features=Vulkan --browser-arg=--use-angle=vulkan --browser-arg=--disable-vulkan-surface`를 추가합니다. 이 옵션은 임시 테스트 프로필에만 적용됩니다. [검증 계획](../../mydocs/plans/issue-246_webgpu.md).
+
 ## 표시 주기와 Native 목표
 
 Native의 현재 기본 표시 목표는40FPS입니다. Web은상태가바뀐때만Canvas를갱신하므로일반적인자동재그리기는게임논리속도에따라약14~17회/s입니다. 입력/레벨/결과UI는즉시갱신하며실시간음향서비스와rAF기반시간공급은매콜백에서유지합니다. rAF콜백이60/120/144Hz로호출되어도게임속도나실제Canvas갱신목표가그빈도라는뜻은아닙니다. 이번정책변경에서Web에중복된40Hz타이머나반복그리기를추가하지않습니다. [#240](../../mydocs/plans/issue-240_native_40fps.md).

@@ -23,7 +23,7 @@ from tools.app_icons import icon_bytes, MANIFEST as ICON_MANIFEST
 
 WEB_FILES = (
     'index.html', 'app.js', 'audio.js', 'local-music.js', 'audio-license.html', 'controls.js',
-    'host.js', 'frame-feedback.js', 'hd.js', 'hd-loader.js', 'progressive-hd.js', 'download.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
+    'host.js', 'frame-feedback.js', 'hd.js', 'renderer.js', 'webgpu.js', 'hd-loader.js', 'progressive-hd.js', 'download.js', 'bundled.js', 'style.css', 'pkg/lemmings_web.js', 'pkg/lemmings_web_bg.wasm',
 )
 COMMON_FILES = {'README.md', 'REBUILD.md', 'LGPL-2.1-or-later.txt'}
 PROJECT_LICENSE_FILES = {'LICENSE', 'THIRD_PARTY_NOTICES.txt'}

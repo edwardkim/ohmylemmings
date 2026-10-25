@@ -32,12 +32,12 @@
     {
       "path": "Cargo.lock",
       "bytes": 18361,
-      "sha256": "ebefab383b5685dd8d665598942768516f1a94b41ecd014e0545ade90b47a80d"
+      "sha256": "76c916874c673cfd1d42fb1399911803f57d97d677b690c3b561783a6c3b30da"
     },
     {
       "path": "Cargo.toml",
       "bytes": 454,
-      "sha256": "d6d217b64d2c2b4cac9e4c2daf67cbaf294d5d3e3e857c3d0403464afbae8190"
+      "sha256": "773fea45c66f34fa76cbaf136e7bbd7e93bec099d60e9cd3dda6e889f14a691b"
     },
     {
       "path": "LICENSE",
@@ -231,8 +231,8 @@
     },
     {
       "path": "apps/web/www/app.js",
-      "bytes": 18098,
-      "sha256": "c3875912bea24469c6fca4ee7786c6014cf11597dd6f6a3a2917680c8cca538a"
+      "bytes": 18905,
+      "sha256": "61224cc7c371d601e82bd64c920b6275d4213fd7e88c0da3fafcd5d463a3f50b"
     },
     {
       "path": "apps/web/www/audio-license.html",
@@ -261,13 +261,13 @@
     },
     {
       "path": "apps/web/www/index.html",
-      "bytes": 7695,
-      "sha256": "22f456947979ca5cbe589c8277e972b23316a161854f0e6c5306500b75a494b2"
+      "bytes": 7773,
+      "sha256": "9a4b17f91c19f446e1c0ca281357e2a295060ef09e7969f055560d3e082e90d5"
     },
     {
       "path": "apps/web/www/style.css",
-      "bytes": 7733,
-      "sha256": "f4f522665221ff38816d068cf6798fbacb7d5318306978e72276ab99dfb4c9d3"
+      "bytes": 7974,
+      "sha256": "ce6a88ca7a6931e8cbda516667f74791b703dd60a37ec4daf2646f88a8b13c66"
     },
     {
       "path": "assets/manifests/license_inventory.json",
@@ -1766,8 +1766,8 @@
     },
     {
       "path": "tools/release_package.py",
-      "bytes": 20117,
-      "sha256": "b47db4fe076c751c509a2b6a9e5f9e87e5b3f022277ef2e1d6bb597a1fe86dae"
+      "bytes": 20145,
+      "sha256": "37a5564383ee677c059786a90f155b46d123ee84ccec6f113e998e06c79d69e6"
     },
     {
       "path": "tools/release_version.py",
@@ -3868,6 +3868,16 @@
       "path": "tools/check_renderer.py",
       "bytes": 3397,
       "sha256": "78053abe1ac2c1b1d5a44e8e48af82da473fb9ddd2c41f32687762c650ede3b4"
+    },
+    {
+      "path": "apps/web/www/renderer.js",
+      "bytes": 3535,
+      "sha256": "a154b849cffba3619dd26cae5d114dc8391ce933caf7a255405a0cbe8f0cff37"
+    },
+    {
+      "path": "apps/web/www/webgpu.js",
+      "bytes": 9017,
+      "sha256": "b8e1b6a6d6c20cd9f4f16f4c83e3cef849457d05d61502549612020d55d6b3d9"
     }
   ],
   "evidence": [
@@ -8865,5 +8875,41 @@
       }
     ],
     "scope": "Maintainer stopped residual performance tracking after accepting the native40FPS target. Documentation/package wording and current source pins only; archived NOT READY verdicts and measurements are unchanged."
+  },
+  "webgpu_246": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/246",
+    "previous_pins": [
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 18098,
+        "sha256": "c3875912bea24469c6fca4ee7786c6014cf11597dd6f6a3a2917680c8cca538a"
+      },
+      {
+        "path": "apps/web/www/index.html",
+        "bytes": 7695,
+        "sha256": "22f456947979ca5cbe589c8277e972b23316a161854f0e6c5306500b75a494b2"
+      },
+      {
+        "path": "apps/web/www/style.css",
+        "bytes": 7733,
+        "sha256": "f4f522665221ff38816d068cf6798fbacb7d5318306978e72276ab99dfb4c9d3"
+      },
+      {
+        "path": "tools/release_package.py",
+        "bytes": 20117,
+        "sha256": "b47db4fe076c751c509a2b6a9e5f9e87e5b3f022277ef2e1d6bb597a1fe86dae"
+      },
+      {
+        "path": "Cargo.lock",
+        "bytes": 18361,
+        "sha256": "ebefab383b5685dd8d665598942768516f1a94b41ecd014e0545ade90b47a80d"
+      },
+      {
+        "path": "Cargo.toml",
+        "bytes": 454,
+        "sha256": "d6d217b64d2c2b4cac9e4c2daf67cbaf294d5d3e3e857c3d0403464afbae8190"
+      }
+    ],
+    "scope": "Optional browser WebGPU presentation with Canvas2D fallback. Current source-index pins only; historical executions, performance/NOT READY verdicts and the maintainer closure of113 are preserved. No renewed all-level or performance qualification."
   }
 }
