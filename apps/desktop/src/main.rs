@@ -17,6 +17,7 @@ mod pointer;
 mod render;
 mod replay_capture;
 mod session;
+mod video_renderer;
 use assets::Assets;
 use lemmings_core::{Difficulty, InputCommand, LevelId, StartupCommand};
 use lifecycle::{LevelRun, ResultAction};
@@ -972,11 +973,7 @@ fn run(mut options: Options) -> Result<(), Box<dyn Error>> {
         .resizable()
         .build()?;
     app_icon::apply(&mut window)?;
-    let mut canvas = if options.hd || options.hd_pack.is_some() {
-        window.into_canvas().build()?
-    } else {
-        window.into_canvas().software().build()?
-    };
+    let mut canvas = video_renderer::create(window, video.current_video_driver())?;
     if options.fullscreen {
         canvas
             .window_mut()

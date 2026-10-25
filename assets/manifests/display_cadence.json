@@ -869,8 +869,8 @@
   "source": [
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 74109,
-      "sha256": "788b4c2bab4dd7d39b68c28aad85aaacfddc1d9e6fc7e4f60f46bfe9007c521c"
+      "bytes": 74040,
+      "sha256": "c9493cfe247ec41c985afb41142884415bb55506526cd58210062892bdf566e1"
     },
     {
       "path": "apps/desktop/src/frame_clock.rs",
@@ -1732,5 +1732,16 @@
       }
     ],
     "scope": "Opt-in player FPS/feedback UI. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "gpu_startup_235": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/235",
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 74109,
+        "sha256": "788b4c2bab4dd7d39b68c28aad85aaacfddc1d9e6fc7e4f60f46bfe9007c521c"
+      }
+    ],
+    "scope": "Native startup now selects an initialized SDL accelerated renderer for original/HD presentation and falls back to software. Existing historical timing/NOT READY verdicts are preserved; no new performance qualification."
   }
 }
