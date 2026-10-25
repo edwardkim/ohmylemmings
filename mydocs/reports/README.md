@@ -196,3 +196,5 @@
 - [#240 Native 표시 목표40FPS 반영·실측](issue-240_native_40fps.md)
 
 - [#113 성능 추적 종료 결정](issue-113_closure.md)
+
+- [#244 완료 워크트리 정리·디스크 공간 확보](issue-244_worktree_cleanup.md)
