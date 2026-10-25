@@ -1,5 +1,7 @@
 # 계획 문서
 
+- [#252 v0.3.5 재질 개선 릴리즈·Pages](issue-252_release_v035.md)
+
 - [#249 HD 지형·지물 재질 완성도](issue-249_hd_material_quality.md): 단색 강철/계단과 전체 활성 자산 점검·개선.
 
 - [#246 WebGPU 웹 렌더러](issue-246_webgpu.md): 원본/HD GPU 표시와 Canvas2D fallback.
