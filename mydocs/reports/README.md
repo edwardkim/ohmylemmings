@@ -1,5 +1,7 @@
 # 작업 결과 보고서
 
+- [#252 v0.3.5 재질 개선 배포](issue-252_release_v035.md)
+
 - [#249 HD 지형·지물 공통 품질](issue-249_hd_material_quality.md): 강철/계단·지물/특수 배경 보간·결정 표지, 전체 자산/120초기 장면 점검.
 
 - [#246 WebGPU 구현·v0.3.4 배포](issue-246_webgpu.md)

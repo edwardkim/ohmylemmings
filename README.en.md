@@ -28,6 +28,8 @@ This notice explains the project's purpose and the limits of what has been estab
 
 ## Play and current status
 
+[v0.3.5 scenery material polish](mydocs/releases/issue-252_v0.3.5.md) is being prepared. The maintainer reviewed the development preview; Releases and Pages publication follows platform package verification.
+
 As of 2026-10-25, the latest stable release is **v0.3.4**. Please also read the original-asset notice above.
 
 - [Play in your browser](https://edwardkim.github.io/ohmylemmings/) · [Download for Windows/macOS/Linux/Web](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.4)

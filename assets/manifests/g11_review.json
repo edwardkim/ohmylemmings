@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 317820,
-      "sha256": "2794338c38b79d5e9571c2686dcb81b8afad60e528c1fa96bc017efbf77217a9",
+      "bytes": 318564,
+      "sha256": "d6d9e190b0d9ac786b39d1b5a698f492abb2548d700c83dc4ecdbc02b411b797",
       "id": "compatibility"
     },
     {
@@ -11372,5 +11372,17 @@
       }
     ],
     "scope": "Shared HD presentation only: themed procedural steel/masonry, premultiplied frame-clamped bilinear scenery/panorama sampling and raised crystal-arrow ink. Original simulation, masks, animation phases and audio are unchanged. Current source-index pins only; all historical executions/NOT READY verdicts and the maintainer closure of113 are preserved. New120 initial-scene,54-object and representative saved-solution checks are scoped to249, not renewed all-level completion or FPS qualification."
+  },
+  "release_252": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/252",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 317820,
+        "sha256": "2794338c38b79d5e9571c2686dcb81b8afad60e528c1fa96bc017efbf77217a9",
+        "id": "compatibility"
+      }
+    ],
+    "scope": "Maintainer accepted249 development preview and approved the next publication procedure. Workspace/lock versions now0.3.5 under the124 patch policy; scenery implementation is unchanged. Current source-index pins only; preserve prior pins, historical executions/performance verdicts and113 closure."
   }
 }

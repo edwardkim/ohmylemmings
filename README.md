@@ -28,6 +28,8 @@
 
 ## 플레이와 현재 상태
 
+[v0.3.5 지형·지물 재질 개선 릴리즈](mydocs/releases/issue-252_v0.3.5.md)를 준비하고 있습니다. 메인테이너가 개발 미리보기를 확인했으며, 플랫폼 패키지 검증 후 Releases와 Pages에 게시합니다.
+
 2026-10-25 기준 최신 정식 버전은 **v0.3.4**입니다. 위의 원본 자산 관련 경계를 함께 확인하세요.
 
 - [웹에서 플레이](https://edwardkim.github.io/ohmylemmings/) · [Windows/macOS/Linux/Web 다운로드](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.4)

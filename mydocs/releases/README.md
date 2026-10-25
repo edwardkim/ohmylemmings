@@ -1,5 +1,7 @@
 # 릴리즈 기록
 
+- [#252 v0.3.5 지형·지물 재질 개선](issue-252_v0.3.5.md)
+
 - [#246 v0.3.4 WebGPU 렌더링](issue-246_v0.3.4.md)
 
 관리 정책: [#124 버전·태그·Releases](../plans/issue-124_release_policy.md).

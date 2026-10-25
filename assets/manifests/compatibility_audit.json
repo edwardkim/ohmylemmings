@@ -32,12 +32,12 @@
     {
       "path": "Cargo.lock",
       "bytes": 18361,
-      "sha256": "76c916874c673cfd1d42fb1399911803f57d97d677b690c3b561783a6c3b30da"
+      "sha256": "3b0aa63737d4c8a2acef3cf7de452bab1f1ccf4ec40507c9992019557d864db3"
     },
     {
       "path": "Cargo.toml",
       "bytes": 454,
-      "sha256": "773fea45c66f34fa76cbaf136e7bbd7e93bec099d60e9cd3dda6e889f14a691b"
+      "sha256": "93b83882912c4383646a8408c744ff2f7686243f63d6d15fe938b2d527b6c5e1"
     },
     {
       "path": "LICENSE",
@@ -8932,5 +8932,21 @@
       }
     ],
     "scope": "Shared HD presentation only: themed procedural steel/masonry, premultiplied frame-clamped bilinear scenery/panorama sampling and raised crystal-arrow ink. Original simulation, masks, animation phases and audio are unchanged. Current source-index pins only; all historical executions/NOT READY verdicts and the maintainer closure of113 are preserved. New120 initial-scene,54-object and representative saved-solution checks are scoped to249, not renewed all-level completion or FPS qualification."
+  },
+  "release_252": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/252",
+    "previous_pins": [
+      {
+        "path": "Cargo.lock",
+        "bytes": 18361,
+        "sha256": "76c916874c673cfd1d42fb1399911803f57d97d677b690c3b561783a6c3b30da"
+      },
+      {
+        "path": "Cargo.toml",
+        "bytes": 454,
+        "sha256": "773fea45c66f34fa76cbaf136e7bbd7e93bec099d60e9cd3dda6e889f14a691b"
+      }
+    ],
+    "scope": "Maintainer accepted249 development preview and approved the next publication procedure. Workspace/lock versions now0.3.5 under the124 patch policy; scenery implementation is unchanged. Current source-index pins only; preserve prior pins, historical executions/performance verdicts and113 closure."
   }
 }
