@@ -1,12 +1,14 @@
 # Hyper-Waterfall 문서 안내
 
+[#113 성능 추적을 종료](reports/issue-113_closure.md)했다(2026-10-25 메인테이너 지시, Not planned). Native40FPS 목표와 현재 플레이 범위를 수용했고, 과거60Hz NOT READY·측정은 역사 자료로 보존한다. 아래 과거 기록의 OPEN/잔여 표현은 이 종료 결정 전 상태다.
+
 [v0.3.3 릴리즈·Pages](reports/issue-230_release_v033.md)를 게시했다. 중복 소스와 미사용 배포 입력을 제거해 Web ZIP을218.03→97.57MB로 줄였다. 전체 플랫폼 CI·공개 파일/소스 링크·실제 웹 플레이 검증을 완료했다. 아래 버전 기록은 당시 상태다.
 
 [v0.3.2 릴리즈·GitHub Pages 게시](reports/issue-219_release_v032.md)를 완료했다. #215 지형 질감/수직벽, #216 굴착·조준·추락·수량0 선택 피드백과 #113 FPS 표시를 포함한다. #216은 메인테이너 전체 통과 판정 후 PR#220/플랫폼 CI7개를 통과해 병합·종료했다. 아래 과거 배포 기록은 당시 상태다.
 
 [#215 HD 지형·지물 품질](reports/issue-215_hd_surface_quality.md)의 현재 질감·수직벽 윤곽 수준을 메인테이너가 인수했다. PR #217 병합과 전체 플랫폼 CI7개를 완료했다. 공식 배포는 변경하지 않았다.
 
-[#113 플레이 FPS·피드백](reports/issue-113_player_feedback.md)의 Web/Native F3 표시·F2 요약 복사를 구현하고 플랫폼 CI7개·PR #213 병합·메인테이너 동작 테스트 인수를 완료했다. 고성능 환경의 잔여 성능/메모리 검증과 NOT READY/OPEN 판정은 유지한다.
+[#113 플레이 FPS·피드백](reports/issue-113_player_feedback.md)의 Web/Native F3 표시·F2 요약 복사를 구현하고 플랫폼 CI7개·PR #213 병합·메인테이너 동작 테스트 인수를 완료했다. 현재 #113 추적은 메인테이너 지시로 종료했으며 과거 성능/메모리 NOT READY 기록은 보존한다.
 
 [#208 Native MP3 선택 대화상자·앱 아이콘](reports/issue-208_native_polish.md)을 포함한 **v0.3.1 정식 릴리즈·Pages**를 게시했습니다. [릴리즈](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.1)·[웹 플레이](https://edwardkim.github.io/ohmylemmings/)를 제공합니다. 동일 tree CI7개·4플랫폼/12파일과 Windows Shell/Mac ICNS·실제 Native 파일 선택을 검증했습니다. [#202 로컬 MP3](reports/issue-202_local_mp3.md)·[2D HD](plans/issue-137_2d_remaster.md)·[점진적 다운로드/진행률](reports/issue-196_web_progressive.md)도 포함합니다. #202는 메인테이너 최종 사용 확인으로 완료했으며 #113 성능 NOT READY를 유지한다.  아래 단계별 문구는 당시 기록입니다.
 

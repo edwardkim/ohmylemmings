@@ -188,7 +188,7 @@ def create_package(kind, runtime, output, root=ROOT, assets=None):
     files['README.md'] = (
         f'# Oh My Lemmings {version} package ({target})\n\n' + launch + '\n'
         + data_notice +
-        'Native presentation targets 40fps; performance/memory qualification is pending (#113).\n'
+        'Native presentation targets 40fps; actual cadence depends on the device and workload.\n'
         'Project-authored contributions are MIT; see LICENSE and THIRD_PARTY_NOTICES.txt.\n'
         'Third-party terms remain in force; original DOS data and marks are outside the MIT grant.\n'
         'The OPL synthesizer is LGPL-2.1-or-later: Copyright (C) 2013-2020 Nuke.YKT;\n'

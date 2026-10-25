@@ -1,5 +1,7 @@
 # 플레이 중 FPS 표시와 성능 피드백
 
+현재 상태: 2026-10-25 메인테이너 지시로 #113 추적을 종료했다(Not planned). [종료 근거](../reports/issue-113_closure.md)를 따른다. 아래 OPEN/잔여/NOT READY 표현은 종료 전 기록이다.
+
 담당 [#113](https://github.com/edwardkim/ohmylemmings/issues/113). 메인테이너는 FPS를 보며 실제 플레이 피드백을 받는 방식을 제안하고 2026-10-24 구현을 지시했다.
 
 ## 구현 계약

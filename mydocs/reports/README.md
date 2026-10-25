@@ -194,3 +194,5 @@
 - [#238 이 PC Native HD GPU FPS·VNC 접속 비교](issue-238_native_gpu_fps.md)
 
 - [#240 Native 표시 목표40FPS 반영·실측](issue-240_native_40fps.md)
+
+- [#113 성능 추적 종료 결정](issue-113_closure.md)

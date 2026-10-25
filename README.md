@@ -35,7 +35,7 @@
 - 원본 120레벨, 8가지 기술, HD/원본 화면 전환, 지형 질감·수직벽 개선을 제공합니다.
 - 굴착 충격·분진·효과음, 원형 대상 표시, 추락사 충격 표현과 수량0 기술 선택 차단을 제공합니다.
 - Web은 현재 플레이에 필요한 HD 자산을 먼저 받고 다음 레벨 자산을 백그라운드로 받습니다. 진행률·재시도·캐시 재사용을 지원합니다.
-- F3으로 FPS를 표시하고 F2로 피드백 요약을 복사합니다. [#113 성능·메모리 검증](https://github.com/edwardkim/ohmylemmings/issues/113)은 남아 있으며 60fps를 보장하지 않습니다.
+- F3으로 FPS를 표시하고 F2로 피드백 요약을 복사합니다. [#113 성능 추적](https://github.com/edwardkim/ohmylemmings/issues/113)은 Native 40 FPS 목표 수용 후 메인테이너 지시로 종료했습니다. [종료 기록](mydocs/reports/issue-113_closure.md)에 과거 측정과 현재 범위를 정리했습니다.
 
 Windows는 **Windows 11 x64**를 지원하며 Windows 10은 지원하지 않습니다. macOS는 **13+ Apple Silicon/Intel universal2**이며 ad-hoc 서명·미공증 상태입니다. Linux는 SDL2 runtime이 필요합니다. 압축 파일은 전체를 풀어서 사용하세요.
 

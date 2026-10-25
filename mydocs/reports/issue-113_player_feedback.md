@@ -1,5 +1,7 @@
 # 플레이 중 FPS 표시와 성능 피드백
 
+현재 상태: 2026-10-25 메인테이너 지시로 #113 추적을 종료했다(Not planned). [종료 근거](../reports/issue-113_closure.md)를 따른다. 아래 OPEN/잔여/NOT READY 표현은 종료 전 기록이다.
+
 담당 [#113](https://github.com/edwardkim/ohmylemmings/issues/113), [구현 계약](../working/issue-113_player_feedback.md). 2026-10-24 메인테이너의 제안과 구현 지시를 반영한다. 기존 [성능 검증 이월](issue-113_web_dispatch.md)과 **#113/G11 성능 NOT READY는 별도 잔여**다.
 
 ## 사용 방법

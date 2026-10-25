@@ -1766,8 +1766,8 @@
     },
     {
       "path": "tools/release_package.py",
-      "bytes": 20118,
-      "sha256": "76570d62377565deceff2327dd033ad1fd808ebad60c489ab6ebb170deed11e0"
+      "bytes": 20117,
+      "sha256": "b47db4fe076c751c509a2b6a9e5f9e87e5b3f022277ef2e1d6bb597a1fe86dae"
     },
     {
       "path": "tools/release_version.py",
@@ -8854,5 +8854,16 @@
         "name": "forced_frames_do_not_postpone_grid_and_render_every_scales_sixty_hz"
       }
     ]
+  },
+  "maintainer_closure_113": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/113",
+    "previous_pins": [
+      {
+        "path": "tools/release_package.py",
+        "bytes": 20118,
+        "sha256": "76570d62377565deceff2327dd033ad1fd808ebad60c489ab6ebb170deed11e0"
+      }
+    ],
+    "scope": "Maintainer stopped residual performance tracking after accepting the native40FPS target. Documentation/package wording and current source pins only; archived NOT READY verdicts and measurements are unchanged."
   }
 }

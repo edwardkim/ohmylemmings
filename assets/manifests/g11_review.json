@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 314438,
-      "sha256": "53f65f980035ffe7a6a477ef9de8517b6b49efc153ba2d944d0aba79dd4e7d51",
+      "bytes": 314965,
+      "sha256": "e591ebb7c6806e67af2c4512d2151d87c325d7aeb307ecd449d6d1d3f8f90ae9",
       "id": "compatibility"
     },
     {
@@ -11336,5 +11336,17 @@
       }
     ],
     "scope": "Maintainer accepted40FPS native presentation target. Display deadlines change; simulation pacing and archived60Hz measurements/NOT READY verdicts are preserved. Web keeps changed-state-only drawing."
+  },
+  "maintainer_closure_113": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/113",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 314438,
+        "sha256": "53f65f980035ffe7a6a477ef9de8517b6b49efc153ba2d944d0aba79dd4e7d51",
+        "id": "compatibility"
+      }
+    ],
+    "scope": "Maintainer stopped residual performance tracking after accepting the native40FPS target. Documentation/package wording and current source pins only; archived NOT READY verdicts and measurements are unchanged."
   }
 }
