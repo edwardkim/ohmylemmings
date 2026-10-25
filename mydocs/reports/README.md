@@ -192,3 +192,5 @@
 - [#235 Native 시작 GPU 가속 선택·software fallback](issue-235_gpu_startup.md)
 
 - [#238 이 PC Native HD GPU FPS·VNC 접속 비교](issue-238_native_gpu_fps.md)
+
+- [#240 Native 표시 목표40FPS 반영·실측](issue-240_native_40fps.md)
