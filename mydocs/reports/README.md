@@ -184,3 +184,5 @@
 - [#224 Web 배포 용량 증가 조사](issue-224_web_size.md)
 
 - [#226 배포 중복 소스·미사용 파일 제거 결과](issue-226_package_size.md)
+
+- [#230 v0.3.3 릴리즈·Pages 최종 인수](issue-230_release_v033.md)
