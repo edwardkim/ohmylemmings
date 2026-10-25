@@ -20,7 +20,7 @@
 - 자체 작성 기여에는 [MIT](LICENSE)가 적용됩니다. 외부 코드에는 각각의 라이선스가 적용되며 [제3자 고지 전문](THIRD_PARTY_NOTICES.txt)과 [적용 범위](third_party/README.md)를 확인하세요.
 - OPL 합성기는 **LGPL-2.1-or-later**, Native MP3 디코더 Symphonia는 **MPL-2.0**, Noto Sans 글꼴은 **OFL**을 유지합니다. 소스 제공·수정·재링크 안내는 [OPL 문서](crates/lemmings-opl/README.md)와 배포본의 `REBUILD.md`를 따릅니다.
 - **원본 DOS 그래픽·레벨·음악·효과음·캐릭터·상표에는 프로젝트 MIT 허가가 적용되지 않습니다.** HD로 다시 그리거나 AI로 생성했다는 사실만으로 원작 관련 권리가 해소되는 것은 아닙니다.
-- **현재 v0.3.4 다운로드와 Pages에는 원본 게임 데이터가 포함되어 있습니다.** 확인한 프로젝트 자료에는 그 원본 자산의 공개 재배포 허락 근거가 없습니다. 출처·해시와 라이선스 고지 검사는 배포 권한의 확인을 의미하지 않습니다.
+- **현재 v0.3.5 다운로드와 Pages에는 원본 게임 데이터가 포함되어 있습니다.** 확인한 프로젝트 자료에는 그 원본 자산의 공개 재배포 허락 근거가 없습니다. 출처·해시와 라이선스 고지 검사는 배포 권한의 확인을 의미하지 않습니다.
 - 연구·학습·비상업적 목적이라는 설명도 원본 자산의 이용·재배포 허가를 대신하지 않습니다. 이 프로젝트는 공식 제품이나 권리자의 승인·제휴를 주장하지 않습니다.
 - 사용자 로컬 MP3는 업로드하거나 배포본에 포함하지 않습니다. 이 기능은 음악의 저작권 자체를 없애거나 모든 이용을 허용하지 않습니다.
 
@@ -28,12 +28,11 @@
 
 ## 플레이와 현재 상태
 
-[v0.3.5 지형·지물 재질 개선 릴리즈](mydocs/releases/issue-252_v0.3.5.md)를 준비하고 있습니다. 메인테이너가 개발 미리보기를 확인했으며, 플랫폼 패키지 검증 후 Releases와 Pages에 게시합니다.
+2026-10-25 기준 최신 정식 버전은 **v0.3.5**입니다. 위의 원본 자산 관련 경계를 함께 확인하세요.
 
-2026-10-25 기준 최신 정식 버전은 **v0.3.4**입니다. 위의 원본 자산 관련 경계를 함께 확인하세요.
-
-- [웹에서 플레이](https://edwardkim.github.io/ohmylemmings/) · [Windows/macOS/Linux/Web 다운로드](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.4)
-- [v0.3.4 실행 안내](mydocs/releases/issue-246_v0.3.4.md) · [배포·공개 검증](mydocs/reports/issue-246_webgpu.md)
+- [웹에서 플레이](https://edwardkim.github.io/ohmylemmings/) · [Windows/macOS/Linux/Web 다운로드](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.5)
+- [v0.3.5 실행 안내](mydocs/releases/issue-252_v0.3.5.md) · [배포·공개 검증](mydocs/reports/issue-252_release_v035.md)
+- 강철·건설 계단의 질감과 입체감, HD 지물·특수 배경의 확대 품질, 결정 테마 방향 표지를 개선했습니다.
 - WebGPU 지원 브라우저에서는 원본/HD 화면을 GPU로 그리며, 미지원·장치 오류에는 Canvas2D로 전환합니다. Native는 GPU 자동 선택과40FPS 표시 목표를 적용합니다.
 - 원본 120레벨, 8가지 기술, HD/원본 화면 전환, 지형 질감·수직벽 개선을 제공합니다.
 - 굴착 충격·분진·효과음, 원형 대상 표시, 추락사 충격 표현과 수량0 기술 선택 차단을 제공합니다.
