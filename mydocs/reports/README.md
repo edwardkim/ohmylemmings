@@ -188,3 +188,5 @@
 - [#230 v0.3.3 릴리즈·Pages 최종 인수](issue-230_release_v033.md)
 
 - [#233 Linux 고품질 자산·GPU 렌더링 확장 조사](issue-233_linux_graphics_review.md)
+
+- [#235 Native 시작 GPU 가속 선택·software fallback](issue-235_gpu_startup.md)
