@@ -1,5 +1,7 @@
 # Hyper-Waterfall 문서 안내
 
+[v0.3.5 지형·지물 재질 개선](reports/issue-252_release_v035.md)을 정식 릴리즈·Pages로 게시했다. 메인테이너 시각 인수·동일 tree CI7개·공개109실행 파일/소스·WebGPU/Canvas 실제 플레이를 검증했다. 아래 과거 구현/배포 기록은 각 검증 시점의 상태다.
+
 [#249 HD 지형·지물 공통 품질](reports/issue-249_hd_material_quality.md)을 개발 main에 반영했다. 강철·계단 재질, 지물/특수 배경 확대 보간과 결정 표지 조명을 개선하고 전체 자산·120초기 장면·실제 Native/Canvas/WebGPU·플랫폼 CI7개를 검증했다. 공식 배포는 아래 v0.3.4를 유지한다.
 
 [v0.3.4 WebGPU 릴리즈·Pages](reports/issue-246_webgpu.md)를 게시했다. 원본/HD WebGPU와 Canvas2D 자동 복구, Native GPU 선택/40FPS를 제공한다. 플랫폼 CI7개·공개109실행 파일/소스·실제 WebGPU 플레이를 검증했다. 아래 과거 배포 기록은 당시 상태다.

@@ -20,7 +20,7 @@ Accordingly, **we do not claim that this was built without reverse engineering, 
 - Project-authored contributions use the [MIT License](LICENSE). Third-party code retains its own terms; see the [complete notices](THIRD_PARTY_NOTICES.txt) and [scope guide](third_party/README.md).
 - The OPL synthesizer remains **LGPL-2.1-or-later**, the native Symphonia MP3 decoder **MPL-2.0**, and the Noto Sans font **OFL**. See the [OPL documentation](crates/lemmings-opl/README.md) and the packaged `REBUILD.md` for source, modification, and relinking instructions.
 - **The project's MIT grant does not cover original DOS graphics, levels, music, sound effects, characters, or trademarks.** Redrawing assets in HD or generating them with AI does not, by itself, resolve rights in the original work.
-- **The current v0.3.4 downloads and Pages deployment contain original game data.** The project materials reviewed do not establish permission to redistribute those original assets publicly. Provenance, hashes, and notice checks do not establish distribution rights.
+- **The current v0.3.5 downloads and Pages deployment contain original game data.** The project materials reviewed do not establish permission to redistribute those original assets publicly. Provenance, hashes, and notice checks do not establish distribution rights.
 - Research, educational, or noncommercial intent does not substitute for permission to use or redistribute original assets. This project does not claim to be an official product or to have the rights holder's endorsement or affiliation.
 - User-selected local MP3 files are not uploaded or bundled. This feature does not remove copyright in those recordings or authorize every use.
 
@@ -28,12 +28,11 @@ This notice explains the project's purpose and the limits of what has been estab
 
 ## Play and current status
 
-[v0.3.5 scenery material polish](mydocs/releases/issue-252_v0.3.5.md) is being prepared. The maintainer reviewed the development preview; Releases and Pages publication follows platform package verification.
+As of 2026-10-25, the latest stable release is **v0.3.5**. Please also read the original-asset notice above.
 
-As of 2026-10-25, the latest stable release is **v0.3.4**. Please also read the original-asset notice above.
-
-- [Play in your browser](https://edwardkim.github.io/ohmylemmings/) · [Download for Windows/macOS/Linux/Web](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.4)
-- [v0.3.4 release and launch notes](mydocs/releases/issue-246_v0.3.4.md) · [Publication and public verification](mydocs/reports/issue-246_webgpu.md)
+- [Play in your browser](https://edwardkim.github.io/ohmylemmings/) · [Download for Windows/macOS/Linux/Web](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.5)
+- [v0.3.5 release and launch notes](mydocs/releases/issue-252_v0.3.5.md) · [Publication and public verification](mydocs/reports/issue-252_release_v035.md)
+- Steel and Builder stairs gain detailed materials; HD scenery and special backgrounds scale more smoothly, with shaded crystal-theme direction markers.
 - Supported browsers render original/HD graphics through WebGPU with Canvas2D fallback. Native selects an accelerated renderer when available and targets40FPS.
 - Includes 120 original levels, eight skills, HD/original presentation switching, and improved terrain textures and vertical edges.
 - Adds digging impact, dust and sound, a circular targeting marker, fatal-fall impact feedback, and disabled selection of skills with zero remaining uses.
