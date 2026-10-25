@@ -27,7 +27,7 @@ Mayhem08의 강철을 계기로 활성 HD catalog 전체를 조사했다. 5개 �
 | 흙/암석 | [전](../../assets/remaster/previews/issue-249_theme-0_before.png) | [후](../../assets/remaster/previews/issue-249_theme-0_after.png) |
 | 결정·빨간 표지 | [전](../../assets/remaster/previews/issue-249_theme-4_before.png) | [후](../../assets/remaster/previews/issue-249_theme-4_after.png) |
 
-실제 Mayhem08 Native 전후 및 일반 Wayland Chromium WebGPU 화면도 확인했다. 회색 강철 덩어리가 금속판으로 바뀌며 주변 화산암과 구분된다. 원본 레벨에서 파생한 캡처는 `assets/local/issue-249/`에만 보존한다. 사용자 CDP19222와 기존8080 기본 게임은 교체하지 않았다.
+실제 Mayhem08 Native 전후 및 일반 Wayland Chromium WebGPU 화면도 확인했다. 회색 강철 덩어리가 금속판으로 바뀌며 주변 화산암과 구분된다. Native 실제 Wayland 창에서는 SDL OpenGL 가속으로160틱을 정상 실행했다(40FPS 표시 목표, 성능 측정은 아님). 원본 레벨에서 파생한 캡처는 `assets/local/issue-249/`에만 보존한다. 사용자 CDP19222와 기존8080 기본 게임은 교체하지 않았다.
 
 개발 미리보기: 기존 HTTP 서버의 `/preview-249/` 경로. 이 후보는 `development #249`로 표시한다. 공개 릴리즈/Pages는 기존 v0.3.4 그대로이며 새 버전 게시를 뜻하지 않는다.
 
@@ -37,8 +37,10 @@ Mayhem08의 강철을 계기로 활성 HD catalog 전체를 조사했다. 5개 �
 
 | 검사 | 결과/범위 |
 |---|---|
+| Rust | 750개 테스트·fmt/clippy 통과, 아래 CI의 전체 `check-rust` 성공 |
 | 로컬 Python | `make check-python`: 344개 테스트·자산/라이선스/소스 핀 감사 통과 |
 | WASM | `make check-wasm` 통과 |
+| 전체 SDL/Web 회귀 | 로컬 SDL 잔여 항목 분할 실행 통과. CI `check-rust check-desktop`·`check-web` 전체 성공 |
 | 활성 원화 감사 | 54종/540프레임,5재질,4배경,38PNG. 모든 키·사각형/해시 정상, 단색 표본 프레임0 |
 | Native 원본120레벨 | 모든 초기 장면과 선택1,920틱 HD/원본 상태·mask·오디오 대조 |
 | 실제 WASM/Canvas120레벨 | 352번 화면, 선택1,920틱,5테마/4특수/일방통행14장면, Native/WASM 최종 상태 동일·예외0 |
@@ -49,6 +51,8 @@ Mayhem08의 강철을 계기로 활성 HD catalog 전체를 조사했다. 5개 �
 | 일반 Wayland 제품 화면 | 개발 미리보기의 실제 WebGPU Mayhem08 80틱 표시, 브라우저 예외0 |
 
 GPU/Canvas는 backend 필터의 정수화 차이를 허용한다. HD 비교의 최대 채널 차이는15/255, 평균 차이는0.176 미만이다. 이 검사는 모든120레벨 완주나 새 FPS 성능 인수를 주장하지 않는다. 결정 테마의 일방통행 표지는 기본120레벨에 없어 자체 코스로 검증했다.
+
+로컬 장시간 `make` 세션이 종료 코드143으로 끝나 SDL 잔여8항목은 분할 실행해 종료 코드0을 확인했다. Rust/Web 전체 명령의 완료 판정은 아래 동일 tree 플랫폼 CI의 성공 결과를 기준으로 한다.
 
 ```bash
 # 새 ignored 출력 폴더를 사용한다.
@@ -66,4 +70,11 @@ baseline 실행파일은 변경 전 빌드를 복사한 것이다. Canvas120 검
 
 원화 PNG/manifest/atlas 개수와 다운로드 파일은 늘리지 않았다. 런타임 재질 합성과 보간만 변경했으며 새 PNG는 위 검토용 캡처뿐이다. 소스 인덱스는 현재 파일 해시를 갱신하고 이전 핀·역사 측정·#113 종료 결정을 보존한다.
 
-로컬 최종 검사와 PR self-review/플랫폼 CI를 진행 중이다. 완료 후 동일 소스 결과와 병합 정보를 여기에 기록한다.
+[PR #250](https://github.com/edwardkim/ohmylemmings/pull/250)을 self-review하고 [CI 40177977858](https://github.com/edwardkim/ohmylemmings/actions/runs/40177977858)의7개 작업을 모두 통과했다. Windows 전체 게임, Apple Silicon/Intel 동일 universal 패키지 실행, Linux 전체 검사/설치, Web 전체 검사/패키지, Python, WASM이 모두 SUCCESS다. 중복 push CI는 취소하고 PR CI 전체 판정을 사용했다.
+
+- 검증 head: `a300c19f2d2b69e7ea3adf77ba382bf85678fe04`
+- 실제 PR CI checkout: `2886b9ece7948e43df42f68c34f052ed498a081a`
+- 공통 tree: `01e4a3f057d935fa7921958fdeb2f618eead1432`
+- main 병합: `2f0d7406f3e836c75e91007b61d2a0d297380831` (2026-10-25 18:07 KST)
+
+검증 checkout/head/main 병합의 tree가 같은 것을 확인했다. 이 후속 문서 갱신은 제품 소스를 바꾸지 않는다. 공식 v0.3.4/Pages는 유지하며 발견한 공통 품질 문제의 구현·검증을 완료했다. 메인테이너의 새 미술 인수 판정이나 추가 배포를 뜻하지 않는다.
