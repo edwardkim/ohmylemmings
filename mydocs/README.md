@@ -1,5 +1,7 @@
 # Hyper-Waterfall 문서 안내
 
+[v0.3.4 WebGPU 릴리즈·Pages](reports/issue-246_webgpu.md)를 게시했다. 원본/HD WebGPU와 Canvas2D 자동 복구, Native GPU 선택/40FPS를 제공한다. 플랫폼 CI7개·공개109실행 파일/소스·실제 WebGPU 플레이를 검증했다. 아래 과거 배포 기록은 당시 상태다.
+
 [#113 성능 추적을 종료](reports/issue-113_closure.md)했다(2026-10-25 메인테이너 지시, Not planned). Native40FPS 목표와 현재 플레이 범위를 수용했고, 과거60Hz NOT READY·측정은 역사 자료로 보존한다. 아래 과거 기록의 OPEN/잔여 표현은 이 종료 결정 전 상태다.
 
 [v0.3.3 릴리즈·Pages](reports/issue-230_release_v033.md)를 게시했다. 중복 소스와 미사용 배포 입력을 제거해 Web ZIP을218.03→97.57MB로 줄였다. 전체 플랫폼 CI·공개 파일/소스 링크·실제 웹 플레이 검증을 완료했다. 아래 버전 기록은 당시 상태다.

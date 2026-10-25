@@ -20,6 +20,45 @@ Linux headless 실제 GPU 검사에는 `--enable-unsafe-webgpu --enable-features
 
 개인 원시 증거: `assets/local/issue-246/`. 최종 GPU: `gpu-original-final/summary.json`. Canvas 회귀: `web-regression/summary.json`. 기존 사용자 브라우저/서버와 원본 MP3는 유지했다.
 
-## 배포 진행
+## v0.3.4 게시 완료
 
-메인테이너가 구현 완료 후0.3.4 릴리즈·Pages 게시를 승인했다. Cargo workspace/lock9개와 한·영 안내/릴리즈 노트를0.3.4로 준비했다. 플랫폼 CI·태그 전 사전 검증·정식 게시·공개 파일/소스/플레이 검증 결과는 완료 후 이 절에 기록한다.
+[정식 릴리즈](https://github.com/edwardkim/ohmylemmings/releases/tag/v0.3.4)와 [Pages 웹 플레이](https://edwardkim.github.io/ohmylemmings/)를 게시했다. 네 실행 패키지·공통 대응 소스·PLAY.md·개별/전체 체크섬·RELEASE-MANIFEST의12파일을 제공한다. Cargo workspace/lock9개와 한·영 안내/노트는0.3.4이다.
+
+| 항목 | 값 |
+|---|---|
+| 구현 PR | [#247](https://github.com/edwardkim/ohmylemmings/pull/247) |
+| PR head | `d10c307ea1d48a7455d5f38aae5ff7d74ef97a0c` |
+| 실제 CI checkout | `93b75effaa420a72b435f3846dc913d2cae8d09b` |
+| main/tag commit | `7969fc9ed8f07c9dd266a81d6889d5536a559957` |
+| 공통 source tree | `d371bb618c6095f11cd051d11cff599f5cb6653e` |
+| annotated tag object | `d7369c66d682255d6f4d57f2694280f5df49136c` |
+| 플랫폼 CI7개 | [40168898131](https://github.com/edwardkim/ohmylemmings/actions/runs/40168898131), 전부 SUCCESS |
+| 태그 전 prepare-only | [40170111497](https://github.com/edwardkim/ohmylemmings/actions/runs/40170111497), SUCCESS |
+| 정식 게시·Pages | [40170406244](https://github.com/edwardkim/ohmylemmings/actions/runs/40170406244), publish/Pages SUCCESS |
+
+중복 feature push CI만 취소했다. 병합 [main CI40170110521](https://github.com/edwardkim/ohmylemmings/actions/runs/40170110521)도7개 검사 전부 SUCCESS였으며, 배포에는 먼저 통과한 PR CI의 동일 tree 패키지를 사용했다. 사전 검증과 정식 RELEASE-MANIFEST의 CI/소스/파일 해시가 일치한다.
+
+## 공개 인수
+
+- 초안 업로드 파일 재다운로드와 공개 후12파일의 인증 없는 다운로드 바이트 검증을 Release workflow에서 통과했다.
+- Pages0.3.4의 commit/tree/Web ZIP SHA가 RELEASE-MANIFEST와 일치한다. 공개 실행 파일109개 전체 크기·SHA-256, WASM MIME과 대응 소스 URL/크기/해시/공개 HEAD 접근을 별도로 검증했다. 배포 메타데이터까지111파일이다.
+- 공개 HTTPS 사이트를 실제 Wayland Chromium 창에서 WebGPU로 열어 원본/HD 선택·8기술 키·Pause/Resume·1920×1080 전체화면과 입력/표시 위치 일치를 확인했다. Fun01에서60틱 Digger 배정 후660틱/10구출 Won, 다음 Fun02로 점진적 로딩·이동을 확인했다. 이는 저장된 해법의 빠른 명시적 틱 검증이며 실시간 FPS 측정이나 전체120레벨 재완주가 아니다.
+- 공개 Fun02 Pause 상태에서 GPU device를 파괴하여 상태 보존·Canvas2D 전환·이후 입력 복귀를 확인했다. 브라우저 예외0이었다.
+- 공개 `?renderer=canvas2d` 시작에서도8기술 키·Pause/Resume·1920×1080 전체화면·Fun01 10구출 Won·다음 Fun02 이동을 통과했다. 이 경로도 브라우저 예외0이었다.
+- 기존6개 릴리즈의 본문·게시 시각·asset ID/이름/크기/digest/시각과 기존 태그가 보존됨을 확인했다. 다운로드 횟수 같은 변동성 통계는 비교하지 않았다.
+- Linux headless의 GPU framebuffer readback은 맞지만 전체 페이지 캡처는 검게 반환되는 환경 제한이 있었다. 같은 코드·GPU·자산을 일반 Wayland 창에서 실행한 실제 표시/캡처는 정상이다. 이 구분을 확인한 후 게시했고, 제품 렌더러를 검증용 복사 경로로 변경하지 않았다.
+
+개인 공개 검증 자료: `assets/local/issue-246/public-verification.json`, `public-webgpu/summary.json`, `public-webgpu/public-product.png`, `public-canvas2d/summary.json`. 공개 CI·Release workflow와 release-publication artifact에도 계보가 남는다. 임시 QA 브라우저는 종료했으며 사용자19222/8080 환경은 유지했다.
+
+## 게시 파일
+
+| 파일 | 바이트 | SHA-256 |
+|---|---:|---|
+
+| `ohmylemmings-0.3.4-linux-x86_64.tar.gz` | 98,441,503 | `a2f175b096d2b62201060c2332af2f847ca849b870c964614d5573c8f343c7d6` |
+| `ohmylemmings-0.3.4-macos-universal2.zip` | 100,820,836 | `981e93e1147c618d5322b01fb33b2001ec8f7b2f23da46a536fb49d274b51e7f` |
+| `ohmylemmings-0.3.4-source.tar.gz` | 86,015,002 | `8909286f8ae5135b1d98a88611debaca81363395de0a660f83e0b57f03dbea56` |
+| `ohmylemmings-0.3.4-web.zip` | 97,570,060 | `05efca14c73cfe87e77ceeadf6f7d5dfa3f2f1a1f5875cab60ae474e57beff9e` |
+| `ohmylemmings-0.3.4-windows-x86_64.zip` | 98,881,393 | `dc9ef2ab089fc5ab9d424b7ec76b9538ef407d6b926aaac42bf1a4bd18588052` |
+
+Web ZIP은0.3.3의97,565,086바이트에서97,570,060바이트로4,974바이트 증가했다. 새 Rust GPU 의존성이나 추가 그래픽 다운로드는 없다. 초기 레벨의 점진적 다운로드 정책은 유지한다.
