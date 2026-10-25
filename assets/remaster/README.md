@@ -1,5 +1,7 @@
 # 2D 리마스터 디자인 자산
 
+[#249 공통 품질 개선](../../mydocs/reports/issue-249_hd_material_quality.md): 강철/Builder 계단을 월드 좌표 기반 재질로 합성하고, 모든 HD 지물·특수 배경의 확대 보간과 결정 테마 표지의 테두리 조명을 보강했다. 원화 PNG·출처/해시·다운로드 팩은 그대로다. Native/Canvas2D/WebGPU가 공통 Rust 결과를 사용한다. 자체 코스의 실제 SDL [흙 테마](previews/issue-249_theme-0_after.png)·[결정 테마](previews/issue-249_theme-4_after.png)에서 확인할 수 있다.
+
 담당 [#137](https://github.com/edwardkim/ohmylemmings/issues/137), 첫 시안 [#138](https://github.com/edwardkim/ohmylemmings/issues/138).
 
 - [Fun 01 손그림풍 시안](concepts/issue-138_fun01_handpainted_v1.png):1672×941 디자인 후보. 실제 HD 모드·충돌 mask·분리 atlas가 아니다.

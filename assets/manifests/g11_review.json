@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 316643,
-      "sha256": "1d60f3a11476af9ce4f76fd6288ac24603200d9b5ae1557bfdce65c04f2809df",
+      "bytes": 317820,
+      "sha256": "2794338c38b79d5e9571c2686dcb81b8afad60e528c1fa96bc017efbf77217a9",
       "id": "compatibility"
     },
     {
@@ -11360,5 +11360,17 @@
       }
     ],
     "scope": "Optional browser WebGPU presentation with Canvas2D fallback. Current source-index pins only; historical executions, performance/NOT READY verdicts and the maintainer closure of113 are preserved. No renewed all-level or performance qualification."
+  },
+  "hd_material_quality_249": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/249",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 316643,
+        "sha256": "1d60f3a11476af9ce4f76fd6288ac24603200d9b5ae1557bfdce65c04f2809df",
+        "id": "compatibility"
+      }
+    ],
+    "scope": "Shared HD presentation only: themed procedural steel/masonry, premultiplied frame-clamped bilinear scenery/panorama sampling and raised crystal-arrow ink. Original simulation, masks, animation phases and audio are unchanged. Current source-index pins only; all historical executions/NOT READY verdicts and the maintainer closure of113 are preserved. New120 initial-scene,54-object and representative saved-solution checks are scoped to249, not renewed all-level completion or FPS qualification."
   }
 }

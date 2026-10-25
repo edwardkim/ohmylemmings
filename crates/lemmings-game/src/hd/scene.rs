@@ -446,7 +446,10 @@ impl Renderer {
         camera: i32,
         out: &mut Vec<Draw>,
     ) -> Result<(), Box<dyn Error>> {
-        if mask.len() != self.old_mask.len() || bricks.len() != mask.len() {
+        if mask.len() != self.old_mask.len()
+            || bricks.len() != mask.len()
+            || steel.len() != mask.len()
+        {
             return Err("HD mask length".into());
         }
         let mut changed = false;
@@ -517,28 +520,44 @@ impl Renderer {
                                 continue;
                             }
                             let color = if bricks[i] != 0 {
-                                if py % 6 == 0 || (x * 6 + px).is_multiple_of(36) {
-                                    [118, 75, 32, 255]
-                                } else {
-                                    [207, 158, 79, 255]
-                                }
+                                surface::shade(
+                                    surface::masonry_pixel(x * 6 + px, y * 6 + py),
+                                    mask,
+                                    self.width,
+                                    x * 6 + px,
+                                    y * 6 + py,
+                                )
                             } else if steel[i] != 0 {
-                                [132, 150, 166, 255]
+                                surface::shade(
+                                    surface::shade(
+                                        surface::steel_pixel(
+                                            x * 6 + px,
+                                            y * 6 + py,
+                                            self.material.unwrap_or(0),
+                                        ),
+                                        steel,
+                                        self.width,
+                                        x * 6 + px,
+                                        y * 6 + py,
+                                    ),
+                                    mask,
+                                    self.width,
+                                    x * 6 + px,
+                                    y * 6 + py,
+                                )
                             } else if let Some(r) = special.filter(|_| (304..1264).contains(&wx)) {
                                 // VGASPEC is960x160 at x304 (terrain.rs). Sample in
                                 // world HD coordinates so scrolling/chunk edits never rephase it.
                                 let source = &self.textures[r.atlas as usize];
-                                let sx = r.rect[0] as usize
-                                    + (x * 6 + px - 304 * 6) * r.rect[2] as usize / (960 * 6);
-                                let sy = r.rect[1] as usize
-                                    + (y * 6 + py) * r.rect[3] as usize / (160 * 6);
-                                let at = (sy * source.width as usize + sx) * 4;
-                                [
-                                    source.rgba[at],
-                                    source.rgba[at + 1],
-                                    source.rgba[at + 2],
-                                    255,
-                                ]
+                                let mut color = surface::sample_rgba(
+                                    source,
+                                    r.rect,
+                                    x * 6 + px - 304 * 6,
+                                    y * 6 + py,
+                                    [960 * 6, 160 * 6],
+                                );
+                                color[3] = 255;
+                                color
                             } else if let Some((_, _, surface)) = &self.surface {
                                 surface::contour(
                                     surface::shade(
@@ -741,15 +760,17 @@ impl Renderer {
                             let sy = if p.flags.upside_down { h - 1 - y } else { y };
                             let color = if let Some(f) = hd {
                                 let t = &self.textures[f.atlas as usize];
-                                let sx = f.rect[0] as usize + x * f.rect[2] as usize / w;
-                                let sy = f.rect[1] as usize + sy * f.rect[3] as usize / h;
-                                let at = (sy * t.width as usize + sx) * 4;
-                                &t.rgba[at..at + 4]
+                                let color = surface::sample_rgba(t, f.rect, x, sy, [w, h]);
+                                if o.set == 4 && matches!(o.meta.trigger_effect, 7 | 8) {
+                                    surface::ruby_arrow(t, f.rect, x, sy, [w, h], color)
+                                } else {
+                                    color
+                                }
                             } else {
                                 let at = (sy / 6 * o.meta.width as usize + x / 6) * 4;
-                                &original[at..at + 4]
+                                original[at..at + 4].try_into().unwrap()
                             };
-                            rgba[(y * w + x) * 4..(y * w + x) * 4 + 4].copy_from_slice(color);
+                            rgba[(y * w + x) * 4..(y * w + x) * 4 + 4].copy_from_slice(&color);
                         }
                     }
                     self.textures[o.texture].replace(w as u32, h as u32, rgba);
@@ -1921,6 +1942,64 @@ mod tests {
         assert_eq!(r.textures[r.chunk_base + 1].rgba, other);
         assert!(r.textures[r.chunk_base].rgba.iter().all(|&v| v == 0));
     }
+
+    #[test]
+    fn steel_and_stairs_keep_texture_phase_across_chunks_scroll_and_holes() {
+        let mut assets = Assets::synthetic_builder();
+        assets.terrain.fill(1);
+        assets.steel.fill(1);
+        let run = LevelRun::new(assets, 1, None, Pacing::Reference).unwrap();
+        let state = crate::diagnostics::state(&run.session);
+        let sound = run.sound.diagnostic_json();
+        for stairs in [false, true] {
+            let mut r = Renderer::fallback();
+            r.reset(&run.assets).unwrap();
+            let bricks = vec![u8::from(stairs); run.assets.terrain.len()];
+            r.terrain(
+                run.session.render_terrain(),
+                &bricks,
+                &run.assets.steel,
+                0,
+                &mut Vec::new(),
+            )
+            .unwrap();
+            let first = r.textures[r.chunk_base + 1].rgba.clone();
+            let second = r.textures[r.chunk_base + 2].rgba.clone();
+            assert_ne!(
+                first, second,
+                "chunk-local patterns must not repeat their seed"
+            );
+            r.terrain(
+                run.session.render_terrain(),
+                &bricks,
+                &run.assets.steel,
+                64,
+                &mut Vec::new(),
+            )
+            .unwrap();
+            assert_eq!(first, r.textures[r.chunk_base + 1].rgba);
+            assert_eq!(second, r.textures[r.chunk_base + 2].rgba);
+            let rebuilds = r.terrain_rebuilds();
+            r.terrain(
+                run.session.render_terrain(),
+                &bricks,
+                &run.assets.steel,
+                0,
+                &mut Vec::new(),
+            )
+            .unwrap();
+            assert_eq!(rebuilds, r.terrain_rebuilds());
+            let mut mask = run.session.render_terrain().to_vec();
+            mask[32 * run.assets.width + 64] = 0;
+            r.terrain(&mask, &bricks, &run.assets.steel, 64, &mut Vec::new())
+                .unwrap();
+            let id = r.chunk_base + r.chunks_x + 2;
+            assert_eq!(&r.textures[id].rgba[..4], &[0; 4]);
+            assert!(r.terrain(&mask, &bricks, &[], 0, &mut Vec::new()).is_err());
+            assert_eq!(state, crate::diagnostics::state(&run.session));
+            assert_eq!(sound, run.sound.diagnostic_json());
+        }
+    }
     #[test]
     fn draw_wire_has_fixed_records_and_keeps_clip_and_alpha_explicit() {
         assert_eq!(
@@ -2017,7 +2096,7 @@ mod tests {
         .unwrap();
         assert_eq!(
             &r.textures[r.chunk_base].rgba[pixel..pixel + 4],
-            &[132, 150, 166, 255]
+            &surface::steel_pixel((at % run.assets.width) * 6, (at / run.assets.width) * 6, 3)
         );
         bricks[at] = 1;
         r.terrain(
@@ -2030,7 +2109,7 @@ mod tests {
         .unwrap();
         assert_eq!(
             &r.textures[r.chunk_base].rgba[pixel..pixel + 4],
-            &[118, 75, 32, 255]
+            &surface::masonry_pixel((at % run.assets.width) * 6, (at / run.assets.width) * 6)
         );
     }
 
@@ -2164,8 +2243,8 @@ mod tests {
                 .unwrap();
             }
             assert_eq!(sample(&r, 304), vec![20 + set, 30, 40, 255]);
-            assert_eq!(sample(&r, 783), vec![20 + set, 30, 40, 255]);
-            assert_eq!(sample(&r, 784), vec![80 + set, 90, 100, 255]);
+            assert_eq!(sample(&r, 783), vec![50 + set, 60, 70, 255]);
+            assert_eq!(sample(&r, 784), vec![50 + set, 60, 70, 255]);
             assert_eq!(sample(&r, 1263), vec![80 + set, 90, 100, 255]);
             assert_ne!(sample(&r, 1264), vec![80 + set, 90, 100, 255]);
             let mut mask = run.session.render_terrain().to_vec();

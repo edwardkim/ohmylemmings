@@ -1,5 +1,7 @@
 # 계획 문서
 
+- [#249 HD 지형·지물 재질 완성도](issue-249_hd_material_quality.md): 단색 강철/계단과 전체 활성 자산 점검·개선.
+
 - [#246 WebGPU 웹 렌더러](issue-246_webgpu.md): 원본/HD GPU 표시와 Canvas2D fallback.
 
 - [#216 플레이 타격감·조작 피드백](issue-216_play_feel.md): 굴착음·원형 타깃·추락사·기술 적용 불가 안내.
