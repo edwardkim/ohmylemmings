@@ -7,8 +7,8 @@
   "evidence": [
     {
       "path": "assets/manifests/compatibility_audit.json",
-      "bytes": 312136,
-      "sha256": "c0ccf9eec0451687d4f23e2c3bc05a468f193208387aa3d2d18117135bded562",
+      "bytes": 314438,
+      "sha256": "53f65f980035ffe7a6a477ef9de8517b6b49efc153ba2d944d0aba79dd4e7d51",
       "id": "compatibility"
     },
     {
@@ -19,8 +19,8 @@
     },
     {
       "path": "assets/manifests/display_cadence.json",
-      "bytes": 93436,
-      "sha256": "ccc5880abd84a597eb3c6a1aae0c1762a737adef45d3d2d87cd6c9cde8cf34bd",
+      "bytes": 94486,
+      "sha256": "2c86c57bf6906542eb307ef22cc2ee61de17a47fe9117714f48de164b2ccfbf0",
       "id": "display"
     }
   ],
@@ -11318,5 +11318,23 @@
       }
     ],
     "scope": "Native startup now selects an initialized SDL accelerated renderer for original/HD presentation and falls back to software. Existing historical timing/NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "presentation_target_240": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/240",
+    "previous_pins": [
+      {
+        "path": "assets/manifests/compatibility_audit.json",
+        "bytes": 312136,
+        "sha256": "c0ccf9eec0451687d4f23e2c3bc05a468f193208387aa3d2d18117135bded562",
+        "id": "compatibility"
+      },
+      {
+        "path": "assets/manifests/display_cadence.json",
+        "bytes": 93436,
+        "sha256": "ccc5880abd84a597eb3c6a1aae0c1762a737adef45d3d2d87cd6c9cde8cf34bd",
+        "id": "display"
+      }
+    ],
+    "scope": "Maintainer accepted40FPS native presentation target. Display deadlines change; simulation pacing and archived60Hz measurements/NOT READY verdicts are preserved. Web keeps changed-state-only drawing."
   }
 }

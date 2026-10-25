@@ -867,8 +867,9 @@ fn run_summary(
     let (fast, synthetic, pacing) = mode;
     let state = game.session.scheduler.step_state();
     let runtime = sdl2::version::version();
+    let presentation_base_fps = frame_clock::TARGET_FPS;
     format!(
-        "{{\"control_step\":{},\"iteration\":{},\"frames\":{rendered},\"input_count\":{},\"events_seen\":{observed_events},\"camera\":{},\"video_driver\":{:?},\"renderer\":{:?},\"sdl_version\":\"{}.{}.{}\",\"timing\":\"{}\",\"synthetic\":{},\"pacing\":{:?},\"rate_numerator\":{},\"rate_denominator\":{}}}",
+        "{{\"control_step\":{},\"iteration\":{},\"frames\":{rendered},\"presentation_base_fps\":{presentation_base_fps},\"input_count\":{},\"events_seen\":{observed_events},\"camera\":{},\"video_driver\":{:?},\"renderer\":{:?},\"sdl_version\":\"{}.{}.{}\",\"timing\":\"{}\",\"synthetic\":{},\"pacing\":{:?},\"rate_numerator\":{},\"rate_denominator\":{}}}",
         state.control_step,
         state.iteration,
         game.session.inputs.len(),

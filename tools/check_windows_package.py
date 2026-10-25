@@ -193,7 +193,7 @@ def check(archive, evidence):
         original_levels_loaded=len(levels), first_frame_sha256=sha(logical),
         visible_no_argument_window=True, unicode_space_install=True, foreign_cwd=True,
         original_transitions=transitions, audio=audio,
-        scope='Actual hosted Windows, original artwork/data/SDL PCM; physical sound and 60fps qualification remain separate.')
+        scope='Actual hosted Windows, original artwork/data/SDL PCM; physical sound and performance qualification remain separate.')
     save(evidence/'summary.json', report)
     print(json.dumps(report))
 

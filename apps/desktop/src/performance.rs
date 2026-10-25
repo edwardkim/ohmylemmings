@@ -106,6 +106,7 @@ impl Recorder {
         renderer: &str,
     ) -> Result<(), Box<dyn Error>> {
         let elapsed = self.started.elapsed().as_secs_f64();
+        let presentation_base_fps = crate::frame_clock::TARGET_FPS;
         let memory = std::fs::read_to_string("/proc/self/status").unwrap_or_default();
         let peak = memory
             .lines()
@@ -121,7 +122,7 @@ impl Recorder {
             .open(&self.path)?;
         writeln!(
             file,
-            "{{\"process_peak_rss_kib\":{peak},\"observer_capacity_bytes\":{observer_bytes},\"upload_operations\":32,\"upload_samples_ns\":{:?},\"seconds\":{},\"required_seconds\":{},\"video_driver\":{driver:?},\"renderer\":{renderer:?},\"tick_period_ns\":{},\"ticks\":{:?},\"frames\":{:?},\"audio\":{:?},\"poll_detected_underruns\":{},\"state\":{}}}",
+            "{{\"process_peak_rss_kib\":{peak},\"presentation_base_fps\":{presentation_base_fps},\"observer_capacity_bytes\":{observer_bytes},\"upload_operations\":32,\"upload_samples_ns\":{:?},\"seconds\":{},\"required_seconds\":{},\"video_driver\":{driver:?},\"renderer\":{renderer:?},\"tick_period_ns\":{},\"ticks\":{:?},\"frames\":{:?},\"audio\":{:?},\"poll_detected_underruns\":{},\"state\":{}}}",
             self.upload_samples,
             elapsed,
             self.limit.as_secs_f64(),

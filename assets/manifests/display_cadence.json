@@ -869,18 +869,18 @@
   "source": [
     {
       "path": "apps/desktop/src/main.rs",
-      "bytes": 74040,
-      "sha256": "c9493cfe247ec41c985afb41142884415bb55506526cd58210062892bdf566e1"
+      "bytes": 74147,
+      "sha256": "93e8afebefb62a3dac5c93a325b79cf92c6cc771a5152a02304da21ec95d91ac"
     },
     {
       "path": "apps/desktop/src/frame_clock.rs",
-      "bytes": 4752,
-      "sha256": "1c3db05122cd596c243f9b8403b623813fc5880722c2db75454cb09a69f326e4"
+      "bytes": 5174,
+      "sha256": "325e0a83fb2cd8c45262c73ede4b78d1480280ee631267a63a38efab46a0cd5d"
     },
     {
       "path": "apps/desktop/src/performance.rs",
-      "bytes": 5317,
-      "sha256": "8596aef98702f858afea5d90b5d397f6354cad60b00f4f903a9128625059d29d"
+      "bytes": 5435,
+      "sha256": "8ae9234a7e697c06d6772c42661aee002bff9593c9dbd0c01fb2af9a049ee250"
     },
     {
       "path": "apps/desktop/src/audio.rs",
@@ -889,8 +889,8 @@
     },
     {
       "path": "apps/desktop/src/frame_feedback.rs",
-      "bytes": 9892,
-      "sha256": "4a45f68d65d488d9866524770c3921c71be88dc21934bde12283f306513ee6c9"
+      "bytes": 10008,
+      "sha256": "f32966924fae382fcd793c0924a6de880353b3edbd974b1af3035dd7a8fe2793"
     }
   ],
   "identity": {
@@ -1743,5 +1743,31 @@
       }
     ],
     "scope": "Native startup now selects an initialized SDL accelerated renderer for original/HD presentation and falls back to software. Existing historical timing/NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "presentation_target_240": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/240",
+    "previous_pins": [
+      {
+        "path": "apps/desktop/src/main.rs",
+        "bytes": 74040,
+        "sha256": "c9493cfe247ec41c985afb41142884415bb55506526cd58210062892bdf566e1"
+      },
+      {
+        "path": "apps/desktop/src/frame_clock.rs",
+        "bytes": 4752,
+        "sha256": "1c3db05122cd596c243f9b8403b623813fc5880722c2db75454cb09a69f326e4"
+      },
+      {
+        "path": "apps/desktop/src/performance.rs",
+        "bytes": 5317,
+        "sha256": "8596aef98702f858afea5d90b5d397f6354cad60b00f4f903a9128625059d29d"
+      },
+      {
+        "path": "apps/desktop/src/frame_feedback.rs",
+        "bytes": 9892,
+        "sha256": "4a45f68d65d488d9866524770c3921c71be88dc21934bde12283f306513ee6c9"
+      }
+    ],
+    "scope": "Maintainer accepted40FPS native presentation target. Display deadlines change; simulation pacing and archived60Hz measurements/NOT READY verdicts are preserved. Web keeps changed-state-only drawing."
   }
 }

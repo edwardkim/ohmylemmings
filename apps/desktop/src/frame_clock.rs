@@ -1,6 +1,8 @@
-//! Native60Hz deadlines; rendering cost does not move the absolute grid.
+//! Native40Hz deadlines; rendering cost does not move the absolute grid.
 //! Late slots are skipped in constant time. Simulation pacing is independent.
 use std::time::{Duration, Instant};
+
+pub const TARGET_FPS: u128 = 40;
 #[derive(Clone, Copy)]
 pub struct FrameBudget {
     pub scheduled: Instant,
@@ -23,7 +25,7 @@ impl FrameClock {
         }
     }
     fn at(&self, slot: u128) -> Instant {
-        let ns = (slot * self.period_units).div_ceil(60);
+        let ns = (slot * self.period_units).div_ceil(TARGET_FPS);
         self.epoch
             + Duration::new(
                 u64::try_from(ns / 1_000_000_000).expect("display time fits Duration"),
@@ -57,8 +59,9 @@ impl FrameClock {
     }
     /// Consume only scheduled frames. No repeated drawing of expired slots.
     pub fn finish(&mut self, now: Instant) -> u128 {
-        let future =
-            now.saturating_duration_since(self.epoch).as_nanos() * 60 / self.period_units + 1;
+        let future = now.saturating_duration_since(self.epoch).as_nanos() * TARGET_FPS
+            / self.period_units
+            + 1;
         let skipped = future.saturating_sub(self.next);
         self.next = self.next.max(future);
         skipped
@@ -68,22 +71,20 @@ impl FrameClock {
 mod tests {
     use super::*;
     #[test]
-    fn processing_time_does_not_accumulate_in_sixty_hz_deadlines() {
+    fn processing_time_does_not_accumulate_in_forty_hz_deadlines() {
         let base = Instant::now();
         let mut c = FrameClock::new(base, 1);
-        for frame in 0..=3600u64 {
-            let ns = (u128::from(frame) * 1_000_000_000).div_ceil(60) as u64;
+        for frame in 0..=2400u64 {
+            let ns = frame * 25_000_000;
             let at = base + Duration::from_nanos(ns);
             let budget = c.begin(at).expect("frame must be due on its absolute grid");
             assert_eq!(budget.scheduled, at);
             assert_eq!(
                 budget.deadline,
-                base + Duration::from_nanos(
-                    ((u128::from(frame) + 1) * 1_000_000_000).div_ceil(60) as u64
-                )
+                base + Duration::from_nanos((frame + 1) * 25_000_000)
             );
             assert_eq!(c.finish(at + Duration::from_millis(2)), 0);
-            assert!(!c.due(at + Duration::from_millis(15)));
+            assert!(!c.due(at + Duration::from_millis(24)));
         }
     }
     #[test]
@@ -91,19 +92,33 @@ mod tests {
         let base = Instant::now();
         let mut c = FrameClock::new(base, 1);
         c.begin(base).unwrap();
-        assert_eq!(c.finish(base + Duration::from_millis(101)), 6);
+        assert_eq!(c.finish(base + Duration::from_millis(101)), 4);
         assert!(!c.due(base + Duration::from_millis(101)));
-        assert!(c.due(base + Duration::from_nanos(116_666_667)));
+        assert!(c.due(base + Duration::from_millis(125)));
     }
     #[test]
-    fn forced_frames_do_not_postpone_grid_and_render_every_scales_sixty_hz() {
+    fn forced_frames_do_not_postpone_grid_and_render_every_scales_forty_hz() {
         let base = Instant::now();
         let mut c = FrameClock::new(base, 3);
         c.begin(base).unwrap();
         c.finish(base + Duration::from_millis(2));
         assert!(c.begin(base + Duration::from_millis(20)).is_none());
-        assert!(!c.due(base + Duration::from_nanos(49_999_999)));
-        assert!(c.due(base + Duration::from_millis(50)));
+        assert!(!c.due(base + Duration::from_nanos(74_999_999)));
+        assert!(c.due(base + Duration::from_millis(75)));
+    }
+    #[test]
+    fn one_second_schedules_exactly_forty_frames() {
+        let base = Instant::now();
+        let mut clock = FrameClock::new(base, 1);
+        let mut frames = 0;
+        for millisecond in 0..1000 {
+            let now = base + Duration::from_millis(millisecond);
+            if clock.begin(now).is_some() {
+                frames += 1;
+                clock.finish(now + Duration::from_micros(100));
+            }
+        }
+        assert_eq!(frames, 40);
     }
     #[test]
     fn hide_restore_and_new_level_rebase_only_the_presentation_epoch() {
