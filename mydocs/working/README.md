@@ -172,3 +172,5 @@
 - [#208 Native MP3 선택·앱 아이콘 / v0.3.1](issue-208_native_polish.md)
 
 - [#226 배포 소스·패키지 최적화](issue-226_package_size.md)
+
+- [#230 v0.3.3 릴리즈·Pages](issue-230_release_v033.md)
