@@ -178,3 +178,5 @@
 - [#233 Linux 그래픽 확장 조사](issue-233_linux_graphics.md)
 
 - [#235 GPU 시작 선택](issue-235_gpu_startup.md)
+
+- [#238 이 PC Native GPU FPS 실측](issue-238_native_gpu_fps.md)
