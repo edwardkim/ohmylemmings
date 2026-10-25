@@ -1,5 +1,7 @@
 # 작업 결과 보고서
 
+- [#246 WebGPU 구현·v0.3.4 배포](issue-246_webgpu.md)
+
 - [#215 HD 지형·지물 품질](issue-215_hd_surface_quality.md): 5재질·55입출구·수직벽 윤곽, 메인테이너 시각 인수.
 
 - [#113 플레이 FPS·피드백 복사](issue-113_player_feedback.md): Web/Native 선택 표시·일시 보류·수동 복사·실제 앱 검증. 기존 성능 자격 검증은 별도다.

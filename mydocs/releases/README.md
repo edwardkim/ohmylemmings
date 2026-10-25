@@ -1,5 +1,7 @@
 # 릴리즈 기록
 
+- [#246 v0.3.4 WebGPU 렌더링](issue-246_v0.3.4.md)
+
 관리 정책: [#124 버전·태그·Releases](../plans/issue-124_release_policy.md).
 
 현재 Windows 지원 대상은 **Windows 11 x64**이며 **Windows 10은 지원하지 않습니다**. [#130의 메인테이너 결정](../reports/issue-130_maintainer_acceptance.md)을 따릅니다.

@@ -6,8 +6,8 @@
   "source": [
     {
       "path": "apps/web/www/app.js",
-      "bytes": 18098,
-      "sha256": "c3875912bea24469c6fca4ee7786c6014cf11597dd6f6a3a2917680c8cca538a"
+      "bytes": 18905,
+      "sha256": "61224cc7c371d601e82bd64c920b6275d4213fd7e88c0da3fafcd5d463a3f50b"
     },
     {
       "path": "apps/web/www/host.js",
@@ -648,5 +648,16 @@
       }
     ],
     "scope": "Opt-in player FPS/feedback UI. Historical executions, producer/source pins, raw timing/memory and NOT READY verdicts are preserved; no new performance qualification."
+  },
+  "webgpu_246": {
+    "issue": "https://github.com/edwardkim/ohmylemmings/issues/246",
+    "previous_pins": [
+      {
+        "path": "apps/web/www/app.js",
+        "bytes": 18098,
+        "sha256": "c3875912bea24469c6fca4ee7786c6014cf11597dd6f6a3a2917680c8cca538a"
+      }
+    ],
+    "scope": "Optional WebGPU/Canvas2D presentation selection; historical dispatch observations, comparison, source snapshots and deferred qualification remain unchanged. No new timing qualification."
   }
 }
